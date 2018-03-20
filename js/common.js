@@ -25,7 +25,6 @@ function doRequest(apiHost, method, data, callback, contentType, showtips) {
             }
         }
     }
-
     var requestType = 'application/x-www-form-urlencoded';
     if (contentType && contentType === 'json') {
         requestType = 'application/json';
@@ -40,6 +39,7 @@ function doRequest(apiHost, method, data, callback, contentType, showtips) {
         },
         data: data,
         contentType: requestType,
+        dataType:contentType,
         //xhrFields: {
         //    withCredentials: true
         //},
@@ -57,13 +57,13 @@ function doGet(baseUrl, callback, showtips) {
     var requestUri = WebApiHost +"v0" + baseUrl;
     doRequest(requestUri, "GET", null, callback);
 }
-function doRankGet(baseUrl, callback, showtips) {
+function doRankGet(baseUrl, callback, dataType) {
     var requestUri = WebRankHostApi + baseUrl;
-    doRequest(requestUri, "GET", null, callback);
+    doRequest(requestUri, "GET", null, callback, dataType);
 }
 function doJavaGet(baseUrl, callback, showtips) {
     var requestUri = WebApiHostJavaApi + baseUrl;
-    doRequest(requestUri, "GET", null, callback);
+    doRequest(requestUri, "GET", '', callback);
 }
 function doPostJavaApi(baseUrl, data, callback, contentType, showtips) {
     var requestUri = WebApiHostJavaApi + baseUrl;

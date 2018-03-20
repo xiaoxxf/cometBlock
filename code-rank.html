@@ -61,7 +61,7 @@
     <div class="mian-container">
         <div class="container">
             <div class="body-container-wrap">
-                <div class="title-select-wrap">
+              <!--  <div class="title-select-wrap">
                     <div class="row">
                         <div class="col-md-3 col-sm-12 ">
                             <span class="item-title">
@@ -89,10 +89,10 @@
                              </span>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="code-rank-wrap">
                 </div>
-                <div class="load-more-wrap">
+                <div class="load-more-wrap load-more-hook" style="display: none">
                     <div class="loader1 loader">
                         <div></div>
                         <div></div>
@@ -100,6 +100,11 @@
                     </div>
                     <div class="loading-more">
                         加载更多
+                    </div>
+                </div>
+                <div class="load-more-wrap no-more-hook" style="display: none">
+                    <div class="loading-more">
+                        已无更多数据
                     </div>
                 </div>
             </div>
@@ -146,63 +151,6 @@
 <script src="js/template.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
-<script>
-    $(function () {
-        $(".search-click-hook").on('click',function () {
-            console.log('点击搜索');
-        })
-        var rankPageIndex = 0;
-        var tempRankData = [];
-        $.getJSON("js/rank.json", function (data) {
-            var rankData;
-            var cometSeesionStore = window.sessionStorage.getItem('rankList')
-            if(cometSeesionStore == null){
-               window.sessionStorage.setItem('rankList',JSON.stringify(data));
-                rankData = data;
-            }else{
-                 rankData = JSON.parse(window.sessionStorage.getItem('rankList'));
-            }
-            tempRankData =  getTenRankData(rankData);
-            var rankTpl = $("#rank-item-temp").html();
-            var content = template(rankTpl, {list: tempRankData});
-            $(".code-rank-wrap").append(content)
-        });
-        function getTenRankData(rankData){
-            var tempRank = [];
-            for(i=1;i<=10;i++){
-                var rankIndex = rankPageIndex*10+i;
-                tempRank.push(rankData[rankIndex]);
-            }
-            return tempRank;
-        }
-     /*  doRankGet('', function(res) {
-            if(res != null && res.code == 0) {
-            } else{
-                console.log(mockRankList)
-            }
-        }, "json");*/
-
-        $(".loading-more").on('click',function () {
-            //点击ajax请求数据
-            $(".loading-more").hide();
-            $(".loader1").css('display','flex');
-            rankPageIndex++;
-            var rankData;
-            var cometSeesionStore = window.sessionStorage.getItem('rankList')
-            if(cometSeesionStore == null){
-                window.sessionStorage.setItem('rankList',JSON.stringify(data))
-            }else{
-                rankData = JSON.parse(window.sessionStorage.getItem('rankList'));
-            }
-            tempRankData =  getTenRankData(rankData);
-            var rankTpl = $("#rank-item-temp").html();
-            var content = template(rankTpl, {list: tempRankData});
-            $(".code-rank-wrap").append(content)
-            $(".loading-more").show();
-            $(".loader1").css('display','none');
-
-        })
-    })
-</script>
+<script src="js/code-rank.js"></script>
 </body>
 </html>
