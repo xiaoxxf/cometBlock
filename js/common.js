@@ -13,7 +13,8 @@ var WebApiToken;
 //var WebApiHost="http://localhost:2579/";
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
-var WebApiHostJavaApi = "http://backend.blockcomet.com/"
+var WebApiHostJavaApi = "http://backend.blockcomet.com/";
+var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
     //GetCookie
     if (!WebApiToken) {
@@ -54,6 +55,10 @@ function doRequest(apiHost, method, data, callback, contentType, showtips) {
 
 function doGet(baseUrl, callback, showtips) {
     var requestUri = WebApiHost +"v0" + baseUrl;
+    doRequest(requestUri, "GET", null, callback);
+}
+function doRankGet(baseUrl, callback, showtips) {
+    var requestUri = WebRankHostApi + baseUrl;
     doRequest(requestUri, "GET", null, callback);
 }
 function doJavaGet(baseUrl, callback, showtips) {
