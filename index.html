@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+		<title>彗星播报pc</title>
+
+		<link rel="stylesheet" media="all" href="./css/web-b902b38f60020358f549.css">
+
+		<link rel="stylesheet" media="all" href="./css/entry-c3f65dacaf053f3ad67d.css">
+		<style type="text/css">
+			body {
+				background-color: #f3f6f7;
+			}
+			.have-img {
+				background-color: white;
+				padding-top: 30px !important;
+				padding-left: 50px!important;
+			}
+			.title:visited {
+				
+				color: #333 !important;
+			}
+			.hot_news_title {
+			    font-size: 18px;
+			    font-weight: bold;
+			    margin-top: 10px;
+			}
+			.meta {
+				margin-top: 40px !important;
+			}
+			
+			
+			n span {
+				font-size: 20px;
+				display: inline-block;
+				width: 100%;
+				margin: 30px 0;
+				padding: 10px 0;
+				text-align: center;
+				color: #fff;
+				border-radius: 30px;
+				background: #59b6d7;
+			}
+			/*right_container*/
+			
+			user agent stylesheet * {
+				transform-origin: 0px 0px 0px;
+			}
+			
+			.right_container {
+				/*width: 235px;*/
+				width: 300px;
+				float: left;
+				margin-top: 53px;
+				position: fixed;
+			}
+			
+			.icon {
+				font-size: 1.5em;
+				overflow: hidden;
+				width: 1em;
+				height: 1em;
+				vertical-align: middle;
+				fill: currentColor;
+			}
+			
+			.news_release_btn span {
+				font-size: 20px;
+				display: inline-block;
+				width: 100%;
+				margin: 30px 0;
+				padding: 10px 0;
+				text-align: center;
+				color: #fff;
+				border-radius: 30px;
+				background: #59b6d7;
+			}
+			
+			
+			
+			.news_release_btn svg {
+				margin-right: 5px;
+				color: #fff;
+			}
+			
+			.news_release_btn svg {
+				margin-right: 5px;
+				color: #fff;
+			}
+			
+			common.css:145 .icon {
+				font-size: 1.5em;
+				overflow: hidden;
+				width: 1em;
+				height: 1em;
+				vertical-align: middle;
+				fill: currentColor;
+			}
+			
+			a {
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+				text-decoration: none;
+				color: inherit;
+			}
+			
+			common.css:1 * {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			
+			.news_release_btn span {
+				font-size: 20px;
+				display: inline-block;
+				width: 100%;
+				margin: 30px 0;
+				padding: 10px 0;
+				text-align: center;
+				color: #fff;
+				border-radius: 30px;
+				background: #59b6d7;
+			}
+			
+			.news_release_btn svg {
+				margin-right: 5px;
+				color: #fff;
+			}
+			
+			svg:not(:root),
+			symbol,
+			image,
+			marker,
+			pattern,
+			foreignObject {
+				overflow: hidden;
+			}
+			
+			user agent stylesheet * {
+				transform-origin: 0px 0px 0px;
+			}
+			/*近期热点*/
+			
+			.hot_news {
+				width: 100%;
+				border-radius: 8px;
+				padding: 0 15px 0;
+				border: 1px solid #ededed;
+				background-color: #fff;
+			}
+			
+			.hot_news .time_menu {
+				display: inline-block;
+				width: 203px;
+				margin: 0;
+				padding-top: 16px;
+				border-bottom: 1px solid #ededed;
+				background-color: #fff;
+			}
+			
+			common.css:68 ul {
+				list-style: none;
+				margin-top: 0;
+				padding-left: 0;
+			}
+			
+			.hot_news .time_menu li {
+				float: left;
+				width: 33.3%;
+				width: 33.3%;
+				cursor: pointer;
+				text-align: center;
+			}
+			
+			.hot_news .time_menu li a.hover {
+				color: #333;
+				border-bottom: 2px solid #59b6d7;
+			}
+			
+			common.css:861 .hot_news .time_menu li a {
+				display: inline-block;
+				height: 40px;
+				padding: 0 10px;
+				color: #999;
+			}
+			
+			common.css:86 a {
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+				text-decoration: none;
+				color: inherit;
+			}
+			
+			ul {
+				list-style: none;
+				margin-top: 0;
+				padding-left: 0;
+			}
+			/*hot_news_list*/
+			
+			.hot_news_list li {
+				font-size: 14px;
+				overflow: hidden;
+				/*padding: 15px 0;*/
+				padding: 10px 0;
+				/*border-bottom: 1px solid #ededed;*/
+			}
+			
+			.hot_news_list li span {
+				font-size: 12px;
+				display: inline-block;
+				text-align: center;
+				color: black;
+				font-weight: bold;
+			}
+			
+			.hot_news_list li a {
+				line-height: 22px;
+				display: -webkit-box;
+				float: right;
+				overflow: hidden;
+				/*width: 177px;*/
+				width: 248px;
+				color: rgb(102, 102, 102);
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+			}
+			
+			.hot_news_list li span.grey {}
+			/*footer*/
+			
+			div {
+				display: block;
+			}
+			
+			<!--导航栏-->.nav {
+				position: relative;
+				width: 100%;
+				height: 64px;
+				background: #fff;
+				min-width: 1200px;
+			}
+			
+			.nav_left {
+				float: right;
+				margin-right: 1.5%;
+				height: 50px;
+				line-height: 50px;
+			}
+			
+			.nav_left img {
+				border-radius: 50px;
+				width: 30px;
+				height: 30px;
+			}
+			
+			.nav_logo {
+				width: 64px;
+				height: 64px;
+				float: left;
+			}
+			/*添加*/
+			
+			.navs_star {
+				color: rgb(79, 163, 237);
+				margin: 0 20px;
+				font-size: 26px;
+				cursor: pointer;
+			}
+			
+			.navs_item {
+				color: #666666;
+				margin: 0 20px;
+				font-size: 18px;
+			}
+			
+			.nav_beta {
+				display: inline-block;
+				float: left;
+				margin-left: -2px;
+				padding-top: 32px;
+				color: #59b6d7;
+			}
+			
+			.nav_list {
+				width: 1080px;
+				margin: auto;
+			}
+			
+			.nav_list .navs {
+				display: flex;
+				height: 62px;
+				margin-bottom: 0;
+				justify-content: flex-start;
+				align-items: center;
+				float: left;
+			}
+			
+			.nav_list .navs li {
+				float: left;
+				text-align: center;
+				margin-right: 15px;
+				transition: all .3s;
+				position: relative;
+			}
+			
+			.nav_list .navs li a {
+				display: inline-block;
+				margin: 0 10px;
+				padding: 20px 10px;
+				/*color: #59b6d7;*/
+				color: #666666;
+				font-size: 18px;
+				transition: all .1s;
+				border-bottom: 2px solid transparent;
+			}
+			
+			.nav_list .navs li a:hover {
+				color: #59b6d7 !important;
+				border-bottom: 2px solid #59b6d7;
+			}
+			
+			.nav_list .navs li a.selected {
+				color: #59b6d7 !important;
+				border-bottom: 2px solid #59b6d7;
+			}
+			
+			.nav_list .navs li a:link,
+			.nav_list .navs li a:visited,
+			.nav_list .navs li a:hover {
+				text-decoration: none;
+			}
+			
+			.nav_list .navs .child_navs {
+				display: none;
+				position: absolute;
+				z-index: 99;
+				border-radius: 3px;
+				background: #fff;
+				box-shadow: 0 1px 22px #e2e0e0;
+				min-width: 120px;
+			}
+			
+			.nav_list .navs .child_navs a {
+				display: block;
+				font-size: 14px;
+				margin: 0;
+				padding: 10px;
+				color: #343434;
+				transition: all .1s;
+				border-bottom: none;
+			}
+			
+			.nav_list .navs .child_navs a:hover {
+				color: #59b6d7 !important;
+				border-bottom: none;
+			}
+			
+			.nav_list .nav_search {
+				position: relative;
+				width: 235px;
+				height: 28px;
+				border-radius: 50px;
+				margin-top: 12px;
+				background-color: #f3f6f7;
+				float: left;
+				margin-left: 29%;
+			}
+			
+			.nav_list .nav_input {
+				width: calc(100% - 35px);
+				height: 100%;
+				font-size: 12px;
+				color: #333;
+				border: none;
+				outline: none;
+				background: transparent;
+				padding-left: 15px;
+				vertical-align: middle;
+			}
+			
+			.nav_list .nav_search_icon {
+				cursor: pointer;
+				position: absolute;
+				top: 50%;
+				right: 10px;
+				transform: translateY(-50%);
+				color: #59b6d7;
+			}
+			
+			.split_news {
+				text-align: center;
+				background: #ffffe5;
+				line-height: 36px;
+				color: rgb(125, 109, 96);
+				margin-bottom: 17px;
+				border-radius: 8px;
+				font-size: 16px;
+			}
+			
+			.delete {
+				float: right;
+				margin-right: 20px;
+				font-size: 26px;
+			}
+			
+			
+			
+			.nav_right {
+				float: right;
+				margin: 21px 50px;
+			}
+			
+			.nav_right .role-icon {
+				position: absolute;
+				width: 14px;
+				height: 14px;
+				bottom: -3px;
+				left: 20px;
+			}
+			
+			.nav_right a.nava {
+				font-size: 14px;
+				color: #666;
+				margin-right: 20px;
+			}
+			
+			.nav_right a.nava:hover {
+				color: #59b6d7;
+			}
+			
+			.nav_right img {
+				float: left;
+				width: 30px;
+				height: 30px;
+				margin-right: 9px;
+				cursor: pointer;
+				border-radius: 50%;
+			}
+			
+			.nav_name {
+				display: inline-block;
+				float: left;
+				overflow: hidden;
+				width: 84px;
+				padding-top: 4px;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: #343434;
+			}
+			
+			.nav_menu {
+				position: absolute;
+				z-index: 99;
+				top: 70px;
+				right: 65px;
+				display: none;
+				width: 180px;
+				padding-top: 10px;
+				border-radius: 3px;
+				background: #fff;
+				box-shadow: 0 1px 22px #e2e0e0;
+			}
+			
+			.nav_menu .hover_cover {
+				position: absolute;
+				top: -60px;
+				left: 0;
+				width: 100%;
+				height: 80px;
+			}
+			
+			.nav_menu .triangle {
+				margin-left: 128px;
+				margin-top: -18px;
+			}
+			
+			.nav_menu ul li {
+				font-size: 14px;
+				margin-top: 18px;
+				padding-left: 25px;
+			}
+			
+			.nav_menu ul li a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				color: #666;
+				outline: none;
+			}
+			
+			.nav_menu ul li a:hover {
+				color: #59b6d7 !important;
+			}
+			
+			.nav_menu ul li a svg {
+				margin-top: -4px;
+				margin-right: 15px;
+			}
+			
+		</style>
+	</head>
+
+	<body lang="zh-CN" class="reader-black-font">
+		<!-- 全局顶部导航栏 -->
+		<!--导航栏-->
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">			
+			<div class="nav nav_border">
+				<div class="nav_list clearfix">					
+					<div class="navs">
+						<div class="navs_star" onclick="refresh()">彗星</div>
+						<a target="_self" href="#" class="navs_item current_nav"  onclick="refresh()">播报 </a>
+						<a target="_self" href="chain.html" class="navs_item">链库 </a>
+					</div>
+					<div class="nav_search">
+						<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search" onkeyup="test()">
+						<a class="nav_search_icon">
+						</a>
+					</div>
+					<div class="nav_left">
+						<a href="">
+							<img src="img/temp1.jpg">
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="container index">
+			<div class="row">
+				<div class="col-xs-16 main">
+					<!--<div class="split-line"></div>-->
+					<div class="split_news">
+						有2个新话题，点击查看
+						<a href="" class="delete">×</a>
+					</div>
+					<div id="list-container">
+						<!-- 文章列表模块 -->
+						<ul class="note-list" infinite-scroll-url="/" id="dataList">
+
+
+						</ul>
+					</div>					
+				</div>
+				<div class="col-xs-7 col-xs-offset-1 aside">
+					<div class="right_container">
+						<div class="hot_news">
+							<div class="hot_news_title">24小时热门播报</div>
+								<ul class="hot_news_list"  id="dataRight">
+    								<div class="hot_news_item " id="week ">
+                       
+                           			</div>
+    							</ul>
+							</div>          
+                    	</div>
+			
+					</div>
+				</div>
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>		
+		<script src="js/common.js"></script>
+
+		<script type="text/javascript">					
+	  	var range = 50;             //距下边界长度/单位px  
+        var elemt = 500;           //插入元素高度/单位px  
+        var maxnum = 20;            //设置加载最多次数  
+        var num = 1;  
+        var totalheight = 0;   
+		var isLoaded = true	
+	
+		function dataShow(data){
+			var html= ''
+			for(var i = 0; i< data.length ; i++ ){
+				var test = data[i].newsId
+				 html = html + '<li class="hot_news_item have-img" data-newId='+test+' ><div class="content"><a class="title" style="text-decoration: none;" target="_blank" href="detail.html">'+ data[i].title+'</a><div class="meta"><span>'+ changTime(data[i].createTime)  +" 来自: "+data[i].media+'</span></div></div></li>'
+			}
+			$('#dataList').append(html);
+			isLoaded = true
+			
+		};
+		$(document).on('click','#dataList .have-img',function (e) {
+			var detail = $(e.currentTarget).data('newid');
+            window.localStorage.setItem('detail', detail);
+        })
+		function refresh(){
+			location.reload()
+		}
+		$(window).scroll(function(){
+			var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+			// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+			//console.log("页面的文档高度 ："+$(document).height());
+			//console.log('浏览器的高度：'+$(window).height());
+			totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+			if(($(document).height()-range) <= totalheight  && num != maxnum && isLoaded) {
+
+				isLoaded = false
+				num = num + 1;
+				load();
+			}
+        });
+		function changTime(time){
+			var time = time.replace('T',' ');
+			
+			var timestamp2 = Date.parse(new Date(time));
+			var timeStr = (new Date() - timestamp2)/1000
+	
+			if(timeStr < 60){  	//多少分钟以内的
+				time = '1 分钟'
+			}else if(60 <= timeStr && timeStr < 3600 ){ //	一个小时以内
+				
+				time = parseInt(timeStr/60) + " 分钟前";	 
+				
+			}else if( 24*3600> timeStr && timeStr >= 3600 ){ //24 小时以内
+				
+				time = parseInt(timeStr/3600) +" 小时前";	 
+			}else {
+				time = parseInt(timeStr/3600/24) +" 天前";	 
+			}
+			return time
+		}
+            
+            function getQuary(){
+            	var url  = window.location.href;
+            	
+            	if(url.split("?")[1]){
+        		 	var quarys = url.split("?")[1].split("&")
+            		  	for(var i = 0 ;i<quarys.length;i++){
+            		if(quarys[i].split("=")[0]=="keys"){
+            			 $('#head_search').val(decodeURI(quarys[i].split("=")[1]))
+            			 return
+            		}
+            	}
+      	}
+            }
+            
+		function load(){
+			getQuary()
+			if($('#head_search').val()!=""){
+				var uri = 'news/search?currentPage=' + num + '&pageSize=' + 8 + '&keywords=' + $('#head_search').val();
+		
+			
+				doJavaGet(uri, function(res) {
+						console.log(res.datas)
+						if(res != null && res.code == 0) {
+							
+							searchDataShowAppend(res.datas)
+						}
+			}, "json");		
+			}else{
+				
+					var uri = '/news?isAll=' + true + '&currentPage=' + num + '&pageSize=' + 20;
+				doGet(uri, function(res) {
+							if(res != null && res.code == 0) {
+	
+								dataShow(res.data.items)
+								
+							}
+				}, "json");
+			}
+					
+		} 
+		
+		load();
+		
+		function searchDataShowAppend(data){
+				
+			var html= ''
+			for(var i = 0; i< data.length ; i++ ){
+				var test = data[i].newsId
+				 html = html + '<li class="hot_news_item have-img" data-newId='+test+' onclick="saveData(this)" ><div class="content"><a class="title" style="text-decoration: none;" target="_blank" href="detail.html">'+ data[i].title+'</a><div class="meta"><span>'+ changTime(data[i].createTime)  +" 来自: "+data[i].media+'</span></div></div></li>'
+			}
+			$('#dataList').append(html);
+		}
+		
+		
+		
+		function test(){
+			
+			var keywords = $('#head_search').val()
+			console.log(keywords)
+			var uri = 'news/search?currentPage=' + num + '&pageSize=' + 8 + '&keywords=' + keywords;
+			doJavaGet(uri, function(res) {
+						console.log(res.datas)
+						if(res != null && res.code == 0) {
+							
+							searchDataShow(res.datas)
+						}
+					}, "json");
+			
+		}
+		function searchDataShow(data){
+				
+			var html= ''
+			for(var i = 0; i< data.length ; i++ ){
+				var test = data[i].newsId
+				 html = html + '<li class="hot_news_item have-img" data-newId='+test+' onclick="saveData(this)" ><div class="content"><a class="title " style="text-decoration: none;" target="_blank" href="detail.html">'+ data[i].title+'</a><div class="meta"><span>'+ changTime(data[i].createTime)  +" 来自: "+data[i].media+'</span></div></div></li>'
+			}
+			//$('#dataList').append(html);
+			$('#dataList').html(html);
+		}
+
+	</script>
+	<script type="text/javascript">
+
+		function dataShowRight(data){
+			
+			var html= ''
+			for(var i = 0; i< data.length ; i++ ){
+				var test = data[i].newsId
+				console.log(test)
+		
+				html = html + '<li data-newId='+test+' onclick="saveData(this)"> <span>'+(i+1)+'</span><a   target="_blank" href="detail.html">'+ data[i].title+'</a></li>'
+			
+			}
+			$('#dataRight').append(html);
+			
+		};
+		function loadRight(days){
+			var uri = 'news/quary?currentPage=' + num + '&pageSize=' + 8+ '&days='+days;
+			doJavaGet(uri, function(res) {
+						if(res != null && res.code == 0) {
+							dataShowRight(res.datas)
+						}
+					}, "json");
+				} 
+		loadRight(1);
+	</script>
+	</body>
+		
+</html>

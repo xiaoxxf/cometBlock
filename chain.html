@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<title>播报</title>
+	<link rel="stylesheet" media="all" href="./css/web-9cd48403b6d78c77ef9e.css">
+
+	<link rel="stylesheet" media="all" href="./css/entry-c3f65dacaf053f3ad67d.css">
+	<link rel="stylesheet" href="css/detail.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/loading.css">
+	<!-- 导航栏 -->
+
+</head>
+<style>
+	.top-nav-wrap{
+		display: flex;
+		padding: 20px 40px;
+		margin: 40px 0;
+		background-color: #fff;
+		border-radius: 5px;
+	}
+	.top-nav-wrap .title{
+		width: 15%;
+	}
+	.top-nav-wrap .content{
+		width: 85%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: left;
+	}
+	.top-nav-wrap .search-wrap{
+		position: relative;
+		width: 200px;
+		border-radius: 50px;
+	}
+	.search-wrap input{
+		width: 100%;
+		border: none;
+		background-color: #f3f6f7;
+		border-radius: 10px;
+		font-size: 12px;
+		padding-left: 15px;
+		height: 28px;
+		line-height: 28px;
+	}
+	.top-nav-wrap .content .coin-item{
+		margin-top: 5px;
+	}
+	.search-wrap .search-icon{
+		position: absolute;
+		right: 8px;
+		top:5px;
+		width: 18px;
+		height: 18px;
+		background-image: url("img/search.png");
+		background-size: 100% 100%;
+		cursor: pointer;
+	}
+	.search-wrap .search-icon:hover{
+		transition: all 0.5s;
+		transform: scale(1.2);
+	}
+	.coin-item span{
+		display: inline-block;
+		margin-right: 40px;
+		margin-top: 15px;
+		padding: 2px 10px;
+		font-size: 16px;
+	}
+	.coin-item span.cur{
+		background-color: #f0f0f0;
+		border-radius: 8px;
+	}
+	.coin-list-wrap{
+		font-size: 0px;
+	}
+	.coin-list-wrap li{
+		display: inline-block;
+		width: 20%;
+	}
+	.coin-list-wrap li:nth-child(4n+1){
+		margin-right:3.33%;
+	}
+	.coin-list-wrap li:nth-child(4n+2), .coin-list-wrap li:nth-child(4n+3){
+		margin:0 3.33%;
+	}
+	.coin-list-wrap li:nth-child(4n){
+		margin-left: 3.33%;
+	}
+	.coin-list-wrap li img{
+		width: 100%;
+	}
+	.coin-list-wrap li a{
+		text-decoration: none;
+	}
+	.coin-list-wrap li .name{
+		text-align: center;
+		height: 40px;
+		line-height: 40px;
+		font-size: 16px;
+		color: #000;
+	}
+	.load-more-wrap{
+		cursor: pointer;
+		height: 45px;
+		line-height: 45px;
+		width: 100%;
+		text-align: center;
+		margin: 40px 0 80px 0;
+		background-color: #fff;
+		border-radius: 10px;
+	}
+	.loading-more{
+		cursor: pointer;
+		width: 100%;
+	}
+	.loader{
+		display: none;
+		width: 100%;
+		height: 45px;
+	}
+	.loader1 div{
+		background-color: #999;
+	}
+</style>
+<body lang="zh-CN" class="reader-black-font">
+<!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<!--导航栏-->
+	<div class="nav nav_border">
+		<div class="nav_list clearfix">
+			<div class="navs">
+				<div class="navs_star">彗星</div>
+				<a target="_self" href="index.html" class="navs_item">播报 </a>
+				<a target="_self" href="#" class="navs_item current_nav">链库 </a>
+				</div>
+
+			<div class="nav_search">
+				<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search" >
+			</div>
+			<div class="nav_left">
+				<a href="">
+					<img src="img/temp1.jpg">
+				</a>
+			</div>
+		</div>
+	</div>
+</nav>
+<div class="container">
+	<div class="row">
+		<div class="top-nav-wrap">
+			<div class="title">找项目</div>
+			<div class="content">
+				<div class="search">
+					<div class="search-wrap">
+						<input type="text" placeholder="搜索币种/简称">
+						<span class="search-icon search-click-hook"></span>
+					</div>
+				</div>
+				<div class="coin-item">
+					<span class="cur">上新</span>
+					<span>数字货币</span>
+					<span>数字货币</span>
+					<span>数字货币</span>
+					<span>数字货币</span>
+					<span>数字货币</span>
+					<span>数字货币</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<ul class="coin-list-wrap">
+			<li>
+				<a href="#">
+					<img src="img/coin_1.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_2.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_3.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_4.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_1.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_2.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_3.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_4.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/coin_4.png" alt="">
+					<p class="name">EOS</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="row">
+		<div class="load-more-wrap">
+			<div class="loader1 loader">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+			<div class="loading-more">
+				加载更多
+			</div>
+		</div>
+	</div>
+</div>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+
+<script>
+	$(function () {
+		$(".search-click-hook").on('click',function () {
+			console.log('点击搜索');
+        })
+		$(".loading-more").on('click',function () {
+		    //点击ajax请求数据
+			$(".loading-more").hide();
+            $(".loader1").css('display','flex');
+			setTimeout(function () {
+                $(".loading-more").show();
+                $(".loader1").css('display','none');
+            },2000)
+        })
+    })
+</script>
+</body>
+
+</html>
