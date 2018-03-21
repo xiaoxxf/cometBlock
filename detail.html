@@ -64,13 +64,14 @@
                     <h1 class="title" id="detail_title"></h1>
                     <div class="article" style="width: 100%;height: 30px;"></div>
                     	<div>
-                    		<span id="detail_from"></span>
-                    		<span id="creat_time"></span>
+                            <span id="detail_from" class="detail_from"></span>
+                            <span id="creat_time" class="detail_time"></span>
                     	</div>
                     <div data-note-content="" class="show-content">
                         <div class="show-content-free">
                             <p id="context"></p>
                         </div>
+                        <span id="detail_edit" class="detail_editor"></span>
                     </div>
                 </div>
             </div>
@@ -144,19 +145,23 @@
     }
 
     function detail() {
-        var newsId = window.localStorage.getItem('detail')
-        newsId = getQuary()
+        //var newsId = window.localStorage.getItem('detail')
+        var newsId = getQuary()
         //ajax獲取詳情數據
-        var uri = '/news/' + newsId;
-        doGet(uri, function(res) {
+        var uri = 'news/getinfo?newsId='+newsId
+        doJavaGet(uri, function(res) {
             if(res != null && res.code == 0) {
-                $('#detail_title').text(res.data.title)
-                $('#detail_from').text("来源："+res.data.media)
-                $('#creat_time').text(res.data.createTime.replace("T"," "))
-                if(res.data.content != null && res.data.content != undefined) {
-                    $('#context').html(res.data.content)
+                var datas = res.datas
+                $('#detail_title').text(datas.title)
+                $('#detail_from').text("来源："+datas.media)
+                if(datas.creator!=null){
+                    $('#detail_edit').text("编辑："+datas.creator)
+                }
+                $('#creat_time').text(datas.createTime.replace("T"," "))
+                if(datas.newsContent != null && datas.newsContent != undefined) {
+                    $('#context').html(datas.newsContent)
                 } else {
-                    $('#context').html(res.data.shortContent)
+                    $('#context').html(datas.newsContent)
                 }
             }
         }, "json");

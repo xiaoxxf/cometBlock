@@ -174,3 +174,22 @@ i{
 .show-content-free #context img{
     width: 100%;
 }
+.detail_editor{
+    margin-top: 10px;
+    display: block;
+    font-size: 16px;
+
+}
+.detail_from{
+    margin-right: 12px;
+    color: #989da2;
+}
+.detail_time{
+    color: #989da2;
+}
+#a {
+
+}
+.img_css {
+
+}

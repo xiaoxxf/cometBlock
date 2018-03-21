@@ -218,42 +218,42 @@
             function load(){
                 getQuary()
                 if($('#head_search').val()!=""){
-                    var uri = 'news/search?currentPage=' + num + '&pageSize=' + 20 + '&keywords=' + $('#head_search').val();
-                }
-                else{
-                    var uri = 'news/search?currentPage=' + num  + '&pageSize=' + 20;
-                }
-                doJavaGet(uri, function(res) {
-                    console.log(res.datas)
-                    if(res != null && res.code == 0) {
 
-                        searchDataShowAppend(res.datas)
-                    }
-                }, "json");
+                    var uri = 'news/search?currentPage=' + num + '&pageSize=' + 8 + '&keywords=' + $('#head_search').val();
+
+
+                    doJavaGet(uri, function(res) {
+                        console.log(res.datas)
+                        if(res != null && res.code == 0) {
+
+                            searchDataShowAppend(res.datas)
+                        }
+                    }, "json");
+                }else{
+
+                    var uri = '/news?isAll=' + true + '&currentPage=' + num + '&pageSize=' + 20;
+                    doGet(uri, function(res) {
+                        if(res != null && res.code == 0) {
+
+                            dataShow(res.data.items)
+
+                        }
+                    }, "json");
+                }
+
             }
+
             load();
 
             function searchDataShowAppend(data){
 
                 var html= ''
                 for(var i = 0; i< data.length ; i++ ){
-                    var creator =''
-                    if(data[i].creator!=null){
-                        creator = ' 编辑 : ' +data[i].creator
-                    }
+
                     var test = data[i].newsId
-                    html = html + '<li class="hot_news_item have-img" data-newId='
-                        +test+' onclick="saveData(this)" ><div class="content"><a class="title" style="text-decoration: none;" target="_blank" href=detail.html?newsId='
-                        + data[i].newsId  +'>'
-                        + data[i].title+'</a><div class="meta"><span>'+ changTime(data[i].createTime)  +" 来自: "+data[i].media+'</span>'
-//                          +creator
-//                          +
-                    '</div></div></li>'
-
-
+                    html = html + '<li class="hot_news_item have-img" data-newId='+test+' onclick="saveData(this)" ><div class="content"><a class="title" style="text-decoration: none;" target="_blank" href=detail.html?newsId='+ data[i].newsId  +'>'+ data[i].title+'</a><div class="meta"><span>'+ changTime(data[i].createTime)  +" 来自: "+data[i].media+'</span></div></div></li>'
                 }
                 $('#dataList').append(html);
-                isLoaded = true
             }
 
             $("#head_search").keydown(function(e) {
@@ -275,19 +275,8 @@
 
                 var html= ''
                 for(var i = 0; i< data.length ; i++ ){
-                    var creator =''
-                    if(data[i].creator!=null){
-                        creator = ' 编辑 : ' +data[i].creator
-                    }
                     var test = data[i].newsId
-                    html = html + '<li class="hot_news_item have-img" data-newId='
-                        +test+' onclick="saveData(this)" ><div class="content"><a class="title" style="text-decoration: none;" target="_blank" href=detail.html?newsId='
-                        + data[i].newsId  +'>'
-                        + data[i].title+'</a><div class="meta"><span>'+ changTime(data[i].createTime)  +" 来自: "+data[i].media+'</span>'
-                        +creator
-                        +'</div></div></li>'
-
-
+                    html = html + '<li class="hot_news_item have-img" data-newId='+test+'  ><div class="content"><a class="title " style="text-decoration: none;" target="_blank" href=detail.html?newsId=' + data[i].newsId+ '>' + data[i].title+'</a><div class="meta"><span>'+ changTime(data[i].createTime)  +" 来自: "+data[i].media+'</span></div></div></li>'
                 }
                 //$('#dataList').append(html);
                 $('#dataList').html(html);
