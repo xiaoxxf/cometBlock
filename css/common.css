@@ -128,7 +128,7 @@ body{
     padding: 10px 15px;
     line-height: 20px;
 }
-.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover,  .navbar-inverse .navbar-nav>li>a.cur-nav{
     color: #2f2f2f;
 }
 .navbar-inverse .navbar-nav>li>a{
@@ -178,7 +178,6 @@ body{
 }
 
 /*加载更多*/
-
 .load-more-wrap{
     cursor: pointer;
     height: 45px;
