@@ -175,7 +175,6 @@ body{
     margin-top: 50px;
 }
 .body-container-wrap{
-    max-width: 1000px;
 }
 
 /*加载更多*/
@@ -187,6 +186,10 @@ body{
     width: 100%;
     text-align: center;
     margin: 40px 0 80px 0;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.load-container-wrap{
     background-color: #fff;
     border-radius: 10px;
 }

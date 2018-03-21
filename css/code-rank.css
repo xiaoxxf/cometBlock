@@ -5,6 +5,11 @@
     display: inline-block;
     font-size: 16px;
     margin-top: 20px;
+    cursor: pointer;
+}
+.body-container-wrap .title-select-wrap .item-title{
+    height: 35px;
+    line-height: 35px;
 }
 .title-select-wrap .item, .title-select-wrap .item-active{
     display: inline-block;
@@ -60,4 +65,60 @@
 }
 .code-rank-item-wrap  .code-rank-bottom .item-info, .code-rank-item-wrap .code-rank-top .item-info{
     padding-left: 5px;
+}
+.comet-main{
+    position: relative;
+    height: auto;
+    min-height: 100%;
+}
+.load-more-container-wrap{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.load-more-container{
+    margin: auto;
+}
+.load-more-wrap{
+    margin:40px 0;
+}
+.code-rank-wrap{
+    margin-bottom: 150px;
+}
+.no-data-tip{
+    position: absolute;
+    display: none;
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    margin-left: -100px;
+    margin-top: -50px;
+    top:50%;
+    left: 50%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.waiting-data{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    margin-left: -100px;
+    margin-top: -100px;
+    top:50%;
+    left: 50%;
+}
+.waiting-data .loader9 {
+    width: 200px;
+    height: 200px;
+    float: left;
+    display: -webkit-flex;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.waiting-data .loader-nine div{
+    background-color:#999
 }

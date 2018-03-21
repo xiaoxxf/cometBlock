@@ -62,57 +62,75 @@
     <div class="mian-container">
         <div class="container">
             <div class="body-container-wrap">
-                <!--  <div class="title-select-wrap">
+                <div class="title-select-wrap">
                       <div class="row">
                           <div class="col-md-3 col-sm-12 ">
                               <span class="item-title">
                                   区块链代码提交活跃
                               </span>
                           </div>
-                          <div class="col-md-2 col-sm-6 col-xs-12">
-                              <span class="item item-active">
-                                  3个月内
+                          <div class="col-md-2 col-sm-6 col-xs-12 text-center">
+                              <span class="item item-active" data-month="3">
+                                  三个月内
                               </span>
                           </div>
-                          <div class="col-md-2 col-sm-6 col-xs-12">
-                               <span class="item">
+                          <div class="col-md-2 col-sm-6 col-xs-12 text-center">
+                               <span class="item" data-month="6">
                                     六个月内
                                </span>
                           </div>
-                          <div class="col-md-2 col-sm-6 col-xs-12">
-                               <span class="item">
+                          <div class="col-md-2 col-sm-6 col-xs-12 text-center">
+                               <span class="item" data-month="9">
                                     九个月内
                                </span>
                           </div>
-                          <div class="col-md-2 col-sm-6 col-xs-12">
-                               <span class="item">
+                          <div class="col-md-2 col-sm-6 col-xs-12 text-center">
+                               <span class="item" data-month="12">
                                     十二个月内
                                </span>
                           </div>
                       </div>
-                  </div>-->
+                  </div>
+                <div class="no-data-tip">
+                    暂无数据
+                </div>
+               <div class="waiting-data">
+                   <div class="loader9">
+                       <div class="loader-nine">
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                       </div>
+                   </div>
+               </div>
                 <div class="code-rank-wrap">
-                </div>
-                <div class="load-more-wrap load-more-hook" style="display: none">
-                    <div class="loader1 loader">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div class="loading-more">
-                        加载更多
-                    </div>
-                </div>
-                <div class="load-more-wrap no-more-hook" style="display: none">
-                    <div class="loading-more">
-                        已无更多数据
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
+       <div class="load-more-container-wrap">
+           <div class="container">
+                   <div class="load-more-wrap load-more-hook" style="display: none">
+                       <div class="loader1 loader">
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                       </div>
+                       <div class="loading-more">
+                           加载更多
+                       </div>
+                   </div>
+                   <div class="load-more-wrap no-more-hook" style="display: none">
+                       <div class="loading-more">
+                           已无更多数据
+                       </div>
+                   </div>
+               </div>
+       </div>
 </div>
 <script  id="rank-item-temp" type="text/html">
     <%for(var i = 0; i < list.length; i++) {%>

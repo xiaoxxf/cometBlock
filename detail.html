@@ -64,6 +64,10 @@
                 <div class="row_left">
                     <h1 class="title" id="detail_title"></h1>
                     <div class="article" style="width: 100%;height: 30px;"></div>
+                    	<div>
+                    		<span id="detail_from"></span>
+                    		<span id="creat_time"></span>
+                    	</div>
                     <div data-note-content="" class="show-content">
                         <div class="show-content-free">
                             <p id="context"></p>
@@ -71,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-md-offset-1 aside">
+            <div class="col-md-5 aside">
                 <div class="row_right">
                     <img src="img/miniPro.jpg" width="200px" height="200px"/>
                     <p class="code_share">扫描分享彗星播报</p>
@@ -148,7 +152,7 @@
         doGet(uri, function(res) {
             if(res != null && res.code == 0) {
                 $('#detail_title').text(res.data.title)
-                $('#detail_from').text(res.data.media)
+                $('#detail_from').text("来源："+res.data.media)
                 $('#creat_time').text(res.data.createTime.replace("T"," "))
                 if(res.data.content != null && res.data.content != undefined) {
                     $('#context').html(res.data.content)
