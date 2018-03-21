@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>代码榜</title>
     <link rel="stylesheet" href="css/loading.css">
-    <link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
+    <link rel="stylesheet"  href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/code-rank.css">
+
     <!-- 导航栏 -->
 </head>
 <body lang="zh-CN" class="reader-black-font">
@@ -32,17 +33,17 @@
                     <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
                         <ul class="nav navbar-nav navbar-left">
                             <li><a  href="index.html">播报</a></li>
-                            <li><a  href="chain.html">链库</a></li>
+                            <!--<li><a  href="chain.html">链库</a></li>-->
                             <li><a  href="code-rank.html">代码榜</a></li>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right nav-index-img">
-                            <li>
-                                <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
-                                    <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
-                                         alt="Download VS Code">
-                                </a>
-                            </li>
-                        </ul>
+                        <!-- <ul class="nav navbar-nav navbar-right nav-index-img">
+                             <li>
+                                 <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+                                     <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
+                                          alt="Download VS Code">
+                                 </a>
+                             </li>
+                         </ul>-->
                         <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <div class="nav_search">
@@ -61,35 +62,35 @@
     <div class="mian-container">
         <div class="container">
             <div class="body-container-wrap">
-              <!--  <div class="title-select-wrap">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12 ">
-                            <span class="item-title">
-                                区块链代码提交活跃
-                            </span>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-12">
-                            <span class="item item-active">
-                                3个月内
-                            </span>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-12">
-                             <span class="item">
-                                  六个月内
-                             </span>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-12">
-                             <span class="item">
-                                  九个月内
-                             </span>
-                        </div>
-                        <div class="col-md-2 col-sm-6 col-xs-12">
-                             <span class="item">
-                                  十二个月内
-                             </span>
-                        </div>
-                    </div>
-                </div>-->
+                <!--  <div class="title-select-wrap">
+                      <div class="row">
+                          <div class="col-md-3 col-sm-12 ">
+                              <span class="item-title">
+                                  区块链代码提交活跃
+                              </span>
+                          </div>
+                          <div class="col-md-2 col-sm-6 col-xs-12">
+                              <span class="item item-active">
+                                  3个月内
+                              </span>
+                          </div>
+                          <div class="col-md-2 col-sm-6 col-xs-12">
+                               <span class="item">
+                                    六个月内
+                               </span>
+                          </div>
+                          <div class="col-md-2 col-sm-6 col-xs-12">
+                               <span class="item">
+                                    九个月内
+                               </span>
+                          </div>
+                          <div class="col-md-2 col-sm-6 col-xs-12">
+                               <span class="item">
+                                    十二个月内
+                               </span>
+                          </div>
+                      </div>
+                  </div>-->
                 <div class="code-rank-wrap">
                 </div>
                 <div class="load-more-wrap load-more-hook" style="display: none">
@@ -109,29 +110,32 @@
                 </div>
             </div>
         </div>
-            </div>
-        </div>
     </div>
+</div>
+</div>
 </div>
 <script  id="rank-item-temp" type="text/html">
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="code-rank-item-wrap">
         <div class="code-rank-item clearfix">
             <div class="code-rank-top">
-                <div class="col-md-2 pull-left">
-                    <%:=list[i].name%>
+                <div class="col-md-4 pull-left">
+                    <span class="rank-name">
+                        <span class="rank-num"><%:=list[i].sortNum%>.</span><%:=list[i].name%> (<%:=list[i].token%>)
+                    </span>
+
                 </div>
-                <div class="div col-md-2 pull-right text-right">
+                <div class="col-md-2 pull-right text-right">
                     关注数量:<span class="item-info"><%:=list[i].watchers%></span>
                 </div>
             </div>
             <div class="code-rank-bottom clearfix">
-                <div class="pull-left bottom-left">
+                <div class="pull-left col-md-6 col-sm-12 bottom-left">
                     <div class="bottom-left-top">
                         代码语言:<span class="item-info"><%:=list[i].language%></span>
                     </div>
                     <div class="bottom-left-bottom">
-                        代码提价数量:<span class="item-info"><%:=list[i].commitsdesc%></span>
+                        代码提交数量:<span class="item-info"><%:=list[i].commitsdesc%></span>
                     </div>
                 </div>
                 <div class="pull-right col-md-6 text-right bottom-right">

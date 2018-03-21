@@ -9,9 +9,9 @@ $(function () {
         var len = rankData.length-1;
         for(i=1;i<=10;i++){
             var rankIndex = rankPageIndex*10+i;
+            rankData[rankIndex].sortNum = rankIndex;
             tempRank.push(rankData[rankIndex]);
             if(rankIndex>=len){
-                console.log(tempRank)
                 $(".no-more-hook").fadeIn();
                 $(".load-more-hook").hide();
                 return tempRank;
@@ -19,8 +19,8 @@ $(function () {
         }
         return tempRank;
     }
-    doRankGet('', function(res) {
-        if(res != null) {
+    doRankGet('', function(data) {
+        if(data != null) {
             var rankData;
             var cometSeesionStore = window.sessionStorage.getItem('rankList')
             if(cometSeesionStore == null){

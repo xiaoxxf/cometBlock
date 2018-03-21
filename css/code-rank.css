@@ -24,7 +24,7 @@
     color: #fff;
 }
 .code-rank-wrap .code-rank-item-wrap{
-    margin-top: 70px;
+    margin-top: 40px;
     border-radius: 20px;
     padding: 0 30px;
     border: 1px solid #bcbcbc;
@@ -36,12 +36,26 @@
     border-bottom: 1px solid #bcbcbc;
     font-size: 16px;
 }
+.code-rank-wrap .code-rank-item-wrap  .code-rank-top > div ,.code-rank-wrap .code-rank-item-wrap .code-rank-bottom>div{
+    padding-left:0px;
+    padding-right: 0px;
+}
+.code-rank-wrap .code-rank-item-wrap .code-rank-top .rank-top-title{
+    margin-left: -15px;
+}
+.code-rank-wrap .code-rank-item-wrap .code-rank-top .rank-name{
+    font-size: 18px;
+    color: #000;
+    font-weight: 700;
+}
+.code-rank-wrap .code-rank-item-wrap .code-rank-top .rank-num{
+    padding-right: 3px;
+}
 .code-rank-wrap .code-rank-item-wrap  .code-rank-bottom{
     padding: 24px 0;
     font-size: 16px;
 }
 .code-rank-wrap .code-rank-item-wrap  .code-rank-bottom .bottom-left{
-    padding-right: 20px;
     border-right: 1px solid #bcbcbc;
 }
 .code-rank-item-wrap  .code-rank-bottom .item-info, .code-rank-item-wrap .code-rank-top .item-info{
