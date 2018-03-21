@@ -83,6 +83,9 @@
 .load-more-wrap{
     margin:40px 0;
 }
+.no-more-hook{
+    background-color: transparent;
+}
 .code-rank-wrap{
     margin-bottom: 150px;
 }

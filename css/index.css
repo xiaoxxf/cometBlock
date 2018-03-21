@@ -36,9 +36,6 @@ user agent stylesheet * {
 }
 
 .right_container {
-	/*width: 235px;*/
-	width: 300px;
-	float: left;
 	position: fixed;
 }
 
@@ -164,15 +161,13 @@ ul {
 }
 
 .hot_news_list li a {
+	padding-left: 10px;
 	line-height: 22px;
-	display: -webkit-box;
-	float: right;
 	overflow: hidden;
-	/*width: 177px;*/
-	width: 248px;
 	color: rgb(102, 102, 102);
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
+	text-decoration: none;
 }
 
 .hot_news_list li span.grey {}
