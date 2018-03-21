@@ -1,120 +1,173 @@
 <!DOCTYPE html>
-
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-		<title>播报</title>
-		<link rel="stylesheet" media="all" href="./css/web-9cd48403b6d78c77ef9e.css">
-		
-		<link rel="stylesheet" media="all" href="./css/entry-c3f65dacaf053f3ad67d.css">
-		<link rel="stylesheet" href="css/detail.css">
-		<link rel="stylesheet" href="css/common.css">
-		<!-- 导航栏 -->
-	</head>
-	<body lang="zh-CN" class="reader-black-font">
-	<div class="block-comet-main-wrap">
-		<!-- 全局顶部导航栏 -->
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>详情</title>
+    <link rel="stylesheet" href="css/detail.css">
+    <link rel="stylesheet"  href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link type="favicon" rel="shortcut icon" href="favicon.ico" />
 
-			<!--导航栏-->
-			<div class="nav nav_border">
-				<div class="nav_list clearfix">
-					<div class="navs">
-						<div class="navs_star">彗星</div>
-						<a target="_self" href="#" class="navs_item">播报 </a>
-						<!--<a target="_self" href="#" class="navs_item">链库 </a>
--->					</div>
+    <!-- 导航栏 -->
+</head>
+<body lang="zh-CN" class="reader-black-font">
+<div class="block-comet-main-wrap">
+    <div class="navbar-fixed-container">
+        <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+            <nav role="navigation">
+                <div class="container collapsed">
+                    <div class="nav navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><span itemprop="name">彗星</span></a>
+                    </div>
+                    <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a  href="index.html" class="cur-nav">播报</a></li>
+                            <!--<li><a  href="chain.html">链库</a></li>-->
+                            <li><a  href="code-rank.html">代码榜</a></li>
+                        </ul>
+                        <!-- <ul class="nav navbar-nav navbar-right nav-index-img">
+                             <li>
+                                 <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+                                     <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
+                                          alt="Download VS Code">
+                                 </a>
+                             </li>
+                         </ul>-->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <div class="nav_search">
+                                    <input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search">
+                                    <a class="nav_search_icon">
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="container index detail-wrap">
+        <div class="row detail-container">
+            <div class="col-md-7 main">
+                <div class="row_left">
+                    <h1 class="title" id="detail_title"></h1>
+                    <div class="article" style="width: 100%;height: 30px;"></div>
+                    	<div>
+                            <span id="detail_from" class="detail_from"></span>
+                            <span id="creat_time" class="detail_time"></span>
+                    	</div>
+                    <div data-note-content="" class="show-content">
+                        <div class="show-content-free">
+                            <p id="context"></p>
+                        </div>
+                        <span id="detail_edit" class="detail_editor"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 aside">
+                <div class="row_right">
+                    <img src="img/miniPro.jpg" width="200px" height="200px"/>
+                    <p class="code_share">扫描分享彗星播报</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="fixed-footer-wrap">
+        <div class="footer-detail">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="col-md-6 pull-left no-padding-row">
+                            <span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>
+                        </div>
+                        <div class="col-md-6 pull-right text-right no-padding-row">
+                            <span class="footer-right"><a href="#">加入我们</a></span>
+                            <span class="footer-right"><a href="#">联系我们</a></span>
+                        </div>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/template.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+</body>
+<script>
+    $("#head_search").keydown(function(e) {
+        if(e.keyCode == 13) {
+            var keywords = $('#head_search').val()
+            console.log(keywords)
 
-					<div class="nav_search">
-						<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search" >
-						<!--'<a class="nav_search_icon">
-							<svg class="icon" aria-hidden="true">
-								<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-sousuo"></use>
-							</svg>
-						</a>'-->
+            window.location.href='http://www.blockcomet.com/?keys='+keywords;
+            //window.location.href = 'http://127.0.0.1:8020/NewsPaperFront-zhuzi/index.html?keys=' + keywords;
+            //http://127.0.0.1:8020/NewsPaperFront-zhuzi/index.html?__hbt=1521169457576
+        }
+    });
 
-					</div>
-					<div class="nav_left">
-						<a href="">
-							<img src="img/temp1.jpg">
-						</a>
-					</div>
-				</div>
-			</div>
-		</nav>
-		<div class="container index detail-wrap">
-			<div class="row">
-				<div class="col-xs-16 main">
-					<div class="row_left">
-						<h1 class="title" id="detail_title"></h1>
-						<div class="article" style="width: 100%;height: 30px;"></div>
-						<div data-note-content="" class="show-content">
-							<div class="show-content-free">
-								<p id="context"></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-7 col-xs-offset-1 aside">
-					<div class="row_right">
-						<img src="img/miniPro.jpg" width="200px" height="200px"/>
-						<p class="code_share">扫描分享彗星播报</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<footer class="fixed-footer-wrap">
-			<div class="footer-detail">
-				<div class="col-md-16">
-					<div class="col-md-12">
-						<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>
-					</div>
-					<div class="col-md-12">
-						<span class="footer-right"><a href="#">加入我们</a></span>
-						<span class="footer-right"><a href="#">联系我们</a></span>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
-			<script src="js/jquery-2.1.1.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/common.js"></script>
+    //dispear
+    function pressHome() {
 
-			<script>
-					$("#head_search").keydown(function(e) {  
-          			if (e.keyCode == 13) {  
-          				var keywords = $('#head_search').val()
-          				console.log(keywords)
-                 		//window.location.href='http://www.blockcomet.com/?keys='+keywords;
-                 		window.location.href='http://127.0.0.1:8020/NewsPaperFront-zhuzi/index.html?keys='+keywords;
-						//http://127.0.0.1:8020/NewsPaperFront-zhuzi/index.html?__hbt=1521169457576	
-          			}  
-     				});  
-				function pressHome(){						
-				}
-				function detail() {
-					console.log("test");
-					var newsId = window.localStorage.getItem('detail')
-					//ajax獲取詳情數據
-					var uri = '/news/' + newsId;
-					doGet(uri, function(res) {
-						if(res != null && res.code == 0) {
-							$('#detail_title').html(res.data.title)
-							if(res.data.content != null && res.data.content != undefined) {
-								$('#context').html(res.data.content)
-							} else {
-								$('#context').html(res.data.shortContent)
-							}
-						}
-					}, "json");
+    }
 
-				}
-				detail();
-			</script>
-	</body>
+    function refresh() {
 
+        window.location.href = "index.html"
+    }
+
+
+    function getQuary(){//读取详情 新闻id
+        var url  = window.location.href;
+
+        if(url.split("?")[1]){
+            var quarys = url.split("?")[1].split("&")
+            for(var i = 0 ;i<quarys.length;i++){
+                if(quarys[i].split("=")[0]=="newsId"){
+
+                    return decodeURI(quarys[i].split("=")[1])
+                }
+            }
+        }
+    }
+
+    function detail() {
+        //var newsId = window.localStorage.getItem('detail')
+        var newsId = getQuary()
+        //ajax獲取詳情數據
+        var uri = 'news/getinfo?newsId='+newsId
+        doJavaGet(uri, function(res) {
+            if(res != null && res.code == 0) {
+                var datas = res.datas
+                $('#detail_title').text(datas.title)
+                $('#detail_from').text("来源："+datas.media)
+                if(datas.creator!=null){
+                    $('#detail_edit').text("编辑："+datas.creator)
+                }
+                $('#creat_time').text(datas.createTime.replace("T"," "))
+                if(datas.newsContent != null && datas.newsContent != undefined) {
+                    $('#context').html(datas.newsContent)
+                } else {
+                    $('#context').html(datas.newsContent)
+                }
+            }
+        }, "json");
+
+    }
+    detail();
+</script>
+</script>
 </html>

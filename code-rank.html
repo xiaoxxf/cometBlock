@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>代码榜</title>
+    <link rel="stylesheet" href="css/loading.css">
+    <link rel="stylesheet"  href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/code-rank.css">
+    <link type="favicon" rel="shortcut icon" href="favicon.ico" />
+
+    <!-- 导航栏 -->
+</head>
+<body lang="zh-CN" class="reader-black-font">
+<div class="comet-main">
+    <div class="navbar-fixed-container">
+        <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+            <nav role="navigation">
+                <div class="container collapsed">
+                    <div class="nav navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html"><span itemprop="name">彗星</span></a>
+                    </div>
+                    <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a  href="index.html">播报</a></li>
+                            <!--<li><a  href="chain.html">链库</a></li>-->
+                            <li><a  href="code-rank.html" class="cur-nav">代码榜</a></li>
+                        </ul>
+                        <!-- <ul class="nav navbar-nav navbar-right nav-index-img">
+                             <li>
+                                 <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+                                     <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
+                                          alt="Download VS Code">
+                                 </a>
+                             </li>
+                         </ul>-->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <div class="nav_search">
+                                    <input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
+                                           onkeyup="test()">
+                                    <a class="nav_search_icon">
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="mian-container">
+        <div class="container">
+            <div class="body-container-wrap">
+                <div class="title-select-wrap">
+                      <div class="row">
+                          <div class="col-md-3 col-sm-12 text-left">
+                              <span class="item-title">
+                                  区块链代码提交活跃
+                              </span>
+                          </div>
+                          <span class="item item-active" data-month="3">
+                              三个月内
+                          </span>
+                           <span class="item" data-month="6">
+                                六个月内
+                           </span>
+                           <span class="item" data-month="9">
+                                九个月内
+                           </span>
+                           <span class="item" data-month="12">
+                                十二个月内
+                           </span>
+                      </div>
+                  </div>
+                <div class="no-data-tip">
+                    暂无数据
+                </div>
+               <div class="waiting-data">
+                   <div class="loader9">
+                       <div class="loader-nine">
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                       </div>
+                   </div>
+               </div>
+                <div class="code-rank-wrap">
+                </div>
+            </div>
+        </div>
+       <div class="load-more-container-wrap">
+           <div class="container">
+                   <div class="load-more-wrap load-more-hook" style="display: none">
+                       <div class="loader1 loader">
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                       </div>
+                       <div class="loading-more">
+                           加载更多
+                       </div>
+                   </div>
+                   <div class="load-more-wrap no-more-hook" style="display: none">
+                       <div class="loading-more">
+                           已无更多数据
+                       </div>
+                   </div>
+               </div>
+       </div>
+</div>
+<script  id="rank-item-temp" type="text/html">
+    <%for(var i = 0; i < list.length; i++) {%>
+    <div class="code-rank-item-wrap">
+        <div class="code-rank-item clearfix">
+            <div class="code-rank-top">
+                <div class="col-md-4 pull-left">
+                    <span class="rank-name">
+                        <span class="rank-num"><%:=list[i].sortNum+1%>.</span><%:=list[i].name%> (<%:=list[i].token%>)
+                    </span>
+
+                </div>
+                <div class="col-md-2 pull-right text-right">
+                    关注数量:<span class="item-info"><%:=list[i].watchers%></span>
+                </div>
+            </div>
+            <div class="code-rank-bottom clearfix">
+                <div class="pull-left col-md-6 col-sm-12 bottom-left">
+                    <div class="bottom-left-top">
+                        代码语言:<span class="item-info"><%:=list[i].language%></span>
+                    </div>
+                    <div class="bottom-left-bottom">
+                        代码提交数量:<span class="item-info"><%:=list[i].commitsdesc%></span>
+                    </div>
+                </div>
+                <div class="pull-right col-md-6 text-right bottom-right">
+                    <div class="bottom-right-top">
+                        代码贡献者:<span class="item-info"><%:=list[i].contributors%></span>
+                    </div>
+                    <div class="bottom-right-bottom">
+                        最活跃贡献者:<span class="item-info"><%:=list[i].others.substr(list[i].others.indexOf(':')+1,list[i].others.length)%></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+</script>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/template.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/code-rank.js"></script>
+</body>
+</html>
