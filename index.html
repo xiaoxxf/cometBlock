@@ -78,17 +78,19 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-12 aside">
+			<div class="col-md-4 col-sm-12 aside right-container-wrap">
 				<div class="row clearfix">
 					<div class="col-md-12 col-sm-12">
 						<div class="right_container">
-							<div class="hot_news">
-								<div class="hot_news_title">24小时热门播报</div>
-								<ul class="hot_news_list"  id="dataRight">
-									<div class="hot_news_item " id="week ">
+							<div class="hot_news-wrap">
+								<div class="hot_news">
+									<div class="hot_news_title">24小时热门播报</div>
+									<ul class="hot_news_list"  id="dataRight">
+										<div class="hot_news_item " id="week ">
 
-									</div>
-								</ul>
+										</div>
+									</ul>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -324,7 +326,11 @@
             }
             loadRight(1);
 
-
+			//js出来左右边距问题
+			$(".right_container").width($(".right-container-wrap").width());
+			$(window).resize(function(){
+                $(".right_container").width($(".right-container-wrap").width());
+			})
 		</script>
 	</div>
 </body>

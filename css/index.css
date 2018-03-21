@@ -37,8 +37,6 @@ user agent stylesheet * {
 
 .right_container {
 	position: fixed;
-	width: 360px;
-	margin-left: 50px;
 }
 
 .icon {
@@ -163,7 +161,7 @@ ul {
 }
 
 .hot_news_list li a {
-	padding-left: 10px;
+	padding-left: 8px;
 	line-height: 22px;
 	overflow: hidden;
 	color: rgb(102, 102, 102);
@@ -510,4 +508,7 @@ nav{
 }
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form{
 	background-color: #fff;
+}
+.hot_news-wrap{
+	padding-left: 50px;
 }
