@@ -171,3 +171,6 @@ i{
 .show-content-free p{
     line-height: 30px;
 }
+.show-content-free #context img{
+    width: 100%;
+}
