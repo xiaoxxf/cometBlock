@@ -37,6 +37,7 @@ user agent stylesheet * {
 
 .right_container {
 	position: fixed;
+	width: 360px;
 }
 
 .icon {

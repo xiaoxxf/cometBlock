@@ -137,6 +137,7 @@ body{
 .navbar-inverse .navbar-brand{
     color: rgb(79, 163, 237);
     font-size: 26px;
+    padding-left: 0px;
 }
 .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
     color: rgb(79, 163, 237);

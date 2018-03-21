@@ -28,7 +28,7 @@ $(function () {
         if(len<=0){
             return tempRank;
         }
-        for(i=1;i<=10;i++){
+        for(i=0;i<10;i++){
             var rankIndex = rankPageIndex*10+i;
             if(rankIndex>=len){
                 $(".no-more-hook").fadeIn();
