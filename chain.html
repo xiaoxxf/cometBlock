@@ -133,22 +133,36 @@
 	}
 
 	.search-result .search-result-img{
-
+		width: 150px;
+		height: 180px;
 	}
 
-	.search-result .search-result-description{
-		width: 35%;
+	.search-result-img img{
+		width:100%;
+		height: 100%;
+	}
+
+	.search-result .search-result-coin{
+		max-width: 35%;
 		margin-left: 10px;
 		margin-right: 5px;
 		position: relative;
-		overflow-y: hidden;
 	}
 
-	.search-result-description p{
+	.search-result-coin p{
 		font-family:inherit;
 		font-size: 15px;
 		color:rgb(90, 87, 87);
+		line-height: normal;
 	}
+	.coin-description{
+
+	}
+
+	.no-result{
+		min-height: 500px;
+	}
+
 	.no-data{
 		font-size: 15px;
 	}
@@ -288,27 +302,41 @@
 
 		<!-- 搜索结果 -->
 		<div class="row search-result" style="display:none">
-				<div class="search-result-img" style="margin-bottom:20px">
-					<img src="img/coin_1.png" alt=""  style="height:160px;width:160px">
+				<div class="search-result-img" >
+					<img src="img/coin_4.png">
 				</div>
-				<div class="search-result-description">
+				<div class="search-result-coin">
 					<p>BTC 比特币 2018</p>
-					<p id="description">比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
-						比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
+					<p class="coin-description">比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
 					</p>
 				</div>
 		</div>
 
-		<!-- 没有搜索结果 -->
-		<div class="row no-data" style="display:none">
-			<div class="">
-				找不到"BTC"项目
-			</div>
+		<div class="row search-result" style="display:none">
+				<div class="search-result-img">
+					<img src="img/coin_2.png" >
+				</div>
+				<div class="search-result-coin">
+					<p>BTC 比特币 2018</p>
+					<p class="coin-description">比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
+					</p>
+				</div>
 		</div>
 
-		<div class="row create-coin" style="display:none">
-			<div class="">
-				<a href="#">新建币种</a>
+
+		<div class="no-result" style="display:none">
+		<!-- 没有搜索结果 -->
+			<div class="row no-data" >
+				<div class="">
+					找不到"BTC"项目
+				</div>
+			</div>
+
+
+			<div class="row create-coin">
+				<div class="">
+					<a href="#">新建币种</a>
+				</div>
 			</div>
 		</div>
 
@@ -325,6 +353,7 @@
 			</div>
 		</div>
 
+
 	</div>
 </div>
 <script src="js/jquery-2.1.1.js"></script>
@@ -336,16 +365,23 @@
 		$(".search-click-hook").on('click',function () {
 			console.log('点击搜索');
 
-			// TODO: 点击搜索后隐藏分类和币种内容
+			// 限制搜索结果描述的长度
+			var descriptions = document.getElementsByClassName('coin-description');
+			for (var i = 0; i < descriptions.length; i++) {
+				if (descriptions[i].innerText.length > 185) {
+					descriptions[i].innerText = descriptions[i].innerText.substring(0,185) + "..."
+				}
+			}
+
+			// 点击搜索后隐藏分类和币种内容
 			$('.coin-item').css('display','none')
 			$('.coin-content').css('display','none')
 
-			// TODO: 有结果时显示搜索结果
+			// TODO: 判断有结果时显示搜索结果
 			$('.search-result').css('display','')
-			
-			// TODO: 无结果时显示提示信息
-			$('.no-data').css('display','')
-			$('.create-coin').css('display','')
+
+			// TODO: 判断无结果时显示提示信息
+			$('.no-result').css('display','')
 
     })
 
@@ -361,15 +397,7 @@
   })
 </script>
 
-<script>
-// 搜索结果内容限制行数
-$(function(){
-	var t = document.getElementById('description');
-	if (t.innerText.length > 150) {
-		t.innerText = t.innerText.substring(0,150) + "..."
-	}
-})
-</script>
+
 
 </body>
 
