@@ -143,6 +143,7 @@ body{
 }
 .navbar-inverse .navbar-nav>li>a{
     font-size: 18px;
+    padding-left: 35px;
 }
 
 /*顶部搜索框样式*/
