@@ -2,10 +2,12 @@
 
 <html>
 <head>
+
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>播报</title>
 	<link rel="stylesheet" media="all" href="./css/web-9cd48403b6d78c77ef9e.css">
 	<link rel="stylesheet" media="all" href="./css/entry-c3f65dacaf053f3ad67d.css">
@@ -14,7 +16,6 @@
 	<link rel="stylesheet" href="css/common.css">
 	<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 	<!-- 导航栏 -->
-
 </head>
 <style>
 	.top-nav-wrap{
@@ -26,6 +27,7 @@
 	}
 	.top-nav-wrap .title{
 		width: 15%;
+		font-size: 20px;
 	}
 	.top-nav-wrap .content{
 		width: 85%;
@@ -106,122 +108,231 @@
 		font-size: 16px;
 		color: #000;
 	}
+
+	.search-result{
+		display: inline-flex;
+	}
+
+	.search-result .search-result-img{
+		width: 18%;
+		height: 190px;
+	}
+
+	.search-result-img img{
+		width:100%;
+		height: 100%;
+	}
+
+	.search-result .search-result-coin{
+		max-width: 50%;
+		margin-left: 15px;
+	}
+
+	.search-result-coin p{
+		font-family:inherit;
+		font-size: 15px;
+		color:grey;
+		line-height: normal;
+	}
+	.coin-description{
+		letter-spacing: 3px;
+	}
+
+	.no-result{
+		min-height: 300px;
+	}
+
+	.no-data{
+		font-size: 15px;
+	}
+
+	.create-coin a{
+		font-size: 15px;
+		color: rgb(0,102,204);
+	}
+
+
 </style>
 <body lang="zh-CN" class="reader-black-font">
-<!-- 全局顶部导航栏 -->
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-	<!--导航栏-->
-	<div class="nav nav_border">
-		<div class="nav_list clearfix">
-			<div class="navs">
-				<div class="navs_star">彗星</div>
-				<a target="_self" href="index.html" class="navs_item">播报 </a>
-				<a target="_self" href="#" class="navs_item current_nav">链库 </a>
-				</div>
-
-			<div class="nav_search">
-				<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search" >
+<div class="comet-main">
+	<!-- 全局顶部导航栏 -->
+	<div class="navbar-fixed-container">
+			<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+					<nav role="navigation">
+							<div class="container collapsed">
+									<div class="nav navbar-header">
+											<button type="button" class="navbar-toggle" data-toggle="collapse"
+															data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+											</button>
+											<a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
+									</div>
+									<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+											<ul class="nav navbar-nav navbar-left">
+													<li><a id="nav-docs" href="index.html">播报</a></li>
+													<li><a id="nav-updates" href="chain.html">链库</a></li>
+											</ul>
+											<ul class="nav navbar-nav navbar-right nav-index-img">
+													<li>
+															<a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+																	<img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
+																			 alt="Download VS Code">
+															</a>
+													</li>
+											</ul>
+											<ul class="nav navbar-nav navbar-right">
+													<li>
+															<div class="nav_search">
+																	<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
+																				 onkeyup="test()">
+																	<a class="nav_search_icon">
+																	</a>
+															</div>
+													</li>
+											</ul>
+									</div>
+							</div>
+					</nav>
 			</div>
-			<div class="nav_left">
-				<a href="">
-					<img src="img/temp1.jpg">
-				</a>
-			</div>
-		</div>
 	</div>
-</nav>
-<div class="container">
-	<div class="row">
-		<div class="top-nav-wrap">
-			<div class="title">找项目</div>
-			<div class="content">
-				<div class="search">
-					<div class="search-wrap">
-						<input type="text" placeholder="搜索币种/简称">
-						<span class="search-icon search-click-hook"></span>
+	<div class="container" >
+
+		<div class="row">
+			<div class="top-nav-wrap">
+				<div class="title">找项目</div>
+				<div class="content">
+					<div class="search">
+						<div class="search-wrap">
+							<input type="text" placeholder="搜索币种/简称">
+							<span class="search-icon search-click-hook"></span>
+						</div>
+					</div>
+					<div class="coin-item">
+						<span class="cur">上新</span>
+						<span>数字货币</span>
+						<span>数字货币</span>
+						<span>数字货币</span>
+						<span>数字货币</span>
+						<span>数字货币</span>
+						<span>数字货币</span>
 					</div>
 				</div>
-				<div class="coin-item">
-					<span class="cur">上新</span>
-					<span>数字货币</span>
-					<span>数字货币</span>
-					<span>数字货币</span>
-					<span>数字货币</span>
-					<span>数字货币</span>
-					<span>数字货币</span>
+			</div>
+		</div>
+
+		<div class="row coin-content">
+			<ul class="coin-list-wrap">
+				<li>
+					<a href="#">
+						<img src="img/coin_1.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_2.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_3.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_4.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_1.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_2.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_3.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_4.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/coin_4.png" alt="">
+						<p class="name">EOS</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- 搜索结果 -->
+		<div class="row search-result" style="display:none">
+				<div class="search-result-img" >
+					<img src="img/coin_4.png">
+				</div>
+				<div class="search-result-coin">
+					<a href="#" class="title">BTC 比特币 2018</a>
+					<p class="coin-description">比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
+					</p>
+				</div>
+		</div>
+
+		<div class="row search-result" style="display:none">
+				<div class="search-result-img">
+					<img src="img/coin_2.png" >
+				</div>
+				<div class="search-result-coin">
+					<a href="#" class="title">BTC 比特币 2018</a>
+					<p class="coin-description">比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
+					</p>
+				</div>
+		</div>
+
+		<!-- 没有搜索结果 -->
+		<div class="no-result" style="display:none">
+			<div class="row no-data" >
+				<div class="">
+					找不到"BTC"项目
+				</div>
+			</div>
+
+			<div class="row create-coin">
+				<div class="">
+					<a href="#">新建币种</a>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<ul class="coin-list-wrap">
-			<li>
-				<a href="#">
-					<img src="img/coin_1.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_2.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_3.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_4.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_1.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_2.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_3.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_4.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<img src="img/coin_4.png" alt="">
-					<p class="name">EOS</p>
-				</a>
-			</li>
-		</ul>
-	</div>
-	<div class="row">
-		<div class="load-more-wrap">
-			<div class="loader1 loader">
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-			<div class="loading-more">
-				加载更多
+
+		<div class="row">
+			<div class="load-more-wrap">
+				<div class="loader1 loader">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="loading-more">
+					加载更多
+				</div>
 			</div>
 		</div>
+
+
 	</div>
 </div>
 <script src="js/jquery-2.1.1.js"></script>
@@ -232,7 +343,27 @@
 	$(function () {
 		$(".search-click-hook").on('click',function () {
 			console.log('点击搜索');
-        })
+
+			// 限制搜索结果描述的长度
+			var descriptions = document.getElementsByClassName('coin-description');
+			for (var i = 0; i < descriptions.length; i++) {
+				if (descriptions[i].innerText.length > 220) {
+					descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
+				}
+			}
+
+			// 点击搜索后隐藏分类和币种内容
+			$('.coin-item').css('display','none')
+			$('.coin-content').css('display','none')
+
+			// TODO: 判断有结果时显示搜索结果
+			$('.search-result').css('display','')
+
+			// TODO: 判断无结果时显示提示信息
+			$('.no-result').css('display','')
+
+    })
+
 		$(".loading-more").on('click',function () {
 		    //点击ajax请求数据
 			$(".loading-more").hide();
@@ -241,9 +372,12 @@
                 $(".loading-more").show();
                 $(".loader1").css('display','none');
             },2000)
-        })
     })
+  })
 </script>
+
+
+
 </body>
 
 </html>
