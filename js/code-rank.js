@@ -8,7 +8,7 @@ $(function () {
     var num = 1;
     var totalheight = 0;
     var isLoaded = true;
-    var pageSize = 200;
+    var pageSize = 20;
     window.sessionStorage.removeItem('rankList');
     $(".search-click-hook").on('click',function () {
         console.log('点击搜索');
