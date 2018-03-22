@@ -9,15 +9,20 @@ $(function () {
     var totalheight = 0;
     var isLoaded = true;
     var pageSize = 20;
-    window.sessionStorage.removeItem('rankList');
+    var sortByOrder = 1;//分类排序刷选
     $(".search-click-hook").on('click',function () {
         console.log('点击搜索');
     })
     $(".title-select-wrap .item").on('click',function () {
         var self = $(this);
-        self.parent().parent().find('.item').removeClass('item-active');
+        self.parent().find('.item').removeClass('item-active');
         self.addClass('item-active')
-        monthNum = self.data('month');
+        if(self.hasClass('time-item')){
+            monthNum = self.data('month');
+        }
+        if(self.hasClass('order-item')){
+            sortByOrder = self.data('order');
+        }
         rankPageIndex = 1;
         $(".no-more-hook").hide();
         $(".code-rank-wrap").html('');
@@ -34,7 +39,6 @@ $(function () {
                 rankData[i].sortNum = rankIndex;
                 tempRank.push(rankData[i]);
             }
-            tempRank.push(rankData[i]);
         }
         rankPageIndex++;
         return tempRank;
@@ -44,7 +48,7 @@ $(function () {
         $(".no-data-tip").fadeOut();
         $(".waiting-data").fadeIn();
         var rankData;
-            doRankGet('?month='+monthNum+'&pageNumber='+rankPageIndex+'&pageSize='+pageSize, function(data) {
+            doRankGet('?month='+monthNum+'&pageNumber='+rankPageIndex+'&pageSize='+pageSize+'&order='+sortByOrder, function(data) {
                 rankData = data;
                     if(rankData.length == 0){
                         $(".load-more-hook").hide();
@@ -52,6 +56,7 @@ $(function () {
                         $(".no-data-tip").fadeIn();
                     }else{
                         tempRankData =  formatRankData(rankData);
+                        console.log('tempRankData',tempRankData)
                         var rankTpl = $("#rank-item-temp").html();
                         var content = template(rankTpl, {list: tempRankData});
                         $(".code-rank-wrap").append(content);
@@ -59,26 +64,6 @@ $(function () {
                         $(".waiting-data").hide();
                     }
             }, "json");
-    }
-    //首次切换和第一次页面加载
-    function renderCodeList(rankData) {
-        if(rankData != null) {
-            if(rankData.length == 0){
-                $(".load-more-hook").hide();
-                $(".waiting-data").hide();
-                $(".no-data-tip").fadeIn();
-            }else{
-                tempRankData =  formatRankData(rankData);
-                var rankTpl = $("#rank-item-temp").html();
-                var content = template(rankTpl, {list: tempRankData});
-                $(".code-rank-wrap").append(content);
-                $(".no-data-tip").fadeOut()
-                $(".waiting-data").hide();
-            }
-        } else{
-            $(".waiting-data").hide();
-            $(".no-data-tip").show()
-        }
     }
     //滚动加载
     $(window).scroll(function(){
@@ -98,7 +83,7 @@ $(function () {
         $(".loading-more").hide();
         $(".loader1").css('display','flex');
             //首次进入页面加载
-            doRankGet('?month='+monthNum+'&pageNumber='+rankPageIndex+'&pageSize='+pageSize, function(data) {
+            doRankGet('?month='+monthNum+'&pageNumber='+rankPageIndex+'&pageSize='+pageSize+'&order='+sortByOrder, function(data) {
                 if(data.length != 0){
                     tempRankData =  formatRankData(data);
                     var rankTpl = $("#rank-item-temp").html();

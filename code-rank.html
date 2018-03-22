@@ -64,32 +64,36 @@
         <div class="container">
             <div class="body-container-wrap">
                 <div class="title-select-wrap">
-                      <div class="row">
-                          <div class="col-md-3 col-sm-12 text-left">
-                              <div class="row">
-                                  <div class="col-xs-1 visible-xs">
-                                  </div>
-                                  <div class="col-sm-11 col-md-12">
-                                   <span class="item-title">
-                                      区块链代码提交活跃
-                                  </span>
-                                  </div>
-                              </div>
-                          </div>
-                          <span class="item item-active" data-month="3">
+                      <div class="row select-btn-wrap time-select-btn-wrap">
+                          <span class="sort-item">
+                                时间
+                          </span>
+                          <span class="item item-active time-item" data-month="3">
                               三个月内
                           </span>
-                           <span class="item" data-month="6">
+                           <span class="item time-item" data-month="6">
                                 六个月内
                            </span>
-                           <span class="item" data-month="9">
+                           <span class="item time-item" data-month="9">
                                 九个月内
                            </span>
-                           <span class="item" data-month="12">
+                           <span class="item time-item" data-month="12">
                                 十二个月内
                            </span>
                       </div>
-                  </div>
+                     <div class="row select-btn-wrap order-select-btn-wrap">
+
+                        <span class="sort-item">
+                                分类
+                          </span>
+                        <span class="item item-active order-item" data-order="1">
+                              代码活跃榜
+                          </span>
+                        <span class="item order-item" data-order="2">
+                                代码人气榜
+                        </span>
+                    </div>
+                </div>
                 <div class="no-data-tip">
                     暂无数据
                 </div>
@@ -137,9 +141,9 @@
         <div class="code-rank-item clearfix">
             <div class="code-rank-top">
                 <div class="col-md-4 pull-left">
-                    <span class="rank-name">
+                    <a target="_blank" href="<%:=list[i].githref+1%>" class="rank-name">
                         <span class="rank-num"><%:=list[i].sortNum+1%>.</span><%:=list[i].name%> (<%:=list[i].token%>)
-                    </span>
+                    </a>
 
                 </div>
                 <div class="col-md-2 pull-right text-right">

@@ -7,23 +7,42 @@
     cursor: pointer;
 }
 
-.body-container-wrap .title-select-wrap .item-title{
+.body-container-wrap .title-select-wrap .item-title,
+.body-container-wrap .title-select-wrap .sort-item{
     font-size: 18px;
+    margin-top: 25px;
+}
+.body-container-wrap .title-select-wrap .item-title{
+    display: inline-block;
+    width: 165px;
+}
+.body-container-wrap .title-select-wrap .sort-item{
+    font-weight: 600;
+    color: #666666;
+}
+.title-select-wrap .item:hover{
+    background-color: #2aa3f6;
+    color: #fff;
 }
 .title-select-wrap .item, .title-select-wrap .item-active{
     display: inline-block;
-    padding: 3px 15px;
+    padding: 3px 0;
     border-radius: 10px;
     background-color: #fff;
     border: 1px solid #9f9f9f;
     color: #999;
+    width: 120px;
+    text-align: center;
+}
+.title-select-wrap .select-btn-wrap{
+    margin-left: 0px;
 }
 .title-select-wrap .item{
     background-color: #fff;
     border: 1px solid #bcbcbc;
     color: #999;
     font-size: 16px;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .title-select-wrap .item.item-active{
     background-color: #2aa3f6;
@@ -53,6 +72,9 @@
     font-size: 18px;
     color: #000;
     font-weight: 700;
+}
+.code-rank-wrap .code-rank-item-wrap .code-rank-top .rank-name:hover{
+    color: rgb(79, 163, 237);
 }
 .code-rank-wrap .code-rank-item-wrap .code-rank-top .rank-num{
     padding-right: 3px;
