@@ -90,47 +90,47 @@
 
 	<body lang="zh-CN" class="reader-black-font">
 		<!-- 全局顶部导航栏 -->
-	    <div class="navbar-fixed-container">
-	        <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
-	            <nav role="navigation">
-	                <div class="container collapsed">
-	                    <div class="nav navbar-header">
-	                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-	                                data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
-	                            <span class="icon-bar"></span>
-	                            <span class="icon-bar"></span>
-	                            <span class="icon-bar"></span>
-	                        </button>
-	                        <a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
-	                    </div>
-	                    <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
-	                        <ul class="nav navbar-nav navbar-left">
-	                            <li><a id="nav-docs" href="/docs">播报</a></li>
-	                            <li><a id="nav-updates" href="/updates">链库</a></li>
-	                        </ul>
-	                        <ul class="nav navbar-nav navbar-right nav-index-img">
-	                            <li>
-	                                <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
-	                                    <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
-	                                         alt="Download VS Code">
-	                                </a>
-	                            </li>
-	                        </ul>
-	                        <ul class="nav navbar-nav navbar-right">
-	                            <li>
-	                                <div class="nav_search">
-	                                    <input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
-	                                           onkeyup="test()">
-	                                    <a class="nav_search_icon">
-	                                    </a>
-	                                </div>
-	                            </li>
-	                        </ul>
-	                    </div>
-	                </div>
-	            </nav>
-	        </div>
-	    </div>
+    <div class="navbar-fixed-container">
+        <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+            <nav role="navigation">
+                <div class="container collapsed">
+                    <div class="nav navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
+                    </div>
+                    <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li><a id="nav-docs" href="/docs">播报</a></li>
+                            <li><a id="nav-updates" href="/updates">链库</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right nav-index-img">
+                            <li>
+                                <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+                                    <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
+                                         alt="Download VS Code">
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <div class="nav_search">
+                                    <input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
+                                           onkeyup="test()">
+                                    <a class="nav_search_icon">
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
 		<div class="container form-box">
 			<div class="row">
 				<!--Form表单-->
@@ -147,7 +147,7 @@
 
 								<!--选择文件-->
 								<a href="javascript:;" class="file">选择
-								   <input type="file" id="coin_image_input" name="coin_image"  >
+								   <input type="file" id="coin_image_input" name="project_logo"  >
 								</a>
 
 								<!---->
@@ -162,14 +162,27 @@
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">币种全称：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="coin_name" type="text"  value="">
+								<input class="form-control" name="project_name" type="text"  value="">
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label ">简称：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="Abbreviation" type="text"  value="">
+								<input class="form-control" name="project_big_name" type="text"  value="">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">币种类型：</label>
+							<div class="col-xs-12 col-md-5 col-sm-5">
+								<input class="form-control" name="project_type" list="types" />
+								<datalist id="types">
+								  <option value="基础链接">
+								  <option value="内容版权">
+								  <option value="跨链协议">
+									<option value="数字货币">
+								</datalist>
 							</div>
 						</div>
 
@@ -178,7 +191,22 @@
 						<div class="form-group row date_pick">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行日期：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input type="text" name="startTime" class="form-control"  id="date_pick">
+								<input type="text" name="fundraising_time" class="form-control"  id="date_pick">
+							</div>
+						</div>
+
+						<div class="form-group row date_pick">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行日期：</label>
+							<div class="col-xs-12 col-md-5 col-sm-5">
+								<input type="text" name="fundraising_time" class="form-control"  id="date_pick">
+							</div>
+						</div>
+						
+						<hr> <br>
+						<div class="form-group row date_pick">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行日期：</label>
+							<div class="col-xs-12 col-md-5 col-sm-5">
+								<input type="text" name="fundraising_time" class="form-control"  id="date_pick">
 							</div>
 						</div>
 
@@ -197,10 +225,10 @@
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label"></label>
 							<div class="col-xs-10 col-md-5 col-sm-5">
-						        <div class="input-group">
-               						<span class="input-group-addon"><img src="img/dollor.png"/ style="height: 20px;"></span>
+				        <div class="input-group">
+           				<span class="input-group-addon"><img src="img/dollor.png"/ style="height: 20px;"></span>
 									<input type="text" name="issue_price[]" class="form-control" placeholder="e.g.1 BTC = 2000 TOKEN">
-						        </div>
+				        </div>
 							</div>
 
 							<div class="col-xs-2" style="margin-left: -20px;">
@@ -208,21 +236,20 @@
 								  <span class="glyphicon glyphicon-plus" style="color:#0080FF;" aria-hidden="true"></span>
 								</button>
 							</div>
-
 						</div>
 
 
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行总量：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="issue_amount" type="text"  value="">
+								<input class="form-control" name="currency_count" type="text"  value="">
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">流通总量：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="total_circulation" type="text"  value="">
+								<input class="form-control" name="currency_circulation" type="text"  value="">
 							</div>
 						</div>
 
@@ -231,7 +258,7 @@
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">网站：</label>
 							<div class="col-xs-10 col-md-5 col-sm-5">
-								<input class="form-control website"  name="web_site" type="url"  value="" placeholder="http://">
+								<input class="form-control website"  name="compay_website" type="url"  value="" placeholder="http://">
 							</div>
 							<div class="col-xs-2" style="margin-left: -20px;">
 								<button type="button" class="btn btn-default"  onclick="jump_website()">
@@ -281,7 +308,7 @@
 
 						<div class="form-group row">
 							<div class="col-xs-12 col-md-8 col-sm-8">
-								<textarea class="form-control" rows="15" name="description" ></textarea>
+								<textarea class="form-control" rows="15" name="project_content" ></textarea>
 							</div>
 						</div>
 

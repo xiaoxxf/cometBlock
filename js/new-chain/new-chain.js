@@ -30,7 +30,7 @@ $('.input_white_paper_file').on('change', function(e){
 // 增加发行价格
 function add_input()
 {
-	var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/new-chain/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price[]" class="form-control"></div></div></div>'
+	var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price[]" class="form-control"></div></div></div>'
 	$('#add_issue_price').append(div);
 }
 
@@ -120,16 +120,17 @@ $('#form1').validator({
     },
 
     fields: {
-    		'coin_image': 'required;imageTypeAndSize',
-    		'coin_name': 'required',
-    		'Abbreviation': 'required',
-    		'startTime': 'date',
-    		'issue_amount': 'required;integer',
-    		'web_site': 'required;url',
+    		'project_logo': 'required;imageTypeAndSize',
+    		'project_name': 'required',
+    		'project_big_name': 'required',
+        'project_type': 'required',
+    		'fundraising_time': 'date',
+    		'currency_count': 'required;integer',
+    		'compay_website': 'required;url',
     		'block_browser': 'url',
-    		'description': 'required',
-    		'issue_price[]': 'integer',
-        'total_circulation': 'required;integer',
+    		'project_content': 'required',
+    		// 'issue_price[]': 'integer',
+        'currency_circulation': 'required;integer',
         'white_paper': 'pdfTypeAndSize',
         'white_paper_file_name': 'pdfName'
     }
