@@ -1,5 +1,5 @@
 $(function () {
-    var rankPageIndex = 0;
+    var rankPageIndex = 1;
     var tempRankData = [];
     var monthNum = 3;
     var range = 0;             //距下边界长度/单位px
@@ -8,7 +8,7 @@ $(function () {
     var num = 1;
     var totalheight = 0;
     var isLoaded = true;
-    var pageSize = 20;
+    var pageSize = 200;
     window.sessionStorage.removeItem('rankList');
     $(".search-click-hook").on('click',function () {
         console.log('点击搜索');
@@ -18,27 +18,25 @@ $(function () {
         self.parent().parent().find('.item').removeClass('item-active');
         self.addClass('item-active')
         monthNum = self.data('month');
-        rankPageIndex = 0;
-        window.sessionStorage.removeItem('rankList')
+        rankPageIndex = 1;
+        $(".no-more-hook").hide();
         $(".code-rank-wrap").html('');
         getRankData();
     })
-    function getTenRankData(rankData){
+    function formatRankData(rankData){
         var tempRank = [];
-        var len = rankData.length-1;
-        if(len<=0){
-            return tempRank;
-        }
-        for(i=0;i<pageSize;i++){
-            var rankIndex = rankPageIndex*pageSize+i;
-            if(rankIndex>=len){
-                $(".no-more-hook").fadeIn();
-                $(".load-more-hook").hide();
+        for(var i=0;i<pageSize;i++){
+            var rankIndex = (rankPageIndex-1)*pageSize+i;
+            if(rankData[i] == undefined){
+                rankPageIndex++;
                 return tempRank;
+            }else{
+                rankData[i].sortNum = rankIndex;
+                tempRank.push(rankData[i]);
             }
-            rankData[rankIndex].sortNum = rankIndex;
-            tempRank.push(rankData[rankIndex]);
+            tempRank.push(rankData[i]);
         }
+        rankPageIndex++;
         return tempRank;
     }
     getRankData();
@@ -46,35 +44,21 @@ $(function () {
         $(".no-data-tip").fadeOut();
         $(".waiting-data").fadeIn();
         var rankData;
-        var cometSeesionStore = window.sessionStorage.getItem('rankList')
-        if(cometSeesionStore == null){
-            doRankGet('?month='+monthNum, function(data) {
+            doRankGet('?month='+monthNum+'&pageNumber='+rankPageIndex+'&pageSize='+pageSize, function(data) {
                 rankData = data;
-                window.sessionStorage.setItem('rankList',JSON.stringify(data));
-               // if(rankData != null) {
                     if(rankData.length == 0){
                         $(".load-more-hook").hide();
                         $(".waiting-data").hide();
                         $(".no-data-tip").fadeIn();
                     }else{
-                        tempRankData =  getTenRankData(rankData);
+                        tempRankData =  formatRankData(rankData);
                         var rankTpl = $("#rank-item-temp").html();
                         var content = template(rankTpl, {list: tempRankData});
                         $(".code-rank-wrap").append(content);
                         $(".no-data-tip").fadeOut()
                         $(".waiting-data").hide();
-                        //$(".load-more-hook").show();
                     }
-             /*   } else{
-                    //$(".load-more-hook").hide();
-                    $(".waiting-data").hide();
-                    $(".no-data-tip").show()
-                }*/
             }, "json");
-        }else{
-            rankData = JSON.parse(window.sessionStorage.getItem('rankList'));
-            renderCodeList(rankData)
-        }
     }
     //首次切换和第一次页面加载
     function renderCodeList(rankData) {
@@ -84,16 +68,14 @@ $(function () {
                 $(".waiting-data").hide();
                 $(".no-data-tip").fadeIn();
             }else{
-                tempRankData =  getTenRankData(rankData);
+                tempRankData =  formatRankData(rankData);
                 var rankTpl = $("#rank-item-temp").html();
                 var content = template(rankTpl, {list: tempRankData});
                 $(".code-rank-wrap").append(content);
                 $(".no-data-tip").fadeOut()
                 $(".waiting-data").hide();
-                //$(".load-more-hook").show();
             }
         } else{
-            //$(".load-more-hook").hide();
             $(".waiting-data").hide();
             $(".no-data-tip").show()
         }
@@ -105,45 +87,30 @@ $(function () {
         //console.log("页面的文档高度 ："+$(document).height());
         //console.log('浏览器的高度：'+$(window).height());
         totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
-        if(($(document).height()-range) <= totalheight  && num != maxnum && num > 0 && isLoaded) {
+        if(($(document).height()-range) <= totalheight  && num != maxnum && rankPageIndex > 1 && isLoaded) {
             isLoaded = false
             num = num + 1;
             loadCodeRank();
         }
     });
-   /* $(".load-more-hook .loading-more").on('click',function () {
-
-    })*/
    //滚动加载
     function  loadCodeRank() {
         $(".loading-more").hide();
         $(".loader1").css('display','flex');
-        var rankData;
-        var cometSeesionStore = window.sessionStorage.getItem('rankList')
-        if(cometSeesionStore == null){
             //首次进入页面加载
-            doRankGet('?month='+monthNum, function(data) {
-                rankData = data;
-                window.sessionStorage.setItem('rankList',JSON.stringify(data));
-                srcollToLoadData(rankData)
+            doRankGet('?month='+monthNum+'&pageNumber='+rankPageIndex+'&pageSize='+pageSize, function(data) {
+                if(data.length != 0){
+                    tempRankData =  formatRankData(data);
+                    var rankTpl = $("#rank-item-temp").html();
+                    var content = template(rankTpl, {list: tempRankData});
+                    $(".code-rank-wrap").append(content)
+                }else{
+                    $(".no-more-hook").fadeIn();
+                }
             }, "json");
-        }else{
-            //缓存加载
-            rankData = JSON.parse(window.sessionStorage.getItem('rankList'));
-            srcollToLoadData(rankData)
-        }
         $(".loading-more").show();
         $(".loader1").css('display','none');
         isLoaded = true;
-    }
-    function  srcollToLoadData(rankData) {
-        ++rankPageIndex ;
-        console.log(rankPageIndex)
-        tempRankData =  getTenRankData(rankData);
-        var rankTpl = $("#rank-item-temp").html();
-        var content = template(rankTpl, {list: tempRankData});
-        $(".code-rank-wrap").append(content)
-
     }
 })
 
