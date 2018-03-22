@@ -23,7 +23,7 @@
     border: 1px solid #bcbcbc;
     color: #999;
     font-size: 16px;
-    margin-right: 30px;
+    margin-left: 30px;
 }
 .title-select-wrap .item.item-active{
     background-color: #2aa3f6;
@@ -62,7 +62,7 @@
     font-size: 16px;
 }
 .code-rank-wrap .code-rank-item-wrap  .code-rank-bottom .bottom-left{
-    border-right: 1px solid #bcbcbc;
+    /*border-right: 1px solid #bcbcbc;*/
 }
 .code-rank-item-wrap  .code-rank-bottom .item-info, .code-rank-item-wrap .code-rank-top .item-info{
     padding-left: 5px;

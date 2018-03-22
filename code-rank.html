@@ -66,9 +66,15 @@
                 <div class="title-select-wrap">
                       <div class="row">
                           <div class="col-md-3 col-sm-12 text-left">
-                              <span class="item-title">
-                                  区块链代码提交活跃
-                              </span>
+                              <div class="row">
+                                  <div class="col-xs-1 visible-xs">
+                                  </div>
+                                  <div class="col-sm-11 col-md-12">
+                                   <span class="item-title">
+                                      区块链代码提交活跃
+                                  </span>
+                                  </div>
+                              </div>
                           </div>
                           <span class="item item-active" data-month="3">
                               三个月内
@@ -141,12 +147,12 @@
                 </div>
             </div>
             <div class="code-rank-bottom clearfix">
-                <div class="pull-left col-md-6 col-sm-12 bottom-left">
+                <div class="pull-left col-md-6 col-xs-12 bottom-left">
                     <div class="bottom-left-top">
-                        代码语言:<span class="item-info"><%:=list[i].language%></span>
+                        代码语言:<span class="item-info"><%:=list[i].desc%></span>
                     </div>
                     <div class="bottom-left-bottom">
-                        代码提交数量:<span class="item-info"><%:=list[i].commitsdesc%></span>
+                        代码提交数量:<span class="item-info"><%:=list[i].commits%></span>
                     </div>
                 </div>
                 <div class="pull-right col-md-6 text-right bottom-right">

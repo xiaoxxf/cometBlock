@@ -3,8 +3,7 @@ body {
 }
 .have-img {
 	background-color: white;
-	padding-top: 30px !important;
-	padding-left: 50px!important;
+	padding: 30px 50px 0px 50px !important;
 }
 .title:visited {
 
@@ -59,8 +58,6 @@ user agent stylesheet * {
 	border-radius: 30px;
 	background: #59b6d7;
 }
-
-
 
 .news_release_btn svg {
 	margin-right: 5px;
@@ -510,5 +507,5 @@ nav{
 	background-color: #fff;
 }
 .hot_news-wrap{
-	padding-left: 50px;
+	padding-left: 35px;
 }
