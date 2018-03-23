@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>彗星链库新建</title>
+		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />
+		<link rel="stylesheet" href="css/common.css">
+
+		<style type="text/css">
+			body {
+				background-color: #f3f6f7;
+			}
+			.header_title{
+				color: rgb(79, 163, 237);
+    			font-size: 26px;
+    		}
+			.container{
+				width: 100%;
+				
+			}
+			
+			/*form表单*/
+			
+			.main {
+				text-align: center;
+				width: 500px;
+				margin: 60px auto 0;
+				padding: 50px 50px 30px;
+				background-color: #fff;
+				border-radius: 4px;
+				/*box-shadow: 0 0 8px rgba(0, 0, 0, .1);*/
+				vertical-align: middle;
+				display: inline-block;
+			}
+			
+			.reset-title,
+			.title {
+				margin: 0 auto 50px;
+				padding: 10px;
+				font-weight: 400;
+				color: #969696;
+			}
+			
+			.main .title {
+				padding: 10px;
+				font-weight: 400;
+				color: #969696;
+			}
+			
+			 .active {
+			 	padding: 10px;
+			 	color: #969696;
+				
+				
+			}
+			
+			
+			h4 {
+				font-size: 18px;
+			}
+			.main{
+				
+			}
+			.sign {
+				height: 100%;
+				min-height: 750px;
+				text-align: center;
+				font-size: 14px;
+				background-color: #f1f1f1;
+			}
+			#js-sign-up-btn{
+			    padding: 10px;
+			    font-weight: 700;
+				color: #3194d0;
+				border-bottom: 2px solid #3194d0;
+
+			}
+			
+			.sign form {
+				margin-bottom: 30px;
+			}
+			
+			form {
+				text-align: center;
+			}
+			.input-prepend input {
+			    width: 100%;
+			    height: 50px;
+			    margin-bottom: 0;
+			    padding: 4px 12px 4px 35px;
+			    border: 1px solid #c8c8c8;
+			   
+			    background-color: hsla(0,0%,71%,.1);
+			    vertical-align: middle;
+			}
+			.border_radT{
+				border-radius: 5px 5px 0 0;
+			}
+			.border_radB{
+				border-radius: 0 0 5px 5px;
+			}
+			 .remember-btn {
+			    float: left;
+			    margin: 15px 0;
+			}
+			 .forget-btn {
+			    float: right;
+			    position: relative;
+			    margin: 15px 0;
+			    font-size: 14px;
+			}
+			.remember-btn span {
+				margin-left: 5px;
+				font-size: 15px;
+				color: #969696;
+				 vertical-align: middle;
+		 	}
+			
+			
+			.sign-in-button {
+				background: #3194d0;
+			    width: 100%;
+			    padding: 9px 18px;
+			    font-size: 18px;
+			    border: none;
+			    border-radius: 25px;
+			    color: #fff;
+			    
+			    cursor: pointer;
+			    outline: none;
+			    display: block;
+			    clear: both;
+			    margin-top: 40px;
+			}
+			.more-sign {
+				margin-top: 50px;
+				margin-bottom: 30px;
+			}
+			 .more-sign h6 {
+			    position: relative;
+			    margin: 0 0 26px;
+			    font-size: 12px;
+			    color: #555555c9;
+			}
+			h6{
+				font-family: inherit;
+			    font-weight: 500;
+			    line-height: 1.1;
+			}
+			.more-sign h6:before {
+			    content: "";
+			    border-top: 1px solid #b5b5b5;
+			    display: block;
+			    position: absolute;
+			    width: 60px;
+			    top: 5px;
+			}
+			.more-sign h6:before {
+			    left: 30px;
+			}
+			.more-sign h6:after, .more-sign h6:before {
+			    content: "";
+			    border-top: 1px solid #b5b5b5;
+			    display: block;
+			    position: absolute;
+			    width: 90px;
+			    top: 5px;
+			}
+			*, :after, :before {
+			    box-sizing: border-box;
+			}
+			.more-sign h6:after {
+			    right: 30px;
+			}
+			.more-sign ul{
+				text-align: center;	
+			}
+			.more-sign ul li {
+			    
+			    display: inline-block;
+			   
+			}
+			.more-sign li {
+			    line-height: 20px;
+			}
+			.more-sign li img{
+				
+				}
+			.more-sign ul a {
+			    width: 50px;
+			    height: 50px;
+			    line-height: 50px;
+			    display: block;
+			}
+			.sign .more-sign .ic-more {
+			    color: #999;
+			}
+			.more-sign ul li a{
+				color: darkgray;
+				text-decoration: none;
+				margin-left: 20px;
+				}
+			.register-anouceed{
+				margin-top: 16px;
+				color: gray;
+			}
+			.register-anouceed p span{
+				color: #00B7EE;
+				margin: 0 8px;
+			}
+				
+		</style>
+	</head>
+
+	<body lang="zh-CN" class="reader-black-font">
+		<div class="container">
+			<header class="header_title">
+				彗星
+			</header>
+			<form  role="form" id="form" >
+						<div class="main">
+
+							<h4 class="title">
+								  <div class="normal-title">
+								    <a class="active" href="/sign_in">登录</a>
+								    <b>·</b>
+								    <a id="js-sign-up-btn" class="" href="/sign_up">注册</a>
+								  </div>
+							</h4>
+							<div class="js-sign-in-container">
+								<form id="new_session" action="/sessions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="WCspL+DIHlYijhSuCxokgZBT6ifXJhKahdalsBe7dwy4sRLxLBM/JQWhBsc9O26TBgUySRLrusIrH8zysTQ7Mw==">
+
+									
+									<div class="input-prepend restyle j">										
+										<input placeholder="你的昵称" type="text" class="border_radT" name="session[username]" id="session_email_or_mobile_number">
+										<i class="iconfont ic-user"></i>										
+									</div>									
+									<div class="input-prepend">
+										<input placeholder="手机号" type="text" name="session[phone]" id="session_phone">
+										<i class="iconfont ic-password"></i>
+									</div>
+									<div class="input-prepend">
+										<input placeholder="设置密码" type="password" class="border_radB" name="session[password]" id="session_password">
+										<i class="iconfont ic-password"></i>
+									</div>
+																		
+									<button class="sign-in-button" id="sign-in-form-submit-btn" type="button">     									
+      										注册
+    								</button>
+    								<div class="register-anouceed">
+    									<p>点击"注册"即表示您同意并遵守彗星</p>
+    									<p><span>用户协议</span>和<span>隐私协议</span></p>
+    								</div>
+    								
+								</form>
+								<!-- 更多登录方式 -->
+								<div class="more-sign">
+									<h6>社交帐号直接注册</h6>
+									<ul>
+										<li>
+											<img src="img/wechat.png" width="40px"/ >
+										</li>
+										<li>
+											<a href="">其它</a>
+										</li>
+									</ul>									
+								</div>
+							</div>
+						</div>
+					</form>
+		</div>
+					
+				
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+
+
+	
+	</body>
+	
+	
+</html>
