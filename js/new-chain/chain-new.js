@@ -82,23 +82,6 @@ input_project_logo.addEventListener("change", function() {
 //			    }
 }, false);
 
-// 团队图片上传及预览
-
-$('.input_team_member_image').on('change',function(){
-  team_image_box = this.parentNode.parentNode.previousElementSibling // team_image_box
-  team_image_box.innerHTML = ""
-  var file = this.files[0];
-
-  var img = document.createElement("img");
-
-  $(img).css("width","110px")
-  $(img).css("height","100px")
-  team_image_box.append(img);
-
-  var reader = new FileReader();
-  reader.onload = getOnloadFunc(img);
-  reader.readAsDataURL(file);
-})
 
 //表单校验
 var pdfType = /pdf.*/;
@@ -160,3 +143,89 @@ $('#form1').validator({
         'white_paper_file_name': 'pdfName',
     }
 });
+
+// 添加团队成员
+function add_team_member()
+{
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="img/no_image.png" class="" /></div><div class="member_mess"><a href="javascript:;" class="file" style="width:110px;text-align:center">选择<input type="file"  name="team_member_pic" class="input_team_member_image t_m"></a><input type="text" class="form-control team_member_attribute t_m" name="team_member_name" value="" placeholder="名称"><input type="text" class="form-control team_member_attribute t_m" name="team_member_position" value="" placeholder="职位" ></div></div>'
+  $('.team').append(string);
+}
+
+// 团队图片上传及预览
+$('.team').on('change', $('.input_team_member_image'), function(e) {
+  if(e.target.type != 'file'){
+    return false
+  }
+  team_image_box = e.target.parentNode.parentNode.previousElementSibling // team_image_box
+  team_image_box.innerHTML = ""
+  var file = e.target.files[0];
+
+  var img = document.createElement("img");
+
+  $(img).css("width","110px")
+  $(img).css("height","100px")
+  team_image_box.append(img);
+
+  var reader = new FileReader();
+  reader.onload = getOnloadFunc(img);
+  reader.readAsDataURL(file);
+})
+
+// 表单提交
+function submit_control() {
+  /*
+  构建team属性结构
+  team:[
+        0: {picHref: "", name: "", position: ""},
+        1: {picHref: "", name: "", position: ""}
+        ]
+  */
+  var teamArr = []; //最终数据
+  var temp = []; //临时存储
+  var team_member = {}
+
+
+  $(".t_m").map(function () {
+    temp.push($(this).val()) ;
+  });
+
+  for (var i = 0; i < temp.length; i+=3) {
+    team_member = {}
+    team_member.picHref = temp[i];
+    team_member.name = temp[i+1];
+    team_member.position = temp[i+2];
+    teamArr.push(team_member)
+  };
+
+  // 图片、名称、职位都没填的数据删除掉
+  for (i = 0; i < teamArr.length; i++) {
+    if (teamArr[i].picHref == '' & teamArr[i].name == '' & teamArr[i].position == '') {
+      teamArr.splice(i,1)
+    }
+  }
+  // 提交数据
+  var form = new FormData();
+  form.append("projectLogo", 					$("input[name='mobile']").val() );
+  form.append("projectName", 					$(" input[name='project_name']").val()  );
+  form.append("projectBigName", 			$(" input[name='project_big_name']").val()  );
+  form.append("projectType", 					$(" input[name='project_type']").val()  );
+  form.append("currencyCount", 				$(" input[name='currency_count']").val()  );
+  form.append("currencyCirculation",	$(" input[name='currency_circulation']").val()  );
+  form.append("fundraisingTime", 			$(" input[name='fundraising_time']").val()  );
+  form.append("companyWebsite", 			$(" input[name='company_website']").val()  );
+  form.append("whitePaper", 					$(" input[name='white_paper']").val()  );
+  form.append("projectContent", 			$(" textarea[name='project_content']").val()  );
+  form.append("team", 								teamArr);
+
+  $.ajax({
+    url:"",
+    type:"post",
+    data:form,
+    processData:false,
+    contentType:false,
+    success:function(data){
+       console.log("data");
+    },
+  });
+
+}
