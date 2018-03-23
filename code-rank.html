@@ -141,7 +141,7 @@
         <div class="code-rank-item clearfix">
             <div class="code-rank-top">
                 <div class="col-md-4 pull-left">
-                    <a target="_blank" href="<%:=list[i].githref+1%>" class="rank-name">
+                    <a target="_blank" href="<%:=list[i].githref%>" class="rank-name">
                         <span class="rank-num"><%:=list[i].sortNum+1%>.</span><%:=list[i].name%> (<%:=list[i].token%>)
                     </a>
 
@@ -153,7 +153,7 @@
             <div class="code-rank-bottom clearfix">
                 <div class="pull-left col-md-6 col-xs-12 bottom-left">
                     <div class="bottom-left-top">
-                        代码语言:<span class="item-info"><%:=list[i].desc%></span>
+                        代码语言:<span class="item-info"><%:=list[i].language%></span>
                     </div>
                     <div class="bottom-left-bottom">
                         代码提交数量:<span class="item-info"><%:=list[i].commits%></span>

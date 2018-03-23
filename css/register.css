@@ -1,11 +1,11 @@
-<style type="text/css">
+	
 			body {
 				background-color: #f3f6f7;
 			}
 			.header_title{
 				color: rgb(79, 163, 237);
     			font-size: 26px;
-   			}
+    		}
 			.container{
 				width: 100%;
 				
@@ -41,9 +41,9 @@
 			
 			 .active {
 			 	padding: 10px;
-				font-weight: 700;
-				color: #3194d0;
-				border-bottom: 2px solid #3194d0;
+			 	color: #969696;
+				
+				
 			}
 			
 			
@@ -62,7 +62,10 @@
 			}
 			#js-sign-up-btn{
 			    padding: 10px;
-			    color: #969696;
+			    font-weight: 700;
+				color: #3194d0;
+				border-bottom: 2px solid #3194d0;
+
 			}
 			
 			.sign form {
@@ -72,20 +75,18 @@
 			form {
 				text-align: center;
 			}
-			.input-prepend{
-				 position: relative;
-			}
-			   
 			.input-prepend input {
 			    width: 100%;
 			    height: 50px;
 			    margin-bottom: 0;
 			    padding: 4px 12px 4px 35px;
-			    border: 1px solid #c8c8c8;			    
+			    border: 1px solid #c8c8c8;			   
 			    background-color: hsla(0,0%,71%,.1);
 			    vertical-align: middle;
 			}
-			
+			.input-prepend {
+			    position: relative;
+			}
 			.input-prepend i {
 			    position: absolute;
 			    top: 14px;
@@ -93,17 +94,18 @@
 			    font-size: 18px;
 			    color: #969696;
 			}
-			.iconfont {
-			    font-family: iconfont!important;
+			.fa {
+			    display: inline-block;
+			    font: normal normal normal 14px/1 FontAwesome;
 			    font-size: inherit;
-			    font-style: normal;
-			    font-weight: 400!important;
+			    text-rendering: auto;
 			    -webkit-font-smoothing: antialiased;
 			    -moz-osx-font-smoothing: grayscale;
 			}
-			.fa-bitcoin:before, .fa-btc:before {
-			     content: "\f15a"; 
+			.fa-user:before {
+			    content: "\f007";
 			}
+			
 			.border_radT{
 				border-radius: 5px 5px 0 0;
 			}
@@ -127,10 +129,9 @@
 				 vertical-align: middle;
 		 	}
 			
+			
 			.sign-in-button {
-			    background: #3194d0;
-			}
-			.sign-in-button {
+				background: #3194d0;
 			    width: 100%;
 			    padding: 9px 18px;
 			    font-size: 18px;
@@ -142,6 +143,7 @@
 			    outline: none;
 			    display: block;
 			    clear: both;
+			    margin-top: 40px;
 			}
 			.more-sign {
 				margin-top: 50px;
@@ -211,13 +213,13 @@
 				text-decoration: none;
 				margin-left: 20px;
 				}
-			/*用户头像*/
-			.input-user{
-				display: inline-block;
+			.register-anouceed{
+				margin-top: 16px;
+				color: gray;
 			}
-			/*校验*/
-			#check_en{
-				color: red;
+			.register-anouceed p span{
+				color: #00B7EE;
+				margin: 0 8px;
 			}
 			.n-bottom{
 				display: inherit !important;
@@ -226,5 +228,5 @@
 			    line-height: 0;
 			    vertical-align: top;
 			    outline: 0;
-			}	
-		</style>
+			}		
+		
