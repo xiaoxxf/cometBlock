@@ -56,16 +56,17 @@ var getOnloadFunc = function(aImg) {
 	};
 }
 
-var input = document.getElementById("coin_image_input");
 var imageMaxSize = 2*1024*1024;
 var whitePaperMaxSize = 2*1024*1024*10;
 var imageType = /image.*/;
+var input_project_logo = document.getElementById("project_logo_input");
+
 var getOnloadFunc = function(aImg) {
 	return function(evt) {
 		aImg.src = evt.target.result;
 	};
 }
-input.addEventListener("change", function(evt) {
+input_project_logo.addEventListener("change", function() {
 	$(".coin_image_box").html("");
 //			    for (var i = 0, numFiles = this.files.length; i < numFiles; i++) {
     var file = this.files[0];
@@ -73,13 +74,31 @@ input.addEventListener("change", function(evt) {
     var img = document.createElement("img");
     $(img).css("width","110px")
     $(img).css("height","100px")
-   $(".coin_image_box").append(img);
+    $(".coin_image_box").append(img);
 
     var reader = new FileReader();
     reader.onload = getOnloadFunc(img);
     reader.readAsDataURL(file);
 //			    }
 }, false);
+
+// 团队图片上传及预览
+
+$('.input_team_member_image').on('change',function(){
+  team_image_box = this.parentNode.parentNode.previousElementSibling // team_image_box
+  team_image_box.innerHTML = ""
+  var file = this.files[0];
+
+  var img = document.createElement("img");
+
+  $(img).css("width","110px")
+  $(img).css("height","100px")
+  team_image_box.append(img);
+
+  var reader = new FileReader();
+  reader.onload = getOnloadFunc(img);
+  reader.readAsDataURL(file);
+})
 
 //表单校验
 var pdfType = /pdf.*/;
@@ -101,7 +120,7 @@ $('#form1').validator({
            }else {
               return true;
            }
-        },
+       },
        pdfTypeAndSize:function(element, params,field) {
            var filepath = element.files[0];
            if (!filepath.type.match(pdfType) || filepath.size > imageMaxSize){
@@ -114,7 +133,14 @@ $('#form1').validator({
         },
         pdfName:function(element){
         		return flag || '请上传不大于20M的PDF文件';
-
+        },
+        teamNumber:function(element, params, field){
+          var numbers = element;
+          if (numbers%3 == 0) {
+            return true;
+          }else {
+            return '请完整地填写团队成员的信息'
+          }
         }
 
     },
@@ -129,9 +155,8 @@ $('#form1').validator({
     		'compay_website': 'required;url',
     		'block_browser': 'url',
     		'project_content': 'required',
-    		// 'issue_price[]': 'integer',
         'currency_circulation': 'required;integer',
         'white_paper': 'pdfTypeAndSize',
-        'white_paper_file_name': 'pdfName'
+        'white_paper_file_name': 'pdfName',
     }
 });
