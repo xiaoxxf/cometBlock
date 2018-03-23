@@ -1,0 +1,171 @@
+body{
+    background-color: #fff;
+}
+.long-comment-title{
+    position: absolute;
+    font-size: 16px;
+    left: 50%;
+    top: 50%;
+    margin-top: -12px;
+    margin-left: -2%;
+}
+/*导航栏*/
+.long-comment-nav{
+    border-bottom: 0.5px solid #bfbfbf;
+}
+html h1 {
+    font-size: 26px;
+    padding-bottom: 18px;
+}
+h1{
+    word-wrap: break-word;
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #494949;
+    margin: 0;
+    padding: 0 0 15px 0;
+    line-height: 1.1;
+}
+header {
+    position: relative;
+}
+.comment-detail-main .author-avatar {
+    margin-right: 8px;
+}
+.comment-detail-main .main-hd {
+    padding-top: 4px;
+}
+.comment-detail-main .main-hd, .comment-detail-main .main-title-tip {
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-size: 13px;
+    color: #999;
+    overflow: hidden;
+}
+.comment-detail-main .author-avatar img {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+}
+.comment-detail-main .main-title-hide {
+    visibility: hidden;
+}
+.comment-detail-main .main-bd {
+    word-wrap: break-word;
+    margin-bottom: 60px;
+}
+.comment-detail-main .main-meta {
+    margin: 0 0 0 5px;
+    color: #999;
+}
+.review-wrapper {
+    font-size: 13px;
+}
+.allstar50 {
+    background-position: 0 0px;
+}
+.allstar50, .allstar45, .allstar40, .allstar35, .allstar30, .allstar25, .allstar20, .allstar15, .allstar10, .allstar05, .allstar00, .rating1-t, .rating15-t, .rating2-t, .rating25-t, .rating3-t, .rating35-t, .rating4-t, .rating45-t, .rating5-t, .rating-t, .starb ~ .stars5, .starb ~ .stars4, .starb ~ .stars3, .starb ~ .stars2, .starb ~ .stars1, .collectors .stars5, .collectors .stars4, .collectors .stars3, .collectors .stars2, .collectors .stars1 {
+    display: inline-block;
+    zoom: 1;
+    background: url(/f/shire/b8f4c3672ef81106701071831e22422a745d3b74/pics/rating_icons/ic_rating_s.png) no-repeat;
+    background: -webkit-image-set(url(/f/shire/b8f4c3672ef81106701071831e22422a745d3b74/pics/rating_icons/ic_rating_s.png) 1x, url(/f/shire/0147ca9efddcac80050854590d26bee587b008df/pics/rating_icons/ic_rating_s@2x.png) 2x) no-repeat;
+    background: -moz-image-set(url(/f/shire/b8f4c3672ef81106701071831e22422a745d3b74/pics/rating_icons/ic_rating_s.png) 1x, url(/f/shire/0147ca9efddcac80050854590d26bee587b008df/pics/rating_icons/ic_rating_s@2x.png) 2x) no-repeat;
+    background: -o-image-set(url(/f/shire/b8f4c3672ef81106701071831e22422a745d3b74/pics/rating_icons/ic_rating_s.png) 1x, url(/f/shire/0147ca9efddcac80050854590d26bee587b008df/pics/rating_icons/ic_rating_s@2x.png) 2x) no-repeat;
+    background: -ms-image-set(url(/f/shire/b8f4c3672ef81106701071831e22422a745d3b74/pics/rating_icons/ic_rating_s.png) 1x, url(/f/shire/0147ca9efddcac80050854590d26bee587b008df/pics/rating_icons/ic_rating_s@2x.png) 2x) no-repeat;
+    width: 55px;
+    height: 11px;
+    margin: 0 3px 0 0;
+    overflow: hidden;
+}
+.comment-detail-main #link-report {
+    overflow: hidden;
+}
+.comment-detail-main .review-content {
+    font-size: 14px;
+}
+.review-content {
+    margin-top: 10px;
+}
+.review-content {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 30px;
+}
+.review-content p, .review-content blockquote, .review-content .DRE-unstyled {
+    margin: 0 0 20px 0;
+    line-height: 1.8;
+    font-size: 1em;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
+}
+.review-content img{
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+.comment-detail-main .copyright {
+    clear: both;
+    margin: 20px 0;
+    color: #999;
+    word-break: break-all;
+}
+.comment-detail-main .copyright a:hover, .comment-detail-main .copyright a:link, .comment-detail-main .copyright a:visited {
+    background: transparent;
+    color: #999;
+}
+
+.comment-detail-main .main-panel {
+    margin: 30px 0 5px;
+    padding-bottom: 36px;
+    border-bottom: 0.5px solid #bfbfbf;
+}
+.comment-detail-main .main-panel-useful {
+    position: relative;
+    text-align: center;
+}
+.comment-detail-main .main-panel-useful button:not(:last-child) {
+    margin-right: 20px;
+}
+.comment-detail-main .main-panel-useful .btn {
+    color: #666;
+    background: transparent;
+    padding: 0.4em 1em;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+.comment-detail-main .main-panel-useful button:not(:last-child) {
+    margin-right: 20px;
+}
+.comment-detail-main .main-panel-useful .btn {
+    color: #666;
+    background: transparent;
+    padding: 0.4em 1em;
+    cursor: pointer;
+    line-height: 1.2;
+}
+.btn, .review-comment-form .add_comment {
+    outline: 0;
+    display: inline-block;
+    line-height: 1.5;
+    vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    padding: 2px 5px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+.comment-detail-main .main-panel-useful .spoiler {
+    line-height: 27px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #37a;
+}
+.comment-detail-main .main-panel-useful {
+    position: relative;
+    text-align: center;
+}
