@@ -60,6 +60,7 @@ label{
   text-indent: 0;
   line-height: 20px;
   margin-bottom: 5px;
+  text-align: center;
 }
 .file input {
   position: absolute;
