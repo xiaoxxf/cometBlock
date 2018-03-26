@@ -43,6 +43,10 @@ header {
     color: #999;
     overflow: hidden;
 }
+.comment-container-wrap{
+    margin-top: 30px;
+    min-height: 600px;
+}
 .comment-detail-main .author-avatar img {
     width: 24px;
     height: 24px;
@@ -119,7 +123,6 @@ header {
 .comment-detail-main .main-panel {
     margin: 30px 0 5px;
     padding-bottom: 36px;
-    border-bottom: 0.5px solid #bfbfbf;
 }
 .comment-detail-main .main-panel-useful {
     position: relative;
@@ -168,4 +171,189 @@ header {
 .comment-detail-main .main-panel-useful {
     position: relative;
     text-align: center;
+    border-bottom: 0.5px solid #bfbfbf;
+    padding-bottom: 30px;
 }
+
+/*长文评论部分*/
+#comments {
+    width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    padding: 20px 0 0;
+    color: #111;
+}
+#comments .comment-item {
+    font-size: 13px;
+    margin-bottom: 2em;
+    word-break: break-word;
+
+}
+.comment-item .avatar {
+    margin-right: 25px;
+}
+.update-item, .comment-item{
+    overflow: hidden;
+}
+.comment-item .avatar img, .review-comment-form .avatar img{
+    border-radius: 10px;
+}
+.left {
+    float: left;
+}
+#comments img {
+    max-width: 100%;
+}
+a img {
+    border-width: 0;
+    vertical-align: middle;
+}
+.update-item .content, .comment-item .content {
+    overflow: hidden;
+    zoom: 1;
+}
+.movie-content .review-list .title, .movie-content .comment-list .header, .movie-content .bar {
+    background-color: rgba(240,243,245,0.8);
+}
+.comment-item .header {
+    padding: 8px 10px 8px;
+    color: #999;
+}
+.comment-item .reply-quote a, .reply-comment .author{
+    padding: 0 2px;
+}
+.comment-item .reply-quote {
+    /*width: 30em;*/
+    margin: 12px 0 0 0;
+    margin-left: 10px;
+}
+.comment-item .reply-quote .all {
+    display: none;
+}
+.comment-item .comment-text {
+    margin-left: 10px;
+    padding: 10px 0;
+}
+.comment-item .op-lnks {
+    padding: 0 10px;
+    text-align: right;
+}
+.comment-item .op-lnks a:visited, .comment-item .op-lnks a:link {
+    color: #666666;
+}
+.comment-item .op-lnks .reply_comment{
+    color:#fff !important;
+    background-color: #bfbfbf;
+    padding: 1px 3px;
+    margin-right: 8px;
+    border-radius: 5px;
+}
+ .comment-container-wrap .report-comment .header, .review-comment-form .reply-comment {
+    background-color: rgba(238,238,238,0.8);
+     border-radius: 10px;
+}
+.reply-comment {
+    position: relative;
+    padding: 10px 4px;
+    margin-bottom: 5px;
+    background-color: #e8eef2;
+}
+.reply-comment .lnk-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0 2px;
+}
+.reply-comment p {
+    /*width: 30em;*/
+    width: 96%;
+    padding: 0 6px;
+    margin: 0;
+}
+.reply-comment .all {
+    display: none;
+}
+.review-comment-form .form-textarea-wrapper {
+    position: relative;
+    margin-top: 10px;
+}
+.review-comment-form .form-textarea-wrapper .avatar {
+    float: left;
+    margin-right: 25px;
+}
+.review-comment-form .form-textarea-wrapper .form-field {
+    overflow: hidden;
+}
+
+.review-comment-form .form-textarea {
+    width: 100%;
+    padding: 10px 8px;
+    border: 1px solid #e5e5e5;
+    resize: none;
+    border-radius: 10px;
+}
+.review-comment-form .add_comment {
+    outline: 0;
+    vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+.review-comment-form .add_comment {
+    display: block;
+    margin-top: 8px;
+    padding: 5px 12px;
+}
+
+#footer {
+    color: #999;
+    padding: 6px 0;
+    margin-top: 40px;
+    overflow: hidden;
+    zoom: 1;
+    border-top: 1px dashed #ddd;
+    font-size: 12px;
+}
+.paginator-warp{
+    margin-top: 50px;
+}
+.LikeButton {
+    -webkit-appearance: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    position: relative;
+    font: inherit;
+    line-height: 1;
+    text-align: center;
+    white-space: normal;
+    outline: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+    background: #fbe9d9;
+    border: 1px solid #ff9112;
+    color: #ff9112;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 6px 12px;
+    box-sizing: content-box;
+}
+.main-like{
+    margin-top: 20px;
+}
+.LikeButton .LikeButton-count{
+    display: none;
+}
+.clicked-like .LikeButton-count{
+    display:inline;
+}
+

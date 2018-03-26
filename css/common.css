@@ -67,7 +67,7 @@ input,button{overflow: visible;vertical-align:middle;outline:none}
 body{line-height:1.6}
 h1,h2,h3,h4,h5,h6{font-size:100%}
 a,area{outline:none;blr:expression(this.onFocus=this.blur())}
-a{text-decoration:none;cursor: pointer}
+a{text-decoration:none;cursor: pointer;color: rgb(79, 163, 237);}
 a:hover{text-decoration:underline;outline:none}
 a.ie6:hover{zoom:1}
 a:focus{outline:none}
