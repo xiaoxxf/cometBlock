@@ -32,9 +32,7 @@ $("#rating #stars").on('mouseleave',function (e) {
     $("#rateword").text('')
     //self.parent().parent().find('img').attr('src','img/star-empty.png')
 })
-
 //短评加载更多
-
 $(".short-comment-load-more .loading-more").on('click',function () {
     //点击ajax请求数据
     $(".short-comment-load-more .loading-more").hide();
@@ -63,4 +61,20 @@ $(".select-comment-wrap .comment-select").on('click',function (e) {
     var self = $(e.currentTarget)
     self.parent().find(".comment-select").removeClass('current');
     self.addClass('current');
-})
+});
+window.onload=function(){
+    ajaxGetChainDetail();
+}
+function  ajaxGetChainDetail() {
+    // var projectId = getUrlParam('projectId');
+    var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
+    var uri = 'blockchain/detail?projectId='+projectId ;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+            console.log(res)
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
+
+}
