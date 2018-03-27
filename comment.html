@@ -10,11 +10,11 @@
     <title>长文详情</title>
     <link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="css/loading.css">
+
+    <link type="favicon" rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="js/page/page.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/comment.css">
-    <link type="favicon" rel="shortcut icon" href="favicon.ico" />
-    <script src='js/page/pagination.js'></script>
-    <link rel="stylesheet" href="js/page/page.css">
 
     <!-- 导航栏 -->
 </head>
@@ -50,7 +50,7 @@
                         评论
                         <a href="https://movie.douban.com/subject/26861685/">COIN</a>
 
-                        <span class="allstar50 main-title-rating" title="力荐"></span>
+                        <span class="allstar45 main-title-rating" title="力荐"></span>
                         <span property="v:rating" class="main-title-hide">5</span>
                         <span property="v:dtreviewed" content="2018-03-15" class="main-meta">2018-03-15 21:11:58</span>
                     </header>
@@ -201,6 +201,8 @@
 </div>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/layer/layer.js"></script>
+<script src='js/page/pagination.js'></script>
 <script src="js/common.js"></script>
 </body>
 <script>
@@ -217,5 +219,16 @@
     $("#paginator").on('click','.goNext, .goPre',function (e) {
         var pageNum = $("#paginator .active").text();
     })
+        $('#comments .report_comment').on('click',function (e) {
+            console.log($(e.currentTarget))
+            layer.open({
+                type: 1,
+                shade:0,
+                title: '选择举报原因',
+                skin: 'layui-layer-report', //加上边框
+                area: ['442px', '200px'], //宽高
+                content: $("#template-report-popup").html()
+            });
+        })S
 </script>
 </html>
