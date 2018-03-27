@@ -67,7 +67,7 @@ input,button{overflow: visible;vertical-align:middle;outline:none}
 body{line-height:1.6}
 h1,h2,h3,h4,h5,h6{font-size:100%}
 a,area{outline:none;blr:expression(this.onFocus=this.blur())}
-a{text-decoration:none;cursor: pointer}
+a{text-decoration:none;cursor: pointer;color: rgb(79, 163, 237);}
 a:hover{text-decoration:underline;outline:none}
 a.ie6:hover{zoom:1}
 a:focus{outline:none}
@@ -205,6 +205,52 @@ body{
 .loader1 div{
     background-color: #999;
 }
+
+/**评分显示*/
+.allstar50, .allstar45, .allstar40, .allstar35, .allstar30, .allstar25, .allstar20, .allstar15, .allstar10, .allstar05, .allstar00, .rating1-t, .rating15-t, .rating2-t, .rating25-t, .rating3-t, .rating35-t, .rating4-t, .rating45-t, .rating5-t, .rating-t, .starb ~ .stars5, .starb ~ .stars4, .starb ~ .stars3, .starb ~ .stars2, .starb ~ .stars1, .collectors .stars5, .collectors .stars4, .collectors .stars3, .collectors .stars2, .collectors .stars1 {
+    display: inline-block;
+    zoom: 1;
+    background: -webkit-image-set(url(../img/rating_s.png) 1x, url(../img/rating_s.png) 2x) no-repeat;
+    width: 55px;
+    height: 11px;
+    margin: 0 3px 0 0;
+    overflow: hidden;
+}
+.allstar50{background-position:0 0px}
+.allstar45{background-position:0 -11px}
+.allstar40{background-position:0 -22px}
+.allstar35{background-position:0 -33px}
+.allstar30{background-position:0 -44px}
+.allstar25{background-position:0 -55px}
+.allstar20{background-position:0 -66px}
+.allstar15{background-position:0 -77px}
+.allstar10{background-position:0 -88px}
+.allstar05{background-position:0 -99px}
+.allstar00{background-position:0 -110px}
+
+.bigstar45 {
+    background-position: 0 -15px;
+}
+.bigstar50, .bigstar45, .bigstar40, .bigstar35, .bigstar30, .bigstar25, .bigstar20, .bigstar15, .bigstar10, .bigstar05, .bigstar00 {
+    display: inline-block;
+    zoom: 1;
+    background: -webkit-image-set(url(../img/ic_rating_m@2x.png) 1x, url(../img/ic_rating_m@2x.png) 2x) no-repeat;
+    width: 75px;
+    height: 15px;
+    margin: 1px 0 0 0;
+    overflow: hidden;
+}
+.bigstar50{background-position:0 0px}
+.bigstar45{background-position:0 -15px}
+.bigstar40{background-position:0 -30px}
+.bigstar35{background-position:0 -45px}
+.bigstar30{background-position:0 -60px}
+.bigstar25{background-position:0 -75px}
+.bigstar20{background-position:0 -90px}
+.bigstar15{background-position:0 -105px}
+.bigstar10{background-position:0 -120px}
+.bigstar05{background-position:0 -135px}
+.bigstar00{background-position:0 -150px}
 /*
 .navbar .navbar-toggle {
     z-index: 2000;
