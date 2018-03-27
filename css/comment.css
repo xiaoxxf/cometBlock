@@ -232,15 +232,19 @@ a img {
     margin-right: 8px;
     border-radius: 5px;
 }
- .comment-container-wrap .report-comment .header, .review-comment-form .reply-comment {
+ .comment-container-wrap .report-comment .header{
     background-color: rgba(238,238,238,0.8);
-     border-radius: 10px;
+    border-radius: 10px;
 }
 .reply-comment {
     position: relative;
-    padding: 10px 4px;
     margin-bottom: 5px;
-    background-color: #e8eef2;
+    padding-left:73px ;
+}
+.review-comment-form .reply-comment .reply-comment-wrap{
+    background-color: rgba(238,238,238,0.8);
+    padding: 10px 4px;
+    border-radius: 10px;
 }
 .reply-comment .lnk-close {
     position: absolute;
