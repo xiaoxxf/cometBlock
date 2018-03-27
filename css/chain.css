@@ -94,22 +94,24 @@
 }
 
 .search-result{
-    display: inline-flex;
+  display: inline-flex;
 }
 
 .search-result .search-result-img{
-    width: 18%;
-    height: 190px;
+  width: 20%;
 }
 
 .search-result-img img{
-    width:100%;
-    height: 100%;
+  width:100%;
+  height: 100%;
 }
 
 .search-result .search-result-coin{
-    max-width: 50%;
-    margin-left: 15px;
+  max-width: 50%;
+  margin-left: 15px;
+  display:flex;
+  flex-direction: column;
+　 align-items:center;
 }
 
 .search-result-coin p{

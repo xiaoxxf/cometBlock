@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>彗星链库新建</title>
+		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/common.css">
+
+	<style>
+		.coin{
+			background-color: rgb(220,220,220);
+			height: 150px;
+			display: flex;
+			border-radius: 10px;
+			width: 81%;
+			margin-left: 110px;
+		}
+
+		.coin-image{
+			width: 100px;
+			height: 110px;
+		}
+
+		.coin-image img{
+			width: 100%;
+			height: 100%;
+			border-radius: 300px;
+			margin-top: 20px;
+		}
+
+		.input-head{
+			background-color: rgb(243,246,247);
+			border:0px;
+			height: 50px;
+		}
+
+		.edit-comment{
+
+		}
+
+	</style>
+	</head>
+	<body lang="zh-CN" class="reader-black-font">
+  <div class="comet-main" >
+  	<!-- 全局顶部导航栏 -->
+  	<div class="navbar-fixed-container" style="margin-bottom:100px">
+  			<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+  					<nav role="navigation">
+  							<div class="container collapsed">
+  									<div class="nav navbar-header">
+  											<button type="button" class="navbar-toggle" data-toggle="collapse"
+  															data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+  													<span class="icon-bar"></span>
+  													<span class="icon-bar"></span>
+  													<span class="icon-bar"></span>
+  											</button>
+  											<a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
+  									</div>
+  									<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+  											<ul class="nav navbar-nav navbar-left">
+  													<li><a id="nav-docs" href="index.html">播报</a></li>
+  													<li><a id="nav-updates" href="chain.html">链库</a></li>
+  											</ul>
+  											<ul class="nav navbar-nav navbar-right nav-index-img">
+  													<li>
+  															<a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+  																	<img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
+  																			 alt="Download VS Code">
+  															</a>
+  													</li>
+  											</ul>
+  											<ul class="nav navbar-nav navbar-right">
+  													<li>
+  															<div class="nav_search">
+  																	<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
+  																				 onkeyup="test()">
+  																	<a class="nav_search_icon">
+  																	</a>
+  															</div>
+  													</li>
+  											</ul>
+  									</div>
+  							</div>
+  					</nav>
+  			</div>
+  	</div>
+
+		<!-- 评测 -->
+		<div class="container">
+			<!-- 币种信息 -->
+			<div class="row">
+				<div class="coin col-md-10 col-md-offset-1">
+				 	<div class="coin-image">
+						<img src="img/coin_2.png" alt="">
+				 	</div>
+					<div class="coin-mess">
+						<p style="margin-left:100px">ETH</p>
+					</div>
+				</div>
+			</div>
+			<!-- 标题 -->
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<input type="text" name="head" value="" placeholder="请输入标题" class="input-head">
+				</div>
+			</div>
+
+			<!-- 正文 -->
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div id="editor" class="edit-comment">
+
+			    </div>
+					<a href="#" class="submit_comment">提交</a>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript" src="js/long-comment/wangEditor.min.js"></script>
+    <script type="text/javascript">
+      var E = window.wangEditor
+      var editor = new E('#editor')
+      // 或者 var editor = new E( document.getElementById('editor') )
+			editor.customConfig.menus = [
+				'bold',
+				'italic',
+				'head',
+				'emoticon',
+				'link',  // 插入链接
+				'image',  // 插入图片
+			]
+
+			editor.customConfig.uploadImgServer = 'http://10.0.0.168:8080/common/upload'
+			editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024 //图片大小为5M
+			editor.customConfig.uploadFileName = 'file'
+
+
+			editor.customConfig.uploadImgHooks = {
+			    before: function (xhr, editor, files) {
+
+			    },
+			    success: function (xhr, editor, result) {
+						console.log('ok')
+			    },
+			    fail: function (xhr, editor, result) {
+							alert('插入错误')
+			        // 图片上传并返回结果，但图片插入错误时触发
+			        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+			    },
+			    error: function (xhr, editor) {
+						alert('上传错误')
+			        // 图片上传出错时触发
+			        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+			    },
+			    timeout: function (xhr, editor) {
+			        // 图片上传超时时触发
+			        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+			    },
+
+					customInsert: function (insertImg, result, editor) {
+			        // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+			        // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+
+			        // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+			        var url = result.datas[0]
+			        insertImg(url)
+
+			        // result 必须是一个 JSON 格式字符串！！！否则报错
+			    }
+
+
+			}
+			editor.customConfig.debug = true
+      editor.create()
+
+
+    </script>
+
+		<script type="text/javascript">
+
+					$('.submit_comment').on('click',function(){
+						var data = {
+							textTitle: $('input[name="head"]')[0].value,
+							textContent: editor.txt.html(),
+							projectId: 1, //项目
+							score: 4, //评分
+							type: 2, //长文的type为2
+							creator: 1, //userId
+							password:	123
+						}
+
+						var uri = 'http://10.0.0.168:8080/blockchain/addReview'
+						$.ajax({
+							type: 'POST',
+							url: uri,
+							data: JSON.stringify(data),
+							dataType : 'json',
+							contentType: 'application/json; charset=UTF-8',
+							success: function (result) {
+							 if(result.code=="0"){
+								 	// TODO: 跳转回项目页
+									console.log('ok')
+								}
+								else{
+									alert("保存失败");
+								}
+							},
+							error: function (err) {
+									//$.dialog.tips("Request Error!");
+							}
+						});
+					})
+		</script>
+
+
+	</body>
+
+</html>
