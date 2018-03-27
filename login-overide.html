@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>彗星链库新建</title>
+		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" href="css/loading.css">
+		
+	</head>
+
+	<body lang="zh-CN" class="reader-black-font">
+
+		<div class="container">
+			<header class="header_title">
+				彗星
+			</header>
+
+			<form class="form-login" role="form" id="formLogin">
+				<div class="main">
+
+					<h4 class="title">
+								  <div class="normal-title">
+								    <a class="active" href="">登录</a>
+								    <b>·</b>
+								    <a id="js-sign-up-btn" class="" href="register-override.html">注册</a>
+								  </div>
+							</h4>
+					<div class="js-sign-in-container">
+						<form id="new_session" action=" " accept-charset="UTF-8" method="post">
+							<!--<input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="WCspL+DIHlYijhSuCxokgZBT6ifXJhKahdalsBe7dwy4sRLxLBM/JQWhBsc9O26TBgUySRLrusIrH8zysTQ7Mw==">-->
+
+							<div class="input-prepend  restyle ">
+								<input placeholder="手机号" type="text" class="border_radT" name='tel' id="session_phone">
+
+								<i class="fa fa-user"></i>
+							</div>
+							<div class="input-prepend border_radiusB">
+								<input placeholder="密码" type="password" class="border_radB" name='pwd' id="session_password">
+								<i class="fa fa-unlock-alt"></i>
+
+							</div>
+							<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+							<div class="remember-btn">
+								<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+							</div>
+							<div class="forget-btn">
+								<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+								<ul class="dropdown-menu">
+									<li>
+										<a href="">用手机号重置密码</a>
+									</li>
+									<li>
+										<a href="">用邮箱重置密码</a>
+									</li>
+									<li>
+										<a target="_blank" href="">无法用海外手机号登录</a>
+									</li>
+									<li>
+										<a target="_blank" href="">无法用 Google 帐号登录</a>
+									</li>
+								</ul>
+							</div>
+							<!--<button class="sign-in-button" id="sign_submit" type="submit">     									
+      										登录
+    						</button>-->
+							<!--<a class="sign-in-button" id="sign_submit" type="submit">
+								登录
+							</a>-->
+							<input class="sign-in-button" id="sign-in-form-submit-btn" type="submit">     									
+      							<span class="loader2 loader"id="load">
+										<div></div>
+									</span>				
+    						</input>
+						</form>
+						<!-- 更多登录方式 -->
+						<div class="more-sign">
+							<h6>社交帐号登录</h6>
+							<ul>
+								<li>
+									<img src="img/wechat.png" width="40px" />
+								</li>
+								<li>
+									<a href="">其它</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<!--<script src="js/new-chain/nice-validator/jquery.validator.js?local=zh-CN"></script>-->
+		<script src="js/common.js"></script>
+		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+		<!--<script src="js/new-chain/login.js"></script>-->
+		<script src="js/plugins/layer/layer.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script>
+			
+			$(function() {
+
+				//验证手机号码输入格式
+				jQuery.validator.addMethod("isMobile", function(value, element) {
+					var length = value.length;
+					var regPhone = /^1([3578]\d|4[57])\d{8}$/;
+					return this.optional(element) || (length == 11 && regPhone.test(value));
+				}, "请正确填写您的手机号码");
+
+				$('#formLogin').validate({
+					rules: {
+						
+						//   电话
+						tel: {
+							required: true,
+							minlength: 11,
+							isMobile: true
+
+						},
+						//   密码
+						pwd: {
+							required: true,
+							minlength: 6
+						},
+					},
+					messages: {
+						
+						//   电话
+						tel: {
+							required: '请输入手机号',
+							minlength: "手机长度为11位",
+							//                       isMobile:"请填写11位的手机号码!"
+						},
+						//   密码
+						pwd: {
+							required: '请输入密码',
+							minlength: "密码长度不能小于 6 个字符"
+						},
+					},
+					// 校验全部通过
+					submitHandler: function() {
+//						$("#load").attr({style:"-webkit-animation:loader2 1s 0.23s linear infinite"});
+//           			$("#load div").attr({style:"display:block"});
+//						setTimeout(function() { //两秒后跳转                                   
+//							location.href = "index.html";
+//						}, 1500);
+					},
+
+				})
+			})
+
+			$("#sign-in-form-submit-btn").click(function() {
+
+				var param = {
+					userName: $("#session_phone").val(),					
+					userPwd: $("#session_password").val(),
+					tel: $("#session_phone").val(),
+					userType: 2,
+				}
+
+				
+				var uri = 'news/login?userName=' + param.userName  + '&userPwd=' +hex_md5(param.userName+param.userPwd) ;					
+				param = JSON.stringify(param)
+
+				
+				doJavaGet(uri, function(res) {
+					
+                    if(res != null && res.code == 0) {
+                    	
+						$("#load").attr({
+							style: "-webkit-animation:loader2 1s 0.23s linear infinite"
+						});
+						$("#load div").attr({
+							style: "display:block"
+						});
+						
+						
+						
+                                
+						setTimeout(function() { //两秒后跳转    
+							
+								localStorage.setItem('userinfo', res.datas);//存储
+                                localStorage.setItem('userid', res.datas.id);      
+                                
+                                localStorage.setItem('userinfo', JSON.stringify(res.datas));
+                                $.cookie('token', res.datas.id);
+                                $.cookie('userid', res.datas.id);
+                                
+                                window.location.href="index.html";
+							
+						}, 1500);
+						
+
+					} else {
+						
+						layer.msg(res.msg);
+						
+					}
+                }, "json");
+
+			});
+		</script>
+
+	</body>
+
+</html>

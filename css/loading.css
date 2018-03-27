@@ -27,13 +27,17 @@ html, body {
 	height: 100%;
 }
 .loader {
-	width: 200px;
-	height: 200px;
-	float: left;
+	/*width: 200px;
+	height: 200px;*/
+	width: 50px;
+	height: 50px;
+	/*float: left;*/
 	display: -webkit-flex;/*safari弹性布局*/
 	justify-content: center;
 	display: flex;
 	align-items: center;
+    margin-top: -45px;
+    margin-left: 120px;  
 }
 @-webkit-keyframes loader1 {
 	0% {
@@ -94,7 +98,8 @@ html, body {
 	border: 2px #fff solid;
 	border-bottom-color: transparent;
 	background: transparent;
-	-webkit-animation: loader2 1s 0.23s linear infinite;
+	display: none;
+	/*-webkit-animation: loader2 1s 0.23s linear infinite;*/
 }
 @-webkit-keyframes loader3 {
 	0% {

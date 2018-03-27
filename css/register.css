@@ -20,7 +20,7 @@
 				padding: 50px 50px 30px;
 				background-color: #fff;
 				border-radius: 4px;
-				/*box-shadow: 0 0 8px rgba(0, 0, 0, .1);*/
+				box-shadow: 0 0 15px rgba(0, 0, 0, .1);
 				vertical-align: middle;
 				display: inline-block;
 			}
@@ -83,6 +83,10 @@
 			    border: 1px solid #c8c8c8;			   
 			    background-color: hsla(0,0%,71%,.1);
 			    vertical-align: middle;
+			    /*border-radius: 5px;*/
+			}
+			label{
+				color: #a94442;;
 			}
 			.input-prepend {
 			    position: relative;
@@ -108,14 +112,31 @@
 			
 			.border_radT{
 				border-radius: 5px 5px 0 0;
+				border-bottom: none !important;
 			}
 			.border_radB{
 				border-radius: 0 0 5px 5px;
+				border-top: none !important;
 			}
 			 .remember-btn {
 			    float: left;
 			    margin: 15px 0;
 			}
+			#realName-error,#session_phone-error,#session_password-error{
+				float: right;
+			    position: absolute;
+			    display: inline-table;
+			    margin-left: 10px;
+			    bottom: 4px;
+			    border: 1px solid #3194d0;
+			    padding: 6px 15px;
+			    /* display: block; */
+			    border-radius: 4px;
+			    font-size: 12px;
+			    color: #333333ad;
+			    box-shadow: 0 0 15px #0088cc61;
+			}
+			    
 			 .forget-btn {
 			    float: right;
 			    position: relative;
@@ -229,4 +250,12 @@
 			    vertical-align: top;
 			    outline: 0;
 			}		
-		
+			 #sign-in-loading {
+			    position: relative;
+			    width: 20px;
+			    height: 20px;
+			    vertical-align: middle;
+			    margin-top: -4px;
+			    margin-right: 2px;
+			    /*display: none;*/
+			}
