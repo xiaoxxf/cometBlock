@@ -240,6 +240,7 @@ a img {
     position: relative;
     margin-bottom: 5px;
     padding-left:73px ;
+    display: none;
 }
 .review-comment-form .reply-comment .reply-comment-wrap{
     background-color: rgba(238,238,238,0.8);
