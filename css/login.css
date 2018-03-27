@@ -20,7 +20,7 @@
 				padding: 50px 50px 30px;
 				background-color: #fff;
 				border-radius: 4px;
-				/*box-shadow: 0 0 8px rgba(0, 0, 0, .1);*/
+				box-shadow: 0 0 15px rgba(0, 0, 0, .1);
 				vertical-align: middle;
 				display: inline-block;
 			}
@@ -79,11 +79,12 @@
 			.input-prepend input {
 			    width: 100%;
 			    height: 50px;
-			    margin-bottom: 0;
+			    margin-bottom:0;
 			    padding: 4px 12px 4px 35px;
 			    border: 1px solid #c8c8c8;			    
 			    background-color: hsla(0,0%,71%,.1);
 			    vertical-align: middle;
+			   /* border-radius:  5px;*/
 			}
 			
 			.input-prepend i {
@@ -106,6 +107,7 @@
 			}
 			.border_radT{
 				border-radius: 5px 5px 0 0;
+				/*border-bottom: none !important;*/
 			}
 			.border_radB{
 				border-radius: 0 0 5px 5px;
@@ -113,6 +115,27 @@
 			 .remember-btn {
 			    float: left;
 			    margin: 15px 0;
+			}
+			.loader {
+			    width: 50px;
+			    height: 50px;
+			    /* float: left; */
+			    display: -webkit-flex;
+			    justify-content: center;
+			    display: flex;
+			    align-items: center;
+			    margin-top: -45px;
+			    margin-left: 120px;
+			}
+			.loader2 div {
+			    width: 25px;
+			    height: 25px;
+			    border-radius: 50%;
+			    border: 2px #fff solid;
+			    border-bottom-color: transparent;
+			    background: transparent;
+			    display: none;
+			    /* -webkit-animation: loader2 1s 0.23s linear infinite; */
 			}
 			 .forget-btn {
 			    float: right;
@@ -126,7 +149,20 @@
 				color: #969696;
 				 vertical-align: middle;
 		 	}
-			
+			#realName-error,#session_phone-error,#session_password-error{
+				float: right;
+			    position: absolute;
+			    display: inline-table;
+			    margin-left: 10px;
+			    bottom: 4px;
+			    border: 1px solid #3194d0;
+			    padding: 6px 15px;
+			    /* display: block; */
+			    border-radius: 4px;
+			    font-size: 12px;
+			    color: #333333ad;
+			    box-shadow: 0 0 15px #0088cc61;
+			}
 			.sign-in-button {
 			    background: #3194d0;
 			}
