@@ -226,11 +226,13 @@ a img {
     color: #666666;
 }
 .comment-item .op-lnks .reply_comment{
-    color:#fff !important;
-    background-color: #bfbfbf;
     padding: 1px 3px;
     margin-right: 8px;
     border-radius: 5px;
+}
+.comment-item .op-lnks .reply_comment.reply-comment-click{
+    color:#fff !important;
+    background-color: #bfbfbf;
 }
  .comment-container-wrap .report-comment .header{
     background-color: rgba(238,238,238,0.8);
