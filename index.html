@@ -237,10 +237,12 @@
                     var uri = 'news/search?currentPage=' + num  + '&pageSize=' + 20;
                 }
                 doJavaGet(uri, function(res) {
-                    console.log(res.datas)
+                	
+//                  console.log(res.datas)
                     if(res != null && res.code == 0) {
-
+						
                         searchDataShowAppend(res.datas)
+                       
                     }
                 }, "json");
             }
@@ -275,8 +277,10 @@
                     console.log(keywords)
                     var uri = 'news/search?currentPage=' + num + '&pageSize=' + 8 + '&keywords=' + keywords;
                     doJavaGet(uri, function(res) {
-                        console.log(res.datas)
+                    	debugger
+//                      console.log(res.datas)                       
                         if(res != null && res.code == 0) {
+                        	debugger
                             searchDataShow(res.datas)
                         }
                     }, "json");

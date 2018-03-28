@@ -15,7 +15,9 @@ body {
 	margin-top: 10px;
 }
 .meta {
-	margin-top: 40px !important;
+	/*margin-top: 40px !important;*/
+	position: absolute;
+    bottom: 20px;
 }
 n span {
 	font-size: 20px;
@@ -508,4 +510,8 @@ nav{
 }
 .hot_news-wrap{
 	padding-left: 35px;
+}
+/*列表标题*/
+.content .title{
+	color: #333;
 }
