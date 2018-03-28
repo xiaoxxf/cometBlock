@@ -178,8 +178,8 @@
 <script id="tpl" type="text/html">
     <%for(var i = 0; i < list.length; i++) {%>
 			<li>
-				<a href="chain-detail.html" + "?project_id=" + list[i].projectId><img src='https://ws4.sinaimg.cn/large/006tKfTcgy1fng4qrdybrj31kw0xitjp.jpg'  alt="">
-					<p class="name">' + list[i].projectBigName + '</p>
+				<a href="chain-detail.html" + "?project_id=" + <%=list[i].projectId %> ><img src='https://ws4.sinaimg.cn/large/006tKfTcgy1fng4qrdybrj31kw0xitjp.jpg'  alt="">
+					<p class="name"><%=list[i].projectName%></p>
 				</a>
 			</li>
     <%}%>
@@ -192,7 +192,7 @@
 
 	// 首页列表
 	$(function(){
-		var uri = 'blockchain/quaryProjetList?currentPage=' + page + '&pageSize=50'
+		var uri = 'blockchain/quaryProjetList?currentPage=' + page + '&pageSize=25'
 		doJavaGet(uri,function(result){
 			var tpl = document.getElementById('tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});

@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>彗星链库新建</title>
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
+
 		<link rel="stylesheet" href="css/common.css">
 
 	<style>
@@ -18,19 +20,19 @@
 			display: flex;
 			border-radius: 10px;
 			width: 81%;
-			margin-left: 110px;
 		}
 
 		.coin-image{
-			width: 100px;
-			height: 110px;
+			width: 90px;
+			height: 60%;
+			margin-top: 30px;
 		}
 
 		.coin-image img{
 			width: 100%;
 			height: 100%;
 			border-radius: 300px;
-			margin-top: 20px;
+
 		}
 
 		.input-head{
@@ -41,6 +43,28 @@
 
 		.edit-comment{
 
+		}
+
+		.coin-message{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+
+			margin-left: 5%;
+		}
+
+		.coin-name{
+			margin-bottom: 20%;
+			margin-left: 5px;
+			font-family: inherit;
+			font-size: 20px;
+		}
+
+		.coin-score{
+			/* margin-left: 30%; */
+		}
+		.submit_comment{
+			width: 100px;
 		}
 
 	</style>
@@ -94,30 +118,43 @@
 		<div class="container">
 			<!-- 币种信息 -->
 			<div class="row">
-				<div class="coin col-md-10 col-md-offset-1">
+				<div class="coin col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
+
 				 	<div class="coin-image">
 						<img src="img/coin_2.png" alt="">
 				 	</div>
-					<div class="coin-mess">
-						<p style="margin-left:100px">ETH</p>
+					<div class="coin-message">
+						<div class="coin-name">
+							<p >ETH</p>
+						</div>
+
+						<div class="coin-score">
+							<span class="my-rating" style="font-size:10px"></span>
+							<span class="live-rating" style="display:none"></span>
+						</div>
 					</div>
+
 				</div>
 			</div>
 			<!-- 标题 -->
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<input type="text" name="head" value="" placeholder="请输入标题" class="input-head">
+			<div class="row" >
+				<div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
+					<input type="text" name="head" value="" placeholder="请输入标题" class="input-head" style="margin-left:-10px">
 				</div>
 			</div>
 
 			<!-- 正文 -->
 			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div id="editor" class="edit-comment">
+				<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+					<div id="editor" class="edit-comment" style="margin-left:-10px">
 
 			    </div>
-					<a href="#" class="submit_comment">提交</a>
-
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-6 col-md-offset-5 col-xs-5 col-xs-offset-4">
+					<a href="#" class="btn btn-primary submit_comment">提交</a>
 				</div>
 			</div>
 
@@ -130,7 +167,25 @@
 
 
     <script type="text/javascript" src="js/long-comment/wangEditor.min.js"></script>
+		<script src="js/jquery.star-rating-svg.js"></script>
+
     <script type="text/javascript">
+
+		$(".my-rating").starRating({
+
+			strokeColor: '#894A00',
+			strokeWidth: 10,
+			starSize: 25,
+	    initialRating: 0,
+	    disableAfterRate: false,
+	    onHover: function(currentIndex, currentRating, $el){
+	      $('.live-rating').text(currentIndex);
+	    },
+	    onLeave: function(currentIndex, currentRating, $el){
+	      $('.live-rating').text(currentRating);
+	    }
+	  });
+
       var E = window.wangEditor
       var editor = new E('#editor')
       // 或者 var editor = new E( document.getElementById('editor') )
@@ -157,17 +212,12 @@
 			    },
 			    fail: function (xhr, editor, result) {
 							alert('插入错误')
-			        // 图片上传并返回结果，但图片插入错误时触发
-			        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
 			    },
 			    error: function (xhr, editor) {
 						alert('上传错误')
-			        // 图片上传出错时触发
-			        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
 			    },
 			    timeout: function (xhr, editor) {
-			        // 图片上传超时时触发
-			        // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+
 			    },
 
 					customInsert: function (insertImg, result, editor) {
@@ -177,13 +227,10 @@
 			        // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
 			        var url = result.datas[0]
 			        insertImg(url)
-
-			        // result 必须是一个 JSON 格式字符串！！！否则报错
 			    }
 
-
 			}
-			editor.customConfig.debug = true
+			// editor.customConfig.debug = true
       editor.create()
 
 
@@ -196,7 +243,7 @@
 							textTitle: $('input[name="head"]')[0].value,
 							textContent: editor.txt.html(),
 							projectId: 1, //项目
-							score: 4, //评分
+							score: $(".live-rating")[0].innerHTML, //评分
 							type: 2, //长文的type为2
 							creator: 1, //userId
 							password:	123
