@@ -110,32 +110,10 @@
 			</div>
 
 			<!-- 搜索结果 -->
-			<div class="row search-result" style="display:none">
-				<div class="search-result-img" >
-					<img src="img/coin_4.png">
-				</div>
-				<div class="search-result-coin">
-					<a href="#" class="title">BTC 比特币 2018</a>
-					<p class="coin-description">比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
-					</p>
-				</div>
+			<div class="search-result-box">
+
 			</div>
 
-			<div class="row search-result" style="display:none">
-				<div class="search-result-img">
-					<img src="img/coin_2.png" >
-				</div>
-				<div class="search-result-coin">
-					<div class="">
-						<a href="#" class="title">BTC 比特币 2018</a>
-					</div>
-					<div class="">
-						<p class="coin-description">比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。 任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。比特币（英语：Bitcoin，缩写：BTC）是一種去中心化，非普遍全球可支付的电子加密貨幣。比特币由中本聪（又譯中本哲史）（化名）於2009年1月3日，基于无国界的对等网络，用共识主动性开源软件发明创立。截至2018年1月14日，比特币是目前市場總值最高的加密貨幣。任何人皆可參與比特币活动，可以通過稱為挖礦的電腦運算來發行。
-						</p>
-					</div>
-
-				</div>
-			</div>
 
 			<!-- 没有搜索结果 -->
 			<div class="no-result" style="display:none">
@@ -187,23 +165,28 @@
   <%}%>
 </script>
 
+<script id="search" type="text/html">
+	<%for(var i = 0; i < searchList.length; i++) {%>
+		<div class="row search-result" style="display:none">
+			<div class="search-result-img">
+				<img src="img/coin_2.png" >
+			</div>
+			<div class="search-result-coin">
+				<div class="">
+					<a href="#" class="title"><%= searchList[i].projectName %></a>
+				</div>
+				<div class="">
+					<p class="coin-description">
+						<%= searchList[i].projectContent %>
+					</p>
+				</div>
+
+			</div>
+		</div>
+	<%}%>
+</script>
 
 <script>
-
-	$(window).scroll(function(){
-			var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
-
-			// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
-			//console.log("页面的文档高度 ："+$(document).height());
-			//console.log('浏览器的高度：'+$(window).height());
-			totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
-			if(($(document).height()-range) <= totalheight  && num != maxnum && isLoaded) {
-
-					isLoaded = false
-					num = num + 1;
-					alert('ok')
-			}
-	});
 
 	// 首页列表
 	$(function(){
@@ -224,11 +207,11 @@
 			var uri = 'blockchain/quaryProjetList?currentPage=' + page + '&pageSize=8' + '&projectName=' + key_word
 
 			doJavaGet(uri,function(result){
-				var tpl = document.getElementById('tpl').innerHTML;
-				var content = template(tpl, {list: result.datas});
-				$('.coin-list-wrap').html("");
-				$('.coin-list-wrap').append(content)
-			}, "json")
+				var search = document.getElementById('search').innerHTML;
+				var content = template(search, {searchList: result.datas});
+				// $('.search-result-box').html("");
+				$('.search-result-box').append(content);
+			}, "json");
 
 			// 限制搜索结果描述的长度
 			var descriptions = document.getElementsByClassName('coin-description');
@@ -239,7 +222,7 @@
 			}
 			// 点击搜索后隐藏分类和币种内容
 			$('.coin-item').css('display','none')
-			// $('.coin-content').css('display','none')
+			$('.coin-content').css('display','none')
 
 			// TODO: 判断有结果时显示搜索结果
 
