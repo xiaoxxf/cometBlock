@@ -178,7 +178,9 @@
 <script id="tpl" type="text/html">
   <%for(var i = 0; i < list.length; i++) {%>
 		<li>
-			<a href="chain-detail.htm?project_id=<%=list[i].projectId %>"  ><img src='https://ws4.sinaimg.cn/large/006tKfTcgy1fng4qrdybrj31kw0xitjp.jpg'  alt="">
+			<a href="chain-detail.htm?project_id=<%=list[i].projectId %>"  >
+				<!-- 替换成 <%=list[i].projectLogo %>-->
+				<img src='https://ws4.sinaimg.cn/large/006tKfTcgy1fng4qrdybrj31kw0xitjp.jpg'  alt="">
 				<p class="name"><%=list[i].projectName%></p>
 			</a>
 		</li>
@@ -188,28 +190,45 @@
 
 <script>
 
-	var page = 1;
+	$(window).scroll(function(){
+			var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+
+			// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+			//console.log("页面的文档高度 ："+$(document).height());
+			//console.log('浏览器的高度：'+$(window).height());
+			totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+			if(($(document).height()-range) <= totalheight  && num != maxnum && isLoaded) {
+
+					isLoaded = false
+					num = num + 1;
+					alert('ok')
+			}
+	});
+
 	// 首页列表
 	$(function(){
+		var page = 1;
 		var uri = 'blockchain/quaryProjetList?currentPage=' + page + '&pageSize=8'
 		doJavaGet(uri,function(result){
 			var tpl = document.getElementById('tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});
 			$('.coin-list-wrap').append(content)
-		})
+		}, "json")
 	})
 
 	// search
 	$(function () {
+		var page = 1;
 		$(".search-click-hook").on('click',function () {
-			var key_word = $('.search_bar').value
-			var uri = 'blockchain/quaryProjetList？currentPage=1&pageSize=10&projectName=' + key_word + ' '
+			var key_word = $('.search_bar')[0].value
+			var uri = 'blockchain/quaryProjetList?currentPage=' + page + '&pageSize=8' + '&projectName=' + key_word
 
 			doJavaGet(uri,function(result){
 				var tpl = document.getElementById('tpl').innerHTML;
 				var content = template(tpl, {list: result.datas});
+				$('.coin-list-wrap').html("");
 				$('.coin-list-wrap').append(content)
-			})
+			}, "json")
 
 			// 限制搜索结果描述的长度
 			var descriptions = document.getElementsByClassName('coin-description');
@@ -220,7 +239,7 @@
 			}
 			// 点击搜索后隐藏分类和币种内容
 			$('.coin-item').css('display','none')
-			$('.coin-content').css('display','none')
+			// $('.coin-content').css('display','none')
 
 			// TODO: 判断有结果时显示搜索结果
 
@@ -240,17 +259,15 @@
 	        $(".loader1").css('display','none');
 	      },2000)
   	})
+
   })
 
-	// 展示数据
-	function showProjectData(data){
-		var html= ''
-		for(var i = 0; i< data.length ; i++ ){
-				html = html + '	<li><a href="chain-detail.html"><img src=' + 'https://ws4.sinaimg.cn/large/006tKfTcgy1fng4qrdybrj31kw0xitjp.jpg' + ' alt=""><p class="name">' + data[i].projectBigName + '</p></a></li>'
-		}
-		$('.coin-list-wrap').append(html);
-	}
+	//分类查询
+	$(function(){
 
+
+
+	})
 
 
 </script>

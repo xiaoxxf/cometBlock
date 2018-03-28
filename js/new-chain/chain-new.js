@@ -190,11 +190,8 @@ var allFile = {
 
 var t = ''
 function doUpload(e){
-  if (ui.fileUpLoading) {
-    return false
-  }
 
-  if (e.files.length == 0) {
+  if (ui.fileUpLoading || e.files.length == 0) {
     return false
   }
 
@@ -207,6 +204,7 @@ function doUpload(e){
       if (file.type != "application/pdf") {
         return false
       }
+      break;
     default:
       if (file.type != "image/png") {
         return false
@@ -227,22 +225,12 @@ function doUpload(e){
   formData.append(userId, userId);
 
   $.ajax({
-    url : 'http://10.0.0.168:8080/common/upload',
+    url : WebApiHostJavaApi + 'common/upload',
     type: "post",
     data: formData,
     datType: "json",
     processData: false,  // 不处理数据
     contentType: false,   // 不设置内容类型
-
-    xhr: function(){ //获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数
-
-          myXhr = $.ajaxSettings.xhr();
-          if(myXhr.upload){ //检查upload属性是否存在
-              //绑定progress事件的回调函数
-              myXhr.upload.addEventListener('progress',progressHandlingFunction, false);
-          }
-          return myXhr; //xhr对象返回给jQuery使用
-    },
 
     beforeSend: function(){
       ui.fileUpLoading = true
@@ -269,16 +257,11 @@ function doUpload(e){
 
 }
 
-function progressHandlingFunction(e) {
-    if (e.lengthComputable) {
-        $('progress').attr({value : e.loaded, max : e.total}); //更新数据到进度条
-        var percent = e.loaded/e.total*100;
-        $('#progress').html(e.loaded + "/" + e.total+" bytes. " + percent.toFixed(2) + "%");
-    }
-}
-
 $('.submit_control').on('click', function(){
 
+  if (ui.submiting) {
+    return false
+  }
   var team = [];
   teamLength = allFile.memberPic.length; // 根据图片数判断team的长度
   memberName = $(" input[name='member_name']");
@@ -295,7 +278,7 @@ $('.submit_control').on('click', function(){
   //判断team的图片、名字、position都必须存在
   temp_length = team.length
   for (var i = 0; i < temp_length; i++) {
-    if (team[i].position || team[i].position || team[i].position) {
+    if (!team[i].picHref || !team[i].name || !team[i].position) {
       team.splice(i,1)
     }
   }
@@ -316,11 +299,9 @@ $('.submit_control').on('click', function(){
     "chainTeamList":        team
   };
 
-  //var param
-  var uri = 'http://10.0.0.168:8080/blockchain/addLibrary'
   $.ajax({
       type: 'POST',
-      url: uri,
+      url : 'http://10.0.0.169:8080/blockchain/addLibrary',
       data: JSON.stringify(data),
       dataType : 'json',
       contentType: 'application/json; charset=UTF-8',

@@ -2,8 +2,7 @@ var ui = {
   'submiting': false
 }
 $(function(){
-
-
+  // 星星评分
   $(".my-rating").starRating({
 
     strokeColor: '#894A00',
@@ -19,9 +18,9 @@ $(function(){
     }
   });
 
+  // 编辑器
   var E = window.wangEditor
   var editor = new E('#editor')
-  // 或者 var editor = new E( document.getElementById('editor') )
   editor.customConfig.menus = [
     'bold',
     'italic',
@@ -56,12 +55,8 @@ $(function(){
       },
 
       customInsert: function (insertImg, result, editor) {
-          // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
-          // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
-
-          // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
-          var url = result.datas[0]
-          insertImg(url)
+        var url = result.datas[0]
+        insertImg(url)
       }
 
   }
@@ -69,7 +64,7 @@ $(function(){
   editor.create()
 
 
-
+  // 提交
   $('.submit_comment').on('click',function(){
 
     if (ui.submiting) {
@@ -93,6 +88,7 @@ $(function(){
     function callback(result){
       if(result.code=="0"){
         ui.submiting = false
+        // TODO: 跳转回详情页
         console.log('ok')
        }
     }
