@@ -28,7 +28,7 @@ function doRequest(apiHost, method, data, callback, contentType, showtips) {
     }
     var requestType = 'application/x-www-form-urlencoded';
     if (contentType && contentType === 'json') {
-        requestType = 'application/json';
+        requestType = 'application/json;charset=UTF-8';
     }
 
     $.ajax({

@@ -12,12 +12,21 @@ $('#comments .report_comment').on('click',function (e) {
 });
 //点击引用
 $('#comments .reply_comment').on('click',function (e) {
+    var self =$(e.currentTarget);
+        self.addClass('reply-comment-click');
     $(".reply-comment").fadeIn()
-    console.log($(e.currentTarget))
+    layer.open({
+        type: 1,
+        shade:0,
+        title: '引用',
+        skin: 'layui-layer-report', //加上边框
+        area: ['550px', '680px'], //宽高
+        content: $("#template-reply").html()
+    });
 });
 //点击关闭
 $(".review-comment-form .lnk-close").on('click',function (e) {
-    $(".reply-comment").fadeOut()
+    $(".reply-comment").fadeOut();
+    $('#comments .reply_comment').removeClass('reply-comment-click')
     console.log($(e.currentTarget))
 });
-
