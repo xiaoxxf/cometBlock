@@ -15,12 +15,9 @@
 		<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 		<link rel="stylesheet" href="css/loading.css">
 		
-		<style type="text/css">
-	       
-    
+		<style type="text/css">   
 		</style>
 	</head>
-
 	<body lang="zh-CN" class="reader-black-font">
 		<div class="container">
 			<header class="header_title">
@@ -28,44 +25,33 @@
 			</header>
 			<form role="form" class="form-register" id="form-register1" action="">
 				<div class="main">
-
 					<h4 class="title">
-								  <div class="normal-title">
-								    <a class="active" href="login.html">登录</a>
-								    <b>·</b>
-								    <a id="js-sign-up-btn" class="" href="">注册</a>
-								  </div>
+						<div class="normal-title">
+					    <a class="active" href="login.html">登录</a>
+						<b>·</b>
+					    <a id="js-sign-up-btn" class="" href="">注册</a>
+						</div>
 					</h4>
 					<div class="js-sign-in-container">
 						<form id="new_session" action="/sessions" accept-charset="UTF-8" method="post">
-
 							<div class="input-prepend restyle ">
 								<input placeholder="你的昵称" type="text" class="border_radT" name="userName" id="realName">
 								<i class="fa fa-user"></i>
-
 							</div>
 							<div class="input-prepend">
 								<input placeholder="手机号" type="text" name="tel" id="session_phone">
 								<i class="fa fa-mobile"></i>
 							</div>
-							<!--<div class="input-prepend">
-										<input placeholder="手机验证码" type="text"  name="tel" id="session_confirmPhone">
-										<i class="fa fa-mobile" ></i>
-										<a href=""></a>	
-							</div>-->
 							<div class="input-prepend">
 								<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
 								<i class="fa fa-unlock-alt"></i>
 							</div>
 
-							<input class="sign-in-button" id="sign-in-form-submit-btn" type="submit">
+							<input class="sign-in-button" id="sign-in-form-submit-btn" type="submit" data-disable-with="注册">
 							<span class="loader2 loader loaderadd" id="load">
 										<div></div>
 									</span>
 							</input>
-							<!--<a class="sign-in-button" id="sign-in-form-submit-btn" type="submit">
-								注册
-							</a>-->
 							<div class="register-anouceed">
 								<p>点击"注册"即表示您同意并遵守彗星</p>
 								<p>
@@ -90,23 +76,13 @@
 					</div>
 					
 				</div>
-				
-			
-			
 			</form>
-			
 		</div>
-		
-		
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<!--<script src="js/new-chain/nice-validator/jquery.validator.js?local=zh-CN"></script>-->
 		<script src="js/common.js"></script>
 		<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
-		<!--<script src="js/jquery-validate/jquery-validate.min.js"></script>-->
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src="js/register.js"></script>
-
 	</body>
-
 </html>
