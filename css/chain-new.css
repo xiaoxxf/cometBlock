@@ -111,5 +111,6 @@ label{
   margin-top: 5px;
 }
 
-#parent{width:550px; height:10px; border:2px solid #09F;}
-#son {width:0; height:100%; background-color:#09F; text-align:center; line-height:10px; font-size:20px; font-weight:bold;}  
+.submit_control{
+  width: 130px;
+}
