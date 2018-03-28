@@ -71,7 +71,13 @@ function  ajaxGetChainDetail() {
     var uri = 'blockchain/detail?projectId='+projectId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
-            console.log(res)
+            var chainInfoData = res.datas;
+            $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectBigName);
+            $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
+            //coin-img
+            var chainTpl = $("#chain-info-temp").html();
+            var content = template(chainTpl, {list: chainInfoData});
+            $(".chain-info-hook").append(content);
         } else {
             layer.msg(res.msg);
         }

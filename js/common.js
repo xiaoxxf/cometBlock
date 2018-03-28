@@ -14,7 +14,7 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-var WebApiHostJavaApi = "http://10.0.0.168:8080/";
+var WebApiHostJavaApi = "http://10.0.0.169:8080/";
 var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
     //GetCookie
