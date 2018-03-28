@@ -286,6 +286,7 @@ a img {
 .comment-item .op-lnks a:link {
 	color: #666666;
 }
+<<<<<<< HEAD
 
 .comment-item .op-lnks .reply_comment {
 	color: #fff !important;
@@ -298,6 +299,20 @@ a img {
 .comment-container-wrap .report-comment .header {
 	background-color: rgba(238, 238, 238, 0.8);
 	border-radius: 10px;
+=======
+.comment-item .op-lnks .reply_comment{
+    padding: 1px 3px;
+    margin-right: 8px;
+    border-radius: 5px;
+}
+.comment-item .op-lnks .reply_comment.reply-comment-click{
+    color:#fff !important;
+    background-color: #bfbfbf;
+}
+ .comment-container-wrap .report-comment .header{
+    background-color: rgba(238,238,238,0.8);
+    border-radius: 10px;
+>>>>>>> 1b98315c4edd150076fef578dad814582b9f9c44
 }
 
 .reply-comment {

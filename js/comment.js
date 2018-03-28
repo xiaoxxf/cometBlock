@@ -12,7 +12,10 @@ $('#comments .report_comment').on('click',function (e) {
 });
 //点击引用
 $('#comments .reply_comment').on('click',function (e) {
+    var self =$(e.currentTarget);
+        self.addClass('reply-comment-click');
     $(".reply-comment").fadeIn()
+<<<<<<< HEAD
     console.log($(e.currentTarget))
     layer.open({
         type: 1,
@@ -22,9 +25,13 @@ $('#comments .reply_comment').on('click',function (e) {
         area: ['550px', '680px'], //宽高
         content: $("#template-reply").html()
     });
+=======
+    console.log()
+>>>>>>> 1b98315c4edd150076fef578dad814582b9f9c44
 });
 //点击关闭
 $(".review-comment-form .lnk-close").on('click',function (e) {
-    $(".reply-comment").fadeOut()
+    $(".reply-comment").fadeOut();
+    $('#comments .reply_comment').removeClass('reply-comment-click')
     console.log($(e.currentTarget))
 });

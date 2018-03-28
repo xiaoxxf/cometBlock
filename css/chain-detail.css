@@ -88,6 +88,36 @@
     border-radius: 10px;
     padding: 5px 40px 5px 20px;
 }
+.team-intro-wrap{
+    margin: 15px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 5px 40px 5px 20px;
+}
+.team-intro-wrap .team-intro-title{
+    font-size: 18px;
+    padding: 20px 0;
+}
+.team-intro-wrap .team-desc{
+    padding-right: 50px;
+    color: #666;
+    line-height: 26px;
+}
+.team-intro-wrap .team-title{
+    font-size: 16px;
+    padding-top: 20px;
+}
+.img-wrap .team-img{
+    margin-top: 15px;
+}
+.name-position-wrap{
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+.name-position-wrap .name, .name-position-wrap .position{
+    height: 28px;
+    line-height: 28px;
+}
 .interest_sect_level{
     margin-top: 5px;
     margin-bottom: 10px;
