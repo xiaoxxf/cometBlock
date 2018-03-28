@@ -190,7 +190,6 @@
     </script>
 
 		<script type="text/javascript">
-
 					$('.submit_comment').on('click',function(){
 						var data = {
 							textTitle: $('input[name="head"]')[0].value,
@@ -201,7 +200,6 @@
 							creator: 1, //userId
 							password:	123
 						}
-
 						var uri = 'http://10.0.0.168:8080/blockchain/addReview'
 						$.ajax({
 							type: 'POST',

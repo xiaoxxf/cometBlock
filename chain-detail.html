@@ -175,56 +175,16 @@
                             </span>
                         </div>
                     </div>
-                    <textarea  name="comment"  class="short-comment" placeholder=" 添加评论" rows="4" cols="64" maxlength="350"></textarea>
-                    <a href="comment.html" class="write-long-discuss pull-left">
+                    <textarea  name="comment"  class="short-comment" placeholder=" 添加评论" rows="4" cols="64" maxlength="300"></textarea>
+                    <a href="long-comment.html" class="write-long-discuss pull-left">
                         <span><img src="img/write-long.png" width="20px" height="20px" alt=""></span>
                         <span class="desc">写长文评测</span>
                     </a>
-                    <span class="commit-btn pull-right">
-                        评价并同步至动态
+                    <span class="commit-btn pull-right short-comment-commit">
+                        评价
                     </span>
                 </div>
-                <div class="team-intro-wrap">
-                    <h1 class="team-intro-title">
-                        <span class="project-name"></span>项目介绍
-                    </h1>
-                    <p class="team-desc">
-                        评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态
-                        评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态评价并同步至动态
-                    </p>
-                    <h1 class="team-title">团队</h1>
-                    <div class="img-wrap">
-                        <div class="row">
-                            <div class="col-md-2 col-xs-5">
-                                <div class="team-img">
-                                    <img src="img/temp.jpg" alt="">
-                                </div>
-                                <p class="name">姓名</p>
-                                <p class="position">姓名</p>
-                            </div>
-                            <div class="col-md-2 col-xs-5">
-                                <div class="team-img">
-                                    <img src="img/temp.jpg" alt="">
-                                </div>
-                                <p class="name">姓名</p>
-                                <p class="position">姓名</p>
-                            </div>
-                            <div class="col-md-2 col-xs-5">
-                                <div class="team-img">
-                                    <img src="img/temp2.jpg" alt="">
-                                </div>
-                                <p class="name">姓名</p>
-                                <p class="position">姓名</p>
-                            </div>
-                            <div class="col-md-2 col-xs-5">
-                                <div class="team-img">
-                                    <img src="img/temp2.jpg" alt="">
-                                </div>
-                                <p class="name">姓名</p>
-                                <p class="position">姓名</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="team-intro-wrap team-intro-hook">
                 </div>
                 <div class="comment-list-wrap short-comment-list-wrap">
                     <h1 class="short-comment-title">
@@ -235,45 +195,8 @@
                         <span>／</span>
                         <span class="comment-select">最新</span>
                     </div>
-                    <div class="comment-item-list-wrap">
-                        <div class="comment-item">
-                            <span class="comment-info">
-                                <a href="#" class="">米粒</a>
-                                    <span class="allstar40 rating" title="推荐"></span>
-                                    <span class="comment-time " title="2017-12-03 09:47:30">
-                                        2017-12-03
-                                    </span>
-                             </span>
-                            <div class="row comment-content-wrap">
-                                <div class="col-md-10 col-xs-12">
-                                    <p class="comment-content">
-                                        这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队
-                                    </p>
-                                </div>
-                                <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
-                                    <span class="click-awsome"><i class="icon-dz"></i><i class="icon-dzon"></i></span>211
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-item">
-                            <span class="comment-info">
-                                <a href="#" class="">米粒</a>
-                                    <span class="allstar40 rating" title="推荐"></span>
-                                    <span class="comment-time " title="2017-12-03 09:47:30">
-                                        2017-12-03
-                                    </span>
-                             </span>
-                            <div class="row comment-content-wrap">
-                                <div class="col-md-10 col-xs-12">
-                                    <p class="comment-content">
-                                        这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队这个项目团队
-                                    </p>
-                                </div>
-                                <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
-                                    <span class="click-awsome"><i class="icon-dz"></i><i class="icon-dzon"></i></span>211
-                                </div>
-                            </div>
-                        </div>
+                    <div class="comment-item-list-wrap short-comment-wrap-hook">
+
                     </div>
                     <div class="load-more-comment short-comment-load-more">
                         <div class="loader1 loader" style="display: none;">
@@ -357,8 +280,54 @@
             </div>
         </div>
 </script>
+<script type="text/html" id="team-info-temp">
+    <h1 class="team-intro-title">
+        <span class="project-name"><%:=list.projectName%></span>项目介绍
+        </h1>
+        <p class="team-desc">
+            <%:=list.projectContent%>
+        </p>
+    <h1 class="team-title">团队</h1>
+        <div class="img-wrap">
+            <div class="row">
+                <%for(var i = 0; i < list.chainTeamList.length; i++) {%>
+                <div class="col-md-2 col-xs-5">
+                    <div class="team-img">
+                        <img src="<%:=list.chainTeamList[i].picHref%>" alt="">
+                    </div>
+                    <p class="name"><%:=list.chainTeamList[i].name%></p>
+                    <p class="position"><%:=list.chainTeamList[i].position%></p>
+                </div>
+                <%}%>
+            </div>
+        </div>
+</script>
+<script type="text/html" id="short-comment-temp">
+    <%for(var i = 0; i < list.length; i++) {%>
+    <div class="comment-item">
+        <span class="comment-info">
+        <a href="#" class=""><%:=list[i].creator%></a>
+        <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+        <span class="comment-time " title="2017-12-03 09:47:30">
+        <%:=list[i].createTime%>
+        </span>
+        </span>
+        <div class="row comment-content-wrap">
+        <div class="col-md-10 col-xs-12">
+        <p class="comment-content">
+            <%:=list[i].textTitle%>
+        </p>
+        </div>
+        <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
+        <span class="click-awsome"><i class="icon-dz"></i><i class="icon-dzon"></i></span> <%:=list[i].likes%>
+        </div>
+        </div>
+        </div>
+    <%}%>
+</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/template.js"></script>
+<script src="js/plugins/layer/layer.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>
 <script src="js/chain-detail.js"></script>
