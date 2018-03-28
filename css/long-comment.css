@@ -1,0 +1,52 @@
+.coin{
+  background-color: rgb(220,220,220);
+  height: 150px;
+  display: flex;
+  border-radius: 10px;
+  width: 81%;
+}
+
+.coin-image{
+  width: 90px;
+  height: 60%;
+  margin-top: 30px;
+}
+
+.coin-image img{
+  width: 100%;
+  height: 100%;
+  border-radius: 300px;
+
+}
+
+.input-head{
+  background-color: rgb(243,246,247);
+  border:0px;
+  height: 50px;
+}
+
+.edit-comment{
+
+}
+
+.coin-message{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-left: 5%;
+}
+
+.coin-name{
+  margin-bottom: 20%;
+  margin-left: 5px;
+  font-family: inherit;
+  font-size: 20px;
+}
+
+.coin-score{
+  /* margin-left: 30%; */
+}
+.submit_comment{
+  width: 100px;
+}

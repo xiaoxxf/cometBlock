@@ -68,6 +68,7 @@ function doJavaGet(baseUrl, callback, showtips) {
 }
 function doPostJavaApi(baseUrl, data, callback, contentType, showtips) {
     var requestUri = WebApiHostJavaApi + baseUrl;
+    debugger
     doRequest(requestUri, "POST", data, callback, contentType);
 }
 
