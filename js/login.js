@@ -120,7 +120,7 @@ function loginFromValid(){
 }
 
 
-$("#sign-in-form-submit-btn").on('click',function() {
+$(document).on('click','#sign-in-form-submit-btn',function() {
 	if(loginFromValid()){
 		var param = {
 		userName: $("#session_phone").val(),
