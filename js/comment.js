@@ -30,3 +30,8 @@ $(".review-comment-form .lnk-close").on('click',function (e) {
     $('#comments .reply_comment').removeClass('reply-comment-click')
     console.log($(e.currentTarget))
 });
+//useful点击
+$(".main-panel-useful button").on('click',function (e) {
+    var self = $(e.currentTarget)
+    console.log(self.data('useful'))
+})

@@ -166,7 +166,10 @@ header {
 	cursor: pointer;
 	line-height: 1.2;
 }
-
+.comment-detail-main .main-panel-useful .btn.disabled {
+	background: #e5e5e5;
+	cursor: auto;
+}
 .btn,
 .review-comment-form .add_comment {
 	outline: 0;

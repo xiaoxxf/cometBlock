@@ -58,17 +58,17 @@ $(".long-comment-load-more .loading-more").on('click',function () {
 $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var self = $(e.currentTarget).toggleClass("on");
     var reviewid = self.data('reviewid');
-    var userId = window.localStorage.getItem('userid');
-    var likes = 1;
+    var userId = $.cookie('userid');//获取userid
+    var likes = 0;
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
     if(userId == null){
         layer.msg('您还没有登录')
     }
     if(self.hasClass('on')){
-        likes = 0;
-    }else{
         likes = 1;
+    }else{
+        likes = 0;
     }
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
     doJavaGet(uri, function(res) {
@@ -179,7 +179,7 @@ function ajaxGetLongComments() {
 //点击提交评论
 $(".short-comment-commit").on('click',function (e) {
     // var projectId = getUrlParam('projectId');
-    var userId = window.localStorage.getItem('userid');
+    var userId = $.cookie('userid');//获取userid
     var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
