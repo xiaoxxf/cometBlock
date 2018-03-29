@@ -54,7 +54,7 @@ $(".long-comment-load-more .loading-more").on('click',function () {
     $(".long-comment-load-more .loading-more").show();
     $(".long-comment-load-more .loader1").css('display','none');*/
 })
-
+//点赞
 $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var self = $(e.currentTarget).toggleClass("on");
     var reviewid = self.data('reviewid');
@@ -63,7 +63,7 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
     if(userId == null){
-        layer.msg('您还没有登录')
+        layer.msg('您还没有登录');
     }
     if(self.hasClass('on')){
         likes = 1;
@@ -183,8 +183,16 @@ $(".short-comment-commit").on('click',function (e) {
     var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
-    if(userId == null){
+    if(userId == undefined){
         layer.msg('您还没有登录')
+        layer.open({
+            type: 1,
+            shade:0,
+            title: '引用',
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#short-comment-commit-layer").html()
+        });
     }
     if(score == ''){
         layer.tips('给这个项目打个分哦', '#rating', {
@@ -223,14 +231,6 @@ $(".short-comment-commit").on('click',function (e) {
             layer.msg(res.msg);
         }
     }, "json");
-     layer.open({
-        type: 1,
-        shade:0,
-        title: '引用',
-        skin: 'layui-layer-report', //加上边框
-        area: ['550px', '680px'], //宽高
-        content: $("#short-comment-commit-layer").html()
-    });
 })
 //评分的计算,返回的是对应星星的类名
 function formatStarClass(data){
