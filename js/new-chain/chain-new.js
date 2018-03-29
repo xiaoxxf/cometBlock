@@ -1,3 +1,5 @@
+var userId = window.localStorage.userid;
+
 //日期选择
 $("#date_pick").datetimepicker({
   language : 'zh-CN', // 语言
@@ -143,7 +145,6 @@ function doUpload(e){
 
   var formData = new FormData();
   // var name = e.name;
-  var userId = window.localStorage.userid;
 
   t = e;
   formData.append('file', file);
@@ -260,6 +261,7 @@ $('#form1').validator({
 });
 
 
+
 // 表单提交
 
 $('.submit_control').on('click', function(){
@@ -288,6 +290,7 @@ $('.submit_control').on('click', function(){
     }
   }
 
+
   // 提交数据
   var data = {
     "projectLogo":          allFile.projectLogo,
@@ -300,7 +303,7 @@ $('.submit_control').on('click', function(){
     "companyWebsite":       form1.compay_website.value,
     "projectContent":       form1.project_content.value,
     "whitePaper":           allFile.whitePaper,
-    "userId":               window.localStorage.userid,
+    "userId":               userId,
     "chainTeamList":        team
   };
 
@@ -314,8 +317,8 @@ $('.submit_control').on('click', function(){
         ui.submiting = true
       },
       success: function (result) {
-       if(result.code=="0"){
-          // TODO: 跳到项目页
+        if(result.code=="0"){
+          window.location.href='chain.html';
           ui.submiting = false
           console.log('ok')
         }
