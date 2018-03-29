@@ -56,7 +56,34 @@ $(".long-comment-load-more .loading-more").on('click',function () {
 })
 
 $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
-    var self = $(e.currentTarget).toggleClass("on")
+    var self = $(e.currentTarget).toggleClass("on");
+    var reviewid = self.data('reviewid');
+    var userId = window.localStorage.getItem('userid');
+    var likes = 1;
+    var score = $("#n_rating").val();
+    var shortTxt = $(".short-comment").val();
+    if(userId == null){
+        layer.msg('您还没有登录')
+    }
+    if(self.hasClass('on')){
+        likes = 0;
+    }else{
+        likes = 1;
+    }
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+            console.log(res.msg)
+            var num  = parseInt(self.parent().find(".num").text());
+            if(self.hasClass('on')){
+                self.parent().find(".num").text(num+1)
+            }else{
+                self.parent().find(".num").text(num-1);
+            }
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
 });
 //点击筛选短评
 $(".select-comment-wrap .comment-select").on('click',function (e) {
@@ -96,32 +123,7 @@ function  ajaxGetChainDetail() {
 function ajaxGetComments() {
     // var projectId = getUrlParam('projectId');
     var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
-    var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
-    doJavaGet(uri, function(res) {
-        if(res != null && res.code == 0) {
-            if(res.datas.length >0 ){
-                $(".long-comment-load-more .loading-more").hide();
-                $(".long-comment-load-more .loader1").css('display','flex');
-                var data = res.datas;
-                //var formatData = formatStarClass(data);
-                var commentTpl = $("#long-comment-temp").html();
-                var teamContent = template(commentTpl, {list: res.datas});
-                $(".long-comment-wrap-hook").append(teamContent);
-                $(".long-comment-load-more .loading-more").show();
-                $(".long-comment-load-more .loader1").css('display','none');
-            }else{
-                $(".long-comment-load-more .loading-more").text('已无更多评论');
-            }
-        } else {
-            layer.msg(res.msg);
-        }
-    }, "json");
-}
-//加载长评列表
-function ajaxGetLongComments() {
-    // var projectId = getUrlParam('projectId');
-    var projectId = '331226f0-4d51-4c0e-b964-533817fb7430';
-    var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='+pageSize+'&type='+2;
+    var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             if(res.datas.length >0 ){
@@ -134,6 +136,9 @@ function ajaxGetLongComments() {
                 $(".short-comment-wrap-hook").append(teamContent);
                 $(".short-comment-load-more .loading-more").show();
                 $(".short-comment-load-more .loader1").css('display','none');
+                if(res.datas.length < 10){
+                    $(".short-comment-load-more .loading-more").text('已无更多评论');
+                }
             }else{
                 $(".short-comment-load-more .loading-more").text('已无更多评论');
             }
@@ -141,6 +146,35 @@ function ajaxGetLongComments() {
             layer.msg(res.msg);
         }
     }, "json");
+}
+//加载长评列表
+function ajaxGetLongComments() {
+    // var projectId = getUrlParam('projectId');
+    var projectId = '331226f0-4d51-4c0e-b964-533817fb7430';
+    var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+2;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+            if(res.datas.length >0 ){
+                $(".long-comment-load-more .loading-more").hide();
+                $(".long-comment-load-more .loader1").css('display','flex');
+                var data = res.datas;
+                //var formatData = formatStarClass(data);
+                var commentTpl = $("#long-comment-temp").html();
+                var teamContent = template(commentTpl, {list: res.datas});
+                $(".long-comment-wrap-hook").append(teamContent);
+                $(".long-comment-load-more .loading-more").show();
+                $(".long-comment-load-more .loader1").css('display','none');
+                if(res.datas.length < 10){
+                    $(".long-comment-load-more .loading-more").text('已无更多评论');
+                }
+            }else{
+                $(".long-comment-load-more .loading-more").text('已无更多评论');
+            }
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
+
 }
 //点击提交评论
 $(".short-comment-commit").on('click',function (e) {

@@ -297,14 +297,39 @@
         </p>
         </div>
         <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
-        <span class="click-awsome"><i class="icon-dz"></i><i class="icon-dzon"></i></span> <%:=list[i].likes%>
+        <span class="click-awsome" data-reviewid="<%:=list[i].reviewId%>"><i class="icon-dz"></i><i class="icon-dzon"></i></span>
+        <span class="num"><%:=list[i].likes%></span>
         </div>
         </div>
         </div>
     <%}%>
 </script>
 <script type="text/html" id="long-comment-temp">
+    <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
+        <span class="comment-info">
+        <a href="#" class=""><%:=list[i].creator%></a>
+        <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+        <span class="comment-time " title="2017-12-03 09:47:30">
+        <%:=list[i].createTime%>
+        </span>
+        </span>
+        <p class="text-left long-comment-article-title">区块链</p>
+        <div class="row comment-content-wrap">
+            <div class="col-md-10 col-xs-12">
+                <p class="comment-content">
+                    <%:=list[i].textTitle%>
+                </p>
+            </div>
+            <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
+                <span class="click-awsome" data-reviewid="<%:=list[i].reviewId%>"><i class="icon-dz"></i><i class="icon-dzon"></i></span>
+                <span class="num"><%:=list[i].likes%></span>
+            </div>
+        </div>
+        <p class="text-left long-comment-reply"><a href="comment.html">21个评论</a></p>
+    </div>
+    <%}%>
+   <!-- <div class="comment-item">
         <span class="comment-info">
         <a href="#" class="">米粒</a>
         <span class="allstar40 rating" title="推荐"></span>
@@ -325,7 +350,7 @@
         </div>
         </div>
         <p class="text-left long-comment-reply"><a href="comment.html">21个评论</a></p>
-    </div>
+    </div>-->
 </script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/template.js"></script>

@@ -240,7 +240,7 @@
 /*
 点赞动画*/
 .click-awsome{ position:relative; width:15px; height:14px;margin-right:5px; display:inline-block; vertical-align:-1px; }
-.click-awsome i{ position:absolute; left:0px; top:0px;width:15px; height:14px;transition:all .3s ease-in;-webkit-transition:all .3s ease-in;}
+.click-awsome i{ position:absolute; left:0px; top:0px;width:15px; height:14px;transition:all .3s ease-in;-webkit-transition:all .3s ease-in;cursor: pointer;}
 .click-awsome i.icon-dz{background:url('../img/awsome-click-on.png') no-repeat center; background-size:100% auto;opacity:1; }
 .click-awsome i.icon-dzon{background:url('../img/awsome-click.png') no-repeat center; background-size:100% auto;transform:scale(0); -webkit-transform:scale(0);opacity:0;
     transition:all .1s ease-in;-webkit-transition:all .1s ease-in;}
