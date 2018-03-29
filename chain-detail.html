@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/chain-detail.css">
     <link type="favicon" rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/login.css" />
     <!-- 导航栏 -->
 </head>
 <style>
@@ -180,7 +181,7 @@
                         <span><img src="img/write-long.png" width="20px" height="20px" alt=""></span>
                         <span class="desc">写长文评测</span>
                     </a>
-                    <span class="commit-btn pull-right short-comment-commit">
+                    <span class="commit-btn pull-right short-comment-commit" >
                        评论
                     </span>
                 </div>
@@ -327,6 +328,65 @@
         <p class="text-left long-comment-reply"><a href="comment.html">21个评论</a></p>
     </div>
 </script>
+
+<!--评论-->
+<script type="text/html" id="short-comment-commit-layer">
+				<div class="main report-login">
+
+					<h4 class="title">
+					    <div class="normal-title">
+							<a class="active" href="">登录</a>
+							<b>·</b>
+							<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+						</div>
+					</h4>
+					<div class="js-sign-in-container">
+
+						<div class="input-prepend  restyle ">
+							<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="input-prepend border_radiusB">
+							<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+							<i class="fa fa-unlock-alt"></i>
+
+						</div>
+						<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+						<div class="remember-btn">
+							<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+						</div>
+						<div class="forget-btn">
+							<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="">用手机号重置密码</a>
+								</li>
+								
+							</ul>
+						</div>
+
+						<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
+						<span class="loader2 loader loaderadd" id="load">
+										<div></div>
+								</span>
+
+						<div class="more-sign">
+							<h6>社交帐号登录</h6>
+							<ul>
+								<li>
+									<img src="img/wechat.png" width="40px">
+								</li>
+								<li>
+									<a href="">其它</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</script>
+
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/template.js"></script>
 <script src="js/plugins/layer/layer.js"></script>

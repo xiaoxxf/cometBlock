@@ -189,6 +189,14 @@ $(".short-comment-commit").on('click',function (e) {
             layer.msg(res.msg);
         }
     }, "json");
+     layer.open({
+        type: 1,
+        shade:0,
+        title: '引用',
+        skin: 'layui-layer-report', //加上边框
+        area: ['550px', '680px'], //宽高
+        content: $("#short-comment-commit-layer").html()
+    });
 })
 //评分的计算,返回的是对应星星的类名
 function formatStarClass(data){
@@ -197,3 +205,4 @@ function formatStarClass(data){
     }
     return data;
 }
+
