@@ -7,7 +7,6 @@ function guid() {
     return s4() + s4() + '' + s4() + '' + s4() + '' +
         s4() + '' + s4() + s4() + s4();
 }
-
 //依赖全局WebApiHost参数
 var WebApiToken;
 //var WebApiHost="http://localhost:2579/";

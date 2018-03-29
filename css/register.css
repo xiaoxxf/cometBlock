@@ -1,16 +1,15 @@
 	
 			body {
 				background-color: #f3f6f7;
+				line-height:1.6
 			}
 			.header_title{
 				color: rgb(79, 163, 237);
     			font-size: 26px;
     		}
 			.container{
-				width: 100%;
-				
-			}
-			
+				/*width: 100%;*/				
+			}			
 			/*form表单*/
 			
 			.main {

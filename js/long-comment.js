@@ -4,11 +4,15 @@ var ui = {
 $(function(){
   // 星星评分
   $(".my-rating").starRating({
-
-    strokeColor: '#894A00',
+    strokeColor:'#ffc900',
+    ratedColor:'#ffc900',
+    activeColor:'#ffc900',
+    hoverColor:'#ffc900',
     strokeWidth: 10,
+    useGradient:false,
     starSize: 25,
     initialRating: 0,
+    useFullStars:true,
     disableAfterRate: false,
     onHover: function(currentIndex, currentRating, $el){
       $('.live-rating').text(currentIndex);

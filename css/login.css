@@ -8,10 +8,8 @@
 }
 
 .container {
-	width: 100%;
+	/*width: 100%;*/
 }
-
-
 /*form表单*/
 
 .main {
@@ -21,11 +19,12 @@
 	padding: 50px 50px 30px;
 	background-color: #fff;
 	border-radius: 4px;
-	box-shadow: 0 0 15px rgba(0, 0, 0, .1);
 	vertical-align: middle;
 	display: inline-block;
 }
-
+.main-shadow{
+	box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
 .reset-title,
 .title {
 	margin: 0 auto 50px;
@@ -50,8 +49,6 @@
 h4 {
 	font-size: 18px;
 }
-
-.main {}
 
 .sign {
 	height: 100%;
@@ -301,4 +298,4 @@ h6 {
 	outline: 0;
 }
 
-</style>
+

@@ -76,12 +76,12 @@
 							<div class="main-ft">
 								<div class="main-panel" name="9157555">
 									<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
-										<button class="btn useful_count 9157555 j a_show_login">
-                                    有用 4030
-                                </button>
-										<button class="btn useless_count 9157555 j a_show_login">
-                                    没用 586
-                                </button>
+										<button class="btn useful_count 9157555 j a_show_login disabled" data-useful="true">
+											有用 <span class="num">4030</span>
+										</button>
+										<button class="btn useless_count 9157555 j a_show_login" data-useful="false">
+											没用 <span class="num">4030</span>
+										</button>
 									</div>
 									<div class="main-like clearfix">
 										<button class="LikeButton clicked-like pull-right" title="标为喜欢?">喜欢<span class="LikeButton-count">70</span></button>
@@ -240,19 +240,11 @@
 								<li>
 									<a href="">用手机号重置密码</a>
 								</li>
-								<li>
-									<a href="">用邮箱重置密码</a>
-								</li>
-								<li>
-									<a target="_blank" href="">无法用海外手机号登录</a>
-								</li>
-								<li>
-									<a target="_blank" href="">无法用 Google 帐号登录</a>
-								</li>
+								
 							</ul>
 						</div>
 
-						<input class="sign-in-button" id="sign-in-form-submit-btn" type="submit">
+						<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
 						<span class="loader2 loader loaderadd" id="load">
 										<div></div>
 								</span>
@@ -279,6 +271,10 @@
 		<script src="js/common.js"></script>
 		<script src="js/comment-page.js"></script>
 		<script src="js/comment.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/register.js"></script>
+		<script src="js/login.js"></script>
+		
 	</body>
 	<script>
 	</script>
