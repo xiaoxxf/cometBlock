@@ -286,8 +286,6 @@ a img {
 .comment-item .op-lnks a:link {
 	color: #666666;
 }
-<<<<<<< HEAD
-
 .comment-item .op-lnks .reply_comment {
 	color: #fff !important;
 	background-color: #bfbfbf;
@@ -295,11 +293,10 @@ a img {
 	margin-right: 8px;
 	border-radius: 5px;
 }
-
 .comment-container-wrap .report-comment .header {
 	background-color: rgba(238, 238, 238, 0.8);
 	border-radius: 10px;
-=======
+}
 .comment-item .op-lnks .reply_comment{
     padding: 1px 3px;
     margin-right: 8px;
