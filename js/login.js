@@ -109,7 +109,7 @@ function loginFromValid(){
         return false; 
     }
 	if(userPwd.length<6){ 
-        layer.tips('密码错误', '#session_password', {
+        layer.tips('密码长度不能少于6位', '#session_password', {
 		  tips: [2, '#3595CC'],
 		  time: 2000
 		}); 
