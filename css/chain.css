@@ -97,8 +97,9 @@
   display: inline-flex;
 }
 
-.search-result .search-result-img{
+.search-result-img{
   width: 20%;
+
 }
 
 .search-result-img img{
@@ -126,6 +127,7 @@
 
 .no-result{
     min-height: 300px;
+
 }
 
 .no-data{
@@ -135,4 +137,41 @@
 .create-coin a{
     font-size: 15px;
     color: rgb(0,102,204);
+}
+
+.no-data-tip{
+    position: absolute;
+    display: none;
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    margin-left: -100px;
+    margin-top: -50px;
+    top:50%;
+    left: 50%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.waiting-data{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    margin-left: -100px;
+    margin-top: -100px;
+    top:50%;
+    left: 50%;
+}
+.waiting-data .loader9 {
+    width: 200px;
+    height: 200px;
+    float: left;
+    display: -webkit-flex;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.waiting-data .loader-nine div{
+    background-color:#999
 }

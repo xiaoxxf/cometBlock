@@ -277,10 +277,10 @@
                     console.log(keywords)
                     var uri = 'news/search?currentPage=' + num + '&pageSize=' + 8 + '&keywords=' + keywords;
                     doJavaGet(uri, function(res) {
-                    	debugger
+                    	
 //                      console.log(res.datas)                       
                         if(res != null && res.code == 0) {
-                        	debugger
+                        	
                             searchDataShow(res.datas)
                         }
                     }, "json");

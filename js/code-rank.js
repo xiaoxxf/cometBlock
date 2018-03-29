@@ -65,7 +65,7 @@ $(function () {
                     }
             }, "json");
     }
-    //滚动加载
+    //滚动加载  
     $(window).scroll(function(){
         var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
         // console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
@@ -98,6 +98,3 @@ $(function () {
         isLoaded = true;
     }
 })
-
-
-

@@ -44,12 +44,13 @@ $('.click_input_white_paper_file').on('click', function(){
 //白皮书文件名预览及校验
 $('.white_paper').on('change', function(e){
 	file = e.currentTarget.files[0];
-	if (file.type.match(pdfType) || file.size > whitePaperMaxSize) {
+
+	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
     return false
 	}
-
 	var name = file.name;
   $(".white_paper_file_name").val( name );
+  $(".upload-white-paper").removeAttr('disabled')
 })
 
 
@@ -81,6 +82,10 @@ input_project_logo.addEventListener("change", function() {
 
 // 团队图片选择及预览
 $('.team').on('change', $('.member_pic'), function(e) {
+  if (e.target.type != 'file') {
+    return false
+  }
+
   var file = e.target.files[0];
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
     return false
@@ -114,17 +119,18 @@ var allFile = {
 
 var t = ''
 function doUpload(e){
+  var file = e.files[0];
+
   if (ui.fileUpLoading || e.files.length == 0) {
     return false
   }
 
   var class_name = e.className;
-  var file = e.files[0];
 
   //根据className判断应该是什么类型的文件，不一致的返回false
   switch (class_name) {
     case "white_paper":
-      if (file.type.match(pdfType) || file.size > whitePaperMaxSize) {
+      if (!file.type.match(pdfType) || file.size > whitePaperMaxSize) {
         return false
       }
       break;
@@ -156,13 +162,21 @@ function doUpload(e){
     },
 
     success:function(data){
+      // project_logo
       if (t.className == 'project_logo') {
         allFile.projectLogo = (data.datas[0])
-      }else if (t.className == 'member_pic') {
+        $('.upload-project-logo').attr('disabled','disabled')
+      }
+      // member_pic
+      else if (t.className.split(' ')[0] == 'member_pic') {
         number = t.className.split(' ')[1].split('_')[1]
         allFile.memberPic[number] = data.datas[0]
-      }else if (t.className == 'white_paper') {
+        t.parentElement.nextElementSibling.setAttribute('disabled','disabled')
+      }
+      // white_paper
+      else if (t.className == 'white_paper') {
         allFile.whitePaper = data.datas[0]
+        $(".upload-white-paper").attr('disabled','disabled')
       }
       ui.fileUpLoading = false
       console.log("ok");

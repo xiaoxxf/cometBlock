@@ -76,7 +76,7 @@ $(function(){
   	var data = {
   		textTitle: $('input[name="head"]')[0].value,
   		textContent: editor.txt.html(),
-  		projectId: 1, //项目
+  		projectId: "331226f0-4d51-4c0e-b964-533817fb7430", //项目
   		score: score, //评分
   		type: 2, //长文的type为2
   		userId: window.localStorage.userid, //userId
