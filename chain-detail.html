@@ -81,69 +81,8 @@
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-12 col-xs-12">
-                            <div class="rating_wrap clearbox" rel="v:rating">
-                                <div class="clearfix">
-                                    <div class="rating_logo pull-left">
-                                        彗星评分
-                                    </div>
-                                </div>
-                                <div class="rating_self clearfix">
-                                    <strong class="rating_num pull-left" >7.3</strong>
-                                    <span ></span>
-                                    <div class="rating_right ">
-                                        <div class="pull-left bigstar bigstar35">
-                                        </div>
-                                        <div class="rating_sum">
-                                            <a href="collections" class="rating_people">
-                                                <span>136178</span>人评价</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="ratings-on-weight">
-                                    <div class="item">
-                                <span class="stars5 starstop" title="力荐">
-                                    5星
-                                </span>
-                                        <div class="power" style="width:22px"></div>
-                                        <span class="rating_per">14.9%</span>
-                                        <br>
-                                    </div>
-                                    <div class="item">
-                                <span class="stars4 starstop" title="推荐">
-                                    4星
-                                </span>
-                                        <div class="power" style="width:64px"></div>
-                                        <span class="rating_per">42.4%</span>
-                                        <br>
-                                    </div>
-                                    <div class="item">
-                                <span class="stars3 starstop" title="还行">
-                                    3星
-                                </span>
-                                        <div class="power" style="width:54px"></div>
-                                        <span class="rating_per">36.2%</span>
-                                        <br>
-                                    </div>
-                                    <div class="item">
-                                    <span class="stars2 starstop" title="较差">
-                                        2星
-                                    </span>
-                                        <div class="power" style="width:8px"></div>
-                                        <span class="rating_per">5.3%</span>
-                                        <br>
-                                    </div>
-                                    <div class="item">
-                                <span class="stars1 starstop" title="很差">
-                                    1星
-                                </span>
-                                        <div class="power" style="width:1px"></div>
-                                        <span class="rating_per">1.1%</span>
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="rating_betterthan">
-                                    好于 <a href="/typerank?type_name=奇幻&amp;type=16&amp;interval_id=65:55&amp;action=">63% 基础链</a>
-                                </div>
+                            <div class="rating_wrap clearbox rating_wrap-hook" rel="v:rating">
+
                             </div>
                         </div>
                     </div>
@@ -245,7 +184,41 @@
         </div>
     </footer>
 </div>
-
+<script type="text/html" id="chain-score-temp">
+    <div class="clearfix">
+        <div class="rating_logo pull-left">
+            彗星评分
+        </div>
+    </div>
+    <div class="rating_self clearfix">
+        <strong class="rating_num pull-left" ><%:=list.avaScore%></strong>
+        <span ></span>
+        <div class="rating_right ">
+            <div class="pull-left bigstar bigstar<%:=list.stars%>">
+            </div>
+            <br/>
+            <div class="rating_sum">
+                <a href="" class="rating_people">
+                    <span><%:=list.count%></span>人评价</a>
+            </div>
+        </div>
+    </div>
+    <div class="ratings-on-weight">
+        <%for(var i = 0; i < list.scores.length; i++) {%>
+        <div class="item">
+            <span class="stars5 starstop" title="力荐">
+            <%:=5-i%>星
+            </span>
+            <div class="power" style="width:<%:=list.widthArr[i]%>"></div>
+            <span class="rating_per"><%:=list.scores[i]%></span>
+            <br>
+        </div>
+        <%}%>
+    </div>
+    <div class="rating_betterthan">
+        好于 <a href="/typerank?type_name=奇幻&amp;type=16&amp;interval_id=65:55&amp;action=">63% 基础链</a>
+    </div>
+</script>
 <script type="text/html" id="chain-info-temp">
             <div class="item">
                 <span class="desc-title">类型</span>:
@@ -299,7 +272,7 @@
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
         <span class="comment-info">
-        <a href="javascript:;" class=""><%:=list[i].creator%></a>
+        <a href="javascript:;" class=""><%:=list[i].realName%></a>
         <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
         <span class="comment-time " title="2017-12-03 09:47:30">
         <%:=list[i].createTime%>
@@ -323,7 +296,7 @@
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
         <span class="comment-info">
-        <a href="comment.html?reviewId=<%:=list[i].reviewId%>" class=""><%:=list[i].creator%></a>
+        <a href="comment.html?reviewId=<%:=list[i].reviewId%>" class=""><%:=list[i].realName%></a>
         <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
         <span class="comment-time " title="2017-12-03 09:47:30">
         <%:=list[i].createTime%>
@@ -341,7 +314,7 @@
                 <span class="num"><%:=list[i].likes%></span>
             </div>
         </div>
-        <p class="text-left long-comment-reply"><a href="comment.html"><%:=list[i].review%>个评论</a></p>
+        <p class="text-left long-comment-reply"><a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>"><%:=list[i].review%>个评论</a></p>
     </div>
     <%}%>
 </script>

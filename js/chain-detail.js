@@ -100,26 +100,28 @@ window.onload = function(){
     ajaxGetChainDetail();
     ajaxGetComments();
     ajaxGetLongComments();
+    ajaxGetScoreInfo();
 }
 var shortCommentCurrentPage = 1 ;
 var longCommentCurrentPage = 1 ;
 var pageSize = 10;
 function  ajaxGetChainDetail() {
-    //var projectId = getUrlParam('projectId');
-    var projectId = '1af0129e-de93-4279-b310-633e58a725fd';
+    var projectId = getUrlParam('projectId');
     var uri = 'blockchain/detail?projectId='+projectId ;
     $(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
-            $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectBigName);
-            $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
-            var chainTpl = $("#chain-info-temp").html();
-            var content = template(chainTpl, {list: chainInfoData});
-            $(".chain-info-hook").append(content);
-            var teamTpl = $("#team-info-temp").html();
-            var teamContent = template(teamTpl, {list: chainInfoData});
-            $(".team-intro-hook").append(teamContent);
+            if(chainInfoData.length>0){
+                $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectBigName);
+                $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
+                var chainTpl = $("#chain-info-temp").html();
+                var content = template(chainTpl, {list: chainInfoData});
+                $(".chain-info-hook").append(content);
+                var teamTpl = $("#team-info-temp").html();
+                var teamContent = template(teamTpl, {list: chainInfoData});
+                $(".team-intro-hook").append(teamContent);
+            }
         } else {
             layer.msg(res.msg);
         }
@@ -127,8 +129,8 @@ function  ajaxGetChainDetail() {
 }
 //加载短评列表
 function ajaxGetComments() {
-    // var projectId = getUrlParam('projectId');
-    var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
+    var projectId = getUrlParam('projectId');
+    //var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
     var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
@@ -196,7 +198,7 @@ $(".short-comment-commit").on('click',function (e) {
             shade:0,
             title: 0,
             skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
+            area: ['520px', '600px'], //宽高
             content: $("#short-comment-commit-layer").html()
         });
         return;
@@ -239,6 +241,39 @@ $(".short-comment-commit").on('click',function (e) {
         }
     }, "json");
 })
+function ajaxGetScoreInfo() {
+    //quaryScore?projectId=510f0622-22db-4d80-a663-6bc96db8acd3
+    var projectId = getUrlParam('projectId');
+    var uri = 'blockchain/quaryScore?projectId='+projectId ;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+            var tempObj = {};
+            var tempArr = [];
+            var widthArr = [];
+            var tempScore = 0;
+            var count = res.count;
+            for(var i = res.datas.length;i > 0;i--){
+                tempArr.push(Math.floor(res.datas[i-1].scores/count* 1000)/10+"%");
+                widthArr.push(Math.floor(res.datas[i-1].scores/count* 10)/10*150+"px");
+                tempScore += i*res.datas[i-1].scores*2
+            }
+            var avaScore = Math.floor(tempScore/count* 10)/10;
+            tempObj.avaScore = avaScore;
+            tempObj.scores = tempArr;
+            tempObj.count =  count;
+            tempObj.widthArr =  widthArr;
+            tempObj.stars  = parseInt(avaScore*10/2)
+            console.log(tempObj)
+            //chain-score-temp
+            var commentTpl = $("#chain-score-temp").html();
+            var teamContent = template(commentTpl, {list: tempObj});
+            $(".rating_wrap-hook").append(teamContent);
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
+
+}
 //评分的计算,返回的是对应星星的类名
 function formatStarClass(data){
     for(var i = 0;i<data.length;i++){

@@ -166,6 +166,21 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
 window.onload = function(){
     ajaxGetReviewDetail();
     ajaxGetLongCommentReview();
+    ajaxGetChainDetail()
+}
+function  ajaxGetChainDetail() {
+    var projectId = getUrlParam('projectId');
+    //var projectId = '1af0129e-de93-4279-b310-633e58a725fd';
+    var uri = 'blockchain/detail?projectId='+projectId ;
+    //$(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+           $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
+            $(".main-hd .project-name").text(res.datas.projectName)
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
 }
 var longCommentCurrentPage = 1 ;
 var pageSize = 5;
