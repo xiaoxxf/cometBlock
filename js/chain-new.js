@@ -1,3 +1,5 @@
+var userId = window.localStorage.userid;
+
 //日期选择
 $("#date_pick").datetimepicker({
   language : 'zh-CN', // 语言
@@ -6,27 +8,6 @@ $("#date_pick").datetimepicker({
   minView : 2,
   todayBtn : true,
 })
-
-//白皮书上传
-$('.click_input_white_paper_file').on('click', function(){
-	$(".white_paper").click();
-})
-//白皮书文件名预览及校验
-$('.white_paper').on('change', function(e){
-	file = e.currentTarget.files[0];
-	if (file.type.match(imageType)) {
-
-	}
-
-	if (file.size > whitePaperMaxSize) {
-        alert('请上传大小小于20M的PDF文件');
-        return false;
-	}
-
-	var name = file.name;
-  $(".white_paper_file_name").val( name );
-})
-
 
 // 增加发行价格
 function add_issue_price()
@@ -48,40 +29,71 @@ function jump_block_browser(){
   	 window.open(website)
 }
 
+var member_count = 1
+// 添加团队成员
+function add_team_member()
+{
+  member_count += 1
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="img/no_image.png" class="" /></div><div class="member_mess"><div class=""><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_1"></a> <button type="button" class="btn btn-default upload-button upload-member-pic" disabled="disabled"  onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
 
-//币种图片上传及预览
-var imageType = /image.*/;
+  $('.team').append(string);
+}
+
+//白皮书上传
+$('.click_input_white_paper_file').on('click', function(){
+	$(".white_paper").click();
+})
+//白皮书文件名预览及校验
+$('.white_paper').on('change', function(e){
+	file = e.currentTarget.files[0];
+
+	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
+    return false
+	}
+	var name = file.name;
+  $(".white_paper_file_name").val( name );
+  $(".upload-white-paper").removeAttr('disabled')
+})
+
+
 var getOnloadFunc = function(aImg) {
 	return function(evt) {
 		aImg.src = evt.target.result;
 	};
 }
-
+//币种图片选择及预览
 var input_project_logo = document.getElementById("project_logo_input");
-
 input_project_logo.addEventListener("change", function() {
+  var file = this.files[0];
+
+  if (!file.type.match(imageType) || file.size > imageMaxSize) {
+    return false
+  }
+
 	$(".coin_image_box").html("");
-//			    for (var i = 0, numFiles = this.files.length; i < numFiles; i++) {
-    var file = this.files[0];
+  var img = document.createElement("img");
+  $(img).css("width","110px")
+  $(img).css("height","100px")
+  $(".coin_image_box").append(img);
 
-    var img = document.createElement("img");
-    $(img).css("width","110px")
-    $(img).css("height","100px")
-    $(".coin_image_box").append(img);
-
-    var reader = new FileReader();
-    reader.onload = getOnloadFunc(img);
-    reader.readAsDataURL(file);
-//			    }
+  var reader = new FileReader();
+  reader.onload = getOnloadFunc(img);
+  reader.readAsDataURL(file);
+  $('.upload-project-logo').removeAttr('disabled')
 }, false);
-// 团队图片上传及预览
+
+// 团队图片选择及预览
 $('.team').on('change', $('.member_pic'), function(e) {
-  if(e.target.type != 'file'){
+  if (e.target.type != 'file') {
+    return false
+  }
+
+  var file = e.target.files[0];
+  if (!file.type.match(imageType) || file.size > imageMaxSize) {
     return false
   }
   team_image_box = e.target.parentNode.parentNode.parentNode.previousElementSibling // team_image_box
   team_image_box.innerHTML = ""
-  var file = e.target.files[0];
 
   var img = document.createElement("img");
 
@@ -92,18 +104,92 @@ $('.team').on('change', $('.member_pic'), function(e) {
   var reader = new FileReader();
   reader.onload = getOnloadFunc(img);
   reader.readAsDataURL(file);
+  e.target.parentElement.nextElementSibling.removeAttribute('disabled')
 })
 
-
-
-
-// 添加团队成员
-function add_team_member()
-{
-  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="img/no_image.png" class="" /></div><div class="member_mess"><div class=""><a href="javascript:;" class="file" style="text-align:center;text-decoration:none">选择<input type="file"  name="file" class="member_pic"></a>  <a href="javascript:;" class="file">上传<input type="button" class="change" value="上传" onclick="doUpload(this.parentElement.previousElementSibling.childNodes[1])" style="cursor:pointer"/></a></div><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div>'
-
-  $('.team').append(string);
+// 文件上传
+var ui = {
+  'submiting': false,
+  'fileUpLoading': false
 }
+
+var allFile = {
+  'projectLogo': '',
+  'memberPic': [],
+  'whitePaper': ''
+}
+
+var t = ''
+function doUpload(e){
+  var file = e.files[0];
+
+  if (ui.fileUpLoading || e.files.length == 0) {
+    return false
+  }
+
+  var class_name = e.className;
+
+  //根据className判断应该是什么类型的文件，不一致的返回false
+  switch (class_name) {
+    case "white_paper":
+      if (!file.type.match(pdfType) || file.size > whitePaperMaxSize) {
+        return false
+      }
+      break;
+    default:
+      if (!file.type.match(imageType) || file.size > imageMaxSize) {
+        return false
+      }
+      break;
+  }
+
+  var formData = new FormData();
+  // var name = e.name;
+
+  t = e;
+  formData.append('file', file);
+  formData.append(userId, userId);
+
+  $.ajax({
+    url : WebApiHostJavaApi + 'common/upload',
+    type: "post",
+    data: formData,
+    datType: "json",
+    processData: false,  // 不处理数据
+    contentType: false,   // 不设置内容类型
+
+    beforeSend: function(){
+      ui.fileUpLoading = true
+    },
+
+    success:function(data){
+      // project_logo
+      if (t.className == 'project_logo') {
+        allFile.projectLogo = (data.datas[0])
+        $('.upload-project-logo').attr('disabled','disabled')
+      }
+      // member_pic
+      else if (t.className.split(' ')[0] == 'member_pic') {
+        number = t.className.split(' ')[1].split('_')[1]
+        allFile.memberPic[number] = data.datas[0]
+        t.parentElement.nextElementSibling.setAttribute('disabled','disabled')
+      }
+      // white_paper
+      else if (t.className == 'white_paper') {
+        allFile.whitePaper = data.datas[0]
+        $(".upload-white-paper").attr('disabled','disabled')
+      }
+      ui.fileUpLoading = false
+      console.log("ok");
+    },
+    error:function(e){
+      ui.fileUpLoading = false
+      alert("上传错误，请重试！");
+    }
+  });
+
+}
+
 
 //表单校验
 var pdfType = /pdf.*/;
@@ -175,87 +261,8 @@ $('#form1').validator({
 });
 
 
+
 // 表单提交
-
-var ui = {
-  'submiting': false,
-  'fileUpLoading': false
-}
-
-var allFile = {
-  'projectLogo': '',
-  'memberPic': [],
-  'whitePaper': ''
-}
-
-var t = ''
-function doUpload(e){
-
-  if (ui.fileUpLoading || e.files.length == 0) {
-    return false
-  }
-
-  var class_name = e.className;
-  var file = e.files[0];
-
-  //根据className判断应该是什么类型的文件，不一致的返回false
-  switch (class_name) {
-    case "white_paper":
-      if (file.type != "application/pdf") {
-        return false
-      }
-      break;
-    default:
-      if (file.type != "image/png") {
-        return false
-      }
-      break;
-  }
-
-
-  temp_name = e.name
-  e.name = 'file'  //先把name属性改为file，配合后台上传，上传完后改回来用于校验
-
-  var formData = new FormData();
-  var name = e.name;
-  var userId = window.localStorage.userid;
-
-  t = e;
-  formData.append(name, file);
-  formData.append(userId, userId);
-
-  $.ajax({
-    url : WebApiHostJavaApi + 'common/upload',
-    type: "post",
-    data: formData,
-    datType: "json",
-    processData: false,  // 不处理数据
-    contentType: false,   // 不设置内容类型
-
-    beforeSend: function(){
-      ui.fileUpLoading = true
-    },
-
-    success:function(data){
-      if (t.className == 'project_logo') {
-        allFile.projectLogo = (data.datas[0])
-      }else if (t.className == 'member_pic') {
-        allFile.memberPic.push(data.datas[0])
-      }else if (t.className == 'white_paper') {
-        allFile.whitePaper = data.datas[0]
-      }
-      ui.fileUpLoading = false
-      console.log("ok");
-    },
-    error:function(e){
-      ui.fileUpLoading = false
-      alert("错误！！");
-    }
-  });
-
-  e.name = temp_name
-
-}
 
 $('.submit_control').on('click', function(){
 
@@ -282,6 +289,14 @@ $('.submit_control').on('click', function(){
       team.splice(i,1)
     }
   }
+  
+  // 发行价格
+  var exchangeRate = "";
+  $('input[name="exchange_rate"]').each(function(i) {
+	exchangeRate += $(this).val();
+	if(i!= $('input[name="exchange_rate"]').length-1 ) 
+		exchangeRate += ","
+  });
 
   // 提交数据
   var data = {
@@ -295,13 +310,14 @@ $('.submit_control').on('click', function(){
     "companyWebsite":       form1.compay_website.value,
     "projectContent":       form1.project_content.value,
     "whitePaper":           allFile.whitePaper,
-    "userId":               window.localStorage.userid,
+    "exchangeRate":			exchangeRate,
+    "userId":               userId,
     "chainTeamList":        team
   };
 
   $.ajax({
       type: 'POST',
-      url : 'http://10.0.0.169:8080/blockchain/addLibrary',
+      url : WebApiHostJavaApi + 'blockchain/addLibrary',
       data: JSON.stringify(data),
       dataType : 'json',
       contentType: 'application/json; charset=UTF-8',
@@ -309,8 +325,8 @@ $('.submit_control').on('click', function(){
         ui.submiting = true
       },
       success: function (result) {
-       if(result.code=="0"){
-          // TODO: 跳到项目页
+        if(result.code=="0"){
+          window.location.href='chain.html';
           ui.submiting = false
           console.log('ok')
         }
