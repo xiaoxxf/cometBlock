@@ -105,11 +105,8 @@
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">币种类型：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<select class="form-control" name="project_type">
-									<option value="1">基础链接</option>
-									<option value="2">内容版权</option>
-									<option value="3">跨链协议</option>
-									<option value="4">数字货币</option>
+								<select class="form-control project_type" name="project_type">
+
 								</select>
 							</div>
 						</div>
@@ -296,10 +293,18 @@
 		</footer>
 		</div>
 
+		<script id="project-type" type="text/html">
+			<%for(var i = 0; i < list.length; i++) {%>
+				<option value="<%=list[i].dicType%>"><%=list[i].dicValue%></option>
+			<%}%>
+		</script>
+
+
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
+		<script src="js/template.js"></script>
 		<!--datetiempicker-->
 		<script src="js/bootstrap-datetimepicker.js"></script>
 		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
