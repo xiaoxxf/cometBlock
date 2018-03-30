@@ -4,6 +4,7 @@ var userId = $.cookie('userid');//获取userid
 $(function(){
   if(userId == undefined){
     layer.open({
+      closeBtn:0,
       title: '',
       content: '请先登录您的账号',
       btn: ['登录', '注册'],
@@ -12,9 +13,6 @@ $(function(){
       },
       btn2: function(){
         window.location.href='register.html'
-      },
-      cancel: function(){
-        return false
       }
     });
   }
@@ -54,7 +52,7 @@ var member_count = 1
 function add_team_member()
 {
   member_count += 1
-  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="img/no_image.png" class="" /></div><div class="member_mess"><div class=""><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_1"></a> <button type="button" class="btn btn-default upload-button upload-member-pic" disabled="disabled"  onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="img/no_image.png" class="" /></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_0"></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
 
   $('.team').append(string);
 }
@@ -110,7 +108,7 @@ $('.team').on('change', $('.member_pic'), function(e) {
   if (e.target.type != 'file') {
     return false
   }
-  team_image_box = e.target.parentNode.parentNode.parentNode.previousElementSibling // team_image_box
+  team_image_box = e.target.parentNode.parentNode.previousElementSibling// team_image_box
   team_image_box.innerHTML = ""
 
   var file = e.target.files[0];
@@ -316,10 +314,9 @@ $('.submit_control').on('click', function(){
   // 发行价格
   var exchangeRate = "";
   $('input[name="exchange_rate"]').each(function(i) {
-	exchangeRate += $(this).val();
-	if(i!= $('input[name="exchange_rate"]').length-1 )
-		exchangeRate += ","
+	   exchangeRate += $(this).val();
   });
+
 
   // 提交数据
   var data = {
@@ -368,6 +365,19 @@ $('.submit_control').on('click', function(){
       }
   });
 
+})
 
+
+// 渲染币种类型
+$(function(){
+
+})
+$(function(){
+	var uri = 'blockchain/quary?parentId=1'
+	doJavaGet(uri,function(data){
+		var coinType = document.getElementById('project-type').innerHTML;
+		var content = template(coinType, {list: data.datas});
+		$('.project_type').append(content)
+	},"json")
 
 })

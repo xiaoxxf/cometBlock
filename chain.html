@@ -93,12 +93,12 @@
 						</div>
 						<div class="coin-item">
 							<span class="cur">上新</span>
+							<!-- <span>数字货币</span>
 							<span>数字货币</span>
 							<span>数字货币</span>
 							<span>数字货币</span>
 							<span>数字货币</span>
-							<span>数字货币</span>
-							<span>数字货币</span>
+							<span>数字货币</span> -->
 						</div>
 					</div>
 				</div>
@@ -119,7 +119,7 @@
 			<div class="no-result" style="display:none">
 				<div class="row no-data" >
 					<div class="can-not-find">
-						找不到"BTC"项目
+
 					</div>
 				</div>
 
@@ -184,12 +184,14 @@
     </footer>
 
 </div>
-<script src="js/jquery-2.1.1.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/common.js"></script>
-<script src="js/template.js"></script>
-<script src="js/plugins/layer/layer.js"></script>
 
+
+<script id="coin-type" type="text/html">
+<%for(var i = 0; i < list.length; i++) {%>
+	<span onclick="searchFromType(<%=list[i].dicType%>)"><%=list[i].dicValue%></span>
+<%}%>
+
+</script>
 
 <script id="tpl" type="text/html">
   <%for(var i = 0; i < list.length; i++) {%>
@@ -221,6 +223,12 @@
 		</div>
 	<%}%>
 </script>
+
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/template.js"></script>
+<script src="js/plugins/layer/layer.js"></script>
 
 <script src="js/chain.js"></script>
 

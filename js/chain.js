@@ -1,4 +1,44 @@
-// 首页列表
+
+// 类型
+var chainType = []
+
+$(function(){
+	var uri = 'blockchain/quary?parentId=1'
+	doJavaGet(uri,function(data){
+
+		data.datas.forEach(function(value,index,array){
+			chainType.push(value)
+		})
+		console.log(chainType)
+		var coinType = document.getElementById('coin-type').innerHTML;
+		var content = template(coinType, {list: chainType});
+		$('.coin-item').append(content)
+	},"json")
+
+})
+
+
+function searchFromType(e){
+
+	var searchType = 	e
+	var search_type_page = 1
+	var pageSize = 12
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
+
+	doJavaGet(uri,function(result){
+		var tpl = document.getElementById('tpl').innerHTML;
+		var content = template(tpl, {list: result.datas});
+		$('.coin-list-wrap').html('')
+		$('.coin-list-wrap').append(content)
+		$(".waiting-data").hide();
+	}, "json")
+
+}
+
+// 分类查询
+
+
+
 $(function(){
 	var pageSize = 12;
 	var index_page = 1;
@@ -22,7 +62,6 @@ $(function(){
 			var tpl = document.getElementById('tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});
 			$('.coin-list-wrap').append(content)
-			isLoaded = true
 		}, "json")
 	}
 
@@ -86,6 +125,8 @@ $(function(){
 		serachChain();
 	})
 
+
+
 	window.onscroll = function () {
 	    //监听事件内容
 			// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
@@ -104,13 +145,6 @@ $(function(){
 
 	    }
 	}
-
-
-
-})
-
-//分类查询
-$(function(){
 
 
 

@@ -90,7 +90,7 @@ label{
   margin-bottom: 5px;
 }
 
-.member_mess{
+.member_msg{
   display: flex;
   flex-direction:  column;
 }

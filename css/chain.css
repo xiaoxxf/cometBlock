@@ -175,3 +175,7 @@
 .waiting-data .loader-nine div{
     background-color:#999
 }
+.upload-member-pic{
+  height: 30px;
+  width: 10px;
+}
