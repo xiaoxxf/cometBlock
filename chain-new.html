@@ -3,60 +3,63 @@
 <html>
 
 	<head>
-	   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	   <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-	   <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>彗星链库新建</title>
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
-		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css"/>
+		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" href="css/chain-new.css">
 	</head>
+
 	<body lang="zh-CN" class="reader-black-font">
 		<!-- 全局顶部导航栏 -->
+	<div class="block-comet-main-wrap">
 		
-    <div class="navbar-fixed-container">
-        <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
-            <nav role="navigation">
-                <div class="container collapsed">
-                    <div class="nav navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+		<div class="navbar-fixed-container">
+			<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+				<nav role="navigation">
+					<div class="container collapsed">
+						<div class="nav navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
-                    </div>
-                    <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li><a id="nav-docs" href="/docs">播报</a></li>
-                            <li><a id="nav-updates" href="/updates">链库</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right nav-index-img">
-                            <li>
-                                <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
-                                    <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
-                                         alt="Download VS Code">
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <div class="nav_search">
-                                    <input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
-                                           onkeyup="test()">
-                                    <a class="nav_search_icon">
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
+							<a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
+						</div>
+						<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+							<ul class="nav navbar-nav navbar-left">
+								<li>
+									<a id="nav-docs" href="/docs">播报</a>
+								</li>
+								<li>
+									<a id="nav-updates" href="/updates">链库</a>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right nav-index-img">
+								<li>
+									<a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+										<img class="download-icon" src="img/temp1.jpg" width="30px" height="30px" alt="Download VS Code">
+									</a>
+								</li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li>
+									<div class="nav_search">
+										<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search" onkeyup="test()">
+										<a class="nav_search_icon">
+										</a>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
 		<div class="container form-box">
 			<div class="row">
 				<!--Form表单-->
@@ -73,12 +76,11 @@
 
 								<!--选择文件-->
 								<a href="javascript:;" class="file">选择
-								   <input type="file" id="project_logo_input" class='project_logo' name="project_logo" >
+									<input type="file" id="project_logo_input" class='project_logo' name="project_logo">
 								</a>
 
 								<button type="button" class="btn btn-default upload-button upload-project-logo" disabled='disabled' onclick="doUpload($('#project_logo_input')[0])">上传
 								</button>
-
 
 								<p class="help-block">建议上传宽高96*96像素的图片，仅支持小于2M的jpg、png格式文件 </p>
 							</div>
@@ -87,14 +89,14 @@
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">币种全称：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="project_name" type="text"  value="">
+								<input class="form-control" name="project_name" type="text" value="">
 							</div>
 						</div>
 
 						<div class="form-group row">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label ">简称：</label>
 							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="project_big_name" type="text"  value="">
+								<input class="form-control" name="project_big_name" type="text" value="">
 							</div>
 						</div>
 
@@ -103,9 +105,9 @@
 							<div class="col-xs-12 col-md-5 col-sm-5">
 								<select class="form-control" name="project_type">
 									<option value="1">基础链接</option>
-								  <option value="2">内容版权</option>
-								  <option value="3">跨链协议</option>
-								  <option value="4">数字货币</option>
+									<option value="2">内容版权</option>
+									<option value="3">跨链协议</option>
+									<option value="4">数字货币</option>
 								</select>
 							</div>
 						</div>
@@ -121,16 +123,15 @@
 										<img src="img/no_image.png" class="" />
 									</div>
 
-
 									<!-- 团队信息 -->
 									<div class="member_mess">
 
 										<div class="">
 											<a href="javascript:;" class="file">选择
-											  <input type="file"  name="file" class="member_pic member_0" data-rule='imageTypeAndSize'>
+												<input type="file" name="file" class="member_pic member_0" data-rule='imageTypeAndSize'>
 											</a>
 
-											<button type="button" class="btn btn-default upload-button upload-member-pic" disabled='disabled'  onclick="doUpload(this.previousElementSibling.childNodes[1])">上传
+											<button type="button" class="btn btn-default upload-button upload-member-pic" disabled='disabled' onclick="doUpload(this.previousElementSibling.childNodes[1])">上传
 
 										</div>
 
@@ -184,105 +185,119 @@
 								<button type="button" class="btn btn-default"  onclick="add_issue_price()">
 								  <span class="glyphicon glyphicon-plus" style="color:#0080FF;" aria-hidden="true"></span>
 								</button>
-							</div>
-						</div>
+										</div>
+									</div>
 
-						<hr> <br>
+									<hr> <br>
 
-						<div class="form-group row">
-							<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行总量：</label>
-							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="currency_count" type="text"  value="">
-							</div>
-						</div>
+									<div class="form-group row">
+										<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行总量：</label>
+										<div class="col-xs-12 col-md-5 col-sm-5">
+											<input class="form-control" name="currency_count" type="text" value="">
+										</div>
+									</div>
 
-						<div class="form-group row">
-							<label class="col-xs-12 col-md-2 col-sm-2 control-label">流通总量：</label>
-							<div class="col-xs-12 col-md-5 col-sm-5">
-								<input class="form-control" name="currency_circulation" type="text"  value="">
-							</div>
-						</div>
+									<div class="form-group row">
+										<label class="col-xs-12 col-md-2 col-sm-2 control-label">流通总量：</label>
+										<div class="col-xs-12 col-md-5 col-sm-5">
+											<input class="form-control" name="currency_circulation" type="text" value="">
+										</div>
+									</div>
 
-						<hr /><br />
+									<hr /><br />
 
-						<div class="form-group row">
-							<label class="col-xs-12 col-md-2 col-sm-2 control-label">网站：</label>
-							<div class="col-xs-10 col-md-5 col-sm-5">
-								<input class="form-control website"  name="compay_website" type="url"  value="" placeholder="http://">
-							</div>
-							<div class="col-xs-2 aside_input_button" >
-								<button type="button" class="btn btn-default"  onclick="jump_website()">
+									<div class="form-group row">
+										<label class="col-xs-12 col-md-2 col-sm-2 control-label">网站：</label>
+										<div class="col-xs-10 col-md-5 col-sm-5">
+											<input class="form-control website" name="compay_website" type="url" value="" placeholder="http://">
+										</div>
+										<div class="col-xs-2 aside_input_button">
+											<button type="button" class="btn btn-default" onclick="jump_website()">
 								  <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
 								</button>
-							</div>
+										</div>
 
-						</div>
+									</div>
 
-						<div class="form-group row ">
-							<label class="col-xs-12 col-md-2 col-sm-2 control-label" >区块链浏览器：</label>
-							<div class="col-xs-10 col-md-5 col-sm-5">
-								<input class="form-control" name="block_browser" type="url"  value="" placeholder="http://">
-							</div>
-							<div class="col-xs-2 aside_input_button" >
-								<button type="button" class="btn btn-default" onclick="jump_block_browser()">
+									<div class="form-group row ">
+										<label class="col-xs-12 col-md-2 col-sm-2 control-label">区块链浏览器：</label>
+										<div class="col-xs-10 col-md-5 col-sm-5">
+											<input class="form-control" name="block_browser" type="url" value="" placeholder="http://">
+										</div>
+										<div class="col-xs-2 aside_input_button">
+											<button type="button" class="btn btn-default" onclick="jump_block_browser()">
 									<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
 								</button>
-							</div>
-						</div>
+										</div>
+									</div>
 
-						<div class="form-group row">
-							<label class="col-xs-12 col-md-2 col-sm-2 control-label">白皮书：</label>
+									<div class="form-group row">
+										<label class="col-xs-12 col-md-2 col-sm-2 control-label">白皮书：</label>
 
-							<!--选择上传的白皮书(隐藏)-->
-							<div hidden="true">
-								<input class="white_paper" name="white_paper" type="file" style="display:none"  >
-							</div>
+										<!--选择上传的白皮书(隐藏)-->
+										<div hidden="true">
+											<input class="white_paper" name="white_paper" type="file" style="display:none">
+										</div>
 
-							<!--显示文件名-->
-							<div class="col-xs-10 col-md-5 col-sm-5 show_white_papaer_name">
-								<input readonly="readonly" class="form-control white_paper_file_name" name="white_paper_file_name" value="" placeholder=".pdf (小于20M)">
-							</div>
+										<!--显示文件名-->
+										<div class="col-xs-10 col-md-5 col-sm-5 show_white_papaer_name">
+											<input readonly="readonly" class="form-control white_paper_file_name" name="white_paper_file_name" value="" placeholder=".pdf (小于20M)">
+										</div>
 
-							<!-- 选择白皮书button -->
-							<div class="col-xs-1 aside_input_button" >
-								<button type="button" class="btn btn-default click_input_white_paper_file" >
+										<!-- 选择白皮书button -->
+										<div class="col-xs-1 aside_input_button">
+											<button type="button" class="btn btn-default click_input_white_paper_file">
 								  <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
 								</button>
-							</div>
+										</div>
 
-							<!-- 上传白皮书 -->
-							<div class="col-xs-1" style="margin-left:-30px;">
-								<button type="button" disabled='disabled' class="btn btn-default upload-white-paper" onclick="doUpload(this.parentElement.parentElement.children[1].children[0])">
+										<!-- 上传白皮书 -->
+										<div class="col-xs-1" style="margin-left:-30px;">
+											<button type="button" disabled='disabled' class="btn btn-default upload-white-paper" onclick="doUpload(this.parentElement.parentElement.children[1].children[0])">
 									<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
 								</button>
-							</div>
-						</div>
+										</div>
+									</div>
 
+									<hr />
 
-						<hr />
+									<div class="form-group row">
+										<label class="col-xs-12 col-md-2 col-sm-2 control-label">介绍：</label>
+									</div>
 
-						<div class="form-group row">
-							<label class="col-xs-12 col-md-2 col-sm-2 control-label">介绍：</label>
-						</div>
+									<div class="form-group row">
+										<div class="col-xs-12 col-md-8 col-sm-8">
+											<textarea class="form-control" rows="15" name="project_content"></textarea>
+										</div>
+									</div>
 
-						<div class="form-group row">
-							<div class="col-xs-12 col-md-8 col-sm-8">
-								<textarea class="form-control" rows="15" name="project_content" ></textarea>
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<div class="col-xs-9 col-xs-offset-3 ">
-								<!--<a href="#" class="btn btn-primary form1-confirm-hook submit_control">提交</a>-->
-								 <button type="submit" class="btn btn-primary form1-confirm-hook submit_control" style="width: 130px;">提交</button> 
-							</div>
-						</div>
+									<div class="form-group row">
+										<div class="col-xs-9 col-xs-offset-3 ">
+											<!--<a href="#" class="btn btn-primary form1-confirm-hook submit_control">提交</a>-->
+											<button type="submit" class="btn btn-primary form1-confirm-hook submit_control" style="width: 130px;">提交</button>
+										</div>
+									</div>
 
 					</form>
-				</div>
-			</div>
-		</div>
-
+					</div>
+					</div>
+					</div>
+		<footer class="fixed-footer-wrap" style="bottom: -80px">
+        <div class="footer-detail">
+            <div class="container">
+                <div class="row">
+                    <!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
+                    <span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a></span>
+                    <div class="pull-right">
+                        <span class="footer-right"><a href="#">加入我们</a></span>
+                        <span class="footer-right"><a href="#">联系我们</a></span>
+                    </div>
+                    <!--<div class="col-md-5"></div>-->
+                </div>
+            </div>
+        </div>
+    </footer>
+	</div>	
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -293,10 +308,8 @@
 		<!--nice-validate-->
 		<script src="js/nice-validator/jquery.validator.js?local=zh-CN"></script>
 		<script src='js/common.js'></script>
-
 		<!--handmade-->
 		<script src="js/chain-new.js"></script>
-
 
 	</body>
 
