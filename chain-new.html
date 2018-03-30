@@ -35,10 +35,10 @@
 						<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
 							<ul class="nav navbar-nav navbar-left">
 								<li>
-									<a id="nav-docs" href="/docs">播报</a>
+									<a id="nav-docs" href="/cometBlock/index.html">播报</a>
 								</li>
 								<li>
-									<a id="nav-updates" href="/updates">链库</a>
+									<a id="nav-updates" href="/cometBlock/chain.html">链库</a>
 								</li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right nav-index-img">
@@ -117,32 +117,26 @@
 						<hr /><br />
 
 						<div class="form-group">
-							<label class="col-xs-12 col-md-2 col-sm-12 control-label">团队：</label>
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">团队：</label>
 							<div class="team">
 								<div class="col-xs-6 col-md-2 col-sm-3">
 									<!--图片显示-->
 									<div class="team_image_box">
 										<img src="img/no_image.png" class="" />
 									</div>
-
 									<!-- 团队信息 -->
-									<div class="member_mess">
+									<div>
+										<a href="javascript:;" class="file">选择
+										  <input type="file"  name="file" class="member_pic member_0">
+										</a>
+										<button type="button" class="btn btn-default upload-button" disabled='disabled' onclick="doUpload(this.previousElementSibling.childNodes[1])">上传
+									</div>
 
-										<div class="">
-											<a href="javascript:;" class="file">选择
-											  <input type="file"  name="file" class="member_pic member_0">
-											</a>
-
-											<button type="button" class="btn btn-default upload-button upload-member-pic" disabled='disabled' onclick="doUpload(this.previousElementSibling.childNodes[1])">上传
-
-										</div>
-
+									<div class="member_msg">
 										<input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称">
 										<input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" >
 									</div>
-
 								</div>
-
 
 							</div>
 
@@ -275,8 +269,8 @@
 
 									<div class="form-group row">
 										<div class="col-xs-9 col-xs-offset-3 ">
-											<!--<a href="#" class="btn btn-primary form1-confirm-hook submit_control">提交</a>-->
-											<button type="submit" class="btn btn-primary form1-confirm-hook submit_control" style="width: 130px;">提交</button>
+											<a href="#" class="btn btn-primary form1-confirm-hook submit_control">提交</a>
+											<!-- <button type="submit" class="btn btn-primary form1-confirm-hook submit_control" style="width: 130px;">提交</button> -->
 										</div>
 									</div>
 
