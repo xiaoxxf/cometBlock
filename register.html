@@ -14,69 +14,92 @@
 		<link rel="stylesheet" href="css/register.css" />
 		<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 		<link rel="stylesheet" href="css/loading.css">
-		
-		<style type="text/css">   
+		<link rel="stylesheet" href="css/common.css" />
+
+		<style type="text/css">
+
 		</style>
 	</head>
+
 	<body lang="zh-CN" class="reader-black-font">
-		<div class="container">
-			<header class="header_title">
-				彗星
-			</header>
-			<form role="form" class="form-register" id="form-register1" action="">
-				<div class="main">
-					<h4 class="title">
+		<div class="block-comet-main-wrap">
+
+			<div class="container">
+				<header class="header_title">
+					彗星
+				</header>
+				<form role="form" class="form-register" id="form-register1" action="">
+					<div class="main">
+						<h4 class="title">
 						<div class="normal-title">
 					    <a class="active" href="login.html">登录</a>
 						<b>·</b>
 					    <a id="js-sign-up-btn" class="" href="">注册</a>
 						</div>
 					</h4>
-					<div class="js-sign-in-container">
-						<form id="new_session" action="/sessions" accept-charset="UTF-8" method="post">
-							<div class="input-prepend restyle ">
-								<input placeholder="你的昵称" type="text" class="border_radT" name="userName" id="realName">
-								<i class="fa fa-user"></i>
-							</div>
-							<div class="input-prepend">
-								<input placeholder="手机号" type="text" name="tel" id="session_phone">
-								<i class="fa fa-mobile"></i>
-							</div>
-							<div class="input-prepend">
-								<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
-								<i class="fa fa-unlock-alt"></i>
-							</div>
+						<div class="js-sign-in-container">
+							<form id="new_session" action="/sessions" accept-charset="UTF-8" method="post">
+								<div class="input-prepend restyle ">
+									<input placeholder="你的昵称" type="text" class="border_radT" name="userName" id="realName">
+									<i class="fa fa-user"></i>
+								</div>
+								<div class="input-prepend">
+									<input placeholder="手机号" type="text" name="tel" id="session_phone">
+									<i class="fa fa-mobile"></i>
+								</div>
+								<div class="input-prepend">
+									<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
+									<i class="fa fa-unlock-alt"></i>
+								</div>
 
-							<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="注册">
-							<span class="loader2 loader loaderadd" id="load">
+								<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="注册">
+								<span class="loader2 loader loaderadd" id="load">
 										<div></div>
 									</span>
-							</input>
-							<div class="register-anouceed">
-								<p>点击"注册"即表示您同意并遵守彗星</p>
-								<p>
-									<a href="#">用户协议</a>和
-									<a href="#">隐私协议</a>
-								</p>
-							</div>
+								</input>
+								<div class="register-anouceed">
+									<p>点击"注册"即表示您同意并遵守彗星</p>
+									<p>
+										<a href="#">用户协议</a>和
+										<a href="#">隐私协议</a>
+									</p>
+								</div>
 
-						</form>
-						<!-- 更多登录方式 -->
-						<div class="more-sign">
-							<h6>社交帐号直接注册</h6>
-							<ul>
-								<li>
-									<img src="img/wechat.png" width="40px" />
-								</li>
-								<li>
-									<a href="">其它</a>
-								</li>
-							</ul>
+							</form>
+							<!-- 更多登录方式 -->
+							<div class="more-sign">
+								<h6>社交帐号直接注册</h6>
+								<ul>
+									<li>
+										<img src="img/wechat.png" width="40px" />
+									</li>
+									<li>
+										<a href="">其它</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</form>
+
+			</div>
+			<footer class="fixed-footer-wrap">
+				<div class="footer-detail">
+					<div class="container">
+						<div class="row">
+							<!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
+							<span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a>
+							</span>
+							<div class="pull-right">
+								<span class="footer-right"><a href="#">加入我们</a></span>
+								<span class="footer-right"><a href="#">联系我们</a></span>
+							</div>
+							<!--<div class="col-md-5"></div>-->
 						</div>
 					</div>
-					
 				</div>
-			</form>
+			</footer>
 		</div>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -85,4 +108,5 @@
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src="js/register.js"></script>
 	</body>
+
 </html>

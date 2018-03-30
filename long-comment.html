@@ -3,10 +3,10 @@
 <html>
 
 	<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>彗星链库新建</title>
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
@@ -14,98 +14,117 @@
 		<link rel="stylesheet" href="css/long-comment.css">
 
 	</head>
+
 	<body lang="zh-CN" class="reader-black-font">
-  <div class="comet-main" >
-  	<!-- 全局顶部导航栏 -->
-  	<div class="navbar-fixed-container" style="margin-bottom:100px">
-  			<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
-  					<nav role="navigation">
-  							<div class="container collapsed">
-  									<div class="nav navbar-header">
-  											<button type="button" class="navbar-toggle" data-toggle="collapse"
-  															data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+		<div class="block-comet-main-wrap">
+		
+		<div class="comet-main">
+			<!-- 全局顶部导航栏 -->
+			<div class="navbar-fixed-container" style="margin-bottom:100px">
+				<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+					<nav role="navigation">
+						<div class="container collapsed">
+							<div class="nav navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
   													<span class="icon-bar"></span>
   													<span class="icon-bar"></span>
   													<span class="icon-bar"></span>
   											</button>
-  											<a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
-  									</div>
-  									<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
-  											<ul class="nav navbar-nav navbar-left">
-  													<li><a id="nav-docs" href="index.html">播报</a></li>
-  													<li><a id="nav-updates" href="chain.html">链库</a></li>
-  											</ul>
-  											<ul class="nav navbar-nav navbar-right nav-index-img">
-  													<li>
-  															<a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
-  																	<img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
-  																			 alt="Download VS Code">
-  															</a>
-  													</li>
-  											</ul>
-  											<ul class="nav navbar-nav navbar-right">
-  													<li>
-  															<div class="nav_search">
-  																	<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
-  																				 onkeyup="test()">
-  																	<a class="nav_search_icon">
-  																	</a>
-  															</div>
-  													</li>
-  											</ul>
-  									</div>
-  							</div>
-  					</nav>
-  			</div>
-  	</div>
-
-		<!-- 评测 -->
-		<div class="container">
-			<!-- 币种信息 -->
-			<div class="row">
-				<div class="coin col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
-
-				 	<div class="coin-image">
-						<img src="img/coin_2.png" alt="">
-				 	</div>
-					<div class="coin-message">
-						<div class="coin-name">
-							<p >ETH</p>
+								<a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
+							</div>
+							<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+								<ul class="nav navbar-nav navbar-left">
+									<li>
+										<a id="nav-docs" href="index.html">播报</a>
+									</li>
+									<li>
+										<a id="nav-updates" href="chain.html">链库</a>
+									</li>
+								</ul>
+								<ul class="nav navbar-nav navbar-right nav-index-img">
+									<li>
+										<a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+											<img class="download-icon" src="img/temp1.jpg" width="30px" height="30px" alt="Download VS Code">
+										</a>
+									</li>
+								</ul>
+								<ul class="nav navbar-nav navbar-right">
+									<li>
+										<div class="nav_search">
+											<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search" onkeyup="test()">
+											<a class="nav_search_icon">
+											</a>
+										</div>
+									</li>
+								</ul>
+							</div>
 						</div>
-						<div class="coin-score">
-							<span class="my-rating" style="font-size:10px"></span>
-							<span class="live-rating" style="display:none"></span>
+					</nav>
+				</div>
+			</div>
+
+			<!-- 评测 -->
+			<div class="container">
+				<!-- 币种信息 -->
+				<div class="row">
+					<div class="coin col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
+
+						<div class="coin-image">
+							<img src="img/coin_2.png" alt="">
+						</div>
+						<div class="coin-message">
+							<div class="coin-name">
+								<p>ETH</p>
+							</div>
+							<div class="coin-score">
+								<span class="my-rating" style="font-size:10px"></span>
+								<span class="live-rating" style="display:none"></span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- 标题 -->
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
+						<input type="text" name="head" value="" placeholder="请输入标题" class="input-head" style="margin-left:-10px">
+					</div>
+				</div>
+
+				<!-- 正文 -->
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+						<div id="editor" class="edit-comment" style="margin-left:-10px">
+
 						</div>
 					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-5 col-xs-5 col-xs-offset-4">
+						<a href="#" class="btn btn-primary submit_comment">提交</a>
+					</div>
+				</div>
 
-				</div>
-			</div>
-			<!-- 标题 -->
-			<div class="row" >
-				<div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
-					<input type="text" name="head" value="" placeholder="请输入标题" class="input-head" style="margin-left:-10px">
-				</div>
-			</div>
-
-			<!-- 正文 -->
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
-					<div id="editor" class="edit-comment" style="margin-left:-10px">
-
-			    </div>
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-md-6 col-md-offset-5 col-xs-5 col-xs-offset-4">
-					<a href="#" class="btn btn-primary submit_comment">提交</a>
-				</div>
 			</div>
 
 		</div>
-
-	</div>
-
+		<footer class="fixed-footer-wrap" style="bottom: -80px">
+	        <div class="footer-detail">
+	            <div class="container">
+	                <div class="row">
+	                    <!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
+	                    <span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a></span>
+	                    <div class="pull-right">
+	                        <span class="footer-right"><a href="#">加入我们</a></span>
+	                        <span class="footer-right"><a href="#">联系我们</a></span>
+	                    </div>
+	                    <!--<div class="col-md-5"></div>-->
+	                </div>
+	            </div>
+	        </div>
+	    </footer>
+	   </div>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/bootstrap.min.js"></script>
