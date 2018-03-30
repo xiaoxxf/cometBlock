@@ -20,6 +20,12 @@ $(function(){
   }
 })
 
+var getOnloadFunc = function(aImg) {
+	return function(evt) {
+		aImg.src = evt.target.result;
+	};
+}
+
 var projectData = {}
 
 $(function(){
@@ -29,6 +35,13 @@ $(function(){
   doJavaGet(uri,function(data){
     projectData = data.datas[0]
     $('.coin-name').find('p').html(projectData.projectBigName)
+    var img = document.createElement("img");
+    var src = projectData.projectLogo
+
+    img.src = src
+    $(".coin-image").append(img);
+
+
     console.log(projectData)
   },'json')
 
@@ -127,11 +140,13 @@ $(function(){
     // var uri = 'http://10.0.0.169:8080/blockchain/addReview'
 
     function callback(result){
-      if(result.code=="0"){
-        ui.submiting = false
-        // TODO: 跳转回详情页
-        console.log('ok')
-       }
+      ui.submiting = false
+      layer.msg('提交成功', {
+        time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+        end:function(){
+          window.location.href='chain-detail.html?projectId=' + projectData.projectId;
+        }
+      });
     }
     var uri = 'blockchain/addReview'
     doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
