@@ -289,12 +289,15 @@ a img {
 .comment-item .op-lnks a:link {
 	color: #666666;
 }
-.comment-item .op-lnks .reply_comment {
+.comment-item .op-lnks .reply_comment.reply_comment_clicked{
 	color: #fff !important;
 	background-color: #bfbfbf;
 	padding: 1px 3px;
 	margin-right: 8px;
 	border-radius: 5px;
+}
+.comment-item .op-lnks .reply_comment {
+
 }
 .comment-container-wrap .report-comment .header {
 	background-color: rgba(238, 238, 238, 0.8);
@@ -312,7 +315,6 @@ a img {
  .comment-container-wrap .report-comment .header{
     background-color: rgba(238,238,238,0.8);
     border-radius: 10px;
->>>>>>> 1b98315c4edd150076fef578dad814582b9f9c44
 }
 
 .reply-comment {
@@ -418,15 +420,17 @@ a img {
 	-ms-user-select: none;
 	user-select: none;
 	text-decoration: none;
-	background: #fbe9d9;
-	border: 1px solid #ff9112;
-	color: #ff9112;
+	border: 1px solid #e5e5e5;
 	border-radius: 5px;
 	font-size: 12px;
 	padding: 6px 12px;
 	box-sizing: content-box;
 }
-
+.LikeButton.clicked-like{
+	background: #fbe9d9;
+	border: 1px solid #ff9112;
+	color: #ff9112;
+}
 .main-like {
 	margin-top: 20px;
 }
@@ -473,7 +477,9 @@ a img {
 	float: left;
 	display: block;
 }
-
+#report_value ul li label input{
+	margin-top:-5px;
+}
 .bn-flat {
 	display: block;
 	margin: auto;

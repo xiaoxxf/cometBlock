@@ -134,7 +134,6 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 	window.localStorage.setItem('currentHref',currentHref);
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
-
 			$("#load").attr({
 				style: "-webkit-animation:loader2 1s 0.23s linear infinite"
 			});

@@ -34,7 +34,7 @@
 	}
 </style>
 <body lang="zh-CN" class="reader-black-font">
-<div class="comet-main">
+<div class="comet-main block-comet-main-wrap">
 	<!-- 全局顶部导航栏 -->
 	<div class="navbar-fixed-container">
 		<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
@@ -166,6 +166,21 @@
 
 		</div>
 	</div>
+    <footer class="fixed-footer-wrap" style="bottom: -80px">
+        <div class="footer-detail">
+            <div class="container">
+                <div class="row">
+                    <!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
+                    <span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a></span>
+                    <div class="pull-right">
+                        <span class="footer-right"><a href="#">加入我们</a></span>
+                        <span class="footer-right"><a href="#">联系我们</a></span>
+                    </div>
+                    <!--<div class="col-md-5"></div>-->
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </div>
 <script src="js/jquery-2.1.1.js"></script>
@@ -178,7 +193,7 @@
 <script id="tpl" type="text/html">
   <%for(var i = 0; i < list.length; i++) {%>
 		<li>
-			<a href="chain-detail.htm?project_id=<%=list[i].projectId %>"  >
+			<a href="chain-detail.html?projectId=<%=list[i].projectId %>"  >
 				<img src='<%=list[i].projectLogo %>'  alt="">
 				<p class="name"><%=list[i].projectName%></p>
 			</a>
