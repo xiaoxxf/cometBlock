@@ -94,7 +94,8 @@
 }
 
 .search-result{
-  display: inline-flex;
+  display: flex;
+  margin-bottom: 20px;
 }
 
 .search-result-img{
