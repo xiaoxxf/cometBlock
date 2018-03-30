@@ -1,5 +1,40 @@
 var userId = $.cookie('userid');//获取userid
 
+// 判断是否登录
+$(function(){
+  if(userId == undefined){
+    layer.open({
+      title: '',
+      content: '请先登录您的账号',
+      btn: ['登录', '注册'],
+      yes: function(){
+        window.location.href='login.html'
+      },
+      btn2: function(){
+        window.location.href='register.html'
+      },
+      cancel: function(){
+        return false
+      }
+    });
+  }
+})
+
+var projectData = {}
+
+$(function(){
+  var projectId = location.search.split('?')[1]
+  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=1&projectId=' + projectId
+
+  doJavaGet(uri,function(data){
+    projectData = data.datas[0]
+    $('.coin-name').find('p').html(projectData.projectBigName)
+    console.log(projectData)
+  },'json')
+
+})
+
+
 var ui = {
   'submiting': false
 }
@@ -82,8 +117,7 @@ $(function(){
   	var data = {
   		textTitle: $('input[name="head"]')[0].value,
   		textContent: editor.txt.html(),
-      // TODO: 要换成projectId
-  		projectId: "331226f0-4d51-4c0e-b964-533817fb7430", //项目Id
+  		projectId: projectData.projectId, //项目Id
   		score: score, //评分
   		type: 2, //长文的type为2
   		userId: userId, //userId
