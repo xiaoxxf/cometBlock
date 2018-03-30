@@ -1,14 +1,54 @@
-// 分页数据处理
-page({
-    box:'paginator',//存放分页的容器
-    count:50,//总页数
-    num:8,//页面展示的页码个数
-    step:6,//每次更新页码个数
-    callBack:function(i){
-        //点击页码的按钮发生回调函数一般都是操作ajax
-        console.log('调用'+i)
-    }
-})
-$("#paginator").on('click','.goNext, .goPre',function (e) {
+
+//加载长评列表
+function ajaxGetLongCommentReview() {
+    // var projectId = getUrlParam('projectId');
+    var reviewId = getUrlParam('reviewId');
+    var uri = 'blockchain/quaryReview?parentId='+reviewId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+           // if(res.datas.length >0 ){
+                var data = res.datas;
+                var commentTpl = $("#template-comment-list").html();
+                var teamContent = template(commentTpl, {list: res.datas});
+                $(".comment-list-hook").html(teamContent);
+                //if(res.datas.length >=10){
+                // 分页数据处理
+                if(longCommentCurrentPage == 1){
+                    initPage(res.count);
+                }
+                $(".paginator-warp").show();
+                //}
+           // }else{
+            //}
+            $(".waiting-data").css('display','none');
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
+}
+function initPage(count) {
+    $(".paginator-warp").pagination({
+        currentPage: longCommentCurrentPage,
+        totalPage: parseInt(count/pageSize)+1,
+        isShow: false,
+        count: 3,
+        prevPageText: "< 前页",
+        nextPageText: "后页 >",
+        callback: function(current) {
+            longCommentCurrentPage = current;
+            ajaxGetLongCommentReview();
+        }
+    });
+
+}
+/*
+$("#paginator").on('click','.goNext',function (e) {
     var pageNum = $("#paginator .active").text();
+    longCommentCurrentPage = pageNum;
+    ajaxGetLongCommentReview();
 })
+$("#paginator").on('click','.goPre',function (e) {
+    var pageNum = $("#paginator .active").text();
+    longCommentCurrentPage = pageNum;
+    ajaxGetLongCommentReview();
+})*/

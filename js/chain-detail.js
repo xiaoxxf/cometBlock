@@ -51,7 +51,7 @@ $(".long-comment-load-more .loading-more").on('click',function () {
 })
 //点赞
 $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
-    var self = $(e.currentTarget).toggleClass("on");
+    var self = $(e.currentTarget);
     var reviewid = self.data('reviewid');
     var userId = $.cookie('userid');//获取userid
     var likes = 0;
@@ -70,14 +70,15 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
         return;
     }
     if(self.hasClass('on')){
-        likes = 1;
-    }else{
         likes = 0;
+    }else{
+        likes = 1;
     }
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             console.log(res.msg)
+            self.toggleClass("on");
             var num  = parseInt(self.parent().find(".num").text());
             if(self.hasClass('on')){
                 self.parent().find(".num").text(num+1)
@@ -104,7 +105,8 @@ var shortCommentCurrentPage = 1 ;
 var longCommentCurrentPage = 1 ;
 var pageSize = 10;
 function  ajaxGetChainDetail() {
-    var projectId = getUrlParam('projectId');
+    //var projectId = getUrlParam('projectId');
+    var projectId = '1af0129e-de93-4279-b310-633e58a725fd';
     var uri = 'blockchain/detail?projectId='+projectId ;
     $(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
     doJavaGet(uri, function(res) {
