@@ -1,4 +1,24 @@
-var userId = window.localStorage.userid;
+var userId = $.cookie('userid');//获取userid
+
+// 判断是否登录
+$(function(){
+  if(userId == undefined){
+    layer.open({
+      title: '',
+      content: '请先登录您的账号',
+      btn: ['登录', '注册'],
+      yes: function(){
+        window.location.href='login.html'
+      },
+      btn2: function(){
+        window.location.href='register.html'
+      },
+      cancel: function(){
+        return false
+      }
+    });
+  }
+})
 
 //日期选择
 $("#date_pick").datetimepicker({
@@ -48,6 +68,7 @@ $('.white_paper').on('change', function(e){
 	file = e.currentTarget.files[0];
 
 	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
+    layer.msg('请选择小于20M的PDF文件')
     return false
 	}
 	var name = file.name;
@@ -64,21 +85,23 @@ var getOnloadFunc = function(aImg) {
 //币种图片选择及预览
 var input_project_logo = document.getElementById("project_logo_input");
 input_project_logo.addEventListener("change", function() {
+  $(".coin_image_box").html("");
+  // 校验图片
   var file = this.files[0];
-
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
+    layer.msg('请选择小于2M的图片文件',{time:1000})
+    $('.upload-project-logo').attr('disabled','disabled')
     return false
   }
-
-	$(".coin_image_box").html("");
+  // 预览图片
   var img = document.createElement("img");
   $(img).css("width","110px")
   $(img).css("height","100px")
   $(".coin_image_box").append(img);
-
   var reader = new FileReader();
   reader.onload = getOnloadFunc(img);
   reader.readAsDataURL(file);
+  // 允许上传
   $('.upload-project-logo').removeAttr('disabled')
 }, false);
 
@@ -87,13 +110,15 @@ $('.team').on('change', $('.member_pic'), function(e) {
   if (e.target.type != 'file') {
     return false
   }
+  team_image_box = e.target.parentNode.parentNode.parentNode.previousElementSibling // team_image_box
+  team_image_box.innerHTML = ""
 
   var file = e.target.files[0];
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
+    layer.msg('请选择小于2M的图片文件',{time:1000})
+    e.target.parentElement.nextElementSibling.setAttribute('disabled','disabled')
     return false
   }
-  team_image_box = e.target.parentNode.parentNode.parentNode.previousElementSibling // team_image_box
-  team_image_box.innerHTML = ""
 
   var img = document.createElement("img");
 
@@ -180,7 +205,7 @@ function doUpload(e){
         $(".upload-white-paper").attr('disabled','disabled')
       }
       ui.fileUpLoading = false
-      console.log("ok");
+      layer.msg('上传成功')
     },
     error:function(e){
       ui.fileUpLoading = false
@@ -245,7 +270,7 @@ $('#form1').validator({
   },
 
   fields: {
-    'project_logo': 'required;imageTypeAndSize',
+    'project_logo': 'required;',
 		'project_name': 'required',
 		'project_big_name': 'required',
     'project_type': 'required',
@@ -255,8 +280,6 @@ $('#form1').validator({
 		'block_browser': 'url',
 		'project_content': 'required',
     'currency_circulation': 'required;integer',
-    'white_paper': 'pdfTypeAndSize',
-    'white_paper_file_name': 'pdf',
   }
 });
 
@@ -289,12 +312,12 @@ $('.submit_control').on('click', function(){
       team.splice(i,1)
     }
   }
-  
+
   // 发行价格
   var exchangeRate = "";
   $('input[name="exchange_rate"]').each(function(i) {
 	exchangeRate += $(this).val();
-	if(i!= $('input[name="exchange_rate"]').length-1 ) 
+	if(i!= $('input[name="exchange_rate"]').length-1 )
 		exchangeRate += ","
   });
 
@@ -310,7 +333,7 @@ $('.submit_control').on('click', function(){
     "companyWebsite":       form1.compay_website.value,
     "projectContent":       form1.project_content.value,
     "whitePaper":           allFile.whitePaper,
-    "exchangeRate":			exchangeRate,
+    "exchangeRate":			    exchangeRate,
     "userId":               userId,
     "chainTeamList":        team
   };
@@ -324,19 +347,24 @@ $('.submit_control').on('click', function(){
       beforeSend: function(){
         ui.submiting = true
       },
+
       success: function (result) {
         if(result.code=="0"){
-          window.location.href='chain.html';
           ui.submiting = false
-          console.log('ok')
+          layer.msg('提交成功，请等待审核', {
+            time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+            end:function(){
+            window.location.href='chain.html';
+            }
+          });
         }
         else{
-          alert("保存失败");
+          layer.msg('提交失败，请重试');
           return false
         }
       },
       error: function (err) {
-          //$.dialog.tips("Request Error!");
+        layer.msg('提交失败，请重试');
       }
   });
 

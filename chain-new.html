@@ -12,18 +12,20 @@
 		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" href="css/chain-new.css">
+
 	</head>
 
 	<body lang="zh-CN" class="reader-black-font">
 		<!-- 全局顶部导航栏 -->
-	<div class="block-comet-main-wrap">
-		
-		<div class="navbar-fixed-container">
-			<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
-				<nav role="navigation">
-					<div class="container collapsed">
-						<div class="nav navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+		<div class="comet-main block-comet-main-wrap">
+
+    <div class="navbar-fixed-container">
+        <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
+            <nav role="navigation">
+                <div class="container collapsed">
+                    <div class="nav navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -128,7 +130,7 @@
 
 										<div class="">
 											<a href="javascript:;" class="file">选择
-												<input type="file" name="file" class="member_pic member_0" data-rule='imageTypeAndSize'>
+											  <input type="file"  name="file" class="member_pic member_0">
 											</a>
 
 											<button type="button" class="btn btn-default upload-button upload-member-pic" disabled='disabled' onclick="doUpload(this.previousElementSibling.childNodes[1])">上传
@@ -226,8 +228,8 @@
 										</div>
 										<div class="col-xs-2 aside_input_button">
 											<button type="button" class="btn btn-default" onclick="jump_block_browser()">
-									<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-								</button>
+												<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+											</button>
 										</div>
 									</div>
 
@@ -247,15 +249,15 @@
 										<!-- 选择白皮书button -->
 										<div class="col-xs-1 aside_input_button">
 											<button type="button" class="btn btn-default click_input_white_paper_file">
-								  <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-								</button>
+								  		<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+											</button>
 										</div>
 
 										<!-- 上传白皮书 -->
 										<div class="col-xs-1" style="margin-left:-30px;">
 											<button type="button" disabled='disabled' class="btn btn-default upload-white-paper" onclick="doUpload(this.parentElement.parentElement.children[1].children[0])">
-									<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-								</button>
+												<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+											</button>
 										</div>
 									</div>
 
@@ -278,29 +280,32 @@
 										</div>
 									</div>
 
-					</form>
+						</form>
 					</div>
-					</div>
-					</div>
-		<footer class="fixed-footer-wrap" style="bottom: -80px">
-        <div class="footer-detail">
-            <div class="container">
-                <div class="row">
-                    <!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
-                    <span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a></span>
-                    <div class="pull-right">
-                        <span class="footer-right"><a href="#">加入我们</a></span>
-                        <span class="footer-right"><a href="#">联系我们</a></span>
-                    </div>
-                    <!--<div class="col-md-5"></div>-->
-                </div>
-            </div>
-        </div>
-    </footer>
-	</div>	
+			</div>
+		</div>
+
+		<footer class="fixed-footer-wrap" style="bottom: -70px">
+				<div class="footer-detail">
+						<div class="container">
+								<div class="row">
+										<!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
+										<span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a></span>
+										<div class="pull-right">
+												<span class="footer-right"><a href="#">加入我们</a></span>
+												<span class="footer-right"><a href="#">联系我们</a></span>
+										</div>
+										<!--<div class="col-md-5"></div>-->
+								</div>
+						</div>
+				</div>
+		</footer>
+		</div>
+
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/plugins/layer/layer.js"></script>
 		<!--datetiempicker-->
 		<script src="js/bootstrap-datetimepicker.js"></script>
 		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
