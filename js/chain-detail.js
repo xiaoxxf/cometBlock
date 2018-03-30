@@ -36,7 +36,6 @@ $("#rating #stars img").on('mouseenter',function (e) {
 $("#rating #stars").on('mouseleave',function (e) {
     var self = $(e.currentTarget);
     $("#rateword").text('')
-    //self.parent().parent().find('img').attr('src','img/star-empty.png')
 })
 //短评加载更多
 $(".short-comment-load-more .loading-more").on('click',function () {
@@ -49,10 +48,6 @@ $(".long-comment-load-more .loading-more").on('click',function () {
     //点击ajax请求数据
     longCommentCurrentPage++;
     ajaxGetLongComments();
-   /* $(".long-comment-load-more .loading-more").hide();
-    $(".long-comment-load-more .loader1").css('display','flex');
-    $(".long-comment-load-more .loading-more").show();
-    $(".long-comment-load-more .loader1").css('display','none');*/
 })
 //点赞
 $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
@@ -109,9 +104,9 @@ var shortCommentCurrentPage = 1 ;
 var longCommentCurrentPage = 1 ;
 var pageSize = 10;
 function  ajaxGetChainDetail() {
-    // var projectId = getUrlParam('projectId');
-    var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
+    var projectId = getUrlParam('projectId');
     var uri = 'blockchain/detail?projectId='+projectId ;
+    $(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;

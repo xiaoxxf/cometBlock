@@ -477,7 +477,9 @@ a img {
 	float: left;
 	display: block;
 }
-
+#report_value ul li label input{
+	margin-top:-5px;
+}
 .bn-flat {
 	display: block;
 	margin: auto;

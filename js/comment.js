@@ -1,5 +1,5 @@
 //举报弹出框
-$('#comments .report_comment').on('click',function (e) {
+$('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {
     console.log($(e.currentTarget))
     layer.open({
         type: 1,
@@ -11,7 +11,6 @@ $('#comments .report_comment').on('click',function (e) {
     });
 });
 //点击引用
-//comment-list-hook
 $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     var self =$(e.currentTarget),
         author = self.data('user_name'),
@@ -33,6 +32,39 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     $("#add_comment .author").text(author);
     $("#add_comment .parent-txt .short").text(parentTxt);
     $(".reply-comment").fadeIn()
+});
+//点击删除
+$('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
+    var self =$(e.currentTarget),
+        author = self.data('user_name'),
+        userPwd = JSON.parse(window.localStorage.getItem('userinfo')).userPwd,
+        reviewId = self.data('reviewid');
+        parentTxt = self.data('parenttxt');
+    var userId = $.cookie('userid');//获取userid
+    if(userId == undefined){
+        layer.msg('您还没有登录');
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#template-reply").html()
+        });
+        return;
+    }
+    layer.confirm('确定删除您的评论么?',
+        {
+        icon: 3,
+        title:0,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        },
+        function(index){
+        //do something
+        layer.close(index);
+    });
 });
 //点击关闭
 $(".comment-list-hook").on('click','.review-comment-form .lnk-close',function (e) {
@@ -85,7 +117,7 @@ $(".comment-detail-mian-hook").on('click','.main-panel-useful button',function (
 $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) {
     var self = $(e.currentTarget).toggleClass("clicked-like");
     var reviewid = self.data('reviewid');
-    var likesnum= self.data('likes_nums');
+    var likesnum= self.data('likes_nums')+1;
     var userId = $.cookie('userid');//获取userid
     var likes = 0;
     var score = $("#n_rating").val();
@@ -102,11 +134,11 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             console.log(res.msg)
-            var num  = parseInt(self.find(".LikeButton-count").text());
+            var num  = parseInt(self.find(".LikeButton-count").text())-1;
             if(self.hasClass('clicked-like')){
-                self.find(".LikeButton-count").text(likesnum+1)
+                self.find(".LikeButton-count").text(likesnum)
             }else{
-                self.find(".LikeButton-count").text(num-1);
+                self.find(".LikeButton-count").text(num);
             }
         } else {
             layer.msg(res.msg);
@@ -161,7 +193,7 @@ function ajaxGetLongCommentReview() {
 
 }
 //点击提交评论
-$(".add_comment-hook").on('click',function (e) {
+$(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     // var projectId = getUrlParam('projectId');
     var userId = $.cookie('userid');//获取userid
     var reviewId = getUrlParam('reviewId');
@@ -203,6 +235,7 @@ $(".add_comment-hook").on('click',function (e) {
     doPostJavaApi(uri,jsonData, function(res) {
         if(res != null && res.code == 0) {
             layer.msg(res.msg);
+            ajaxGetLongCommentReview();
         } else {
             layer.msg(res.msg);
         }
