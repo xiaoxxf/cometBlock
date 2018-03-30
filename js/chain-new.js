@@ -68,7 +68,7 @@ $('.white_paper').on('change', function(e){
 	file = e.currentTarget.files[0];
 
 	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
-    layer.msg('请上传小于20M的PDF文件')
+    layer.msg('请选择小于20M的PDF文件')
     return false
 	}
 	var name = file.name;
@@ -89,7 +89,7 @@ input_project_logo.addEventListener("change", function() {
   // 校验图片
   var file = this.files[0];
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
-    layer.msg('请上传小于2M的图片文件')
+    layer.msg('请选择小于2M的图片文件',{time:1000})
     $('.upload-project-logo').attr('disabled','disabled')
     return false
   }
@@ -110,15 +110,15 @@ $('.team').on('change', $('.member_pic'), function(e) {
   if (e.target.type != 'file') {
     return false
   }
+  team_image_box = e.target.parentNode.parentNode.parentNode.previousElementSibling // team_image_box
+  team_image_box.innerHTML = ""
 
   var file = e.target.files[0];
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
-    layer.msg('请上传小于2M的图片文件')
-    e.target.parentElement.nextElementSibling.setAttribute('disabled')
+    layer.msg('请选择小于2M的图片文件',{time:1000})
+    e.target.parentElement.nextElementSibling.setAttribute('disabled','disabled')
     return false
   }
-  team_image_box = e.target.parentNode.parentNode.parentNode.previousElementSibling // team_image_box
-  team_image_box.innerHTML = ""
 
   var img = document.createElement("img");
 
@@ -205,7 +205,7 @@ function doUpload(e){
         $(".upload-white-paper").attr('disabled','disabled')
       }
       ui.fileUpLoading = false
-      console.log("ok");
+      layer.msg('上传成功')
     },
     error:function(e){
       ui.fileUpLoading = false
@@ -287,7 +287,7 @@ $('#form1').validator({
 
 // 表单提交
 
-$('.submit_control').on('submit', function(){
+$('.submit_control').on('click', function(){
 
   if (ui.submiting) {
     return false
@@ -353,7 +353,7 @@ $('.submit_control').on('submit', function(){
           ui.submiting = false
           layer.msg('提交成功，请等待审核', {
             time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-          end:function(){
+            end:function(){
             window.location.href='chain.html';
             }
           });
