@@ -4,6 +4,7 @@ var userId = $.cookie('userid');//获取userid
 $(function(){
   if(userId == undefined){
     layer.open({
+      closeBtn:0,
       title: '',
       content: '请先登录您的账号',
       btn: ['登录', '注册'],
@@ -12,9 +13,6 @@ $(function(){
       },
       btn2: function(){
         window.location.href='register.html'
-      },
-      cancel: function(){
-        return false
       }
     });
   }
