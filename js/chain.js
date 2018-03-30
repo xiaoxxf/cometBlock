@@ -1,7 +1,8 @@
 
-// 类型
-var chainType = []
+var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
 
+// 渲染类型
+var chainType = []
 $(function(){
 	var uri = 'blockchain/quary?parentId=1'
 	doJavaGet(uri,function(data){
@@ -17,7 +18,7 @@ $(function(){
 
 })
 
-
+// 分类查询
 function searchFromType(e){
 
 	var searchType = 	e
@@ -32,11 +33,9 @@ function searchFromType(e){
 		$('.coin-list-wrap').append(content)
 		$(".waiting-data").hide();
 	}, "json")
+	flag = 3;
 
 }
-
-// 分类查询
-
 
 
 $(function(){
@@ -53,6 +52,7 @@ $(function(){
 			$('.coin-list-wrap').append(content)
 			$(".waiting-data").hide();
 		}, "json")
+		flag = 1;
 	}
 	getChain(index_page);
 
@@ -97,6 +97,7 @@ $(function(){
 				$('.no-result').css('display','')
 				$('.can-not-find').html('找不到"' + key_word +'"项目')
 			}
+			flag = 2;
 
 		}, "json");
 
@@ -126,7 +127,6 @@ $(function(){
 	})
 
 
-
 	window.onscroll = function () {
 	    //监听事件内容
 			// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
@@ -135,10 +135,10 @@ $(function(){
 	    if( $(document).height()== $(window).height() + $(window).scrollTop() ){
 	        //当滚动条到底时,这里是触发内容
 	        //异步请求数据,局部刷新dom
-					if ($('.coin-content').css('display') != 'none') {
+					if (flag == 1) {
 						index_page += 1
 						loadMoreChain()
-					}else if ($('.search-result-box') != 'none') {
+					}else if (flag == 2) {
 						search_page += 1;
 						loadMoreSearch();
 					}
