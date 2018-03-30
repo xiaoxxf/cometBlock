@@ -14,7 +14,9 @@ $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) 
 $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     var self =$(e.currentTarget),
         author = self.data('user_name'),
+        number = self.data('number')+1,
         parentTxt = self.data('parenttxt');
+        $(".comment-list-hook").find('.reply-comment-click').removeClass('reply-comment-click')
         self.addClass('reply-comment-click');
     var userId = $.cookie('userid');//获取userid
     if(userId == undefined){
@@ -30,6 +32,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
         return;
     }
     $("#add_comment .author").text(author);
+    $("#add_comment .number").text(number);
     $("#add_comment .parent-txt .short").text(parentTxt);
     $(".reply-comment").fadeIn()
 });
@@ -37,7 +40,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
 $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
     var self =$(e.currentTarget),
         author = self.data('user_name'),
-        userPwd = JSON.parse(window.localStorage.getItem('userinfo')).userPwd,
+        passWord = JSON.parse(window.localStorage.getItem('userinfo')).userPwd,
         reviewId = self.data('reviewid');
         parentTxt = self.data('parenttxt');
     var userId = $.cookie('userid');//获取userid
@@ -62,7 +65,12 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         skin: 'layui-layer-report', //加上边框
         },
         function(index){
-        //do something
+        var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
+        doJavaGet(uri, function(res) {
+            if(res != null && res.code == 0) {
+                console.log(res.msg)
+            }
+        }, "json");
         layer.close(index);
     });
 });
@@ -122,8 +130,17 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     var likes = 0;
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
-    if(userId == null){
+    if(userId == undefined){
         layer.msg('您还没有登录');
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#template-reply").html()
+        });
+        return;
     }
     if(self.hasClass('clicked-like')){
         likes = 1;
@@ -150,9 +167,8 @@ window.onload = function(){
     ajaxGetReviewDetail();
     ajaxGetLongCommentReview();
 }
-var shortCommentCurrentPage = 1 ;
 var longCommentCurrentPage = 1 ;
-var pageSize = 10;
+var pageSize = 5;
 function  ajaxGetReviewDetail() {
     var reviewId = getUrlParam('reviewId');
     var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
@@ -168,36 +184,15 @@ function  ajaxGetReviewDetail() {
         }
     }, "json");
 }
-//加载长评列表
-function ajaxGetLongCommentReview() {
-    // var projectId = getUrlParam('projectId');
-    var reviewId = getUrlParam('reviewId');
-    var uri = 'blockchain/quaryReview?parentId='+reviewId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
-    doJavaGet(uri, function(res) {
-        if(res != null && res.code == 0) {
-            if(res.datas.length >0 ){
-                var data = res.datas;
-                var commentTpl = $("#template-comment-list").html();
-                var teamContent = template(commentTpl, {list: res.datas});
-                $(".comment-list-hook").append(teamContent);
-                $(".long-comment-load-more .loading-more").show();
-                $(".long-comment-load-more .loader1").css('display','none');
-                if(res.datas.length < 10){
-                }
-            }else{
-            }
-        } else {
-            layer.msg(res.msg);
-        }
-    }, "json");
-
-}
 //点击提交评论
 $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
-    // var projectId = getUrlParam('projectId');
     var userId = $.cookie('userid');//获取userid
     var reviewId = getUrlParam('reviewId');
     var shortTxt = $(".textarea-txt-hook").val();
+    var quote = '';
+    if($(".reply-comment").is(':visible')){
+        quote = $(".reply-comment-wrap .quote-comment-txt").html();
+    }
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -206,7 +201,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
             title: 0,
             skin: 'layui-layer-report', //加上边框
             area: ['550px', '680px'], //宽高
-            content: $("#short-comment-commit-layer").html()
+            content: $("#template-reply").html()
         });
         return;
     }
@@ -228,7 +223,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         textTitle: shortTxt,
         parentId: reviewId, //项目
         type: 1, //长文的type为2
-        userId:userId
+        userId:userId,
+        quote:quote,
     }
     var uri = 'blockchain/addReview';
     var jsonData = JSON.stringify(data);

@@ -260,9 +260,11 @@ a img {
 	color: #999;
 }
 
-.comment-item .reply-quote a,
-.reply-comment .author {
+.comment-item .reply-quote a{
 	padding: 0 2px;
+}
+.reply-comment .author {
+	padding-right: 3px;
 }
 
 .comment-item .reply-quote {
@@ -345,7 +347,9 @@ a img {
 	padding: 0 6px;
 	margin: 0;
 }
-
+.reply-comment .at-sypm{
+	padding-left: 5px;
+}
 .reply-comment .all {
 	display: none;
 }
@@ -402,6 +406,8 @@ a img {
 
 .paginator-warp {
 	margin-top: 50px;
+	display: none;
+	text-align: center;
 }
 
 .LikeButton {
