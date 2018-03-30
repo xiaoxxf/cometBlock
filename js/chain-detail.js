@@ -62,8 +62,17 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var likes = 0;
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
-    if(userId == null){
-        layer.msg('您还没有登录');
+    if(userId == undefined){
+        layer.msg('您还没有登录')
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#short-comment-commit-layer").html()
+        });
+        return;
     }
     if(self.hasClass('on')){
         likes = 1;
