@@ -37,7 +37,9 @@
 				font-weight: 400;
 				color: #969696;
 			}
-			
+			.main h4{
+				font-size:18px;
+			}
 			 .active {
 			 	padding: 10px;
 			 	color: #969696;
