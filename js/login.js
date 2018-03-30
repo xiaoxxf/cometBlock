@@ -128,12 +128,11 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 		tel: $("#session_phone").val(),
 		userType: 2,
 	}
-
 	var uri = 'news/login?userName=' + param.userName + '&userPwd=' + hex_md5(param.userName + param.userPwd);
 	param = JSON.stringify(param);
-
+    var currentHref = location.href
+	window.localStorage.setItem('currentHref',currentHref);
 	doJavaGet(uri, function(res) {
-
 		if(res != null && res.code == 0) {
 
 			$("#load").attr({
@@ -151,7 +150,13 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 				localStorage.setItem('userinfo', JSON.stringify(res.datas));
 				$.cookie('token', res.datas.id,{ expires: expireDate});
 				$.cookie('userid', res.datas.id,{ expires: expireDate });
-				window.location.href = "index.html";
+				var localCurrentHref = window.localStorage.getItem('currentHref');
+				if(localCurrentHref.indexOf('login.html')>0){
+                    window.location.href = "index.html";
+				}else{
+                    window.location.href = localCurrentHref;
+				}
+
 			}, 1500);
 
 		} else {

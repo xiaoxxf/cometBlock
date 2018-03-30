@@ -31,14 +31,23 @@ $(".review-comment-form .lnk-close").on('click',function (e) {
     console.log($(e.currentTarget))
 });
 //useful点击
-$(".main-panel-useful button").on('click',function (e) {
+$(".comment-detail-mian-hook").on('click','.main-panel-useful button',function (e) {
     var self = $(e.currentTarget)
     var usefull = self.data('useful');
     var reviewid = '0e593b24-8d69-49e5-b09c-09b0166c800d'
     //var reviewid = self.data('reviewid');
     var userId = $.cookie('userid');//获取userid
-    if(userId == null){
-        layer.msg('您还没有登录')
+    if(userId == undefined){
+        layer.msg('您还没有登录');
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#template-reply").html()
+        });
+        return;
     }
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&usefull="+usefull;
     doJavaGet(uri, function(res) {
@@ -109,11 +118,12 @@ $(".add_comment-hook").on('click',function (e) {
         layer.open({
             type: 1,
             shade:0,
-            title: '引用',
+            title: 0,
             skin: 'layui-layer-report', //加上边框
             area: ['550px', '680px'], //宽高
             content: $("#short-comment-commit-layer").html()
         });
+        return;
     }
     if($.trim(shortTxt) == ''){
         layer.tips('评论不能为空', '.textarea-txt-hook', {

@@ -188,11 +188,12 @@ $(".short-comment-commit").on('click',function (e) {
         layer.open({
             type: 1,
             shade:0,
-            title: '引用',
+            title: 0,
             skin: 'layui-layer-report', //加上边框
             area: ['550px', '680px'], //宽高
             content: $("#short-comment-commit-layer").html()
         });
+        return;
     }
     if(score == ''){
         layer.tips('给这个项目打个分哦', '#rating', {

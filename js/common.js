@@ -13,7 +13,7 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-var WebApiHostJavaApi = "http://10.0.0.170:8080/";
+var WebApiHostJavaApi = "http://10.0.0.172:8080/";
 var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
     //GetCookie
@@ -92,7 +92,6 @@ function getUrlParam(name) {
     var r = window.location.search.substr(1).match(reg);  //匹配目标参数
     if (r != null) return decodeURI(r[2]); return null; //返回参数值
 }
-
 
 //退出登录
 function Loginout(){
