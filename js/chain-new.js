@@ -289,7 +289,14 @@ $('.submit_control').on('click', function(){
       team.splice(i,1)
     }
   }
-
+  
+  // 发行价格
+  var exchangeRate = "";
+  $('input[name="exchange_rate"]').each(function(i) {
+	exchangeRate += $(this).val();
+	if(i!= $('input[name="exchange_rate"]').length-1 ) 
+		exchangeRate += ","
+  });
 
   // 提交数据
   var data = {
@@ -303,6 +310,7 @@ $('.submit_control').on('click', function(){
     "companyWebsite":       form1.compay_website.value,
     "projectContent":       form1.project_content.value,
     "whitePaper":           allFile.whitePaper,
+    "exchangeRate":			exchangeRate,
     "userId":               userId,
     "chainTeamList":        team
   };
