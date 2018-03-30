@@ -1,6 +1,4 @@
 
-var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
-
 // 渲染类型
 var chainType = []
 $(function(){
@@ -17,11 +15,18 @@ $(function(){
 
 })
 
-// 分类查询
+var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
+var noMoreData = false;
 var searchType = ''
-var search_type_page = 1
-function searchFromType(e){
+var search_type_page = 1;
+var index_page = 1;
+var search_page = 1;
+var pageSize = 12;
 
+// 分类查询
+function searchFromType(e){
+	$('.coin-list-wrap').html('')
+	$(".waiting-data").fadeIn();
 	searchType = 	e
 	var pageSize = 12
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
@@ -29,20 +34,23 @@ function searchFromType(e){
 	doJavaGet(uri,function(result){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
-		$('.coin-list-wrap').html('')
 		$('.coin-list-wrap').append(content)
 		$(".waiting-data").hide();
 	}, "json")
 	flag = 3;
+	noMoreData = false;
 
 }
 
 function loadMoreSearchFromType(){
 
-	var pageSize = 12
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
 
 	doJavaGet(uri,function(result){
+		if (result.datas.length == 0) {
+			noMoreData = true;
+			return false
+		}
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
@@ -52,9 +60,6 @@ function loadMoreSearchFromType(){
 }
 
 
-var pageSize = 12;
-var index_page = 1;
-var search_page = 1;
 
 var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=' + pageSize
 
@@ -66,12 +71,17 @@ function getChain(){
 		$(".waiting-data").hide();
 	}, "json")
 	flag = 1;
+	noMoreData = false;
 }
 getChain();
 
 function loadMoreChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + index_page + '&pageSize=' + pageSize
 	doJavaGet(uri,function(result){
+		if (result.datas.length == 0) {
+			noMoreData = true;
+			return false
+		}
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
@@ -88,8 +98,10 @@ function serachChain(){
 	// 点击搜索后隐藏分类和币种内容
 	$('.coin-item').css('display','none')
 	$('.coin-content').css('display','none')
+	$(".waiting-data").fadeIn();
 
 	doJavaGet(uri,function(result){
+		$(".waiting-data").hide();
 		var search = document.getElementById('search').innerHTML;
 		var content = template(search, {searchList: result.datas});
 		$('.search-result-box').html('');
@@ -111,6 +123,8 @@ function serachChain(){
 			$('.can-not-find').html('找不到"' + key_word +'"项目')
 		}
 		flag = 2;
+		noMoreData = false;
+
 
 	}, "json");
 
@@ -121,6 +135,10 @@ function loadMoreSearch(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
 
 	doJavaGet(uri,function(result){
+		if (result.datas.length == 0) {
+			noMoreData = true;
+			return false
+		}
 		var search = document.getElementById('search').innerHTML;
 		var content = template(search, {searchList: result.datas});
 		$('.search-result-box').append(content);
@@ -148,13 +166,13 @@ window.onscroll = function () {
     if( $(document).height()== $(window).height() + $(window).scrollTop() ){
         //当滚动条到底时,这里是触发内容
         //异步请求数据,局部刷新dom
-				if (flag == 1) {
+				if (flag == 1 && !noMoreData) {
 					index_page += 1
 					loadMoreChain()
-				}else if (flag == 2) {
+				}else if (flag == 2 && !noMoreData) {
 					search_page += 1;
 					loadMoreSearch();
-				}else if (flag == 3){
+				}else if (flag == 3 && !noMoreData){
 					search_type_page += 1;
 					loadMoreSearchFromType();
 				}
