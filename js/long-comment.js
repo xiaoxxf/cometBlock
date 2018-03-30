@@ -1,4 +1,4 @@
-var userId = window.localStorage.userid;
+var userId = $.cookie('userid');//获取userid
 
 var ui = {
   'submiting': false
