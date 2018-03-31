@@ -170,9 +170,7 @@ window.onload = function(){
 }
 function  ajaxGetChainDetail() {
     var projectId = getUrlParam('projectId');
-    //var projectId = '1af0129e-de93-4279-b310-633e58a725fd';
     var uri = 'blockchain/detail?projectId='+projectId ;
-    //$(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
            $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);

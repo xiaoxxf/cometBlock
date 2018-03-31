@@ -112,15 +112,17 @@ function  ajaxGetChainDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
-            if(chainInfoData.length>0){
+            if(chainInfoData != null){
                 $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectBigName);
                 $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
                 var chainTpl = $("#chain-info-temp").html();
                 var content = template(chainTpl, {list: chainInfoData});
-                $(".chain-info-hook").append(content);
-                var teamTpl = $("#team-info-temp").html();
-                var teamContent = template(teamTpl, {list: chainInfoData});
-                $(".team-intro-hook").append(teamContent);
+                $(".chain-info-hook").append(content)
+                if(chainInfoData.chainTeamList != null && chainInfoData.chainTeamList.length > 0){
+                    var teamTpl = $("#team-info-temp").html();
+                    var teamContent = template(teamTpl, {list: chainInfoData});
+                    $(".team-intro-hook").append(teamContent);
+                }
             }
         } else {
             layer.msg(res.msg);
@@ -130,7 +132,6 @@ function  ajaxGetChainDetail() {
 //加载短评列表
 function ajaxGetComments() {
     var projectId = getUrlParam('projectId');
-    //var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
     var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
@@ -157,8 +158,7 @@ function ajaxGetComments() {
 }
 //加载长评列表
 function ajaxGetLongComments() {
-    // var projectId = getUrlParam('projectId');
-    var projectId = '331226f0-4d51-4c0e-b964-533817fb7430';
+    var projectId = getUrlParam('projectId');
     var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+2;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
@@ -186,9 +186,8 @@ function ajaxGetLongComments() {
 }
 //点击提交评论
 $(".short-comment-commit").on('click',function (e) {
-    // var projectId = getUrlParam('projectId');
+    var projectId = getUrlParam('projectId');
     var userId = $.cookie('userid');//获取userid
-    var projectId = '510f0622-22db-4d80-a663-6bc96db8acd3';
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
     if(userId == undefined){
@@ -236,13 +235,13 @@ $(".short-comment-commit").on('click',function (e) {
     doPostJavaApi(uri,jsonData, function(res) {
         if(res != null && res.code == 0) {
             layer.msg(res.msg);
+            ajaxGetComments();
         } else {
             layer.msg(res.msg);
         }
     }, "json");
 })
 function ajaxGetScoreInfo() {
-    //quaryScore?projectId=510f0622-22db-4d80-a663-6bc96db8acd3
     var projectId = getUrlParam('projectId');
     var uri = 'blockchain/quaryScore?projectId='+projectId ;
     doJavaGet(uri, function(res) {
@@ -251,18 +250,25 @@ function ajaxGetScoreInfo() {
             var tempArr = [];
             var widthArr = [];
             var tempScore = 0;
+            var avaScore = 0;
             var count = res.count;
             for(var i = res.datas.length;i > 0;i--){
-                tempArr.push(Math.floor(res.datas[i-1].scores/count* 1000)/10+"%");
+                if(res.datas[i-1].scores == 0){
+                    tempArr.push("0%");
+                }else{
+                    tempArr.push(Math.floor(res.datas[i-1].scores/count* 1000)/10+"%");
+                }
                 widthArr.push(Math.floor(res.datas[i-1].scores/count* 10)/10*150+"px");
                 tempScore += i*res.datas[i-1].scores*2
             }
-            var avaScore = Math.floor(tempScore/count* 10)/10;
+            if(count != 0){
+                avaScore = Math.floor(tempScore/count* 10)/10;
+            }
             tempObj.avaScore = avaScore;
             tempObj.scores = tempArr;
             tempObj.count =  count;
             tempObj.widthArr =  widthArr;
-            tempObj.stars  = parseInt(avaScore*10/2)
+            tempObj.stars  = Math.round(avaScore)*5
             console.log(tempObj)
             //chain-score-temp
             var commentTpl = $("#chain-score-temp").html();
