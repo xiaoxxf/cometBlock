@@ -14,14 +14,13 @@ $(function(){
 	},"json")
 
 })
-
 var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
 var noMoreData = false;
 var searchType = ''
 var search_type_page = 1;
 var index_page = 1;
 var search_page = 1;
-var pageSize = 12;
+var pageSize = 4;
 
 // 分类查询
 function searchFromType(e){
@@ -69,6 +68,8 @@ function getChain(){
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
 		$(".waiting-data").hide();
+		var imgW = $(".coin-list-wrap li img").width();
+		$(".coin-list-wrap li img").css('height',imgW*270/230);
 	}, "json")
 	flag = 1;
 	noMoreData = false;
@@ -84,7 +85,9 @@ function loadMoreChain(){
 		}
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
-		$('.coin-list-wrap').append(content)
+		$('.coin-list-wrap').append(content);
+        var imgW = $(".coin-list-wrap li img").width();
+        $(".coin-list-wrap li img").css('height',imgW*270/230)
 	}, "json")
 }
 
@@ -106,7 +109,6 @@ function serachChain(){
 		var content = template(search, {searchList: result.datas});
 		$('.search-result-box').html('');
 		$('.search-result-box').append(content);
-
 		if (result.datas.length > 0) {
 			// 显示搜索结果
 			$('.search-result-box').css('display','')
@@ -156,8 +158,6 @@ function loadMoreSearch(){
 $(".search-click-hook").on('click',function(){
 	serachChain();
 })
-
-
 window.onscroll = function () {
     //监听事件内容
 		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
@@ -179,3 +179,7 @@ window.onscroll = function () {
 
     }
 }
+$(window).resize(function () {
+    var imgW = $(".coin-list-wrap li img").width();
+    $(".coin-list-wrap li img").css('height',imgW*270/230);
+})

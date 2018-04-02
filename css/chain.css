@@ -69,6 +69,7 @@
 .coin-list-wrap li{
     display: inline-block;
     width: 20%;
+    margin-bottom: 10px;
 }
 .coin-list-wrap li:nth-child(4n+1){
     margin-right:3.33%;

@@ -9,6 +9,8 @@
 }
 .coin-detail-desc-wrap .coin-img{
     width: 80%;
+    margin-left: 10%;
+    margin-top: 15px;
 }
 .coin-detail-desc-wrap .coin-name{
     font-size: 18px;

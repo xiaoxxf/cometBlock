@@ -210,7 +210,7 @@ body{
 .allstar50, .allstar45, .allstar40, .allstar35, .allstar30, .allstar25, .allstar20, .allstar15, .allstar10, .allstar05, .allstar00, .rating1-t, .rating15-t, .rating2-t, .rating25-t, .rating3-t, .rating35-t, .rating4-t, .rating45-t, .rating5-t, .rating-t, .starb ~ .stars5, .starb ~ .stars4, .starb ~ .stars3, .starb ~ .stars2, .starb ~ .stars1, .collectors .stars5, .collectors .stars4, .collectors .stars3, .collectors .stars2, .collectors .stars1 {
     display: inline-block;
     zoom: 1;
-    background: -webkit-image-set(url(../img/ic_rating_s.png) 1x, url(../img/ic_rating_s@2.png) 2x) no-repeat;
+    background: -webkit-image-set(url(../img/ic_rating_s.png) 1x, url(../img/ic_rating_s@2x.png) 2x) no-repeat;
     width: 55px;
     height: 11px;
     margin: 0 3px 0 0;
