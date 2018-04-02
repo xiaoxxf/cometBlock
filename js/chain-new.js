@@ -1,5 +1,17 @@
 var userId = $.cookie('userid');//获取userid
 
+var ui = {
+  'submiting': false,
+  'fileUpLoading': false
+}
+
+// 最终传给服务端的
+var allFile = {
+  'projectLogo': '',
+  'memberPic': [],
+  'whitePaper': ''
+}
+
 // 判断是否登录
 $(function(){
   if(userId == undefined){
@@ -47,13 +59,12 @@ function jump_block_browser(){
   	 window.open(website)
 }
 
-var member_count = 1
+var member_count = 0
 // 添加团队成员
 function add_team_member()
 {
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-remove remove" style="display:none" ></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_' + member_count + ' " ></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
   member_count += 1
-  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-minus minus" style="display:none"></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_0"></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
-
   $('.team').append(string);
 }
 // 减少团队成员
@@ -65,8 +76,15 @@ $('.team').on("mouseenter mouseleave",".team_image_box",function(e){
   };
 });
 
-$('.team').on("click",".minus",function(e){
-  $(e.currentTarget.parentElement.parentElement).remove()
+$('.team').on("click",".remove",function(e){
+  $(e.currentTarget.parentElement.parentElement).remove();
+  // 删除存储的相对应的成员图片
+  n = e.target.parentElement.nextElementSibling.firstElementChild.lastElementChild.className.split(' ')[1].split('_')[1]
+
+  allFile.memberPic.splice(n)
+  if (n != 0) {
+    member_count = member_count - 1
+  }
 })
 
 
@@ -78,10 +96,18 @@ $('.click_input_white_paper_file').on('click', function(){
 $('.white_paper').on('change', function(e){
 	file = e.currentTarget.files[0];
 
+  if(!file){
+    allFile.whitePaper = ''
+    $(".white_paper_file_name").val('');
+    $(".upload-white-paper").attr('disabled')
+    return false
+  }
+
 	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
     layer.msg('请选择小于20M的PDF文件')
     return false
 	}
+
 	var name = file.name;
   $(".white_paper_file_name").val( name );
   $(".upload-white-paper").removeAttr('disabled')
@@ -95,13 +121,14 @@ var getOnloadFunc = function(aImg) {
 }
 //币种图片选择及预览
 
-var temp_file = null
 var input_project_logo = document.getElementById("project_logo_input");
-
 input_project_logo.addEventListener("change", function() {
+  $(".coin_image_box").html("");
 
-  var file = this.files[0] || temp_file
+  var file = this.files[0]
   if(!file){
+    $('.upload-project-logo').attr('disabled','disabled')
+    allFile.projectLogo = ''
     return false;
   }
 
@@ -111,10 +138,8 @@ input_project_logo.addEventListener("change", function() {
     $('.upload-project-logo').attr('disabled','disabled')
     return false
   }
-  temp_file = file;
 
   // 预览图片
-  $(".coin_image_box").html("");
   var img = document.createElement("img");
   $(img).css("width","110px")
   $(img).css("height","100px")
@@ -131,39 +156,39 @@ $('.team').on('change', $('.member_pic'), function(e) {
   if (e.target.type != 'file') {
     return false
   }
+
   team_image_box = e.target.parentNode.parentNode.previousElementSibling// team_image_box
-  team_image_box.innerHTML = ""
+  $(team_image_box).children('img').remove()
 
   var file = e.target.files[0];
+
+  uploadButton = e.target.parentElement.nextElementSibling;
+  // 没选图片
+  if (!file) {
+    uploadButton.setAttribute('disabled','disabled')
+    number = e.target.className.split(' ')[1].split('_')[1]
+    allFile.memberPic.splice(number)
+    return false
+  }
+  // 校验图片
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
     layer.msg('请选择小于2M的图片文件',{time:1000})
-    e.target.parentElement.nextElementSibling.setAttribute('disabled','disabled')
+    uploadButton.setAttribute('disabled','disabled')
     return false
   }
 
+  // 图片预览
   var img = document.createElement("img");
-
   $(img).css("width","110px")
   $(img).css("height","100px")
-  team_image_box.append(img);
+  team_image_box.prepend(img);
 
   var reader = new FileReader();
   reader.onload = getOnloadFunc(img);
   reader.readAsDataURL(file);
-  e.target.parentElement.nextElementSibling.removeAttribute('disabled')
+  uploadButton.removeAttribute('disabled')
 })
 
-// 文件上传
-var ui = {
-  'submiting': false,
-  'fileUpLoading': false
-}
-
-var allFile = {
-  'projectLogo': '',
-  'memberPic': [],
-  'whitePaper': ''
-}
 
 var t = ''
 function doUpload(e){
@@ -323,7 +348,7 @@ $('#form1').validator({
       //判断team的图片、名字、position都必须存在
       temp_length = team.length
       for (var i = 0; i < temp_length; i++) {
-        if (!team[i].picHref || !team[i].name || !team[i].position) {
+        if (!team[i].picHref || !team[i].name) {
           team.splice(i,1)
         }
       }

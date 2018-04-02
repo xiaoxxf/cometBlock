@@ -117,25 +117,7 @@
 						<div class="form-group">
 							<label class="col-xs-12 col-md-2 col-sm-2 control-label">团队：</label>
 							<div class="team">
-								<div class="col-xs-6 col-md-2 col-sm-3">
-									<!--图片显示-->
-									<div class="team_image_box">
-										<img src="" class="" />
-										<span class="glyphicon glyphicon-minus minus" style="display:none"></span>
-									</div>
-									<!-- 团队信息 -->
-									<div>
-										<a href="javascript:;" class="file">选择
-										  <input type="file"  name="file" class="member_pic member_0">
-										</a>
-										<button type="button" class="btn btn-default upload-button" disabled='disabled' onclick="doUpload(this.previousElementSibling.childNodes[1])">上传
-									</div>
 
-									<div class="member_msg">
-										<input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称">
-										<input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" >
-									</div>
-								</div>
 
 							</div>
 
@@ -278,6 +260,7 @@
 			</div>
 		</div>
 
+
 		<footer class="fixed-footer-wrap" style="bottom: -70px">
 				<div class="footer-detail">
 						<div class="container">
@@ -302,6 +285,8 @@
 		</script>
 
 
+
+
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -316,6 +301,25 @@
 		<script src='js/common.js'></script>
 		<!--handmade-->
 		<script src="js/chain-new.js"></script>
+
+		<script type="text/javascript">
+        $(document).ready(init);
+        function init() {
+            $(".imgDiv").mouseenter(function () {
+                $(this).find(".delete").show();
+
+            });
+
+
+            $(".imgDiv").mouseleave(function () {
+                $(this).find(".delete").hide();
+            });
+
+        }
+
+
+
+    </script>
 
 	</body>
 
