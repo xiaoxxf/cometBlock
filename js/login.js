@@ -152,6 +152,8 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 				var localCurrentHref = window.localStorage.getItem('currentHref');
 				if(localCurrentHref.indexOf('login.html')>0){
                     window.location.href = "index.html";
+                    
+                    
 				}else{
                     window.location.href = localCurrentHref;
 				}

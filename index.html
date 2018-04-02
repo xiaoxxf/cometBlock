@@ -63,14 +63,30 @@
 										<a href="chain.html">链库</a>
 									</li>
 								</ul>
-								<!--<ul class="nav navbar-nav navbar-right nav-index-img">
-                            <li>
-                                <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
-                                    <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
-                                         alt="Download VS Code">
-                                </a>
-                            </li>
-                        </ul>-->
+								<ul class="nav navbar-nav navbar-right ">
+									<li>
+										<a href="login.html" class="log_nav nav_font">登录</a>
+									</li>
+									<li>
+										<a href="register.html" class="log_nav reg_c nav_show_message nav_font" >注册</a>
+									</li>																		
+									<li class="nav-user-account more-active">
+								      <a target="_blank"  class="bn-more" rel="off" style="padding-top: 15px;" id="user_mess_click">
+								        <span>Loreen的帐号</span><span class="arrow"></span>
+								      </a>
+								      <div class="more-items">
+								        <table cellpadding="0" cellspacing="0">
+								          <tbody>								            
+								            <tr>
+								              <td>
+								                <a id="user_exit">退出</a>
+								              </td>
+								            </tr>
+								          </tbody>
+								        </table>
+								      </div>
+								   </li>		                           
+                       			 </ul>
 								<ul class="nav navbar-nav navbar-right">
 									<li>
 										<div class="nav_search">
@@ -80,6 +96,13 @@
 										</div>
 									</li>
 								</ul>
+								<!--<ul class="nav navbar-nav navbar-right nav-index-img">
+									<li>
+										<a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
+											<img class="download-icon" src="img/temp1.jpg" width="30px" height="30px" alt="Download VS Code">
+										</a>
+									</li>
+								</ul>-->
 							</div>
 						</div>
 					</nav>
@@ -137,13 +160,123 @@
 					</div>
 				</div>
 
+				<script src="js/jquery-2.1.1.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+				<script src="js/common.js"></script>
+				<script src="js/login.js"></script>
+
+				<script type="text/javascript">
+					var range = 50; //距下边界长度/单位px
+					var elemt = 500; //插入元素高度/单位px
+					var maxnum = 30; //设置加载最多次数
+					var num = 1;
+					var totalheight = 0;
+					var isLoaded = true
+					//新消息通知
+
+					var count = 0
+					//默认不显示通知消息
+					$('#div1').css("display", "none")
+
+					function notice() { //请求后台查询最新通报
+
+						var uri = 'news/newestTime'
+						doJavaGet(uri, function(res) {
+							if(res != null && res.code == 0) {
+
+								if(parseInt(res.datas) != parseInt(count)) {
+									$('#div1').css("display", "block")
+									$('.news_look').html('有 ' + (parseInt(res.datas) - parseInt(count)) + ' 个新话题，点击查看')
+
+								}
+
+							}
+						}, "json");
+
+					}
+					setInterval(notice, 5000)
+
+					function initeCount() {
+						var uri = 'news/newestTime'
+						doJavaGet(uri, function(res) {
+							if(res != null && res.code == 0) {
+								count = res.datas
+							}
+						}, "json");
+					}
+					initeCount() //初始化条数
+					var newTimeKey = true //新消息通报 key
+
+					function dataShow(data) {
+
+						if(newTimeKey && data) {
+							newestTime = data[0].createTime
+							newTimeKey = false
+						}
+						var html = ''
+						for(var i = 0; i < data.length; i++) {
+							var test = data[i].newsId
+							html = html + '<li class="hot_news_item have-img" data-newId=' + test + ' ><div class="content"><a class="title" style="text-decoration: none;" target="_blank" href=detail.html?newsId=' + data[i].newsId + '>' + data[i].title + '</a><div class="meta"><span>' + changTime(data[i].createTime) + " 来自: " + data[i].media + '</span></div></div></li>'
+						}
+						$('#dataList').append(html);
+						isLoaded = true
+
+					};
+
+					function refresh() {
+						location.reload()
+					}
+
+					function saveData(e) {
+						var detail = $(e).attr("data-newid")
+						window.localStorage.setItem('detail', detail);
+					}
+					$(window).scroll(function() {
+						var srollPos = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
+
+						// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+						//console.log("页面的文档高度 ："+$(document).height());
+						//console.log('浏览器的高度：'+$(window).height());
+						totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+						if(($(document).height() - range) <= totalheight && num != maxnum && isLoaded) {
+
+							isLoaded = false
+							num = num + 1;
+							load();
+						}
+					});
+
+					function saveDate() {
+
+					}
+
+					function changTime(time) {
+						var time = time.replace('T', ' ');
+						var date1 = new Date(Date.parse(time.replace(/-/g, "/")));
+						var timestamp2 = Date.parse(new Date(date1));
+
+						var timeStr = (new Date() - timestamp2) / 1000
+						if(timeStr < 60) { //多少分钟以内的
+							time = '1 分钟'
+						} else if(60 <= timeStr && timeStr < 3600) { //	一个小时以内
+
+							time = parseInt(timeStr / 60) + " 分钟前";
+>>>>>>> Stashed changes
+
 		</div>
 		</div>
 	    </div>
 		<script src="js/jquery-2.1.1.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/common.js"></script>
-		<script src="js/index.js"></script>
+				<script src="js/bootstrap.min.js"></script>
+				<script src="js/common.js"></script>
+				<script src="js/index.js"></script>
+				<script>
+					$(document).ready(function(){
+					  $("#user_mess_click").click(function(){
+					  $(".more-items").toggle();
+					  });
+					});
+				</script>
 	</body>
 
 </html>

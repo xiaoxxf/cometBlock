@@ -176,7 +176,8 @@ div {
 	display: block;
 }
 
-<!--导航栏-->.nav {
+<!--导航栏-->
+.nav {
 		position: relative;
 		width: 100%;
 		height: 64px;
@@ -196,7 +197,13 @@ div {
 	width: 30px;
 	height: 30px;
 }
-
+.navbar-right .log_nav{
+	padding-top: 15px;
+	
+}
+.navbar-right .log_nav .reg_c{
+	border: solid 1px lightblue;
+}
 .nav_logo {
 	width: 64px;
 	height: 64px;
@@ -516,7 +523,68 @@ nav{
 	color: #333;
 }
 
+
 /*footer样式复写*/
 .fixed-footer-wrap{
 	bottom: -80px !important;
+}
+/*导航栏登录提示*/
+.nav-user-account{
+	position: relative;
+}
+/*.nav-user-account .more-items {
+    position: absolute;   
+    margin-left: 50px;
+    text-align: center;
+    display: none;  
+}*/
+.nav-user-account .more-items {
+   display: block;
+    padding: 10px 0;
+    padding-left: 40px;
+    margin-left: 30px;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    width: 120px;
+    white-space: nowrap;
+    top: 50px;
+    border-top: none;
+    position: absolute;
+ }   
+.nav_show_message{
+	border: solid 1px rgb(79, 163, 237);
+    border-radius: 30px;   
+    height: 30px;
+    top: 10px;
+    padding-top: 6px !important;
+    color: rgb(79, 163, 237) !important;
+    padding-left: 15px !important;
+}
+.nav-user-account .more-active{
+	position: relative;
+	
+} 
+
+tbody a{
+	color: #000000;
+}
+.bn-more span {
+    display: inline-block;
+    zoom: 1;
+    vertical-align: baseline;
+}
+.arrow {
+    position: relative;
+    top: -2px;
+    left: 2px;
+    border-width: 3px 3px 0;
+    border-color: #d5d5d5 transparent transparent transparent;
+    border-style: solid dashed dashed dashed;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}
+.nav_font{
+	font-size: 12px !important;
 }
