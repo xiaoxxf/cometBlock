@@ -36,7 +36,7 @@ function add_issue_price()
 
 //网站跳转
 function jump_website(){
-   var website = new_coin.web_site.value;
+   var website = $('.website').val()
    if(website)
   	 window.open(website)
 }
@@ -52,10 +52,23 @@ var member_count = 1
 function add_team_member()
 {
   member_count += 1
-  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="img/no_image.png" class="" /></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_0"></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-minus minus" style="display:none"></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_0"></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
 
   $('.team').append(string);
 }
+// 减少团队成员
+$('.team').on("mouseenter mouseleave",".team_image_box",function(e){
+  if(e.type == "mouseenter"){
+    $(e.currentTarget.children[1]).css('display','')
+  }else if(e.type == "mouseleave"){
+    $(e.currentTarget.children[1]).css('display','none')
+  };
+});
+
+$('.team').on("click",".minus",function(e){
+  $(e.currentTarget.parentElement.parentElement).remove()
+})
+
 
 //白皮书上传
 $('.click_input_white_paper_file').on('click', function(){
@@ -82,8 +95,16 @@ var getOnloadFunc = function(aImg) {
 }
 //币种图片选择及预览
 var input_project_logo = document.getElementById("project_logo_input");
+input_project_logo.addEventListener("click", function() {
+  // 重新选择图片
+  if (this.value) {
+    console.log('111')
+  }
+
+})
+
 input_project_logo.addEventListener("change", function() {
-  $(".coin_image_box").html("");
+
   // 校验图片
   var file = this.files[0];
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
@@ -92,6 +113,7 @@ input_project_logo.addEventListener("change", function() {
     return false
   }
   // 预览图片
+  $(".coin_image_box").html("");
   var img = document.createElement("img");
   $(img).css("width","110px")
   $(img).css("height","100px")
