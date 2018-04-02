@@ -21,46 +21,7 @@
 </style>
 <body lang="zh-CN" class="reader-black-font">
 <div class="comet-main block-comet-main-wrap">
-    <div class="navbar-fixed-container">
-        <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
-            <nav role="navigation">
-                <div class="container collapsed">
-                    <div class="nav navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/"><span itemprop="name">彗星</span></a>
-                    </div>
-                    <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li><a id="nav-docs" href="index.html">播报</a></li>
-                            <li><a id="nav-updates" href="chain.html">链库</a></li>
-                        </ul>
-                      <!--  <ul class="nav navbar-nav navbar-right nav-index-img">
-                            <li>
-                                <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
-                                    <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
-                                         alt="Download VS Code">
-                                </a>
-                            </li>-->
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <div class="nav_search">
-                                    <input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search"
-                                           onkeyup="test()">
-                                    <a class="nav_search_icon">
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+    <div class="navbar-fixed-container navbar-fixed-container-hook">
     </div>
     <div class="mian-container">
         <div class="container">
@@ -72,7 +33,7 @@
                     <div class="row coin-infomation">
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="coin-img">
-                                <img src="" width="100%" alt="详情图">
+                                <img src="" width="100%" >
                             </div>
                         </div>
                         <div class="col-md-5 col-sm-6 col-xs-12">
@@ -168,22 +129,29 @@
             </div>
         </div>
     </div>
-    <footer class="fixed-footer-wrap" style="bottom: -80px">
-        <div class="footer-detail">
-            <div class="container">
-                <div class="row">
-                    <!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
-                    <span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a></span>
-                    <div class="pull-right">
-                        <span class="footer-right"><a href="#">加入我们</a></span>
-                        <span class="footer-right"><a href="#">联系我们</a></span>
-                    </div>
-                    <!--<div class="col-md-5"></div>-->
-                </div>
-            </div>
-        </div>
-    </footer>
 </div>
+<script type="text/html" id="team-info-temp">
+    <h1 class="team-intro-title">
+        <span class="project-name"><%:=list.projectName%></span>项目介绍
+    </h1>
+    <p class="team-desc">
+        <%:=list.projectContent%>
+    </p>
+    <h1 class="team-title">团队</h1>
+    <div class="img-wrap">
+        <div class="row">
+            <%for(var i = 0; i < list.chainTeamList.length; i++) {%>
+            <div class="col-md-2 col-xs-5">
+                <div class="team-img">
+                    <img src="<%:=list.chainTeamList[i].picHref%>" alt="">
+                </div>
+                <p class="name"><%:=list.chainTeamList[i].name%></p>
+                <p class="position"><%:=list.chainTeamList[i].position%></p>
+            </div>
+            <%}%>
+        </div>
+    </div>
+</script>
 <script type="text/html" id="chain-score-temp">
     <div class="clearfix">
         <div class="rating_logo pull-left">
@@ -238,33 +206,11 @@
             </div>
             <div class="item">
                 <span class="desc-title">官网</span>:
-                <span class="desc-detail"><%:=list.companyWebsite%></span>
+                <a target="_blank" href="<%:=list.companyWebsite%>" class="desc-detail"><%:=list.companyWebsite%></a>
             </div>
             <div class="item">
                 <span class="desc-title">白皮书</span>:
                 <a target="_blank" href="<%:=list.whitePaper%>" class="desc-detail">点击查看</a>
-            </div>
-        </div>
-</script>
-<script type="text/html" id="team-info-temp">
-    <h1 class="team-intro-title">
-        <span class="project-name"><%:=list.projectName%></span>项目介绍
-        </h1>
-        <p class="team-desc">
-            <%:=list.projectContent%>
-        </p>
-    <h1 class="team-title">团队</h1>
-        <div class="img-wrap">
-            <div class="row">
-                <%for(var i = 0; i < list.chainTeamList.length; i++) {%>
-                <div class="col-md-2 col-xs-5">
-                    <div class="team-img">
-                        <img src="<%:=list.chainTeamList[i].picHref%>" alt="">
-                    </div>
-                    <p class="name"><%:=list.chainTeamList[i].name%></p>
-                    <p class="position"><%:=list.chainTeamList[i].position%></p>
-                </div>
-                <%}%>
             </div>
         </div>
 </script>
@@ -302,12 +248,14 @@
         <%:=list[i].createTime%>
         </span>
         </span>
-        <p class="text-left long-comment-article-title">区块链</p>
+        <div>
+            <a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>" class="text-left long-comment-article-title"><%:=list[i].textTitle%></a>
+        </div>
         <div class="row comment-content-wrap">
             <div class="col-md-10 col-xs-12">
-                <p class="comment-content">
-                    <%:=list[i].textTitle%>
-                </p>
+                <a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>"  class="comment-content">
+                    <%:=list[i].textContent%>
+                </a>
             </div>
             <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
                 <span class="click-awsome" data-reviewid="<%:=list[i].reviewId%>"><i class="icon-dz"></i><i class="icon-dzon"></i></span>
@@ -375,7 +323,6 @@
 					</div>
 				</div>
 			</script>
-
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/template.js"></script>

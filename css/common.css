@@ -17,7 +17,7 @@
 .fixed-footer-wrap{
     position: absolute;
     left:0;
-    bottom: 0px;
+    bottom: -80px;
     width: 100%;
     height: 75px;
     /*background: #fff;*/
@@ -38,17 +38,18 @@
 .fixed-footer-wrap .footer-detail .footer-right{
     font-size: 12px;
     display: inline-block;
-    height: 75px;
-    line-height: 75px;
+    height: 30px;
+   /* line-height: 75px;*/
 }
 
 .fixed-footer-wrap .footer-detail .footer-right a{
     margin-right: 20px;
     color: #666666;
 }
-.fixed-footer-wrap .footer-detail .footer-left a{
+.fixed-footer-wrap .footer-detail .footer-left a, .fixed-footer-wrap .footer-detail .footer-left a:hover{
     color:#111111
 }
+
 .fixed-footer-wrap .footer-detail .footer-left i{
     margin: 0 15px;
 }
@@ -80,6 +81,7 @@ a img,img{-ms-interpolation-mode:bicubic}
 .img-responsive{max-width: 100%;height: auto}
 
 a:hover {
+    color: rgb(79, 163, 237);
     text-decoration: none;
 }
 i{
@@ -186,7 +188,6 @@ body{
     width: 100%;
     text-align: center;
     margin: 40px 0 80px 0;
-    background-color: #fff;
     border-radius: 10px;
 }
 .load-container-wrap{
@@ -196,6 +197,8 @@ body{
 .loading-more{
     cursor: pointer;
     width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
 }
 .loader{
     display: none;
@@ -210,7 +213,7 @@ body{
 .allstar50, .allstar45, .allstar40, .allstar35, .allstar30, .allstar25, .allstar20, .allstar15, .allstar10, .allstar05, .allstar00, .rating1-t, .rating15-t, .rating2-t, .rating25-t, .rating3-t, .rating35-t, .rating4-t, .rating45-t, .rating5-t, .rating-t, .starb ~ .stars5, .starb ~ .stars4, .starb ~ .stars3, .starb ~ .stars2, .starb ~ .stars1, .collectors .stars5, .collectors .stars4, .collectors .stars3, .collectors .stars2, .collectors .stars1 {
     display: inline-block;
     zoom: 1;
-    background: -webkit-image-set(url(../img/ic_rating_s.png) 1x, url(../img/ic_rating_s@2.png) 2x) no-repeat;
+    background: -webkit-image-set(url(../img/ic_rating_s.png) 1x, url(../img/ic_rating_s@2x.png) 2x) no-repeat;
     width: 55px;
     height: 11px;
     margin: 0 3px 0 0;

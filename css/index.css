@@ -3,7 +3,7 @@ body {
 }
 .have-img {
 	background-color: white;
-	padding: 30px 50px 0px 50px !important;
+	padding: 30px 50px 25px 50px !important;
 }
 .title:visited {
 
@@ -15,9 +15,9 @@ body {
 	margin-top: 10px;
 }
 .meta {
-	/*margin-top: 40px !important;*/
 	position: absolute;
-    bottom: 20px;
+	bottom: 6px;
+	left: 50px;
 }
 n span {
 	font-size: 20px;
@@ -514,4 +514,9 @@ nav{
 /*列表标题*/
 .content .title{
 	color: #333;
+}
+
+/*footer样式复写*/
+.fixed-footer-wrap{
+	bottom: -80px !important;
 }

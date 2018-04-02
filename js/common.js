@@ -100,3 +100,24 @@ function Loginout(){
     $.removeCookie("userid");
     window.location.href = "login.html";
 }
+
+//头部尾部全局加载
+$.get("footer-tpl.html",function(data){
+    $(".block-comet-main-wrap").append(data);
+});
+$.get("header-tpl.html",function(data){
+    $(".navbar-fixed-container-hook").html(data);
+    var href = location.href;
+    $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+    //判断当前页面加cur-nav样式
+   if(href.indexOf('index.html')>0 || href.indexOf('detail.html')>0){
+       $(".navbar-fixed-container-hook .navbar-left .new-report").addClass('cur-nav');
+   }
+    if(href.indexOf('code-rank.html')>0){
+        $(".navbar-fixed-container-hook .navbar-left .code-rank").addClass('cur-nav');
+    }
+    if(href.indexOf('chain.html')>0 || href.indexOf('chain-detail.html')>0  || href.indexOf('comment.html')>0 ){
+        $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+        $(".navbar-fixed-container-hook .navbar-left .chain").addClass('cur-nav');
+    }
+});

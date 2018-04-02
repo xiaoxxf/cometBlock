@@ -101,6 +101,8 @@ function getChain(){
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
 		$(".waiting-data").hide();
+		var imgW = $(".coin-list-wrap li img").width();
+		$(".coin-list-wrap li img").css('height',imgW*270/230);
 		ui.loading = false;
 	}, "json")
 	flag = 1;
@@ -120,6 +122,8 @@ function loadMoreChain(){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content);
+    var imgW = $(".coin-list-wrap li img").width();
+    $(".coin-list-wrap li img").css('height',imgW*270/230)
 		ui.loading = false;
 	}, "json")
 }
@@ -144,13 +148,11 @@ function serachChain(){
 
 	doJavaGet(uri,function(result){
 		$(".waiting-data").hide();
-
+		var search = document.getElementById('search').innerHTML;
+		var content = template(search, {searchList: result.datas});
+		$('.search-result-box').html('');
+		$('.search-result-box').append(content);
 		if (result.datas.length > 0) {
-			var search = document.getElementById('search').innerHTML;
-			var content = template(search, {searchList: result.datas});
-			$('.search-result-box').html('');
-			$('.search-result-box').append(content);
-			// 显示搜索结果
 			$('.search-result-box').css('display','')
 			$('.no-result').css('display','none')
 			// 限制搜索结果描述的长度
@@ -202,8 +204,6 @@ function loadMoreSearch(){
 $(".search-click-hook").on('click',function(){
 	serachChain();
 })
-
-
 window.onscroll = function () {
     //监听事件内容
 		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
@@ -225,3 +225,7 @@ window.onscroll = function () {
 
     }
 }
+$(window).resize(function () {
+    var imgW = $(".coin-list-wrap li img").width();
+    $(".coin-list-wrap li img").css('height',imgW*270/230);
+})

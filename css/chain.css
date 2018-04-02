@@ -69,6 +69,7 @@
 .coin-list-wrap li{
     display: inline-block;
     width: 20%;
+    margin-bottom: 10px;
 }
 .coin-list-wrap li:nth-child(4n+1){
     margin-right:3.33%;
@@ -91,6 +92,9 @@
     line-height: 40px;
     font-size: 16px;
     color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .search-result{
@@ -179,4 +183,9 @@
 .upload-member-pic{
   height: 30px;
   width: 10px;
+}
+
+/*footer样式复写*/
+.fixed-footer-wrap{
+    bottom: -100px !important;
 }

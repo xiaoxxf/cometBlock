@@ -503,9 +503,6 @@ $('.submit_control').on('click', function(){
 
 // 渲染币种类型
 $(function(){
-
-})
-$(function(){
 	var uri = 'blockchain/quary?parentId=1'
 	doJavaGet(uri,function(data){
 		var coinType = document.getElementById('project-type').innerHTML;
