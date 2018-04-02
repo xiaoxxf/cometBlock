@@ -157,7 +157,6 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 				}else{
                     window.location.href = localCurrentHref;
 				}
-
 			}, 1500);
 
 		} else {

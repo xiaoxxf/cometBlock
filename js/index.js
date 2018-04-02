@@ -189,7 +189,6 @@ $(document).ready(function () {
     });
 
     function searchDataShow(data) {
-
         var html = ''
         for(var i = 0; i < data.length; i++) {
             var creator = ''
@@ -198,12 +197,11 @@ $(document).ready(function () {
             }
             var test = data[i].newsId
             html = html + '<li class="hot_news_item have-img" data-newId=' +
-                test + ' onclick="saveData(this)" ><div class="content"><a class="title" style="text-decoration: none;" target="_blank" href=detail.html?newsId=' +
+                test + ' onclick="saveData(this)" ><div class="content"><a class="title" style="text-decoration: none;"  href=detail.html?newsId=' +
                 data[i].newsId + '>' +
                 data[i].title + '</a><div class="meta"><span>' + changTime(data[i].createTime) + " 来自: " + data[i].media + '</span>' +
                 creator +
                 '</div></div></li>'
-
         }
         //$('#dataList').append(html);
         $('#dataList').html(html);
@@ -211,19 +209,14 @@ $(document).ready(function () {
         function dispear() {
             $('#div1').css("display", "none")
         }
-
     function dataShowRight(data) {
 
         var html = ''
         for(var i = 0; i < data.length; i++) {
             var test = data[i].newsId
-            console.log(test)
-
-            html = html + '<li data-newId=' + test + ' > <span>' + (i + 1) + '</span><a   target="_blank" href=detail.html?newsId=' + data[i].newsId + '>' + data[i].title + '</a></li>'
-
+            html = html + '<li data-newId=' + test + ' > <span>' + (i + 1) + '</span><a  href=detail.html?newsId=' + data[i].newsId + '>' + data[i].title + '</a></li>'
         }
         $('#dataRight').append(html);
-
     };
 
     function loadRight(days) {
