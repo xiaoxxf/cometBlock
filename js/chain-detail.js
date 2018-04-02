@@ -122,6 +122,8 @@ function  ajaxGetChainDetail() {
                     var teamTpl = $("#team-info-temp").html();
                     var teamContent = template(teamTpl, {list: chainInfoData});
                     $(".team-intro-hook").append(teamContent);
+                }else{
+                    $(".team-intro-hook").hide();
                 }
             }
         } else {
@@ -130,7 +132,10 @@ function  ajaxGetChainDetail() {
     }, "json");
 }
 //加载短评列表
-function ajaxGetComments() {
+function ajaxGetComments(insert) {
+    if(insert == true){
+        currentPage = 1;
+    }
     var projectId = getUrlParam('projectId');
     var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
     doJavaGet(uri, function(res) {
@@ -142,6 +147,9 @@ function ajaxGetComments() {
                 //var formatData = formatStarClass(data);
                 var commentTpl = $("#short-comment-temp").html();
                 var teamContent = template(commentTpl, {list: res.datas});
+                if(insert == true){
+                    $(".short-comment-wrap-hook").html('');
+                }
                 $(".short-comment-wrap-hook").append(teamContent);
                 $(".short-comment-load-more .loading-more").show();
                 $(".short-comment-load-more .loader1").css('display','none');
@@ -235,7 +243,8 @@ $(".short-comment-commit").on('click',function (e) {
     doPostJavaApi(uri,jsonData, function(res) {
         if(res != null && res.code == 0) {
             layer.msg(res.msg);
-            ajaxGetComments();
+            $(".short-comment").val('');
+            ajaxGetComments(true);
         } else {
             layer.msg(res.msg);
         }
@@ -253,13 +262,15 @@ function ajaxGetScoreInfo() {
             var avaScore = 0;
             var count = res.count;
             for(var i = res.datas.length;i > 0;i--){
-                if(res.datas[i-1].scores == 0){
+                var curScore = res.datas[i-1].scores
+                if(curScore== 0){
                     tempArr.push("0%");
+                    widthArr.push("1px")
                 }else{
-                    tempArr.push(Math.floor(res.datas[i-1].scores/count* 1000)/10+"%");
+                    tempArr.push(Math.floor(curScore/count* 1000)/10+"%");
+                    widthArr.push(Math.floor(curScore/count* 100)/100*150+"px");
                 }
-                widthArr.push(Math.floor(res.datas[i-1].scores/count* 10)/10*150+"px");
-                tempScore += i*res.datas[i-1].scores*2
+                tempScore += i*curScore*2
             }
             if(count != 0){
                 avaScore = Math.floor(tempScore/count* 10)/10;

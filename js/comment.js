@@ -188,6 +188,7 @@ function  ajaxGetReviewDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var commentInfoData = res.datas;
+            $(".long-comment-nav .long-comment-title").text(commentInfoData.textTitle);
             $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
             var commentTpl = $("#template-mian-detail").html();
             var content = template(commentTpl, {list: commentInfoData});
