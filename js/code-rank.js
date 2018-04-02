@@ -4,7 +4,7 @@ $(function () {
     var monthNum = 3;
     var range = 0;             //距下边界长度/单位px
     var elemt = 500;           //插入元素高度/单位px
-    var maxnum = 30;            //设置加载最多次数
+    var maxnum = 3;            //设置加载最多次数
     var num = 1;
     var totalheight = 0;
     var isLoaded = true;
@@ -12,6 +12,10 @@ $(function () {
     var sortByOrder = 1;//分类排序刷选
     $(".search-click-hook").on('click',function () {
         console.log('点击搜索');
+    })
+    //点击加载更多
+    $(".load-more-hook .loading-more").on('click',function () {
+        loadCodeRank();
     })
     $(".title-select-wrap .item").on('click',function () {
         var self = $(this);
@@ -77,24 +81,30 @@ $(function () {
             num = num + 1;
             loadCodeRank();
         }
+        if(num == maxnum+1){
+            $(".loading-more").show();
+            $(".loader1").css('display','none');
+        }
     });
    //滚动加载
     function  loadCodeRank() {
         $(".loading-more").hide();
         $(".loader1").css('display','flex');
-            //首次进入页面加载
+        setTimeout(function () {
             doRankGet('?month='+monthNum+'&pageNumber='+rankPageIndex+'&pageSize='+pageSize+'&order='+sortByOrder, function(data) {
                 if(data.length != 0){
                     tempRankData =  formatRankData(data);
                     var rankTpl = $("#rank-item-temp").html();
                     var content = template(rankTpl, {list: tempRankData});
                     $(".code-rank-wrap").append(content)
+                    $(".loading-more").show();
+                    $(".loader1").css('display','none');
                 }else{
                     $(".no-more-hook").fadeIn();
                 }
             }, "json");
-        $(".loading-more").show();
-        $(".loader1").css('display','none');
+        },200)
+            //首次进入页面加载
         isLoaded = true;
     }
 })
