@@ -38,8 +38,8 @@
 .fixed-footer-wrap .footer-detail .footer-right{
     font-size: 12px;
     display: inline-block;
-    height: 75px;
-    line-height: 75px;
+    height: 30px;
+   /* line-height: 75px;*/
 }
 
 .fixed-footer-wrap .footer-detail .footer-right a{
