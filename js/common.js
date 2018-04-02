@@ -104,6 +104,9 @@ function Loginout(){
 $.get("footer-tpl.html",function(data){
     $(".block-comet-main-wrap").append(data);
 });
+$.get("header-tpl.html",function(data){
+    $(".navbar-fixed-container-hook").html(data);
+});
 //footer全局加载
 //var footerCon = footerHtml;
 //$(".block-comet-main-wrap").append(footerHtml);
