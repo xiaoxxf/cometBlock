@@ -15,6 +15,21 @@ $(function(){
 
 })
 
+$('.coin-item').on('click', $('span'), function(e) {
+	$('.coin-item').children().removeClass();
+	$(e.target).addClass('cur')
+})
+
+$('.coin-item').on("mouseenter mouseleave",'span',function(e){
+	if(e.type == "mouseenter"){
+		$(e.target).css('background-color','#f0f0f0')
+		$(e.target).css('border-radius','8px')
+	}else if(e.type == "mouseleave"){
+		$(e.target).css('background','')
+		$(e.target).css('border-radius','')
+	};
+})
+
 var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
 var noMoreData = false;
 var searchType = ''

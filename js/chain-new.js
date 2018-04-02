@@ -168,7 +168,6 @@ var allFile = {
 var t = ''
 function doUpload(e){
   var file = e.files[0];
-
   if (ui.fileUpLoading || e.files.length == 0) {
     return false
   }
