@@ -205,13 +205,16 @@
 .comment-content{
     line-height: 24px;
     padding-bottom: 5px;
+    color: #666;
 }
 .long-comment-article-title{
     margin-bottom: 10px;
+    color: #000;
 }
 .comment-list-wrap .comment-item{
     border-bottom: 1px solid #dedede;
     padding-bottom: 5px;
+    color: #000;
 }
 .comment-list-wrap .load-more-comment{
     width: 100%;
@@ -253,3 +256,9 @@
 /*.layui-layer-content.main{
 	box-shadow: 0 0 15px rgba(0, 0, 0, .1) !important;
 }*/
+
+
+/*footer样式复写*/
+.fixed-footer-wrap{
+    bottom: -80px !important;
+}

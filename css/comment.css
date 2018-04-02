@@ -536,3 +536,8 @@ a img {
 	vertical-align: middle;
 	display: inline-block;
 }
+
+/*footer样式复写*/
+.fixed-footer-wrap{
+	bottom: -80px !important;
+}

@@ -14,6 +14,28 @@
     <link rel="stylesheet" href="css/chain-detail.css">
     <link type="favicon" rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" href="css/login.css" />
+    <script type="text/html" id="team-info-temp">
+        <h1 class="team-intro-title">
+            <span class="project-name"><%:=list.projectName%></span>项目介绍
+        </h1>
+        <p class="team-desc">
+            <%:=list.projectContent%>
+        </p>
+        <h1 class="team-title">团队</h1>
+        <div class="img-wrap">
+            <div class="row">
+                <%for(var i = 0; i < list.chainTeamList.length; i++) {%>
+                <div class="col-md-2 col-xs-5">
+                    <div class="team-img">
+                        <img src="<%:=list.chainTeamList[i].picHref%>" alt="">
+                    </div>
+                    <p class="name"><%:=list.chainTeamList[i].name%></p>
+                    <p class="position"><%:=list.chainTeamList[i].position%></p>
+                </div>
+                <%}%>
+            </div>
+        </div>
+    </script>
     <!-- 导航栏 -->
 </head>
 <style>
@@ -168,21 +190,6 @@
             </div>
         </div>
     </div>
-    <footer class="fixed-footer-wrap" style="bottom: -80px">
-        <div class="footer-detail">
-            <div class="container">
-                <div class="row">
-                    <!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
-                    <span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a></span>
-                    <div class="pull-right">
-                        <span class="footer-right"><a href="#">加入我们</a></span>
-                        <span class="footer-right"><a href="#">联系我们</a></span>
-                    </div>
-                    <!--<div class="col-md-5"></div>-->
-                </div>
-            </div>
-        </div>
-    </footer>
 </div>
 <script type="text/html" id="chain-score-temp">
     <div class="clearfix">
@@ -246,28 +253,6 @@
             </div>
         </div>
 </script>
-<script type="text/html" id="team-info-temp">
-    <h1 class="team-intro-title">
-        <span class="project-name"><%:=list.projectName%></span>项目介绍
-        </h1>
-        <p class="team-desc">
-            <%:=list.projectContent%>
-        </p>
-    <h1 class="team-title">团队</h1>
-        <div class="img-wrap">
-            <div class="row">
-                <%for(var i = 0; i < list.chainTeamList.length; i++) {%>
-                <div class="col-md-2 col-xs-5">
-                    <div class="team-img">
-                        <img src="<%:=list.chainTeamList[i].picHref%>" alt="">
-                    </div>
-                    <p class="name"><%:=list.chainTeamList[i].name%></p>
-                    <p class="position"><%:=list.chainTeamList[i].position%></p>
-                </div>
-                <%}%>
-            </div>
-        </div>
-</script>
 <script type="text/html" id="short-comment-temp">
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
@@ -302,12 +287,14 @@
         <%:=list[i].createTime%>
         </span>
         </span>
-        <p class="text-left long-comment-article-title"><%:=list[i].textContent%></p>
+        <div>
+            <a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>" class="text-left long-comment-article-title"><%:=list[i].textTitle%></a>
+        </div>
         <div class="row comment-content-wrap">
             <div class="col-md-10 col-xs-12">
-                <p class="comment-content">
-                    <%:=list[i].textTitle%>
-                </p>
+                <a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>"  class="comment-content">
+                    <%:=list[i].textContent%>
+                </a>
             </div>
             <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
                 <span class="click-awsome" data-reviewid="<%:=list[i].reviewId%>"><i class="icon-dz"></i><i class="icon-dzon"></i></span>
@@ -375,7 +362,6 @@
 					</div>
 				</div>
 			</script>
-
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/template.js"></script>

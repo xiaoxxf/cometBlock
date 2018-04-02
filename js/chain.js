@@ -20,7 +20,7 @@ var searchType = ''
 var search_type_page = 1;
 var index_page = 1;
 var search_page = 1;
-var pageSize = 4;
+var pageSize = 12;
 
 // 分类查询
 function searchFromType(e){

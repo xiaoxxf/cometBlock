@@ -515,3 +515,8 @@ nav{
 .content .title{
 	color: #333;
 }
+
+/*footer样式复写*/
+.fixed-footer-wrap{
+	bottom: -80px !important;
+}

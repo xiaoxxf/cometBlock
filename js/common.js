@@ -100,3 +100,10 @@ function Loginout(){
     $.removeCookie("userid");
     window.location.href = "login.html";
 }
+
+$.get("footer-tpl.html",function(data){
+    $(".block-comet-main-wrap").append(data);
+});
+//footer全局加载
+//var footerCon = footerHtml;
+//$(".block-comet-main-wrap").append(footerHtml);

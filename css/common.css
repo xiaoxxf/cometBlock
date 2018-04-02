@@ -46,9 +46,10 @@
     margin-right: 20px;
     color: #666666;
 }
-.fixed-footer-wrap .footer-detail .footer-left a{
+.fixed-footer-wrap .footer-detail .footer-left a, .fixed-footer-wrap .footer-detail .footer-left a:hover{
     color:#111111
 }
+
 .fixed-footer-wrap .footer-detail .footer-left i{
     margin: 0 15px;
 }
@@ -80,6 +81,7 @@ a img,img{-ms-interpolation-mode:bicubic}
 .img-responsive{max-width: 100%;height: auto}
 
 a:hover {
+    color: rgb(79, 163, 237);
     text-decoration: none;
 }
 i{
