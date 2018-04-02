@@ -94,24 +94,25 @@ var getOnloadFunc = function(aImg) {
 	};
 }
 //币种图片选择及预览
-var input_project_logo = document.getElementById("project_logo_input");
-input_project_logo.addEventListener("click", function() {
-  // 重新选择图片
-  if (this.value) {
-    console.log('111')
-  }
 
-})
+var temp_file = null
+var input_project_logo = document.getElementById("project_logo_input");
 
 input_project_logo.addEventListener("change", function() {
 
+  var file = this.files[0] || temp_file
+  if(!file){
+    return false;
+  }
+
   // 校验图片
-  var file = this.files[0];
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
     layer.msg('请选择小于2M的图片文件',{time:1000})
     $('.upload-project-logo').attr('disabled','disabled')
     return false
   }
+  temp_file = file;
+
   // 预览图片
   $(".coin_image_box").html("");
   var img = document.createElement("img");
@@ -217,7 +218,7 @@ function doUpload(e){
       else if (t.className.split(' ')[0] == 'member_pic') {
         number = t.className.split(' ')[1].split('_')[1]
         allFile.memberPic[number] = data.datas[0]
-        t.parentElement.nextElementSibling.setAttribute('disabled','disabled')
+        $(t.parentElement.nextElementSibling).attr('disabled','disabled')
       }
       // white_paper
       else if (t.className == 'white_paper') {
@@ -300,9 +301,93 @@ $('#form1').validator({
 		'block_browser': 'url',
 		'project_content': 'required',
     'currency_circulation': 'required;integer',
-  }
-});
+  },
 
+  valid: function(form) {
+
+      if (ui.submiting) {
+        return false
+      }
+      var team = [];
+      teamLength = allFile.memberPic.length; // 根据图片数判断team的长度
+      memberName = $(" input[name='member_name']");
+      memberPosition = $(" input[name='member_position']");
+
+      for (var i = 0; i < teamLength; i++) {
+        var temp = {};
+        temp.picHref = allFile.memberPic[i];
+        temp.name = memberName[i].value;
+        temp.position = memberPosition[i].value;
+        team.push(temp)
+      }
+
+      //判断team的图片、名字、position都必须存在
+      temp_length = team.length
+      for (var i = 0; i < temp_length; i++) {
+        if (!team[i].picHref || !team[i].name || !team[i].position) {
+          team.splice(i,1)
+        }
+      }
+
+      // 发行价格
+      var exchangeRate = "";
+      $('input[name="exchange_rate"]').each(function(i) {
+    	   exchangeRate += $(this).val();
+      });
+
+
+      // 提交数据
+      var data = {
+        "projectLogo":          allFile.projectLogo,
+        "projectName":          form1.project_name.value,
+        "projectBigName":       form1.project_big_name.value ,
+        "projectType":          form1.project_type.value,
+        "currencyCount":        form1.currency_count.value,
+        "currencyCirculation":  form1.currency_circulation.value,
+        "fundraisingTime":      form1.fundraising_time.value,
+        "companyWebsite":       form1.compay_website.value,
+        "projectContent":       form1.project_content.value,
+        "whitePaper":           allFile.whitePaper,
+        "exchangeRate":			    exchangeRate,
+        "userId":               userId,
+        "chainTeamList":        team
+      };
+
+      $.ajax({
+          type: 'POST',
+          url : WebApiHostJavaApi + 'blockchain/addLibrary',
+          data: JSON.stringify(data),
+          dataType : 'json',
+          contentType: 'application/json; charset=UTF-8',
+          beforeSend: function(){
+            ui.submiting = true
+            $('.submit_control').css('disabled','disabled')
+          },
+
+          success: function (result) {
+            if(result.code=="0"){
+              ui.submiting = false
+              layer.msg('提交成功，请等待审核', {
+                time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                end:function(){
+                window.location.href='chain.html';
+                }
+              });
+            }
+            else{
+              layer.msg('提交失败，请重试');
+              return false
+            }
+          },
+          error: function (err) {
+            layer.msg('提交失败，请重试');
+            $('.submit_control').css('disabled','')
+          }
+      });
+
+  }
+
+});
 
 
 // 表单提交
@@ -365,6 +450,7 @@ $('.submit_control').on('click', function(){
       contentType: 'application/json; charset=UTF-8',
       beforeSend: function(){
         ui.submiting = true
+        $('.submit_control').css('disabled','disabled')
       },
 
       success: function (result) {
@@ -384,6 +470,7 @@ $('.submit_control').on('click', function(){
       },
       error: function (err) {
         layer.msg('提交失败，请重试');
+        $('.submit_control').css('disabled','')
       }
   });
 
