@@ -149,6 +149,7 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 				localStorage.setItem('userinfo', JSON.stringify(res.datas));
 				$.cookie('token', res.datas.id,{ expires: expireDate});
 				$.cookie('userid', res.datas.id,{ expires: expireDate });
+                $.cookie('username', res.datas.realName,{ expires: expireDate });
 				var localCurrentHref = window.localStorage.getItem('currentHref');
 				if(localCurrentHref.indexOf('login.html')>0){
                     window.location.href = "index.html";

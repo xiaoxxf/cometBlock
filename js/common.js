@@ -13,7 +13,7 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-//var WebApiHostJavaApi = "http://10.0.0.172:8000/";
+//var WebApiHostJavaApi = "http://10.0.0.175:8080/";
 var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
     //GetCookie
@@ -98,6 +98,7 @@ function Loginout(){
     localStorage.clear();
     $.removeCookie("token");
     $.removeCookie("userid");
+    $.removeCookie("username");
     window.location.href = "login.html";
 }
 
@@ -120,4 +121,16 @@ $.get("header-tpl.html",function(data){
         $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
         $(".navbar-fixed-container-hook .navbar-left .chain").addClass('cur-nav');
     }
+    //页面加载完成之后做账户信息处理
+    var username = $.cookie('username');
+    if(username == undefined){
+        $("#nav_login").fadeIn();
+        $("#nav_register").fadeIn()
+    }else {
+        $(".nav-user-account #nav_user_mes").text(username);
+        $(".nav-user-account .more-active").css('display','block');
+    }
 });
+$('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function () {
+        Loginout();
+})

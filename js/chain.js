@@ -58,8 +58,9 @@ function searchFromType(e){
 	doJavaGet(uri,function(result){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
-		$('.coin-list-wrap').html("");
-		$('.coin-list-wrap').append(content);
+		$('.coin-list-wrap').append(content)
+    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 		$(".waiting-data").hide();
 		ui.loading = false;
 	}, "json")
@@ -79,6 +80,8 @@ function loadMoreSearchFromType(){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
+        var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+        $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 		$(".waiting-data").hide();
 	}, "json")
 	flag = 3;
@@ -97,11 +100,11 @@ function getChain(){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
-		var imgW = $(".coin-list-wrap li img").width();
-		$(".coin-list-wrap li img").css('height',imgW*270/230);
 		$(".waiting-data").hide();
+		var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+		$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+		ui.loading = false;
 	}, "json")
-	ui.loading = false;
 	flag = 1;
 }
 getChain();
@@ -118,10 +121,10 @@ function loadMoreChain(){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content);
-    var imgW = $(".coin-list-wrap li img").width();
-    $(".coin-list-wrap li img").css('height',imgW*270/230)
+    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230)
+		ui.loading = false;
 	}, "json")
-	ui.loading = false;
 }
 
 function serachChain(){
@@ -201,6 +204,8 @@ $(".search_bar").bind('keypress',function(event){
 		serachChain();
 })
 window.onscroll = function () {
+    var srollPos = $(window).scrollTop();
+    var totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
     //监听事件内容
 		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
 		// console.log("页面的文档高度 ："+$(document).height());
@@ -228,6 +233,6 @@ window.onscroll = function () {
     }
 }
 $(window).resize(function () {
-    var imgW = $(".coin-list-wrap li img").width();
-    $(".coin-list-wrap li img").css('height',imgW*270/230);
+    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 })
