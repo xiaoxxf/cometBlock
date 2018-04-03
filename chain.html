@@ -142,7 +142,9 @@
   <%for(var i = 0; i < list.length; i++) {%>
 		<li>
 			<a href="chain-detail.html?projectId=<%=list[i].projectId %>"  >
-				<img src='<%=list[i].projectLogo %>'  alt="">
+				<div class="inner-img-wrap">
+					<img src='<%=list[i].projectLogo %>'  alt="">
+				</div>
 				<p class="name"><%=list[i].projectName%></p>
 			</a>
 		</li>
@@ -152,7 +154,6 @@
 <script id="search" type="text/html">
 	<%for(var i = 0; i < searchList.length; i++) {%>
 		<div class="search-result">
-
 			<div class="search-result-img">
 				<img src="<%= searchList[i].projectLogo %>" >
 			</div>

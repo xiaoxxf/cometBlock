@@ -313,10 +313,11 @@ function scoreDataFormat(res) {
             tempObj.count =  count;
             tempObj.widthArr =  widthArr;
             tempObj.stars  = Math.round(avaScore)*5;
-            tempObj.compared = comparedData.datas;
+            tempObj.compared = Math.floor(comparedData.datas* 1000)/10+"%"+$(".project-type-cn").text();
             var commentTpl = $("#chain-score-temp").html();
             var teamContent = template(commentTpl, {list: tempObj});
             $(".rating_wrap-hook").append(teamContent);
+            //console.log()
             console.log(tempObj)
         } else {
             layer.msg(res.msg);
