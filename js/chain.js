@@ -205,11 +205,14 @@ $(".search-click-hook").on('click',function(){
 	serachChain();
 })
 window.onscroll = function () {
+    var srollPos = $(window).scrollTop();
+    var totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
     //监听事件内容
 		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
 		// console.log("页面的文档高度 ："+$(document).height());
 		// console.log('浏览器的高度：'+$(window).height());
-    if( $(document).height()== $(window).height() + $(window).scrollTop() ){
+    //if( $(document).height()== $(window).height() + $(window).scrollTop() ){
+    if( $(document).height() <= totalheight ){
         //当滚动条到底时,这里是触发内容
         //异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {

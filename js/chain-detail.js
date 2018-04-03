@@ -115,21 +115,42 @@ function  ajaxGetChainDetail() {
             if(chainInfoData != null){
                 $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectBigName);
                 $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
-                var chainTpl = $("#chain-info-temp").html();
-                var content = template(chainTpl, {list: chainInfoData});
-                $(".chain-info-hook").append(content)
-                if(chainInfoData.chainTeamList != null && chainInfoData.chainTeamList.length > 0){
-                    var teamTpl = $("#team-info-temp").html();
-                    var teamContent = template(teamTpl, {list: chainInfoData});
-                    $(".team-intro-hook").append(teamContent);
-                }else{
-                    $(".team-intro-hook").hide();
-                }
+                chainDetailFormat(chainInfoData);
             }
         } else {
             layer.msg(res.msg);
         }
     }, "json");
+}
+
+// 获取类型对应项
+function chainDetailFormat(chainInfoData) {
+    if(chainInfoData.projectType != null ){
+        var uri = 'blockchain/quary?parentId=1'
+        doJavaGet(uri,function(res){
+            var dataArr = res.datas;
+            if(res.datas.length > 0){
+                dataArr.forEach(function(value,index,array){
+                    if(value.dicType == chainInfoData.projectType){
+                        chainInfoData.projectType = value.dicValue
+                    }
+                })
+            }
+            if(chainInfoData.fundraisingTime == null){
+                chainInfoData.fundraisingTime = '';
+            }
+            var chainTpl = $("#chain-info-temp").html();
+            var content = template(chainTpl, {list: chainInfoData});
+            $(".chain-info-hook").append(content)
+            if(chainInfoData.chainTeamList != null && chainInfoData.chainTeamList.length > 0){
+                var teamTpl = $("#team-info-temp").html();
+                var teamContent = template(teamTpl, {list: chainInfoData});
+                $(".team-intro-hook").append(teamContent);
+            }else{
+                $(".team-intro-hook").hide();
+            }
+        },"json")
+    }
 }
 //加载短评列表
 function ajaxGetComments(insert) {
@@ -255,6 +276,18 @@ function ajaxGetScoreInfo() {
     var uri = 'blockchain/quaryScore?projectId='+projectId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
+            scoreDataFormat(res);
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
+}
+function scoreDataFormat(res) {
+    var projectId = getUrlParam('projectId');
+    var uri = '/blockchain/compared?projectId='+projectId;
+    doJavaGet(uri, function(comparedData) {
+        if(comparedData != null && comparedData.code == 0) {
+            res.datas.compared = comparedData.datas;
             var tempObj = {};
             var tempArr = [];
             var widthArr = [];
@@ -279,17 +312,16 @@ function ajaxGetScoreInfo() {
             tempObj.scores = tempArr;
             tempObj.count =  count;
             tempObj.widthArr =  widthArr;
-            tempObj.stars  = Math.round(avaScore)*5
-            console.log(tempObj)
-            //chain-score-temp
+            tempObj.stars  = Math.round(avaScore)*5;
+            tempObj.compared = comparedData.datas;
             var commentTpl = $("#chain-score-temp").html();
             var teamContent = template(commentTpl, {list: tempObj});
             $(".rating_wrap-hook").append(teamContent);
+            console.log(tempObj)
         } else {
             layer.msg(res.msg);
         }
     }, "json");
-
 }
 //评分的计算,返回的是对应星星的类名
 function formatStarClass(data){
