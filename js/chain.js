@@ -45,9 +45,7 @@ var ui = {
 
 // 分类查询
 function searchFromType(e){
-	if (ui.loading) {
-		return false
-	}
+
 	ui.loading = true;
 	ui.noMoreData = false;
 	search_type_page = 1;
@@ -60,7 +58,8 @@ function searchFromType(e){
 	doJavaGet(uri,function(result){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
-		$('.coin-list-wrap').append(content)
+		$('.coin-list-wrap').html("");
+		$('.coin-list-wrap').append(content);
 		$(".waiting-data").hide();
 		ui.loading = false;
 	}, "json")
@@ -68,7 +67,6 @@ function searchFromType(e){
 }
 
 function loadMoreSearchFromType(){
-	ui.loading = true;
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
 
 	doJavaGet(uri,function(result){
@@ -82,36 +80,34 @@ function loadMoreSearchFromType(){
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
 		$(".waiting-data").hide();
-		ui.loading = false;
 	}, "json")
 	flag = 3;
+	ui.loading = false;
 }
 
 
 function getChain(){
-	if (ui.loading) {
-		return false
-	}
 	index_page = 1;
 	var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=' + pageSize
 	ui.loading = true;
 	ui.noMoreData = false;
+	$('.coin-list-wrap').html("");
+	$(".waiting-data").fadeIn();
 	doJavaGet(uri,function(result){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
-		$(".waiting-data").hide();
 		var imgW = $(".coin-list-wrap li img").width();
 		$(".coin-list-wrap li img").css('height',imgW*270/230);
-		ui.loading = false;
+		$(".waiting-data").hide();
 	}, "json")
+	ui.loading = false;
 	flag = 1;
 }
 getChain();
 
 function loadMoreChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + index_page + '&pageSize=' + pageSize
-	ui.loading = true;
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
@@ -124,14 +120,11 @@ function loadMoreChain(){
 		$('.coin-list-wrap').append(content);
     var imgW = $(".coin-list-wrap li img").width();
     $(".coin-list-wrap li img").css('height',imgW*270/230)
-		ui.loading = false;
 	}, "json")
+	ui.loading = false;
 }
 
 function serachChain(){
-	if (ui.loading) {
-		return false
-	}
 	search_page = 1;
 	ui.loding = true;
 	ui.noMoreData = false;
@@ -144,13 +137,13 @@ function serachChain(){
 	// 点击搜索后隐藏分类和币种内容
 	$('.coin-item').css('display','none')
 	$('.coin-content').css('display','none')
+	$('.search-result-box').html('');
 	$(".waiting-data").fadeIn();
 
 	doJavaGet(uri,function(result){
 		$(".waiting-data").hide();
 		var search = document.getElementById('search').innerHTML;
 		var content = template(search, {searchList: result.datas});
-		$('.search-result-box').html('');
 		$('.search-result-box').append(content);
 		if (result.datas.length > 0) {
 			$('.search-result-box').css('display','')
@@ -167,15 +160,13 @@ function serachChain(){
 			$('.can-not-find').html('找不到"' + key_word +'"项目')
 		}
 		ui.noMoreData = false;
-		ui.loading = false;
 	}, "json");
 	flag = 2;
-
+	ui.loading = false;
 
 }
 
 function loadMoreSearch(){
-	ui.loading = true;
 	var key_word = $('.search_bar')[0].value
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
 
@@ -196,30 +187,41 @@ function loadMoreSearch(){
 				descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
 			}
 		}
-		ui.loading = false;
 	}, "json");
+	ui.loading = false;
 
 }
 
+// 搜索
 $(".search-click-hook").on('click',function(){
 	serachChain();
+})
+$(".search_bar").bind('keypress',function(event){
+	if(event.keyCode == "13")
+		serachChain();
 })
 window.onscroll = function () {
     //监听事件内容
 		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
 		// console.log("页面的文档高度 ："+$(document).height());
 		// console.log('浏览器的高度：'+$(window).height());
-    if( $(document).height()== $(window).height() + $(window).scrollTop() ){
+		var srollPos = $(window).scrollTop();
+		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+
+    if( $(document).height() <= totalheight ){
         //当滚动条到底时,这里是触发内容
         //异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {
 					index_page += 1
-					loadMoreChain()
+					ui.loading = true;
+					loadMoreChain();
 				}else if (flag == 2 && !ui.noMoreData && !ui.loading) {
 					search_page += 1;
+					ui.loading = true;
 					loadMoreSearch();
 				}else if (flag == 3 && !ui.noMoreData && !ui.loading){
 					search_type_page += 1;
+					ui.loading = true;
 					loadMoreSearchFromType();
 				}
 
