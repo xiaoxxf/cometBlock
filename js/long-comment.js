@@ -4,6 +4,7 @@ var userId = $.cookie('userid');//获取userid
 $(function(){
   if(userId == undefined){
     layer.open({
+      closeBtn:0,
       title: '',
       content: '请先登录您的账号',
       btn: ['登录', '注册'],
@@ -12,13 +13,11 @@ $(function(){
       },
       btn2: function(){
         window.location.href='register.html'
-      },
-      cancel: function(){
-        return false
       }
     });
   }
 })
+
 
 var getOnloadFunc = function(aImg) {
 	return function(evt) {
@@ -42,7 +41,7 @@ $(function(){
     $(".coin-image").append(img);
 
 
-    console.log(projectData)
+
   },'json')
 
 })
@@ -152,26 +151,6 @@ $(function(){
     doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
 
 
-  	// $.ajax({
-  	// 	type: 'POST',
-  	// 	url: uri,
-  	// 	data: JSON.stringify(data),
-  	// 	dataType : 'json',
-  	// 	contentType: 'application/json; charset=UTF-8',
-  	// 	success: function (result) {
-  	// 	 if(result.code=="0"){
-  	// 		 	// TODO: 跳转回项目页
-    //       ui.submiting = false
-  	// 			console.log('ok')
-  	// 		}
-  	// 		else{
-  	// 			alert("保存失败");
-  	// 		}
-  	// 	},
-  	// 	error: function (err) {
-  	// 			//$.dialog.tips("Request Error!");
-  	// 	}
-  	// });
 
   })
 
