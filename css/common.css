@@ -307,6 +307,9 @@ body{
 
 
 /*导航栏登录提示*/
+.log-nvabar-right{
+    margin-right: 15px;
+}
 .nav-user-account{
     position: relative;
 }
