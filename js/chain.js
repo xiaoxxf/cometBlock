@@ -61,6 +61,8 @@ function searchFromType(e){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
+        var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+        $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 		$(".waiting-data").hide();
 		ui.loading = false;
 	}, "json")
@@ -81,6 +83,8 @@ function loadMoreSearchFromType(){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
+        var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+        $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 		$(".waiting-data").hide();
 		ui.loading = false;
 	}, "json")
