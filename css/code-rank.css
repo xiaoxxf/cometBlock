@@ -39,10 +39,11 @@
 }
 .title-select-wrap .item{
     background-color: #fff;
-    border: 1px solid #bcbcbc;
+    border: .4px solid #bcbcbc;    
     color: #999;
     font-size: 16px;
     margin-left: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
 }
 .title-select-wrap .item.item-active{
     background-color: #2aa3f6;
@@ -52,7 +53,8 @@
     margin-top: 40px;
     border-radius: 20px;
     padding: 0 30px;
-    border: 1px solid #bcbcbc;
+    /*border: 1px solid #bcbcbc;*/
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
     background-color: #fff;
 }
 .code-rank-wrap .code-rank-item-wrap .code-rank-top{

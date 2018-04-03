@@ -20,6 +20,7 @@ $('.coin-item').on('click', $('span'), function(e) {
 	$(e.target).addClass('cur')
 })
 
+
 $('.coin-item').on("mouseenter mouseleave",'span',function(e){
 	if(e.type == "mouseenter"){
 		$(e.target).css('background-color','#f0f0f0')
@@ -29,7 +30,17 @@ $('.coin-item').on("mouseenter mouseleave",'span',function(e){
 		$(e.target).css('border-radius','')
 	};
 })
-
+$('.coin-item').on("mouseenter mouseleave",'.cur',function(e){
+	if(e.type == "mouseenter"){
+		$(e.target).css('background-color','rgb(79, 163, 237)')
+		$(e.target).css('border-radius','8px')
+		$(e.target).css('color','white')
+	}else if(e.type == "mouseleave"){
+		$(e.target).css('background','')
+		$(e.target).css('border-radius','')
+		$(e.target).css('color','')
+	};
+})
 var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
 var noMoreData = false;
 var searchType = ''
