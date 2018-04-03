@@ -76,9 +76,9 @@
 .coin-list-wrap li .inner-img-wrap{
     position: relative;
     background-color: #fff;
-    -moz-box-shadow: 2px 2px 5px #e0d9d9;
-    -webkit-box-shadow: 2px 2px 5px #e0d9d9;
-    box-shadow: 2px 2px 5px #e0d9d9;
+    -moz-box-shadow: 2px 2px 5px #a79e9e;
+    -webkit-box-shadow: 2px 2px 5px #a79e9e;
+    box-shadow: 2px 2px 5px #a79e9e;
     border-radius: 10px;
 }
 .coin-list-wrap li:nth-child(4n+1){
@@ -122,9 +122,9 @@
 .search-result-img .inner-img-wrap{
     position: relative;
     background-color: #fff;
-    -moz-box-shadow: 2px 2px 5px #e0d9d9;
-    -webkit-box-shadow: 2px 2px 5px #e0d9d9;
-    box-shadow: 2px 2px 5px #e0d9d9;
+    -moz-box-shadow: 2px 2px 5px #a79e9e;
+    -webkit-box-shadow: 2px 2px 5px #a79e9e;
+    box-shadow: 2px 2px 5px #a79e9e;
     border-radius: 10px;
 }
 .search-result-img .inner-img-wrap img {
