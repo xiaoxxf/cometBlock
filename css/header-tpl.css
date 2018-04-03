@@ -1,0 +1,5 @@
+/*导航栏阴影*/
+.nav_shadow{
+	box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
+
