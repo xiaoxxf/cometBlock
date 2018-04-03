@@ -304,3 +304,79 @@ body{
 .waiting-data .loader-nine div{
     background-color:#999
 }
+
+
+/*导航栏登录提示*/
+.nav-user-account{
+    position: relative;
+}
+.nav-user-account .more-active{
+    display: none;
+}
+#nav_login, #nav_register{
+    display: none;
+}
+.nav_show_message{
+    border: solid 1px rgb(79, 163, 237);
+    border-radius: 30px;
+    height: 30px;
+    padding: 5px 15px!important;
+    margin-top: 10px;
+    border: 1px solid;
+    color: rgb(79, 163, 237) !important;
+}
+.nav-user-account .more-active{
+    position: relative;
+    padding: 14px 15px !important;
+}
+.nav-user-account .more-active:hover .logout-btn{
+    display: block;
+}
+.nav-user-account .logout-btn{
+    display: none;
+    position: absolute;
+    padding: 10px 0;
+    border: 1px solid rgb(79, 163, 237);
+    background: rgb(79, 163, 237);
+    white-space: nowrap;
+    top: 50px;
+    border-top: none;
+    right: 15px;
+    padding: 5px 25px;
+    color: #fff;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .login-btn-xs {
+        border: none;
+        padding-left: 35px !important;
+    }
+    .logout-btn-xs{
+        top:10px!important;
+    }
+}
+tbody a{
+    color: #000000;
+}
+.nav-user-account span {
+    display: inline-block;
+    zoom: 1;
+    vertical-align: baseline;
+    font-size: 14px;
+}
+.arrow {
+    position: relative;
+    top: -2px;
+    left: 2px;
+    border-width: 3px 3px 0;
+    border-color: #d5d5d5 transparent transparent transparent;
+    border-style: solid dashed dashed dashed;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+}
+.nav_font{
+    font-size: 12px !important;
+}
