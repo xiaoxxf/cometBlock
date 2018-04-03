@@ -4,7 +4,7 @@ function RegisterFromValid(){
 	var tel=$("#session_phone").val();
 	var userPwd=$("#session_password").val();
     if(realName==""){ 
-        layer.tips('用戶名不能为空', '#session_phone', {
+        layer.tips('用戶名不能为空', '#realName', {
 		  tips: [2, '#3595CC'],
 		  time: 2000
 		}); 
