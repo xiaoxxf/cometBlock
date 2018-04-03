@@ -56,7 +56,6 @@ var ui = {
 
 // 分类查询
 function searchFromType(e){
-
 	ui.loading = true;
 	ui.noMoreData = false;
 	search_type_page = 1;
@@ -169,6 +168,8 @@ function serachChain(){
 					descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
 				}
 			}
+            var imgW = $(".search-result .inner-img-wrap").width();
+            $(".search-result .inner-img-wrap").css('height',imgW);
 		}else{
 			$('.no-result').css('display','')
 			$('.can-not-find').html('找不到"' + key_word +'"项目')

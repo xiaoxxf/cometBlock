@@ -118,14 +118,22 @@
 
 .search-result-img{
   width: 20%;
-
 }
-
-.search-result-img img{
-  width:100%;
-  height: 100%;
+.search-result-img .inner-img-wrap{
+    position: relative;
+    background-color: #fff;
+    -moz-box-shadow: 2px 2px 5px #e0d9d9;
+    -webkit-box-shadow: 2px 2px 5px #e0d9d9;
+    box-shadow: 2px 2px 5px #e0d9d9;
+    border-radius: 10px;
 }
-
+.search-result-img .inner-img-wrap img {
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 .search-result .search-result-coin{
   max-width: 50%;
   margin-left: 15px;
