@@ -1,5 +1,17 @@
 var userId = $.cookie('userid');//获取userid
 
+var ui = {
+  'submiting': false,
+  'fileUpLoading': false
+}
+
+// 最终传给服务端的
+var allFile = {
+  'projectLogo': '',
+  'memberPic': [],
+  'whitePaper': ''
+}
+
 // 判断是否登录
 $(function(){
   if(userId == undefined){
@@ -36,7 +48,7 @@ function add_issue_price()
 
 //网站跳转
 function jump_website(){
-   var website = new_coin.web_site.value;
+   var website = $('.website').val()
    if(website)
   	 window.open(website)
 }
@@ -47,15 +59,34 @@ function jump_block_browser(){
   	 window.open(website)
 }
 
-var member_count = 1
+var member_count = 0
 // 添加团队成员
 function add_team_member()
 {
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-remove remove" style="display:none" ></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_' + member_count + ' " ></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
   member_count += 1
-  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="img/no_image.png" class="" /></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic member_0"></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
-
   $('.team').append(string);
 }
+// 减少团队成员
+$('.team').on("mouseenter mouseleave",".team_image_box",function(e){
+  if(e.type == "mouseenter"){
+    $(e.currentTarget.children[1]).css('display','')
+  }else if(e.type == "mouseleave"){
+    $(e.currentTarget.children[1]).css('display','none')
+  };
+});
+
+$('.team').on("click",".remove",function(e){
+  $(e.currentTarget.parentElement.parentElement).remove();
+  // 删除存储的相对应的成员图片
+  n = e.target.parentElement.nextElementSibling.firstElementChild.lastElementChild.className.split(' ')[1].split('_')[1]
+
+  allFile.memberPic.splice(n)
+  if (n != 0) {
+    member_count = member_count - 1
+  }
+})
+
 
 //白皮书上传
 $('.click_input_white_paper_file').on('click', function(){
@@ -65,10 +96,18 @@ $('.click_input_white_paper_file').on('click', function(){
 $('.white_paper').on('change', function(e){
 	file = e.currentTarget.files[0];
 
+  if(!file){
+    allFile.whitePaper = ''
+    $(".white_paper_file_name").val('');
+    $(".upload-white-paper").attr('disabled')
+    return false
+  }
+
 	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
     layer.msg('请选择小于20M的PDF文件')
     return false
 	}
+
 	var name = file.name;
   $(".white_paper_file_name").val( name );
   $(".upload-white-paper").removeAttr('disabled')
@@ -81,16 +120,25 @@ var getOnloadFunc = function(aImg) {
 	};
 }
 //币种图片选择及预览
+
 var input_project_logo = document.getElementById("project_logo_input");
 input_project_logo.addEventListener("change", function() {
   $(".coin_image_box").html("");
+
+  var file = this.files[0]
+  if(!file){
+    $('.upload-project-logo').attr('disabled','disabled')
+    allFile.projectLogo = ''
+    return false;
+  }
+
   // 校验图片
-  var file = this.files[0];
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
     layer.msg('请选择小于2M的图片文件',{time:1000})
     $('.upload-project-logo').attr('disabled','disabled')
     return false
   }
+
   // 预览图片
   var img = document.createElement("img");
   $(img).css("width","110px")
@@ -108,44 +156,43 @@ $('.team').on('change', $('.member_pic'), function(e) {
   if (e.target.type != 'file') {
     return false
   }
+
   team_image_box = e.target.parentNode.parentNode.previousElementSibling// team_image_box
-  team_image_box.innerHTML = ""
+  $(team_image_box).children('img').remove()
 
   var file = e.target.files[0];
+
+  uploadButton = e.target.parentElement.nextElementSibling;
+  // 没选图片
+  if (!file) {
+    uploadButton.setAttribute('disabled','disabled')
+    number = e.target.className.split(' ')[1].split('_')[1]
+    allFile.memberPic.splice(number)
+    return false
+  }
+  // 校验图片
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
     layer.msg('请选择小于2M的图片文件',{time:1000})
-    e.target.parentElement.nextElementSibling.setAttribute('disabled','disabled')
+    uploadButton.setAttribute('disabled','disabled')
     return false
   }
 
+  // 图片预览
   var img = document.createElement("img");
-
   $(img).css("width","110px")
   $(img).css("height","100px")
-  team_image_box.append(img);
+  team_image_box.prepend(img);
 
   var reader = new FileReader();
   reader.onload = getOnloadFunc(img);
   reader.readAsDataURL(file);
-  e.target.parentElement.nextElementSibling.removeAttribute('disabled')
+  uploadButton.removeAttribute('disabled')
 })
 
-// 文件上传
-var ui = {
-  'submiting': false,
-  'fileUpLoading': false
-}
-
-var allFile = {
-  'projectLogo': '',
-  'memberPic': [],
-  'whitePaper': ''
-}
 
 var t = ''
 function doUpload(e){
   var file = e.files[0];
-
   if (ui.fileUpLoading || e.files.length == 0) {
     return false
   }
@@ -195,7 +242,7 @@ function doUpload(e){
       else if (t.className.split(' ')[0] == 'member_pic') {
         number = t.className.split(' ')[1].split('_')[1]
         allFile.memberPic[number] = data.datas[0]
-        t.parentElement.nextElementSibling.setAttribute('disabled','disabled')
+        $(t.parentElement.nextElementSibling).attr('disabled','disabled')
       }
       // white_paper
       else if (t.className == 'white_paper') {
@@ -278,9 +325,93 @@ $('#form1').validator({
 		'block_browser': 'url',
 		'project_content': 'required',
     'currency_circulation': 'required;integer',
-  }
-});
+  },
 
+  valid: function(form) {
+
+      if (ui.submiting) {
+        return false
+      }
+      var team = [];
+      teamLength = allFile.memberPic.length; // 根据图片数判断team的长度
+      memberName = $(" input[name='member_name']");
+      memberPosition = $(" input[name='member_position']");
+
+      for (var i = 0; i < teamLength; i++) {
+        var temp = {};
+        temp.picHref = allFile.memberPic[i];
+        temp.name = memberName[i].value;
+        temp.position = memberPosition[i].value;
+        team.push(temp)
+      }
+
+      //判断team的图片、名字、position都必须存在
+      temp_length = team.length
+      for (var i = 0; i < temp_length; i++) {
+        if (!team[i].picHref || !team[i].name) {
+          team.splice(i,1)
+        }
+      }
+
+      // 发行价格
+      var exchangeRate = "";
+      $('input[name="exchange_rate"]').each(function(i) {
+    	   exchangeRate += $(this).val();
+      });
+
+
+      // 提交数据
+      var data = {
+        "projectLogo":          allFile.projectLogo,
+        "projectName":          form1.project_name.value,
+        "projectBigName":       form1.project_big_name.value ,
+        "projectType":          form1.project_type.value,
+        "currencyCount":        form1.currency_count.value,
+        "currencyCirculation":  form1.currency_circulation.value,
+        "fundraisingTime":      form1.fundraising_time.value,
+        "companyWebsite":       form1.compay_website.value,
+        "projectContent":       form1.project_content.value,
+        "whitePaper":           allFile.whitePaper,
+        "exchangeRate":			    exchangeRate,
+        "userId":               userId,
+        "chainTeamList":        team
+      };
+
+      $.ajax({
+          type: 'POST',
+          url : WebApiHostJavaApi + 'blockchain/addLibrary',
+          data: JSON.stringify(data),
+          dataType : 'json',
+          contentType: 'application/json; charset=UTF-8',
+          beforeSend: function(){
+            ui.submiting = true
+            $('.submit_control').css('disabled','disabled')
+          },
+
+          success: function (result) {
+            if(result.code=="0"){
+              ui.submiting = false
+              layer.msg('提交成功，请等待审核', {
+                time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                end:function(){
+                window.location.href='chain.html';
+                }
+              });
+            }
+            else{
+              layer.msg('提交失败，请重试');
+              return false
+            }
+          },
+          error: function (err) {
+            layer.msg('提交失败，请重试');
+            $('.submit_control').css('disabled','')
+          }
+      });
+
+  }
+
+});
 
 
 // 表单提交
@@ -343,6 +474,7 @@ $('.submit_control').on('click', function(){
       contentType: 'application/json; charset=UTF-8',
       beforeSend: function(){
         ui.submiting = true
+        $('.submit_control').css('disabled','disabled')
       },
 
       success: function (result) {
@@ -362,6 +494,7 @@ $('.submit_control').on('click', function(){
       },
       error: function (err) {
         layer.msg('提交失败，请重试');
+        $('.submit_control').css('disabled','')
       }
   });
 
@@ -369,9 +502,6 @@ $('.submit_control').on('click', function(){
 
 
 // 渲染币种类型
-$(function(){
-
-})
 $(function(){
 	var uri = 'blockchain/quary?parentId=1'
 	doJavaGet(uri,function(data){
