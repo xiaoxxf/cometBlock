@@ -215,6 +215,11 @@ function ajaxGetLongComments() {
         }
     }, "json");
 
+    // 限制长文显示长度
+    if ($('.comment-content-wrap').html().length > 100) {
+      alert('ok')
+    }
+
 }
 //点击提交评论
 $(".short-comment-commit").on('click',function (e) {
@@ -334,4 +339,3 @@ function formatStarClass(data){
     }
     return data;
 }
-

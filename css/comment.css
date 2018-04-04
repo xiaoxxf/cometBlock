@@ -58,6 +58,9 @@ header {
 .comment-container-wrap {
 	margin-top: 30px;
 	min-height: 600px;
+	/* 限制宽度 */
+	margin-left: 14%;
+	width: 70%;
 }
 
 .comment-detail-main .author-avatar img {
