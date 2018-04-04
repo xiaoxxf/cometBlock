@@ -24,6 +24,7 @@
   border:0px;
   height: 50px;
   font-size: 20px;
+  width: 100%;
 }
 
 .edit-comment{
@@ -52,5 +53,10 @@
   width: 100px;
 }
 input::-webkit-input-placeholder{
-    color:#3F3E3E;
+    color:rgb(100,100,100);
+    font-weight: 900;
+}
+
+.w-e-toolbar{
+  background-color: 1px
 }

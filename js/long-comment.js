@@ -25,9 +25,12 @@ var getOnloadFunc = function(aImg) {
 	};
 }
 
+
+
 var projectData = {}
 
 $(function(){
+
   var projectId = location.search.split('?')[1]
   var uri = 'blockchain/detail?'+ projectId
 
@@ -90,6 +93,7 @@ $(function(){
   editor.customConfig.uploadFileName = 'file'
 
 
+
   editor.customConfig.uploadImgHooks = {
       before: function (xhr, editor, files) {
 
@@ -116,6 +120,17 @@ $(function(){
   // editor.customConfig.debug = true
   editor.create()
 
+  // 修改菜单栏样式
+  $('.w-e-toolbar').css(
+    {
+     'background-color':'rgb(243,246,247)',
+     "border-left":"0px",
+     "border-right":"0px",
+     "border-bottom":"0px",
+    }
+  );
+  $('.w-e-menu').css('font-size','20px')
+
 
   // 提交
   $('.submit_comment').on('click',function(){
@@ -135,6 +150,12 @@ $(function(){
   		userId: userId, //userId
   		password:	123
   	}
+
+    if (data.textTitle.length == 0 || editor.txt.text().length == 0 || !data.score) {
+      $('#identifier').modal()
+      ui.submiting = false
+      return false
+    }
 
     // var uri = 'http://10.0.0.169:8080/blockchain/addReview'
 
