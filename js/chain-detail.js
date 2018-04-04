@@ -142,6 +142,9 @@ function chainDetailFormat(chainInfoData) {
             var chainTpl = $("#chain-info-temp").html();
             var content = template(chainTpl, {list: chainInfoData});
             $(".chain-info-hook").append(content)
+            var imgW = $(".coin-detail-desc-wrap .coin-img").width();
+            $(".coin-detail-desc-wrap .coin-img").css('height',imgW);
+            $(".coin-detail-desc-wrap .coin-img").show();
             if(chainInfoData.chainTeamList != null && chainInfoData.chainTeamList.length > 0){
                 var teamTpl = $("#team-info-temp").html();
                 var teamContent = template(teamTpl, {list: chainInfoData});

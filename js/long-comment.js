@@ -29,10 +29,10 @@ var projectData = {}
 
 $(function(){
   var projectId = location.search.split('?')[1]
-  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=1&projectId=' + projectId
+  var uri = 'blockchain/detail?'+ projectId
 
   doJavaGet(uri,function(data){
-    projectData = data.datas[0]
+    projectData = data.datas
     $('.coin-name').find('p').html(projectData.projectBigName)
     var img = document.createElement("img");
     var src = projectData.projectLogo
