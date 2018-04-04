@@ -202,6 +202,15 @@ function ajaxGetLongComments() {
                 var commentTpl = $("#long-comment-temp").html();
                 var teamContent = template(commentTpl, {list: res.datas});
                 $(".long-comment-wrap-hook").append(teamContent);
+
+                // 限制长度
+                long_comment_content = $('.long-comment-content')
+                for (var i = 0; i < long_comment_content.length; i++) {
+                  if (long_comment_content[i].innerText.length > 225) {
+          					long_comment_content[i].innerText = long_comment_content[i].innerText.substring(0,225) + "..."
+          				}
+                }
+
                 $(".long-comment-load-more .loading-more").show();
                 $(".long-comment-load-more .loader1").css('display','none');
                 if(res.datas.length < 10){
@@ -334,4 +343,3 @@ function formatStarClass(data){
     }
     return data;
 }
-

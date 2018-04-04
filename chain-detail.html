@@ -249,20 +249,22 @@
         <%:=list[i].createTime%>
         </span>
         </span>
-        <div>
+        <div class="long-comment-article-title">
             <a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>" class="text-left long-comment-article-title"><%:=list[i].textTitle%></a>
         </div>
         <div class="row comment-content-wrap">
-            <div class="col-md-10 col-xs-12">
+            <div class="col-md-10 col-xs-12 long-comment-content">
                 <a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>"  class="comment-content">
                     <%:=list[i].textContent%>
                 </a>
             </div>
+
             <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
                 <span class="click-awsome" data-reviewid="<%:=list[i].reviewId%>"><i class="icon-dz"></i><i class="icon-dzon"></i></span>
                 <span class="num"><%:=list[i].likes%></span>
             </div>
         </div>
+        <br>
         <p class="text-left long-comment-reply"><a href="comment.html?reviewId=<%:=list[i].reviewId%>&projectId=<%:=list[i].projectId%>"><%:=list[i].review%>个评论</a></p>
     </div>
     <%}%>

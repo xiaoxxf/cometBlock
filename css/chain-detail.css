@@ -222,8 +222,12 @@
     color: #666;
 }
 .long-comment-article-title{
-    margin-bottom: 10px;
-    color: #000;
+  margin-bottom: 12px;
+}
+.long-comment-article-title a{
+    margin-bottom: 20px;
+    color: rgb(45,164,243);
+    font-size: 15px;
 }
 .comment-list-wrap .comment-item{
     border-bottom: 1px solid #dedede;
