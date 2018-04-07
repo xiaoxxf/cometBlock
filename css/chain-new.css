@@ -136,3 +136,10 @@ label{
   font-size: 20px;
   cursor:pointer;
 }
+
+.add_member_button{
+  margin-top:20px;
+  margin-bottom:40px;
+  width:30%;
+  height:30%;
+}
