@@ -81,7 +81,7 @@
 
 							<div class="col-xs-6 col-md-2 col-sm-3 add_team_member_button">
 								<span style="cursor:pointer">
-									<img src="img/001-signs.png" onclick="add_team_member()" style="margin-top:20px;width:30%;height:30%">
+									<img src="img/001-signs.png" onclick="add_team_member()" class="add_member_button">
 								</span><br>
 							</div>
 
@@ -120,98 +120,98 @@
 								<button type="button" class="btn btn-default"  onclick="add_issue_price()">
 								  <span class="glyphicon glyphicon-plus" style="color:#0080FF;" aria-hidden="true"></span>
 								</button>
-										</div>
-									</div>
+							</div>
+						</div>
 
-									<hr> <br>
+						<hr> <br>
 
-									<div class="form-group row">
-										<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行总量：</label>
-										<div class="col-xs-12 col-md-5 col-sm-5">
-											<input class="form-control" name="currency_count" type="text" value="">
-										</div>
-									</div>
+						<div class="form-group row">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行总量：</label>
+							<div class="col-xs-12 col-md-5 col-sm-5">
+								<input class="form-control" name="currency_count" type="text" value="">
+							</div>
+						</div>
 
-									<div class="form-group row">
-										<label class="col-xs-12 col-md-2 col-sm-2 control-label">流通总量：</label>
-										<div class="col-xs-12 col-md-5 col-sm-5">
-											<input class="form-control" name="currency_circulation" type="text" value="">
-										</div>
-									</div>
+						<div class="form-group row">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">流通总量：</label>
+							<div class="col-xs-12 col-md-5 col-sm-5">
+								<input class="form-control" name="currency_circulation" type="text" value="">
+							</div>
+						</div>
 
-									<hr /><br />
+						<hr /><br />
 
-									<div class="form-group row">
-										<label class="col-xs-12 col-md-2 col-sm-2 control-label">网站：</label>
-										<div class="col-xs-10 col-md-5 col-sm-5">
-											<input class="form-control website" name="compay_website" type="url" value="" placeholder="http://">
-										</div>
-										<div class="col-xs-2 aside_input_button">
-											<button type="button" class="btn btn-default" onclick="jump_website()">
-								  <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+						<div class="form-group row">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">网站：</label>
+							<div class="col-xs-10 col-md-5 col-sm-5">
+								<input class="form-control website" name="compay_website" type="url" value="" placeholder="http://">
+							</div>
+							<div class="col-xs-2 aside_input_button">
+								<button type="button" class="btn btn-default" onclick="jump_website()">
+					  <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+					</button>
+							</div>
+
+						</div>
+
+						<div class="form-group row ">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">区块链浏览器：</label>
+							<div class="col-xs-10 col-md-5 col-sm-5">
+								<input class="form-control" name="block_browser" type="url" value="" placeholder="http://">
+							</div>
+							<div class="col-xs-2 aside_input_button">
+								<button type="button" class="btn btn-default" onclick="jump_block_browser()">
+									<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
 								</button>
-										</div>
+							</div>
+						</div>
 
-									</div>
+						<div class="form-group row">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">白皮书：</label>
 
-									<div class="form-group row ">
-										<label class="col-xs-12 col-md-2 col-sm-2 control-label">区块链浏览器：</label>
-										<div class="col-xs-10 col-md-5 col-sm-5">
-											<input class="form-control" name="block_browser" type="url" value="" placeholder="http://">
-										</div>
-										<div class="col-xs-2 aside_input_button">
-											<button type="button" class="btn btn-default" onclick="jump_block_browser()">
-												<span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-											</button>
-										</div>
-									</div>
+							<!--选择上传的白皮书(隐藏)-->
+							<div hidden="true">
+								<input class="white_paper" name="white_paper" type="file" style="display:none">
+							</div>
 
-									<div class="form-group row">
-										<label class="col-xs-12 col-md-2 col-sm-2 control-label">白皮书：</label>
+							<!--显示文件名-->
+							<div class="col-xs-10 col-md-5 col-sm-5 show_white_papaer_name">
+								<input readonly="readonly" class="form-control white_paper_file_name" name="white_paper_file_name" value="" placeholder=".pdf (小于20M)">
+							</div>
 
-										<!--选择上传的白皮书(隐藏)-->
-										<div hidden="true">
-											<input class="white_paper" name="white_paper" type="file" style="display:none">
-										</div>
+							<!-- 选择白皮书button -->
+							<div class="col-xs-1 aside_input_button">
+								<button type="button" class="btn btn-default click_input_white_paper_file">
+					  		<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+								</button>
+							</div>
 
-										<!--显示文件名-->
-										<div class="col-xs-10 col-md-5 col-sm-5 show_white_papaer_name">
-											<input readonly="readonly" class="form-control white_paper_file_name" name="white_paper_file_name" value="" placeholder=".pdf (小于20M)">
-										</div>
+							<!-- 上传白皮书 -->
+							<div class="col-xs-1" style="margin-left:-30px;">
+								<button type="button" disabled='disabled' class="btn btn-default upload-white-paper" onclick="doUpload(this.parentElement.parentElement.children[1].children[0])">
+									<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
 
-										<!-- 选择白皮书button -->
-										<div class="col-xs-1 aside_input_button">
-											<button type="button" class="btn btn-default click_input_white_paper_file">
-								  		<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-											</button>
-										</div>
+						<hr />
 
-										<!-- 上传白皮书 -->
-										<div class="col-xs-1" style="margin-left:-30px;">
-											<button type="button" disabled='disabled' class="btn btn-default upload-white-paper" onclick="doUpload(this.parentElement.parentElement.children[1].children[0])">
-												<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-											</button>
-										</div>
-									</div>
+						<div class="form-group row">
+							<label class="col-xs-12 col-md-2 col-sm-2 control-label">介绍：</label>
+						</div>
 
-									<hr />
+						<div class="form-group row">
+							<div class="col-xs-12 col-md-8 col-sm-8">
+								<textarea class="form-control" rows="15" name="project_content"></textarea>
+							</div>
+						</div>
 
-									<div class="form-group row">
-										<label class="col-xs-12 col-md-2 col-sm-2 control-label">介绍：</label>
-									</div>
-
-									<div class="form-group row">
-										<div class="col-xs-12 col-md-8 col-sm-8">
-											<textarea class="form-control" rows="15" name="project_content"></textarea>
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<div class="col-xs-9 col-xs-offset-3 ">
-											<!-- <a href="#" class="btn btn-primary form1-confirm-hook submit_control">提交</a> -->
-											<button type="submit" class="btn btn-primary" style="width: 130px;">提交</button>
-										</div>
-									</div>
+						<div class="form-group row">
+							<div class="col-xs-9 col-xs-offset-3 ">
+								<!-- <a href="#" class="btn btn-primary form1-confirm-hook submit_control">提交</a> -->
+								<button type="submit" class="btn btn-primary submit_control" style="width: 130px;">提交</button>
+							</div>
+						</div>
 
 						</form>
 					</div>
