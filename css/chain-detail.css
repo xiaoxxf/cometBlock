@@ -105,26 +105,32 @@
     border-radius: 10px;
     padding: 5px 40px 5px 20px;
 }
-.team-intro-wrap{
+.project-intro-wrap{
     margin: 15px auto;
     background-color: #fff;
     border-radius: 10px;
     padding: 5px 40px 5px 20px;
 }
-.team-intro-wrap .team-intro-title{
+.project-intro-wrap .project-intro-title{
     font-size: 18px;
     padding: 20px 0;
 }
-.team-intro-wrap .team-desc{
+.project-intro-wrap .project-desc{
     padding-right: 50px;
     color: #666;
-    line-height: 26px;
+
+    font-size: 15px;
+    text-indent: 30px;
+    line-height: 25px;
+    letter-spacing: 1.5px;
+    text-align:justify;
+
 }
-.team-intro-wrap .team-title{
+.project-intro-wrap .team-title{
     font-size: 16px;
     padding-top: 20px;
 }
-.team-intro-wrap .img-wrap{
+.project-intro-wrap .img-wrap{
     margin-bottom: 30px;
 }
 .img-wrap .team-img{
