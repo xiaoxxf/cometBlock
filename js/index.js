@@ -14,7 +14,9 @@ $(document).ready(function () {
     function notice() { //请求后台查询最新通报
         var uri = 'news/newestTime'
         doJavaGet(uri, function(res) {
+        	
             if(res != null && res.code == 0) {
+            	debugger
                 if(parseInt(res.datas) != parseInt(count)) {
                     $('#div1').css("display", "block")
                     $('.news_look').html('有 ' + (parseInt(res.datas) - parseInt(count)) + ' 个新话题，点击查看')
@@ -50,9 +52,6 @@ $(document).ready(function () {
 
     };
 
-    function refresh() {
-        location.reload()
-    }
 
     function saveData(e) {
         var detail = $(e).attr("data-newid")
@@ -61,6 +60,9 @@ $(document).ready(function () {
     //点击加载更多
     $(".load-more-hook .loading-more").on('click',function () {
         load();
+    })
+    $(".news_look").on('click',function () {
+         location.reload()
     })
     $(window).scroll(function() {
         var srollPos = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
