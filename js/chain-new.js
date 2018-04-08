@@ -305,7 +305,7 @@ $('#form1').validator({
         "currencyCirculation":  form1.currency_circulation.value,
         "fundraisingTime":      form1.fundraising_time.value,
         "companyWebsite":       form1.compay_website.value,
-        "projectContent":       form1.project_content.value,
+        "projectContent":       editor.txt.html(),
         "whitePaper":           allFile.whitePaper,
         "exchangeRate":			    exchangeRate,
         "userId":               userId,
@@ -377,3 +377,25 @@ $(function(){
 		$('.project_type').append(content)
 	},"json")
 })
+
+
+// 编辑器
+
+var E = window.wangEditor
+var editor = new E('#editor')
+editor.customConfig.menus = [
+  'bold',
+  'italic',
+  'head',
+  'emoticon',
+]
+
+editor.create()
+
+$('.w-e-toolbar').css('display','none');
+$('.w-e-text-container').css({
+  "border": "1px solid #ccc",
+  "height": "300px",
+  "z-index": 10000,
+  "border-radius": "10px"
+});

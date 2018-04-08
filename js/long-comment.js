@@ -130,6 +130,7 @@ $(function(){
     }
   );
   $('.w-e-menu').css('font-size','20px')
+  $('.w-e-text-container').css('border','0px')
 
 
   // 提交
