@@ -145,12 +145,16 @@ function chainDetailFormat(chainInfoData) {
             var imgW = $(".coin-detail-desc-wrap .coin-img").width();
             $(".coin-detail-desc-wrap .coin-img").css('height',imgW);
             $(".coin-detail-desc-wrap .coin-img").show();
+            // 渲染projectContent
+            var projectInfoTemp = $("#project-info").html();
+            var projectInfo = template(projectInfoTemp, {list: chainInfoData});
+            $(".project-intro-hook").append(projectInfo);
+            showOrHideContent();
+            // 渲染projectTeam
             if(chainInfoData.chainTeamList != null && chainInfoData.chainTeamList.length > 0){
-                var teamTpl = $("#team-info-temp").html();
-                var teamContent = template(teamTpl, {list: chainInfoData});
-                $(".team-intro-hook").append(teamContent);
-            }else{
-                $(".team-intro-hook").hide();
+              var teamInfoTemp = $("#team-info").html();
+              var teamInfo = template(teamInfoTemp, {list: chainInfoData})
+              $(".project-intro-hook").append(teamInfo)
             }
         },"json")
     }
@@ -342,4 +346,38 @@ function formatStarClass(data){
         data[i].score = data[i].score*10/10*10
     }
     return data;
+}
+
+
+// 展开 & 折叠
+var full_content = ''
+var short_content = ''
+
+function showOrHideContent(){
+  projectContent =  $(".project-desc")
+  if (projectContent.text().length > 300) {
+    full_content = projectContent.text()
+    short_content = projectContent.text().substring(0,300) + "..."
+    projectContent.text(short_content)
+    var show = '<a onclick="showMore()">展开</a>'
+    projectContent.append(show)
+  }else{
+    return
+  }
+}
+
+function showMore(){
+  projectContent =  $(".project-desc")
+  projectContent.text("")
+  projectContent.append(full_content)
+  var hide = '<a onclick="Hide()">折叠</a>'
+  projectContent.append(hide)
+}
+
+function Hide(){
+  projectContent =  $(".project-desc")
+  projectContent.text("")
+  projectContent.append(short_content)
+  var show = '<a onclick="showMore()">展开</a>'
+  projectContent.append(show)
 }

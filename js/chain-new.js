@@ -343,7 +343,7 @@ $('#form1').validator({
 });
 
 
-function buidlTeam(){
+function buildTeam(){
   var team = [];
   memberName = $(".member_name");
   memberPosition = $(".member_position");
