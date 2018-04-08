@@ -16,8 +16,8 @@ $(document).ready(function () {
         doJavaGet(uri, function(res) {
         	
             if(res != null && res.code == 0) {
-            	debugger
-                if(parseInt(res.datas) != parseInt(count)) {
+            	
+                if(parseInt(res.datas) > parseInt(count)) {
                     $('#div1').css("display", "block")
                     $('.news_look').html('有 ' + (parseInt(res.datas) - parseInt(count)) + ' 个新话题，点击查看')
                 }
