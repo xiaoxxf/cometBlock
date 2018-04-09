@@ -1,5 +1,6 @@
 .top-nav-wrap{
     display: flex;
+    flex-direction: column;
     padding: 20px 40px;
     margin: 40px 0;
     background-color: #fff;
@@ -7,18 +8,18 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, .1);
 }
 
-.top-nav-wrap .title{
-    width: 15%;
+.top-nav-wrap .option .title{
+    width: 160px;
     font-size: 20px;
 }
-.top-nav-wrap .content{
-    width: 85%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: left;
+.top-nav-wrap .option{
+  width: 85%;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: left;
 }
-.top-nav-wrap .search-wrap{
+
+.top-nav-wrap .option .search .search-wrap{
     position: relative;
     width: 200px;
     border-radius: 50px;
@@ -33,9 +34,7 @@
     height: 28px;
     line-height: 28px;
 }
-.top-nav-wrap .content .coin-item{
-    margin-top: 5px;
-}
+
 .search-wrap .search-icon{
     position: absolute;
     right: 8px;
@@ -50,12 +49,23 @@
     transition: all 0.5s;
     transform: scale(1.2);
 }
-.mian-container{
-    margin-top: 50px;
+
+.top-nav-wrap .content{
+
 }
+
+.top-nav-wrap .content .coin-item{
+    margin-top: 5px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+    /* align-items: left; */
+}
+
 .coin-item span{
+    min-width: 125px;
     display: inline-block;
-    margin-right: 40px;
+    /* margin-right: 30px; */
     margin-top: 15px;
     padding: 2px 10px;
     font-size: 16px;
@@ -64,6 +74,10 @@
 .coin-item span.cur{
     background-color: #f0f0f0;
     border-radius: 8px;
+}
+
+.mian-container{
+    margin-top: 50px;
 }
 
 .coin-list-wrap{
