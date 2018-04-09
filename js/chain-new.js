@@ -273,7 +273,7 @@ $('#form1').validator({
 		'project_name': 'required',
 		'project_big_name': 'required',
     'project_type': 'required',
-		'fundraising_time': 'date',
+		'fundraising_time': 'required;date',
 		'currency_count': 'required;integer',
 		'compay_website': 'required;url',
 		'block_browser': 'url',

@@ -42,7 +42,6 @@ $('.coin-item').on("mouseenter mouseleave",'.cur',function(e){
 	};
 })
 var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
-var noMoreData = false;
 var searchType = ''
 var search_type_page = 1;
 var index_page = 1;
@@ -58,6 +57,8 @@ var ui = {
 function searchFromType(e){
 	ui.loading = true;
 	ui.noMoreData = false;
+	$('.load-more-container-wrap').css('display','none')
+
 	search_type_page = 1;
 	$('.coin-list-wrap').html('')
 	$(".waiting-data").fadeIn();
@@ -66,11 +67,16 @@ function searchFromType(e){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
 
 	doJavaGet(uri,function(result){
-		var tpl = document.getElementById('tpl').innerHTML;
-		var content = template(tpl, {list: result.datas});
-		$('.coin-list-wrap').append(content)
-    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
-    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+		if (result.datas.length == 0) {
+			ui.noMoreData = true;
+			$('.load-more-container-wrap').css('display','')
+		}else{
+			var tpl = document.getElementById('tpl').innerHTML;
+			var content = template(tpl, {list: result.datas});
+			$('.coin-list-wrap').append(content)
+	    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+	    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+		}
 		$(".waiting-data").hide();
 		ui.loading = false;
 	}, "json")
@@ -83,15 +89,15 @@ function loadMoreSearchFromType(){
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
-			return false
+			ui.loading = false;
+			$('.load-more-container-wrap').css('display','')
 		}else {
-			ui.noMoreData = false;
+			var tpl = document.getElementById('tpl').innerHTML;
+			var content = template(tpl, {list: result.datas});
+			$('.coin-list-wrap').append(content)
+			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 		}
-		var tpl = document.getElementById('tpl').innerHTML;
-		var content = template(tpl, {list: result.datas});
-		$('.coin-list-wrap').append(content)
-        var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
-        $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 		$(".waiting-data").hide();
 	}, "json")
 	flag = 3;
@@ -104,6 +110,7 @@ function getChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=' + pageSize
 	ui.loading = true;
 	ui.noMoreData = false;
+	$('.load-more-container-wrap').css('display','none')
 	$('.coin-list-wrap').html("");
 	$(".waiting-data").fadeIn();
 	doJavaGet(uri,function(result){
@@ -124,15 +131,15 @@ function loadMoreChain(){
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
-			return false
+			ui.loading = false;
+			$('.load-more-container-wrap').css('display','')
 		}else{
-			ui.noMoreData = false;
+			var tpl = document.getElementById('tpl').innerHTML;
+			var content = template(tpl, {list: result.datas});
+			$('.coin-list-wrap').append(content);
+			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230)
 		}
-		var tpl = document.getElementById('tpl').innerHTML;
-		var content = template(tpl, {list: result.datas});
-		$('.coin-list-wrap').append(content);
-    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
-    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230)
 		ui.loading = false;
 	}, "json")
 }
@@ -141,6 +148,7 @@ function serachChain(){
 	search_page = 1;
 	ui.loding = true;
 	ui.noMoreData = false;
+	$('.load-more-container-wrap').css('display','none')
 	var key_word = $('.search_bar')[0].value
 	if (key_word == '') {
 		return false
@@ -174,7 +182,6 @@ function serachChain(){
 			$('.no-result').css('display','')
 			$('.can-not-find').html('找不到"' + key_word +'"项目')
 		}
-		ui.noMoreData = false;
 	}, "json");
 	flag = 2;
 	ui.loading = false;
@@ -219,11 +226,14 @@ window.onscroll = function () {
     var srollPos = $(window).scrollTop();
     var totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
     //监听事件内容
-		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
-		// console.log("页面的文档高度 ："+$(document).height());
-		// console.log('浏览器的高度：'+$(window).height());
+
 		var srollPos = $(window).scrollTop();
 		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+
+
+		console.log("total：" +  totalheight)
+		console.log("页面的文档高度 ："+$(document).height());
+
 
     if( $(document).height() <= totalheight ){
         //当滚动条到底时,这里是触发内容
