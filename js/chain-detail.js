@@ -355,9 +355,9 @@ var short_content = ''
 
 function showOrHideContent(){
   projectContent =  $(".project-desc")
-  if (projectContent.text().length > 300) {
+  if (projectContent.text().length > 400) {
     full_content = projectContent.text()
-    short_content = projectContent.text().substring(0,300) + "..."
+    short_content = projectContent.text().substring(0,400) + "..."
     projectContent.text(short_content)
     var show = '<a onclick="showMore()">展开</a>'
     projectContent.append(show)
