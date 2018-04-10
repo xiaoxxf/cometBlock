@@ -176,8 +176,8 @@ function serachChain(){
 					descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
 				}
 			}
-            var imgW = $(".search-result .inner-img-wrap").width();
-            $(".search-result .inner-img-wrap").css('height',imgW);
+      var imgW = $(".search-result .inner-img-wrap").width();
+      $(".search-result .inner-img-wrap").css('height',imgW);
 		}else{
 			$('.no-result').css('display','')
 			$('.can-not-find').html('找不到"' + key_word +'"项目')
@@ -202,7 +202,8 @@ function loadMoreSearch(){
 		var search = document.getElementById('search').innerHTML;
 		var content = template(search, {searchList: result.datas});
 		$('.search-result-box').append(content);
-
+		var imgW = $(".search-result .inner-img-wrap").width();
+		$(".search-result .inner-img-wrap").css('height',imgW);
 		var descriptions = document.getElementsByClassName('coin-description');
 		for (var i = 0; i < descriptions.length; i++) {
 			if (descriptions[i].innerText.length > 220) {
