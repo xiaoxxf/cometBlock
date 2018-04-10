@@ -12,8 +12,8 @@ var WebApiToken;
 //var WebApiHost="http://localhost:2579/";
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
-var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-//var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
+//var WebApiHostJavaApi = "http://backend.blockcomet.com/";
+var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 //var WebApiHostJavaApi = "http://10.0.0.175:8080/";
 
 var WebRankHostApi = "//rank.blockcomet.com/"
