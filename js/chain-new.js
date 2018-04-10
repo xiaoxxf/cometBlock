@@ -12,7 +12,7 @@ var allFile = {
 
 // 判断是否登录
 $(function(){
-  if(userId == undefined){
+if(userId == undefined){
     layer.open({
       closeBtn:0,
       title: '',
@@ -25,7 +25,7 @@ $(function(){
         window.location.href='register.html'
       }
     });
-  }
+}
 })
 
 //日期选择
