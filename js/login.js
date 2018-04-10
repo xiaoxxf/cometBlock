@@ -137,7 +137,7 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 			$("#load").attr({
 				style: "-webkit-animation:loader2 1s 0.23s linear infinite"
 			});
-			$("#load div").attr({
+			$("#load ").attr({
 				style: "display:block"
 			});
 			setTimeout(function() { //两秒后跳转

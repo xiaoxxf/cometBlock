@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-
 <html>
-
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>彗星链库新建</title>
+		<title>注册</title>
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />
 		<!--<link rel="stylesheet" href="css/common.css">-->
@@ -15,16 +13,20 @@
 		<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 		<link rel="stylesheet" href="css/loading.css">
 		<link rel="stylesheet" href="css/common.css" />
-
+		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+		
 	</head>
 
 	<body lang="zh-CN" class="reader-black-font">
-		<div class="block-comet-main-wrap">
-
+		<div class="comet-main block-comet-main-wrap">
+			
+			<div class="navbar-fixed-container navbar-fixed-container-hook">
+			</div>
 			<div class="container">
-				<header class="header_title">
+				
+				<!--<header class="header_title">
 					<a href="index.html">彗星</a>
-				</header>
+				</header>-->
 				<form role="form" class="form-register" id="form-register1" action="">
 					<div class="main">
 						<h4 class="title">
@@ -37,22 +39,27 @@
 						<div class="js-sign-in-container">
 							<form id="new_session" action="/sessions" accept-charset="UTF-8" method="post">
 								<div class="input-prepend restyle ">
-									<input placeholder="你的昵称" type="text" class="border_radT" name="userName" id="realName">
+									<input placeholder="你的昵称" type="text" class="border_radT" name="realName" id="realName">
 									<i class="fa fa-user"></i>
 								</div>
 								<div class="input-prepend">
 									<input placeholder="手机号" type="text" name="tel" id="session_phone">
 									<i class="fa fa-mobile"></i>
 								</div>
+								<div class="input-prepend phone_code_hide">
+									<input placeholder="手机验证码" type="text" name="tel" class="border_radC " id="phone_code">
+									<i class="fa fa-key"></i>
+									<a class="btn-up-resend js-send-code-button" href="javascript:void(0);" id="send_code">发送验证码</a>
+								</div>
 								<div class="input-prepend">
 									<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
 									<i class="fa fa-unlock-alt"></i>
 								</div>
 
-								<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="注册">
+								<input class="sign-in-button" id="sign-in-form-submit-btn1" type="button" value="注册">
 								<span class="loader2 loader loaderadd" id="load">
 										<div></div>
-									</span>
+								</span>
 								</input>
 								<div class="register-anouceed">
 									<p>点击"注册"即表示您同意并遵守彗星</p>
@@ -66,6 +73,7 @@
 							<!-- 更多登录方式 -->
 							<div class="more-sign">
 								<h6>社交帐号直接注册</h6>
+
 								<ul>
 									<li>
 										<img src="img/wechat.png" width="40px" />
@@ -81,22 +89,6 @@
 				</form>
 
 			</div>
-			<footer class="fixed-footer-wrap">
-				<div class="footer-detail">
-					<div class="container">
-						<div class="row">
-							<!--<span class="footer-left"><a href="#"><i>2018</i>彗星科技有限公司</a></span>-->
-							<span class="footer-left"><a target="_blank" href="http://www.miitbeian.gov.cn">2018, Shenzhen Huixing Information Technology Co., Ltd. All Rights Reserved. 深圳市彗星信息科技有限公司  <span style="padding-left: 10px">粤ICP备18013444号</span></a>
-							</span>
-							<div class="pull-right">
-								<span class="footer-right"><a href="#">加入我们</a></span>
-								<span class="footer-right"><a href="#">联系我们</a></span>
-							</div>
-							<!--<div class="col-md-5"></div>-->
-						</div>
-					</div>
-				</div>
-			</footer>
 		</div>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -104,6 +96,8 @@
 		<script src="js/common.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src="js/register.js"></script>
+		<script src="js/md5.js"></script>
+
 	</body>
 
 </html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人中心</title>
+		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/chain-new.css" />
+		<link rel="stylesheet" href="css/personalCenter.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" href="js/plugins/layer/theme/default/layer.css" />
+		<!--<link href="/try/bootstrap/twitter-bootstrap-v2/docs/assets/css/bootstrap.css" rel="stylesheet" type="text/css" />-->
+	</head>
+
+	<body lang="zh-CN" class="reader-black-font">
+		<div class="comet-main block-comet-main-wrap">
+			<!-- 全局顶部导航栏 -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook">
+			</div>
+			<div class="container form-box" style="background-color: #f3f6f7;">
+				<div class="row ">
+					<div class=" col-xs-24 col-md-12 col-sm-24 ">
+
+						<!--<div class="col-xs-10 col-md-4 col-sm-10">
+							<div class="aside">
+								<ul>
+									<li class="router-link-exact-active active">
+										<a href="">
+											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span>基础设置</span>
+										</a>
+									</li>
+									<li class="">
+										<a href="">
+											<div class="setting-icon"><i class="fa fa-address-book"></i></div> <span>个人资料</span>
+										</a>
+									</li>
+									<li class="">
+										<a href="">
+											<div class="setting-icon"><i class="fa fa-cog"></i></div> <span>帐号管理</span>
+
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>-->
+						<div class="col-xs-12 col-md-4 col-sm-10">
+							<div class="aside">
+								<ul>
+									<li class="router-link-exact-active active" id="baseSetting">
+										<a onclick="baseSettingClick()">
+											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span>基础设置</span>
+										</a>
+									</li>
+									<li id="information">
+										<a onclick="informationClick()">
+											<div class="setting-icon"><i class="fa fa-address-book"></i></div> <span>消息</span>
+										</a>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-md-8 col-sm-12 ">
+							<!--更换头像-->
+							<div class="show_table">
+								<table>
+									<tbody class="base">
+										<tr>
+											<td>
+												<div class="avatar" id="result">
+													<img src="img/001-signs.png">
+												</div>
+											</td>
+											<td>
+												<a href="javascript:;" class="file btn btn-hollow ">更改头像
+													<input type="file" onchange="previewFile()">
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td class=" setting-title">
+												昵称
+											</td>
+											<td class=""><input type="text" placeholder="请输入昵称" id="ownname"></td>
+										</tr>
+										<tr>
+											<td class=" setting-title" >
+											<!--修改密码弹窗-->	
+												<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+													修改密码
+												</a>
+												<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+													<div class="accordion-inner">
+														Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+													</div>
+												</div>
+											<!--修改密码弹窗-->	
+											</td>
+											
+											<!--测试-->
+											
+											
+											<!--测试-->
+									
+										</tr>
+										<!--<tr>
+											<td class=" setting-title" onclick="changePwdClick()">
+												修改密码
+											</td>	
+										</tr>
+										<tr class="put-newpwd">
+											<td class=" setting-title" >
+												请输入新的密码
+											</td>
+											<td class=""><input type="text" placeholder="请输入新的密码" id="newPwd"></td>
+										</tr>
+										<tr class="put-newpwd">
+											<td class=" setting-title" >
+												请再次输入密码
+											</td>
+											<td class=""><input type="text" placeholder="请输入新的密码" id="confirm-newPwd"></td>
+										</tr>
+										-->
+										
+
+										<!--<tr>
+											<a href="javascript:void(0);" id="lol">点击这里</a>
+											<div id="timo" style="background-color:red;height:50px;width:50px;"></div>
+										</tr>-->
+										<tr>
+											<a href="javascript:void(0);" id="lol">修改密码</a>
+											<div id="timo" style="background-color:red;height:50px;width:50px;">
+										</tr>
+										<a href="javascript：void(0)" onClick="window.open()"> 点击链接后，页面不动，只打开链接
+										<!--<tr>
+											<td class="setting-title">电子邮件</td>
+											<td class="">
+												<a class="btn btn-hollow">点击绑定</a>
+											</td>
+											</td>
+										</tr>
+										<tr>
+											<td class=" ">手机</td>
+											<td class=" setted">
+												<div>130****4076</div> <i class="iconfont ic-collections-followed"></i> <span>已验证</span>
+												<a class="cancel-bind">解除绑定</a>
+											</td>
+										</tr>-->
+										<tr>
+											<td>
+												<input type="submit" class="btn btn-success setting-save" value="保存">
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--消息提示-->
+							<div class="show_table_msg">
+									<div class="menu">收到的评论</div>
+									<ul class="comment-list">
+										<li class="">
+											<a href="/u/ea0b38543aae" class="avatar_receive"><img src="//upload.jianshu.io/users/upload_avatars/10969024/f8259328-3b65-418e-9021-24774ec8547c?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120"></a>
+											<div class="info">
+												<div>
+													<a class="user" href="/u/ea0b38543aae">彗星</a><span class="comment-slogan">评论了我的产品</span>
+													</a><!--<span class="comment-slogan">我的产品</span>-->
+												</div>
+												<div class="time">2018.03.06 12:10</div>
+											</div>
+											<p>彗星播报很酷，这个项目很新颖，很牛逼，希望能做出更牛逼的东西出来</p>
+												
+											<div class="meta">
+												<a class="function-btn"><i class="fa fa-commenting-o"></i><span>回复</span></a>
+												<a href="chain-detail.html" class="function-btn"><i class="	fa fa-external-link"></i><span>查看对话</span></a>
+												<!--<a class="report" reportable-type="[object Object]"><span>举报</span></a>-->
+											</div>
+										</li>
+										<li class="">
+											<a href="/u/ea0b38543aae" class="avatar_receive"><img src="//upload.jianshu.io/users/upload_avatars/10969024/f8259328-3b65-418e-9021-24774ec8547c?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120"></a>
+											<div class="info">
+												<div>
+													<a class="user" href="/u/ea0b38543aae">彗星</a><span class="comment-slogan">评论了我的产品</span>
+													</a>
+													<!--<span class="comment-slogan">我的产品</span>-->
+												</div>
+												<div class="time">2018.03.06 12:10</div>
+											</div>
+											<p>彗星播报很酷，这个项目很新颖，很牛逼，希望能做出更牛逼的东西出来</p>
+												
+											<div class="meta">
+												<a class="function-btn"><i class="fa fa-commenting-o"></i><span>回复</span></a>
+												<a href="chain-detail.html" class="function-btn"><i class="	fa fa-external-link"></i><span>查看对话</span></a>
+												<!--<a class="report" reportable-type="[object Object]"><span>举报</span></a>-->
+											</div>
+										</li>
+										<li class="">
+											<a href="/u/ea0b38543aae" class="avatar_receive"><img src="//upload.jianshu.io/users/upload_avatars/10969024/f8259328-3b65-418e-9021-24774ec8547c?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120"></a>
+											<div class="info">
+												<div>
+													<a class="user" href="/u/ea0b38543aae">彗星</a><span class="comment-slogan">评论了我的产品</span>
+													</a>
+													<!--<span class="comment-slogan">我的产品</span>-->
+												</div>
+												<div class="time">2018.03.06 12:10</div>
+											</div>
+											<p>彗星播报很酷，这个项目很新颖，很牛逼，希望能做出更牛逼的东西出来</p>
+												
+											<div class="meta">
+												<a class="function-btn"><i class="fa fa-commenting-o"></i><span>回复</span></a>
+												<a href="chain-detail.html" class="function-btn"><i class="	fa fa-external-link"></i><span>查看对话</span></a>
+												<!--<a class="report" reportable-type="[object Object]"><span>举报</span></a>-->
+											</div>
+										</li>
+										<li class="">
+											<a href="/u/e90df72f5452" class="avatar_receive"><img src="//upload.jianshu.io/users/upload_avatars/10269115/9853afcb-4847-45a9-8bfe-fa9df1f21739?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120"></a> 
+											<div class="info">
+												<div>
+													<a class="user" href="/u/e90df72f5452">随遇而安_08d4</a><span class="comment-slogan">引用了我的短评</span>
+													<!--<a href="/p/acb322465582" '="">《腾讯大王卡两个月使用心得》</a>-->
+												</div> 
+												<div class="time">2018.01.23 07:52</div>
+											</div> 
+											<p>看了评论，吓得我都不敢激活了</p> 
+											<div class="meta">
+												<a class="function-btn"><i class="fa fa-commenting-o"></i><span>回复</span></a> 
+												<a href="chain-detail.html" class="function-btn"><i class="fa fa-external-link"></i><span>查看对话</span></a> 
+											</div> 
+										</li>
+										
+									</ul>
+								<!--折叠-->
+									<div class="container-fluid">
+										<div class="accordion" id="accordion2">
+											<div class="accordion-group">
+												<div class="accordion-heading">
+													<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+														点击我扩展。 再次点击我折叠。 Part I。
+													</a>
+												</div>
+												<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
+													<div class="accordion-inner">
+														Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<!--折叠-->
+									
+									<div class="notification-list-placeholder comment" style="display: none;"><div class="avatar"></div> <div class="wrap"><div class="name"></div> <div class="text"></div></div> <p></p> <p class="animation-delay"></p> <div class="meta"><i class="iconfont ic-list-comments"></i><div class="text"></div> <i class="iconfont ic-go"></i><div class="text longer"></div></div></div></ul>  <div>
+										<ul class="pagination">
+											<li><a href="javascript:void(null)" class="active">1</a></li>
+											<li><a>2</a></li><li><a>3</a></li><li><a>4</a></li> <li><a>下一页</a></li>
+										</ul>
+									</div>				
+							</div>
+							
+							
+							
+							
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/plugins/layer/layer.js"></script>
+		<script src="js/template.js"></script>
+		<!--datetiempicker-->
+		<script src="js/bootstrap-datetimepicker.js"></script>
+		<script src="js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+		<!--nice-validate-->
+		<script src="js/nice-validator/jquery.validator.js?local=zh-CN"></script>
+		<script src='js/common.js '></script>
+		<!--handmade-->
+		<script src="js/personalCenter.js"></script>
+		<!--<script type="text/javascript" src="/try/bootstrap/twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>
+		<script type="text/javascript" src="/try/bootstrap/twitter-bootstrap-v2/docs/assets/js/bootstrap-collapse.js"></script>		-->
+	</body>
+
+</html>
