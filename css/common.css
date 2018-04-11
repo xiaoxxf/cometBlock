@@ -140,6 +140,12 @@ body{
     font-size: 26px;
     padding-left: 0px;
 }
+@media (max-width: 767px){
+    .navbar-inverse .navbar-brand-xs{
+        padding-left: 15px;
+    }
+}
+
 .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
     color: rgb(79, 163, 237);
 }
