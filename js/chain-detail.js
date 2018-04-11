@@ -282,6 +282,7 @@ $(".short-comment-commit").on('click',function (e) {
             layer.msg(res.msg);
             $(".short-comment").val('');
             ajaxGetComments(true);
+            ajaxGetScoreInfo(true);
         } else {
             layer.msg(res.msg);
         }
@@ -332,6 +333,7 @@ function scoreDataFormat(res) {
             tempObj.compared = Math.floor(comparedData.datas* 1000)/10+"%"+$(".project-type-cn").text();
             var commentTpl = $("#chain-score-temp").html();
             var teamContent = template(commentTpl, {list: tempObj});
+            $(".rating_wrap-hook").html('');
             $(".rating_wrap-hook").append(teamContent);
             //console.log()
             console.log(tempObj)
