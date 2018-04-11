@@ -134,7 +134,7 @@ function chainDetailFormat(chainInfoData) {
                     if(value.dicType == chainInfoData.projectType){
                         chainInfoData.projectType = value.dicValue
                     }
-                })
+                })x
             }
             if(chainInfoData.fundraisingTime == null){
                 chainInfoData.fundraisingTime = '';
