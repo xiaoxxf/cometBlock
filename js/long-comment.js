@@ -123,7 +123,7 @@ $(function(){
   // 修改菜单栏样式
   $('.w-e-toolbar').css(
     {
-     'background-color':'rgb(243,246,247)',
+     'background-color':'white',
      "border-left":"0px",
      "border-right":"0px",
      "border-bottom":"0px",

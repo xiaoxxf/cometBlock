@@ -57,12 +57,13 @@ var ui = {
 function searchFromType(e){
 	ui.loading = true;
 	ui.noMoreData = false;
+	$('.coin-list-wrap').html('');
+	$('.search-result-box').css('display','none');
+	$('.no-result').css('display','none');
 	$('.load-more-container-wrap').css('display','none')
+	$(".waiting-data").fadeIn();
 
 	search_type_page = 1;
-	$('.coin-list-wrap').html('');
-	$('.search-result-box').html('');
-	$(".waiting-data").fadeIn();
 	searchType = 	e
 	var pageSize = 12
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
@@ -111,7 +112,7 @@ function getChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=' + pageSize
 	ui.loading = true;
 	ui.noMoreData = false;
-	$('.load-more-container-wrap').css('display','none')
+	// $('.load-more-container-wrap').css('display','none')
 	$('.coin-list-wrap').html("");
 	$(".waiting-data").fadeIn();
 	doJavaGet(uri,function(result){
@@ -161,6 +162,10 @@ function serachChain(){
 	$('.coin-list-wrap').html('')
 	$('.search-result-box').html('');
 	$(".waiting-data").fadeIn();
+
+	if (($(window).width() <= 767)) {
+		$('.load-category-box').css('display','none')
+	}
 
 	doJavaGet(uri,function(result){
 		$(".waiting-data").hide();
@@ -238,23 +243,24 @@ $(".search_bar").bind('keypress',function(event){
 		serachChain();
 })
 var resetTimer = null;
-$(window).on('scroll', function () {
+$(window).scroll(function(){
 	if (resetTimer) {
 		clearTimeout(resetTimer)
 	}
 
 	resetTimer = setTimeout(function(){
-		var srollPos = $(window).scrollTop();
-    var totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
-    //监听事件内容
 
-		var srollPos = $(window).scrollTop();
-		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
-		// console.log("total：" +  totalheight)
-		// console.log("页面的文档高度 ："+$(document).height());
-    if( $(document).height() <= totalheight ){
-        //当滚动条到底时,这里是触发内容
-        //异步请求数据,局部刷新dom
+		var h=$(document.body).height();//网页文档的高度
+		var c = $(document).scrollTop();//滚动条距离网页顶部的高度
+		var wh = $(window).height(); //页面可视化区域高度
+
+		if (Math.ceil(wh+c)>=h){
+
+		}
+
+		if (Math.ceil(wh+c)>=h){
+				//当滚动条到底时,这里是触发内容
+				//异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {
 					index_page += 1
 					ui.loading = true;
@@ -269,7 +275,7 @@ $(window).on('scroll', function () {
 					loadMoreSearchFromType();
 				}
 
-    }
+		}
 	},200)
 })
 
@@ -297,15 +303,6 @@ $(window).on('resize', function () {
      $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
  		var imgZ = $(".search-result-img .inner-img-wrap").width();
  		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
-
- 		// 分类筛选栏适应移动端
- 		if (($(window).width() <= 767)) {
- 			$('.category').css('display','none')
- 			$('.load-category-box').css('display','')
- 		}else{
- 			$('.category').css('display','')
- 			$('.load-category-box').css('display','none')
- 		}
 
 	}, 200);
 
