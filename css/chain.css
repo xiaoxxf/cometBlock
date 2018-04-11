@@ -126,12 +126,12 @@
 }
 
 .search-result{
-  display: flex;
+  /* display: flex; */
   margin-bottom: 20px;
 }
 
 .search-result-img{
-  width: 20%;
+  /* width: 20%; */
 }
 .search-result-img .inner-img-wrap{
     position: relative;
@@ -149,7 +149,7 @@
     transform: translate(-50%,-50%);
 }
 .search-result .search-result-coin{
-  max-width: 50%;
+  /* max-width: 50%; */
   margin-left: 15px;
   display:flex;
   flex-direction: column;

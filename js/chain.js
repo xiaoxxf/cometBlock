@@ -171,11 +171,19 @@ function serachChain(){
 			$('.no-result').css('display','none')
 			// 限制搜索结果描述的长度
 			var descriptions = document.getElementsByClassName('coin-description');
+
+			var show_length = 220
+			if ($(window).width() <= 400) {
+				show_length = 25
+			}
+
 			for (var i = 0; i < descriptions.length; i++) {
-				if (descriptions[i].innerText.length > 220) {
-					descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
+				if (descriptions[i].innerText.length > show_length) {
+					descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
 				}
 			}
+
+
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);
 		}else{
@@ -230,12 +238,8 @@ window.onscroll = function () {
 
 		var srollPos = $(window).scrollTop();
 		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
-
-
-		console.log("total：" +  totalheight)
-		console.log("页面的文档高度 ："+$(document).height());
-
-
+		// console.log("total：" +  totalheight)
+		// console.log("页面的文档高度 ："+$(document).height());
     if( $(document).height() <= totalheight ){
         //当滚动条到底时,这里是触发内容
         //异步请求数据,局部刷新dom
@@ -258,4 +262,7 @@ window.onscroll = function () {
 $(window).resize(function () {
     var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
     $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+
+		var imgZ = $(".search-result-img .inner-img-wrap").width();
+		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
 })

@@ -149,20 +149,26 @@
 
 <script id="search" type="text/html">
 	<%for(var i = 0; i < searchList.length; i++) {%>
-		<div class="search-result">
-			<div class="search-result-img">
-				<div class="inner-img-wrap">
-					<img src="<%= searchList[i].projectLogo %>" >
-				</div>
+		<div class="search-result row">
+			<div class="col-md-2 col-sm-2 col-xs-4">
+				<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>">
+					<div class="search-result-img">
+						<div class="inner-img-wrap">
+							<img src="<%= searchList[i].projectLogo %>" >
+						</div>
+					</div>
+				</a>
 			</div>
-			<div class="search-result-coin">
-				<div class="">
-					<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>" class="title"><%= searchList[i].projectName %></a>
-				</div>
-				<div class="">
-					<p class="coin-description">
-						<%= searchList[i].projectContent %>
-					</p>
+			<div class="col-md-10 col-sm-10 col-xs-8">
+				<div class="search-result-coin">
+					<div class="">
+						<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>" class="title"><%= searchList[i].projectName %></a>
+					</div>
+					<div class="">
+						<p class="coin-description">
+							<%= searchList[i].projectContent %>
+						</p>
+					</div>
 				</div>
 			</div>
 
