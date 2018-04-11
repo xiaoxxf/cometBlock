@@ -60,7 +60,8 @@ function searchFromType(e){
 	$('.load-more-container-wrap').css('display','none')
 
 	search_type_page = 1;
-	$('.coin-list-wrap').html('')
+	$('.coin-list-wrap').html('');
+	$('.search-result-box').html('');
 	$(".waiting-data").fadeIn();
 	searchType = 	e
 	var pageSize = 12
@@ -156,8 +157,8 @@ function serachChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
 
 	// 点击搜索后隐藏分类和币种内容
-	$('.coin-item').css('display','none')
-	$('.coin-content').css('display','none')
+	$('.category').css('display','none')
+	$('.coin-list-wrap').html('')
 	$('.search-result-box').html('');
 	$(".waiting-data").fadeIn();
 
@@ -174,7 +175,7 @@ function serachChain(){
 
 			var show_length = 220
 			if ($(window).width() <= 767) {
-				show_length = 25
+				show_length = 50
 			}
 
 			for (var i = 0; i < descriptions.length; i++) {
@@ -182,7 +183,6 @@ function serachChain(){
 					descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
 				}
 			}
-
 
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);
@@ -216,7 +216,7 @@ function loadMoreSearch(){
 
 		var show_length = 220
 		if ($(window).width() <= 767) {
-			show_length = 25
+			show_length = 50
 		}
 
 		for (var i = 0; i < descriptions.length; i++) {
@@ -237,8 +237,14 @@ $(".search_bar").bind('keypress',function(event){
 	if(event.keyCode == "13")
 		serachChain();
 })
-window.onscroll = function () {
-    var srollPos = $(window).scrollTop();
+var resetTimer = null;
+$(window).on('scroll', function () {
+	if (resetTimer) {
+		clearTimeout(resetTimer)
+	}
+
+	resetTimer = setTimeout(function(){
+		var srollPos = $(window).scrollTop();
     var totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
     //监听事件内容
 
@@ -264,15 +270,8 @@ window.onscroll = function () {
 				}
 
     }
-}
-$(window).resize(function () {
-    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
-    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
-
-		var imgZ = $(".search-result-img .inner-img-wrap").width();
-		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
+	},200)
 })
-
 
 // 移动端的分类筛选显示
 $(function(){
@@ -286,12 +285,28 @@ $('.load-category').on('click',function(){
 	$('.category').fadeToggle()
 })
 
-$(window).resize(function () {
-	if (($(window).width() <= 767)) {
-		$('.category').css('display','none')
-		$('.load-category-box').css('display','')
-	}else{
-		$('.category').css('display','')
-		$('.load-category-box').css('display','none')
-	}
+var resizeTimer = null;
+$(window).on('resize', function () {
+
+	if (resizeTimer) {
+			 clearTimeout(resizeTimer)
+	 }
+	 resizeTimer = setTimeout(function(){
+		 // 图片白底适应
+     var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+     $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+ 		var imgZ = $(".search-result-img .inner-img-wrap").width();
+ 		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
+
+ 		// 分类筛选栏适应移动端
+ 		if (($(window).width() <= 767)) {
+ 			$('.category').css('display','none')
+ 			$('.load-category-box').css('display','')
+ 		}else{
+ 			$('.category').css('display','')
+ 			$('.load-category-box').css('display','none')
+ 		}
+
+	}, 200);
+
 })
