@@ -273,6 +273,7 @@ $(window).resize(function () {
 		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
 })
 
+
 // 移动端的分类筛选显示
 $(function(){
 	if (($(window).width() <= 767)) {
@@ -283,4 +284,14 @@ $(function(){
 
 $('.load-category').on('click',function(){
 	$('.category').fadeToggle()
+})
+
+$(window).resize(function () {
+	if (($(window).width() <= 767)) {
+		$('.category').css('display','none')
+		$('.load-category-box').css('display','')
+	}else{
+		$('.category').css('display','')
+		$('.load-category-box').css('display','none')
+	}
 })
