@@ -57,11 +57,13 @@ var ui = {
 function searchFromType(e){
 	ui.loading = true;
 	ui.noMoreData = false;
+	$('.coin-list-wrap').html('');
+	$('.search-result-box').css('display','none');
+	$('.no-result').css('display','none');
 	$('.load-more-container-wrap').css('display','none')
+	$(".waiting-data").fadeIn();
 
 	search_type_page = 1;
-	$('.coin-list-wrap').html('')
-	$(".waiting-data").fadeIn();
 	searchType = 	e
 	var pageSize = 12
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
@@ -110,7 +112,7 @@ function getChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=' + pageSize
 	ui.loading = true;
 	ui.noMoreData = false;
-	$('.load-more-container-wrap').css('display','none')
+	// $('.load-more-container-wrap').css('display','none')
 	$('.coin-list-wrap').html("");
 	$(".waiting-data").fadeIn();
 	doJavaGet(uri,function(result){
@@ -156,10 +158,14 @@ function serachChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
 
 	// 点击搜索后隐藏分类和币种内容
-	$('.coin-item').css('display','none')
-	$('.coin-content').css('display','none')
+	$('.category').css('display','none')
+	$('.coin-list-wrap').html('')
 	$('.search-result-box').html('');
 	$(".waiting-data").fadeIn();
+
+	if (($(window).width() <= 767)) {
+		$('.load-category-box').css('display','none')
+	}
 
 	doJavaGet(uri,function(result){
 		$(".waiting-data").hide();
@@ -171,11 +177,18 @@ function serachChain(){
 			$('.no-result').css('display','none')
 			// 限制搜索结果描述的长度
 			var descriptions = document.getElementsByClassName('coin-description');
+
+			var show_length = 220
+			if ($(window).width() <= 767) {
+				show_length = 50
+			}
+
 			for (var i = 0; i < descriptions.length; i++) {
-				if (descriptions[i].innerText.length > 220) {
-					descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
+				if (descriptions[i].innerText.length > show_length) {
+					descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
 				}
 			}
+
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);
 		}else{
@@ -205,9 +218,15 @@ function loadMoreSearch(){
 		var imgW = $(".search-result .inner-img-wrap").width();
 		$(".search-result .inner-img-wrap").css('height',imgW);
 		var descriptions = document.getElementsByClassName('coin-description');
+
+		var show_length = 220
+		if ($(window).width() <= 767) {
+			show_length = 50
+		}
+
 		for (var i = 0; i < descriptions.length; i++) {
-			if (descriptions[i].innerText.length > 220) {
-				descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
+			if (descriptions[i].innerText.length > show_length) {
+				descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
 			}
 		}
 	}, "json");
@@ -223,22 +242,25 @@ $(".search_bar").bind('keypress',function(event){
 	if(event.keyCode == "13")
 		serachChain();
 })
-window.onscroll = function () {
-    var srollPos = $(window).scrollTop();
-    var totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
-    //监听事件内容
+var resetTimer = null;
+$(window).scroll(function(){
+	if (resetTimer) {
+		clearTimeout(resetTimer)
+	}
 
-		var srollPos = $(window).scrollTop();
-		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+	resetTimer = setTimeout(function(){
 
+		var h=$(document.body).height();//网页文档的高度
+		var c = $(document).scrollTop();//滚动条距离网页顶部的高度
+		var wh = $(window).height(); //页面可视化区域高度
 
-		console.log("total：" +  totalheight)
-		console.log("页面的文档高度 ："+$(document).height());
+		if (Math.ceil(wh+c)>=h){
 
+		}
 
-    if( $(document).height() <= totalheight ){
-        //当滚动条到底时,这里是触发内容
-        //异步请求数据,局部刷新dom
+		if (Math.ceil(wh+c)>=h){
+				//当滚动条到底时,这里是触发内容
+				//异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {
 					index_page += 1
 					ui.loading = true;
@@ -253,9 +275,35 @@ window.onscroll = function () {
 					loadMoreSearchFromType();
 				}
 
-    }
-}
-$(window).resize(function () {
-    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
-    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+		}
+	},200)
+})
+
+// 移动端的分类筛选显示
+$(function(){
+	if (($(window).width() <= 767)) {
+		$('.category').css('display','none')
+		$('.load-category-box').css('display','')
+	}
+})
+
+$('.load-category').on('click',function(){
+	$('.category').fadeToggle()
+})
+
+var resizeTimer = null;
+$(window).on('resize', function () {
+
+	if (resizeTimer) {
+			 clearTimeout(resizeTimer)
+	 }
+	 resizeTimer = setTimeout(function(){
+		 // 图片白底适应
+     var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+     $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+ 		var imgZ = $(".search-result-img .inner-img-wrap").width();
+ 		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
+
+	}, 200);
+
 })

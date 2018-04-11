@@ -69,6 +69,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         doJavaGet(uri, function(res) {
             if(res != null && res.code == 0) {
                 console.log(res.msg)
+                ajaxGetLongCommentReview()
             }
         }, "json");
         layer.close(index);

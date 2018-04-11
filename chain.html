@@ -27,13 +27,33 @@
 			display: block!important;
 			padding: 20px 20px;
 		}
-		.top-nav-xs .title{
-			width: 100%;
+		.top-nav-xs .option .title{
+			width: 60px;
 			margin-bottom: 10px;
+			font-size: 15px;
 		}
-		.coin-item span{
+
+		.top-nav-xs .option .title{
+			/* width: 100%; */
+			margin-bottom: 10px;
+			font-size:15px;
+		}
+
+		.top-nav-xs .option .search .search-wrap{
+			width: 150px;
+		}
+
+
+		.content .coin-item span{
 			margin-right: 0px;
+			font-size: 10px;
+			min-width: 20%;
 		}
+
+		.load-category{
+			height: 30px
+		}
+
 	}
 </style>
 <body lang="zh-CN" class="reader-black-font">
@@ -43,37 +63,51 @@
 	</div>
 	<div class="mian-container">
 		<div class="container" >
-			<div class="row">
-				<div class="top-nav-wrap top-nav-xs">
-					<div class="option">
-						<div class="title">找项目</div>
-						<div class="search">
-							<div class="search-wrap">
-								<input type="text" class="search_bar" placeholder="搜索币种/简称">
-								<span class="search-icon search-click-hook"></span>
+					<div class="top-nav-wrap top-nav-xs">
+						<div class="row">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="option">
+									<div class="title">找项目</div>
+									<div class="search">
+										<div class="search-wrap">
+											<input type="text" class="search_bar" placeholder="搜索币种/简称">
+											<span class="search-icon search-click-hook"></span>
+										</div>
+									</div>
+									<span class="search-icon search-click-hook"></span>
+									<div class="load-category-box" style="margin-left:10px;display:none">
+										<button type="button" class="btn btn-default load-category">分类筛选
+												<span class="caret"></span>
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
 
-					<div class="content">
-						<div class="coin-item">
-							<span class="cur" onclick="getChain()">上新</span>
-							<!-- <span>数字货币</span>
-							<span>数字货币</span>
-							<span>数字货币</span>
-							<span>数字货币</span>
-							<span>数字货币</span>
-							<span>数字货币</span> -->
+						<div class="row category">
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="content">
+									<div class="coin-item">
+										<span class="cur" onclick="getChain()">上新</span>
+										<!-- <span>数字货币</span>
+										<span>数字货币</span>
+										<span>数字货币</span>
+										<span>数字货币</span>
+										<span>数字货币</span>
+										<span>数字货币</span> -->
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>
 
+					</div>
 
 			<div class="row coin-content">
-				<ul class="coin-list-wrap">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<ul class="coin-list-wrap">
 
-				</ul>
+					</ul>
+				</div>
 			</div>
 
 			<!-- 搜索结果 -->
@@ -84,13 +118,13 @@
 			<!-- 没有搜索结果 -->
 			<div class="no-result" style="display:none">
 				<div class="row no-data" >
-					<div class="can-not-find">
+					<div class="can-not-find col-md-12 col-sm-12 col-xs-12">
 
 					</div>
 				</div>
 
 				<div class="row create-coin">
-					<div class="">
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<a href="chain-new.html">新建币种</a>
 					</div>
 				</div>
@@ -118,7 +152,7 @@
 													已无更多数据
 											</div>
 									</div>
-							</div>
+					</div>
 			</div>
 
 
@@ -149,20 +183,26 @@
 
 <script id="search" type="text/html">
 	<%for(var i = 0; i < searchList.length; i++) {%>
-		<div class="search-result">
-			<div class="search-result-img">
-				<div class="inner-img-wrap">
-					<img src="<%= searchList[i].projectLogo %>" >
-				</div>
+		<div class="search-result row">
+			<div class="col-md-2 col-sm-2 col-xs-4">
+				<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>">
+					<div class="search-result-img">
+						<div class="inner-img-wrap">
+							<img src="<%= searchList[i].projectLogo %>" >
+						</div>
+					</div>
+				</a>
 			</div>
-			<div class="search-result-coin">
-				<div class="">
-					<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>" class="title"><%= searchList[i].projectName %></a>
-				</div>
-				<div class="">
-					<p class="coin-description">
-						<%= searchList[i].projectContent %>
-					</p>
+			<div class="col-md-10 col-sm-10 col-xs-8">
+				<div class="search-result-coin">
+					<div class="">
+						<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>" class="title"><%= searchList[i].projectName %></a>
+					</div>
+					<div class="">
+						<p class="coin-description">
+							<%= searchList[i].projectContent %>
+						</p>
+					</div>
 				</div>
 			</div>
 
