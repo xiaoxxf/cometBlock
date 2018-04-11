@@ -275,6 +275,6 @@ $(window).resize(function () {
 
 $(function(){
 	if (($(window).width() <= 767)) {
-		$('.content').css('display','none')
+		// $('.content').css('display','none')
 	}
 })

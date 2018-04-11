@@ -25,7 +25,7 @@
 	@media (max-width: 767px){
 		.top-nav-xs {
 			display: block!important;
-			padding: 20px 20px;
+			padding: 20px 40px;
 		}
 		.top-nav-xs .option .title{
 			width: 100%;
@@ -39,10 +39,10 @@
 			font-size: 15px;
 		}
 
-		.coin-item span{
+		.content .coin-item span{
 			margin-right: 0px;
-			font-size: 10px;
-			/* min-width: 70px; */
+			font-size: 3px;
+			min-width: 20%;
 		}
 
 	}
@@ -54,41 +54,41 @@
 	</div>
 	<div class="mian-container">
 		<div class="container" >
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="top-nav-wrap top-nav-xs">
-						<div class="option">
-							<div class="title">找项目</div>
-							<div class="search">
-								<div class="search-wrap">
-									<input type="text" class="search_bar" placeholder="搜索币种/简称">
-									<span class="search-icon search-click-hook"></span>
+						<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="option">
+								<div class="title">找项目</div>
+								<div class="search">
+									<div class="search-wrap">
+										<input type="text" class="search_bar" placeholder="搜索币种/简称">
+										<span class="search-icon search-click-hook"></span>
+									</div>
+								</div>
+								<span class="search-icon search-click-hook"></span>
+
+							</div>
+						</div>
+						</div>
+
+						<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="content">
+								<div class="coin-item">
+									<span class="cur" onclick="getChain()">上新</span>
+									<!-- <span>数字货币</span>
+									<span>数字货币</span>
+									<span>数字货币</span>
+									<span>数字货币</span>
+									<span>数字货币</span>
+									<span>数字货币</span> -->
 								</div>
 							</div>
-							<span class="search-icon search-click-hook"></span>
-
 						</div>
-
-						<!-- <div class="dropdown">
-							<button type="button" class="btn btn-default load-category">分类筛选</button>
-						</div> -->
-
-						<div class="content">
-							<div class="coin-item">
-								<span class="cur" onclick="getChain()">上新</span>
-								<!-- <span>数字货币</span>
-								<span>数字货币</span>
-								<span>数字货币</span>
-								<span>数字货币</span>
-								<span>数字货币</span>
-								<span>数字货币</span> -->
-							</div>
 						</div>
-
 
 					</div>
-				</div>
-			</div>
+
 
 
 			<div class="row coin-content">
