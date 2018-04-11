@@ -173,7 +173,7 @@ function serachChain(){
 			var descriptions = document.getElementsByClassName('coin-description');
 
 			var show_length = 220
-			if ($(window).width() <= 400) {
+			if ($(window).width() <= 767) {
 				show_length = 25
 			}
 
@@ -213,9 +213,15 @@ function loadMoreSearch(){
 		var imgW = $(".search-result .inner-img-wrap").width();
 		$(".search-result .inner-img-wrap").css('height',imgW);
 		var descriptions = document.getElementsByClassName('coin-description');
+
+		var show_length = 220
+		if ($(window).width() <= 767) {
+			show_length = 25
+		}
+
 		for (var i = 0; i < descriptions.length; i++) {
-			if (descriptions[i].innerText.length > 220) {
-				descriptions[i].innerText = descriptions[i].innerText.substring(0,220) + "..."
+			if (descriptions[i].innerText.length > show_length) {
+				descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
 			}
 		}
 	}, "json");
@@ -265,4 +271,10 @@ $(window).resize(function () {
 
 		var imgZ = $(".search-result-img .inner-img-wrap").width();
 		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
+})
+
+$(function(){
+	if (($(window).width() <= 767)) {
+		$('.content').css('display','none')
+	}
 })
