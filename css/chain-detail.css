@@ -29,6 +29,9 @@
 .coin-detail-desc-wrap .coin-name{
     font-size: 18px;
 }
+.coin-big-name{
+  font-size: 18px;
+}
 .coin-detail-desc-wrap .info-wrap .item{
     padding-top: 10px;
 }

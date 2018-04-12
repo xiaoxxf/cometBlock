@@ -93,7 +93,6 @@ $(function(){
   editor.customConfig.uploadFileName = 'file'
 
 
-
   editor.customConfig.uploadImgHooks = {
       before: function (xhr, editor, files) {
 
@@ -117,7 +116,7 @@ $(function(){
       }
 
   }
-  // editor.customConfig.debug = true
+  editor.customConfig.debug = true
   editor.create()
 
   // 修改菜单栏样式
