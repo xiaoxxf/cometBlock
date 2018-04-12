@@ -190,6 +190,7 @@ function  ajaxGetReviewDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var commentInfoData = res.datas;
+            console.log(commentInfoData)
             $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
             $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
             var commentTpl = $("#template-mian-detail").html();
@@ -254,3 +255,42 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     }, "json");
 
 })
+// 点击删除长文
+$('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
+    var self =$(e.currentTarget),
+    author = self.data('user_name'),
+    passWord = JSON.parse(window.localStorage.getItem('userinfo')).userPwd,
+    reviewId = self.data('reviewid');
+    parentTxt = self.data('parenttxt');
+    var userId = $.cookie('userid');//获取userid
+    if(userId == undefined){
+        layer.msg('您还没有登录');
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#template-reply").html()
+        });
+        return;
+    }
+    layer.confirm('确定删除您的评测么?',
+        {
+        icon: 3,
+        title:0,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        },
+        function(index){
+        var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
+        doJavaGet(uri, function(res) {
+            if(res != null && res.code == 0) {
+                console.log(res.msg)
+                debugger
+                window.location.href='chain.html'
+            }
+        }, "json");
+    });
+});

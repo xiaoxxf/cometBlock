@@ -9,7 +9,7 @@ function ajaxGetLongCommentReview() {
         if(res != null && res.code == 0) {
            // if(res.datas.length >0 ){
                 var data = res.datas;
-                console.log(res.datas)
+                // console.log(res.datas)
                 var commentTpl = $("#template-comment-list").html();
                 var teamContent = template(commentTpl, {list: res.datas});
                 $(".comment-list-hook").html(teamContent);

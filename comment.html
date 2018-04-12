@@ -194,6 +194,12 @@
 					© 本文版权归作者&nbsp;
 					<a href="javascript:;"><%:=list.realName%></a> &nbsp;所有，任何形式转载请联系作者。
 				</div>
+				<div class="option">
+					<%if(userinfo && list.realName == userinfo.realName){%>
+						<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<a href="javacript:;"  data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
+					<%}%>
+				</div>
 			</div>
 			<div class="main-ft">
 				<div class="main-panel" name="9157555">
