@@ -1,4 +1,5 @@
 //举报弹出框
+
 $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {
     console.log($(e.currentTarget))
     layer.open({
