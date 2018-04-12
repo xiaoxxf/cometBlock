@@ -1,4 +1,8 @@
 
+window.onload = function(){
+    ajaxGetChainDetail();
+}
+
 
 // var chainInfoData = null
 function  ajaxGetChainDetail() {
@@ -23,22 +27,19 @@ function  ajaxGetChainDetail() {
 }
 
 
-window.onload = function(){
-    ajaxGetChainDetail();
-}
-
 // 渲染form
-
 function verbForm(chainInfoData){
-
   var form1 = document.getElementById('projectInfo').innerHTML;
   var formContent = template(form1, {list: chainInfoData});
   $('#form1').append(formContent);
-  // 渲染团队和发行价格
   if (chainInfoData.chainTeamList != null) {
+    // 渲染团队数据
     verbTeam(chainInfoData.chainTeamList);
   }
-  verbExchangeRate(chainInfoData.exchangeRate);
+  // 渲染发行价格
+  if (chainInfoData.exchangeRate.length != 0) {
+    verbExchangeRate(chainInfoData.exchangeRate);
+  }
 }
 
 function verbTeam(chainTeamList){
@@ -47,12 +48,37 @@ function verbTeam(chainTeamList){
   for (var i = 0; i < chainTeamList.length; i++) {
     $('.team').append(string);
   }
-  // TODO: 渲染数据
+  var img = $('.team_image_box').find('img')
+  var member_pic_name = $('.member_pic_name')
+  var name = $('.member_name')
+  var position = $('.member_position')
 
+  // 预览图片样式
+  for (var i = 0; i < img.length; i++) {
+    $(img[i]).css("width","110px")
+    $(img[i]).css("height","100px")
+
+  }
+  // 渲染数据
+  for (var i = 0; i < chainTeamList.length; i++) {
+    img[i].src = chainTeamList[i].picHref
+    $(member_pic_name[i]).val(chainTeamList[i].picHref)
+    $(name[i]).val(chainTeamList[i].name)
+    $(position[i]).val(chainTeamList[i].position)
+  }
 }
 
 function verbExchangeRate(exchangeRate){
-
+  var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
+  exchangeRate = exchangeRate.split(',')
+  console.log(exchangeRate)
+  for (var i = 0; i < exchangeRate.length; i++) {
+    $('#add_issue_price').append(div);
+  }
+  var exchangeRateValue = $('input[name=issue_price]')
+  for (var i = 0; i < exchangeRate.length; i++) {
+    $(exchangeRateValue[i]).val(exchangeRate[i])
+  }
 }
 
 function chainDetailJS(chainInfoData){
@@ -371,6 +397,7 @@ function chainDetailJS(chainInfoData){
 
         $.ajax({
             type: 'POST',
+            // TODO: 换成编辑的接口
             url : WebApiHostJavaApi + 'blockchain/addLibrary',
             data: JSON.stringify(data),
             dataType : 'json',
