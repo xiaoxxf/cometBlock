@@ -113,7 +113,9 @@ function  ajaxGetChainDetail() {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
             if(chainInfoData != null){
-                $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectBigName);
+                $(".coin-detail-desc-wrap .coin-big-name").text(chainInfoData.projectBigName);
+                $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectName);
+
                 $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
                 chainDetailFormat(chainInfoData);
             }
