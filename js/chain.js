@@ -60,7 +60,6 @@ function searchFromType(e){
 	$('.coin-list-wrap').html('');
 	$('.search-result-box').css('display','none');
 	$('.no-result').css('display','none');
-	$('.load-more-container-wrap').css('display','none')
 	$(".waiting-data").fadeIn();
 
 	search_type_page = 1;
@@ -71,7 +70,7 @@ function searchFromType(e){
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
-			$('.load-more-container-wrap').css('display','')
+			$(".no-more-hook").fadeIn();
 		}else{
 			var tpl = document.getElementById('tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});
@@ -87,23 +86,25 @@ function searchFromType(e){
 
 function loadMoreSearchFromType(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
+	$(".loader1").css('display','flex');
+	$(".no-more-hook").css('display','none')
 
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
-			ui.loading = false;
-			$('.load-more-container-wrap').css('display','')
+			$(".loader1").css('display','');
+			$(".no-more-hook").fadeIn();
 		}else {
 			var tpl = document.getElementById('tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});
 			$('.coin-list-wrap').append(content)
 			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
 			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			$(".loader1").css('display','none');
 		}
-		$(".waiting-data").hide();
+		ui.loading = false;
 	}, "json")
 	flag = 3;
-	ui.loading = false;
 }
 
 
@@ -130,17 +131,20 @@ getChain();
 
 function loadMoreChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + index_page + '&pageSize=' + pageSize
+	$(".loader1").css('display','flex');
+
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
-			ui.loading = false;
-			$('.load-more-container-wrap').css('display','')
+			$(".loader1").css('display','none');
+			$(".no-more-hook").fadeIn();
 		}else{
 			var tpl = document.getElementById('tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});
 			$('.coin-list-wrap').append(content);
 			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
-			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230)
+			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			$(".loader1").css('display','none');
 		}
 		ui.loading = false;
 	}, "json")
@@ -150,7 +154,7 @@ function serachChain(){
 	search_page = 1;
 	ui.loding = true;
 	ui.noMoreData = false;
-	$('.load-more-container-wrap').css('display','none')
+
 	var key_word = $('.search_bar')[0].value
 	if (key_word == '') {
 		return false
@@ -204,33 +208,36 @@ function serachChain(){
 function loadMoreSearch(){
 	var key_word = $('.search_bar')[0].value
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
+	$(".loader1").css('display','flex');
 
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
-			return false
+			$(".loader1").css('display','');
+			$(".no-more-hook").fadeIn();
 		}else {
 			ui.noMoreData = false;
-		}
-		var search = document.getElementById('search').innerHTML;
-		var content = template(search, {searchList: result.datas});
-		$('.search-result-box').append(content);
-		var imgW = $(".search-result .inner-img-wrap").width();
-		$(".search-result .inner-img-wrap").css('height',imgW);
-		var descriptions = document.getElementsByClassName('coin-description');
+			var search = document.getElementById('search').innerHTML;
+			var content = template(search, {searchList: result.datas});
+			$('.search-result-box').append(content);
+			var imgW = $(".search-result .inner-img-wrap").width();
+			$(".search-result .inner-img-wrap").css('height',imgW);
+			var descriptions = document.getElementsByClassName('coin-description');
 
-		var show_length = 220
-		if ($(window).width() <= 767) {
-			show_length = 50
-		}
-
-		for (var i = 0; i < descriptions.length; i++) {
-			if (descriptions[i].innerText.length > show_length) {
-				descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+			var show_length = 220
+			if ($(window).width() <= 767) {
+				show_length = 50
 			}
+
+			for (var i = 0; i < descriptions.length; i++) {
+				if (descriptions[i].innerText.length > show_length) {
+					descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+				}
+			}
+			$(".loader1").css('display','none');
 		}
+		ui.loading = false;
 	}, "json");
-	ui.loading = false;
 
 }
 
