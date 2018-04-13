@@ -116,7 +116,7 @@ $(function(){
       }
 
   }
-  editor.customConfig.debug = true
+  // editor.customConfig.debug = true
   editor.create()
 
   // 修改菜单栏样式
@@ -148,7 +148,6 @@ $(function(){
   		score: score, //评分
   		type: 2, //长文的type为2
   		userId: userId, //userId
-  		password:	123
   	}
 
     if (data.textTitle.length == 0 || editor.txt.text().length == 0 || !data.score) {

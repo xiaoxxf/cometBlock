@@ -269,7 +269,7 @@ $('#form1').validator({
   },
 
   fields: {
-    'project_logo': 'required;',
+    'project_logo_file': 'required;',
 		'project_name': 'required',
 		'project_big_name': 'required',
     'project_type': 'required',
@@ -361,7 +361,7 @@ function buildTeam(){
   //判断team的图片、名字都必须存在
   temp_length = team.length
   for (var i = 0; i < temp_length; i++) {
-    if (!team[i].picHref || !team[i].name) {
+    if (team[i].picHref == "" || team[i].name == "") {
       team.splice(i,1)
     }
   }

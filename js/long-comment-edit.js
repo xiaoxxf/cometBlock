@@ -1,4 +1,7 @@
 var userId = $.cookie('userid');//获取userid
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var projectData = null
+var commentInfoData = null
 var ui = {
   'submiting': false
 }
@@ -27,21 +30,28 @@ window.onload = function(){
 }
 
 function  ajaxGetReviewDetail() {
-    // var reviewId = getUrlParam('reviewId');
-    var reviewId = '21bcb4f3-1855-4272-9441-f0164bf8ea9a&projectId=hx001';
+    var reviewId = getUrlParam('reviewId');
+    // var reviewId = '21bcb4f3-1855-4272-9441-f0164bf8ea9a';
     var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
-          var commentInfoData = res.datas
-          console.log(commentInfoData)
-          // 评价的币种的信息
-          ajaxGetProjectInfo(commentInfoData.projectId)
-          // 评价内容
-          createEditor(commentInfoData.textContent);
-          // 标题
-          $('.input-head').val(commentInfoData.textTitle)
-          // 评分
-          getStarRating(commentInfoData.score)
+          commentInfoData = res.datas
+          // console.log(commentInfoData)
+          if (commentInfoData.creator == userId) {
+            // 评价的币种的信息
+            ajaxGetProjectInfo(commentInfoData.projectId)
+            // 评价内容
+            createEditor(commentInfoData.textContent);
+            // 标题
+            $('.input-head').val(commentInfoData.textTitle)
+            // 评分
+            getStarRating(commentInfoData.score)
+          }else {
+            layer.msg('你没有修改权限')
+            setTimeout(function () {
+              window.location.href='comment.html?reviewId=' + commentInfoData.reviewId;
+            }, 200)
+          }
         } else {
             layer.msg(res.msg);
         }
@@ -54,7 +64,7 @@ function ajaxGetProjectInfo(projectId){
   var uri = 'blockchain/detail?projectId='+ projectId
 
   doJavaGet(uri,function(data){
-    var projectData = data.datas
+    projectData = data.datas
     // 渲染币种信息
     $('.coin-name').find('p').html(projectData.projectBigName)
     var img = document.createElement("img");
@@ -108,7 +118,6 @@ function createEditor(content){
     editor.customConfig.uploadFileName = 'file'
 
 
-
     editor.customConfig.uploadImgHooks = {
         before: function (xhr, editor, files) {
 
@@ -149,48 +158,45 @@ function createEditor(content){
     $('.w-e-text-container').css('border','0px')
 
 
-}
+    // 提交
+    $('.submit_comment').on('click',function(){
 
-
-
-
-
-// 提交
-$('.submit_comment').on('click',function(){
-
-  if (ui.submiting) {
-    return false
-  }
-
-  ui.submiting = true
-  score = parseInt($(".live-rating")[0].innerHTML)
-  var data = {
-    textTitle: $('input[name="head"]')[0].value,
-    textContent: editor.txt.html(),
-    projectId: projectData.projectId, //项目Id
-    score: score, //评分
-    type: 2, //长文的type为2
-    userId: userId, //userId
-    password:	123
-  }
-
-  if (data.textTitle.length == 0 || editor.txt.text().length == 0 || !data.score) {
-    $('#identifier').modal()
-    ui.submiting = false
-    return false
-  }
-
-
-  function callback(result){
-    ui.submiting = false
-    layer.msg('提交成功', {
-      time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-      end:function(){
-        window.location.href='chain-detail.html?projectId=' + projectData.projectId;
+      if (ui.submiting) {
+        return false
       }
-    });
-  }
-  var uri = 'blockchain/addReview'
-  doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
 
-})
+      ui.submiting = true
+      score = parseInt($(".live-rating")[0].innerHTML) || commentInfoData.score
+      var data = {
+        textTitle: $('input[name="head"]')[0].value,
+        textContent: editor.txt.html(),
+        projectId: projectData.projectId, //项目Id
+        score: score, //评分
+        type: 2, //长文的type为2
+        userId: userId, //userId
+        reviewId: commentInfoData.reviewId,
+        creator: commentInfoData.creator,
+        password: userinfo.userPwd
+      }
+
+      if (data.textTitle.length == 0 || editor.txt.text().length == 0 || !data.score) {
+        $('#identifier').modal()
+        ui.submiting = false
+        return false
+      }
+
+      function callback(result){
+        ui.submiting = false
+        layer.msg('提交成功', {
+          time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+          end:function(){
+            window.location.href='comment.html?reviewId=' + commentInfoData.reviewId;
+          }
+        });
+      }
+      var uri = 'blockchain/updataReview'
+      doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
+
+    })
+
+}
