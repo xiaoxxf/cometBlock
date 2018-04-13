@@ -41,7 +41,7 @@ $('.coin-item').on("mouseenter mouseleave",'.cur',function(e){
 		$(e.target).css('color','')
 	};
 })
-var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目
+var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目, 4-搜不到结果时，不能滚动加载
 var searchType = ''
 var search_type_page = 1;
 var index_page = 1;
@@ -61,6 +61,7 @@ function searchFromType(e){
 	$('.search-result-box').css('display','none');
 	$('.no-result').css('display','none');
 	$(".waiting-data").fadeIn();
+	$(".no-more-hook").css('display','none')
 
 	search_type_page = 1;
 	searchType = 	e
@@ -116,6 +117,8 @@ function getChain(){
 	// $('.load-more-container-wrap').css('display','none')
 	$('.coin-list-wrap').html("");
 	$(".waiting-data").fadeIn();
+	$(".no-more-hook").css('display','none')
+
 	doJavaGet(uri,function(result){
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
@@ -166,6 +169,7 @@ function serachChain(){
 	$('.coin-list-wrap').html('')
 	$('.search-result-box').html('');
 	$(".waiting-data").fadeIn();
+	$(".no-more-hook").css('display','none')
 
 	if (($(window).width() <= 767)) {
 		$('.load-category-box').css('display','none')
@@ -195,12 +199,13 @@ function serachChain(){
 
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);
+			flag = 2;
 		}else{
 			$('.no-result').css('display','')
 			$('.can-not-find').html('找不到"' + key_word +'"项目')
+			flag = 4;
 		}
 	}, "json");
-	flag = 2;
 	ui.loading = false;
 
 }
