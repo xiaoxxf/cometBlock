@@ -116,7 +116,7 @@ $(function(){
       }
 
   }
-  editor.customConfig.debug = true
+  // editor.customConfig.debug = true
   editor.create()
 
   // 修改菜单栏样式
