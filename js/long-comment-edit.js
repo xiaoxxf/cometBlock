@@ -27,21 +27,28 @@ window.onload = function(){
 }
 
 function  ajaxGetReviewDetail() {
-    // var reviewId = getUrlParam('reviewId');
-    var reviewId = '21bcb4f3-1855-4272-9441-f0164bf8ea9a&projectId=hx001';
+    var reviewId = getUrlParam('reviewId');
+    // var reviewId = '21bcb4f3-1855-4272-9441-f0164bf8ea9a';
     var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
           var commentInfoData = res.datas
-          console.log(commentInfoData)
-          // 评价的币种的信息
-          ajaxGetProjectInfo(commentInfoData.projectId)
-          // 评价内容
-          createEditor(commentInfoData.textContent);
-          // 标题
-          $('.input-head').val(commentInfoData.textTitle)
-          // 评分
-          getStarRating(commentInfoData.score)
+          // console.log(commentInfoData)
+          if (commentInfoData.creator == userId) {
+            // 评价的币种的信息
+            ajaxGetProjectInfo(commentInfoData.projectId)
+            // 评价内容
+            createEditor(commentInfoData.textContent);
+            // 标题
+            $('.input-head').val(commentInfoData.textTitle)
+            // 评分
+            getStarRating(commentInfoData.score)
+          }else {
+            layer.msg('你没有修改权限')
+            setTimeout(function () {
+              window.history.back(-1);
+            }, 200)
+          }
         } else {
             layer.msg(res.msg);
         }
@@ -190,7 +197,8 @@ $('.submit_comment').on('click',function(){
       }
     });
   }
-  var uri = 'blockchain/addReview'
+  // TODO: 改成编辑长文的接口
+  // var uri = 'blockchain/addReview'
   doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
 
 })

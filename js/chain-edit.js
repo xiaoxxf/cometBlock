@@ -1,3 +1,5 @@
+var userId = $.cookie('userid');//获取userid
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 
 window.onload = function(){
     ajaxGetChainDetail();
@@ -6,20 +8,22 @@ window.onload = function(){
 
 // var chainInfoData = null
 function  ajaxGetChainDetail() {
-    // var projectId = getUrlParam('projectId');
-    var projectId = 'hx001';
-    var uri = 'blockchain/detail?projectId='+projectId ;
+    var projectId = getUrlParam('projectId');
+    // var projectId = 'hx001';
+    var uri = 'blockchain/detail?projectId='+projectId;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
-            console.log(chainInfoData)
-            verbForm(chainInfoData)
-            // if(chainInfoData != null){
-            //     $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectBigName);
-            //     $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
-            //     chainDetailFormat(chainInfoData);
-            // }
-            chainDetailJS(chainInfoData)
+            // console.log(chainInfoData)
+            if (chainInfoData.creator == userId) {
+              verbForm(chainInfoData)
+              chainEditJS(chainInfoData)
+            }else {
+              layer.msg('你没有修改权限')
+              setTimeout(function () {
+                window.history.back(-1);
+              }, 200)
+            }
         } else {
             layer.msg(res.msg);
         }
@@ -71,7 +75,6 @@ function verbTeam(chainTeamList){
 function verbExchangeRate(exchangeRate){
   var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
   exchangeRate = exchangeRate.split(',')
-  console.log(exchangeRate)
   for (var i = 0; i < exchangeRate.length; i++) {
     $('#add_issue_price').append(div);
   }
@@ -81,9 +84,7 @@ function verbExchangeRate(exchangeRate){
   }
 }
 
-function chainDetailJS(chainInfoData){
-  var userId = $.cookie('userid');//获取userid
-
+function chainEditJS(chainInfoData){
   var ui = {
     'submiting': false,
     'fileUpLoading': false
@@ -93,24 +94,6 @@ function chainDetailJS(chainInfoData){
     'projectLogo': '',
     'whitePaper': ''
   }
-
-  // 判断是否登录
-  $(function(){
-  if(userId == undefined){
-      layer.open({
-        closeBtn:0,
-        title: '',
-        content: '请先登录您的账号',
-        btn: ['登录', '注册'],
-        yes: function(){
-          window.location.href='login.html'
-        },
-        btn2: function(){
-          window.location.href='register.html'
-        }
-      });
-  }
-  })
 
   //日期选择
   $("#date_pick").datetimepicker({
@@ -484,5 +467,27 @@ function chainDetailJS(chainInfoData){
     "border-radius": "10px"
   });
 
-
 }
+
+
+// 判断是否登录
+$(function(){
+if(userId == undefined){
+    layer.open({
+      closeBtn:0,
+      title: '',
+      content: '请先登录您的账号',
+      btn: ['登录', '注册'],
+      yes: function(){
+        window.location.href='login.html'
+      },
+      btn2: function(){
+        window.location.href='register.html'
+      }
+    });
+}
+})
+
+$(function(){
+
+})
