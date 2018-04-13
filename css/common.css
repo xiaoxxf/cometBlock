@@ -331,31 +331,39 @@ body{
     height: 30px;
     padding: 5px 15px!important;
     margin-top: 10px;
-    border: 1px solid;
     color: rgb(79, 163, 237) !important;
 }
 .nav-user-account .more-active{
     position: relative;
-    padding: 14px 15px !important;
+    padding: 14px 15px 14px 35px !important;
 }
-.nav-user-account .more-active:hover .logout-btn{
+.nav-user-account .more-active:hover .droplist-wrap{
     display: block;
 }
-.nav-user-account .logout-btn{
+.nav-user-account .droplist-wrap{
     display: none;
     position: absolute;
-    padding: 10px 0;
     border: 1px solid rgb(79, 163, 237);
     background: rgb(79, 163, 237);
     white-space: nowrap;
     top: 50px;
     border-top: none;
     right: 15px;
-    padding: 5px 25px;
     color: #fff;
     cursor: pointer;
 }
-
+.nav-user-account .more-active:hover .droplist-wrap ul li{
+    font-size: 14px;
+    padding: 5px 25px;
+    border-top: 1px solid rgb(79, 163, 237);
+}
+.nav-user-account .more-active .droplist-wrap ul li a{
+    color:#fff;
+}
+.nav-user-account .more-active .droplist-wrap ul li:hover, .nav-user-account .more-active .droplist-wrap ul li:hover a{
+    background-color: #fff;
+    color: rgb(79, 163, 237);
+}
 @media (max-width: 767px) {
     .login-btn-xs {
         border: none;
