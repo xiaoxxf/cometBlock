@@ -1,6 +1,6 @@
 var userId = $.cookie('userid');//获取userid
-// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
-
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var creator = null;
 window.onload = function(){
     ajaxGetChainDetail();
 }
@@ -8,16 +8,18 @@ window.onload = function(){
 
 // var chainInfoData = null
 function  ajaxGetChainDetail() {
-    var projectId = getUrlParam('projectId');
-    // var projectId = 'hx001';
+    // var projectId = getUrlParam('projectId');
+    var projectId = 'hx001';
     var uri = 'blockchain/detail?projectId='+projectId;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
-            // console.log(chainInfoData)
-            if (chainInfoData.creator == userId) {
+            console.log(chainInfoData)
+            if (true) {
+            // if (chainInfoData.creator == userId) {
+              creator = chainInfoData.creator // 保存creator，用于提交
               verbForm(chainInfoData)
-              chainEditJS(chainInfoData)
+              chainDetailJs(chainInfoData)
             }else {
               layer.msg('你没有修改权限')
               setTimeout(function () {
@@ -61,7 +63,6 @@ function verbTeam(chainTeamList){
   for (var i = 0; i < img.length; i++) {
     $(img[i]).css("width","110px")
     $(img[i]).css("height","100px")
-
   }
   // 渲染数据
   for (var i = 0; i < chainTeamList.length; i++) {
@@ -84,17 +85,9 @@ function verbExchangeRate(exchangeRate){
   }
 }
 
-function chainEditJS(chainInfoData){
-  var ui = {
-    'submiting': false,
-    'fileUpLoading': false
-  }
 
-  var allFile = {
-    'projectLogo': '',
-    'whitePaper': ''
-  }
-
+// chainDetail页用到的js操作
+function chainDetailJs(chainInfoData){
   //日期选择
   $("#date_pick").datetimepicker({
     language : 'zh-CN', // 语言
@@ -105,33 +98,30 @@ function chainEditJS(chainInfoData){
   })
 
   // 增加发行价格
-  function add_issue_price()
-  {
-  	var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
+  $('.add_exchange_price').on('click',function(){
+    var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
   	$('#add_issue_price').append(div);
-  }
+  })
 
   //网站跳转
-  function jump_website(){
-     var website = $('.website').val()
-     if(website)
-    	 window.open(website)
-  }
+  $('.jump_website').on('click',function(){
+    var website = $('.website').val()
+    if(website)
+      window.open(website)
+  })
   //区块链浏览器跳转
-  function jump_block_browser(){
-     var website = new_coin.block_browser.value;
-     if(website)
-    	 window.open(website)
-  }
-
+  $('.jump_block_browser').on('click',function(){
+    var website = new_coin.block_browser.value;
+    if(website)
+      window.open(website)
+  })
 
   // 添加团队成员
-  function add_team_member()
-  {
+  $('.add_member_button').on('click',function(){
     var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-remove remove" style="display:none" ></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic" ></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="hidden" class = "member_pic_name" name="member_pic_name" value=""><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
 
     $('.team').append(string);
-  }
+  })
 
   // 显示减少团队成员的图标
   $('.team').on("mouseenter mouseleave",".team_image_box",function(e){
@@ -157,7 +147,8 @@ function chainEditJS(chainInfoData){
   	file = e.currentTarget.files[0];
 
     if(!file){
-      allFile.whitePaper = ''
+      // allFile.whitePaper = ''
+      $('#white_paper_file').val('')
       $(".white_paper_file_name").val('');
       $(".upload-white-paper").attr('disabled')
       return false
@@ -177,11 +168,11 @@ function chainEditJS(chainInfoData){
   //币种图片选择及预览
   document.getElementById("project_logo_input").addEventListener("change", function() {
     $(".coin_image_box").html("");
-
     var file = this.files[0]
     if(!file){
       $('.upload-project-logo').attr('disabled','disabled')
-      allFile.projectLogo = ''
+      // allFile.projectLogo = ''
+      $('#project_logo_file').val('')
       return false;
     }
 
@@ -246,83 +237,7 @@ function chainEditJS(chainInfoData){
     uploadButton.removeAttribute('disabled')
   })
 
-
-  var t = null
-  function doUpload(e){
-    var file = e.files[0];
-    if (ui.fileUpLoading || e.files.length == 0) {
-      return false
-    }
-
-    var class_name = e.className;
-
-    //根据className判断应该是什么类型的文件，不一致的返回false
-    switch (class_name) {
-      case "white_paper":
-        if (!file.type.match(pdfType) || file.size > whitePaperMaxSize) {
-          return false
-        }
-        break;
-      default:
-        if (!file.type.match(imageType) || file.size > imageMaxSize) {
-          return false
-        }
-        break;
-    }
-
-    var formData = new FormData();
-
-    t = e;
-    formData.append('file', file);
-    formData.append(userId, userId);
-
-    $.ajax({
-      url : WebApiHostJavaApi + 'common/upload',
-      type: "post",
-      data: formData,
-      datType: "json",
-      processData: false,  // 不处理数据
-      contentType: false,   // 不设置内容类型
-
-      beforeSend: function(){
-        ui.fileUpLoading = true
-      },
-
-      success:function(data){
-        // project_logo
-        if (t.className == 'project_logo') {
-          allFile.projectLogo = data.datas[0]
-          $('.upload-project-logo').attr('disabled','disabled')
-        }
-        else if (t.className == 'member_pic') {
-          // 把照片的值存在对应的input
-          member_pic_name = t.parentElement.parentElement.nextElementSibling.firstElementChild
-          member_pic_name.value =  data.datas[0]
-          // 上传成功后，上传按钮不可选
-          $(t.parentElement.nextElementSibling).attr('disabled','disabled')
-        }
-        // white_paper
-        else if (t.className == 'white_paper') {
-          allFile.whitePaper = data.datas[0]
-          $(".upload-white-paper").attr('disabled','disabled')
-        }
-        ui.fileUpLoading = false
-        layer.msg('上传成功')
-      },
-      error:function(e){
-        ui.fileUpLoading = false
-        alert("上传错误，请重试！");
-      }
-    });
-
-  }
-
   //表单校验与提交
-  var pdfType = /pdf.*/;
-  var imageType = /image.*/;
-  var imageMaxSize = 2*1024*1024;
-  var whitePaperMaxSize = 2*1024*1024*10;
-  var flag = true;
 
   $('#form1').validator({
   	theme:'bootstrap',
@@ -335,7 +250,7 @@ function chainEditJS(chainInfoData){
     },
 
     fields: {
-      'project_logo': 'required;',
+      // 'project_logo': 'required;',
   		'project_name': 'required',
   		'project_big_name': 'required',
       'project_type': 'required',
@@ -363,7 +278,7 @@ function chainEditJS(chainInfoData){
 
         // 提交数据
         var data = {
-          "projectLogo":          allFile.projectLogo,
+          "projectLogo":          form1.project_logo_file.value,
           "projectName":          form1.project_name.value,
           "projectBigName":       form1.project_big_name.value ,
           "projectType":          form1.project_type.value,
@@ -372,12 +287,14 @@ function chainEditJS(chainInfoData){
           "fundraisingTime":      form1.fundraising_time.value,
           "companyWebsite":       form1.compay_website.value,
           "projectContent":       editor.txt.html(),
-          "whitePaper":           allFile.whitePaper,
+          "whitePaper":           form1.white_paper_file.value,
           "exchangeRate":			    exchangeRate,
           "userId":               userId,
-          "chainTeamList":        team
+          "chainTeamList":        team,
+          "creator":              creator,
+          "UserPwd":              userinfo.userPwd
         };
-
+        debugger
         $.ajax({
             type: 'POST',
             // TODO: 换成编辑的接口
@@ -416,7 +333,6 @@ function chainEditJS(chainInfoData){
     memberPosition = $(".member_position");
     memberPicName = $(".member_pic_name");
     teamLength = memberPicName.length; // 根据图片数判断team的长度
-
     for (var i = 0; i < teamLength; i++) {
       var temp = {};
       temp.picHref = memberPicName[i].value;
@@ -424,11 +340,12 @@ function chainEditJS(chainInfoData){
       temp.position = memberPosition[i].value;
       team.push(temp)
     }
+    debugger
 
     //判断team的图片、名字都必须存在
     temp_length = team.length
     for (var i = 0; i < temp_length; i++) {
-      if (!team[i].picHref || !team[i].name) {
+      if (team[i].picHref == "" || team[i].name == "") {
         team.splice(i,1)
       }
     }
@@ -437,17 +354,15 @@ function chainEditJS(chainInfoData){
 
   // 渲染币种类型
   $(function(){
-  	var uri = 'blockchain/quary?parentId=1'
-  	doJavaGet(uri,function(data){
-  		var coinType = document.getElementById('project-type').innerHTML;
-  		var content = template(coinType, {list: data.datas});
-  		$('.project_type').append(content)
-  	},"json")
+    var uri = 'blockchain/quary?parentId=1'
+    doJavaGet(uri,function(data){
+      var coinType = document.getElementById('project-type').innerHTML;
+      var content = template(coinType, {list: data.datas});
+      $('.project_type').append(content)
+    },"json")
   })
 
-
   // 编辑器
-
   var E = window.wangEditor
   var editor = new E('#editor')
   editor.customConfig.menus = [
@@ -469,6 +384,91 @@ function chainEditJS(chainInfoData){
 
 }
 
+var pdfType = /pdf.*/;
+var imageType = /image.*/;
+var imageMaxSize = 2*1024*1024;
+var whitePaperMaxSize = 2*1024*1024*10;
+var flag = true;
+
+var ui = {
+  'submiting': false,
+  'fileUpLoading': false
+}
+
+var allFile = {
+  'projectLogo': '',
+  'whitePaper': ''
+}
+var t = null
+function doUpload(e){
+  var file = e.files[0];
+  if (ui.fileUpLoading || e.files.length == 0) {
+    return false
+  }
+
+  var class_name = e.className;
+
+  //根据className判断应该是什么类型的文件，不一致的返回false
+  switch (class_name) {
+    case "white_paper":
+      if (!file.type.match(pdfType) || file.size > whitePaperMaxSize) {
+        return false
+      }
+      break;
+    default:
+      if (!file.type.match(imageType) || file.size > imageMaxSize) {
+        return false
+      }
+      break;
+  }
+
+  var formData = new FormData();
+
+  t = e;
+  formData.append('file', file);
+  formData.append(userId, userId);
+
+  $.ajax({
+    url : WebApiHostJavaApi + 'common/upload',
+    type: "post",
+    data: formData,
+    datType: "json",
+    processData: false,  // 不处理数据
+    contentType: false,   // 不设置内容类型
+
+    beforeSend: function(){
+      ui.fileUpLoading = true
+    },
+
+    success:function(data){
+      // project_logo
+      if (t.className == 'project_logo') {
+        // allFile.projectLogo = data.datas[0]
+        $('#project_logo_file').val(data.datas[0])
+        $('.upload-project-logo').attr('disabled','disabled')
+      }
+      else if (t.className == 'member_pic') {
+        // 把照片的值存在对应的input
+        member_pic_name = t.parentElement.parentElement.nextElementSibling.firstElementChild
+        member_pic_name.value =  data.datas[0]
+        // 上传成功后，上传按钮不可选
+        $(t.parentElement.nextElementSibling).attr('disabled','disabled')
+      }
+      // white_paper
+      else if (t.className == 'white_paper') {
+        // allFile.whitePaper = data.datas[0]
+        $('.white_paper_file').val(data.datas[0])
+        $(".upload-white-paper").attr('disabled','disabled')
+      }
+      ui.fileUpLoading = false
+      layer.msg('上传成功')
+    },
+    error:function(e){
+      ui.fileUpLoading = false
+      alert("上传错误，请重试！");
+    }
+  });
+}
 
 // 判断是否登录
 $(function(){
@@ -486,8 +486,4 @@ if(userId == undefined){
       }
     });
 }
-})
-
-$(function(){
-
 })
