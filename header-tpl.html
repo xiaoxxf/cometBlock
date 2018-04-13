@@ -41,11 +41,16 @@
                     <a href="register.html" class="log_nav reg_c nav_show_message nav_font login-btn-xs">注册</a>
                 </li>
                 <li class="nav-user-account">
-                  <a target="_blank"  class="bn-more more-active" rel="off" id="user_mess_click">
+                  <div target="_blank"  class="bn-more more-active" rel="off" id="user_mess_click">
                     <span id="nav_user_mes"></span>
                     <span class="arrow"></span>
-                    <span class="logout-btn logout-btn-xs">注销</span>
-                  </a>
+                    <div class="droplist-wrap logout-btn-xs">
+                        <ul>
+                            <li class="logout-btn">注销</li>
+                            <li class="usercenter-btn">个人中心</li>
+                        </ul>
+                    </div>
+                  </div>
                </li>
              </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -61,6 +66,7 @@
         </div>
     </nav>
 </div>
+
 <script>
 	$(document).ready(function(){
 		$("#user_mess_click").click(function(){
@@ -79,5 +85,6 @@
 			$('#nav_login').show();
 			$('#nav_register').show();
 		}*/
+
 
 </script>

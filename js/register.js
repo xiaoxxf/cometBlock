@@ -66,19 +66,15 @@ function gainCode() {
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 		} else {
-			if($("#session_phone").val()) { //校验手机号
-				layer.msg("手机号已存在");
+				layer.msg(res.msg);
 			}
-			if($("#realName").val()) { //校验昵称
-				layer.msg("昵称已存在");
-			}
-		}
+		
 
 	}, "json");
 
 }
 
-//发送验证码
+//校验对象是否存在
 function sendCode() {
 	var uri = 'news/virty?'
 	if(!$("#session_phone").val()) { //校验手机号
@@ -88,7 +84,6 @@ function sendCode() {
 		uri = uri + 'userName=' + $("#session_phone").val()
 	}
 	doJavaGet(uri, function(res) {
-		debugger
 		if(res != null && res.code == 0) {
 			getCode()
 		} else {
@@ -105,7 +100,7 @@ function sendCode() {
 
 }
 
-//验证码校验
+//发送验证码
 function getCode() {
 	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
 	doJavaGet(uri, function(res) {
@@ -138,10 +133,11 @@ function dingshiqi() {
 }
 
 function CountDown() {
-	debugger
+	
 	countdown = setInterval(dingshiqi, 1000);
 
 }
+//点击发送验证码
 $('#send_code').click(function() {
 	$("#send_code").css("text-decoration", "none");
 	$("#send_code").css("color", "white");
@@ -149,6 +145,8 @@ $('#send_code').click(function() {
 	sendCode()
 
 })
+
+
 $("#sign-in-form-submit-btn1").click(function() {
 	if(RegisterFromValid()) {
 		var param = {
@@ -203,8 +201,6 @@ function login() {
 		window.localStorage.setItem('currentHref', currentHref);
 		doJavaGet(uri, function(res) {
 			if(res != null && res.code == 0) {
-
-				debugger
 				//设置用户信息cookie失效时间，一个小时
 				var expireDate = new Date();
 				expireDate.setTime(expireDate.getTime() + (60 * 60 * 1000));
