@@ -14,11 +14,11 @@ var WebApiToken;
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
-<<<<<<< Updated upstream
+
 // var WebApiHostJavaApi = "http://10.0.0.175:8080/";
-=======
+
 //var WebApiHostJavaApi = "http://10.0.0.178:8080/";
->>>>>>> Stashed changes
+
 
 var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
@@ -140,3 +140,5 @@ $.get("header-tpl.html",function(data){
 $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function () {
         Loginout();
 })
+
+
