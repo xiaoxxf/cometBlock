@@ -70,20 +70,19 @@ function changePwdClick() {
 //http://127.0.0.1:8020/cometBlock/personalCenter.html?personType=1
 //加入personType=1/2  进入基础设置 /消息      
 
-//var pT = getUrlParam("personType");
-//$(".person-left-menu li a").removeClass('toogle-acive');
-//if(pT == 1){
-//	$(".show_table").fadeIn();
-//	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
-//}
-//if(pT == 2){
-//	$(".show_table_msg").fadeIn();
-//	$(".person-left-menu li a").eq(1).addClass("toogle-acive");
-//}
+var pT = getUrlParam("personType");
+$(".person-left-menu li a").removeClass('toogle-acive');
+if(pT == 1){
+	$(".show_table").fadeIn();
+	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
+}
+if(pT == 2){
+	$(".show_table_msg").fadeIn();
+	$(".person-left-menu li a").eq(1).addClass("toogle-acive");
+}
 
 //发送验证码
 function sendCode() {
-	debugger
 	var str = localStorage.getItem('userinfo');
 	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
 	$("#ownname").val(jsonStr.realName) //输入框获取localStorage中存储值
@@ -148,46 +147,7 @@ $('#send_code').click(function() {
 	sendCode()
 })
 
-////确认提交
-//$("#sign-in-form-submit-btn1").click(function() {
-//	if(RegisterFromValid()) {
-//		var param = {
-//			userName: $("#session_phone").val(),
-//			realName: $("#realName").val(),
-//			userPwd: $("#session_password").val(),
-//			tel: $("#session_phone").val(),
-//			phoneCode: $("#phone_code").val()
-//			//userType: 3,
-//		}
-//
-//		var uri = 'news/registerUser'
-//		param = JSON.stringify(param)
-//
-//		doPostJavaApi(uri, param, function(res) {
-//
-//			if(res != null && res.code == 0) {
-//
-//				$("#loaderR").attr({
-//					style: "-webkit-animation:loader2 1s 0.23s linear infinite"
-//				});
-//				$("#loaderR div").attr({
-//					style: "display:block"
-//				});
-//				setTimeout(function() { //两秒后跳转  
-//					login()
-//					//location.href = "login.html";
-//				}, 1500);
-//
-//			} else {
-//
-//				layer.msg(res.msg);
-//
-//			}
-//
-//		}, "json");
-//	}
-//
-//});
+
 //保存修改信息
 $("#save-register-info").click(function() {
 	
@@ -317,7 +277,6 @@ function doUpload(e) {
 	    ui.fileUpLoading = true
 	    },
 		success: function(data) {
-//			debugger
 			if(t.className == 'user_logo') {
 				allFile.projectLogo = data.datas[0]
 				$('.upload-project-logo').attr('disabled', 'disabled')

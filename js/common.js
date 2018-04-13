@@ -141,4 +141,7 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
         Loginout();
 })
 
-
+$('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
+        window.location.href = "personalCenter.html";
+        var url=window.location.href
+})

@@ -55,7 +55,6 @@ $("#session_phone").blur(function() {
 
 //验证昵称手机号
 function gainCode() {
-	debugger
 	var uri = 'news/virty?'
 	if($("#session_phone").val()) { //校验手机号
 		uri = uri + 'userName=' + $("#session_phone").val()
@@ -85,7 +84,6 @@ function sendCode() {
 		uri = uri + 'userName=' + $("#session_phone").val()
 	}
 	doJavaGet(uri, function(res) {
-		debugger
 		if(res != null && res.code == 0) {
 			getCode()
 		} else {
@@ -203,7 +201,6 @@ function login() {
 		window.localStorage.setItem('currentHref', currentHref);
 		doJavaGet(uri, function(res) {
 			if(res != null && res.code == 0) {
-				debugger
 				//设置用户信息cookie失效时间，一个小时
 				var expireDate = new Date();
 				expireDate.setTime(expireDate.getTime() + (60 * 60 * 1000));
