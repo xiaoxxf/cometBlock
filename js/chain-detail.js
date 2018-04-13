@@ -77,7 +77,7 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
-            console.log(res.msg)
+            // console.log(res.msg)
             self.toggleClass("on");
             var num  = parseInt(self.parent().find(".num").text());
             if(self.hasClass('on')){
@@ -112,6 +112,7 @@ function  ajaxGetChainDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
+            // console.log(chainInfoData)
             if(chainInfoData != null){
                 $(".coin-detail-desc-wrap .coin-big-name").text(chainInfoData.projectBigName);
                 $(".coin-detail-desc-wrap .coin-name").text(chainInfoData.projectName);
@@ -337,8 +338,7 @@ function scoreDataFormat(res) {
             var teamContent = template(commentTpl, {list: tempObj});
             $(".rating_wrap-hook").html('');
             $(".rating_wrap-hook").append(teamContent);
-            //console.log()
-            console.log(tempObj)
+            // console.log(tempObj)
         } else {
             layer.msg(res.msg);
         }

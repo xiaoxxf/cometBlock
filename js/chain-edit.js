@@ -1,6 +1,7 @@
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var creator = null;
+var projectId = null;
 window.onload = function(){
     ajaxGetChainDetail();
 }
@@ -9,7 +10,7 @@ window.onload = function(){
 // var chainInfoData = null
 function  ajaxGetChainDetail() {
     // var projectId = getUrlParam('projectId');
-    var projectId = 'hx001';
+    projectId = 'hx001';
     var uri = 'blockchain/detail?projectId='+projectId;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
@@ -292,13 +293,14 @@ function chainDetailJs(chainInfoData){
           "userId":               userId,
           "chainTeamList":        team,
           "creator":              creator,
-          "UserPwd":              userinfo.userPwd
+          "UserPwd":              userinfo.userPwd,
+          "projectId":            projectId
         };
 
         $.ajax({
             type: 'POST',
             // TODO: 换成编辑的接口
-            url : WebApiHostJavaApi + 'blockchain/addLibrary',
+            url : WebApiHostJavaApi + 'blockchain/updateLibrary',
             data: JSON.stringify(data),
             dataType : 'json',
             contentType: 'application/json; charset=UTF-8',
@@ -308,6 +310,7 @@ function chainDetailJs(chainInfoData){
               $('.submit_control').css('disabled','disabled')
             },
             success: function (result) {
+
               ui.submiting = false
               layer.msg('提交成功，请等待审核', {
                 time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
@@ -317,6 +320,7 @@ function chainDetailJs(chainInfoData){
               });
             },
             error: function (err) {
+
               layer.msg('提交失败，请重试');
               $('.submit_control').css('disabled','')
             }
@@ -338,9 +342,9 @@ function chainDetailJs(chainInfoData){
       temp.picHref = memberPicName[i].value;
       temp.name = memberName[i].value;
       temp.position = memberPosition[i].value;
+      temp.projectId = projectId
       team.push(temp)
     }
-
     //判断team的图片、名字都必须存在
     temp_length = team.length
     for (var i = 0; i < temp_length; i++) {
