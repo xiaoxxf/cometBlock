@@ -1,4 +1,6 @@
 var userId = $.cookie('userid');//获取userid
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var creator = null
 var ui = {
   'submiting': false
 }
@@ -35,6 +37,7 @@ function  ajaxGetReviewDetail() {
           var commentInfoData = res.datas
           // console.log(commentInfoData)
           if (commentInfoData.creator == userId) {
+            creator = commentInfoData.creator //保存creator信息
             // 评价的币种的信息
             ajaxGetProjectInfo(commentInfoData.projectId)
             // 评价内容
@@ -115,7 +118,6 @@ function createEditor(content){
     editor.customConfig.uploadFileName = 'file'
 
 
-
     editor.customConfig.uploadImgHooks = {
         before: function (xhr, editor, files) {
 
@@ -154,8 +156,6 @@ function createEditor(content){
     );
     $('.w-e-menu').css('font-size','20px')
     $('.w-e-text-container').css('border','0px')
-
-
 }
 
 
@@ -178,7 +178,9 @@ $('.submit_comment').on('click',function(){
     score: score, //评分
     type: 2, //长文的type为2
     userId: userId, //userId
-    password:	123
+    password:	123,
+    creator: creator,
+    UserPwd: userinfo.userPwd
   }
 
   if (data.textTitle.length == 0 || editor.txt.text().length == 0 || !data.score) {

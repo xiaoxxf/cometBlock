@@ -250,7 +250,7 @@ function chainDetailJs(chainInfoData){
     },
 
     fields: {
-      // 'project_logo': 'required;',
+      'project_logo_file': 'required;',
   		'project_name': 'required',
   		'project_big_name': 'required',
       'project_type': 'required',
@@ -294,7 +294,7 @@ function chainDetailJs(chainInfoData){
           "creator":              creator,
           "UserPwd":              userinfo.userPwd
         };
-        debugger
+
         $.ajax({
             type: 'POST',
             // TODO: 换成编辑的接口
@@ -340,7 +340,6 @@ function chainDetailJs(chainInfoData){
       temp.position = memberPosition[i].value;
       team.push(temp)
     }
-    debugger
 
     //判断team的图片、名字都必须存在
     temp_length = team.length
