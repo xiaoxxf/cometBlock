@@ -315,3 +315,10 @@
 		margin-right: 2px;
 		/*display: none;*/
 	}
+	
+.borderTop{
+	border-top: 1px solid #c8c8c8 !important;
+}
+.sign-up-btn{
+	border-bottom: none !important;
+}
