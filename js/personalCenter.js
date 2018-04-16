@@ -71,7 +71,7 @@ function changePwdClick() {
 
 //地址栏传入参数，从哪里进来拼上参数即可
 //http://127.0.0.1:8020/cometBlock/personalCenter.html?personType=1
-//加入personType=1/2  进入基础设置 /消息      
+//加入personType=1/2  进入基础设置 /消息
 
 var pT = getUrlParam("personType");
 $(".person-left-menu li a").removeClass('toogle-acive');
@@ -91,6 +91,47 @@ if(pT == 2){
  $(document).ready(function(){
         $(".person-left-menu li a").click(function(){
         var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
+
+				// doJavaGet(uri, function(){
+				//
+				// 	var append_class = null
+				// 	var id = null
+				//
+				// 	switch (order) {
+				// 		case 0:
+				// 			console.log('这是头像')
+				// 			break;
+				// 		case 1:
+				// 			append_class = '.quote-list'
+				// 			id = 'quote'
+				// 			break;
+				// 		case 2:
+				// 			append_class = '.like-list'
+				// 			id = 'like'
+				// 			break;
+				// 		case 3:
+				// 			append_class = '.comment-list'
+				// 			id = 'comment'
+				// 			break;
+				// 		case 4:
+				// 			append_class = '.pass-list'
+				// 			id = 'pass'
+				// 			break;
+				// 		case 5:
+				// 			append_class = '.reject-list'
+				// 			id = 'reject'
+				// 			break;
+				// 		default:
+				// 			// console.log('这是默认')
+				// 			break;
+				// 	}
+				//
+				// 	var tpl = document.getElementById(id).innerHTML;
+				// 	var content = template(tpl, {list: result.datas});
+				//  $(append_class).html('')
+				// 	$(append_class).append(content)
+				// })
+
         $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
     });
 })
@@ -104,7 +145,7 @@ function sendCode() {
 	var tel = jsonStr.tel;
 	var uri = 'news/virty?' + 'realName=' + realName + '&phoneNo' + tel
 	doJavaGet(uri, function(res) {
-		
+
 		if(res != null && res.code == 0) {
 			getCode() //验证码验证
 		} else {
@@ -164,29 +205,29 @@ $('#send_code').click(function() {
 
 //保存修改信息
 $("#save-register-info").click(function() {
-	
+
 	var param = {}
 	var str = localStorage.getItem('userinfo');
-	
+
 	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
 	if($("#newPwd").val()==""|| !$("#newPwd")){//新密码为空
-		
+
 		layer.tips('请输入新密码', '#newPwd', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
-		return 
+		return
 	}
-	
+
 	if($("#phone_code").val()==""|| !$("#phone_code")){//新密码为空
-		
+
 		layer.tips('请输入验证码', '#phone_code', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
-		return 
+		return
 	}
-	
+
 	if(jsonStr){
 		param.userId = jsonStr.id;
 		param.tel = jsonStr.tel;
@@ -195,12 +236,12 @@ $("#save-register-info").click(function() {
 		param.code = $("#phone_code").val();
 		newpassWord =  $("#newPwd").val();
 	}else{
-		
+
 		layer.tips('请先登录', '#phone_code', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
-		return 
+		return
 	}
 
 	//param = JSON.stringify(param)
@@ -274,7 +315,7 @@ function doUpload(e) {
 	if (ui.fileUpLoading || e.files.length == 0) {
     return false
   }
-	
+
 	var file = e.files[0];
 	var formData = new FormData();
 	t = e;
@@ -308,7 +349,7 @@ function doUpload(e) {
 	       ui.fileUpLoading = false
 	       alert("上传错误，请重试！");
 	    }
-		
+
 	});
 
 }
@@ -368,5 +409,3 @@ function loadMessage(days) {
 	}, "json");
 }
 ///loadMessage(1);
-
-
