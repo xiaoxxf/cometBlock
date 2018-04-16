@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+show_table_detaill<!DOCTYPE html>
 
 <html>
 
@@ -130,33 +130,36 @@
 								</table>
 							</div>
 							<!-- 引用 -->
-							<div class="show_table2 show_table_detai cont1 quote">
+							<div class="show_table show_table_detail cont1 quote">
 								<div class="menu">引用</div>
-								<ul class="quote-list">
+								<ul class="notification—list quote-list">
+
 								</ul>
 							</div>
 							<!--喜欢提示-->
-							<div class="show_table2 show_table_detai cont2 like">
+							<div class="show_table show_table_detail cont2 like">
 								<div class="menu">收到的点赞</div>
-								<ul class="like-list">
+								<ul class="notification—list like-list">
+
 								</ul>
 							</div>
 							<!-- 评论 -->
-							<div class="show_table2 show_table_detai cont3 comment">
+							<div class="show_table show_table_detail cont3 comment">
 								<div class="menu">收到的评论</div>
-								<ul class="comment-list">
+								<ul class="notification—list comment-list">
 								</ul>
 							</div>
 							<!-- 审核通过 -->
-							<div class="show_table2 show_table_detai cont4 pass">
+							<div class="show_table show_table_detail cont4 pass">
 								<div class="menu">审核通过的项目</div>
-								<ul class="pass-list">
+								<ul class="notification—list pass-list">
+
 								</ul>
 							</div>
 							<!-- 驳回 -->
-							<div class="show_table2 show_table_detai cont5 reject">
+							<div class="show_table show_table_detai cont5 reject">
 								<div class="menu">被驳回的项目</div>
-								<ul class="reject-list">
+								<ul class="notification—list reject-list">
 								</ul>
 							</div>
 
@@ -173,11 +176,15 @@
 				<li class="" data-newid="">
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
-						<div>
-							<a class="user" href="">彗星</a><span class="comment-slogan">引用了回复</span>
+						<div class="quoted-review">
+
+							<a class="user" href=""><%:=list[i].realName%></a>引用你的了回复
 							</a>
 						</div>
-						<div class="time">2018.03.06 12:10</div>
+						<div class="review-content">
+							<%:=list[i].content%>
+						</div>
+						<div class="time"><%:=list[i].createTime%></div>
 					</div>
 				</li>
 			<%}%>
@@ -189,14 +196,14 @@
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div>
-							<a class="user" href="">彗星</a><span class="comment-slogan">赞了我的长评</span>
+							<a class="user" href=""><%:=list[i].realName%></a>
+								赞了我的长评\短评《<%:=list[i].title%>》
 							</a>
 						</div>
-						<div class="time">2018.03.06 12:10</div>
+						<div class="time"><%:=list[i].createTime%></div>
 					</div>
 				</li>
 			<%}%>
-
 		</script>
 
 		<script type="text/html" id="comment">
@@ -204,11 +211,15 @@
 				<li class="" data-newid="">
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
-						<div>
-							<a class="user" href="">彗星</a><span class="comment-slogan">评论了我的长评</span>
+						<div class="reviewed-article">
+							<a class="user" href=""><%:=list[i].realName%></a>
+								评论了你的长评《<%:=list[i].title%>》
 							</a>
 						</div>
-						<div class="time">2018.03.06 12:10</div>
+						<div class="review-content">
+							<%:=list[i].content%>
+						</div>
+						<div class="time"><%:=list[i].createTime%></div>
 					</div>
 				</li>
 			<%}%>
@@ -217,13 +228,9 @@
 		<script type="text/html" id="pass">
 			<%for(var i = 0; i < list.length; i++) {%>
 				<li class="" data-newid="">
-					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
-						<div>
-							<span>您提交的项目</span><a class="user" href="">BTC</a><span class="comment-slogan">已审核通过</span>
-							</a>
-						</div>
-						<div class="time">2018.03.06 12:10</div>
+						您提交的项目 <a class="user" href=""><%:=list[i].title%></a> 已审核通过
+						<div class="time"><%:=list[i].createTime%></div>
 					</div>
 				</li>
 			<%}%>
@@ -232,13 +239,9 @@
 		<script type="text/html" id="reject">
 			<%for(var i = 0; i < list.length; i++) {%>
 				<li class="" data-newid="">
-					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
-						<div>
-							<a class="user" href="">彗星</a><span class="comment-slogan">赞了我的产品</span>
-							</a>
-						</div>
-						<div class="time">2018.03.06 12:10</div>
+							您提交的项目 <a class="user" href=""><%:=list[i].title%></a> 已被驳回，请重新编辑
+						<div class="time"><%:=list[i].createTime%></div>
 					</div>
 				</li>
 			<%}%>

@@ -49,19 +49,6 @@ $(".person-left-menu li a").on('click', function(e) {
 	$(this).addClass('toogle-acive');
 })
 
-//点击左边显示
-//function baseSettingClick() {
-//	$(".show_table").css("display", "block");
-//	$(".show_table_msg").css("display", "none");
-//
-//}
-//
-//function informationClick() {
-//	$(".show_table_msg").css("display", "block");
-//	$(".show_table").css("display", "none");
-//}
-
-
 
 //修改密码显示隐藏
 function changePwdClick() {
@@ -77,17 +64,13 @@ var pT = getUrlParam("personType");
 $(".person-left-menu li a").removeClass('toogle-acive');
 $(function(){
 if(pT == 1){
-	$(".show_table").fadeIn();
-	$("show-table2").fadeOut();
+	$(".cont0").fadeIn();
 	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
-}
-if(pT == 2){
-	$(".show_table2").fadeIn();
-	$(".person-left-menu li a").eq(1).addClass("toogle-acive");
 }
 
 })
 
+// 渲染
  $(document).ready(function(){
         $(".person-left-menu li a").click(function(){
         var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
@@ -353,59 +336,3 @@ function doUpload(e) {
 	});
 
 }
-
-/*消息通知提示
-
-1.把数据定义参数传到后台
-2.ajax请求返回后台数据
-3.数据显示
-*/
-
-var num = 1;
-//时间戳转化格式
-function changTime(time) {
-	var time = time.replace('T', ' ');
-	var date1 = new Date(Date.parse(time.replace(/-/g, "/")));
-	var timestamp2 = Date.parse(new Date(date1));
-
-	var timeStr = (new Date() - timestamp2) / 1000
-	if(timeStr < 60) { //多少分钟以内的
-		time = '1 分钟'
-	} else if(60 <= timeStr && timeStr < 3600) { //	一个小时以内
-
-		time = parseInt(timeStr / 60) + " 分钟前";
-
-	} else if(24 * 3600 > timeStr && timeStr >= 3600) { //24 小时以内
-
-		time = parseInt(timeStr / 3600) + " 小时前";
-	} else {
-		time = parseInt(timeStr / 3600 / 24) + " 天前";
-	}
-	return time
-}
-//显示内容
-function dataShowMesssage(data) {
-	var html = ''
-	for(var i = 0; i < data.length; i++) {
-		var test = data[i].newsId
-		//          html = html + '<li data-newId=' + test + ' > <span>' + (i + 1) + '</span><a  href=detail.html?newsId=' + data[i].newsId + '>' + data[i].title + '</a></li>'
-
-		html = html + '<li class="" data-newid=' + test + '><a href="/u/ea0b38543aae" class="avatar_receive"><img src="" ' + data[i].userIcon +
-			'></a><div class="info"><div><a class="user" href="">' + data[i].username + ' </a><span class="comment-slogan">评论了我的产品</span></div><div class="time">' + changTime(data[i].time) +
-
-			'</div>	</div><p>' + data[i].content + '</p><div class="meta"><a class="function-btn"><i class="fa fa-commenting-o"></i><span>回复</span></a>'
-		'<a href="chain-detail.html" class="function-btn"><i class="	fa fa-external-link"></i><span>查看对话</span></a></div></div></li>'
-
-	}
-	$('#datasList').append(html);
-};
-
-function loadMessage(days) {
-	var uri = 'news/quary?currentPage=' + num + '&pageSize=' + 10;
-	doJavaGet(uri, function(res) {
-		if(res != null && res.code == 0) {
-			dataShowMesssage(res.datas)
-		}
-	}, "json");
-}
-///loadMessage(1);
