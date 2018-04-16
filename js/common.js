@@ -143,5 +143,5 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
 
 
 $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
-        window.location.href = "personalCenter.html";
+        window.location.href = "personalCenter.html?personType=1";
 })
