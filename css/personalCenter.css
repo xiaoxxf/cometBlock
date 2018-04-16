@@ -1,5 +1,5 @@
 .row {
-	padding-top: 30px;
+	/*padding-top: 30px;*/
 }
 .aside {
 	width: 300px;
@@ -13,7 +13,7 @@ table {
 }
 
 .aside ul {
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .aside ul li {
@@ -176,16 +176,19 @@ tbody {
 .show_table{
 	display: none;
 }
-.show_table_msg{
+.show_table2{
 	display: none;
 }
+.show_table_detai{
+	margin-top: 20px;
+}
 /*消息提示*/
-.show_table_msg .menu {
+.show_table .menu {
     margin-bottom: 20px;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
 }
-.show_table_msg ul li{
+.show_table ul li{
 	padding: 20px 10px;
     border-top: 1px solid #f0f0f0;
     line-height: 20px;
@@ -216,6 +219,7 @@ tbody {
  .comment-list .info,.comment-list .info a{
  	font-size: 15px;
     color: #3194d0;
+    width: 400px;
  } 
 .comment-list .info .comment-slogan{
 	margin: 0 5px 0 0;
@@ -284,7 +288,9 @@ tbody {
 /*显示新密码*/
 .accordion-inner{
 	/*border: 1px solid gainsboro;*/
-	margin-top: 20px;
+	/*margin-top: 20px;*/
+	margin: 20px -30px;
+	
 }
 .accordion-inner div{
 	 padding: 20px 0
@@ -295,15 +301,11 @@ tbody {
 .setting-title a{
     color: #969696;
     text-decoration: none;
+    float: left;
 }
 .setting-psw{
 	text-decoration: none;
 }
-
-.inputadd{
-	margin-left: 32px;
-}
-
 
 .show_table input {
     overflow: visible;
@@ -319,9 +321,10 @@ tbody {
     position: relative !important;
     
 }
+
 .input-prepend input {
     width: 100%;
-    height: 50px;
+    /*height: 50px;*/
     margin-bottom: 0;
     padding: 4px 12px 4px 2px;
     border: 1px solid #c8c8c8;
@@ -333,11 +336,11 @@ tbody {
     top: 26px;
     right: 7px;
     width: 110px;
-    height: 36px;
+    /*height: 36px;*/
     font-size: 13px;
     background-color: rgb(79, 163, 237);
     border-radius: 20px;
-    line-height: 36px;
+    /*line-height: 36px;*/
     text-align: center;
     color: white !important;
 }
@@ -356,3 +359,29 @@ tbody {
 .badge .badge-icon{
 	float: right;
 }
+.new-input-pwd{
+	float: right;
+}
+/*测试*/
+/*.point{
+    float: left;
+    list-style: none;
+}
+.point li{
+    margin-bottom: 10px;
+}
+.box{
+    float: right;
+    margin-right: 500px;
+}
+.box div{
+    width: 500px;
+    height: 200px;
+    border: 1px solid green;
+    display: none;
+}
+.box .con0{
+    display: block;
+}*/
+/*测试*/
+

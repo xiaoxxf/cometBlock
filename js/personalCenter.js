@@ -50,16 +50,19 @@ $(".person-left-menu li a").on('click', function(e) {
 })
 
 //点击左边显示
-function baseSettingClick() {
-	$(".show_table").css("display", "block");
-	$(".show_table_msg").css("display", "none");
+//function baseSettingClick() {
+//	$(".show_table").css("display", "block");
+//	$(".show_table_msg").css("display", "none");
+//
+//}
+//
+//function informationClick() {
+//	$(".show_table_msg").css("display", "block");
+//	$(".show_table").css("display", "none");
+//}
 
-}
 
-function informationClick() {
-	$(".show_table_msg").css("display", "block");
-	$(".show_table").css("display", "none");
-}
+
 //修改密码显示隐藏
 function changePwdClick() {
 	$(".put-newpwd").css("display", "block");
@@ -72,14 +75,25 @@ function changePwdClick() {
 
 var pT = getUrlParam("personType");
 $(".person-left-menu li a").removeClass('toogle-acive');
+$(function(){
 if(pT == 1){
 	$(".show_table").fadeIn();
+	$("show-table2").fadeOut();
 	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
 }
 if(pT == 2){
-	$(".show_table_msg").fadeIn();
+	$(".show_table2").fadeIn();
 	$(".person-left-menu li a").eq(1).addClass("toogle-acive");
 }
+
+})
+
+ $(document).ready(function(){
+        $(".person-left-menu li a").click(function(){
+        var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
+        $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
+    });
+})
 
 //发送验证码
 function sendCode() {
@@ -299,7 +313,7 @@ function doUpload(e) {
 
 }
 
-/*消息获取后台数据
+/*消息通知提示
 
 1.把数据定义参数传到后台
 2.ajax请求返回后台数据
@@ -354,3 +368,5 @@ function loadMessage(days) {
 	}, "json");
 }
 ///loadMessage(1);
+
+
