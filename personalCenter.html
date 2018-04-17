@@ -175,81 +175,108 @@ show_table_detaill<!DOCTYPE html>
 
 		<script type="text/html" id="quote">
 			<%for(var i = 0; i < list.length; i++) {%>
-				<li class="" data-newid="">
+
+				<% if (list[i].status == 1) {%>
+					<li class="message readed" data-messageId="<%:=list[i].messageId%>">
+				<%}%>
+				<% if (list[i].status == 0) {%>
+					<li class="message unread" data-messageId="<%:=list[i].messageId%>">
+				<%}%>
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div class="quoted-review">
-
-							<a class="user" href=""><%:=list[i].realName%></a>引用你的了回复
+							<a class="user" href=""><%:=list[i].realName%></a>引用了你的回复「<%:=list[i].title%>」
 							</a>
 						</div>
 						<div class="review-content">
-							<%:=list[i].content%>
+								<%:=list[i].content%>
 						</div>
 						<div class="time"><%:=list[i].createTime%></div>
 					</div>
-					<span class="badge badge-icon unread">未读</span>
+
 				</li>
 			<%}%>
 		</script>
 
 		<script type="text/html" id="like">
 			<%for(var i = 0; i < list.length; i++) {%>
-				<li class="" data-newid="">
+				<% if (list[i].status == 1) {%>
+					<li class="message readed" data-messageId="<%:=list[i].messageId%>">
+				<%}%>
+				<% if (list[i].status == 0) {%>
+					<li class="message unread" data-messageId="<%:=list[i].messageId%>">
+				<%}%>
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div>
-							<a class="user" href=""><%:=list[i].realName%></a>
-								赞了我的长评\短评《<%:=list[i].title%>》
-							</a>
+							<a class="user" href=""><%:=list[i].realName%></a>赞了我的评论「<%:=list[i].title%>」
 						</div>
+
 						<div class="time"><%:=list[i].createTime%></div>
 					</div>
-					<span class="badge badge-icon unread">未读</span>
+
 				</li>
 			<%}%>
 		</script>
 
 		<script type="text/html" id="comment">
 			<%for(var i = 0; i < list.length; i++) {%>
-				<li class="" data-newid="">
+				<% if (list[i].status == 1) {%>
+					<li class="message readed" data-messageId="<%:=list[i].messageId%>">
+				<%}%>
+				<% if (list[i].status == 0) {%>
+					<li class="message unread" data-messageId="<%:=list[i].messageId%>">
+				<%}%>
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div class="reviewed-article">
 							<a class="user" href=""><%:=list[i].realName%></a>
-								评论了你的长评《<%:=list[i].title%>》
 							</a>
+							评论了你的
+							<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《<%:=list[i].title%>》</a>
+							</a>
+
 						</div>
 						<div class="review-content">
 							<%:=list[i].content%>
 						</div>
 						<div class="time"><%:=list[i].createTime%></div>
 					</div>
-					<span class="badge badge-icon unread">未读</span>
+
 				</li>
 			<%}%>
 		</script>
 
 		<script type="text/html" id="pass">
 			<%for(var i = 0; i < list.length; i++) {%>
-				<li class="" data-newid="">
+					<% if (list[i].status == 1) {%>
+						<li class="message readed" data-messageId="<%:=list[i].messageId%>">
+					<%}%>
+					<% if (list[i].status == 0) {%>
+						<li class="message unread" data-messageId="<%:=list[i].messageId%>">
+					<%}%>
 					<div class="info">
-						您提交的项目 <a class="user" href=""><%:=list[i].title%></a> 已审核通过
+						您提交的项目 <a class="user" href="chain-detail.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已审核通过
 						<div class="time"><%:=list[i].createTime%></div>
 					</div>
-					<span class="badge badge-icon unread">未读</span>
+
 				</li>
 			<%}%>
 		</script>
 
 		<script type="text/html" id="reject">
 			<%for(var i = 0; i < list.length; i++) {%>
-				<li class="" data-newid="">
+					<% if (list[i].status == 1) {%>
+						<li class="message readed" data-messageId="<%:=list[i].messageId%>">
+					<%}%>
+					<% if (list[i].status == 0) {%>
+						<li class="message unread" data-messageId="<%:=list[i].messageId%>">
+					<%}%>
 					<div class="info">
-							您提交的项目 <a class="user" href=""><%:=list[i].title%></a> 已被驳回，请重新编辑
+							您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已被驳回，请重新编辑
 						<div class="time"><%:=list[i].createTime%></div>
 					</div>
-					<span class="badge badge-icon unread">未读</span>
+
 				</li>
 			<%}%>
 		</script>

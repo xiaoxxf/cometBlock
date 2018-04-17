@@ -1,4 +1,15 @@
 //重置密码校验
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var dictionary = []
+$(function(){
+	var uri = 'blockchain/quary?parentId=20'
+	doJavaGet(uri, function(result){
+		for (var i = 0; i < result.datas.length; i++) {
+			dictionary[i] = result.datas[i].dicValue
+		}
+	})
+})
+
 function ResetFromValid() {
 	var resetPwd = $("#reset-pwd").val();
 	var confirmPwd = $("#confirm-pwd").val();
@@ -70,50 +81,73 @@ if(pT == 1){
 
 })
 
+// 点击已读
+$('.show_right').on('click', '.message' , function(e){
+	var self = $(e.currentTarget)
+	var messageId = self.data('messageid')
+	var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
+	doJavaGet(uri, function(e){
+		self.css('color','rgb(212, 211, 211)')
+	})
+})
+
+
+$('.show_right').on('change', '.message' , function(e){
+	alert('ok')
+})
+
+
 // 渲染
  $(document).ready(function(){
         $(".person-left-menu li a").click(function(){
         var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
+				var append_class = null
+				var id = null
+				var type = null
 
-				// doJavaGet(uri, function(){
-				//
-				// 	var append_class = null
-				// 	var id = null
-				//
-				// 	switch (order) {
-				// 		case 0:
-				// 			console.log('这是头像')
-				// 			break;
-				// 		case 1:
-				// 			append_class = '.quote-list'
-				// 			id = 'quote'
-				// 			break;
-				// 		case 2:
-				// 			append_class = '.like-list'
-				// 			id = 'like'
-				// 			break;
-				// 		case 3:
-				// 			append_class = '.comment-list'
-				// 			id = 'comment'
-				// 			break;
-				// 		case 4:
-				// 			append_class = '.pass-list'
-				// 			id = 'pass'
-				// 			break;
-				// 		case 5:
-				// 			append_class = '.reject-list'
-				// 			id = 'reject'
-				// 			break;
-				// 		default:
-				// 			// console.log('这是默认')
-				// 			break;
-				// 	}
-				//
-				// 	var tpl = document.getElementById(id).innerHTML;
-				// 	var content = template(tpl, {list: result.datas});
-				//  $(append_class).html('')
-				// 	$(append_class).append(content)
-				// })
+				switch (order) {
+					case 0:
+						console.log('这是头像')
+						break;
+					case 1:
+						append_class = '.quote-list'
+						id = 'quote'
+						type = '1'
+						break;
+					case 2:
+						append_class = '.like-list'
+						id = 'like'
+						type = '3'
+						break;
+					case 3:
+						append_class = '.comment-list'
+						id = 'comment'
+						type = '2'
+						break;
+					case 4:
+						append_class = '.pass-list'
+						id = 'pass'
+						type = '4'
+						break;
+					case 5:
+						append_class = '.reject-list'
+						id = 'reject'
+						type = '5'
+						break;
+					default:
+						// console.log('这是默认')
+						break;
+				}
+
+				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + 1 + '&pageSize=12' + '&type=' + type
+
+				doJavaGet(uri, function(result){
+					console.log(result.datas)
+					var tpl = document.getElementById(id).innerHTML;
+					var content = template(tpl, {list: result.datas});
+				 	$(append_class).html('')
+					$(append_class).append(content)
+				})
 
         $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
     });

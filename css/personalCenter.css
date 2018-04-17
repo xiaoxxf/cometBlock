@@ -337,8 +337,15 @@ tbody {
 	float: right;
 }
 .unread{
-	margin-bottom: 10px
+	color: rgb(16, 15, 15)
 }
+.readed{
+	color: rgb(212, 211, 211)
+}
+/* blockquote {
+	padding: 0,0
+} */
+
 /*测试*/
 /*.point{
     float: left;
