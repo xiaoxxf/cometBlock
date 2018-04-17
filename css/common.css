@@ -397,3 +397,76 @@ tbody a{
 .nav_font{
     font-size: 12px !important;
 }
+/*personalCenter消息通知*/
+.scrollbar-container{
+	position: absolute;
+    height: 365px;
+    width: 300px;
+    display: none;
+}
+.login-right{
+	display: none;
+}
+.show-inform{
+	position: absolute;
+	height: 300px;
+    overflow-y: auto;
+    width: 300px;
+    background-color: white;
+    top: 23px;
+    padding: 14px;
+    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
+}
+.show-inform-title{
+	position: absolute;
+	width: 300px;
+	height: 24px;
+    background-color: white;
+    border-bottom: solid 1px #dcdcdca6;
+    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
+  
+}
+.show-inform-footer {
+    position: absolute;
+    top: 323px;
+    text-align: right;
+    width: 300px;
+    padding-right: 40px;
+    height: 24px;
+    background-color: white;
+    border-bottom: solid 1px #dcdcdca6;
+    height: 40px;
+    line-height: 40px;
+    border-radius:0px 0px 8px 8px;
+    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
+    }
+.show-inform-detail{
+	text-align: center;
+}
+.show-inform-detail-item{
+	width: 100%;
+}
+.show-inform li {
+    margin: 20px auto;
+}
+.show-inform-detail-right{
+	float: right;
+}
+.badge {
+    padding: 3px 6px;
+    font-size: 13px!important;
+    background-color: #ea6f5a;
+}
+.badge-inform {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+}
+.badge .badge-icon{
+	float: right;
+}
+.new-input-pwd{
+	float: right;
+}
+
+/*通知*/

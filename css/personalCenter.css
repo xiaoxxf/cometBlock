@@ -325,36 +325,3 @@ tbody {
     margin-top: -2px;
     width: 80px;
 }
-.badge {
-    padding: 3px 6px;
-    font-size: 13px!important;
-    background-color: #ea6f5a;
-}
-.badge .badge-icon{
-	float: right;
-}
-.new-input-pwd{
-	float: right;
-}
-/*测试*/
-/*.point{
-    float: left;
-    list-style: none;
-}
-.point li{
-    margin-bottom: 10px;
-}
-.box{
-    float: right;
-    margin-right: 500px;
-}
-.box div{
-    width: 500px;
-    height: 200px;
-    border: 1px solid green;
-    display: none;
-}
-.box .con0{
-    display: block;
-}*/
-/*测试*/

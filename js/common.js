@@ -130,10 +130,12 @@ $.get("header-tpl.html",function(data){
     var username = $.cookie('username');
     if(username == undefined){
         $("#nav_login").fadeIn();
-        $("#nav_register").fadeIn()
+        $("#nav_register").fadeIn();
+        $("scrollbar-container").fadeIn();
     }else {
         $(".nav-user-account #nav_user_mes").text(username);
         $(".nav-user-account .more-active").css('display','block');
+        $(".login-right").css('display','block');
     }
 });
 $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function () {
@@ -144,3 +146,4 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
 $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
         window.location.href = "personalCenter.html?personType=1";
 })
+//通知鼠标悬停出现隐藏div
