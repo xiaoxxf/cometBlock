@@ -2,6 +2,7 @@
 	/*padding-top: 30px;*/
 }
 .aside {
+	position: fixed;
 	width: 300px;
 	overflow: auto;
 }
@@ -324,4 +325,9 @@ tbody {
 .upload-button {
     margin-top: -2px;
     width: 80px;
+}
+
+ /*盒子*/
+.form-box{
+	margin-top:20px !important;
 }
