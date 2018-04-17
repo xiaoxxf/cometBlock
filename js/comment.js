@@ -1,5 +1,5 @@
 //举报弹出框
-
+var quotedReviewId = null
 $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {
     console.log($(e.currentTarget))
     layer.open({
@@ -16,6 +16,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     var self =$(e.currentTarget),
         author = self.data('user_name'),
         number = self.data('number')+1,
+        id = self.data('reviewid'),
         parentTxt = self.data('parenttxt');
         $(".comment-list-hook").find('.reply-comment-click').removeClass('reply-comment-click')
         self.addClass('reply-comment-click');
@@ -35,6 +36,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     $("#add_comment .author").text(author);
     $("#add_comment .number").text(number);
     $("#add_comment .parent-txt .short").text(parentTxt);
+    quotedReviewId = id
     $(".reply-comment").fadeIn()
 });
 //点击删除
@@ -242,6 +244,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         type: 1, //长文的type为2
         userId:userId,
         quote:quote,
+        quotedReviewId: quotedReviewId
     }
     var uri = 'blockchain/addReview';
     var jsonData = JSON.stringify(data);

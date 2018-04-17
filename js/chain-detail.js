@@ -1,3 +1,4 @@
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 
 $("#rating #stars img").on('mouseenter',function (e) {
     var self = $(e.currentTarget);
@@ -119,6 +120,13 @@ function  ajaxGetChainDetail() {
 
                 $(".coin-detail-desc-wrap .coin-img img").attr('src',chainInfoData.projectLogo)
                 chainDetailFormat(chainInfoData);
+            }
+            // 添加编辑按钮
+            if (chainInfoData.creator == userinfo.id) {
+              var id = chainInfoData.projectId
+              var string = '<a href="chain-edit.html?projectId=' + id + '"><button type="button" class=" btn btn-default btn-sm edit">编辑</button></a>'
+
+              $('.project-title').append(string)
             }
         } else {
             layer.msg(res.msg);
@@ -385,3 +393,19 @@ function Hide(){
   var show = '<a onclick="showMore()">展开</a>'
   projectContent.append(show)
 }
+
+
+var resizeTimer = null;
+$(window).on('resize', function () {
+
+	if (resizeTimer) {
+			 clearTimeout(resizeTimer)
+	 }
+	 resizeTimer = setTimeout(function(){
+		 // 图片白底适应
+     var imgW = $(".coin-detail-desc-wrap .coin-img").width();
+     $(".coin-detail-desc-wrap .coin-img").css('height',imgW*270/230);
+
+	}, 100);
+
+})

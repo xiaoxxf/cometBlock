@@ -238,7 +238,7 @@
 					<%}%>
 					<p class="comment-text"><%:=list[i].textTitle%></p>
 					<div class="op-lnks">
-						<a href="javacript:;" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_comment">引用</a>
+						<a href="javacript:;" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="reply_comment">引用</a>
 						<%if(userinfo && list[i].realName == userinfo.realName){%>
 							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_delete">删除</a>
 						<%}%>
@@ -256,6 +256,7 @@
 							<p>
 								引用<i class="number"></i># <span class="at-sypm">@</span>
 								<a href="javascript:;" class="author"></a>发表的:
+								<a href="javascript:;" class="quotedReviewId"></a>
 							</p>
 							<p class="parent-txt">
 								<span class="short"></span>

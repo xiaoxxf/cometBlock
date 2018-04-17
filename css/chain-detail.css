@@ -251,6 +251,11 @@
     text-align: center;
     cursor: pointer;
 }
+
+.edit{
+  margin-left: 5px
+}
+
 /*点赞小屏时自适应*/
 @media (max-width: 767px){
     .xs-position-relative {

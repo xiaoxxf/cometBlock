@@ -9,8 +9,8 @@ window.onload = function(){
 
 // var chainInfoData = null
 function  ajaxGetChainDetail() {
-    // var projectId = getUrlParam('projectId');
-    projectId = 'hx001';
+    projectId = getUrlParam('projectId');
+    // projectId = 'hx001';
     var uri = 'blockchain/detail?projectId='+projectId;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
@@ -47,6 +47,22 @@ function verbForm(chainInfoData){
   if (chainInfoData.exchangeRate.length != 0) {
     verbExchangeRate(chainInfoData.exchangeRate);
   }
+
+  // 渲染币种类型
+
+  var uri = 'blockchain/quary?parentId=1'
+  doJavaGet(uri,function(data){
+    var coinType = document.getElementById('project-type').innerHTML;
+    var content = template(coinType, {list: data.datas});
+    $('.project_type').append(content)
+    var type = chainInfoData.projectType
+    var option = $('.project_type').find('option')[type-1]
+    $(option).attr('selected','selected')
+  },"json")
+
+
+
+
 }
 
 function verbTeam(chainTeamList){
@@ -255,12 +271,12 @@ function chainDetailJs(chainInfoData){
   		'project_name': 'required',
   		'project_big_name': 'required',
       'project_type': 'required',
-  		'fundraising_time': 'required;date',
-  		'currency_count': 'required;integer',
+  		'fundraising_time': 'date',
+  		'currency_count': 'integer',
   		'compay_website': 'required;url',
   		'block_browser': 'url',
   		'project_content': 'required',
-      'currency_circulation': 'required;integer',
+      'currency_circulation': 'integer',
     },
 
     valid: function(form) {
@@ -299,7 +315,6 @@ function chainDetailJs(chainInfoData){
 
         $.ajax({
             type: 'POST',
-            // TODO: 换成编辑的接口
             url : WebApiHostJavaApi + 'blockchain/updateLibrary',
             data: JSON.stringify(data),
             dataType : 'json',
@@ -354,16 +369,6 @@ function chainDetailJs(chainInfoData){
     }
     return team
   }
-
-  // 渲染币种类型
-  $(function(){
-    var uri = 'blockchain/quary?parentId=1'
-    doJavaGet(uri,function(data){
-      var coinType = document.getElementById('project-type').innerHTML;
-      var content = template(coinType, {list: data.datas});
-      $('.project_type').append(content)
-    },"json")
-  })
 
   // 编辑器
   var E = window.wangEditor

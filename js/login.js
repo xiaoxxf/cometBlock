@@ -2,34 +2,34 @@
 function loginFromValid(){
 	var tel=$("#session_phone").val();
 	var userPwd=$("#session_password").val();
-    
-    if(tel==""){ 
-        layer.tips('手机号不能为空', '#session_phone', {
-		  tips: [2, '#3595CC'],
-		  time: 2000
-		}); 
-        return false; 
-    }
-    if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))){
-    	layer.tips('输入手机错误', '#session_phone', {
-		  tips: [2, '#3595CC'],
-		  time: 2000
-		}); 
-        return false; 
-    }
-	if(userPwd.length=""){ 
+
+    // if(tel==""){
+    //     layer.tips('手机号不能为空', '#session_phone', {
+		//   tips: [2, '#3595CC'],
+		//   time: 2000
+		// });
+    //     return false;
+    // }
+    // if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))){
+    // 	layer.tips('输入手机错误', '#session_phone', {
+		//   tips: [2, '#3595CC'],
+		//   time: 2000
+		// });
+    //     return false;
+    // }
+	if(userPwd.length=""){
         layer.tips('密码不能为空', '#session_password', {
 		  tips: [2, '#3595CC'],
 		  time: 2000
-		}); 
-        return false; 
+		});
+        return false;
     }
-	if(userPwd.length<6){ 
+	if(userPwd.length<6){
         layer.tips('密码长度不能少于6位', '#session_password', {
 		  tips: [2, '#3595CC'],
 		  time: 2000
-		}); 
-        return false; 
+		});
+        return false;
     }
 	return true;
 
@@ -49,7 +49,7 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
     var currentHref = location.href
 	window.localStorage.setItem('currentHref',currentHref);
 	doJavaGet(uri, function(res) {
-		
+
 		if(res != null && res.code == 0) {
 			$("#load").attr({
 				style: "-webkit-animation:loader2 1s 0.23s linear infinite"
@@ -70,8 +70,8 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 				var localCurrentHref = window.localStorage.getItem('currentHref');
 				if(localCurrentHref.indexOf('login.html')>0){
                     window.location.href = "index.html";
-                    
-                    
+
+
 				}else{
                     window.location.href = localCurrentHref;
 				}
@@ -81,8 +81,7 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 			layer.msg(res.msg);
 		}
 	}, "json");
-   
-	}
-	
-});
 
+	}
+
+});

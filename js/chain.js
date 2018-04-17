@@ -325,9 +325,7 @@ $(window).on('resize', function () {
 		 // 图片白底适应
      var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
      $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
- 		var imgZ = $(".search-result-img .inner-img-wrap").width();
- 		$(".search-result-img .inner-img-wrap").css('height', imgZ*270/230);
 
-	}, 200);
+	}, 100);
 
 })
