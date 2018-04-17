@@ -131,7 +131,7 @@ $.get("header-tpl.html",function(data){
     if(username == undefined){
         $("#nav_login").fadeIn();
         $("#nav_register").fadeIn();
-        $("scrollbar-container").fadeIn();
+        $(".scrollbar-container").fadeIn();
     }else {
         $(".nav-user-account #nav_user_mes").text(username);
         $(".nav-user-account .more-active").css('display','block');
