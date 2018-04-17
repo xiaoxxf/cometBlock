@@ -326,5 +326,51 @@ tbody {
     margin-top: -2px;
     width: 80px;
 }
+<<<<<<< HEAD
+.badge {
+    padding: 3px 6px;
+    font-size: 13px!important;
+    background-color: #ea6f5a;
+}
+.badge .badge-icon{
+	float: right;
+}
+.new-input-pwd{
+	float: right;
+}
+.unread{
+	color: rgb(16, 15, 15)
+}
+.readed{
+	color: rgb(212, 211, 211)
+}
+/* blockquote {
+	padding: 0,0
+} */
+
+/*测试*/
+/*.point{
+    float: left;
+    list-style: none;
+}
+.point li{
+    margin-bottom: 10px;
+}
+.box{
+    float: right;
+    margin-right: 500px;
+}
+.box div{
+    width: 500px;
+    height: 200px;
+    border: 1px solid green;
+    display: none;
+}
+.box .con0{
+    display: block;
+}*/
+/*测试*/
+=======
 
  /*盒子*/
+>>>>>>> d120e19afc9cf5261d475a6b4df1423a0889aa44
