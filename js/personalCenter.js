@@ -49,19 +49,6 @@ $(".person-left-menu li a").on('click', function(e) {
 	$(this).addClass('toogle-acive');
 })
 
-//点击左边显示
-//function baseSettingClick() {
-//	$(".show_table").css("display", "block");
-//	$(".show_table_msg").css("display", "none");
-//
-//}
-//
-//function informationClick() {
-//	$(".show_table_msg").css("display", "block");
-//	$(".show_table").css("display", "none");
-//}
-
-
 
 //修改密码显示隐藏
 function changePwdClick() {
@@ -71,26 +58,63 @@ function changePwdClick() {
 
 //地址栏传入参数，从哪里进来拼上参数即可
 //http://127.0.0.1:8020/cometBlock/personalCenter.html?personType=1
-//加入personType=1/2  进入基础设置 /消息      
+//加入personType=1/2  进入基础设置 /消息
 
 var pT = getUrlParam("personType");
 $(".person-left-menu li a").removeClass('toogle-acive');
 $(function(){
 if(pT == 1){
-	$(".show_table").fadeIn();
-	$("show-table2").fadeOut();
+	$(".cont0").fadeIn();
 	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
-}
-if(pT == 2){
-	$(".show_table2").fadeIn();
-	$(".person-left-menu li a").eq(1).addClass("toogle-acive");
 }
 
 })
 
+// 渲染
  $(document).ready(function(){
         $(".person-left-menu li a").click(function(){
         var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
+
+				// doJavaGet(uri, function(){
+				//
+				// 	var append_class = null
+				// 	var id = null
+				//
+				// 	switch (order) {
+				// 		case 0:
+				// 			console.log('这是头像')
+				// 			break;
+				// 		case 1:
+				// 			append_class = '.quote-list'
+				// 			id = 'quote'
+				// 			break;
+				// 		case 2:
+				// 			append_class = '.like-list'
+				// 			id = 'like'
+				// 			break;
+				// 		case 3:
+				// 			append_class = '.comment-list'
+				// 			id = 'comment'
+				// 			break;
+				// 		case 4:
+				// 			append_class = '.pass-list'
+				// 			id = 'pass'
+				// 			break;
+				// 		case 5:
+				// 			append_class = '.reject-list'
+				// 			id = 'reject'
+				// 			break;
+				// 		default:
+				// 			// console.log('这是默认')
+				// 			break;
+				// 	}
+				//
+				// 	var tpl = document.getElementById(id).innerHTML;
+				// 	var content = template(tpl, {list: result.datas});
+				//  $(append_class).html('')
+				// 	$(append_class).append(content)
+				// })
+
         $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
     });
 })
@@ -104,7 +128,7 @@ function sendCode() {
 	var tel = jsonStr.tel;
 	var uri = 'news/virty?' + 'realName=' + realName + '&phoneNo' + tel
 	doJavaGet(uri, function(res) {
-		
+
 		if(res != null && res.code == 0) {
 			getCode() //验证码验证
 		} else {
@@ -164,29 +188,29 @@ $('#send_code').click(function() {
 
 //保存修改信息
 $("#save-register-info").click(function() {
-	
+
 	var param = {}
 	var str = localStorage.getItem('userinfo');
-	
+
 	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
 	if($("#newPwd").val()==""|| !$("#newPwd")){//新密码为空
-		
+
 		layer.tips('请输入新密码', '#newPwd', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
-		return 
+		return
 	}
-	
+
 	if($("#phone_code").val()==""|| !$("#phone_code")){//新密码为空
-		
+
 		layer.tips('请输入验证码', '#phone_code', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
-		return 
+		return
 	}
-	
+
 	if(jsonStr){
 		param.userId = jsonStr.id;
 		param.tel = jsonStr.tel;
@@ -195,12 +219,12 @@ $("#save-register-info").click(function() {
 		param.code = $("#phone_code").val();
 		newpassWord =  $("#newPwd").val();
 	}else{
-		
+
 		layer.tips('请先登录', '#phone_code', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
-		return 
+		return
 	}
 
 	//param = JSON.stringify(param)
@@ -274,7 +298,7 @@ function doUpload(e) {
 	if (ui.fileUpLoading || e.files.length == 0) {
     return false
   }
-	
+
 	var file = e.files[0];
 	var formData = new FormData();
 	t = e;
@@ -308,65 +332,7 @@ function doUpload(e) {
 	       ui.fileUpLoading = false
 	       alert("上传错误，请重试！");
 	    }
-		
+
 	});
 
 }
-
-/*消息通知提示
-
-1.把数据定义参数传到后台
-2.ajax请求返回后台数据
-3.数据显示
-*/
-
-var num = 1;
-//时间戳转化格式
-function changTime(time) {
-	var time = time.replace('T', ' ');
-	var date1 = new Date(Date.parse(time.replace(/-/g, "/")));
-	var timestamp2 = Date.parse(new Date(date1));
-
-	var timeStr = (new Date() - timestamp2) / 1000
-	if(timeStr < 60) { //多少分钟以内的
-		time = '1 分钟'
-	} else if(60 <= timeStr && timeStr < 3600) { //	一个小时以内
-
-		time = parseInt(timeStr / 60) + " 分钟前";
-
-	} else if(24 * 3600 > timeStr && timeStr >= 3600) { //24 小时以内
-
-		time = parseInt(timeStr / 3600) + " 小时前";
-	} else {
-		time = parseInt(timeStr / 3600 / 24) + " 天前";
-	}
-	return time
-}
-//显示内容
-function dataShowMesssage(data) {
-	var html = ''
-	for(var i = 0; i < data.length; i++) {
-		var test = data[i].newsId
-		//          html = html + '<li data-newId=' + test + ' > <span>' + (i + 1) + '</span><a  href=detail.html?newsId=' + data[i].newsId + '>' + data[i].title + '</a></li>'
-
-		html = html + '<li class="" data-newid=' + test + '><a href="/u/ea0b38543aae" class="avatar_receive"><img src="" ' + data[i].userIcon +
-			'></a><div class="info"><div><a class="user" href="">' + data[i].username + ' </a><span class="comment-slogan">评论了我的产品</span></div><div class="time">' + changTime(data[i].time) +
-
-			'</div>	</div><p>' + data[i].content + '</p><div class="meta"><a class="function-btn"><i class="fa fa-commenting-o"></i><span>回复</span></a>'
-		'<a href="chain-detail.html" class="function-btn"><i class="	fa fa-external-link"></i><span>查看对话</span></a></div></div></li>'
-
-	}
-	$('#datasList').append(html);
-};
-
-function loadMessage(days) {
-	var uri = 'news/quary?currentPage=' + num + '&pageSize=' + 10;
-	doJavaGet(uri, function(res) {
-		if(res != null && res.code == 0) {
-			dataShowMesssage(res.datas)
-		}
-	}, "json");
-}
-///loadMessage(1);
-
-

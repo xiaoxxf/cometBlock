@@ -57,6 +57,7 @@ var ui = {
 function searchFromType(e){
 	ui.loading = true;
 	ui.noMoreData = false;
+
 	$('.coin-list-wrap').html('');
 	$('.search-result-box').css('display','none');
 	$('.no-result').css('display','none');
@@ -69,15 +70,21 @@ function searchFromType(e){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
 
 	doJavaGet(uri,function(result){
+
 		if (result.datas.length == 0) {
-			ui.noMoreData = true;
+			$('.coin-list-wrap').html('');
 			$(".no-more-hook").fadeIn();
 		}else{
+			$('.coin-list-wrap').html('');
 			var tpl = document.getElementById('tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});
 			$('.coin-list-wrap').append(content)
 	    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
 	    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			if (result.datas.length < 12) {
+				ui.noMoreData = true;
+				$(".no-more-hook").fadeIn();
+			}
 		}
 		$(".waiting-data").hide();
 		ui.loading = false;
@@ -120,6 +127,7 @@ function getChain(){
 	$(".no-more-hook").css('display','none')
 
 	doJavaGet(uri,function(result){
+		$('.coin-list-wrap').html("");
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.coin-list-wrap').append(content)
@@ -199,6 +207,10 @@ function serachChain(){
 
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);
+			if (result.datas.length < 12) {
+				ui.noMoreData = true;
+				$(".no-more-hook").fadeIn();
+			}
 			flag = 2;
 		}else{
 			$('.no-result').css('display','')
