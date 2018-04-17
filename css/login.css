@@ -121,11 +121,9 @@ form {
 	float: left;
 	margin: 15px 0;
 }
-
-.loader {
+/*.loader {
 	width: 50px;
 	height: 50px;
-	/* float: left; */
 	display: -webkit-flex;
 	justify-content: center;
 	display: flex;
@@ -142,9 +140,8 @@ form {
 	border-bottom-color: transparent;
 	background: transparent;
 	display: none;
-	/* -webkit-animation: loader2 1s 0.23s linear infinite; */
-}
-
+	-webkit-animation: loader2 1s 0.23s linear infinite;
+}*/
 .forget-btn {
 	float: right;
 	position: relative;

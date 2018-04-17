@@ -49,14 +49,18 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
     var currentHref = location.href
 	window.localStorage.setItem('currentHref',currentHref);
 	doJavaGet(uri, function(res) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> d120e19afc9cf5261d475a6b4df1423a0889aa44
 		if(res != null && res.code == 0) {
-			$("#load").attr({
-				style: "-webkit-animation:loader2 1s 0.23s linear infinite"
-			});
-			$("#load ").attr({
-				style: "display:block"
-			});
+//			$("#load").attr({
+//				style: "-webkit-animation:loader2 1s 0.23s linear infinite"
+//			});
+//			$("#load ").attr({
+//				style: "display:block"
+//			});
+
 			setTimeout(function() { //两秒后跳转
 				//设置用户信息cookie失效时间，一个小时
                 var expireDate= new Date();
@@ -69,9 +73,8 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
                 $.cookie('username', res.datas.realName,{ expires: expireDate });
 				var localCurrentHref = window.localStorage.getItem('currentHref');
 				if(localCurrentHref.indexOf('login.html')>0){
+
                     window.location.href = "index.html";
-
-
 				}else{
                     window.location.href = localCurrentHref;
 				}
@@ -84,4 +87,10 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 
 	}
 
+});
+//登录绑定回车
+$(document).keydown(function(event){
+	if(event.keyCode == 13){
+		$('#sign-in-form-submit-btn').click();
+		}
 });

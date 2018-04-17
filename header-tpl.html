@@ -1,90 +1,189 @@
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
 <div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1">
-    <nav role="navigation" class="nav_shadow">
-        <div class="container collapsed">
-            <div class="nav navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+	<nav role="navigation" class="nav_shadow">
+		<div class="container collapsed">
+			<div class="nav navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand navbar-brand-xs" href="index.html"><span itemprop="name">彗星</span></a>
-            </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
-                <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="index.html" class="new-report cur-nav">播报</a>
-                    </li>
-
-                    <li>
-                        <a href="code-rank.html" class="code-rank">代码榜</a>
-                    </li>
-                    <li>
-                        <a href="chain.html" class="chain">链库</a>
-                    </li>
-                    <!-- <li>
-                        <a href="article-new.html" class="article">写文章</a>
-                    </li> -->
-                </ul>
-                <!--<ul class="nav navbar-nav navbar-right nav-index-img">
-            <li>
-                <a class="link-button" href="http://www.huixing.io/feeds" id="nav-download">
-                    <img class="download-icon" src="img/temp1.jpg" width="30px" height="30px"
-                         alt="">
-                </a>
-            </li>
-        </ul>-->
-            <ul class="nav navbar-nav navbar-right log-nvabar-right">
-                <li id="nav_login">
-                    <a href="login.html" class="log_nav nav_font">登录</a>
-                </li>
-                <li id="nav_register">
-                    <a href="register.html" class="log_nav reg_c nav_show_message nav_font login-btn-xs">注册</a>
-                </li>
-                <li class="nav-user-account">
-                  <div target="_blank"  class="bn-more more-active" rel="off" id="user_mess_click">
-                    <span id="nav_user_mes"></span>
-                    <span class="arrow"></span>
-                    <div class="droplist-wrap logout-btn-xs">
-                        <ul>
-                            <li class="logout-btn">注销</li>
-                            <li class="usercenter-btn">个人中心</li>
-                        </ul>
-                    </div>
-                  </div>
-               </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <div class="nav_search">
-                        <input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search">
-                        <a class="nav_search_icon">
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            </div>
-        </div>
-    </nav>
+				<a class="navbar-brand navbar-brand-xs" href="index.html"><span itemprop="name">彗星</span></a>
+			</div>
+			<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+						<a href="index.html" class="new-report cur-nav">播报</a>
+					</li>
+					<li>
+						<a href="code-rank.html" class="code-rank">代码榜</a>
+					</li>
+					<li>
+						<a href="chain.html" class="chain">链库</a>
+					</li>
+					<li>
+						<a href="article-new.html" class="article">写文章</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right log-nvabar-right">
+					<li id="nav_login">
+						<a href="login.html" class="log_nav nav_font">登录</a>
+					</li>
+					<li id="nav_register">
+						<a href="register.html" class="log_nav reg_c nav_show_message nav_font login-btn-xs">注册</a>
+					</li>
+					<li class="nav-user-account">
+						<div target="_blank" class="bn-more more-active" rel="off" id="user_mess_click">
+							<span id="nav_user_mes"></span>
+							<span class="arrow"></span>
+							<div class="droplist-wrap logout-btn-xs">
+								<ul>
+									<li class="logout-btn">注销</li>
+									<li class="usercenter-btn">个人中心</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<!--添加通知-->
+				<!--<ul class="nav navbar-nav navbar-right log-nvabar-right login-right">
+					<li class="tab notification">
+						<a data-hover="dropdown" href="" class="notification-btn">
+							<span><i class="fa fa-bell-o"></i></span>
+							<span class="badge badge-inform">11</span>
+						</a>-->
+						
+						
+							<!--通知弹出面板-->
+						<!--<div class="scrollbar-container" >
+								<div class="show-inform-title"></div>
+							<ul class="show-inform">
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>	
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>	
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>	
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>	
+								<li class="show-inform-detail">
+									<div class="show-inform-detail-item">
+										雯子在<a href="">《区块链应用》</a>评论了你的长评
+									</div>
+								</li>	
+							</ul>
+							<div class="show-inform-footer">查看全部提醒</div>
+						</div>-->
+							<!--通知弹出面板-->
+							
+							<!--<div class="show-alert-inform">
+								<div class="show-alert-inform-top">
+									<a href="">评论（5）</a>
+									<a href="">通知（3）</a>
+									<a href="">点赞（8）</a>
+								</div>-->
+								 <!--<ul class="show-alert-inform-top">
+						            <li><a href="#">评论（5）</a></li>
+						            <li><a href="#">通知（3）</a></li>
+						            <li><a href="#">点赞（8）</a></li>
+						        </ul>
+						        <div class="show-alert-inform-content">
+						            <div class="inform0">d0</div>
+						            <div class="inform1">d1</div>
+						            <div class="inform2">d2</div>
+						            
+						        </div>-->
+								<!--<div class="show-alert-inform-content">
+									<div><img src="img/001-signs.png" /></div>
+									<div>
+										<span>你收到14条新通知</span>
+									</div>
+								</div>
+								<div class="show-alert-inform-bottom"></div>
+								
+							</div>-->
+							
+					
+					<!--</li>
+				</ul>-->
+				<!--添加通知-->
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<div class="nav_search">
+							<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search">
+							<a class="nav_search_icon">
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 </div>
 
 <script>
-	$(document).ready(function(){
-		$("#user_mess_click").click(function(){
-		$(".more-items").toggle();
+	$(document).ready(function() {
+		$("#user_mess_click").click(function() {
+			$(".more-items").toggle();
 		});
 	});
-
+	//	通知
+	$(document).ready(function() {
+		$(".login-right").on("hover",function(){
+			$(".scrollbar-container").toggle();
+		})
+	});
+	//通知显示隐藏提示面板
+	
+	$(document).ready(function(){
+	  $(".login-right").hover(function(){
+	    $(".scrollbar-container").css("display","block");
+	    },function(){
+	    $(".scrollbar-container").css("display","none");
+	  });
+	});
+	
+	//通知
 	//将id保存在cookie
-		var userMsg=localStorage.getItem('userinfo'); //存储
-		userMsg=JSON.parse(userMsg);
-		/*if($("#nav_user_mes").html(userMsg.realName)){
-			$('#nav_login').hide();
-			$('#nav_register').hide();
-		}
-		else{
-			$('#nav_login').show();
-			$('#nav_register').show();
-		}*/
+	var userMsg = localStorage.getItem('userinfo'); //存储
+	userMsg = JSON.parse(userMsg);
+	
+</script>
 
 
+<!--li弹出通知-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".show-alert-inform-top li a").click(function(){
+            var order = $(".show-alert-inform-top li a").index(this);//获取点击之后返回当前a标签index的值
+            $(".inform" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
+        });
+    })
 </script>
