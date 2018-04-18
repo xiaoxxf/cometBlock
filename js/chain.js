@@ -15,6 +15,7 @@ $(function(){
 
 })
 
+
 $('.coin-item').on('click', $('span'), function(e) {
 	$('.coin-item').children().removeClass();
 	$(e.target).addClass('cur')
@@ -41,16 +42,78 @@ $('.coin-item').on("mouseenter mouseleave",'.cur',function(e){
 		$(e.target).css('color','')
 	};
 })
-var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目, 4-搜不到结果时，不能滚动加载
+var flag = 1; //判断滚动加载，1-所有项目， 2-搜索项目, 3-分类项目, 4-上新查询， 5-搜不到结果时候不允许滚动
 var searchType = ''
 var search_type_page = 1;
 var index_page = 1;
 var search_page = 1;
+var byTime_page = 1;
+
 var pageSize = 12;
 var ui = {
 	"noData": false,
 	"noMoreData": false,
 	"loading": false
+}
+
+// 上新查询
+function getChainByTime(){
+	ui.loading = true;
+	ui.noMoreData = false;
+	byTime_page = 1
+	$('.coin-list-wrap').html('');
+	$('.search-result-box').css('display','none');
+	$('.no-result').css('display','none');
+	$(".waiting-data").fadeIn();
+	$(".no-more-hook").css('display','none')
+
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize +  '&timeOrder=1'
+
+	doJavaGet(uri, function(result){
+		if (result.datas.length == 0) {
+			$('.coin-list-wrap').html('');
+			$(".no-more-hook").fadeIn();
+		}else{
+			$('.coin-list-wrap').html('');
+			var tpl = document.getElementById('tpl').innerHTML;
+			var content = template(tpl, {list: result.datas});
+			$('.coin-list-wrap').append(content)
+	    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+	    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			if (result.datas.length < 12) {
+				ui.noMoreData = true;
+				$(".no-more-hook").fadeIn();
+			}
+		}
+		$(".waiting-data").hide();
+		ui.loading = false;
+	}, "json")
+	flag = 4;
+
+}
+
+function lodeMoreChainByTime(){
+	var uri = 'blockchain/quaryProjetList?currentPage=' + byTime_page + '&pageSize=' + pageSize +  'timeOrder=1'
+
+	$(".loader1").css('display','flex');
+	$(".no-more-hook").css('display','none')
+
+	doJavaGet(uri,function(result){
+		if (result.datas.length == 0) {
+			ui.noMoreData = true;
+			$(".loader1").css('display','');
+			$(".no-more-hook").fadeIn();
+		}else {
+			var tpl = document.getElementById('tpl').innerHTML;
+			var content = template(tpl, {list: result.datas});
+			$('.coin-list-wrap').append(content)
+			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			$(".loader1").css('display','none');
+		}
+		ui.loading = false;
+	}, "json")
+	flag = 4;
 }
 
 // 分类查询
@@ -66,7 +129,7 @@ function searchFromType(e){
 
 	search_type_page = 1;
 	searchType = 	e
-	var pageSize = 12
+
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
 
 	doJavaGet(uri,function(result){
@@ -127,6 +190,8 @@ function getChain(){
 	$(".no-more-hook").css('display','none')
 
 	doJavaGet(uri,function(result){
+		// console.log(result.datas)
+
 		$('.coin-list-wrap').html("");
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
@@ -215,7 +280,7 @@ function serachChain(){
 		}else{
 			$('.no-result').css('display','')
 			$('.can-not-find').html('找不到"' + key_word +'"项目')
-			flag = 4;
+			flag = 5;
 		}
 	}, "json");
 	ui.loading = false;
@@ -297,6 +362,10 @@ $(window).scroll(function(){
 					search_type_page += 1;
 					ui.loading = true;
 					loadMoreSearchFromType();
+				}else if (flag == 4 && !ui.noMoreData && !ui.loading){
+					byTime_page += 1;
+					ui.loading = true;
+					lodeMoreChainByTime()
 				}
 
 		}

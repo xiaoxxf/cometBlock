@@ -1,3 +1,9 @@
+body{
+	background-color: white
+}
+.nav_shadow{
+	box-shadow: 0 0 10px rgb(117, 113, 113);
+}
 .row {
 	/*padding-top: 30px;*/
 }
@@ -47,10 +53,7 @@ table {
 	display: block;
 }
 
-a {
-	cursor: pointer;
-	color: #333333a1;
-}
+
 
 tbody {
 	display: table-row-group;
@@ -58,7 +61,7 @@ tbody {
 	border-color: inherit;
 }
 
- td {
+td {
 	padding: 20px 0;
 }
 
@@ -88,7 +91,7 @@ tbody {
 	display: inline-block;
 }
 
- span {
+.aside span {
 	margin: 0 20px 0 6px;
 	font-size: 15px;
 	vertical-align: middle;
@@ -214,7 +217,10 @@ tbody {
 }
 .info .user{
 	 margin: 0 5px 0 0;
-    color: #333;
+   /* color: #333; */
+}
+.info .article{
+	color: #3194d0;
 }
  .notification—list .info,.notification—list .info a{
  		font-size: 15px;
@@ -326,51 +332,46 @@ tbody {
     margin-top: -2px;
     width: 80px;
 }
-<<<<<<< HEAD
+
 .badge {
     padding: 3px 6px;
     font-size: 13px!important;
-    background-color: #ea6f5a;
+    background-color: rgb(236, 107, 107);
 }
-.badge .badge-icon{
+.badge-icon{
 	float: right;
 }
 .new-input-pwd{
 	float: right;
 }
 .unread{
-	color: rgb(16, 15, 15)
+	background-color: #f3f6f7;
+
+
 }
 .readed{
-	color: rgb(212, 211, 211)
-}
-/* blockquote {
-	padding: 0,0
-} */
+	background-color: white
 
-/*测试*/
-/*.point{
-    float: left;
-    list-style: none;
 }
-.point li{
-    margin-bottom: 10px;
-}
-.box{
-    float: right;
-    margin-right: 500px;
-}
-.box div{
-    width: 500px;
-    height: 200px;
-    border: 1px solid green;
-    display: none;
-}
-.box .con0{
-    display: block;
-}*/
-/*测试*/
-=======
 
- /*盒子*/
->>>>>>> d120e19afc9cf5261d475a6b4df1423a0889aa44
+.show_right li{
+	cursor:pointer
+}
+
+.review-content {
+	margin-top: 20px;
+	font-size: 15px;
+	margin-bottom: 20px;
+}
+
+.reviewed-article .time{
+	margin-top: 5px;
+}
+
+.option span{
+	color: grey
+}
+
+.option .inspect_review{
+	color: grey
+}

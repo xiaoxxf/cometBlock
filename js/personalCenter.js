@@ -87,7 +87,7 @@ $('.show_right').on('click', '.message' , function(e){
 	var messageId = self.data('messageid')
 	var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
 	doJavaGet(uri, function(e){
-		self.css('color','rgb(212, 211, 211)')
+		self.css('background-color','white')
 	})
 })
 
@@ -96,14 +96,15 @@ $('.show_right').on('change', '.message' , function(e){
 	alert('ok')
 })
 
-
+var append_class = null
+var id = null
+var type = null
+var currentPage = 1
+var noMoreData = false
 // 渲染
  $(document).ready(function(){
         $(".person-left-menu li a").click(function(){
         var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
-				var append_class = null
-				var id = null
-				var type = null
 
 				switch (order) {
 					case 0:
@@ -138,20 +139,56 @@ $('.show_right').on('change', '.message' , function(e){
 						// console.log('这是默认')
 						break;
 				}
-
-				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + 1 + '&pageSize=12' + '&type=' + type
+				currentPage = 1
+				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
 				doJavaGet(uri, function(result){
-					console.log(result.datas)
-					var tpl = document.getElementById(id).innerHTML;
-					var content = template(tpl, {list: result.datas});
-				 	$(append_class).html('')
-					$(append_class).append(content)
+					if (result.datas.length == 0) {
+						noMoreData = true
+					}else{
+						console.log(result)
+						var tpl = document.getElementById(id).innerHTML;
+						var content = template(tpl, {list: result.datas});
+					 	$(append_class).html('')
+						$(append_class).append(content)
+					}
 				})
 
         $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
     });
 })
+
+var resetTimer = null;
+$(window).scroll(function(){
+	if (resetTimer) {
+		clearTimeout(resetTimer)
+	}
+	resetTimer = setTimeout(function(){
+
+		var h=$(document.body).height();//网页文档的高度
+		var c = $(document).scrollTop();//滚动条距离网页顶部的高度
+		var wh = $(window).height(); //页面可视化区域高度
+
+		if (Math.ceil(wh+c)>=h && !noMoreData){
+			currentPage += 1
+			var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
+
+			doJavaGet(uri, function(result){
+				if (result.datas.length == 0) {
+					noMoreData = true
+				}else{
+					console.log(result.datas)
+					var tpl = document.getElementById(id).innerHTML;
+					var content = template(tpl, {list: result.datas});
+					// $(append_class).html('')
+					$(append_class).append(content)
+				}
+			})
+
+		}
+	},100)
+})
+
 
 //发送验证码
 function sendCode() {
