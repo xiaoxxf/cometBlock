@@ -165,11 +165,8 @@ $("#sign-in-form-submit-btn1").click(function() {
 
 			if(res != null && res.code == 0) {
 
-				$("#loaderR").attr({
-					style: "-webkit-animation:loader2 1s 0.23s linear infinite"
-				});
-				$("#loaderR div").attr({
-					style: "display:block"
+				$(".ouro").attr({
+					style: "display:inline-block"
 				});
 				setTimeout(function() { //两秒后跳转  
 					login()
