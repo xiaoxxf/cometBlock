@@ -180,7 +180,7 @@ $(window).scroll(function(){
 					console.log(result.datas)
 					var tpl = document.getElementById(id).innerHTML;
 					var content = template(tpl, {list: result.datas});
-					$(append_class).html('')
+					// $(append_class).html('')
 					$(append_class).append(content)
 				}
 			})
