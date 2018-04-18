@@ -87,7 +87,9 @@ $('.show_right').on('click', '.message' , function(e){
 	var messageId = self.data('messageid')
 	var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
 	doJavaGet(uri, function(e){
-		self.css('color','rgb(212, 211, 211)')
+		self.css('color','rgb(125, 120, 120)')
+
+		self.find('.time').css('color','rgb(125, 120, 120)')
 	})
 })
 
@@ -142,6 +144,7 @@ $('.show_right').on('change', '.message' , function(e){
 				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + 1 + '&pageSize=12' + '&type=' + type
 
 				doJavaGet(uri, function(result){
+
 					console.log(result.datas)
 					var tpl = document.getElementById(id).innerHTML;
 					var content = template(tpl, {list: result.datas});
