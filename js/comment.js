@@ -244,7 +244,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         type: 1, //长文的type为2
         userId:userId,
         quote:quote,
-        quotedReviewId: quotedReviewId
+        quotedReviewId: quotedReviewId,
+        projectId: getUrlParam('projectId')
     }
     var uri = 'blockchain/addReview';
     var jsonData = JSON.stringify(data);

@@ -18,6 +18,7 @@ function  ajaxGetChainDetail() {
             console.log(chainInfoData)
             if (true) {
             // if (chainInfoData.creator == userId) {
+            if (userinfo && userinfo.leval <= 2 || userinfo.id == chainInfoData.creator) {
               creator = chainInfoData.creator // 保存creator，用于提交
               verbForm(chainInfoData)
               chainDetailJs(chainInfoData)
@@ -330,7 +331,7 @@ function chainDetailJs(chainInfoData){
               layer.msg('提交成功，请等待审核', {
                 time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
                 end:function(){
-                window.location.href='chain.html';
+                window.location.href='index.html';
                 }
               });
             },

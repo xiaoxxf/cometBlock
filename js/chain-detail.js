@@ -113,6 +113,10 @@ function  ajaxGetChainDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
+            $('title').html(res.datas.projectName + '详情')
+            $('meta[name=description]').attr('content',res.datas.projectContent )
+            $('meta[name=keywords]').attr('content',"链库 区块链 数字货币 " + res.datas.projectName + " " + res.datas.projectBigName )
+
             // console.log(chainInfoData)
             if(chainInfoData != null){
                 $(".coin-detail-desc-wrap .coin-big-name").text(chainInfoData.projectBigName);
@@ -122,7 +126,7 @@ function  ajaxGetChainDetail() {
                 chainDetailFormat(chainInfoData);
             }
             // 添加编辑按钮
-            if (chainInfoData.creator == userinfo.id) {
+            if (userinfo && userinfo.leval <= 2 || userinfo.id == chainInfoData.creator ) {
               var id = chainInfoData.projectId
               var string = '<a href="chain-edit.html?projectId=' + id + '"><button type="button" class=" btn btn-default btn-sm edit">编辑</button></a>'
 

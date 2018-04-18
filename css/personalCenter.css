@@ -1,3 +1,9 @@
+body{
+	background-color: white
+}
+.nav_shadow{
+	box-shadow: 0 0 10px rgb(117, 113, 113);
+}
 .row {
 	/*padding-top: 30px;*/
 }
@@ -332,17 +338,20 @@ td {
     font-size: 13px!important;
     background-color: rgb(236, 107, 107);
 }
-.badge .badge-icon{
+.badge-icon{
 	float: right;
 }
 .new-input-pwd{
 	float: right;
 }
-.unread .time{
-	color: rgb(1, 1, 1)
+.unread{
+	background-color: #f3f6f7;
+
+
 }
 .readed{
-	color: rgb(125, 120, 120)
+	background-color: white
+
 }
 
 .show_right li{
@@ -359,6 +368,10 @@ td {
 	margin-top: 5px;
 }
 
-.option .inspect_review{
+.option span{
+	color: grey
+}
 
+.option .inspect_review{
+	color: grey
 }
