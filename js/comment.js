@@ -1,5 +1,8 @@
 //举报弹出框
+var userId = $.cookie('userid');//获取userid
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var quotedReviewId = null
+var projectId = getUrlParam('projectId')
 $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {
     console.log($(e.currentTarget))
     layer.open({
@@ -20,7 +23,6 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
         parentTxt = self.data('parenttxt');
         $(".comment-list-hook").find('.reply-comment-click').removeClass('reply-comment-click')
         self.addClass('reply-comment-click');
-    var userId = $.cookie('userid');//获取userid
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -43,10 +45,8 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
 $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
     var self =$(e.currentTarget),
         author = self.data('user_name'),
-        passWord = JSON.parse(window.localStorage.getItem('userinfo')).userPwd,
+        passWord = userinfo.userPwd,
         reviewId = self.data('reviewid');
-        parentTxt = self.data('parenttxt');
-    var userId = $.cookie('userid');//获取userid
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -71,13 +71,93 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
         doJavaGet(uri, function(res) {
             if(res != null && res.code == 0) {
-                console.log(res.msg)
+                // console.log(res.msg)
                 ajaxGetLongCommentReview()
             }
         }, "json");
         layer.close(index);
     });
 });
+
+
+
+
+
+
+// 点击编辑短文
+$('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
+  var self = $(e.currentTarget)
+
+  var reviewId = self.data('reviewid');
+  if(userId == undefined){
+      layer.msg('您还没有登录');
+      layer.open({
+          type: 1,
+          shade:0,
+          title: 0,
+          skin: 'layui-layer-report', //加上边框
+          area: ['550px', '680px'], //宽高
+          content: $("#template-reply").html()
+      });
+      return;
+  }
+
+  layer.confirm('修改评论',
+      {
+        // icon: 3,
+        title:0,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        content:
+            "<div style='width:350px;'>\
+              <div style='width:320px;' class='form-group has-feedback'>\
+                <p style='margin:10px'>评论内容</p>\
+                <textarea id='edit-short-content' class='form-control' type='text' name='awardName' value='' />\
+              </div>\
+              <br>\
+            </div>\
+            "
+      },
+      function(index){
+        var uri = 'blockchain/updataReview'
+
+        var data = {
+          textTitle: $('#edit-short-content').val(),
+          reviewId: reviewId , //项目
+          projectId: projectId, //项目Id
+          type: 1, //长文的type为2
+          userId: userId,
+          password: userinfo.userPwd,
+        }
+
+
+        function callback(result){
+          if (result.code == -1) {
+            layer.msg('修改失败', {
+              time: 1000,
+            });
+          }else{
+            layer.msg('修改成功', {
+              time: 1000,
+              end:function(){
+                ajaxGetLongCommentReview()
+              }
+            });
+          }
+
+        }
+
+        doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
+
+
+        layer.close(index);
+      }
+  );
+
+
+})
+
 //点击关闭
 $(".comment-list-hook").on('click','.review-comment-form .lnk-close',function (e) {
     $(".reply-comment").fadeOut();
@@ -90,7 +170,6 @@ $(".comment-detail-mian-hook").on('click','.main-panel-useful button',function (
     var usefull = self.data('useful');
     var reviewId = getUrlParam('reviewId');
     //var reviewid = self.data('reviewid');
-    var userId = $.cookie('userid');//获取userid
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -130,7 +209,6 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     var self = $(e.currentTarget).toggleClass("clicked-like");
     var reviewid = self.data('reviewid');
     var likesnum= self.data('likes_nums')+1;
-    var userId = $.cookie('userid');//获取userid
     var likes = 0;
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
@@ -154,7 +232,7 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
-            console.log(res.msg)
+            // console.log(res.msg)
             var num  = parseInt(self.find(".LikeButton-count").text())-1;
             if(self.hasClass('clicked-like')){
                 self.find(".LikeButton-count").text(likesnum)
@@ -170,10 +248,9 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
 window.onload = function(){
     ajaxGetReviewDetail();
     ajaxGetLongCommentReview();
-    ajaxGetChainDetail()
 }
 function  ajaxGetChainDetail() {
-    var projectId = getUrlParam('projectId');
+    // var projectId = projectId ;
     var uri = 'blockchain/detail?projectId='+projectId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
@@ -192,12 +269,17 @@ function  ajaxGetReviewDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var commentInfoData = res.datas;
+            if (!projectId) {
+              projectId = res.datas.projectId
+            }
             console.log(commentInfoData)
             $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
             $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
             var commentTpl = $("#template-mian-detail").html();
             var content = template(commentTpl, {list: commentInfoData});
             $(".comment-detail-mian-hook").append(content);
+            // 从消息中心页进来，url不带projectId，需要给projectId赋值后再用projectId去请求项目信息
+            ajaxGetChainDetail()
         } else {
             layer.msg(res.msg);
         }
@@ -205,7 +287,6 @@ function  ajaxGetReviewDetail() {
 }
 //点击提交评论
 $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
-    var userId = $.cookie('userid');//获取userid
     var reviewId = getUrlParam('reviewId');
     var shortTxt = $(".textarea-txt-hook").val();
     var quote = '';
@@ -245,7 +326,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         userId:userId,
         quote:quote,
         quotedReviewId: quotedReviewId,
-        projectId: getUrlParam('projectId')
+        projectId: projectId
     }
     var uri = 'blockchain/addReview';
     var jsonData = JSON.stringify(data);
@@ -263,10 +344,9 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
 $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
     var self =$(e.currentTarget),
         author = self.data('user_name'),
-        passWord = JSON.parse(window.localStorage.getItem('userinfo')).userPwd,
+        passWord = userinfo.userPwd,
         reviewId = self.data('reviewid');
         parentTxt = self.data('parenttxt');
-    var userId = $.cookie('userid');//获取userids
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -291,7 +371,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
       var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
       doJavaGet(uri, function(res) {
           if(res != null && res.code == 0) {
-              window.location.href= 'chain-detail.html?projectId=' + getUrlParam('projectId')
+              window.location.href= 'chain-detail.html?projectId=' + projectId
           }
       }, "json");
     }

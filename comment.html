@@ -76,6 +76,8 @@
 				© 2018 blockcomet.com all rights reserved 深圳彗星科技有限公司
 			</span>
 			</div>-->
+
+
 	</div>
 		<script type="text/html" id="template-report-popup">
 			<div id='report_value'>
@@ -178,7 +180,7 @@
 					<span property="v:reviewer"><%:=list.realName%></span>
 				</a>
 				评论
-				<a class="project-name" href="chain-detail.html?projectId=<%:=list.parentId%>"><%:=list.textTitle%></a>
+				<a class="project-name" href="chain-detail.html?projectId=<%:=list.parentId%>"></a>
 
 				<span class="allstar<%:=list.score*10%> main-title-rating" title=""></span>
 				<span property="v:rating" class="main-title-hide">5</span>
@@ -238,10 +240,13 @@
 					<%}%>
 					<p class="comment-text"><%:=list[i].textTitle%></p>
 					<div class="op-lnks">
-						<a href="javacript:;" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="reply_comment">引用</a>
 						<%if(userinfo && list[i].realName == userinfo.realName){%>
+							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_edit">编辑</a>
+							&nbsp;
 							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_delete">删除</a>
+							&nbsp;
 						<%}%>
+						<a href="javacript:;" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="reply_comment">引用</a>
 						&nbsp;
 						<a rel="nofollow" href="javascript:;" data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="report report_comment">举报</a>
 					</div>

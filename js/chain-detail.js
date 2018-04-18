@@ -126,7 +126,7 @@ function  ajaxGetChainDetail() {
                 chainDetailFormat(chainInfoData);
             }
             // 添加编辑按钮
-            if (userinfo && userinfo.leval <= 2 || userinfo.id == chainInfoData.creator ) {
+            if (userinfo && (userinfo.level <= 2 || userinfo.id == chainInfoData.creator) ) {
               var id = chainInfoData.projectId
               var string = '<a href="chain-edit.html?projectId=' + id + '"><button type="button" class=" btn btn-default btn-sm edit">编辑</button></a>'
 

@@ -308,7 +308,7 @@ a img {
 	background-color: rgba(238, 238, 238, 0.8);
 	border-radius: 10px;
 }
-.comment-item .op-lnks .reply_comment{
+.comment-item .op-lnks .reply_comment .reply_edit .reply_delete{
     padding: 1px 3px;
     margin-right: 8px;
     border-radius: 5px;
@@ -543,4 +543,10 @@ a img {
 /*footer样式复写*/
 .fixed-footer-wrap{
 	bottom: -80px !important;
+}
+
+.edit-short-review{
+	margin-left: 30%;
+	height: 20%;
+	width: 40%;
 }

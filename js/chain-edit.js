@@ -17,7 +17,7 @@ function  ajaxGetChainDetail() {
             var chainInfoData = res.datas;
             console.log(chainInfoData)
             // if (chainInfoData.creator == userId) {
-            if (userinfo && userinfo.leval <= 2 || userinfo.id == chainInfoData.creator) {
+            if (userinfo && (userinfo.level <= 2 || userinfo.id == chainInfoData.creator)) {
               creator = chainInfoData.creator // 保存creator，用于提交
               verbForm(chainInfoData)
               chainDetailJs(chainInfoData)

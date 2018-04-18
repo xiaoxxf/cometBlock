@@ -15,6 +15,7 @@ $(function(){
 
 })
 
+
 $('.coin-item').on('click', $('span'), function(e) {
 	$('.coin-item').children().removeClass();
 	$(e.target).addClass('cur')
@@ -66,9 +67,9 @@ function getChainByTime(){
 	$(".waiting-data").fadeIn();
 	$(".no-more-hook").css('display','none')
 
-	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize +  'orderTime=1'
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize +  '&timeOrder=1'
 
-	doJavaGet(uri, function(){
+	doJavaGet(uri, function(result){
 		if (result.datas.length == 0) {
 			$('.coin-list-wrap').html('');
 			$(".no-more-hook").fadeIn();
@@ -92,7 +93,7 @@ function getChainByTime(){
 }
 
 function lodeMoreChainByTime(){
-	var uri = 'blockchain/quaryProjetList?currentPage=' + byTime_page + '&pageSize=' + pageSize +  'orderTime=1'
+	var uri = 'blockchain/quaryProjetList?currentPage=' + byTime_page + '&pageSize=' + pageSize +  'timeOrder=1'
 
 	$(".loader1").css('display','flex');
 	$(".no-more-hook").css('display','none')
@@ -189,6 +190,8 @@ function getChain(){
 	$(".no-more-hook").css('display','none')
 
 	doJavaGet(uri,function(result){
+		// console.log(result.datas)
+
 		$('.coin-list-wrap').html("");
 		var tpl = document.getElementById('tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
