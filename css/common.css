@@ -260,33 +260,6 @@ body{
 .bigstar10{background-position:0 -120px}
 .bigstar05{background-position:0 -135px}
 .bigstar00{background-position:0 -150px}
-/*
-.navbar .navbar-toggle {
-    z-index: 2000;
-    color: #fff;
-    border: none;
-}
-@media (max-width: 767px) {
-    .navbar-inverse .navbar-toggle .icon-bar {
-        background-color: #000;
-    }
-}
-
-@media (max-width: 767px) {
-    .navbar-inverse .navbar-toggle .text, .navbar .navbar-toggle .icon-bar {
-        color: #000;
-    }
-}
-@media (max-width: 767px) {
-    .navbar-inverse .navbar-toggle .icon-bar {
-        background-color: #000;
-    }
-}
-@media (max-width: 767px) {
-    .navbar-inverse .navbar-toggle .text, .navbar .navbar-toggle .icon-bar {
-        color: #000;
-    }
-}*/
 
 .waiting-data {
     position: absolute;
@@ -398,61 +371,9 @@ tbody a{
     font-size: 12px !important;
 }
 
-
-/*personalCenter消息通知*/
-/*.scrollbar-container{
-	position: absolute;
-    height: 365px;
-    width: 300px;
-    display: none;
-}
+/*通知弹出面板*/
 .login-right{
 	display: none;
-}
-.show-inform{
-	position: absolute;
-	height: 300px;
-    overflow-y: auto;
-    width: 300px;
-    background-color: white;
-    top: 23px;
-    padding: 14px;
-    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
-}
-.show-inform-title{
-	position: absolute;
-	width: 300px;
-	height: 24px;
-    background-color: white;
-    border-bottom: solid 1px #dcdcdca6;
-    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
-  
-}
-.show-inform-footer {
-    position: absolute;
-    top: 323px;
-    text-align: right;
-    width: 300px;
-    padding-right: 40px;
-    height: 24px;
-    background-color: white;
-    border-bottom: solid 1px #dcdcdca6;
-    height: 40px;
-    line-height: 40px;
-    border-radius:0px 0px 8px 8px;
-    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
-    }
-.show-inform-detail{
-	text-align: center;
-}
-.show-inform-detail-item{
-	width: 100%;
-}
-.show-inform li {
-    margin: 20px auto;
-}
-.show-inform-detail-right{
-	float: right;
 }
 .badge {
     padding: 3px 6px;
@@ -462,28 +383,18 @@ tbody a{
 .badge-inform {
     position: absolute;
     top: 10px;
-    left: 50px;
+    left: 20px;
 }
 .badge .badge-icon{
 	float: right;
 }
-.new-input-pwd{
-	float: right;
-}*/
-
-/*通知*/
-
-
-
-
-
-/*通知弹出面板重做*/
 .show-alert-inform {
     position: absolute;
     text-align: right;
     width: 300px;
     height: 450px;
     color: #333;
+    right: 10px;
     background-color: white;
     border-bottom: solid 1px #dcdcdca6;
     line-height: 40px;
@@ -496,15 +407,56 @@ tbody a{
 	padding: 5px 10px;
 	border-bottom: solid 1px gainsboro;
 }
+.show-alert-inform-top li{
+	display: inline;
+}
 .show-alert-inform-top a{
 	display: inline-block;
     margin: 5px 12px;
     color: #333;
+
 }
 .show-alert-inform-top a:hover{
-    border-bottom: solid;
+    /*border-bottom: solid;*/
+   	text-decoration: none;
     color: rgb(79, 163, 237);
 }
-.show-alert-inform-content div{
+.show-alert-inform-content{
+	height: 350px;
+	 overflow-y:auto
+}
+.show-alert-inform-list {
+    margin: 0px 10px;
+    height: 70px;
+    padding: 15px 10px;
+    border-bottom: solid 1px #dcdcdc8c;
+}
+.show-alert-inform-content img,.right-news{
+	float: left;
+}
+.show-alert-inform-content img{
+    margin-right: 20px;
+}
+.show-alert-inform-content .right-news{
+	line-height: 20px;
+}
+.show-alert-inform-content .right-news div:last-child{
+	text-align: left;
+    font-size: 12px;
+    color: darkgray;
+}
+.show-alert-inform-bottom{
+	 margin-right: 20px;
+	 display: block;
+	 /*position: absolute;*/
+}
+.show-alert-inform-bottom a{
+	color:#999;
+}
+
+.inform1{
+	display: none;
+}
+.inform2{
 	display: none;
 }

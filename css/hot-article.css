@@ -1,0 +1,50 @@
+.article-top-box{
+	margin-top: 50px;
+}
+.article-detail{
+    /*margin-bottom: 24px;*/
+    padding-bottom: 24px;
+    border-bottom: 1px solid #eaeaea;
+    background-color: white ;
+    padding: 20px;
+}
+.article-detail .article-icon{
+	float: right;
+    width: 120px;
+    margin-left: 30px;
+}
+.article-icon img {
+    width: 120px;
+}
+
+
+a img {
+    border-width: 0;
+    vertical-align: middle;
+}
+.article-detail .article-content{
+	padding-left: 83px;
+}
+.article-title{
+	color:rgb(79, 163, 237) ;
+	
+	margin-left: -10px;
+	font-size: 18px;
+    font-weight: 700;
+}
+.article-content .article-time{
+	margin: 10px 0px;
+    display: block;
+    color: #666;
+}
+.article-content .article-introduce,.meta{
+	line-height: 30px;
+	color: black;
+}
+.meta{
+	margin-top:20px ;
+}
+.meta a{
+	margin-left:10px ;
+	color: darkgray;
+}
