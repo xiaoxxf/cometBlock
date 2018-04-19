@@ -344,9 +344,9 @@ $("#save-reset-pwd").click(function() {
 
 //预览图片
 
-function previewICon() {
-	var preview = document.querySelector('img');
-	var file = document.querySelector('input[type=file]').files[0];
+$('#user_logo_input').on('change',function(){
+	var preview = $('#result').find('img')[0];
+	var file = this.files[0]
 	var reader = new FileReader();
 
 	reader.addEventListener("load", function() {
@@ -356,25 +356,22 @@ function previewICon() {
 	if(file) {
 		reader.readAsDataURL(file);
 	}
-}
+})
+
+//function previewICon() {
+//
+//}
 var ui = {
 	'fileUpLoading': false
 }
-var allFile = {
-	'projectLogo': '',
-}
-var t = null
+var logo_file = null
 
-function doUpload(e) {
-	if (ui.fileUpLoading || e.files.length == 0) {
-    return false
-  }
-
-	var file = e.files[0];
+$('.upload-project-logo').on('click',function(){
+	
+	var file = $('#user_logo_input')[0].files[0]
 	var formData = new FormData();
-	t = e;
 	formData.append('file', file);
-
+	
 	$.ajax({
 		url: WebApiHostJavaApi + 'common/upload',
 		type: "post",
@@ -386,18 +383,12 @@ function doUpload(e) {
 	    ui.fileUpLoading = true
 	    },
 		success: function(data) {
-			if(t.className == 'user_logo') {
-				allFile.projectLogo = data.datas[0]
-				$('.upload-project-logo').attr('disabled', 'disabled')
-			} else if(t.className == 'member_pic') {
-				// 把照片的值存在对应的input
-				member_pic_name = t.parentElement.parentElement.nextElementSibling.firstElementChild
-				member_pic_name.value = data.datas[0]
-				// 上传成功后，上传按钮不可选
-				$(t.parentElement.nextElementSibling).attr('disabled', 'disabled')
+			if(data.code == 0){
+				uploadIcon(data.datas[0])
+			}else if(data.code == -1){
+				layer.msg('上传失败请重试')
 			}
-			 ui.fileUpLoading = false
-     	 	 layer.msg('上传成功')
+		
 		},
 		 error:function(e){
 	       ui.fileUpLoading = false
@@ -405,5 +396,34 @@ function doUpload(e) {
 	    }
 
 	});
+})
 
+function uploadIcon(e){
+	var data ={
+		'userPic': e,
+		'userId':  userinfo.id, 
+		'userPwd': userinfo.userPwd
+
+	}
+	var uri = 'news/changeLogo?userId=' + data.userId + '&userPic=' + data.userPic + '&passWord=' + data.userPwd
+	 
+	
+    $.ajax({
+        type: 'GET',
+        url : WebApiHostJavaApi + uri,
+        dataType : 'json',
+        contentType: 'application/json; charset=UTF-8',
+        success: function (result) {
+			if(result.code == 0){
+				layer.msg('修改成功')
+			}else if(result.code == -1){
+				layer.msg('修改失败')
+			}
+			
+        },
+  
+    });
 }
+
+
+
