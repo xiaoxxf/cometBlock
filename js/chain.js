@@ -339,18 +339,18 @@ $(window).scroll(function(){
 
 	resetTimer = setTimeout(function(){
 
-		var h=$(document.body).height();//网页文档的高度
-		var c = $(document).scrollTop();//滚动条距离网页顶部的高度
-		var wh = $(window).height(); //页面可视化区域高度
+		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+		// console.log("页面的文档高度 ："+$(document).height());
+		// console.log('浏览器的高度：'+$(window).height());
 
-		if (Math.ceil(wh+c)>=h){
+		var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
 
-		}
-
-		if (Math.ceil(wh+c)>=h){
+		if ($(document).height() <= totalheight){
 				//当滚动条到底时,这里是触发内容
 				//异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {
+					// debugger
 					index_page += 1
 					ui.loading = true;
 					loadMoreChain();

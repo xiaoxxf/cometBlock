@@ -1,5 +1,6 @@
 //重置密码校验
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+var noMoreData = false
 var dictionary = []
 $(function(){
 	var uri = 'blockchain/quary?parentId=20'
@@ -92,10 +93,6 @@ $('.show_right').on('click', '.message' , function(e){
 })
 
 
-$('.show_right').on('change', '.message' , function(e){
-	alert('ok')
-})
-
 var append_class = null
 var id = null
 var type = null
@@ -108,30 +105,36 @@ var noMoreData = false
 
 				switch (order) {
 					case 0:
-						console.log('这是头像')
+						type = 0;
+						count_class = ''
 						break;
 					case 1:
 						append_class = '.quote-list'
+						count_class = '.quote-count'
 						id = 'quote'
 						type = '1'
 						break;
 					case 2:
 						append_class = '.like-list'
+						count_class = '.like-count'
 						id = 'like'
 						type = '3'
 						break;
 					case 3:
 						append_class = '.comment-list'
+						count_class = '.comment-count'
 						id = 'comment'
 						type = '2'
 						break;
 					case 4:
 						append_class = '.pass-list'
+						count_class = '.pass-count'
 						id = 'pass'
 						type = '4'
 						break;
 					case 5:
 						append_class = '.reject-list'
+						count_class = '.reject-count'
 						id = 'reject'
 						type = '5'
 						break;
@@ -142,17 +145,19 @@ var noMoreData = false
 				currentPage = 1
 				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
-				doJavaGet(uri, function(result){
-					if (result.datas.length == 0) {
-						noMoreData = true
-					}else{
-						console.log(result)
-						var tpl = document.getElementById(id).innerHTML;
-						var content = template(tpl, {list: result.datas});
-					 	$(append_class).html('')
-						$(append_class).append(content)
-					}
-				})
+				if (type) {
+					doJavaGet(uri, function(result){
+						if (result.datas.length == 0) {
+							noMoreData = true
+						}else{
+							// console.log(result)
+							var tpl = document.getElementById(id).innerHTML;
+							var content = template(tpl, {list: result.datas});
+						 	$(append_class).html('')
+							$(append_class).append(content)
+						}
+					})
+				}
 
         $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
     });
@@ -165,11 +170,10 @@ $(window).scroll(function(){
 	}
 	resetTimer = setTimeout(function(){
 
-		var h=$(document.body).height();//网页文档的高度
-		var c = $(document).scrollTop();//滚动条距离网页顶部的高度
-		var wh = $(window).height(); //页面可视化区域高度
+		var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
 
-		if (Math.ceil(wh+c)>=h && !noMoreData){
+		if ($(document).height() <= totalheight && !noMoreData){
 			currentPage += 1
 			var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 

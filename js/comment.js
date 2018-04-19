@@ -126,7 +126,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
           textTitle: $('#edit-short-content').val(),
           reviewId: reviewId , //项目
           projectId: projectId, //项目Id
-          type: 1, //长文的type为2
+          type: 3, //长文的type为2
           userId: userId,
           password: userinfo.userPwd,
         }
@@ -322,7 +322,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     var data = {
         textTitle: shortTxt,
         parentId: reviewId, //项目
-        type: 1, //长文的type为2
+        type: 3, //长文的type为2
         userId:userId,
         quote:quote,
         quotedReviewId: quotedReviewId,

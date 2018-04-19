@@ -4,7 +4,7 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 function ajaxGetLongCommentReview() {
     // var projectId = getUrlParam('projectId');
     var reviewId = getUrlParam('reviewId');
-    var uri = 'blockchain/quaryReview?parentId='+reviewId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
+    var uri = 'blockchain/quaryReview?parentId='+reviewId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+3;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
            // if(res.datas.length >0 ){
