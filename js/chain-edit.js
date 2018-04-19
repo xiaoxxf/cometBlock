@@ -6,7 +6,6 @@ window.onload = function(){
     ajaxGetChainDetail();
 }
 
-
 // var chainInfoData = null
 function  ajaxGetChainDetail() {
     projectId = getUrlParam('projectId');
@@ -59,9 +58,6 @@ function verbForm(chainInfoData){
     var option = $('.project_type').find('option')[type-1]
     $(option).attr('selected','selected')
   },"json")
-
-
-
 
 }
 
@@ -330,7 +326,7 @@ function chainDetailJs(chainInfoData){
               layer.msg('提交成功，请等待审核', {
                 time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
                 end:function(){
-                window.location.href='index.html';
+                window.location.href='chain-detail.html?projectId=' + getUrlParam('projectId')
                 }
               });
             },
@@ -346,40 +342,6 @@ function chainDetailJs(chainInfoData){
   });
 
 
-  function buildTeam(){
-    var team = [];
-    memberName = $(".member_name");
-    memberPosition = $(".member_position");
-    memberPicName = $(".member_pic_name");
-    teamLength = memberPicName.length; // 根据图片数判断team的长度
-    for (var i = 0; i < teamLength; i++) {
-      var temp = {};
-      temp.picHref = memberPicName[i].value;
-      temp.name = memberName[i].value;
-      temp.position = memberPosition[i].value;
-      temp.projectId = projectId
-      team.push(temp)
-    }
-    //判断team的图片、名字都必须存在
-    temp_length = team.length
-    for (var i = 0; i < temp_length; i++) {
-      if (team[i].picHref == "" || team[i].name == "") {
-        team.splice(i,1)
-      }
-    }
-    return team
-  }
-
-  // 编辑器
-  var E = window.wangEditor
-  var editor = new E('#editor')
-  editor.customConfig.menus = [
-    'bold',
-    'italic',
-    'head',
-    'emoticon',
-  ]
-
   editor.create()
   editor.txt.html(chainInfoData.projectContent)
   $('.w-e-toolbar').css('display','none');
@@ -391,6 +353,43 @@ function chainDetailJs(chainInfoData){
   });
 
 }
+
+// 编辑器
+var E = window.wangEditor
+var editor = new E('#editor')
+editor.customConfig.menus = [
+  'bold',
+  'italic',
+  'head',
+  'emoticon',
+]
+
+
+function buildTeam(){
+  var team = [];
+
+  memberName = $(".member_name");
+  memberPosition = $(".member_position");
+  memberPicName = $(".member_pic_name");
+  teamLength = memberPicName.length; // 根据图片数判断team的长度
+  for (var i = 0; i < teamLength; i++) {
+    var temp = {};
+    temp.picHref = memberPicName[i].value;
+    temp.name = memberName[i].value;
+    temp.position = memberPosition[i].value;
+    temp.projectId = projectId
+    team.push(temp)
+  }
+  //判断team的图片、名字都必须存在
+  temp_length = team.length
+  for (var i = 0; i < temp_length; i++) {
+    if (team[i].picHref == "" || team[i].name == "") {
+      team.splice(i,1)
+    }
+  }
+  return team
+}
+
 
 var pdfType = /pdf.*/;
 var imageType = /image.*/;

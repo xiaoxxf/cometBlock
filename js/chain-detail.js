@@ -371,10 +371,10 @@ var short_content = ''
 
 function showOrHideContent(){
   projectContent =  $(".project-desc")
-  if (projectContent.text().length > 400) {
-    full_content = projectContent.text()
-    short_content = projectContent.text().substring(0,400) + "..."
-    projectContent.text(short_content)
+  if (projectContent.html().length > 400) {
+    full_content = projectContent.html()
+    short_content = projectContent.html().substring(0,400) + "..."
+    projectContent.html(short_content)
     var show = '<a onclick="showMore()">展开</a>'
     projectContent.append(show)
   }else{
@@ -384,7 +384,7 @@ function showOrHideContent(){
 
 function showMore(){
   projectContent =  $(".project-desc")
-  projectContent.text("")
+  projectContent.html("")
   projectContent.append(full_content)
   var hide = '<a onclick="Hide()">折叠</a>'
   projectContent.append(hide)
@@ -392,7 +392,7 @@ function showMore(){
 
 function Hide(){
   projectContent =  $(".project-desc")
-  projectContent.text("")
+  projectContent.html("")
   projectContent.append(short_content)
   var show = '<a onclick="showMore()">展开</a>'
   projectContent.append(show)
