@@ -13,17 +13,17 @@
 			<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
 				<ul class="nav navbar-nav navbar-left">
 					<li>
-						<a href="index.html" class="new-report cur-nav">播报</a>
+						<a href="index.html" class="chain">首页</a>
+					</li>
+					<li>
+						<a href="news.html" class="new-report cur-nav">播报</a>
 					</li>
 					<li>
 						<a href="code-rank.html" class="code-rank">代码榜</a>
 					</li>
-					<li>
-						<a href="chain.html" class="chain">链库</a>
-					</li>
-					<li>
+					<!-- <li>
 						<a href="article-new.html" class="article">写文章</a>
-					</li>
+					</li> -->
 				</ul>
 				<ul class="nav navbar-nav navbar-right log-nvabar-right">
 					<li id="nav_login">
@@ -51,6 +51,7 @@
 						<a data-hover="dropdown" href="" class="notification-btn" style="padding-left: 0px;">
 							<span><i class="fa fa-bell-o"></i></span>
 							<span class="badge badge-inform">11</span>
+
 						</a>
 							<div class="show-alert-inform">
 								<ul class="show-alert-inform-top">
@@ -174,6 +175,9 @@
 							</div>
 					</li>
 				</ul>
+
+
+
 				<!--添加通知-->
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -202,7 +206,7 @@
 		})
 	});
 	//通知显示隐藏提示面板
-	
+
 	$(document).ready(function(){
 	  $(".login-right").hover(function(){
 	    $(".show-alert-inform").css("display","block");
@@ -210,12 +214,12 @@
 	    $(".show-alert-inform").css("display","none");
 	  });
 	});
-	
+
 	//通知
 	//将id保存在cookie
 	var userMsg = localStorage.getItem('userinfo'); //存储
 	userMsg = JSON.parse(userMsg);
-	
+
 </script>
 
 

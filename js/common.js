@@ -15,7 +15,6 @@ var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
-
 // var WebApiHostJavaApi = "http://10.0.0.178:8080/";
 
 
@@ -116,13 +115,13 @@ $.get("header-tpl.html",function(data){
     var href = location.href;
     $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
     //判断当前页面加cur-nav样式
-   if(href.indexOf('index.html')>0 || href.indexOf('detail.html')>0){
+   if(href.indexOf('news.html')>0 || href.indexOf('detail.html')>0){
        $(".navbar-fixed-container-hook .navbar-left .new-report").addClass('cur-nav');
    }
     if(href.indexOf('code-rank.html')>0){
         $(".navbar-fixed-container-hook .navbar-left .code-rank").addClass('cur-nav');
     }
-    if(href.indexOf('chain.html')>0 || href.indexOf('chain-detail.html')>0  || href.indexOf('comment.html')>0 ){
+    if(href.indexOf('index.html')>0 || href.indexOf('chain-detail.html')>0  || href.indexOf('comment.html')>0 ){
         $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
         $(".navbar-fixed-container-hook .navbar-left .chain").addClass('cur-nav');
     }

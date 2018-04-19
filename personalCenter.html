@@ -12,8 +12,8 @@
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/chain-new.css" />
 		<link rel="stylesheet" href="css/personalCenter.css">
-		<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-		<link rel="stylesheet" href="js/plugins/layer/theme/default/layer.css" />
+		<!-- <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css"> -->
+		<!-- <link rel="stylesheet" href="js/plugins/layer/theme/default/layer.css" /> -->
 	</head>
 
 	<body lang="zh-CN" class="reader-black-font">
@@ -21,42 +21,44 @@
 			<!-- 全局顶部导航栏 -->
 			<div class="navbar-fixed-container navbar-fixed-container-hook">
 			</div>
-			<div class="container form-box" style="background-color: #f3f6f7;">
+			<div class="container form-box" style="background-color: white;">
 				<div class="row ">
-					<div class=" col-xs-24 col-md-12 col-sm-24 ">
+					<div class=" col-xs-12 col-md-12 col-sm-12 ">
 						<div class="col-xs-12 col-md-4 col-sm-12">
 							<div class="aside">
 								<ul class="person-left-menu">
 									<li class="router-link-exact-active active" >
 										<a class="toogle-acive" id="baseSetting">
-											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span>基础设置</span>
+											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span class="option-name">基础设置</span>
 										</a>
 									</li>
 									<li >
 										<a>
-											<div class="setting-icon"><i class="fa fa-external-link"></i></div> <span>引用</span><span class="badge badge-icon">89</span>
+											<div class="setting-icon"><i class="fa fa-external-link"></i></div>
+											<span class="option-name">引用</span>
+											<span class="badge badge-icon quote-count"></span>
 										</a>
 									</li>
 
 									<li >
 										<a >
-											<div class="setting-icon"><i class="fa fa-heart-o"></i></div> <span>喜欢和赞</span>
+											<div class="setting-icon"><i class="fa fa-heart-o"></i></div> <span class="option-name">喜欢和赞</span><span class="badge badge-icon like-count"></span>
 										</a>
 									</li>
 									<li >
 										<a>
-											<div class="setting-icon"><i class="fa fa-commenting-o"></i></div> <span>评论</span>
+											<div class="setting-icon"><i class="fa fa-commenting-o"></i></div> <span class="option-name">评论</span><span class="badge badge-icon comment-count"></span>
 										</a>
 									</li>
 
 									<li >
 										<a>
-											<div class="setting-icon"><i class="fa fa-sign-in"></i></div> <span>审核通过</span>
+											<div class="setting-icon"><i class="fa fa-sign-in"></i></div> <span class="option-name">审核通过</span><span class="badge badge-icon pass-count"></span>
 										</a>
 									</li>
 									<li >
 										<a>
-											<div class="setting-icon"><i class="fa fa-sign-out"></i></div> <span>驳回</span>
+											 <div class="setting-icon"><i class="fa fa-sign-out"></i></div> <span class="option-name">驳回</span><span  class="badge badge-icon reject-count"></span>
 										</a>
 									</li>
 								</ul>
@@ -181,17 +183,22 @@
 					<li class="message unread" data-messageId="<%:=list[i].messageId%>">
 				<%}%>
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
-					<div class="info">
-						<div class="quoted-review">
-							<a class="user" href=""><%:=list[i].realName%></a>引用了你的回复「<%:=list[i].title%>」
-							</a>
-						</div>
-						<div class="review-content">
-								<%:=list[i].content%>
-						</div>
-						<div class="time"><%:=list[i].createTime%></div>
-					</div>
 
+					<div class="info">
+						<div class="reviewed-article">
+							<%:=list[i].realName%>
+							<!-- 在文章<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《》</a> -->
+							引用了你的评论
+							<div class="time"><%:=list[i].createTime%></div>
+						</div>
+					</div>
+					<div class="review-content">
+							<%:=list[i].content%>
+					</div>
+					<div class="option">
+						<!-- <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> -->
+						<!-- <a class="inspect_review" href="" >查看</a> -->
+					</div>
 				</li>
 			<%}%>
 		</script>
@@ -207,7 +214,7 @@
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div>
-							<a class="user" href=""><%:=list[i].realName%></a>赞了我的评论「<%:=list[i].title%>」
+							<%:=list[i].realName%> 赞了你的的评论  <a href="#" style="margin-left:5px"><%:=list[i].title%></a>
 						</div>
 
 						<div class="time"><%:=list[i].createTime%></div>
@@ -225,22 +232,25 @@
 				<% if (list[i].status == 0) {%>
 					<li class="message unread" data-messageId="<%:=list[i].messageId%>">
 				<%}%>
-					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
+					<a href="#" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div class="reviewed-article">
-							<a class="user" href=""><%:=list[i].realName%></a>
+							<%:=list[i].realName%>
 							</a>
-							评论了你的
+							评论了你的文章
 							<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《<%:=list[i].title%>》</a>
 							</a>
+							<div class="time"><%:=list[i].createTime%></div>
+						</div>
 
-						</div>
-						<div class="review-content">
-							<%:=list[i].content%>
-						</div>
-						<div class="time"><%:=list[i].createTime%></div>
 					</div>
-
+					<div class="review-content">
+						<%:=list[i].content%>
+					</div>
+					<div class="option">
+						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+						<a class="inspect_review" href="comment.html?reviewId=<%:=list[i].actionId%>" style="color: grey">查看</a>
+					</div>
 				</li>
 			<%}%>
 		</script>
