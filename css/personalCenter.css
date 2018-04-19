@@ -333,6 +333,7 @@ td {
     width: 80px;
 }
 
+
 .badge {
     padding: 3px 6px;
     font-size: 13px!important;
@@ -347,11 +348,9 @@ td {
 .unread{
 	background-color: #f3f6f7;
 
-
 }
 .readed{
 	background-color: white
-
 }
 
 .show_right li{
@@ -372,6 +371,11 @@ td {
 	color: grey
 }
 
+.box .con0{
+    display: block;
+}
+
 .option .inspect_review{
 	color: grey
 }
+
