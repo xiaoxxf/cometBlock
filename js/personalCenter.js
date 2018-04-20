@@ -95,14 +95,16 @@ $('.show_right').on('click', '.message' , function(e){
 
 var append_class = null
 var id = null
-var type = null
+var type = null  // 1-引用，2-评论（别人对我的长文进行评论），3-点赞，4-审核通过，5-驳回
 var currentPage = 1
 var noMoreData = false
+var article_flag = false
 // 渲染
  $(document).ready(function(){
         $(".person-left-menu li a").click(function(){
+				article_flag = false
+				noMoreData = false
         var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
-
 				switch (order) {
 					case 0:
 						type = 0;
@@ -115,16 +117,16 @@ var noMoreData = false
 						type = '1'
 						break;
 					case 2:
-						append_class = '.like-list'
-						count_class = '.like-count'
-						id = 'like'
-						type = '3'
-						break;
-					case 3:
 						append_class = '.comment-list'
 						count_class = '.comment-count'
 						id = 'comment'
 						type = '2'
+						break;
+					case 3:
+						append_class = '.like-list'
+						count_class = '.like-count'
+						id = 'like'
+						type = '3'
 						break;
 					case 4:
 						append_class = '.pass-list'
@@ -138,24 +140,42 @@ var noMoreData = false
 						id = 'reject'
 						type = '5'
 						break;
+					case 6:
+						type = null
+						article_flag = true
+						break;
 					default:
 						// console.log('这是默认')
 						break;
 				}
-				currentPage = 1
-				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
 				if (type) {
+					currentPage = 1
+					var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
+
 					doJavaGet(uri, function(result){
-						if (result.datas.length == 0) {
+						if (result.datas.length <= 12) {
 							noMoreData = true
-						}else{
-							// console.log(result)
-							var tpl = document.getElementById(id).innerHTML;
-							var content = template(tpl, {list: result.datas});
-						 	$(append_class).html('')
-							$(append_class).append(content)
 						}
+						// console.log(result)
+						var tpl = document.getElementById(id).innerHTML;
+						var content = template(tpl, {list: result.datas});
+					 	$(append_class).html('')
+						$(append_class).append(content)
+
+					})
+				}else if(article_flag) {
+					var currentPage = 1
+					var uri = 'blockchain/quaryReview?currentPage=' + currentPage + '&pageSize=12' + '&type=2' + '&creator=' + userinfo.id;
+
+					doJavaGet(uri,function(result){
+						if (result.datas.length <= 12) {
+							noMoreData = true
+						}
+						var tpl = document.getElementById('article_tpl').innerHTML;
+						var content = template(tpl, {list: result.datas});
+						$('.my-article').html('')
+						$('.my-article').append(content)
 					})
 				}
 
@@ -174,20 +194,33 @@ $(window).scroll(function(){
 		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
 
 		if ($(document).height() <= totalheight && !noMoreData){
-			currentPage += 1
-			var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
+			if (type) {
+				currentPage += 1
+				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
-			doJavaGet(uri, function(result){
-				if (result.datas.length == 0) {
-					noMoreData = true
-				}else{
-					console.log(result.datas)
-					var tpl = document.getElementById(id).innerHTML;
+				doJavaGet(uri, function(result){
+					if (result.datas.length == 0) {
+						noMoreData = true
+					}else{
+						console.log(result.datas)
+						var tpl = document.getElementById(id).innerHTML;
+						var content = template(tpl, {list: result.datas});
+						// $(append_class).html('')
+						$(append_class).append(content)
+					}
+				})
+			}else if(article_flag){
+				currentPage += 1
+				var uri = 'blockchain/quaryReview?currentPage=' + currentPage + '&pageSize=12' + '&type=2' + '&creator=' + userinfo.id;
+
+				doJavaGet(uri,function(result){
+					var tpl = document.getElementById('article_tpl').innerHTML;
 					var content = template(tpl, {list: result.datas});
-					// $(append_class).html('')
-					$(append_class).append(content)
-				}
-			})
+					// $('.my-article').html('')
+					$('.my-article').append(content)
+				})
+			}
+
 
 		}
 	},100)
@@ -350,7 +383,11 @@ $("#save-reset-pwd").click(function() {
 // 显示头像
 $(function(){
 	var preview = $('#result').find('img')[0];
-	preview.src = userinfo.userPic
+	if (userinfo.userPic) {
+		preview.src = userinfo.userPic
+	}else{
+		preview.src = 'img/normal-user.png'
+	}
 })
 
 //预览图片

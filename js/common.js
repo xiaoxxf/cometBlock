@@ -134,7 +134,11 @@ $.get("header-tpl.html",function(data){
         $(".scrollbar-container").fadeIn();
     }else {
         $(".nav-user-account #nav_user_mes").text(username);
-        $("#user_pic")[0].src = userinfo.userPic
+        if ( userinfo.userPic ) {
+          $("#user_pic")[0].src = userinfo.userPic
+        }else{
+          $("#user_pic")[0].src = 'img/normal-user.png'
+        }
         $(".nav-user-account .more-active").css('display','block');
         $(".login-right").css('display','block');
     }

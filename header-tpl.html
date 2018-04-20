@@ -48,51 +48,36 @@
 				</ul>
 				<!--添加通知-->
 
-				 <ul class="nav navbar-nav navbar-right log-nvabar-right login-right message-notification">
+				<ul class="nav navbar-nav navbar-right log-nvabar-right login-right message-notification">
 					<li class="tab notification">
 							<a data-hover="dropdown" href="" class="notification-btn" style="padding-left: 0px;">
 								<span><i class="fa fa-bell-o"></i></span>
-								<span class="badge badge-inform">11</span>
+								<span class="badge badge-inform"></span>
 							</a>
 							<div class="show-alert-inform">
 								<ul class="show-alert-inform-top">
-												<li><a>评论（5）</a></li>
-												<li><a>点赞（3）</a></li>
-												<li><a>通知（8）</a></li>
+										<li><a class="like-count">点赞</a></li>
+										<li><a class="comment-count">评论</a></li>
+										<li><a class="notification-count">通知</a></li>
 								</ul>
 
-								<div class="inform0 show-alert-inform-content comment-message">
-									<div class="show-alert-inform-list">
-										<div class="right-news">
-											<div>你收到了1份新周报</div>
-											<div>8个月前</div>
-										</div>
-									</div>
+								<div class="inform0 show-alert-inform-content like-message">
+
 								</div>
 
-								<div class="inform1 show-alert-inform-content like-message">
-									<div class="show-alert-inform-list">
-										<div class="right-news">
-											<div>你收到了3条通知</div>
-											<div>8个月前</div>
-										</div>
-									</div>
+
+								<div class="inform1 show-alert-inform-content comment-message">
+
 								</div>
 
 								<div class="inform2 show-alert-inform-content notification-message">
-									<div class="show-alert-inform-list">
 
-										<div class="right-news">
-											<div>你收到了8个赞</div>
-											<div>8个月前</div>
-										</div>
-									</div>
 								</div>
 
-								<div class="show-alert-inform-bottom"><a href="personalCenter.html">查看信息</a></div>
+								<div class="show-alert-inform-bottom"><a href="personalCenter.html?personType=1">查看信息</a></div>
 							</div>
 					</li>
-				</ul> 
+				</ul>
 
 				<!--添加通知-->
 				<ul class="nav navbar-nav navbar-right">
@@ -110,40 +95,95 @@
 </div>
 
 
-<script type="text/html" id="like-tpl">
+<script type="text/html" id="like_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<div class="show-alert-inform-list">
+		<%if(list[i].status ==0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+
+		<%}else{%>
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" >
+		<%}%>
 			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
-				<div>你收到了1份新周报</div>
+				<div><%:=list[i].realName%> <%:=dictionary[3]%></div>
 				<div>8个月前</div>
 			</div>
 		</div>
 	<%}%>
 </script>
 
-<script type="text/html" id="comment-tpl">
+
+<script type="text/html" id="comment_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<div class="show-alert-inform-list">
-			<!-- <img src="img/001-signs.png" width="35px" /> -->
+		<%if(list[i].status ==0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+		<%}else{%>
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
+		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
-				<div>你收到了1份新周报</div>
+				<div>
+					<%:=list[i].realName%> <%:=dictionary[2]%>
+					<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《<%:=list[i].title%>》</a>
+				</div>
 				<div>8个月前</div>
 			</div>
 		</div>
 	<%}%>
 </script>
 
-<script type="text/html" id="notification-tpl">
+<script type="text/html" id="quote_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<div class="show-alert-inform-list">
+		<%if(list[i].status ==0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+
+		<%}else{%>
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
+		<%}%>
 			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
-				<div>你收到了1份新周报</div>
+				<div>
+					<%:=list[i].realName%> <%:=dictionary[1]%>
+				</div>
 				<div>8个月前</div>
 			</div>
 		</div>
 	<%}%>
 </script>
+
+<script type="text/html" id="notification_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<%if(list[i].status ==0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+
+		<%}else{%>
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
+		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
+			<div class="right-news">
+				<div>
+					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已审核通过
+				</div>
+			</div>
+		</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="reject_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<%if(list[i].status ==0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+
+		<%}else{%>
+			<div class="show-alert-inform-list" >
+		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
+			<div class="right-news">
+				<div>
+					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已审核通过
+				</div>
+			</div>
+		</div>
+	<%}%>
+</script>
+
+
 
 <script src=./js/header-tpl.js></script>

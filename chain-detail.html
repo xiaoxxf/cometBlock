@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/chain-detail.css">
     <link type="favicon" rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
     <!-- 导航栏 -->
@@ -33,7 +34,6 @@
                     <h1 class="project-title">
                         <span class="coin-name"></span>
                         <span class="coin-big-name"></span>
-
                     </h1>
 
                     <div class="row coin-infomation">
@@ -57,7 +57,7 @@
                 <div class="short-comment-wrap clearfix">
                     <div class="interest_sect_level clearfix">
                         <div class="pull-left a_stars">
-                            评价:
+                          评价：
                             <span id="rating">
                                 <span id="stars">
                                     <a href="javascript:;" class="" >
@@ -214,7 +214,7 @@
             </div>
             <div class="item">
                 <span class="desc-title">募资时间</span>:
-                <span class="desc-detail"><%:=list.fundraisingTime%></span>
+                <span class="desc-detail"><%:=list.fundraisingTime.split(' ')[0]%></span>
             </div>
             <div class="item">
                 <span class="desc-title">官网</span>:
@@ -339,6 +339,7 @@
 			</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/jquery.cookie.js"></script>
+<script src="js/jquery.star-rating-svg.js"></script>
 <script src="js/template.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
 <script src="js/bootstrap.min.js"></script>
