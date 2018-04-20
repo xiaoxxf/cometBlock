@@ -383,7 +383,11 @@ $("#save-reset-pwd").click(function() {
 // 显示头像
 $(function(){
 	var preview = $('#result').find('img')[0];
-	preview.src = userinfo.userPic
+	if (userinfo.userPic) {
+		preview.src = userinfo.userPic
+	}else{
+		preview.src = 'img/normal-user.png'
+	}
 })
 
 //预览图片
