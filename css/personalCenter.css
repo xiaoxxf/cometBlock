@@ -12,6 +12,11 @@ body{
 	width: 300px;
 	overflow: auto;
 }
+@media only screen and (max-width: 900px) {
+	.aside{
+		position: inherit;
+	}
+}
 table {
 	width: 100%;
 	background-color: transparent;

@@ -324,26 +324,32 @@ body{
 .nav-user-account .droplist-wrap{
     display: none;
     position: absolute;
-    border: 1px solid rgb(79, 163, 237);
-    background: rgb(79, 163, 237);
+    border: 1px solid #B3B689;
+    /*background: rgb(79, 163, 237);*/
+   background-color: white;
     white-space: nowrap;
     top: 50px;
     border-top: none;
     right: 15px;
-    color: #fff;
+    border-radius: 4px;
+    /*color: #fff;*/
+    color:#333;
     cursor: pointer;
+    box-shadow:0 0 10px rgb(117, 113, 113);
 }
 .nav-user-account .more-active:hover .droplist-wrap ul li{
     font-size: 14px;
     padding: 5px 25px;
-    border-top: 1px solid rgb(79, 163, 237);
+    border-top: 1px solid #B3B689;
+
 }
 .nav-user-account .more-active .droplist-wrap ul li a{
     color:#fff;
 }
 .nav-user-account .more-active .droplist-wrap ul li:hover, .nav-user-account .more-active .droplist-wrap ul li:hover a{
-    background-color: #fff;
-    color: rgb(79, 163, 237);
+    /*background-color: #fff;*/
+   background-color: #B3B689;
+    /*color: rgb(79, 163, 237);*/
 }
 @media (max-width: 767px) {
     .login-btn-xs {
@@ -398,12 +404,12 @@ tbody a{
 	float: right;
 }
 .show-alert-inform {
-    position: absolute;
-    text-align: center;
+    position: fixed;
+    text-align: right;
     width: 300px;
     height: 450px;
     color: #333;
-    right: 10px;
+    right: 100px;
     background-color: white;
     border-bottom: solid 1px #dcdcdca6;
     line-height: 40px;
