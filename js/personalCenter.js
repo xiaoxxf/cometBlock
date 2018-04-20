@@ -346,8 +346,14 @@ $("#save-reset-pwd").click(function() {
 
 });
 
-//预览图片
 
+// 显示头像
+$(function(){
+	var preview = $('#result').find('img')[0];
+	preview.src = userinfo.userPic
+})
+
+//预览图片
 $('#user_logo_input').on('change',function(){
 	var preview = $('#result').find('img')[0];
 	var file = this.files[0]
@@ -371,11 +377,11 @@ var ui = {
 var logo_file = null
 
 $('.upload-project-logo').on('click',function(){
-	
+
 	var file = $('#user_logo_input')[0].files[0]
 	var formData = new FormData();
 	formData.append('file', file);
-	
+
 	$.ajax({
 		url: WebApiHostJavaApi + 'common/upload',
 		type: "post",
@@ -392,7 +398,7 @@ $('.upload-project-logo').on('click',function(){
 			}else if(data.code == -1){
 				layer.msg('上传失败请重试')
 			}
-		
+
 		},
 		 error:function(e){
 	       ui.fileUpLoading = false
@@ -405,29 +411,23 @@ $('.upload-project-logo').on('click',function(){
 function uploadIcon(e){
 	var data ={
 		'userPic': e,
-		'userId':  userinfo.id, 
+		'userId':  userinfo.id,
 		'userPwd': userinfo.userPwd
-
 	}
 	var uri = 'news/changeLogo?userId=' + data.userId + '&userPic=' + data.userPic + '&passWord=' + data.userPwd
-	 
-	
-    $.ajax({
-        type: 'GET',
-        url : WebApiHostJavaApi + uri,
-        dataType : 'json',
-        contentType: 'application/json; charset=UTF-8',
-        success: function (result) {
-			if(result.code == 0){
-				layer.msg('修改成功')
-			}else if(result.code == -1){
-				layer.msg('修改失败')
-			}
+
+	doJavaGet(uri,function(result){
+		if(result.code == 0){
+			layer.msg('修改成功')
 			
-        },
-  
-    });
+			// 更新localstorage信息
+			userinfo.userPic = data.userPic
+			userinfo_str = JSON.stringify(userinfo)
+			localStorage.setItem('userinfo',userinfo_str)
+		}else if(result.code == -1){
+			layer.msg('修改失败')
+		}
+	})
+
+
 }
-
-
-
