@@ -401,15 +401,19 @@ function Hide(){
 
 
 var resizeTimer = null;
+//团队高度自适应
+var teamImgW = $(".img-wrap .team-img").width();
+$(".img-wrap .team-img").css('height',teamImgW*120/150);
 $(window).on('resize', function () {
 	if (resizeTimer) {
 			 clearTimeout(resizeTimer)
 	 }
 	 resizeTimer = setTimeout(function(){
-		 // 图片白底适应
+     // 图片白底适应
      var imgW = $(".coin-detail-desc-wrap .coin-img").width();
      $(".coin-detail-desc-wrap .coin-img").css('height',imgW*270/230);
-
+     var teamImgW = $(".img-wrap .team-img").width();
+     $(".img-wrap .team-img").css('height',teamImgW*120/150);
 	}, 100);
 
 })
