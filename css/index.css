@@ -462,7 +462,7 @@ div {
 	background-color: #333;
 }
 .navbar-right>li>a {
-	padding: 10px 15px;
+	/*padding: 10px 15px;*/
 	line-height: 20px;
 }
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
