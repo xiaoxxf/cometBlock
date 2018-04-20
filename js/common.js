@@ -127,12 +127,14 @@ $.get("header-tpl.html",function(data){
     }
     //页面加载完成之后做账户信息处理
     var username = $.cookie('username');
+    var userinfo = JSON.parse(localStorage.getItem('userinfo'))
     if(username == undefined){
         $("#nav_login").fadeIn();
         $("#nav_register").fadeIn();
         $(".scrollbar-container").fadeIn();
     }else {
         $(".nav-user-account #nav_user_mes").text(username);
+        $("#user_pic")[0].src = userinfo.userPic
         $(".nav-user-account .more-active").css('display','block');
         $(".login-right").css('display','block');
     }

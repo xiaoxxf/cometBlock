@@ -419,11 +419,12 @@ function uploadIcon(e){
 	doJavaGet(uri,function(result){
 		if(result.code == 0){
 			layer.msg('修改成功')
-			
+
 			// 更新localstorage信息
 			userinfo.userPic = data.userPic
 			userinfo_str = JSON.stringify(userinfo)
 			localStorage.setItem('userinfo',userinfo_str)
+			$("#user_pic")[0].src = data.userPic
 		}else if(result.code == -1){
 			layer.msg('修改失败')
 		}
