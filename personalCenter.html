@@ -61,6 +61,11 @@
 											 <div class="setting-icon"><i class="fa fa-sign-out"></i></div> <span class="option-name">驳回</span><span  class="badge badge-icon reject-count"></span>
 										</a>
 									</li>
+									<li >
+										<a>
+											 <div class="setting-icon"><i class="fa fa-file-text-o"></i></div> <span class="option-name">我的文章</span><span  class="badge badge-icon reject-count"></span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -162,6 +167,13 @@
 								<div class="menu">被驳回的项目</div>
 								<ul class="notification—list reject-list">
 
+								</ul>
+							</div>
+
+							<!-- 文章 -->
+							<div class="show_table show_table_detail cont6 quote">
+								<div class="menu">我的文章</div>
+								<ul class="my-article">
 								</ul>
 							</div>
 
@@ -287,6 +299,14 @@
 					</div>
 
 				</li>
+			<%}%>
+		</script>
+
+		<script type="text/html" id='article_tpl'>
+			<%for(var i = 0; i < list.length; i++) {%>
+					<a target="_blank" href="comment.html?reviewId=<%:=list[i].reviewId%>">
+						<li><%:=list[i].textTitle%></li>
+					</a>
 			<%}%>
 		</script>
 

@@ -288,6 +288,7 @@ function chainDetailJs(chainInfoData){
           return false
         }
 
+
         // 构建team
         var team = buildTeam()
 
