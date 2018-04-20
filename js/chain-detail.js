@@ -298,6 +298,7 @@ $(".short-comment-commit").on('click',function (e) {
             $(".short-comment").val('');
             ajaxGetComments(true);
             ajaxGetScoreInfo(true);
+            $(".short-comment-wrap  #rating").find('img').attr('src','img/star-empty.png');
         } else {
             layer.msg(res.msg);
         }
@@ -401,7 +402,6 @@ function Hide(){
 
 var resizeTimer = null;
 $(window).on('resize', function () {
-
 	if (resizeTimer) {
 			 clearTimeout(resizeTimer)
 	 }
