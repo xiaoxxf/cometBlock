@@ -118,7 +118,9 @@ $(function(){
 	var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=12'
 	doJavaGet(uri,function(result){
 		count = result.count
-		$('.badge-inform').html(count)
+		if (count!=0) {
+			$('.badge-inform').html(count)
+		}
 	})
 })
 
@@ -141,7 +143,11 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 	doJavaGet(uri, function(e){
 		self.removeClass('unread')
 		count = $('.badge-inform').html()
-		$('.badge-inform').html(count-1)
+		if ( count-1 == 0) {
+			$('.badge-inform').html('')
+		}else{
+			$('.badge-inform').html(count-1)
+		}
 		// self.css('background-color','white')
 	})
 })
