@@ -95,7 +95,7 @@ $('.show_right').on('click', '.message' , function(e){
 
 var append_class = null
 var id = null
-var type = null
+var type = null  // 1-引用，2-评论（别人对我的长文进行评论），3-点赞，4-审核通过，5-驳回
 var currentPage = 1
 var noMoreData = false
 var article_flag = false
@@ -117,16 +117,16 @@ var article_flag = false
 						type = '1'
 						break;
 					case 2:
-						append_class = '.like-list'
-						count_class = '.like-count'
-						id = 'like'
-						type = '3'
-						break;
-					case 3:
 						append_class = '.comment-list'
 						count_class = '.comment-count'
 						id = 'comment'
 						type = '2'
+						break;
+					case 3:
+						append_class = '.like-list'
+						count_class = '.like-count'
+						id = 'like'
+						type = '3'
 						break;
 					case 4:
 						append_class = '.pass-list'

@@ -383,6 +383,7 @@ tbody a{
 .login-right{
 	display: none;
 }
+
 .badge {
     padding: 3px 6px;
     font-size: 13px!important;
@@ -398,7 +399,7 @@ tbody a{
 }
 .show-alert-inform {
     position: absolute;
-    text-align: right;
+    text-align: center;
     width: 300px;
     height: 450px;
     color: #333;
@@ -434,7 +435,7 @@ tbody a{
 	 overflow-y:auto
 }
 .show-alert-inform-list {
-    margin: 0px 10px;
+    /* margin: 0px 10px; */
     height: 70px;
     padding: 15px 10px;
     border-bottom: solid 1px #dcdcdc8c;
@@ -447,6 +448,7 @@ tbody a{
 }
 .show-alert-inform-content .right-news{
 	line-height: 20px;
+  margin: 0px 10px;
 }
 .show-alert-inform-content .right-news div:last-child{
 	text-align: left;

@@ -4,6 +4,7 @@ $(document).ready(function () {
     var maxnum = 3; //设置加载最多次数
     var num = 1;
     var pageNum = 1;
+    var search_page = 1;
     //var rankPageIndex = 1;
     var totalheight = 0;
     var isLoaded = true
@@ -14,9 +15,9 @@ $(document).ready(function () {
     function notice() { //请求后台查询最新通报
         var uri = 'news/newestTime'
         doJavaGet(uri, function(res) {
-        	
+
             if(res != null && res.code == 0) {
-            	
+
                 if(parseInt(res.datas) > parseInt(count)) {
                     $('#div1').css("display", "block")
                     $('.news_look').html('有 ' + (parseInt(res.datas) - parseInt(count)) + ' 个新话题，点击查看')
@@ -167,6 +168,7 @@ $(document).ready(function () {
     }
     $(".navbar-fixed-container").on('keydown','#head_search',function(e) {
         if (e.keyCode == 13) {
+            pageNum = 1
             var keywords = $('#head_search').val()
             console.log(keywords)
             $(".loading-more").hide();
@@ -212,7 +214,6 @@ $(document).ready(function () {
             $('#div1').css("display", "none")
         }
     function dataShowRight(data) {
-
         var html = ''
         for(var i = 0; i < data.length; i++) {
             var test = data[i].newsId
