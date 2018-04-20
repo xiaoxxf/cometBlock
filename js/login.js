@@ -50,7 +50,7 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 	window.localStorage.setItem('currentHref',currentHref);
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
-			
+
 			$(".ouro").attr({
 				style: "display:inline-block"
 			});
@@ -58,7 +58,7 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 			setTimeout(function() { //两秒后跳转
 				//设置用户信息cookie失效时间，一个小时
                 var expireDate= new Date();
-                expireDate.setTime(expireDate.getTime() + (60*60* 1000));
+                expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
 				localStorage.setItem('userinfo', res.datas); //存储
 				localStorage.setItem('userid', res.datas.id);
 				localStorage.setItem('userinfo', JSON.stringify(res.datas));
