@@ -345,27 +345,30 @@ $('#form1').validator({
 
 function buildTeam(){
   var team = [];
+
   memberName = $(".member_name");
   memberPosition = $(".member_position");
   memberPicName = $(".member_pic_name");
-  teamLength = memberPicName.length; // 根据图片数判断team的长度
 
+  teamLength = memberPicName.length; // 根据图片数判断team的长度
   for (var i = 0; i < teamLength; i++) {
     var temp = {};
     temp.picHref = memberPicName[i].value;
     temp.name = memberName[i].value;
     temp.position = memberPosition[i].value;
+    temp.projectId = projectId
     team.push(temp)
   }
-
   //判断team的图片、名字都必须存在
+  temp_team = []
   temp_length = team.length
+
   for (var i = 0; i < temp_length; i++) {
-    if (team[i].picHref == "" || team[i].name == "") {
-      team.splice(i,1)
+    if (team[i].picHref != "" || team[i].name != "") {
+      temp_team.push(team[i])
     }
   }
-  return team
+  return temp_team
 }
 
 // 渲染币种类型
