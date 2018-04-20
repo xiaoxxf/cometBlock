@@ -1,7 +1,134 @@
-.candy_box{
-	margin:20px ;
-	margin-top: 50px;
+.bottom_line{
+	border-bottom:solid 1px gainsboro ;
 }
-.row img{
-	background: url(/img/coin_2.png);
+/*糖果盒*/
+.candy_box{
+	margin-top:30px ;
+}
+/*.row .col-md-9 img{
+    background-size: cover;
+    height: 200px;
+    background-color: palegoldenrod;
+    width: 100%;
+}*/
+.hot_candy img{
+    background-size: cover;
+    height: 230px;
+    background-color: palegoldenrod;
+    width: 100%;
+}
+.article-detail .article-icon img{
+	background-size: cover;
+    height: 150px;
+    background-color: palegoldenrod;
+    width: 100%;
+}
+.row .col-md-3 a{
+	color: #333;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    border: solid 1px #ccc;
+    border-radius: 8px;
+}
+.included_ariticle{
+	text-align: center;
+	padding: 20px;
+}
+.row .col-md-3 span{
+	display: inline-block;
+	
+}
+.candy_right,.hot_zone {
+	background-color: white;
+}
+/*热门专区*/
+.hot_zone{
+	padding: 10px;
+	height: 250px;
+}
+.hot_zone_title,.hot_zone_title_right,.hot_review_title{
+	height: 40px;
+    padding: 10px;
+    border-bottom: solid 1px gainsboro;
+}
+.hot_zone_title span:first-child{
+	float: left;
+}
+.hot_zone_title span:last-child,.hot_zone_title_right span:last-child
+,.hot_review_title span:last-child{
+	float: right;
+	color: rgb(79, 163, 237)
+}
+.hot_zone_coin,.hot_zone_coin h3:first-child{
+	color: darkgray;
+}
+.hot_zone_coin .col-md-2 img{
+	width: 120px;
+	height: 150px;
+}
+.hot_zone_coin .row .col-md-2{
+	margin: 10px;
+    text-align: center;
+}
+.hot_zone_news{
+	text-align: center;
+}
+.hot_zone_news p{
+	line-height: 40px;
+	height: 40px;
+}
+/*热门评测*/
+.hot_review,.hot_zones{
+	margin-top: 30px;
+}
+.article-top-box{
+	margin-top: 30px;
+}
+.article-detail{
+   margin-top: 30px;
+}
+.article-detail .article-icon{
+	float: right;
+    width: 120px;
+    margin: 0px 30px;
+    
+}
+a img {
+    border-width: 0;
+    vertical-align: middle;
+}
+
+.article-title{
+	color: black;
+    font-weight: bold;
+    margin-left: -10px;
+    font-size: 18px;
+}
+.article-content{
+	margin:0px 20px;
+}
+.article-content .article-time{
+	margin: 10px 0px;
+    display: block;
+    color: #666;
+}
+.article-content .article-introduce,.meta{
+	line-height: 30px;
+	color: black;
+}
+.meta{
+	margin-top:20px ;
+}
+.meta a{
+	margin-left:10px ;
+	color: darkgray;
+}
+.read-more{
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background-color: white;
+	
 }
