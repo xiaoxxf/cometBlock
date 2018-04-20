@@ -154,7 +154,7 @@ var article_flag = false
 					var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
 					doJavaGet(uri, function(result){
-						if (result.datas.length <= 12) {
+						if (result.datas.length < 12) {
 							noMoreData = true
 						}
 						// console.log(result)
@@ -169,7 +169,7 @@ var article_flag = false
 					var uri = 'blockchain/quaryReview?currentPage=' + currentPage + '&pageSize=12' + '&type=2' + '&creator=' + userinfo.id;
 
 					doJavaGet(uri,function(result){
-						if (result.datas.length <= 12) {
+						if (result.datas.length < 12) {
 							noMoreData = true
 						}
 						var tpl = document.getElementById('article_tpl').innerHTML;
