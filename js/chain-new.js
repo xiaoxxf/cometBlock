@@ -286,6 +286,17 @@ $('#form1').validator({
         return false
       }
 
+      // 检查团队数据是否完整
+      memberName = $(".member_name");
+      memberPicName = $(".member_pic_name");
+
+      for (var i = 0; i < memberPicName.length; i++) {
+        if ( memberName[i].value == '' || memberPicName[i].value == '' ) {
+          layer.msg('团队成员图片必须上传，名称不能为空')
+        }
+        return
+      }
+      
       // 构建team
       var team = buildTeam()
 
