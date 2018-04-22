@@ -14,3 +14,19 @@ $(function(){
     $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
   }, "json")
 })
+
+
+// 渲染播报
+$(function(){
+  var uri = 'news/quary?currentPage=1&pageSize=5&days=1';
+  doJavaGet(uri,function(result){
+    // console.log(result.datas)
+
+    $('.hot_zone_news').html("");
+    var tpl = document.getElementById('news_tpl').innerHTML;
+    var content = template(tpl, {list: result.datas});
+    $('.hot_zone_news').append(content)
+
+  }, "json")
+
+})
