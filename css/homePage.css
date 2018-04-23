@@ -49,9 +49,13 @@
 	height: 250px;
 }
 .hot_zone_title,.hot_zone_title_right,.hot_review_title{
-		height: 40px;
+	height: 40px;
     padding: 10px;
     border-bottom: solid 1px gainsboro;
+}
+.hot_review_title{
+	background-color: white;
+	padding: 10px 20px;
 }
 .hot_zone_title span:first-child{
 	float: left;
@@ -60,6 +64,10 @@
 ,.hot_review_title span:last-child{
 	float: right;
 	color: rgb(79, 163, 237)
+}
+.hot_zones .hot_zone_title_right a{
+	display: initial;
+    border: none;
 }
 .hot_zone_coin,.hot_zone_coin h3:first-child{
 	color: darkgray;
@@ -119,7 +127,7 @@ a img {
 	color: black;
 }
 .meta{
-	margin-top:20px ;
+	margin-top:10px ;
 }
 .meta a{
 	margin-left:10px ;
