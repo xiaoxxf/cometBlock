@@ -22,6 +22,7 @@
     height: 130px;
     /* background-color: palegoldenrod; */
     width: 100%;
+		margin-top: 15px
 }
 .row .col-md-3 .candy_box a{
 		color: #333;
@@ -46,7 +47,7 @@
 /*热门专区*/
 .hot_zone{
 	padding: 10px;
-	height: 250px;
+	/*height: 260px;*/
 }
 .hot_zone_title,.hot_zone_title_right,.hot_review_title{
 		height: 40px;
@@ -77,7 +78,7 @@
 	height: 150px;
 }
 .hot_zone_coin .row .col-md-2{
-	margin: 10px;
+	margin: 8px;
     text-align: center;
 }
 .hot_zone_news{
@@ -95,7 +96,7 @@
 	margin-top: 30px;
 }
 .article-detail{
-   margin-top: 30px;
+   margin-top: 10px;
 }
 .article-detail .article-icon{
 		float: right;
@@ -112,14 +113,18 @@ a img {
 	color: black;
     font-weight: bold;
     margin-left: -10px;
-    font-size: 18px;
+    font-size: 17px;
+    line-height: 30px;
 }
 .article-content{
 	margin:0px 20px;
 }
+.article-content.article-info{
+	display: inline;
+}
 .article-content .article-time{
 	margin: 10px 0px;
-    display: block;
+    display: inline-block;
     color: #666;
 }
 .article-content .article-introduce,.meta{
@@ -150,10 +155,28 @@ a img {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-		font-size: 12px;
-		color:#ffac2d;
-		margin-bottom: 15px;
-		margin-top: 5px
+	font-size: 12px;
+	color:#ffac2d;
+	margin-bottom: 15px;
+	margin-top: 5px
+}
+.hot_coin_region{
+	padding-left: 10px;
+}
+/*轮播*/
+.carousel-indicators{
+	bottom: 0px !important;
+}
+.carousel-indicators .active{
+	background-color: rgb(79, 163, 237);
+
+}
+.carousel-control.right,.carousel-control.left{
+	background-image:none;
+}
+.carousel-control{
+	color:rgba(0,0,0,.0001) ;
+	width: 5%;
 }
 
 .new_title{
@@ -168,4 +191,12 @@ a img {
 .article-introduce{
 	height: 110px;
 	overflow: hidden;
+}
+
+.article-creator-pic{
+	width: 28px;
+	height: 28px;
+	border-radius: 20px;
+	margin-right:10px;
+	margin-bottom:5px;
 }

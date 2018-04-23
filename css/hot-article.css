@@ -48,3 +48,24 @@ a img {
 	/* margin-left:10px ; */
 	color: darkgray;
 }
+
+.article-content.article-info{
+	display: inline;
+}
+
+.article-content.article-info{
+	display: inline;
+}
+.article-content .article-time{
+	margin: 10px 0px;
+    display: inline-block;
+    color: #666;
+}
+
+.article-creator-pic{
+	width: 28px;
+	height: 28px;
+	border-radius: 20px;
+	margin-right:10px;
+	margin-bottom:5px;
+}

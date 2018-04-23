@@ -36,19 +36,29 @@
       </div>
 
       <div class="article-content">
-        <h3>
+        <div class="article-info">
+          <%if(list[i].userPic == null ){%>
+            <img src="img/normal-user.png" class="article-creator-pic"/>
+          <%} else {%>
+            <img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+          <% } %>
+          <span><%=list[i].realName %></span>
+          <span class="article-time"><%=list[i].createTime %></span>
+        </div>
+        <h3 style="margin-top:10px;margin-bottom:10px">
           <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="article-title">
             <%=list[i].textTitle %>
           </a>
         </h3>
-        <span class="article-time"><%=list[i].createTime %></span>
+        <!-- <span class="article-time"><%=list[i].createTime %></span> -->
         <div class="article-introduce">
-          <%:=list[i].textContent%>
-
+          <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
+            <%:=list[i].textContent%>
+          </a>
         </div>
         <div class="meta">
           <a style="margin-right:5px" href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
-          <a href="" class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
+          <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
         </div>
       </div>
     </div>

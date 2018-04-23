@@ -2,21 +2,21 @@ var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 
 // 渲染热门专区
-$(function(){
-  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=5'
-
-  doJavaGet(uri,function(result){
-    // console.log(result.datas)
-
-    $('.hot_coin_region').html("");
-    var tpl = document.getElementById('hot_coin_tpl').innerHTML;
-    var content = template(tpl, {list: result.datas});
-    $('.hot_coin_region').append(content)
-
-    var imgW = $(".hot_coin_region .inner-img-wrap").width();
-    $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
-  }, "json")
-})
+//$(function(){
+//var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=5'
+//
+//doJavaGet(uri,function(result){
+//  // console.log(result.datas)
+//
+//  $('.hot_coin_region').html("");
+//  var tpl = document.getElementById('hot_coin_tpl').innerHTML;
+//  var content = template(tpl, {list: result.datas});
+//  $('.hot_coin_region').append(content)
+//
+//  var imgW = $(".hot_coin_region .inner-img-wrap").width();
+//  $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
+//}, "json")
+//})
 
 
 // 渲染播报
@@ -50,11 +50,12 @@ $(function(){
 
 })
 
-
+var article_loading = false
 var article_pgae = 1
 // 渲染评测
 $(function(){
   article_pgae = 1
+  article_loading = true
   var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
   doJavaGet(uri, function(result){
       $('.hot_review_region').html("");
@@ -64,7 +65,7 @@ $(function(){
       $('.hot_review_region').append(content)
 
       $('.article-count').html('共' + result.count +'篇文章被收录')
-
+      article_loading = false
   })
 
 })
@@ -72,12 +73,15 @@ $(function(){
 var noMoreData = false
 // 评测加载更多
 $('.read-more').on('click',function(){
-  $('.read-more').html('加载中...')
+
   article_pgae+=1
   var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
 
-  if (!noMoreData) {
+  if (!noMoreData && !article_loading) {
+    $('.read-more').html('加载中...')
+
     doJavaGet(uri,function(result){
+
       if (result.datas.length == 0) {
         noMoreData = true
         $('.read-more').html('已无更多数据')
