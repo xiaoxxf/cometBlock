@@ -94,6 +94,7 @@
     -webkit-box-shadow: 2px 2px 5px #a79e9e;
     box-shadow: 2px 2px 5px #a79e9e;
     border-radius: 10px;
+    margin-bottom: 5px;
 }
 .coin-list-wrap li:nth-child(4n+1){
     margin-right:3.33%;
@@ -124,8 +125,8 @@
 }
 .coin-list-wrap li .score{
     font-size: 12px;
-    margin-bottom: 10px;
     color:#ffac2d;
+    margin-bottom: 15px;
 }
 .search-result{
   /* display: flex; */

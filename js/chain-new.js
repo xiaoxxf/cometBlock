@@ -286,6 +286,17 @@ $('#form1').validator({
         return false
       }
 
+      // 检查团队数据是否完整
+      memberName = $(".member_name");
+      memberPicName = $(".member_pic_name");
+
+      for (var i = 0; i < memberPicName.length; i++) {
+        if ( memberName[i].value == '' || memberPicName[i].value == '' ) {
+          layer.msg('团队成员图片必须上传，名称不能为空')
+        }
+        return
+      }
+      
       // 构建team
       var team = buildTeam()
 
@@ -345,27 +356,30 @@ $('#form1').validator({
 
 function buildTeam(){
   var team = [];
+
   memberName = $(".member_name");
   memberPosition = $(".member_position");
   memberPicName = $(".member_pic_name");
-  teamLength = memberPicName.length; // 根据图片数判断team的长度
 
+  teamLength = memberPicName.length; // 根据图片数判断team的长度
   for (var i = 0; i < teamLength; i++) {
     var temp = {};
     temp.picHref = memberPicName[i].value;
     temp.name = memberName[i].value;
     temp.position = memberPosition[i].value;
+    temp.projectId = projectId
     team.push(temp)
   }
-
   //判断team的图片、名字都必须存在
+  temp_team = []
   temp_length = team.length
+
   for (var i = 0; i < temp_length; i++) {
-    if (team[i].picHref == "" || team[i].name == "") {
-      team.splice(i,1)
+    if (team[i].picHref != "" || team[i].name != "") {
+      temp_team.push(team[i])
     }
   }
-  return team
+  return temp_team
 }
 
 // 渲染币种类型

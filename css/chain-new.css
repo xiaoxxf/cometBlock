@@ -93,9 +93,10 @@ label{
 }
 
 .member_msg{
-  display: flex;
+  /* display: flex; */
   flex-direction:  column;
 }
+
 .help-block{
   margin-top: -3px;
   margin-bottom: -3px;

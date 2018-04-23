@@ -39,18 +39,16 @@
 											<span class="badge badge-icon quote-count"></span>
 										</a>
 									</li>
-
-									<li >
-										<a >
-											<div class="setting-icon"><i class="fa fa-heart-o"></i></div> <span class="option-name">喜欢和赞</span><span class="badge badge-icon like-count"></span>
-										</a>
-									</li>
 									<li >
 										<a>
 											<div class="setting-icon"><i class="fa fa-commenting-o"></i></div> <span class="option-name">评论</span><span class="badge badge-icon comment-count"></span>
 										</a>
 									</li>
-
+									<li >
+										<a >
+											<div class="setting-icon"><i class="fa fa-heart-o"></i></div> <span class="option-name">喜欢和赞</span><span class="badge badge-icon like-count"></span>
+										</a>
+									</li>
 									<li >
 										<a>
 											<div class="setting-icon"><i class="fa fa-sign-in"></i></div> <span class="option-name">审核通过</span><span class="badge badge-icon pass-count"></span>
@@ -59,6 +57,11 @@
 									<li >
 										<a>
 											 <div class="setting-icon"><i class="fa fa-sign-out"></i></div> <span class="option-name">驳回</span><span  class="badge badge-icon reject-count"></span>
+										</a>
+									</li>
+									<li >
+										<a>
+											 <div class="setting-icon"><i class="fa fa-file-text-o"></i></div> <span class="option-name">我的文章</span><span  class="badge badge-icon reject-count"></span>
 										</a>
 									</li>
 								</ul>
@@ -133,17 +136,17 @@
 
 								</ul>
 							</div>
-							<!--喜欢提示-->
-							<div class="show_table show_table_detail cont2 like">
-								<div class="menu">收到的点赞</div>
-								<ul class="notification—list like-list">
+							<!-- 评论 -->
+							<div class="show_table show_table_detail cont2 comment">
+								<div class="menu">收到的评论</div>
+								<ul class="notification—list comment-list">
 
 								</ul>
 							</div>
-							<!-- 评论 -->
-							<div class="show_table show_table_detail cont3 comment">
-								<div class="menu">收到的评论</div>
-								<ul class="notification—list comment-list">
+							<!--喜欢提示-->
+							<div class="show_table show_table_detail cont3 like">
+								<div class="menu">收到的点赞</div>
+								<ul class="notification—list like-list">
 
 								</ul>
 							</div>
@@ -159,6 +162,13 @@
 								<div class="menu">被驳回的项目</div>
 								<ul class="notification—list reject-list">
 
+								</ul>
+							</div>
+
+							<!-- 文章 -->
+							<div class="show_table show_table_detail cont6 quote">
+								<div class="menu">我的文章</div>
+								<ul class="my-article">
 								</ul>
 							</div>
 
@@ -284,6 +294,14 @@
 					</div>
 
 				</li>
+			<%}%>
+		</script>
+
+		<script type="text/html" id='article_tpl'>
+			<%for(var i = 0; i < list.length; i++) {%>
+					<a target="_blank" href="comment.html?reviewId=<%:=list[i].reviewId%>">
+						<li><%:=list[i].textTitle%></li>
+					</a>
 			<%}%>
 		</script>
 
