@@ -114,8 +114,8 @@ function  ajaxGetChainDetail() {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
             $('title').html(res.datas.projectName + '详情')
-            $('meta[name=description]').attr('content',res.datas.projectContent )
-            $('meta[name=keywords]').attr('content',"链库 区块链 数字货币 " + res.datas.projectName + " " + res.datas.projectBigName )
+            $('meta[name=description]').attr('content',res.datas.projectContent)
+            $('meta[name=keywords]').attr('content', res.datas.projectName + " " + res.datas.projectBigName + "——彗星区块链项目评测社区" )
 
             // console.log(chainInfoData)
             if(chainInfoData != null){
