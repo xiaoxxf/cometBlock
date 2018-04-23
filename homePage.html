@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>彗星—区块链项目评测社区</title>
-	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>  
+	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 	<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
 	<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
 	<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
@@ -309,7 +309,47 @@
 			</div>
 		</div>
 
-<script type="text/html" id="hot_coin_tpl">
+<script type="text/html" id="hot_coin_tpl_1">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="hot_coin_tpl_2">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="hot_coin_tpl_3">
 	<%for(var i = 0; i < list.length; i++) {%>
 	<div class="col-md-2">
 		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
@@ -384,61 +424,61 @@
 
 <!--登陆-->
 <script type="text/html" id="short-comment-commit-layer">
-				<div class="main report-login">
+	<div class="main report-login">
 
-					<h4 class="title">
-					    <div class="normal-title">
-							<a class="active" href="">登录</a>
-							<b>·</b>
-							<a id="js-sign-up-btn" class="" href="register.html">注册</a>
-						</div>
-					</h4>
-					<div class="js-sign-in-container">
+		<h4 class="title">
+		    <div class="normal-title">
+				<a class="active" href="">登录</a>
+				<b>·</b>
+				<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+			</div>
+		</h4>
+		<div class="js-sign-in-container">
 
-						<div class="input-prepend  restyle ">
-							<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+			<div class="input-prepend  restyle ">
+				<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
 
-							<i class="fa fa-user"></i>
-						</div>
-						<div class="input-prepend border_radiusB">
-							<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
-							<i class="fa fa-unlock-alt"></i>
+				<i class="fa fa-user"></i>
+			</div>
+			<div class="input-prepend border_radiusB">
+				<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+				<i class="fa fa-unlock-alt"></i>
 
-						</div>
-						<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+			</div>
+			<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
 
-						<div class="remember-btn">
-							<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
-						</div>
-						<div class="forget-btn">
-							<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="">用手机号重置密码</a>
-								</li>
+			<div class="remember-btn">
+				<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+			</div>
+			<div class="forget-btn">
+				<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="">用手机号重置密码</a>
+					</li>
 
-							</ul>
-						</div>
+				</ul>
+			</div>
 
-						<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
-						<span class="loader2 loader loaderadd" id="load">
-										<div></div>
-								</span>
+			<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
+			<span class="loader2 loader loaderadd" id="load">
+							<div></div>
+					</span>
 
-						<div class="more-sign">
-							<h6>社交帐号登录</h6>
-							<ul>
-								<li>
-									<img src="img/wechat.png" width="40px">
-								</li>
-								<li>
-									<a href="">其它</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</script>
+			<div class="more-sign">
+				<h6>社交帐号登录</h6>
+				<ul>
+					<li>
+						<img src="img/wechat.png" width="40px">
+					</li>
+					<li>
+						<a href="">其它</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>

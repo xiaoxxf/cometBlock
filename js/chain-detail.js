@@ -115,7 +115,7 @@ function  ajaxGetChainDetail() {
             var chainInfoData = res.datas;
             $('title').html(res.datas.projectName + '详情')
             $('meta[name=description]').attr('content',res.datas.projectContent)
-            $('meta[name=keywords]').attr('content', res.datas.projectName + " " + res.datas.projectBigName + "——彗星区块链项目评测社区" )
+            $('meta[name=keywords]').attr('content', res.datas.projectName + "," + res.datas.projectBigName + ",区块链,数字货币,项目评测" )
 
             // console.log(chainInfoData)
             if(chainInfoData != null){
