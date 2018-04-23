@@ -64,7 +64,7 @@
 							<div class="hot_zone">
 								<div class="hot_zone_title_right">
 									<span>播报</span>
-									<a href=""><span>更多 &gt;&gt;</span></a>
+									<a href="news.html"><span>更多 &gt;&gt;</span></a>
 								</div>
 								<div class="hot_zone_news">
 									<!-- <p>p2p网络中众多节点构成的分布式</p>
@@ -83,11 +83,11 @@
 								<span>热门评测</span>
 								<a href=""><span>更多&gt;&gt;</span></a>
 							</div>
-							<div class="hot_zone ">
-								<div class="article-detail bottom_line">
+							<div class="hot_zone bottom_line">
+								<div class="article-detail">
 					        		<div class="article-icon">
 					        			 <a href="">
-							                <img class="article-img img-responsive" src="img/temp2.jpg" style="display: inline;">
+							                <img class="article-img" src="img/temp2.jpg" style="display: inline;">
 							            </a>
 					        		</div>
 
@@ -192,8 +192,7 @@
 
 <script type="text/html" id="news_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<!-- 填数据 -->
-		<p></p>
+		<p><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
 	<%}%>
 
 </script>

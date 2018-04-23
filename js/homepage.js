@@ -27,6 +27,22 @@ $(function(){
     var content = template(tpl, {list: result.datas});
     $('.hot_zone_news').append(content)
 
+
+    // 限制搜索结果描述的长度
+    var descriptions = document.getElementsByClassName('new_title');
+
+    var show_length = 16
+    // if ($(window).width() <= 767) {
+    //   show_length = 5
+    // }
+
+    for (var i = 0; i < descriptions.length; i++) {
+      if (descriptions[i].innerText.length > show_length) {
+        descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+      }
+    }
+
+
   }, "json")
 
 })

@@ -23,8 +23,8 @@
     background-color: palegoldenrod;
     width: 100%;
 }
-.row .col-md-3 a{
-	color: #333;
+.row .col-md-3 .candy_box a{
+		color: #333;
     margin: 10px auto;
     display: block;
     text-align: center;
@@ -153,4 +153,9 @@ a img {
 		color:#ffac2d;
 		margin-bottom: 15px;
 		margin-top: 5px
+}
+
+.new_title{
+	float: left;
+	color: black;
 }
