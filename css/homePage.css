@@ -159,3 +159,7 @@ a img {
 	float: left;
 	color: black;
 }
+
+.read-more{
+	cursor: pointer;
+}
