@@ -46,7 +46,7 @@
 /*热门专区*/
 .hot_zone{
 	padding: 10px;
-	height: 260px;
+	/*height: 260px;*/
 }
 .hot_zone_title,.hot_zone_title_right,.hot_review_title{
 		height: 40px;
@@ -113,13 +113,17 @@ a img {
     font-weight: bold;
     margin-left: -10px;
     font-size: 17px;
+    line-height: 30px;
 }
 .article-content{
 	margin:0px 20px;
 }
+.article-content.article-info{
+	display: inline;
+}
 .article-content .article-time{
 	margin: 10px 0px;
-    display: block;
+    display: inline-block;
     color: #666;
 }
 .article-content .article-introduce,.meta{
@@ -153,6 +157,9 @@ a img {
 	color:#ffac2d;
 	margin-bottom: 15px;
 	margin-top: 5px
+}
+.hot_coin_region{
+	padding-left: 10px;
 }
 /*轮播*/
 .carousel-indicators{
