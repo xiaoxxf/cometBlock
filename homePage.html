@@ -126,6 +126,7 @@
 	<%for(var i = 0; i < list.length; i++) {%>
 
 		<div class="hot_zone bottom_line">
+
 			<div class="article-detail">
 					<div class="article-icon">
 						 <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>">
@@ -141,9 +142,9 @@
 						</h3>
 						<span class="article-time"><%=list[i].createTime %></span>
 						<div class="article-introduce">
-
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
 								<%:=list[i].textContent%>
-
+							</a>
 						</div>
 						<div class="meta">
 							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
@@ -151,6 +152,7 @@
 						</div>
 					</div>
 			</div>
+
 		</div>
 	<%}%>
 
