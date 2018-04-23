@@ -9,9 +9,18 @@
 .detail-wrap{
    padding-bottom: 85px;
 }
-/*
- 
-底部导航*/
+
+ /*写文章*/
+.log_writting .btn{
+	color: #2f576be0;
+    background-color: rgba(79, 163, 237, 0.7);
+    margin-top: 8px;
+    margin-left: 10px;	
+    margin-right: -15px;
+    width: 120px;
+}
+
+/*底部导航*/
 
 .block-comet-main-wrap{
     position: relative;
@@ -373,6 +382,9 @@ tbody a{
     zoom: 1;
     vertical-align: baseline;
     font-size: 14px;
+}
+.nav-user-account img{
+	margin-top: -6px;
 }
 .arrow {
     position: relative;
