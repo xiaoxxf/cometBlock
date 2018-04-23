@@ -1,11 +1,16 @@
 .current_nav{
     color: #2f2f2f !important;
 }
+/*导航栏头像*/
+.user-icon{
+	border-radius: 20px;
+}
 /*内容超过一屏需要留出底部导航的位置*/
 .detail-wrap{
    padding-bottom: 85px;
 }
 /*
+ 
 底部导航*/
 
 .block-comet-main-wrap{
@@ -421,9 +426,11 @@ tbody a{
 	margin: auto;
 	padding: 5px 10px;
 	border-bottom: solid 1px gainsboro;
+	text-align: center;
 }
 .show-alert-inform-top li{
 	display: inline;
+	margin: 0px 10px;
 }
 .show-alert-inform-top a{
 	display: inline-block;
