@@ -81,6 +81,10 @@
 	margin: 8px;
     text-align: center;
 }
+.hot_zone_coin{
+		height: 200px
+}
+
 .hot_zone_news{
 	text-align: center;
 }
@@ -163,12 +167,24 @@ a img {
 .hot_coin_region{
 	padding-left: 10px;
 }
+
+
+.new_title{
+	float: left;
+	color: black;
+}
+
+.read-more{
+	cursor: pointer;
+}
+
 /*轮播*/
 .carousel-indicators{
 	bottom: 0px !important;
 }
+
 .carousel-indicators .active{
-	background-color: rgb(79, 163, 237);
+	background-color: #ddd;
 
 }
 .carousel-control.right,.carousel-control.left{
@@ -178,14 +194,16 @@ a img {
 	color:rgba(0,0,0,.0001) ;
 	width: 5%;
 }
-
-.new_title{
-	float: left;
-	color: black;
+.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{
+	width: 20px;
+    height: 20px;
+    background-color: #0c81bb;
+    border-radius: 20px;
+    padding: 3px;
+    display: inline-block;
 }
-
-.read-more{
-	cursor: pointer;
+.carousel-control .glyphicon-chevron-right,.carousel-control .glyphicon-chevron-left{
+	font-size: 12px !important;
 }
 
 .article-introduce{

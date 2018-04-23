@@ -7,230 +7,298 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>彗星—区块链项目评测社区</title>
+	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 	<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
 	<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
-	<link type="favicon" rel="shortcut icon" href="favicon.ico" />
-	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 	<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/loading.css">
-	<!-- <link rel="stylesheet" href="css/detail.css"> -->
 	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/chain.css">
-	<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/homePage.css" />
 
 	<!-- 导航栏 -->
 </head>
-<style>
 
-	@media (max-width: 767px){
-		.top-nav-xs {
-			display: block!important;
-			padding: 20px 20px;
-		}
-		.top-nav-xs .option .title{
-			width: 60px;
-			margin-bottom: 10px;
-			font-size: 15px;
-		}
-
-		.top-nav-xs .option .title{
-			/* width: 100%; */
-			margin-bottom: 10px;
-			font-size:15px;
-		}
-
-		.top-nav-xs .option .search .search-wrap{
-			width: 150px;
-		}
-
-
-		.content .coin-item span{
-			margin-right: 0px;
-			font-size: 10px;
-			min-width: 20%;
-		}
-
-		.load-category{
-			height: 30px
-		}
-
-	}
-</style>
 <body lang="zh-CN" class="reader-black-font">
-<div class="comet-main block-comet-main-wrap">
-	<!-- 全局顶部导航栏 -->
-	<div class="navbar-fixed-container navbar-fixed-container-hook">
-	</div>
-	<div class="mian-container">
-		<div class="container" >
-					<div class="top-nav-wrap top-nav-xs">
-						<div class="row">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="option">
-									<div class="title">找项目</div>
-									<div class="search">
-										<div class="search-wrap">
-											<input type="text" class="search_bar" placeholder="搜索币种/简称">
-											<span class="search-icon search-click-hook"></span>
+		<div class="comet-main block-comet-main-wrap">
+		<!-- 全局顶部导航栏 -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook">
+			</div>
+			<div class="mian-container">
+				<div class="container" >
+					<!--糖果盒-->
+					<div class="candy_box">
+						<div class="hot_candy row">
+							<div class="col-md-7 col-md-offset-1">
+								<div class="hot_zone">
+									<img src="img/huixing.png"/>
+								</div>
+							</div>
+							<div class="col-md-3 ">
+								<div class="hot_zone">
+									<div class="candy_box">
+										<a href="">糖果盒</a>
+										<a href="">Top10</a>
+										<a href="chain-new.html">创建项目</a>
+										<div class="included_ariticle">
+											<span class="fa fa-file-text-o"></span>
+											<span class="article-count"></span>
 										</div>
 									</div>
-									<span class="search-icon search-click-hook"></span>
-									<div class="load-category-box" style="margin-left:10px;display:none">
-										<button type="button" class="btn btn-default load-category">分类筛选
-												<span class="caret"></span>
-										</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--热门专区-->
+					<div class=" hot_zones row">
+						<div class="col-md-7 col-md-offset-1 col-xs-12 col-sm-12">
+							<div class="hot_zone">
+								<div class="hot_zone_title">
+									<span>热门专区</span>
+									<a href="chain.html"><span>更多 &gt;&gt;</span></a>
+								</div>
+								<div class="hot_zone_coin">
+									<div id="myCarousel" class="carousel slide">
+											<div class="carousel-inner">
+												<div class="row hot_coin_region hot_coin_region_1 item active">
+													<!--轮播1-->
+
+												</div>
+												<div class="row hot_coin_region hot_coin_region_2 item">
+													<!--轮播2-->
+
+												</div>
+												<div class="row hot_coin_region hot_coin_region_3 item">
+													<!--轮播3-->
+
+												</div>
+											</div>
+											<!--轮播项目-->
+											<!-- 轮播（Carousel）指标 -->
+											<ol class="carousel-indicators">
+												<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+													<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+													<span class="sr-only">Previous</span>
+												</a>
+												<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+												<li data-target="#myCarousel" data-slide-to="1"></li>
+												<li data-target="#myCarousel" data-slide-to="2"></li>
+												<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+													<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+													<span class="sr-only">Next</span>
+												</a>
+											</ol>
 									</div>
 								</div>
 							</div>
 						</div>
+						<div class="col-md-3 col-sm-12 col-xs-12">
+							<div class="hot_zone">
+								<div class="hot_zone_title_right">
+									<span>播报</span>
+									<a href="news.html"><span>更多 &gt;&gt;</span></a>
+								</div>
+								<div class="hot_zone_news">
 
-						<div class="row category">
-							<div class="col-md-12 col-sm-12 col-xs-12">
-								<div class="content">
-									<div class="coin-item">
-										<span class="cur" onclick="getChain()">热门专区</span>
-										<span onclick="getChainByTime()">上新</span>
-										<!-- <span>数字货币</span>
-										<span>数字货币</span>
-										<span>数字货币</span>
-										<span>数字货币</span>
-										<span>数字货币</span>
-										<span>数字货币</span> -->
-									</div>
 								</div>
 							</div>
 						</div>
-
-					</div>
-
-			<div class="row coin-content">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<ul class="coin-list-wrap">
-
-					</ul>
-				</div>
-			</div>
-
-			<!-- 搜索结果 -->
-			<div class="search-result-box" style="display:none">
-
-			</div>
-
-			<!-- 没有搜索结果 -->
-			<div class="no-result" style="display:none">
-				<div class="row no-data" >
-					<div class="can-not-find col-md-12 col-sm-12 col-xs-12">
-
-					</div>
-				</div>
-
-				<div class="row create-coin">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<a href="chain-new.html">新建币种</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="waiting-data">
-					<div class="loader9">
-							<div class="loader-nine">
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
+						</div>
+					<!--热门评测-->
+					<div class="hot_review row">
+						<div class="col-md-7 col-md-offset-1">
+							<div class="hot_review_title">
+								<span>热门评测</span>
+								<a href="hot-article.html"><span>更多&gt;&gt;</span></a>
 							</div>
-					</div>
-			</div>
 
-			<div class="load-more-container-wrap">
-					<div class="container">
-									<div class="load-more-wrap load-more-hook">
-											<div class="loader1 loader" style="display: none">
-													<div></div>
-													<div></div>
-													<div></div>
-											</div>
-											<div class="loading-more"  style="display: none">
-													加载更多
-											</div>
-									</div>
-									<div class="load-more-wrap no-more-hook" style="display: none">
-											<div class="loading-more">
-													已无更多数据
-											</div>
-									</div>
+							<div class="hot_review_region">
+
 							</div>
+
+							<div class="read-more">阅读更多</div>
+
+						</div>
+						<!-- <div class="col-md-3">
+							<div class="hot_zone">
+
+							</div>
+						</div> -->
+					</div>
+				</div>
 			</div>
-
-
 		</div>
+
+<script type="text/html" id="hot_coin_tpl_1">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
 	</div>
-</div>
-
-
-<script id="coin-type" type="text/html">
-<%for(var i = 0; i < list.length; i++) {%>
-	<span onclick="searchFromType(<%=list[i].dicType%>)"><%=list[i].dicValue%></span>
-<%}%>
-
+	<%}%>
 </script>
 
-<script id="tpl" type="text/html">
-  <%for(var i = 0; i < list.length; i++) {%>
-		<li>
-			<a href="chain-detail.html?projectId=<%=list[i].projectId %>"  >
-				<div class="inner-img-wrap">
-					<img src='<%=list[i].projectLogo %>'  alt="">
-				</div>
-				<p class="name">
-					<%=list[i].projectName%>
-				</p>
-				<p class="score">
-					<%if(list[i].score ==0 ){%>
-					<span>暂无评分</span>
-					<%}else{%>
-					<span class="allstar<%:=list[i].score*5%>"></span>
-					<span><%=list[i].score%></span>
-					<%}%>
-
-				</p>
-			</a>
-		</li>
-  <%}%>
+<script type="text/html" id="hot_coin_tpl_2">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
 </script>
 
-<script id="search" type="text/html">
-	<%for(var i = 0; i < searchList.length; i++) {%>
-		<div class="search-result row">
-			<div class="col-md-2 col-sm-2 col-xs-4">
-				<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>">
-					<div class="search-result-img">
-						<div class="inner-img-wrap">
-							<img src="<%= searchList[i].projectLogo %>" >
+<script type="text/html" id="hot_coin_tpl_3">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
+
+
+<script type="text/html" id="hot_article_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+
+		<div class="hot_zone bottom_line">
+
+			<div class="article-detail">
+					<div class="article-icon">
+						 <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>">
+									<img class="" src="<%=list[i].projectLogo %>" style="display: inline;">
+							</a>
+					</div>
+
+					<div class="article-content">
+						<div class="article-info">
+							<%if(list[i].userPic == null ){%>
+								<img src="img/normal-user.png" class="article-creator-pic"/>
+							<%} else {%>
+								<img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+							<% } %>
+							<span><%=list[i].realName %></span>
+							<span class="article-time"><%=list[i].createTime %></span>
+						</div>
+						<h3 style="margin-left:10px">
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="article-title">
+								<%=list[i].textTitle %>
+							</a>
+						</h3>
+						<div class="article-introduce">
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
+								<%:=list[i].textContent%>
+							</a>
+						</div>
+						<div class="meta">
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
+							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
 						</div>
 					</div>
-				</a>
-			</div>
-			<div class="col-md-10 col-sm-10 col-xs-8">
-				<div class="search-result-coin">
-					<div class="">
-						<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>" class="title"><%= searchList[i].projectName %></a>
-					</div>
-					<div class="coin-description">
-							<%:=searchList[i].projectContent%>
-					</div>
-				</div>
 			</div>
 
 		</div>
 	<%}%>
+
 </script>
 
+<script type="text/html" id="news_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<p><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
+	<%}%>
+
+</script>
+
+
+<!--登陆-->
+<script type="text/html" id="short-comment-commit-layer">
+	<div class="main report-login">
+
+		<h4 class="title">
+		    <div class="normal-title">
+				<a class="active" href="">登录</a>
+				<b>·</b>
+				<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+			</div>
+		</h4>
+		<div class="js-sign-in-container">
+
+			<div class="input-prepend  restyle ">
+				<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+				<i class="fa fa-user"></i>
+			</div>
+			<div class="input-prepend border_radiusB">
+				<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+				<i class="fa fa-unlock-alt"></i>
+
+			</div>
+			<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+			<div class="remember-btn">
+				<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+			</div>
+			<div class="forget-btn">
+				<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="">用手机号重置密码</a>
+					</li>
+
+				</ul>
+			</div>
+
+			<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
+			<span class="loader2 loader loaderadd" id="load">
+							<div></div>
+					</span>
+
+			<div class="more-sign">
+				<h6>社交帐号登录</h6>
+				<ul>
+					<li>
+						<img src="img/wechat.png" width="40px">
+					</li>
+					<li>
+						<a href="">其它</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -238,8 +306,11 @@
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
+<script src="js/homepage.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/login.js"></script>
 
-<script src="js/chain.js"></script>
+
 
 </body>
 

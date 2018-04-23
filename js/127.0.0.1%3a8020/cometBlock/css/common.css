@@ -334,7 +334,6 @@ body{
 }
 .nav-user-account .more-active:hover .droplist-wrap{
     display: block;
-    margin-right: -50px;
 }
 .nav-user-account .droplist-wrap{
     display: none;
