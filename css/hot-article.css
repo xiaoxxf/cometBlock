@@ -11,7 +11,7 @@
 	float: right;
     width: 120px;
     margin-left: 30px;
-    
+
 }
 .article-icon img {
     width: 120px;
@@ -27,8 +27,8 @@ a img {
 
 .article-title{
 	color:rgb(79, 163, 237) ;
-	
-	margin-left: -10px;
+
+	/* margin-left: -10px; */
 	font-size: 18px;
     font-weight: 700;
 }
@@ -45,6 +45,27 @@ a img {
 	margin-top:20px ;
 }
 .meta a{
-	margin-left:10px ;
+	/* margin-left:10px ; */
 	color: darkgray;
+}
+
+.article-content.article-info{
+	display: inline;
+}
+
+.article-content.article-info{
+	display: inline;
+}
+.article-content .article-time{
+	margin: 10px 0px;
+    display: inline-block;
+    color: #666;
+}
+
+.article-creator-pic{
+	width: 28px;
+	height: 28px;
+	border-radius: 20px;
+	margin-right:10px;
+	margin-bottom:5px;
 }

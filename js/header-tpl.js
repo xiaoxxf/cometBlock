@@ -115,13 +115,16 @@ $(document).ready(function(){
 
 
 $(function(){
-	var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=12'
-	doJavaGet(uri,function(result){
-		count = result.count
-		if (count!=0) {
-			$('.badge-inform').html(count)
-		}
-	})
+	if (userinfo) {
+		var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=12'
+		doJavaGet(uri,function(result){
+			count = result.count
+			if (count!=0) {
+				$('.badge-inform').html(count)
+			}
+		})
+	}
+
 })
 
 
@@ -137,17 +140,20 @@ $(function(){
 
 // 头部通知中心点击已读
 $('.notification').on('click', '.show-alert-inform-list' , function(e){
-	var self = $(e.currentTarget)
-	var messageId = self.data('messageid')
-	var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
-	doJavaGet(uri, function(e){
-		self.removeClass('unread')
-		count = $('.badge-inform').html()
-		if ( count-1 == 0) {
-			$('.badge-inform').html('')
-		}else{
-			$('.badge-inform').html(count-1)
-		}
-		// self.css('background-color','white')
-	})
+	if (userinfo) {
+		var self = $(e.currentTarget)
+		var messageId = self.data('messageid')
+		var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
+		doJavaGet(uri, function(e){
+			self.removeClass('unread')
+			count = $('.badge-inform').html()
+			if ( count-1 == 0) {
+				$('.badge-inform').html('')
+			}else{
+				$('.badge-inform').html(count-1)
+			}
+			// self.css('background-color','white')
+		})
+	}
+
 })
