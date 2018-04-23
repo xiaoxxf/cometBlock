@@ -47,13 +47,45 @@ $(function(){
 
 })
 
+
+var article_pgae = 1
 // 渲染评测
 $(function(){
+  article_pgae = 1
+  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
+  doJavaGet(uri, function(result){
+      $('.hot_review_region').html("");
+      // debugger
+      var tpl = document.getElementById('hot_article_tpl').innerHTML;
+      var content = template(tpl, {list: result.datas});
+      $('.hot_review_region').append(content)
+
+      $('.article-count').html('共' + result.count +'篇文章被收录')
+
+  })
 
 })
 
+var noMoreData = false
 // 评测加载更多
-$(function(){
+$('.read-more').on('click',function(){
+  $('.read-more').html('加载中...')
+  article_pgae+=1
+  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
 
+  if (!noMoreData) {
+    doJavaGet(uri,function(result){
+      if (result.datas.length == 0) {
+        noMoreData = true
+        $('.read-more').html('已无更多数据')
+      }else{
+        var tpl = document.getElementById('hot_article_tpl').innerHTML;
+        var content = template(tpl, {list: result.datas});
+        $('.hot_review_region').append(content)
+        $('.read-more').html('阅读更多')
+      }
+
+    })
+  }
 
 })

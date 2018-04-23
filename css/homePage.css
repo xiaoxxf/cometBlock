@@ -14,13 +14,13 @@
 .hot_candy img{
     background-size: cover;
     height: 230px;
-    background-color: palegoldenrod;
+    /* background-color: palegoldenrod; */
     width: 100%;
 }
 .article-detail .article-icon img{
-	background-size: cover;
-    height: 150px;
-    background-color: palegoldenrod;
+		background-size: cover;
+    height: 130px;
+    /* background-color: palegoldenrod; */
     width: 100%;
 }
 .row .col-md-3 .candy_box a{
@@ -98,7 +98,7 @@
    margin-top: 30px;
 }
 .article-detail .article-icon{
-	float: right;
+		float: right;
     width: 120px;
     margin: 0px 30px;
 
@@ -123,14 +123,15 @@ a img {
     color: #666;
 }
 .article-content .article-introduce,.meta{
-	line-height: 30px;
+	/* line-height: 30px; */
 	color: black;
 }
 .meta{
 	margin-top:10px ;
+	margin-bottom: 10px;
 }
 .meta a{
-	margin-left:10px ;
+	/* margin-left:10px ; */
 	color: darkgray;
 }
 .read-more{
@@ -162,4 +163,9 @@ a img {
 
 .read-more{
 	cursor: pointer;
+}
+
+.article-introduce{
+	height: 110px;
+	overflow: hidden;
 }

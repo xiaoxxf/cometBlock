@@ -326,11 +326,11 @@ body{
     position: absolute;
     border: 1px solid #B3B689;
     /*background: rgb(79, 163, 237);*/
-   background-color: white;
+    background-color: white;
     white-space: nowrap;
     top: 50px;
     border-top: none;
-    right: 15px;
+    right: -10px;
     border-radius: 4px;
     /*color: #fff;*/
     color:#333;
