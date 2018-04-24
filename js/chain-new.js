@@ -418,12 +418,18 @@ $('#form1').validator({
           },
           success: function (result) {
             ui.submiting = false
-            layer.msg('提交成功，请等待审核', {
-              time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-              end:function(){
-              window.location.href='chain.html';
-              }
-            });
+            if (result.code == -1) {
+              layer.msg('提交成功，请等待审核', {
+                time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                end:function(){
+                window.location.href='chain.html';
+                }
+              });
+            }else{
+              $(".ouro").attr({
+                style: "display:none"
+              });
+            }
           },
           error: function (err) {
             layer.msg('提交失败，请重试');

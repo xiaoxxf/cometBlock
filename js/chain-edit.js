@@ -550,6 +550,9 @@ function chainDetailJs(chainInfoData){
                 });
               }else if(result.code == -1){
                 layer.msg(result.msg)
+                $(".ouro").attr({
+                  style: "display:none"
+                });
               }
               ui.submiting = false
             },
