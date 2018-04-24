@@ -6,14 +6,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>彗星—区块链项目评测社区</title>
-	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
-	<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
-	<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+	<title>链库</title>
 	<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
-	<link rel="stylesheet" href="css/login.css" />
 	<link rel="stylesheet" href="css/homePage.css" />
 
 	<!-- 导航栏 -->
@@ -29,20 +25,20 @@
 					<!--糖果盒-->
 					<div class="candy_box">
 						<div class="hot_candy row">
-							<div class="col-md-7 col-md-offset-1">
-								<div class="hot_zone">
-									<img src="img/huixing.png"/>
+							<div class="col-md-7 col-md-offset-1 col-sm-12 col-xs-12">
+								<div class="hot_zone_padding">
+									<img src="img/banner.png"/>
 								</div>
 							</div>
-							<div class="col-md-3 ">
-								<div class="hot_zone">
+							<div class="col-md-3 col-xs-12 col-sm-12">
+								<div class="hot_zone side">
 									<div class="candy_box">
 										<a href="">糖果盒</a>
 										<a href="">Top10</a>
 										<a href="chain-new.html">创建项目</a>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<span class="article-count"></span>
+											<span >共 <span class="article-count"></span> 篇文章被收录</span>
 										</div>
 									</div>
 								</div>
@@ -50,185 +46,191 @@
 						</div>
 					</div>
 					<!--热门专区-->
-					<div class=" hot_zones row">
-						<div class="col-md-7 col-md-offset-1 col-xs-12 col-sm-12">
-							<div class="hot_zone">
-								<div class="hot_zone_title">
-									<span>热门专区</span>
-									<a href="chain.html"><span>更多 &gt;&gt;</span></a>
-								</div>
-								<div class="hot_zone_coin">
-									<div id="myCarousel" class="carousel slide">
+					<div class="hot_zones_box">
+						<div class="row">
+							<div class="col-md-7 col-md-offset-1 col-sm-12 col-xs-12">
+								<div class="hot_zone hot_zone_box">
+									<div class="hot_zone_title">
+										<span class="hot_block"></span>
+										<span><a href="chain.html" class="hot-span">热门专区</a></span>
+										<!--<a href=""><span>更多 &gt;&gt;</span></a>-->
+											<!-- 轮播（Carousel）指标 -->
+											<div id="circleContent">
+												<ol class="carousel-indicators">
+													<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+													<li data-target="#myCarousel" data-slide-to="1"></li>
+													<li data-target="#myCarousel" data-slide-to="2"></li>
+												</ol>
+											</div>
+									</div>
+									<div class="hot_zone_coin">
+										<div id="myCarousel" class="carousel slide">
 											<div class="carousel-inner">
 												<div class="row hot_coin_region hot_coin_region_1 item active">
-													<!--轮播1-->
+													<!--轮播-->
 
+													<!--轮播-->
 												</div>
 												<div class="row hot_coin_region hot_coin_region_2 item">
-													<!--轮播2-->
+													<!--轮播-->
+
 
 												</div>
 												<div class="row hot_coin_region hot_coin_region_3 item">
-													<!--轮播3-->
+													<!--轮播-->
 
+													<!--轮播-->
 												</div>
 											</div>
-											<!--轮播项目-->
-											<!-- 轮播（Carousel）指标 -->
-											<ol class="carousel-indicators">
-												<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-													<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-													<span class="sr-only">Previous</span>
-												</a>
-												<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-												<li data-target="#myCarousel" data-slide-to="1"></li>
-												<li data-target="#myCarousel" data-slide-to="2"></li>
-												<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-													<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-													<span class="sr-only">Next</span>
-												</a>
-											</ol>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-12 col-xs-12">
+								<div class="hot_zone side">
+									<div class="hot_zone_title_right">
+										<span><a href="news.html" class="hot-span">播报</a></span>
+										<a href="news.html"><span>更多 &gt;&gt;</span></a>
+									</div>
+									<div class="hot_zone_news">
+
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3 col-sm-12 col-xs-12">
-							<div class="hot_zone">
-								<div class="hot_zone_title_right">
-									<span>播报</span>
-									<a href="news.html"><span>更多 &gt;&gt;</span></a>
-								</div>
-								<div class="hot_zone_news">
-
-								</div>
-							</div>
-						</div>
-						</div>
-					<!--热门评测-->
-					<div class="hot_review row">
-						<div class="col-md-7 col-md-offset-1">
-							<div class="hot_review_title">
-								<span>热门评测</span>
-								<a href="hot-article.html"><span>更多&gt;&gt;</span></a>
-							</div>
-
-							<div class="hot_review_region">
-
-							</div>
-
-							<div class="read-more">阅读更多</div>
-
-						</div>
-						<!-- <div class="col-md-3">
-							<div class="hot_zone">
-
-							</div>
-						</div> -->
 					</div>
+					<!--热门专区-->
+
+					<!--热门评测-->
+					<div class="hot_review_box">
+						<div class="row">
+							<div class="col-md-7 col-md-offset-1 col-sm-12 col-xs-12">
+								<div class="hot_review_title">
+									<span class="hot_block"></span>
+									<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门评测</a></span>
+									<a href="hot-article.html"><span>更多&gt;&gt;</span></a>
+								</div>
+								<div class="hot_review_region">
+
+
+
+								</div>
+
+
+
+								<div class="read-more">阅读更多&gt;&gt;</div>
+
+							</div>
+							<div class="col-md-3 col-sm-12 col-xs-12">
+								<div class="hot_zone right_ad side">
+									<img src="img/hot_icon.jpg"  class="img-responsive" style="height: 200px;"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--热门评测-->
 				</div>
 			</div>
 		</div>
 
-<script type="text/html" id="hot_coin_tpl_1">
-	<%for(var i = 0; i < list.length; i++) {%>
-	<div class="col-md-2">
-		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-			<br>
-			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
-			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
-			<p class="score">
-				<%if(list[i].score ==0 ){%>
-				<span>暂无评分</span>
-				<%}else{%>
-				<span class="allstar<%:=list[i].score*5%>"></span>
-				<span><%=list[i].score%></span>
-				<%}%>
-			</p>
-		</a>
-	</div>
-	<%}%>
-</script>
+		<script type="text/html" id="hot_coin_tpl_1">
+			<%for(var i = 0; i < list.length; i++) {%>
+			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+					<br>
+					<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+					<h3 class="project-name"><%=list[i].projectBigName%></h3>
+					<p class="score">
+						<%if(list[i].score ==0 ){%>
+						<span>暂无评分</span>
+						<%}else{%>
+						<span class="allstar<%:=list[i].score*5%>"></span>
+						<span><%=list[i].score%></span>
+						<%}%>
+					</p>
+				</a>
+			</div>
+			<%}%>
+		</script>
 
-<script type="text/html" id="hot_coin_tpl_2">
-	<%for(var i = 0; i < list.length; i++) {%>
-	<div class="col-md-2">
-		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-			<br>
-			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
-			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
-			<p class="score">
-				<%if(list[i].score ==0 ){%>
-				<span>暂无评分</span>
-				<%}else{%>
-				<span class="allstar<%:=list[i].score*5%>"></span>
-				<span><%=list[i].score%></span>
-				<%}%>
-			</p>
-		</a>
-	</div>
-	<%}%>
-</script>
+		<script type="text/html" id="hot_coin_tpl_2">
+			<%for(var i = 0; i < list.length; i++) {%>
+			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+					<br>
+					<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+					<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
+					<p class="score">
+						<%if(list[i].score ==0 ){%>
+						<span>暂无评分</span>
+						<%}else{%>
+						<span class="allstar<%:=list[i].score*5%>"></span>
+						<span><%=list[i].score%></span>
+						<%}%>
+					</p>
+				</a>
+			</div>
+			<%}%>
+		</script>
 
-<script type="text/html" id="hot_coin_tpl_3">
-	<%for(var i = 0; i < list.length; i++) {%>
-	<div class="col-md-2">
-		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-			<br>
-			<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
-			<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
-			<p class="score">
-				<%if(list[i].score ==0 ){%>
-				<span>暂无评分</span>
-				<%}else{%>
-				<span class="allstar<%:=list[i].score*5%>"></span>
-				<span><%=list[i].score%></span>
-				<%}%>
-			</p>
-		</a>
-	</div>
-	<%}%>
-</script>
+		<script type="text/html" id="hot_coin_tpl_3">
+			<%for(var i = 0; i < list.length; i++) {%>
+			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+					<br>
+					<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+					<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
+					<p class="score">
+						<%if(list[i].score ==0 ){%>
+						<span>暂无评分</span>
+						<%}else{%>
+						<span class="allstar<%:=list[i].score*5%>"></span>
+						<span><%=list[i].score%></span>
+						<%}%>
+					</p>
+				</a>
+			</div>
+			<%}%>
+		</script>
+
 
 
 <script type="text/html" id="hot_article_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-
 		<div class="hot_zone bottom_line">
-
 			<div class="article-detail">
-					<div class="article-icon">
-						 <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>">
-									<img class="" src="<%=list[i].projectLogo %>" style="display: inline;">
-							</a>
-					</div>
+						<div class="article-icon">
+							 <a href="">
+										<img class="article-img" src="<%=list[i].projectLogo %>" style="display: inline;">
+								</a>
+						</div>
 
-					<div class="article-content">
-						<div class="article-info">
-							<%if(list[i].userPic == null ){%>
-								<img src="img/normal-user.png" class="article-creator-pic"/>
-							<%} else {%>
-								<img src="<%=list[i].userPic %>" class="article-creator-pic"/>
-							<% } %>
-							<span><%=list[i].realName %></span>
-							<span class="article-time"><%=list[i].createTime %></span>
-						</div>
-						<h3 style="margin-left:10px">
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="article-title">
-								<%=list[i].textTitle %>
-							</a>
-						</h3>
-						<div class="article-introduce">
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
-								<%:=list[i].textContent%>
-							</a>
-						</div>
-						<div class="meta">
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
-							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
+						<div class="article-content">
+							<div class="article-info">
+								<%if(list[i].userPic == null ){%>
+									<img src="img/normal-user.png" class="article-creator-pic"/>
+								<%} else {%>
+									<img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+								<% } %>
+								<span><%=list[i].realName %></span>
+								<span class="article-time"><%=list[i].createTime %></span>
+							</div>
+							<h3 style="margin-left:10px">
+								<a href="" class="article-title"><%=list[i].textTitle %></a>
+							</h3>
+
+							<div class="article-introduce">
+								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
+									<%:=list[i].textContent%>
+								</a>
+							</div>
+							<div class="meta">
+								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
+								<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
+							</div>
 						</div>
 					</div>
-			</div>
-
 		</div>
 	<%}%>
 
@@ -238,66 +240,6 @@
 	<%for(var i = 0; i < list.length; i++) {%>
 		<p><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
 	<%}%>
-
-</script>
-
-
-<!--登陆-->
-<script type="text/html" id="short-comment-commit-layer">
-	<div class="main report-login">
-
-		<h4 class="title">
-		    <div class="normal-title">
-				<a class="active" href="">登录</a>
-				<b>·</b>
-				<a id="js-sign-up-btn" class="" href="register.html">注册</a>
-			</div>
-		</h4>
-		<div class="js-sign-in-container">
-
-			<div class="input-prepend  restyle ">
-				<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
-
-				<i class="fa fa-user"></i>
-			</div>
-			<div class="input-prepend border_radiusB">
-				<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
-				<i class="fa fa-unlock-alt"></i>
-
-			</div>
-			<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
-
-			<div class="remember-btn">
-				<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
-			</div>
-			<div class="forget-btn">
-				<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="">用手机号重置密码</a>
-					</li>
-
-				</ul>
-			</div>
-
-			<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
-			<span class="loader2 loader loaderadd" id="load">
-							<div></div>
-					</span>
-
-			<div class="more-sign">
-				<h6>社交帐号登录</h6>
-				<ul>
-					<li>
-						<img src="img/wechat.png" width="40px">
-					</li>
-					<li>
-						<a href="">其它</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
 </script>
 
 <script src="js/jquery-2.1.1.js"></script>
@@ -306,9 +248,9 @@
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
-<script src="js/homepage.js"></script>
-<script src="js/md5.js"></script>
-<script src="js/login.js"></script>
+<script src="js/homePage.js">
+
+</script>
 
 
 

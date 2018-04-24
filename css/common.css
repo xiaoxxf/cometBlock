@@ -176,14 +176,21 @@ body{
     border-radius: 3px;
     margin-top: 11px;
     background-color: #f3f6f7;
-    margin-right: 135px;
+    margin-right: 200px;
     margin-left: 20px;
 }
-@media only screen and (min-width:1070px) {
+/* @media only screen and (min-width:1070px) {
 	.nav_search{
 		margin-right: 195px;
 	}
+} */
+@media (max-width: 1200px) {
+  .nav_search{
+    width: 200px;
+    margin-right: 130px;
+  }
 }
+
 @media (max-width: 1000px) {
   .nav_search{
     width: 120px;

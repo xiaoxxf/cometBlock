@@ -87,13 +87,16 @@ $(function(){
   article_loading = true
   var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
   doJavaGet(uri, function(result){
-      $('.hot_review_region').html("");
+      // $('.hot_review_region').html("");
       // debugger
       var tpl = document.getElementById('hot_article_tpl').innerHTML;
       var content = template(tpl, {list: result.datas});
       $('.hot_review_region').append(content)
 
-      $('.article-count').html('共' + result.count +'篇文章被收录')
+      var imgW = $(".hot_zone .article-detail .article-icon").width();
+      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+
+      $('.article-count').html(result.count)
       article_loading = false
   })
 
@@ -118,6 +121,9 @@ $('.read-more').on('click',function(){
         var tpl = document.getElementById('hot_article_tpl').innerHTML;
         var content = template(tpl, {list: result.datas});
         $('.hot_review_region').append(content)
+
+        var imgW = $(".hot_zone .article-detail .article-icon").width();
+        $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
         $('.read-more').html('阅读更多')
       }
 
@@ -164,7 +170,15 @@ $('.read-more').on('click',function(){
 
 
 //轮播 到下一项
-	<$(document).ready(function(){ 
+	$(document).ready(function(){
 		$("#myCarousel").carousel({interval:2000});
-		
+
 	});
+
+
+  // var resizeTimer = null;
+  //
+  // $(window).on('resize', function () {
+  //
+  //
+  // })
