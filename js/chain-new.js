@@ -5,11 +5,6 @@ var ui = {
   'fileUpLoading': false
 }
 
-var allFile = {
-  'projectLogo': '',
-  'whitePaper': ''
-}
-
 // 判断是否登录
 $(function(){
 if(userId == undefined){
@@ -104,19 +99,17 @@ $('.white_paper').on('change', function(e){
 	file = e.currentTarget.files[0];
 
   if(!file){
-    allFile.whitePaper = ''
     $(".white_paper_file_name").val('');
-    $(".upload-white-paper").attr('disabled')
     return false
   }
 
 	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
     layer.msg('请选择小于20M的PDF文件')
+    $(".white_paper_file_name").val('');
     return false
 	}
 
   $(".white_paper_file_name").val( file.name );
-  $(".upload-white-paper").removeAttr('disabled')
 })
 
 
@@ -127,15 +120,12 @@ document.getElementById("project_logo_input").addEventListener("change", functio
 
   var file = this.files[0]
   if(!file){
-    $('.upload-project-logo').attr('disabled','disabled')
-    allFile.projectLogo = ''
     return false;
   }
 
   // 校验图片
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
     layer.msg('请选择小于2M的图片文件',{time:1000})
-    $('.upload-project-logo').attr('disabled','disabled')
     return false
   }
 
@@ -149,8 +139,6 @@ document.getElementById("project_logo_input").addEventListener("change", functio
     img.src = reader.result;
   };
   reader.readAsDataURL(file);
-  // 允许上传
-  // $('.upload-project-logo').removeAttr('disabled')
 }, false);
 
 // 团队图片选择及预览
@@ -225,7 +213,6 @@ function upLoadPorjectLogo(){
       // project_logo
       if (data.code == 0) {
         $('#project_logo_file').val(data.datas[0])
-        $('.upload-project-logo').attr('disabled','disabled')
         // layer.msg('上传成功')
       }else if(data.code == -1){
         lay.msg(data.msg)
@@ -268,7 +255,6 @@ function upLoadWhitePaper(){
       ui.fileUpLoading = false
       if (data.code == 0) {
         $('.whitePaperFile').val(data.datas[0])
-        $('.upload-white-paper').attr('disabled','disabled')
         // layer.msg('上传成功')
       }else if(data.code == -1){
         lay.msg(data.msg)
@@ -314,8 +300,6 @@ function uploadMemberPic(e){
         // 把照片的值存在对应的input
         member_pic_name = t.parentElement.nextElementSibling.firstElementChild
         member_pic_name.value =  data.datas[0]
-        // 上传成功后，上传按钮不可选
-        $(t.nextElementSibling.nextElementSibling).attr('disabled','disabled')
         // layer.msg('上传成功')
       }else if(data.code == -1){
         layer.msg(data.msg)
@@ -426,6 +410,7 @@ $('#form1').validator({
 
           beforeSend: function(){
             ui.submiting = true
+            $('.submit_control').html('上传中')
             $('.submit_control').css('disabled','disabled')
           },
           success: function (result) {
