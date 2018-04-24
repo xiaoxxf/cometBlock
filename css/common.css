@@ -12,12 +12,12 @@
 
  /*写文章*/
 .log_writting .btn{
-	color: #2f576be0;
-    background-color: rgba(79, 163, 237, 0.7);
+	color: white;
+    background-color: #006bb3;
     margin-top: 8px;
     margin-left: 10px;
     margin-right: -15px;
-    width: 120px;
+    width: 100px;
 }
 
 /*底部导航*/
@@ -171,13 +171,24 @@ body{
 /*顶部搜索框样式*/
 .nav_search {
     position: relative;
-    width: 235px;
+    width: 200px;
     height: 28px;
-    border-radius: 50px;
+    border-radius: 3px;
     margin-top: 11px;
     background-color: #f3f6f7;
-    margin-right: 110px;
+    margin-right: 200px;
     margin-left: 20px;
+}
+/* @media only screen and (min-width:1070px) {
+	.nav_search{
+		margin-right: 195px;
+	}
+} */
+@media (max-width: 1200px) {
+  .nav_search{
+    width: 200px;
+    margin-right: 130px;
+  }
 }
 
 @media (max-width: 1000px) {

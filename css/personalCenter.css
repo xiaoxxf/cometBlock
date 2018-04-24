@@ -201,6 +201,10 @@ td {
   border-top: 1px solid #f0f0f0;
   line-height: 20px;
 }
+.show_table .show_table_detail .subject ul {
+	/*float: right;*/
+   
+}
 .avatar_receive{
 	display: inline-block;
   margin-right: 5px;
