@@ -151,12 +151,11 @@ $(function(){
   	}
 
     if (data.textTitle.length == 0 || editor.txt.text().length == 0 || !data.score) {
-      $('#identifier').modal()
+      // $('#identifier').modal()
+      layer.msg('请保证评分、标题、标题均填写完整')
       ui.submiting = false
       return false
     }
-
-    // var uri = 'http://10.0.0.169:8080/blockchain/addReview'
 
     function callback(result){
       ui.submiting = false
