@@ -157,3 +157,7 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 	}
 
 })
+
+$('#writting-article').on('click',function(){
+	window.location.href='article-new.html';
+})

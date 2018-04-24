@@ -62,8 +62,22 @@ function verbForm(chainInfoData){
 }
 
 function verbTeam(chainTeamList){
-  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-remove remove" style="display:none" ></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic" ></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="hidden" class = "member_pic_name" name="member_pic_name" value=""><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
-
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3">\
+  									<div class="team_image_box">\
+  										<img src="" class="" />\
+  										<span class="glyphicon glyphicon-remove remove" style="display:none" ></span>\
+  									</div>\
+  									<div>\
+  										<input type="file"  name="file" class="member_pic" style="display:none">\
+  										<button type="button" name="member_pic_choose_button" class="btn btn-default upload-button member_pic_choose_button">选择</button>\
+  										<button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.previousElementSibling)">上传\
+  									</div>\
+  									<div class="member_msg">\
+  										<input type="hidden" class = "member_pic_name" name="member_pic_name" value="">\
+  										<input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称">\
+  										<input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" >\
+  									</div>\
+  								</div>'
   for (var i = 0; i < chainTeamList.length; i++) {
     $('.team').append(string);
   }
@@ -131,8 +145,22 @@ function chainDetailJs(chainInfoData){
 
   // 添加团队成员
   $('.add_member_button').on('click',function(){
-    var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-remove remove" style="display:none" ></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic" ></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="hidden" class = "member_pic_name" name="member_pic_name" value=""><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
-
+    var string = '<div class="col-xs-6 col-md-2 col-sm-3">\
+    									<div class="team_image_box">\
+    										<img src="" class="" />\
+    										<span class="glyphicon glyphicon-remove remove" style="display:none" ></span>\
+    									</div>\
+    									<div>\
+    										<input type="file"  name="file" class="member_pic" style="display:none">\
+    										<button type="button" name="member_pic_choose_button" class="btn btn-default upload-button member_pic_choose_button">选择</button>\
+    										<button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.previousElementSibling)">上传\
+    									</div>\
+    									<div class="member_msg">\
+    										<input type="hidden" class = "member_pic_name" name="member_pic_name" value="">\
+    										<input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称">\
+    										<input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" >\
+    									</div>\
+    								</div>'
     $('.team').append(string);
   })
 
@@ -145,10 +173,6 @@ function chainDetailJs(chainInfoData){
     };
 
   });
-
-  $('.team').on('click','.msg-box',function(e){
-    debugger
-  })
 
   // 减少团队成员
   $('.team').on("click",".remove",function(e){
@@ -220,16 +244,16 @@ function chainDetailJs(chainInfoData){
       return false
     }
 
-    team_image_box = e.target.parentNode.parentNode.previousElementSibling// team_image_box
+    team_image_box = e.target.parentNode.previousElementSibling// team_image_box
     $(team_image_box).children('img').remove()
 
     var file = e.target.files[0];
-    uploadButton = e.target.parentElement.nextElementSibling;
+    uploadButton = e.target.nextElementSibling.nextElementSibling;
 
     // 没选图片
     if (!file) {
       uploadButton.setAttribute('disabled','disabled')
-      member_pic_name = e.target.parentElement.parentElement.nextElementSibling.firstElementChild;
+      member_pic_name = e.target.parentElement.nextElementSibling.firstElementChild;
       member_pic_name.value = '';
       return false
     }
@@ -254,6 +278,7 @@ function chainDetailJs(chainInfoData){
     uploadButton.removeAttribute('disabled')
   })
 
+
   //表单校验与提交
 
   $('#form1').validator({
@@ -261,12 +286,6 @@ function chainDetailJs(chainInfoData){
     validClass: "has-succes",
     invalidClass: "has-error",
     bindClassTo: ".form-group",
-
-    rules: {
-      memberNameValid:function(element, params,field){
-
-      },
-    },
 
     fields: {
       // 'member_name': 'required;',
@@ -288,7 +307,6 @@ function chainDetailJs(chainInfoData){
           return false
         }
 
-
         // 检查团队数据是否完整
         memberName = $(".member_name");
         memberPicName = $(".member_pic_name");
@@ -296,8 +314,8 @@ function chainDetailJs(chainInfoData){
         for (var i = 0; i < memberPicName.length; i++) {
           if ( memberName[i].value == '' || memberPicName[i].value == '' ) {
             layer.msg('团队成员图片必须上传，名称不能为空')
+            return
           }
-          return
         }
 
         // 构建team
@@ -341,14 +359,17 @@ function chainDetailJs(chainInfoData){
               $('.submit_control').css('disabled','disabled')
             },
             success: function (result) {
-
-              ui.submiting = false
-              layer.msg('提交成功，请等待审核', {
-                time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-                end:function(){
-                window.location.href='chain-detail.html?projectId=' + getUrlParam('projectId')
-                }
-              });
+              if (result.code == 0) {
+                ui.submiting = false
+                layer.msg('编辑成功', {
+                  time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                  end:function(){
+                  window.location.href='chain-detail.html?projectId=' + getUrlParam('projectId')
+                  }
+                });
+              }else if (result.code == -1){
+                layer.msg(result.msg)
+              };
             },
             error: function (err) {
 
@@ -372,6 +393,13 @@ function chainDetailJs(chainInfoData){
     "border-radius": "10px"
   });
 
+  $('.chooseLogo').on('click',function(){
+    $('#project_logo_input').click()
+  })
+
+  $('.team').on("click",".member_pic_choose_button",function(e){
+    $(e.target.previousElementSibling).click()
+  })
 }
 
 // 编辑器
@@ -479,15 +507,16 @@ function doUpload(e){
       }
       else if (t.className == 'member_pic') {
         // 把照片的值存在对应的input
-        member_pic_name = t.parentElement.parentElement.nextElementSibling.firstElementChild
+        member_pic_name = t.parentElement.nextElementSibling.firstElementChild
         member_pic_name.value =  data.datas[0]
         // 上传成功后，上传按钮不可选
-        $(t.parentElement.nextElementSibling).attr('disabled','disabled')
+        $(t.nextElementSibling.nextElementSibling).attr('disabled','disabled')
       }
       // white_paper
       else if (t.className == 'white_paper') {
         // allFile.whitePaper = data.datas[0]
-        $('.white_paper_file').val(data.datas[0])
+        $('#white_paper_file').val(data.datas[0])
+
         $(".upload-white-paper").attr('disabled','disabled')
       }
       ui.fileUpLoading = false

@@ -124,11 +124,19 @@ label{
   border-radius: 4px;
   padding: 4px 12px;
   margin-bottom: 5px;
-  margin-top: -25px;
+  /* margin-top: -25px; */
 }
 
 .upload-button hover{
   border: 1px solid black;
+}
+
+.projectlogo-button{
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 4px 12px;
+  margin-bottom: 5px;
+  /* margin-top: -25px; */
 }
 
 .remove{

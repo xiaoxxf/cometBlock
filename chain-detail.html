@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <title></title>
-    <link rel="icon" href="img/huixing.png" type="image/x-icon"/>  
+    <link rel="icon" href="img/huixing.png" type="image/x-icon"/>
     <link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/common.css">
@@ -223,7 +223,12 @@
             </div>
             <div class="item">
                 <span class="desc-title">白皮书</span>:
+                <%if(list.whitePaper.length ==0 ){%>
+                  <span class="desc-title">暂无白皮书</span>
+                <%}else{%>
                 <a target="_blank" href="<%:=list.whitePaper%>" class="desc-detail">点击查看</a>
+                <%}%>
+
             </div>
         </div>
 </script>

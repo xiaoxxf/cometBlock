@@ -20,7 +20,7 @@ var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
 var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
-    //GetCookie
+    //GetCookiew
     if (!WebApiToken) {
         var cookies = document.cookie.split('; ');
         for (var i = 0, parts; (parts = cookies[i] && cookies[i].split('=')); i++) {

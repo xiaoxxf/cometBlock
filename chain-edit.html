@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>彗星链库项目编辑</title>
-		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>  
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 		<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />
@@ -59,13 +59,15 @@
 					</div>
 
 					<!--选择文件-->
-					<a href="javascript:;" class="file">选择
-						<input type="file" id="project_logo_input" class='project_logo' name="project_logo" value="<%=list.projectLogo%>" >
+					<!-- <a href="javascript:;" class="file">选择 -->
+						<input type="file" id="project_logo_input" class='project_logo' name="project_logo" value="<%=list.projectLogo%>" style="display:none" >
 						<input type="hidden" id="project_logo_file" name="project_logo_file" value="<%=list.projectLogo%>" >
-					</a>
+					<!-- </a> -->
 
-					<button type="button" class="btn btn-default upload-button upload-project-logo" disabled='disabled' onclick="doUpload($('#project_logo_input')[0])">上传
+					<button type="button" class="btn btn-default projectlogo-button chooseLogo" name="button">选择</button>
+					<button type="button" class="btn btn-default projectlogo-button upload-project-logo" disabled='disabled' onclick="doUpload($('#project_logo_input')[0])">上传
 					</button>
+
 
 					<p class="help-block">建议上传宽高96*96像素的图片，仅支持小于2M的jpg、png格式文件 </p>
 				</div>
