@@ -71,7 +71,7 @@
 
 @media only screen and (max-width: 400px) {
 	.hot_zone_box{
-		min-height:1000px ;
+		/* min-height:1000px ; */
 	}
 
 }
@@ -223,6 +223,29 @@ a img {
 }
 
 
+.mobile-hot-coin{
+	display: none;
+	overflow: scroll;
+	width: 100%;
+	margin-left: 10px;
+}
+
+.mobile-hot-coin .coin-detail-mobile{
+	width: 100%;
+	height: 100%;
+}
+@media (max-width:767px) {
+	.mobile-hot-coin{
+		display: flex;
+	}
+	.hot_zone_box .circleContent{
+		display: none
+	}
+	.hot_zone_box .slide{
+		display: none
+	}
+}
+
 .new_title{
 	float: left;
 	color: black;
@@ -298,7 +321,7 @@ a img {
 
 .article-introduce{
 	height: 110px;
-	overflow: hidden;
+	overflow: scroll;
 }
 
 .article-creator-pic{
