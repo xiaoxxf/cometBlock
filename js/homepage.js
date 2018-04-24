@@ -1,5 +1,17 @@
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+$(function(){
+  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=15'
+
+  doJavaGet(uri,function(result){
+   // console.log(result.datas)
+
+   var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
+   var content = template(tpl, {list: result.datas});
+   $('.mobile-hot-coin').append(content)
+
+  }, "json")
+})
 
 // 渲染热门专区
 $(function(){
