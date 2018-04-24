@@ -57,6 +57,18 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var userId = $.cookie('userid');//获取userid
     var likes = 0;
     var score = $("#n_rating").val();
+    
+    var area_width 
+    var area_height 
+    
+    if($(window).width() <= 767)
+ 	{
+	 	var area_width = '320px'
+	    var area_height = '500px'
+ 	}else{
+ 		var area_width = '520px'
+	    var area_height = '600px'
+ 	}
     var shortTxt = $(".short-comment").val();
     if(userId == undefined){
         layer.msg('您还没有登录')
@@ -65,7 +77,7 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
             shade:0,
             title: 0,
             skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
+            area: [area_width, area_height], //宽高
             content: $("#short-comment-commit-layer").html()
         });
         return;
@@ -250,6 +262,17 @@ $(".short-comment-commit").on('click',function (e) {
     var userId = $.cookie('userid');//获取userid
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
+    var area_width 
+    var area_height 
+    if($(window).width() <= 767)
+ 	{
+	 	area_width = '320px'
+	    area_height = '500px'
+ 	}else{
+ 		 area_width = '520px'
+	     area_height = '600px'
+ 	}
+    
     if(userId == undefined){
         layer.msg('您还没有登录')
         layer.open({
@@ -257,7 +280,7 @@ $(".short-comment-commit").on('click',function (e) {
             shade:0,
             title: 0,
             skin: 'layui-layer-report', //加上边框
-            area: ['520px', '600px'], //宽高
+            area: [area_width,area_height ], //宽高
             content: $("#short-comment-commit-layer").html()
         });
         return;

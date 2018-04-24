@@ -158,3 +158,13 @@ $('.read-more').on('click',function(){
 //         }
 //     }, "json");
 // });
+
+
+
+
+
+//轮播 到下一项
+	<$(document).ready(function(){ 
+		$("#myCarousel").carousel({interval:2000});
+		
+	});
