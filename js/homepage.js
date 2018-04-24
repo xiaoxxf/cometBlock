@@ -75,7 +75,12 @@ $(function(){
     // 限制搜索结果描述的长度
     var descriptions = document.getElementsByClassName('new_title');
 
-    var show_length = 16
+    if ($(window).width() < 767) {
+      var show_length = 25
+
+    }else{
+      var show_length = 16
+    }
     // if ($(window).width() <= 767) {
     //   show_length = 5
     // }
