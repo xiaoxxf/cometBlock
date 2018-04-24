@@ -411,7 +411,10 @@ $('#form1').validator({
           beforeSend: function(){
             ui.submiting = true
             $('.submit_control').html('上传中')
-            $('.submit_control').css('disabled','disabled')
+            $('.submit_control').attr('disabled','disabled')
+            $(".ouro").attr({
+              style: "display:inline-block"
+            });
           },
           success: function (result) {
             ui.submiting = false

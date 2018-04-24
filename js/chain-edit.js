@@ -533,14 +533,17 @@ function chainDetailJs(chainInfoData){
             contentType: 'application/json; charset=UTF-8',
 
             beforeSend: function(){
+              $(".ouro").attr({
+                style: "display:inline-block"
+              });
               ui.submiting = true
               $('.submit_control').html('上传中')
-              $('.submit_control').css('disabled','disabled')
+              $('.submit_control').attr('disabled','disabled')
             },
             success: function (result) {
               if (result.code == 0) {
                 layer.msg('编辑成功', {
-                  time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                  time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
                   end:function(){
                   window.location.href='chain-detail.html?projectId=' + projectId;
                   }
