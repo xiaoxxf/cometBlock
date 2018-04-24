@@ -553,6 +553,8 @@ function chainDetailJs(chainInfoData){
                 $(".ouro").attr({
                   style: "display:none"
                 });
+                $('.submit_control').html('提交')
+                $('.submit_control').attr('disabled','')
               }
               ui.submiting = false
             },

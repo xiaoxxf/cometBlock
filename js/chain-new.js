@@ -426,9 +426,12 @@ $('#form1').validator({
                 }
               });
             }else{
+              layer.msg(result.msg)
               $(".ouro").attr({
                 style: "display:none"
               });
+              $('.submit_control').html('提交')
+              $('.submit_control').attr('disabled','')
             }
           },
           error: function (err) {
