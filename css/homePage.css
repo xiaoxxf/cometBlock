@@ -5,32 +5,25 @@
 .candy_box{
 	margin-top:30px ;
 }
-/*.row .col-md-9 img{
-    background-size: cover;
-    height: 200px;
-    background-color: palegoldenrod;
-    width: 100%;
-}*/
+
 .hot_candy img{
     background-size: cover;
-    height: 230px;
-    /* background-color: palegoldenrod; */
+    height: 250px;
     width: 100%;
 }
 .article-detail .article-icon img{
-		background-size: cover;
-    height: 130px;
-    /* background-color: palegoldenrod; */
+	background-size: cover;
+    height: 140px;
     width: 100%;
-		margin-top: 15px
+	margin-top: 60px
 }
 .row .col-md-3 .candy_box a{
-		color: #333;
-    margin: 10px auto;
+	color: #006bb3;
+    margin: 15px;
     display: block;
     text-align: center;
     line-height: 30px;
-    border: solid 1px #ccc;
+    border: solid 1px #006bb3;
     border-radius: 8px;
 }
 .included_ariticle{
@@ -49,8 +42,26 @@
 	padding: 10px;
 	/*height: 260px;*/
 }
+.hot_block{
+	display: inline-block;
+	width: 10px;
+    height: 20px;
+    margin-right: 15px;
+    background-color: #006bb3;
+}
+.hot_main_area{
+	top: 10px;
+    position: absolute;
+}
+  
+@media only screen and (max-width: 400px) {
+	.hot_zone_box{
+		min-height:1000px ;
+	}
+	
+}
 .hot_zone_title,.hot_zone_title_right,.hot_review_title{
-		height: 40px;
+	height: 40px;
     padding: 10px;
     border-bottom: solid 1px gainsboro;
 }
@@ -64,7 +75,7 @@
 .hot_zone_title span:last-child,.hot_zone_title_right span:last-child
 ,.hot_review_title span:last-child{
 	float: right;
-	color: rgb(79, 163, 237)
+	color: #006bb3;
 }
 .hot_zones .hot_zone_title_right a{
 	display: initial;
@@ -74,8 +85,8 @@
 	color: darkgray;
 }
 .hot_zone_coin .col-md-2 img{
-	width: 120px;
-	height: 150px;
+	/*width: 120px;*/
+	height: 100px;
 }
 .hot_zone_coin .row .col-md-2{
 	margin: 8px;
@@ -89,11 +100,25 @@
 	text-align: center;
 }
 .hot_zone_news p{
+	font-size: 14px;
 	line-height: 40px;
 	height: 40px;
 }
+
+/*@media only screen and (max-width:220px ) {
+	.hot_zone_news p{
+		line-height: none;
+		text-align: left;
+	}
+
+}*/
+@media only screen and (max-width:220px ) {
+	.hot_zone_news p{
+		text-align: left;
+	}
+}
 /*热门评测*/
-.hot_review,.hot_zones{
+.hot_review_box,.hot_zones_box{
 	margin-top: 30px;
 }
 .article-top-box{
@@ -118,7 +143,7 @@ a img {
     font-weight: bold;
     margin-left: -10px;
     font-size: 17px;
-    line-height: 30px;
+    line-height: 40px;
 }
 .article-content{
 	margin:0px 20px;
@@ -126,13 +151,16 @@ a img {
 .article-content.article-info{
 	display: inline;
 }
+.article-info .ariticle_user{
+	font-weight: bold;
+}
 .article-content .article-time{
 	margin: 10px 0px;
     display: inline-block;
     color: #666;
 }
 .article-content .article-introduce,.meta{
-	/* line-height: 30px; */
+	 line-height: 25px; 
 	color: black;
 }
 .meta{
@@ -141,7 +169,7 @@ a img {
 }
 .meta a{
 	/* margin-left:10px ; */
-	color: darkgray;
+	color: #777777c4;
 }
 .read-more{
 	text-align: center;
@@ -160,7 +188,7 @@ a img {
     white-space: nowrap;
     text-overflow: ellipsis;
 	font-size: 12px;
-	color:#ffac2d;
+	color: #006bb3;
 	margin-bottom: 15px;
 	margin-top: 5px
 }
@@ -179,13 +207,25 @@ a img {
 }
 
 /*轮播*/
-.carousel-indicators{
-	bottom: 0px !important;
+@media (min-width: 992px){
+	.col-md-2 {
+    width: 17%;
+ }
 }
 
+.carousel-indicators{
+	top: 20px !important;
+    text-align: right;
+    left: 65%;
+    height: 40px;
+    width: 55%;
+	
+}
+.carousel-indicators li{
+	    border: 1px solid rgb(79, 163, 237) !important;
+}
 .carousel-indicators .active{
 	background-color: #ddd;
-
 }
 .carousel-control.right,.carousel-control.left{
 	background-image:none;
@@ -193,7 +233,18 @@ a img {
 .carousel-control{
 	color:rgba(0,0,0,.0001) ;
 	width: 5%;
+	position: absolute;
+    top: -25px;
+    bottom: none;
+    left: 227px;
+    width: 15%;
+    font-size: 20px;
+    color: #fff;
 }
+.carousel-control.right{
+	right: -40px; 
+    left: auto;
+	}
 .carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{
 	width: 20px;
     height: 20px;
@@ -206,8 +257,14 @@ a img {
 	font-size: 12px !important;
 }
 
+@media only screen and (max-width: 900px) {
+	.carousel-inner{
+	width: 380px;
+	}
+}
+
 .article-introduce{
-	height: 110px;
+	/*height: 110px;*/
 	overflow: hidden;
 }
 
@@ -218,3 +275,5 @@ a img {
 	margin-right:10px;
 	margin-bottom:5px;
 }
+/*广告位*/
+
