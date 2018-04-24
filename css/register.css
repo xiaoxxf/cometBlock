@@ -2,12 +2,12 @@
 		background-color: #f3f6f7;
 		line-height: 1.6
 	}
-	
+
 	.header_title {
 		color: rgb(79, 163, 237);
 		font-size: 26px;
 	}
-	
+
 	.container {
 		/*width: 100%;*/
 	}
@@ -28,7 +28,7 @@
 		.main {
 			width: 320px;
 		}
-		
+
 	}
 	.reset-title,
 	.title {
@@ -37,33 +37,33 @@
 		font-weight: 400;
 		color: #969696;
 	}
-	
+
 	.main .title {
 		padding: 10px;
 		font-weight: 400;
 		color: #969696;
 	}
-	
+
 	.main h4 {
 		font-size: 18px;
 	}
-	
+
 	.active {
 		padding: 10px;
 		color: #969696;
 	}
-	
+
 	.btn-up-resend:hover,
 	.btn-up-resend:active {
 		color: white !important;
 	}
-	
+
 	h4 {
 		font-size: 18px;
 	}
-	
+
 	.main {}
-	
+
 	.sign {
 		height: 100%;
 		min-height: 750px;
@@ -71,22 +71,22 @@
 		font-size: 14px;
 		background-color: #f1f1f1;
 	}
-	
+
 	#js-sign-up-btn {
 		padding: 10px;
 		font-weight: 700;
 		color: #3194d0;
 		border-bottom: 2px solid #3194d0;
 	}
-	
+
 	.sign form {
 		margin-bottom: 30px;
 	}
-	
+
 	form {
 		text-align: center;
 	}
-	
+
 	.input-prepend input {
 		width: 100%;
 		height: 50px;
@@ -97,16 +97,16 @@
 		vertical-align: middle;
 		/*border-radius: 5px;*/
 	}
-	
+
 	label {
 		color: #a94442;
 		;
 	}
-	
+
 	.input-prepend {
 		position: relative;
 	}
-	
+
 	.input-prepend i {
 		position: absolute;
 		top: 14px;
@@ -114,7 +114,7 @@
 		font-size: 18px;
 		color: #969696;
 	}
-	
+
 	.fa {
 		display: inline-block;
 		font: normal normal normal 14px/1 FontAwesome;
@@ -123,30 +123,30 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
-	
+
 	.fa-user:before {
 		content: "\f007";
 	}
-	
+
 	.border_radT {
 		border-radius: 5px 5px 0 0;
 		border-bottom: none !important;
 	}
-	
+
 	.border_radB {
 		border-radius: 0 0 5px 5px;
 		border-top: none !important;
 	}
-	
+
 	.border_radC {
 		border-top: none !important;
 	}
-	
+
 	.btn-up-resend {
 		position: absolute;
 		top: 7px;
 		right: 7px;
-		width: 110px;
+		width: 80px;
 		height: 36px;
 		font-size: 13px;
 		color: #fff;
@@ -154,16 +154,16 @@
 		border-radius: 20px;
 		line-height: 36px;
 	}
-	
+
 	.phone_code_hide {
 		/*display: none;*/
 	}
-	
+
 	.remember-btn {
 		float: left;
 		margin: 15px 0;
 	}
-	
+
 	#realName-error,
 	#session_phone-error,
 	#session_password-error {
@@ -180,21 +180,21 @@
 		color: #333333ad;
 		box-shadow: 0 0 15px #0088cc61;
 	}
-	
+
 	.forget-btn {
 		float: right;
 		position: relative;
 		margin: 15px 0;
 		font-size: 14px;
 	}
-	
+
 	.remember-btn span {
 		margin-left: 5px;
 		font-size: 15px;
 		color: #969696;
 		vertical-align: middle;
 	}
-	
+
 	.sign-in-button {
 		background: #3194d0;
 		width: 100%;
@@ -209,25 +209,25 @@
 		clear: both;
 		margin-top: 40px;
 	}
-	
+
 	.more-sign {
 		margin-top: 50px;
 		margin-bottom: 30px;
 	}
-	
+
 	.more-sign h6 {
 		position: relative;
 		margin: 0 0 26px;
 		font-size: 12px;
 		color: #555555c9;
 	}
-	
+
 	h6 {
 		font-family: inherit;
 		font-weight: 500;
 		line-height: 1.1;
 	}
-	
+
 	.more-sign h6:before {
 		content: "";
 		border-top: 1px solid #b5b5b5;
@@ -236,11 +236,11 @@
 		width: 60px;
 		top: 5px;
 	}
-	
+
 	.more-sign h6:before {
 		left: 30px;
 	}
-	
+
 	.more-sign h6:after,
 	.more-sign h6:before {
 		content: "";
@@ -250,58 +250,58 @@
 		width: 90px;
 		top: 5px;
 	}
-	
+
 	*,
 	 :after,
 	 :before {
 		box-sizing: border-box;
 	}
-	
+
 	.more-sign h6:after {
 		right: 30px;
 	}
-	
+
 	.more-sign ul {
 		text-align: center;
 	}
-	
+
 	.more-sign ul li {
 		display: inline-block;
 	}
-	
+
 	.more-sign li {
 		line-height: 20px;
 	}
-	
+
 	.more-sign li img {}
-	
+
 	.more-sign ul a {
 		width: 50px;
 		height: 50px;
 		line-height: 50px;
 		display: block;
 	}
-	
+
 	.sign .more-sign .ic-more {
 		color: #999;
 	}
-	
+
 	.more-sign ul li a {
 		color: darkgray;
 		text-decoration: none;
 		margin-left: 20px;
 	}
-	
+
 	.register-anouceed {
 		margin-top: 16px;
 		color: gray;
 	}
-	
+
 	.register-anouceed p span {
 		color: #00B7EE;
 		margin: 0 8px;
 	}
-	
+
 	.n-bottom {
 		display: inherit !important;
 		top: 10px !important;
@@ -310,7 +310,7 @@
 		vertical-align: top;
 		outline: 0;
 	}
-	
+
 	#sign-in-loading {
 		position: relative;
 		width: 20px;
@@ -320,7 +320,7 @@
 		margin-right: 2px;
 		/*display: none;*/
 	}
-	
+
 .borderTop{
 	border-top: 1px solid #c8c8c8 !important;
 }
