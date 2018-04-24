@@ -61,8 +61,22 @@ function jump_block_browser(){
 // 添加团队成员
 function add_team_member()
 {
-  var string = '<div class="col-xs-6 col-md-2 col-sm-3"><div class="team_image_box"><img src="" class="" /><span class="glyphicon glyphicon-remove remove" style="display:none" ></span></div><div><a href="javascript:;" class="file">选择<input type="file"  name="file" class="member_pic" ></a> <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.childNodes[1])">上传</div><div class="member_msg"><input type="hidden" class = "member_pic_name" name="member_pic_name" value=""><input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称"><input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" ></div></div>'
-
+  var string = '<div class="col-xs-6 col-md-2 col-sm-3">\
+  									<div class="team_image_box">\
+  										<img src="" class="" />\
+  										<span class="glyphicon glyphicon-remove remove" style="display:none" ></span>\
+  									</div>\
+  									<div>\
+  										<input type="file"  name="file" class="member_pic" style="display:none">\
+  										<button type="button" name="member_pic_choose_button" class="btn btn-default upload-button member_pic_choose_button">选择</button>\
+  										<button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.previousElementSibling)">上传\
+  									</div>\
+  									<div class="member_msg">\
+  										<input type="hidden" class = "member_pic_name" name="member_pic_name" value="">\
+  										<input type="text" class="form-control member_name" name="member_name" value="" placeholder="名称">\
+  										<input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" >\
+  									</div>\
+  								</div>'
   $('.team').append(string);
 }
 
@@ -146,16 +160,16 @@ $('.team').on('change', $('.member_pic'), function(e) {
     return false
   }
 
-  team_image_box = e.target.parentNode.parentNode.previousElementSibling// team_image_box
+  team_image_box = e.target.parentNode.previousElementSibling// team_image_box
   $(team_image_box).children('img').remove()
 
   var file = e.target.files[0];
-  uploadButton = e.target.parentElement.nextElementSibling;
+  uploadButton = e.target.nextElementSibling.nextElementSibling;
 
   // 没选图片
   if (!file) {
     uploadButton.setAttribute('disabled','disabled')
-    member_pic_name = e.target.parentElement.parentElement.nextElementSibling.firstElementChild;
+    member_pic_name = e.target.parentElement.nextElementSibling.firstElementChild;
     member_pic_name.value = '';
     return false
   }
@@ -230,10 +244,10 @@ function doUpload(e){
       }
       else if (t.className == 'member_pic') {
         // 把照片的值存在对应的input
-        member_pic_name = t.parentElement.parentElement.nextElementSibling.firstElementChild
+        member_pic_name = t.parentElement.nextElementSibling.firstElementChild
         member_pic_name.value =  data.datas[0]
         // 上传成功后，上传按钮不可选
-        $(t.parentElement.nextElementSibling).attr('disabled','disabled')
+        $(t.nextElementSibling.nextElementSibling).attr('disabled','disabled')
       }
       // white_paper
       else if (t.className == 'white_paper') {
@@ -245,7 +259,7 @@ function doUpload(e){
     },
     error:function(e){
       ui.fileUpLoading = false
-      alert("上传错误，请重试！");
+      layer.msg("上传错误，请重试！");
     }
   });
 
@@ -293,7 +307,13 @@ $('#form1').validator({
       for (var i = 0; i < memberPicName.length; i++) {
         if ( memberName[i].value == '' || memberPicName[i].value == '' ) {
           layer.msg('团队成员图片必须上传，名称不能为空')
+          return
         }
+      }
+
+      // 检查币种图片是否上传
+      if (allFile.projectLogo == '') {
+        layer.msg('必须上传币种图片')
         return
       }
 
@@ -367,7 +387,6 @@ function buildTeam(){
     temp.picHref = memberPicName[i].value;
     temp.name = memberName[i].value;
     temp.position = memberPosition[i].value;
-    temp.projectId = projectId
     team.push(temp)
   }
   //判断team的图片、名字都必须存在
@@ -413,3 +432,11 @@ $('.w-e-text-container').css({
   "z-index": 10000,
   "border-radius": "10px"
 });
+
+$('.chooseLogo').on('click',function(){
+  $('#project_logo_input').click()
+})
+
+$('.team').on("click",".member_pic_choose_button",function(e){
+  $(e.target.previousElementSibling).click()
+})
