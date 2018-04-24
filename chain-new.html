@@ -36,13 +36,11 @@
 									<img src="" class="coin_image" />
 								</div>
 
-								<!--选择文件-->
-								<!-- <a href="javascript:;" class="file">选择 -->
+								<!--选择文件(隐藏)-->
 									<input type="file" id="project_logo_input" class='project_logo' name="project_logo" style="display:none">
-								<!-- </a> -->
-								<button type="button" class="btn btn-default projectlogo-button chooseLogo" name="button">选择</button>
-								<button type="button" class="btn btn-default projectlogo-button upload-project-logo" disabled='disabled' onclick="doUpload($('#project_logo_input')[0])">上传
-								</button>
+								<!-- 选择文件按钮（js模拟点击） -->
+								<button type="button" class="btn btn-default upload-button chooseLogo" name="button">选择</button>
+
 								<input type="hidden" id="project_logo_file" name="projectLogoFile" value="">
 								<p class="help-block">建议上传宽高96*96像素的图片，仅支持小于2M的jpg、png格式文件 </p>
 							</div>
@@ -86,7 +84,7 @@
 										<input type="file"  name="file" class="member_pic" style="display:none">
 										<!-- </a> -->
 										<button type="button" name="member_pic_choose_button" class="btn btn-default upload-button member_pic_choose_button">选择</button>
-										<button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.previousElementSibling)">上传
+										<!-- <button type="button" class="btn btn-default upload-button" disabled="disabled" onclick="doUpload(this.previousElementSibling.previousElementSibling)">上传 -->
 									</div>
 									<div class="member_msg">
 										<input type="hidden" class = "member_pic_name" name="member_pic_name" value="">
@@ -203,13 +201,7 @@
 								</button>
 							</div>
 
-							<!-- 上传白皮书 -->
-							<div class="col-xs-1" style="margin-left:-30px;">
-								<button type="button" disabled='disabled' class="btn btn-default upload-white-paper" onclick="doUpload(this.parentElement.parentElement.children[1].children[0])">
-									<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-								</button>
-							</div>
-							<input type="hidden" name="whitePaperFile" value="">
+							<input type="hidden" class="whitePaperFile" name="whitePaperFile" value="">
 						</div>
 
 						<hr />
