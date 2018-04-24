@@ -332,7 +332,7 @@ $('#form1').validator({
   },
 
   fields: {
-    'project_logo_file': 'required;',
+    // 'project_logo_file': 'required;',
 		'project_name': 'required',
 		'project_big_name': 'required',
     'project_type': 'required',

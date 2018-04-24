@@ -58,19 +58,16 @@
 						<img src="<%=list.projectLogo %>" class="coin_image" />
 					</div>
 
-					<!--选择文件-->
-					<!-- <a href="javascript:;" class="file">选择 -->
+					<!--选择文件(隐藏)-->
 						<input type="file" id="project_logo_input" class='project_logo' name="project_logo" value="<%=list.projectLogo%>" style="display:none" >
-						<input type="hidden" id="project_logo_file" name="project_logo_file" value="<%=list.projectLogo%>" >
-					<!-- </a> -->
+					<!-- 选择文件按钮（js模拟点击） -->
+					<button type="button" class="btn btn-default upload-button chooseLogo" name="button">选择</button></button>
 
-					<button type="button" class="btn btn-default projectlogo-button chooseLogo" name="button">选择</button>
-					<button type="button" class="btn btn-default projectlogo-button upload-project-logo" disabled='disabled' onclick="doUpload($('#project_logo_input')[0])">上传
-					</button>
-
+					<input type="hidden" id="project_logo_file" name="projectLogoFile" value="<%=list.projectLogo%>" >
 
 					<p class="help-block">建议上传宽高96*96像素的图片，仅支持小于2M的jpg、png格式文件 </p>
 				</div>
+
 			</div>
 
 			<div class="form-group row">
@@ -190,7 +187,7 @@
 				<!--选择上传的白皮书(隐藏)-->
 				<div hidden="true">
 					<input class="white_paper" name="white_paper" type="file" style="display:none">
-					<input type="hidden" id="white_paper_file" name="white_paper_file" value="<%=list.whitePaper%>">
+					<input type="hidden" id="white_paper_file" name="whitePaperFile" value="<%=list.whitePaper%>">
 				</div>
 
 				<!--显示文件名-->
@@ -206,12 +203,6 @@
 
 				</div>
 
-				<!-- 上传白皮书 -->
-				<div class="col-xs-1" style="margin-left:-30px;">
-					<button type="button" disabled='disabled' class="btn btn-default upload-white-paper" onclick="doUpload(this.parentElement.parentElement.children[1].children[0])">
-						<span class="glyphicon glyphicon-upload" aria-hidden="true"></span>
-					</button>
-				</div>
 			</div>
 
 			<hr />
