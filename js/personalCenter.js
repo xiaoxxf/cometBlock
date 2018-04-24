@@ -388,6 +388,7 @@ $(function(){
 	}else{
 		preview.src = 'img/normal-user.png'
 	}
+	$('#ownname').val(userinfo.realName)
 })
 
 //预览图片
