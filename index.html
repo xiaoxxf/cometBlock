@@ -55,7 +55,7 @@
 										<span><a href="chain.html" class="hot-span">热门专区</a></span>
 										<!--<a href=""><span>更多 &gt;&gt;</span></a>-->
 											<!-- 轮播（Carousel）指标 -->
-											<div id="circleContent">
+											<div id="circleContent" class="circleContent">
 												<ol class="carousel-indicators">
 													<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 													<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -84,9 +84,17 @@
 											</div>
 
 										</div>
+
+
+										<div class="row hot_coin_region mobile-hot-coin">
+
+										</div>
 									</div>
 								</div>
 							</div>
+
+
+
 							<div class="col-md-3 col-sm-12 col-xs-12">
 								<div class="hot_zone side">
 									<div class="hot_zone_title_right">
@@ -133,6 +141,26 @@
 				</div>
 			</div>
 		</div>
+
+		<script type="text/html" id="hot_coin_tpl_mobile">
+			<%for(var i = 0; i < list.length; i++) {%>
+			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail-mobile">
+				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+					<br>
+					<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+					<h3 class="project-name"><%=list[i].projectBigName%></h3>
+					<p class="score">
+						<%if(list[i].score ==0 ){%>
+						<span>暂无评分</span>
+						<%}else{%>
+						<span class="allstar<%:=list[i].score*5%>"></span>
+						<span><%=list[i].score%></span>
+						<%}%>
+					</p>
+				</a>
+			</div>
+			<%}%>
+		</script>
 
 		<script type="text/html" id="hot_coin_tpl_1">
 			<%for(var i = 0; i < list.length; i++) {%>
