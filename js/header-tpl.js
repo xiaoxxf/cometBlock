@@ -162,19 +162,20 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 	if (userinfo) {
 		var self = $(e.currentTarget)
 		var messageId = self.data('messageid')
-		var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
-		doJavaGet(uri, function(e){
-			self.removeClass('unread')
-			count = $('.badge-inform').html()
-			if ( count == "") {
-				$('.badge-inform').html('')
-			}else{
-				$('.badge-inform').html(count-1)
-			}
-			// self.css('background-color','white')
-		})
+		var status = self.data('status')
+		if ( $(self).hasClass('unread') ) {
+			var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
+			doJavaGet(uri, function(e){
+				self.removeClass('unread')
+				count = $('.badge-inform').html()
+				if ( count == "" || count-1 == 0) {
+					$('.badge-inform').html('')
+				}else{
+					$('.badge-inform').html(count-1)
+				}
+			})
+		}
 	}
-
 })
 
 $('#writting-article').on('click',function(){
