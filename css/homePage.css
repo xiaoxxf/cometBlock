@@ -60,15 +60,15 @@ a img {
 
 
 .hot_zone_title,.hot_zone_title_right{
-	  height: 58px;
+	  height: 48px;
     padding: 10px;
     border-bottom: solid 1px gainsboro;
 }
 
-.hot_zone_title span:first-child{
+.hot_zone_title span{
 	float: left;
 }
-.hot_zone_title span:last-child,.hot_zone_title_right span:last-child
+.hot_zone_title_right span:last-child
 ,.hot_review_title span:last-child{
 	float: right;
 	color: #006bb3;
@@ -317,18 +317,17 @@ a img {
 
 /*轮播*/
 @media (min-width: 992px){
-	.col-md-2 {
+	/* .col-md-2 {
     width: 17%;
- }
+ } */
 }
 
 .carousel-indicators{
-	top: 20px !important;
+	  top: -40px !important;
     text-align: right;
-    left: 65%;
+    left: 71%;
     height: 40px;
     width: 55%;
-
 }
 .carousel-indicators li{
 	    border: 1px solid rgb(79, 163, 237) !important;
