@@ -260,6 +260,15 @@ a img {
 	 /* line-height: 25px; */
 	color: black;
 }
+
+.article-creator-pic{
+	width: 28px;
+	height: 28px;
+	border-radius: 20px;
+	margin-right:10px;
+	margin-bottom:5px;
+}
+
 .meta{
 	margin-top:15px ;
 	margin-bottom: 10px;
@@ -378,13 +387,7 @@ a img {
 }
 
 
-.article-creator-pic{
-	width: 28px;
-	height: 28px;
-	border-radius: 20px;
-	margin-right:10px;
-	margin-bottom:5px;
-}
+
 
 .article-count{
 	color: red
