@@ -112,7 +112,7 @@ $(function(){
 
         var content_length = null
         if ($(window).width() < 767) {
-          content_length = 35
+          content_length = 55
         }else{
           content_length = 120
         }
@@ -121,9 +121,9 @@ $(function(){
           result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
         }
 
-        if (result.datas[i].textTitle.length > 30) {
-          result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-        }
+        // if (result.datas[i].textTitle.length > 30) {
+        //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+        // }
 
 
       }
@@ -159,7 +159,7 @@ $('.read-more').on('click',function(){
 
         var content_length = null
         if ($(window).width() < 767) {
-          content_length = 35
+          content_length = 55
         }else{
           content_length = 120
         }
@@ -171,9 +171,9 @@ $('.read-more').on('click',function(){
           if (result.datas[i].textContent.length > content_length) {
             result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
           }
-          if (result.datas[i].textTitle.length > 30) {
-            result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-          }
+          // if (result.datas[i].textTitle.length > 30) {
+          //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+          // }
 
         }
 

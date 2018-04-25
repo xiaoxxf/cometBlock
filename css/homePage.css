@@ -129,7 +129,7 @@ a img {
 	width: 100%;
 	height: 100%;
 }
-@media (max-width:767px) {
+@media (max-width:900px) {
 	.mobile-hot-coin{
 		display: flex;
 	}
@@ -214,19 +214,17 @@ a img {
 	margin-top: 30px;
 }
 
-.article-title{
-		color: #646464;
+
+.article-detail .article-title{
     font-weight: bold;
-    margin-left: -10px;
     font-size: 17px;
-    line-height: 60px;
-		margin-left:0px;
+    line-height: 20px;
+    margin: 15px 0px;
+    width: 80%;
 }
 
-.article-introduce{
-	min-height: 80px;
-  width: 80%;
-  margin-right: 20px;
+.article-detail .article-title a{
+  color: #646464;
 }
 
 .article-detail .article-content{
@@ -235,6 +233,13 @@ a img {
   display: flex;
   flex-direction: column;
 }
+
+.article-detail .article-introduce{
+	min-height: 80px;
+  width: 80%;
+  margin-right: 20px;
+}
+
 .article-content.article-info{
 	display: inline;
 }
@@ -274,13 +279,22 @@ a img {
 
 /* 小屏文章 */
 @media (max-width: 767px) {
-	.article-title {
-		font-size: 13px;
+  .bottom_line{
+    min-height: 101px;
+  }
+
+  .article-detail .article-content{
+    margin-left: 5px;
+  }
+
+	.article-detail .article-title {
+		font-size: 15px;
 		line-height: 20px;
-    width: 80%;
+    width: 100%;
+    margin: 10px 0px;
 	}
 
-	.article-introduce{
+	.article-detail .article-introduce{
 		min-height: 50px;
 		/* overflow: scroll; */
 	}
