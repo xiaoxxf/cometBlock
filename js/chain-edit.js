@@ -341,6 +341,13 @@ function chainDetailJs(chainInfoData){
     });
   }
 
+  // 删除白皮书
+  $('.remove-white-paper').on('click',function(){
+    $('.white_paper').val('')
+    $('.white_paper_file_name').val('')
+    $('#white_paper_file').val('')
+  })
+
   // 上传白皮书
   function upLoadWhitePaper(){
     var file = $('.white_paper')[0].files[0]

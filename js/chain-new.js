@@ -511,3 +511,9 @@ $('.chooseLogo').on('click',function(){
 $('.team').on("click",".member_pic_choose_button",function(e){
   $(e.target.previousElementSibling).click()
 })
+
+// 删除白皮书
+$('.remove-white-paper').on('click',function(){
+  $('.white_paper').val('')
+  $('.white_paper_file_name').val('')
+})
