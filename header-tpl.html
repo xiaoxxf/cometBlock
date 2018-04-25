@@ -103,16 +103,15 @@
 
 <script type="text/html" id="like_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
-
+		<%if(list[i].status == 0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>"  >
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" >
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
 		<%}%>
 			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
 				<div><%:=list[i].realName%> <%:=dictionary[3]%></div>
-				<div>8个月前</div>
+				<div></div>
 			</div>
 		</div>
 	<%}%>
@@ -122,16 +121,16 @@
 <script type="text/html" id="comment_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
 		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
 				<div>
 					<%:=list[i].realName%> <%:=dictionary[2]%>
 					<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《<%:=list[i].title%>》</a>
 				</div>
-				<div>8个月前</div>
+				<div></div>
 			</div>
 		</div>
 	<%}%>
@@ -140,17 +139,17 @@
 <script type="text/html" id="quote_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
 		<%}%>
 			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
 				<div>
 					<%:=list[i].realName%> <%:=dictionary[1]%>
 				</div>
-				<div>8个月前</div>
+				<div></div>
 			</div>
 		</div>
 	<%}%>
@@ -159,11 +158,11 @@
 <script type="text/html" id="notification_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
-		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
+		<%}%>
 			<div class="right-news">
 				<div>
 					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已审核通过
@@ -176,14 +175,14 @@
 <script type="text/html" id="reject_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 
 		<%}else{%>
-			<div class="show-alert-inform-list" >
-		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
+		<%}%>
 			<div class="right-news">
 				<div>
-					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已审核通过
+					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已被驳回
 				</div>
 			</div>
 		</div>

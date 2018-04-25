@@ -254,7 +254,7 @@ function upLoadWhitePaper(){
       // project_logo
       ui.fileUpLoading = false
       if (data.code == 0) {
-        $('.whitePaperFile').val(data.datas[0])
+        $('#white_paper_file').val(data.datas[0])
         // layer.msg('上传成功')
       }else if(data.code == -1){
         lay.msg(data.msg)
@@ -431,7 +431,7 @@ $('#form1').validator({
                 style: "display:none"
               });
               $('.submit_control').html('提交')
-              $('.submit_control').attr('disabled','')
+              $('.submit_control').removeAttr('disabled')
             }
           },
           error: function (err) {

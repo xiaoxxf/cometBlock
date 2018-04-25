@@ -75,7 +75,7 @@ $(function(){
     // 限制搜索结果描述的长度
     var descriptions = document.getElementsByClassName('new_title');
 
-    if ($(window).width() < 767) {
+    if ($(window).width() < 1060) {
       var show_length = 25
 
     }else{
@@ -121,8 +121,8 @@ $(function(){
           result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
         }
 
-        if (result.datas[i].textTitle.length > 25) {
-          result.datas[i].textTitle = result.datas[i].textTitle.substring(0,25) + "..."
+        if (result.datas[i].textTitle.length > 30) {
+          result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
         }
 
 
@@ -171,8 +171,8 @@ $('.read-more').on('click',function(){
           if (result.datas[i].textContent.length > content_length) {
             result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
           }
-          if (result.datas[i].textTitle.length > 25) {
-            result.datas[i].textTitle = result.datas[i].textTitle.substring(0,25) + "..."
+          if (result.datas[i].textTitle.length > 30) {
+            result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
           }
 
         }
@@ -230,15 +230,37 @@ $('.read-more').on('click',function(){
 
 
 //轮播 到下一项
-	$(document).ready(function(){
-		$("#myCarousel").carousel({interval:2000});
+$(document).ready(function(){
+	$("#myCarousel").carousel({interval:2000});
 
-	});
+});
 
 
-  // var resizeTimer = null;
-  //
-  // $(window).on('resize', function () {
-  //
-  //
-  // })
+var resizeTimer = null;
+
+$(window).on('resize', function () {
+  if (resizeTimer) {
+			 clearTimeout(resizeTimer)
+	 }
+	 resizeTimer = setTimeout(function(){
+     var imgW = $(".hot_zone .article-detail .article-icon").width();
+     $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+
+     // 限制搜索结果描述的长度
+     var descriptions = document.getElementsByClassName('new_title');
+     var show_length = null
+     if ( $(window).width() > 767 && $(window).width() < 1200) {
+       show_length = 10
+     }else{
+       show_length = 25
+     }
+
+     for (var i = 0; i < descriptions.length; i++) {
+       if (descriptions[i].innerText.length > show_length) {
+         descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+       }
+     }
+	}, 100);
+
+
+})

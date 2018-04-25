@@ -32,9 +32,9 @@
 							</div>
 							<div class="col-md-3 col-xs-12 col-sm-12">
 								<div class="hot_zone side">
-									<div class="candy_box">
-										<a href="">糖果盒</a>
-										<a href="">Top10</a>
+									<div class="candy_box" style="min-height:200px">
+										<!-- <a href="">糖果盒</a> -->
+										<!-- <a href="">Top10</a> -->
 										<a href="chain-new.html">创建项目</a>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
@@ -115,9 +115,9 @@
 						<div class="row">
 							<div class="col-md-7 col-md-offset-1 col-sm-12 col-xs-12">
 								<div class="hot_review_title">
-									<span class="hot_block"></span>
-									<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门评测</a></span>
-									<a href="hot-article.html"><span>更多&gt;&gt;</span></a>
+										<span class="hot_block" style="margin-top:10px"></span>
+										<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门评测</a></span>
+										<a href="hot-article.html"><span style="margin-top:10px">更多&gt;&gt;</span></a>
 								</div>
 								<div class="hot_review_region">
 
@@ -235,29 +235,39 @@
 							<%} else {%>
 								<img src="<%=list[i].userPic %>" class="article-creator-pic"/>
 							<% } %>
-							<span><%=list[i].realName %></span>
-							<span class="article-time"><%=list[i].createTime %></span>
-						</div>
-						<h3>
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="article-title"><%=list[i].textTitle %></a>
-						</h3>
+							<span class="real_name"><%=list[i].realName %></span>
+							<span class="article-time"><%=list[i].createTime.split(' ')[0] %></span>
 
-						<div class="article-introduce">
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
-								<%:=list[i].textContent%>
-							</a>
+							<h3>
+								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="article-title"><%=list[i].textTitle %></a>
+							</h3>
 						</div>
+
+
+						<div style="display:flex">
+							<div class="article-introduce">
+								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color: #959595">
+									<%:=list[i].textContent%>
+								</a>
+							</div>
+
+							<div class="article-icon">
+								 <a href="">
+											<img class="article-img" src="<%=list[i].projectLogo %>">
+									</a>
+							</div>
+
+						</div>
+
+
+
 						<div class="meta">
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
-							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%=list[i].review %></a>
+							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart"></i> <%=list[i].likes %></a>
 						</div>
 					</div>
 
-					<div class="article-icon">
-						 <a href="">
-									<img class="article-img" src="<%=list[i].projectLogo %>" style="display: inline;">
-							</a>
-					</div>
+
 			</div>
 		</div>
 	<%}%>

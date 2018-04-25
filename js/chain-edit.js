@@ -194,8 +194,6 @@ function chainDetailJs(chainInfoData){
     $('.team').append(string);
   })
 
-
-
   // 显示减少团队成员的图标
   $('.team').on("mouseenter mouseleave",".team_image_box",function(e){
     if(e.type == "mouseenter"){
@@ -221,7 +219,7 @@ function chainDetailJs(chainInfoData){
 
     if(!file){
       $(".white_paper_file_name").val('');
-      return false
+      return
     }
 
   	if ( !file.type.match(pdfType) || file.size > whitePaperMaxSize) {
@@ -375,7 +373,7 @@ function chainDetailJs(chainInfoData){
         // project_logo
         ui.fileUpLoading = false
         if (data.code == 0) {
-          $('.whitePaperFile').val(data.datas[0])
+          $('#white_paper_file').val(data.datas[0])
           // layer.msg('上传成功')
         }else if(data.code == -1){
           lay.msg(data.msg)
@@ -612,81 +610,6 @@ var ui = {
   'fileUpLoading': false
 }
 
-var allFile = {
-  'projectLogo': '',
-  'whitePaper': ''
-}
-
-// function doUpload(e){
-//   var file = e.files[0];
-//   if (ui.fileUpLoading || e.files.length == 0) {
-//     return false
-//   }
-//
-//   var class_name = e.className;
-//
-//   //根据className判断应该是什么类型的文件，不一致的返回false
-//   switch (class_name) {
-//     case "white_paper":
-//       if (!file.type.match(pdfType) || file.size > whitePaperMaxSize) {
-//         return false
-//       }
-//       break;
-//     default:
-//       if (!file.type.match(imageType) || file.size > imageMaxSize) {
-//         return false
-//       }
-//       break;
-//   }
-//
-//   var formData = new FormData();
-//
-//   t = e;
-//   formData.append('file', file);
-//   formData.append(userId, userId);
-//
-//   $.ajax({
-//     url : WebApiHostJavaApi + 'common/upload',
-//     type: "post",
-//     data: formData,
-//     datType: "json",
-//     processData: false,  // 不处理数据
-//     contentType: false,   // 不设置内容类型
-//
-//     beforeSend: function(){
-//       ui.fileUpLoading = true
-//     },
-//
-//     success:function(data){
-//       // project_logo
-//       if (t.className == 'project_logo') {
-//         // allFile.projectLogo = data.datas[0]
-//         $('#project_logo_file').val(data.datas[0])
-//         $('.upload-project-logo').attr('disabled','disabled')
-//       }
-//       else if (t.className == 'member_pic') {
-//         // 把照片的值存在对应的input
-//         member_pic_name = t.parentElement.nextElementSibling.firstElementChild
-//         member_pic_name.value =  data.datas[0]
-//         // 上传成功后，上传按钮不可选
-//         $(t.nextElementSibling.nextElementSibling).attr('disabled','disabled')
-//       }
-//       // white_paper
-//       else if (t.className == 'white_paper') {
-//         // allFile.whitePaper = data.datas[0]
-//         $('#white_paper_file').val(data.datas[0])
-//
-//         $(".upload-white-paper").attr('disabled','disabled')
-//       }
-//       ui.fileUpLoading = false
-//       layer.msg('上传成功')
-//     },
-//     error:function(e){
-//       ui.fileUpLoading = false
-//       alert("上传错误，请重试！");
-//     }
-//   });
-// }
 
 // 判断是否登录
 $(function(){

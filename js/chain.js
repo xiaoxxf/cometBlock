@@ -384,6 +384,7 @@ $('.load-category').on('click',function(){
 	$('.category').fadeToggle()
 })
 
+
 var resizeTimer = null;
 $(window).on('resize', function () {
 
@@ -392,7 +393,7 @@ $(window).on('resize', function () {
 	 }
 	 resizeTimer = setTimeout(function(){
 		 // 图片白底适应
-     var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+		 var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
      $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 
 	}, 100);
