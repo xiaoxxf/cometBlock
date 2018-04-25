@@ -554,7 +554,7 @@ function chainDetailJs(chainInfoData){
                   style: "display:none"
                 });
                 $('.submit_control').html('提交')
-                $('.submit_control').attr('disabled','')
+                $('.submit_control').removeAttr('disabled')
               }
               ui.submiting = false
             },

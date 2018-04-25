@@ -105,7 +105,29 @@ $(function(){
   var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
   doJavaGet(uri, function(result){
       // $('.hot_review_region').html("");
-      // debugger
+
+      // 限制标题和内容长度
+      for (var i = 0; i < result.datas.length; i++) {
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+        var content_length = null
+        if ($(window).width() < 767) {
+          content_length = 35
+        }else{
+          content_length = 120
+        }
+
+        if (result.datas[i].textContent.length > content_length) {
+          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+        }
+
+        if (result.datas[i].textTitle.length > 25) {
+          result.datas[i].textTitle = result.datas[i].textTitle.substring(0,25) + "..."
+        }
+
+
+      }
+
       var tpl = document.getElementById('hot_article_tpl').innerHTML;
       var content = template(tpl, {list: result.datas});
       $('.hot_review_region').append(content)
@@ -116,7 +138,6 @@ $(function(){
       $('.article-count').html(result.count)
       article_loading = false
   })
-
 })
 
 var noMoreData = false
@@ -135,6 +156,28 @@ $('.read-more').on('click',function(){
         noMoreData = true
         $('.read-more').html('已无更多数据')
       }else{
+
+        var content_length = null
+        if ($(window).width() < 767) {
+          content_length = 35
+        }else{
+          content_length = 120
+        }
+
+        // 限制标题和内容长度
+        for (var i = 0; i <result.datas.length; i++) {
+          result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+          if (result.datas[i].textContent.length > content_length) {
+            result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+          }
+          if (result.datas[i].textTitle.length > 25) {
+            result.datas[i].textTitle = result.datas[i].textTitle.substring(0,25) + "..."
+          }
+
+        }
+
+
         var tpl = document.getElementById('hot_article_tpl').innerHTML;
         var content = template(tpl, {list: result.datas});
         $('.hot_review_region').append(content)

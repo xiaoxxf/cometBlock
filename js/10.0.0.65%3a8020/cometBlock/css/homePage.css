@@ -222,10 +222,6 @@ a img {
 		margin-left:0px;
 }
 
-.article-introduce{
-	min-height: 100px;
-}
-
 @media (max-width: 767px) {
 	.article-title {
 		font-size: 13px;
@@ -241,6 +237,13 @@ a img {
 		/* float: right; */
 		width: 60px;
 		/* margin: 0px 30px; */
+		position: relative;
+		background-color: #fff;
+		-moz-box-shadow: 2px 2px 5px #a79e9e;
+		-webkit-box-shadow: 2px 2px 5px #a79e9e;
+		box-shadow: 2px 2px 5px #a79e9e;
+		border-radius: 10px;
+		margin-bottom: 5px;
 		margin-top: 45px;
 	}
 

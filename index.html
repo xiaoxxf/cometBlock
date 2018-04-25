@@ -228,37 +228,37 @@
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="hot_zone bottom_line">
 			<div class="article-detail">
-						<div class="article-icon">
-							 <a href="">
-										<img class="article-img" src="<%=list[i].projectLogo %>" style="display: inline;">
-								</a>
+					<div class="article-content">
+						<div class="article-info">
+							<%if(list[i].userPic == null ){%>
+								<img src="img/normal-user.png" class="article-creator-pic"/>
+							<%} else {%>
+								<img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+							<% } %>
+							<span><%=list[i].realName %></span>
+							<span class="article-time"><%=list[i].createTime %></span>
 						</div>
+						<h3>
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="article-title"><%=list[i].textTitle %></a>
+						</h3>
 
-						<div class="article-content">
-							<div class="article-info">
-								<%if(list[i].userPic == null ){%>
-									<img src="img/normal-user.png" class="article-creator-pic"/>
-								<%} else {%>
-									<img src="<%=list[i].userPic %>" class="article-creator-pic"/>
-								<% } %>
-								<span><%=list[i].realName %></span>
-								<span class="article-time"><%=list[i].createTime %></span>
-							</div>
-							<h3 style="margin-left:10px">
-								<a href="" class="article-title"><%=list[i].textTitle %></a>
-							</h3>
-
-							<div class="article-introduce">
-								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
-									<%:=list[i].textContent%>
-								</a>
-							</div>
-							<div class="meta">
-								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
-								<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
-							</div>
+						<div class="article-introduce">
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color:black">
+								<%:=list[i].textContent%>
+							</a>
+						</div>
+						<div class="meta">
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments"><i class="fa fa-commenting-o"></i> <%=list[i].review %></a>
+							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart-o"></i> <%=list[i].likes %></a>
 						</div>
 					</div>
+
+					<div class="article-icon">
+						 <a href="">
+									<img class="article-img" src="<%=list[i].projectLogo %>" style="display: inline;">
+							</a>
+					</div>
+			</div>
 		</div>
 	<%}%>
 
