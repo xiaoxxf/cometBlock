@@ -292,4 +292,12 @@ $(document).ready(function () {
        // $(".page-nums-switch").text(switchNum);
         mySwiper.autoplay.start();
     })
+
+    // 鼠标悬停停止翻转
+    $('.swiper-slide').mouseenter(function () {
+      mySwiper.autoplay.stop();
+    })
+    $('.swiper-slide').mouseleave(function () {
+       mySwiper.autoplay.start();
+    })
 })
