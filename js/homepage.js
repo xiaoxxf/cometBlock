@@ -138,7 +138,7 @@ $(function(){
       var imgW = $(".hot_zone .article-detail .article-icon").width();
       $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
 
-      $('.article-count').html(result.count)
+      // $('.article-count').html(result.count)
       article_loading = false
   })
 })
