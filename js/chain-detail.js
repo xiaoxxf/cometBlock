@@ -57,10 +57,10 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var userId = $.cookie('userid');//获取userid
     var likes = 0;
     var score = $("#n_rating").val();
-    
-    var area_width 
-    var area_height 
-    
+
+    var area_width
+    var area_height
+
     if($(window).width() <= 767)
  	{
 	 	var area_width = '320px'
@@ -229,6 +229,29 @@ function ajaxGetLongComments() {
                 $(".long-comment-load-more .loading-more").hide();
                 $(".long-comment-load-more .loader1").css('display','flex');
                 var data = res.datas;
+
+                // 限制标题和内容长度
+                for (var i = 0; i < res.datas.length; i++) {
+                  res.datas[i].textContent = res.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+                  var content_length = null
+                  if ($(window).width() < 767) {
+                    content_length = 55
+                  }else{
+                    content_length = 180
+                  }
+
+                  if (res.datas[i].textContent.length > content_length) {
+                    res.datas[i].textContent = res.datas[i].textContent.substring(0,content_length) + "..."
+                  }
+
+                  // if (result.datas[i].textTitle.length > 30) {
+                  //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+                  // }
+
+
+                }
+
                 //var formatData = formatStarClass(data);
                 var commentTpl = $("#long-comment-temp").html();
                 var teamContent = template(commentTpl, {list: res.datas});
@@ -262,8 +285,8 @@ $(".short-comment-commit").on('click',function (e) {
     var userId = $.cookie('userid');//获取userid
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
-    var area_width 
-    var area_height 
+    var area_width
+    var area_height
     if($(window).width() <= 767)
  	{
 	 	area_width = '320px'
@@ -272,7 +295,7 @@ $(".short-comment-commit").on('click',function (e) {
  		 area_width = '520px'
 	     area_height = '600px'
  	}
-    
+
     if(userId == undefined){
         layer.msg('您还没有登录')
         layer.open({
