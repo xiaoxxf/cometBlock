@@ -58,14 +58,18 @@ table {
 	display: block;
 }
 
-
-
 tbody {
 	display: table-row-group;
 	vertical-align: middle;
 	border-color: inherit;
 }
 
+/*基础设置border-bottom*/
+.base_setting
+{
+	height: 140px;
+	border-bottom: 1px solid #f0f0f0;
+}
 td {
 	padding: 20px 0;
 }
@@ -410,4 +414,41 @@ td {
 }
 .waiting-data .loader-nine div{
     background-color:#999
+}
+/*新建专题*/
+#show_subject,.menu{
+	display: none;
+}
+#new_subject{
+	float: right;
+}
+.form-group{
+	margin-bottom: 30px;
+}
+textarea.form-control{
+	height: 100px;
+}
+.upload_topic{
+	border-radius: 15px;
+	margin-top: 30px;
+    color: #006bb3;
+    border-color: #006bb3;
+    text-decoration: none;
+}
+.upload_topic:hover{
+	color: #006bb3;
+    border-color: #006bb3;
+    background-color: white;
+}
+.allow_submit input{
+	margin-left: 20px;
+}
+/*基础设置*/
+.account_right{
+	margin-top: 20px;
+}
+.down_icon{
+	float: right;
+    margin-top: 4px;
+    margin-left: 4px;
 }
