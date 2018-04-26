@@ -15,7 +15,7 @@ $(function(){
 
 // 渲染热门专区
 $(function(){
-  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=5'
+  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=6'
 
   doJavaGet(uri,function(result){
    // console.log(result.datas)
@@ -29,7 +29,7 @@ $(function(){
 
 // 2
 $(function(){
-  var uri = 'blockchain/quaryProjetList?currentPage=2&pageSize=5'
+  var uri = 'blockchain/quaryProjetList?currentPage=2&pageSize=6'
 
   doJavaGet(uri,function(result){
    // console.log(result.datas)
@@ -44,7 +44,7 @@ $(function(){
 
 // 3
 $(function(){
-  var uri = 'blockchain/quaryProjetList?currentPage=3&pageSize=5'
+  var uri = 'blockchain/quaryProjetList?currentPage=3&pageSize=6'
 
   doJavaGet(uri,function(result){
    // console.log(result.datas)

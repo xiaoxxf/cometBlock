@@ -192,41 +192,41 @@
 
 		<script type="text/html" id="hot_coin_tpl_2">
 			<%for(var i = 0; i < list.length; i++) {%>
-			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-					<br>
-					<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
-					<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
-					<p class="score">
-						<%if(list[i].score ==0 ){%>
-						<span>暂无评分</span>
-						<%}else{%>
-						<span class="allstar<%:=list[i].score*5%>"></span>
-						<span><%=list[i].score%></span>
-						<%}%>
-					</p>
-				</a>
-			</div>
+				<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+						<br>
+						<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+						<h3 class="project-name"><%=list[i].projectBigName%></h3>
+						<p class="score">
+							<%if(list[i].score ==0 ){%>
+							<span>暂无评分</span>
+							<%}else{%>
+							<span class="allstar<%:=list[i].score*5%>"></span>
+							<span><%=list[i].score%></span>
+							<%}%>
+						</p>
+					</a>
+				</div>
 			<%}%>
 		</script>
 
 		<script type="text/html" id="hot_coin_tpl_3">
 			<%for(var i = 0; i < list.length; i++) {%>
-			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-					<br>
-					<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
-					<h3 style="margin-top:5px"><%=list[i].projectName%></h3>
-					<p class="score">
-						<%if(list[i].score ==0 ){%>
-						<span>暂无评分</span>
-						<%}else{%>
-						<span class="allstar<%:=list[i].score*5%>"></span>
-						<span><%=list[i].score%></span>
-						<%}%>
-					</p>
-				</a>
-			</div>
+				<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+						<br>
+						<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+						<h3 class="project-name"><%=list[i].projectBigName%></h3>
+						<p class="score">
+							<%if(list[i].score ==0 ){%>
+							<span>暂无评分</span>
+							<%}else{%>
+							<span class="allstar<%:=list[i].score*5%>"></span>
+							<span><%=list[i].score%></span>
+							<%}%>
+						</p>
+					</a>
+				</div>
 			<%}%>
 		</script>
 
