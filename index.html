@@ -99,7 +99,7 @@
 											<!-- 如果需要分页器 -->
 											<div class="swiper-pagination"></div>
 										</div>
-										<div class="row hot_coin_region mobile-hot-coin">
+										<div class="hot_coin_region mobile-hot-coin">
 										</div>
 									</div>
 
@@ -152,10 +152,10 @@
 
 		<script type="text/html" id="hot_coin_tpl_mobile">
 			<%for(var i = 0; i < list.length; i++) {%>
-			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail-mobile">
+			<div class="coin-detail-mobile">
 				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
 					<br>
-					<img src='<%=list[i].projectLogo %>'  alt="" style="width:80%;height:80%">
+					<img src='<%=list[i].projectLogo %>'  alt="" style="width:56px;height:56px">
 					<h3 class="project-name"><%=list[i].projectBigName%></h3>
 					<p class="score">
 						<%if(list[i].score ==0 ){%>

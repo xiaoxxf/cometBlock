@@ -79,14 +79,11 @@ $(function(){
     if ($(window).width() > 970 && $(window).width() < 1260) {
       var show_length = 10
     }else if($(window).width() <= 990){
-      var show_length = 50
+      var show_length = 20
     }
     else{
       var show_length = 15
     }
-    // if ($(window).width() <= 767) {
-    //   show_length = 5
-    // }
 
     for (var i = 0; i < descriptions.length; i++) {
       if (descriptions[i].innerText.length > show_length) {
@@ -263,7 +260,7 @@ $(document).ready(function () {
         autoplay: true,
         disableOnInteraction:false,
         loop : true,
-        effect : 'flip',
+        effect : 'slide',
         flipEffect: {
             slideShadows : true,
             limitRotation : true,
