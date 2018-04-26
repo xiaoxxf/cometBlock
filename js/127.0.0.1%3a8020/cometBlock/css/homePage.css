@@ -44,12 +44,10 @@ a img {
 
 .swiper-btn-prev{
   margin-right: 8px;
-  cursor: pointer;
 }
 
 .swiper-btn-next{
-  margin-left: 8px;
-  cursor: pointer;
+  margin-left: 8px
 }
 
 .hot_zone{
@@ -96,18 +94,9 @@ a img {
 	/*width: 120px;*/
 	height: 100px;
 }
-
-/* .hot_zone_coin .row .col-md-2{
-    margin: 8px;
+.hot_zone_coin .row .col-md-2{
+	margin: 8px;
     text-align: center;
-} */
-
-.hot_zone_coin .hot_coin_region .coin-detail{
-
-
-}
-.hot_zone_coin .hot_coin_region .coin-detail img{
-  margin-left: 10px;
 }
 .hot_zone_coin{
 		height: 200px
@@ -116,7 +105,6 @@ a img {
 .hot_zone_coin .hot_coin_region .project-name{
 	margin-top:10px;
 	margin-bottom: 10px;
-  text-align: center;
 }
 
 .hot_zone_coin .hot_coin_region .score{
@@ -136,10 +124,10 @@ a img {
 	color:#ffac2d
 }
 .hot_coin_region{
-	padding-left: 10px;
+	/* padding-left: 10px; */
 }
 
-
+.coin-detail{margin-right: 100px;}
 
 .mobile-hot-coin{
 	display: none;
@@ -375,7 +363,7 @@ a img {
 
 /*
 /*轮播*/
-/*
+/* 
 .carousel-indicators{
 	  top: -40px !important;
     text-align: right;

@@ -26,11 +26,11 @@ $(function(){
   createEditor()
 })
 
-
+var E = window.wangEditor
+var editor = new E('#editor')
 function createEditor(){
   // 编辑器
-  var E = window.wangEditor
-  var editor = new E('#editor')
+
   editor.customConfig.menus = [
     'bold',
     'italic',
@@ -87,6 +87,39 @@ function createEditor(){
 
 }
 
+// 提交
 $('.submit_comment').on('click',function(){
-  // TODO: 提交文章
+
+  if (ui.submiting) {
+    return false
+  }
+
+  ui.submiting = true
+  var data = {
+    textTitle: $('input[name="head"]')[0].value,
+    textContent: editor.txt.html(),
+    type: 4,
+    userId: userId, //userId
+  }
+  debugger
+  if (data.textTitle.length == 0 || editor.txt.text().length == 0) {
+    // $('#identifier').modal()
+    layer.msg('请保证标题、内容均填写完整')
+    ui.submiting = false
+    return false
+  }
+
+  function callback(result){
+    ui.submiting = false
+    layer.msg('提交成功', {
+      time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+      end:function(){
+        window.location.href='personalCenter.html?personType=1'
+      }
+    });
+  }
+  var uri = 'blockchain/addReview'
+  doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
+
+
 })

@@ -4,6 +4,7 @@
 /*导航栏头像*/
 .user-icon{
 	border-radius: 20px;
+  padding-top: 3px;
 }
 /*内容超过一屏需要留出底部导航的位置*/
 .detail-wrap{
@@ -12,7 +13,7 @@
 
  /*写文章*/
 .log_writting .btn{
-	   color: white;
+	  color: white;
     background-color: #006bb3;
     margin-top: 8px;
     margin-left: 10px;
@@ -139,8 +140,8 @@ body{
 .navbar-inverse .navbar-toggle .icon-bar{
     background-color: #333;
 }
-.navbar-right>li>a {
-    /*padding: 10px 15px;*/
+.navbar-right>li {
+    padding: 0px 5px;
     line-height: 20px;
 }
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover,  .navbar-inverse .navbar-nav>li>a.cur-nav{
@@ -163,9 +164,9 @@ body{
 .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
     color: rgb(79, 163, 237);
 }
-.navbar-inverse .navbar-nav>li>a{
+.navbar-inverse .navbar-left>li{
     font-size: 18px;
-    padding-left: 35px;
+    padding: 0px 10px;
 }
 
 /*顶部搜索框样式*/
@@ -176,24 +177,10 @@ body{
     border-radius: 3px;
     margin-top: 11px;
     background-color: #f3f6f7;
-    margin-right: 80px;
+    margin-right: 50px;
     margin-left: 20px;
 }
 
-@media (max-width: 1200px) {
-  .nav_search{
-    width: 200px;
-    margin-right: 20px;
-  }
-}
-
-@media (max-width: 1000px) {
-  .nav_search{
-    width: 110px;
-    /* margin-right: 20px; */
-  }
-
-}
 .nav_search .nav_input {
     width: 100%;
     height: 100%;
@@ -204,16 +191,51 @@ body{
     background: transparent;
     padding-left: 15px;
     vertical-align: middle;
+    padding-top: 5px;
 }
+
+@media (max-width: 1200px) {
+  .nav_search{
+    width: 200px;
+    margin-right: 10px;
+  }
+  .notification-btn{
+
+    margin-right: -15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav_search{
+    width: 110px;
+    margin-right: -5px;
+  }
+
+  .navbar-inverse .navbar-left>li{
+      font-size: 18px;
+      padding: 0px 0px;
+  }
+
+  .nav_search .nav_input {
+      font-size:5px;
+      padding-top: 5px;
+      padding-left: 0px;
+  }
+}
+
 .nav-index-img a img{
     border-radius: 15px;
 }
+
+
+
 /*主体内容*/
 .mian-container{
     margin-top: 50px;
 }
 .body-container-wrap{
 }
+
 
 /*加载更多*/
 .load-more-wrap{
@@ -320,12 +342,14 @@ body{
 }
 .nav-user-account{
     position: relative;
+
 }
 .nav-user-account .more-active{
     display: none;
 }
 #nav_login, #nav_register{
     display: none;
+    margin-left: -10px
 }
 .nav_show_message{
     border: solid 1px rgb(79, 163, 237);
@@ -337,7 +361,7 @@ body{
 }
 .nav-user-account .more-active{
     position: relative;
-    padding: 14px 15px 14px 35px !important;
+    padding: 14px 15px 14px 14px !important;
 }
 .nav-user-account .more-active:hover .droplist-wrap{
     display: block;
@@ -411,6 +435,13 @@ tbody a{
 }
 
 /*通知弹出面板*/
+
+
+
+.notification-btn{
+  font-size: 18px;
+}
+
 .login-right{
 	display: none;
 }

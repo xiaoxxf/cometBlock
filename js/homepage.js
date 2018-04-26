@@ -15,7 +15,7 @@ $(function(){
 
 // 渲染热门专区
 $(function(){
-  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=5'
+  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=6'
 
   doJavaGet(uri,function(result){
    // console.log(result.datas)
@@ -29,7 +29,7 @@ $(function(){
 
 // 2
 $(function(){
-  var uri = 'blockchain/quaryProjetList?currentPage=2&pageSize=5'
+  var uri = 'blockchain/quaryProjetList?currentPage=2&pageSize=6'
 
   doJavaGet(uri,function(result){
    // console.log(result.datas)
@@ -44,7 +44,7 @@ $(function(){
 
 // 3
 $(function(){
-  var uri = 'blockchain/quaryProjetList?currentPage=3&pageSize=5'
+  var uri = 'blockchain/quaryProjetList?currentPage=3&pageSize=6'
 
   doJavaGet(uri,function(result){
    // console.log(result.datas)
@@ -76,11 +76,13 @@ $(function(){
     // 限制搜索结果描述的长度
     var descriptions = document.getElementsByClassName('new_title');
 
-    if ($(window).width() < 1060) {
-      var show_length = 25
-
-    }else{
-      var show_length = 16
+    if ($(window).width() > 970 && $(window).width() < 1260) {
+      var show_length = 10
+    }else if($(window).width() <= 990){
+      var show_length = 50
+    }
+    else{
+      var show_length = 15
     }
     // if ($(window).width() <= 767) {
     //   show_length = 5
@@ -136,7 +138,7 @@ $(function(){
       var imgW = $(".hot_zone .article-detail .article-icon").width();
       $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
 
-      $('.article-count').html(result.count)
+      // $('.article-count').html(result.count)
       article_loading = false
   })
 })
@@ -256,6 +258,8 @@ $(window).on('resize', function () {
 $(document).ready(function () {
     //api 参考地址 http://www.swiper.com.cn/api/index.html
     var mySwiper = new Swiper ('.swiper-container', {
+        autoplay: 5000,
+        speed: 2000,
         autoplay: true,
         disableOnInteraction:false,
         loop : true,
@@ -289,4 +293,3 @@ $(document).ready(function () {
         mySwiper.autoplay.start();
     })
 })
-

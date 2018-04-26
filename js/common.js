@@ -13,9 +13,9 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-//var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
+var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
- var WebApiHostJavaApi = "http://10.0.0.183:8080/";
+// var WebApiHostJavaApi = "http://10.0.0.183:8080/";
 
 
 var WebRankHostApi = "//rank.blockcomet.com/"
@@ -135,7 +135,9 @@ $.get("header-tpl.html",function(data){
     }else {
         $(".nav-user-account #nav_user_mes").text(username);
         if ( userinfo.userPic ) {
-          $("#user_pic")[0].src = userinfo.userPic
+          if ($("#user_pic")[0]) {
+            $("#user_pic")[0].src = userinfo.userPic
+          }
         }else{
           $("#user_pic")[0].src = 'img/normal-user.png'
         }

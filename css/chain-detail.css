@@ -236,15 +236,23 @@
 .comment-content{
     line-height: 24px;
     padding-bottom: 5px;
-    color: #666;
+    color: #333333;
+}
+.comment-content:hover{
+    color: #646464;
 }
 .long-comment-article-title{
   margin-bottom: 12px;
 }
 .long-comment-article-title a{
     margin-bottom: 20px;
-    color: rgb(45,164,243);
+    color: #333333;
     font-size: 15px;
+}
+.long-comment-article-title a:hover{
+    /* margin-bottom: 20px; */
+    color: #1c5397;
+    /* font-size: 15px; */
 }
 .comment-list-wrap .comment-item{
     border-bottom: 1px solid #dedede;
