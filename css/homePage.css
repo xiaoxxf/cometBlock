@@ -41,6 +41,15 @@ a img {
 }
 
 /*热门专区*/
+
+.swiper-btn-prev{
+  margin-right: 8px;
+}
+
+.swiper-btn-next{
+  margin-left: 8px
+}
+
 .hot_zone{
 	padding: 10px;
 	/* height: 260px; */
@@ -134,12 +143,15 @@ a img {
 	.mobile-hot-coin{
 		display: flex;
 	}
-	.hot_zone_box .circleContent{
+	.hot_zone_coin .swiper-container{
 		display: none
 	}
-	.hot_zone_box .slide{
+  .swiper-btn{
+    display: none
+  }
+	/* .hot_zone_coin .slide{
 		display: none
-	}
+	} */
 }
 
 
