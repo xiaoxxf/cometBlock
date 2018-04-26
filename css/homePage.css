@@ -44,6 +44,7 @@ a img {
 .hot_zone{
 	padding: 10px;
 	/* height: 260px; */
+  border-radius: 3px;
 }
 .hot_block{
 	display: inline-block;
@@ -54,7 +55,7 @@ a img {
 
 }
 .hot_main_area{
-	   top: 20px;
+	   top: 30px;
     position: absolute;
 }
 
@@ -149,6 +150,7 @@ a img {
 	font-size: 14px;
 	line-height: 40px;
 	height: 40px;
+  margin-left: 10px;
 }
 
 .new_title{
@@ -206,12 +208,17 @@ a img {
   border-bottom: solid 1px gainsboro;
 }
 
-.hot_review_box,.hot_zones_box{
+.hot_review_box, .hot_zones_box{
 	margin-top: 20px;
 }
 
 .article-top-box{
 	margin-top: 30px;
+}
+
+.hot_article_zone{
+  background-color: white;
+  padding: 10px;
 }
 
 
@@ -268,6 +275,7 @@ a img {
 	margin-right:10px;
 	margin-bottom:5px;
 }
+
 
 .meta{
 	margin-top:15px ;
