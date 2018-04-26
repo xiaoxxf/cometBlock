@@ -10,11 +10,12 @@
     <link rel="icon" href="img/huixing.png" type="image/x-icon"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
-	<link rel="stylesheet" href="css/hot-article.css" />
+    <link rel="stylesheet" href="css/loading.css">
+	  <link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+	  <link rel="stylesheet" href="css/hot-article.css" />
 </head>
 <body lang="zh-CN" class="reader-black-font">
-	<div class="comet-main  block-comet-main-wrap">
+	<div class="comet-main block-comet-main-wrap">
 	    <div class="navbar-fixed-container navbar-fixed-container-hook">
 	    </div>
 	    <div class="mian-container">
@@ -24,7 +25,28 @@
 	        	</div>
 		    </div>
 
+        <div class="load-more-container-wrap">
+  					<div class="container">
+  									<div class="load-more-wrap load-more-hook">
+  											<div class="loader1 loader" style="display: none">
+  													<div></div>
+  													<div></div>
+  													<div></div>
+  											</div>
+  											<div class="loading-more"  style="display: none">
+  													加载更多
+  											</div>
+  									</div>
+  									<div class="load-more-wrap no-more-hook" style="display: none">
+  											<div class="loading-more">
+  													已无更多数据
+  											</div>
+  									</div>
+  							</div>
+  			</div>
+
 	    </div>
+
 	</div>
 
 <script type="text/html" id="article_tpl">
@@ -79,7 +101,6 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
-<script src="js/code-rank.js"></script>
 <script src="js/hot-article.js"></script>
 </body>
 </html>

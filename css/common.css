@@ -4,6 +4,7 @@
 /*导航栏头像*/
 .user-icon{
 	border-radius: 20px;
+  padding-top: 3px;
 }
 /*内容超过一屏需要留出底部导航的位置*/
 .detail-wrap{
@@ -190,12 +191,17 @@ body{
     background: transparent;
     padding-left: 15px;
     vertical-align: middle;
+    padding-top: 5px;
 }
 
 @media (max-width: 1200px) {
   .nav_search{
     width: 200px;
     margin-right: 10px;
+  }
+  .notification-btn{
+
+    margin-right: -15px;
   }
 }
 
@@ -336,6 +342,7 @@ body{
 }
 .nav-user-account{
     position: relative;
+
 }
 .nav-user-account .more-active{
     display: none;
