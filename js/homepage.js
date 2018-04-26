@@ -254,6 +254,7 @@ $(window).on('resize', function () {
 
 })
 $(document).ready(function () {
+    //api 参考地址 http://www.swiper.com.cn/api/index.html
     var mySwiper = new Swiper ('.swiper-container', {
         autoplay: true,
         disableOnInteraction:false,
@@ -263,24 +264,28 @@ $(document).ready(function () {
             slideShadows : true,
             limitRotation : true,
         },
+        on: {
+            slideChangeTransitionEnd: function(){
+                var switchNum = this.activeIndex;
+                if(switchNum == 4){
+                    switchNum = 1;
+                }
+                if(switchNum == 0){
+                    switchNum = 3;
+                }
+                $(".page-nums-switch").text(switchNum);
+                //console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+            },
+        },
     })
-//api 参考地址 http://www.swiper.com.cn/api/index.html
+
     $('.swiper-btn-prev').click(function(){
         mySwiper.slidePrev();
-        var switchNum = mySwiper.activeIndex;
-        if(switchNum == 0){
-            switchNum = 3;
-        }
-        $(".page-nums-switch").text(switchNum);
         mySwiper.autoplay.start();
     })
     $('.swiper-btn-next').click(function(){
         mySwiper.slideNext();
-        var switchNum = mySwiper.activeIndex;
-        if(switchNum == 4){
-            switchNum = 1;
-        }
-        $(".page-nums-switch").text(switchNum);
+       // $(".page-nums-switch").text(switchNum);
         mySwiper.autoplay.start();
     })
 })
