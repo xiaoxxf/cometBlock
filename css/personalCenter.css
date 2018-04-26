@@ -58,14 +58,18 @@ table {
 	display: block;
 }
 
-
-
 tbody {
 	display: table-row-group;
 	vertical-align: middle;
 	border-color: inherit;
 }
 
+/*基础设置border-bottom*/
+.base_setting
+{
+	height: 140px;
+	border-bottom: 1px solid #f0f0f0;
+}
 td {
 	padding: 20px 0;
 }
@@ -439,4 +443,12 @@ textarea.form-control{
 .allow_submit input{
 	margin-left: 20px;
 }
-/*单选按钮*/
+/*基础设置*/
+.account_right{
+	margin-top: 20px;
+}
+.down_icon{
+	float: right;
+    margin-top: 4px;
+    margin-left: 4px;
+}
