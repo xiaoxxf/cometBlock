@@ -60,6 +60,7 @@ $(function(){
 })
 
 
+
 // 渲染播报
 $(function(){
   var uri = 'news/quary?currentPage=1&pageSize=5&days=1';
@@ -225,19 +226,7 @@ $('.read-more').on('click',function(){
 //     }, "json");
 // });
 
-
-
-
-
-//轮播 到下一项
-$(document).ready(function(){
-	$("#myCarousel").carousel({interval:2000});
-
-});
-
-
 var resizeTimer = null;
-
 $(window).on('resize', function () {
   if (resizeTimer) {
 			 clearTimeout(resizeTimer)
@@ -264,3 +253,35 @@ $(window).on('resize', function () {
 
 
 })
+$(document).ready(function () {
+    var mySwiper = new Swiper ('.swiper-container', {
+        autoplay: true,
+        disableOnInteraction:false,
+        loop : true,
+        effect : 'flip',
+        flipEffect: {
+            slideShadows : true,
+            limitRotation : true,
+        },
+    })
+//api 参考地址 http://www.swiper.com.cn/api/index.html
+    $('.swiper-btn-prev').click(function(){
+        mySwiper.slidePrev();
+        var switchNum = mySwiper.activeIndex;
+        if(switchNum == 0){
+            switchNum = 3;
+        }
+        $(".page-nums-switch").text(switchNum);
+        mySwiper.autoplay.start();
+    })
+    $('.swiper-btn-next').click(function(){
+        mySwiper.slideNext();
+        var switchNum = mySwiper.activeIndex;
+        if(switchNum == 4){
+            switchNum = 1;
+        }
+        $(".page-nums-switch").text(switchNum);
+        mySwiper.autoplay.start();
+    })
+})
+
