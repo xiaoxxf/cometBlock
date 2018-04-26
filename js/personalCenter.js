@@ -228,24 +228,24 @@ $(window).scroll(function(){
 
 
 //发送验证码
-function sendCode() {
-	var str = localStorage.getItem('userinfo');
-	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
-	$("#ownname").val(jsonStr.realName) //输入框获取localStorage中存储值
-	var realName = jsonStr.realName;
-	var tel = jsonStr.tel;
-	var uri = 'news/virty?' + 'realName=' + realName + '&phoneNo' + tel
-	doJavaGet(uri, function(res) {
-
-		if(res != null && res.code == 0) {
-			getCode() //验证码验证
-		} else {
-			layer.msg(res.msg);
-		}
-
-	}, "json");
-
-}
+//function sendCode() {
+//	var str = localStorage.getItem('userinfo');
+//	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
+//	$("#ownname").val(jsonStr.realName) //输入框获取localStorage中存储值
+//	var realName = jsonStr.realName;
+//	var tel = jsonStr.tel;
+//	var uri = 'news/virty?' + 'realName=' + realName + '&phoneNo' + tel
+//	doJavaGet(uri, function(res) {
+//		debugger
+//		if(res != null && res.code == 0) {
+//			getCode() //验证码验证
+//		} else {
+//			layer.msg(res.msg);
+//		}
+//
+//	}, "json");
+//
+//}
 
 //验证码校验
 function getCode() {
@@ -256,6 +256,7 @@ function getCode() {
 	var uri = 'blockchain/getCode?phoneNo=' + tel //输入手机号请求验证码验证
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
+			debugger
 			layer.msg("验证码已发送");
 			//验证码倒计时
 			CountDown()
@@ -290,16 +291,53 @@ function CountDown() {
 $('#send_code').click(function() {
 	$("#send_code").css("text-decoration", "none");
 	$("#send_code").css("color", "white");
-	sendCode()
+	getCode()
 })
 
+
+//修改昵称
+
+$("#save_realname").click(function(){
+	var str = localStorage.getItem('userinfo');
+	var jsonStr = JSON.parse(str); //从一个字符串中解析出json对象
+	var realName=jsonStr.realName;
+	var userPwd =  jsonStr.userPwd;
+	var userId = jsonStr.id;
+	var uri = 'news/changeRealname?realName='+realName+"&passWord="+userPwd+"&userId="+userId
+	doJavaGet(uri, function(res) {
+		debugger
+		if(res != null && res.code == 0) {
+			layer.msg(res.msg);
+			var realName=$("#ownname").val();
+			var str = localStorage.getItem('userinfo');
+			var obj=JSON.parse(str);
+			obj.realName = realName;
+			var nameStr=JSON.stringify(obj);
+			localStorage.setItem('userinfo',nameStr); //存储
+			
+		} else {
+			layer.msg(res.msg);
+		}
+
+	}, "json");
+
+})
+/*
+ 	var tempStr=JSON.stringify(temp);
+			localStorage.setItem("temp",tempStr); 
+			debugger
+			var obj=localStorage.getItem("temp");
+			var tempStr=JSON.parse(obj);
+			var objvalue=JSON.stringify(tempStr);
+			localStorage.setItem("temp",objvalue); 
+ * */
 
 //保存修改信息
 $("#save-register-info").click(function() {
 
 	var param = {}
 	var str = localStorage.getItem('userinfo');
-
+	debugger
 	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
 	if($("#newPwd").val()==""|| !$("#newPwd")){//新密码为空
 
@@ -343,9 +381,11 @@ $("#save-register-info").click(function() {
 	doJavaGet(uri, function(res) {
 
 		if(res != null && res.code == 0) {
+			
 			setTimeout(function() {
-				location.reload()
-			}, 1500);
+				layer.msg(res.msg+",请重新登录");
+				Loginout()
+			}, 1000);
 
 		} else {
 
@@ -356,6 +396,16 @@ $("#save-register-info").click(function() {
 	}, "json");
 
 });
+
+
+//注销
+function Loginout(){
+    localStorage.clear();
+    $.removeCookie("token");
+    $.removeCookie("userid");
+    $.removeCookie("username");
+    window.location.href = "login.html";
+}
 
 //确认修改密码
 
@@ -470,3 +520,10 @@ function uploadIcon(e){
 
 
 }
+
+
+//新建专题
+$("#new_subject").click(function(){
+ 	$("#show_subject").toggle();
+ 	$(".menu").toggle();
+ });
