@@ -470,3 +470,10 @@ function uploadIcon(e){
 
 
 }
+
+
+//新建专题
+$("#new_subject").click(function(){
+ 	$("#show_subject").toggle();
+ 	$(".menu").toggle();
+ });

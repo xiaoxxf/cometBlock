@@ -411,3 +411,32 @@ td {
 .waiting-data .loader-nine div{
     background-color:#999
 }
+/*新建专题*/
+#show_subject,.menu{
+	display: none;
+}
+#new_subject{
+	float: right;
+}
+.form-group{
+	margin-bottom: 30px;
+}
+textarea.form-control{
+	height: 100px;
+}
+.upload_topic{
+	border-radius: 15px;
+	margin-top: 30px;
+    color: #006bb3;
+    border-color: #006bb3;
+    text-decoration: none;
+}
+.upload_topic:hover{
+	color: #006bb3;
+    border-color: #006bb3;
+    background-color: white;
+}
+.allow_submit input{
+	margin-left: 20px;
+}
+/*单选按钮*/
