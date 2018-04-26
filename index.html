@@ -14,10 +14,20 @@
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 	<link rel="stylesheet" href="css/homePage.css" />
+	<link rel="stylesheet" href="js/plugins/swiper/swiper-4.2.2.min.css">
 
 	<!-- 导航栏 -->
 </head>
-
+<style>
+	.swiper-container {
+		width: 100%;
+		height: 200px;
+	}
+	.swiper-btn{
+		position: relative;
+		float: right;
+	}
+</style>
 <body lang="zh-CN" class="reader-black-font">
 		<div class="comet-main block-comet-main-wrap">
 		<!-- 全局顶部导航栏 -->
@@ -56,47 +66,69 @@
 								<div class="hot_zone hot_zone_box">
 									<div class="hot_zone_title">
 										<span class="hot_block"></span>
-										<span><a href="chain.html" class="hot-span">热门专区</a></span>
-										<!--<a href=""><span>更多 &gt;&gt;</span></a>-->
+										<span style="float: left"><a href="chain.html" class="hot-span">热门专区</a></span>
+										<div class="swiper-btn">
+											<!-- 如果需要导航按钮 -->
+											<span class="swiper-btn-prev">左</span>
+											<span class="page-nums">
+												<i class="page-nums-switch">1</i>/3
+											</span>
+											<span class="swiper-btn-next">右</span>
+										</div>
 									</div>
 									<div class="hot_zone_coin">
+										<div class="swiper-container">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide">
+													<div class="row hot_coin_region hot_coin_region_1 item active">
+													</div>
+												</div>
+												<div class="swiper-slide">
+													<div class="row hot_coin_region hot_coin_region_2 item">
+													</div>
+												</div>
+												<div class="swiper-slide">
+													<div class="row hot_coin_region hot_coin_region_3 item">
+													</div>
+												</div>
+											</div>
+											<!-- 如果需要分页器 -->
+										<div class="swiper-pagination"></div>
+										</div>
+									</div>
+								<!--	<div class="hot_zone_coin">
 										<div id="myCarousel" class="carousel slide">
-											<!-- 轮播（Carousel）指标 -->
-											<ol class="carousel-indicators">
-												<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-												<li data-target="#myCarousel" data-slide-to="1"></li>
-												<li data-target="#myCarousel" data-slide-to="2"></li>
-											</ol>
+
 
 											<div class="carousel-inner">
 												<div class="row hot_coin_region hot_coin_region_1 item active">
-													<!--轮播一区-->
+
+
 
 
 												</div>
 												<div class="row hot_coin_region hot_coin_region_2 item">
-													<!--轮播二区-->
+
 
 
 												</div>
 												<div class="row hot_coin_region hot_coin_region_3 item">
-													<!--轮播三区-->
+
+
+
+												</div>
+												<div class="row hot_coin_region hot_coin_region_2 item">
+												</div>
+												<div class="row hot_coin_region hot_coin_region_3 item">
 
 												</div>
 											</div>
-
 										</div>
-
-
 										<div class="row hot_coin_region mobile-hot-coin">
-
 										</div>
-									</div>
+									</div>-->
 								</div>
 							</div>
-
-
-
 							<div class="col-md-3 col-sm-12 col-xs-12">
 								<div class="hot_zone side">
 									<div class="hot_zone_title_right">
@@ -111,7 +143,6 @@
 						</div>
 					</div>
 					<!--热门专区-->
-
 					<!--热门评测-->
 					<div class="hot_review_box">
 						<div class="row">
@@ -283,6 +314,7 @@
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/swiper/swiper-4.2.2.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
