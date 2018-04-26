@@ -102,36 +102,7 @@
 										<div class="row hot_coin_region mobile-hot-coin">
 										</div>
 									</div>
-								<!--	<div class="hot_zone_coin">
-										<div id="myCarousel" class="carousel slide">
 
-
-											<div class="carousel-inner">
-												<div class="row hot_coin_region hot_coin_region_1 item active">
-
-
-
-
-												</div>
-												<div class="row hot_coin_region hot_coin_region_2 item">
-
-
-
-												</div>
-												<div class="row hot_coin_region hot_coin_region_3 item">
-
-
-
-												</div>
-												<div class="row hot_coin_region hot_coin_region_2 item">
-												</div>
-												<div class="row hot_coin_region hot_coin_region_3 item">
-
-												</div>
-											</div>
-										</div>
-
-									</div>-->
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-12 col-xs-12">
@@ -276,14 +247,14 @@
 							<span class="article-time"><%=list[i].createTime.split(' ')[0] %></span>
 
 							<h3 class="article-title">
-								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>"><%=list[i].textTitle %></a>
+								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textTitle"><%=list[i].textTitle %></a>
 							</h3>
 						</div>
 
 
 						<div style="display:flex">
 							<div class="article-introduce">
-								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color: #959595">
+								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textContent">
 									<%:=list[i].textContent%>
 								</a>
 							</div>

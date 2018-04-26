@@ -166,17 +166,27 @@ var article_flag = false
 					})
 				}else if(article_flag) {
 					var currentPage = 1
-					var uri = 'blockchain/quaryReview?currentPage=' + currentPage + '&pageSize=12' + '&type=2' + '&creator=' + userinfo.id;
-
-					doJavaGet(uri,function(result){
+					var long_comment_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=2' + '&creator=' + userinfo.id;
+					$('.my-article').html('')
+					doJavaGet(long_comment_uri,function(result){
 						if (result.datas.length < 12) {
 							noMoreData = true
 						}
 						var tpl = document.getElementById('article_tpl').innerHTML;
 						var content = template(tpl, {list: result.datas});
-						$('.my-article').html('')
+
 						$('.my-article').append(content)
 					})
+					var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=4' + '&creator=' + userinfo.id;
+					doJavaGet(article_uri,function(result){
+						if (result.datas.length < 12) {
+							noMoreData = true
+						}
+						var tpl = document.getElementById('article_tpl').innerHTML;
+						var content = template(tpl, {list: result.datas});
+						$('.my-article').append(content)
+					})
+
 				}
 
         $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
