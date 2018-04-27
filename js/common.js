@@ -131,6 +131,7 @@ $.get("header-tpl.html",function(data){
     // 微信登陆后用户信息展示
     var wechatCode = getUrlParam('code');
     var localCookieWechatInfo = $.cookie('wechatInfo');
+    localCookieWechatInfo == null ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
     if(wechatCode != null || localCookieWechatInfo != null){
         if(localCookieWechatInfo == null){
             var uri = '/news/getUserInfo?code='+wechatCode;
@@ -199,24 +200,26 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-      /* var currentHref = window.location.href;
-        currentHref.indexOf('login.html')>0 ? currentHref = window.location.host : currentHref;*/
-        var currentHref = 'http://www.blockcomet.com';
+        var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+        if(currentJumpHref == undefined){
+            currentJumpHref = window.location.origin;
+        }
+        //var currentJumpHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
-            var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentHref);
+            var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
             window.location.href = jumpHref;
     }
     }, "json");
 })
 //微信注册
-$(document).on('click','.more-sign .wechat-resgister',function () {
+/*$(document).on('click','.more-sign .wechat-resgister',function () {
     var uri = 'news/winxinCode' ;
-   /*var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+   var currentJumpHref = window.localStorage.getItem('currentJumpHref');
     if(currentJumpHref == undefined){
-        currentJumpHref = window.location.host;
-    }*/
-   var currentJumpHref = 'http://www.blockcomet.com/comment.html?reviewId=04de1987-0147-41b6-b6ef-e33c6a67de3c&projectId=hx077';
+        currentJumpHref = window.location.origin;
+    }
+   //var currentJumpHref = 'http://www.blockcomet.com/comment.html?reviewId=04de1987-0147-41b6-b6ef-e33c6a67de3c&projectId=hx077';
     doJavaGet(uri, function(res) {
         if(res.code === 0){
             var resData = res.datas;
@@ -224,17 +227,19 @@ $(document).on('click','.more-sign .wechat-resgister',function () {
             window.location.href = jumpHref;
         }
     }, "json");
-})
+})*/
 //页面中的注册跳转
+/*
 $(document).on('click','#js-sign-up-btn',function () {
     var currentJumpHref = window.location.href;
     if(currentJumpHref.indexOf('register.html')>0 ){
-        currentHref = window.location.host
+        currentHref = window.location.href
     }else{
         window.location.href = 'register.html';
     }
     window.localStorage.setItem('currentJumpHref',currentJumpHref);
 })
+*/
 
 //微信登录绑定提示
 function wechatBindNotice(){
