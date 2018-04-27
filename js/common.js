@@ -199,9 +199,9 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-      /* var currentHref = window.location.href;
-        currentHref.indexOf('login.html')>0 ? currentHref = window.location.host : currentHref;*/
-        var currentHref = 'http://www.blockcomet.com';
+      /var currentHref = window.location.href;
+        currentHref.indexOf('login.html')>0 ? currentHref = window.location.host : currentHref;
+        //var currentHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentHref);
@@ -212,11 +212,11 @@ $(document).on('click','.more-sign .wechat-login',function () {
 //微信注册
 $(document).on('click','.more-sign .wechat-resgister',function () {
     var uri = 'news/winxinCode' ;
-   /*var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+   var currentJumpHref = window.localStorage.getItem('currentJumpHref');
     if(currentJumpHref == undefined){
         currentJumpHref = window.location.host;
-    }*/
-   var currentJumpHref = 'http://www.blockcomet.com/comment.html?reviewId=04de1987-0147-41b6-b6ef-e33c6a67de3c&projectId=hx077';
+    }
+   //var currentJumpHref = 'http://www.blockcomet.com/comment.html?reviewId=04de1987-0147-41b6-b6ef-e33c6a67de3c&projectId=hx077';
     doJavaGet(uri, function(res) {
         if(res.code === 0){
             var resData = res.datas;
