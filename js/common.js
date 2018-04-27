@@ -200,7 +200,7 @@ $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
         var currentHref = window.location.href;
-        currentHref.indexOf('login.html')>0 ? currentHref = window.location.host : currentHref;
+        currentHref.indexOf('login.html')>0 ? currentHref = window.location.origin : currentHref;
         //var currentHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
@@ -214,7 +214,7 @@ $(document).on('click','.more-sign .wechat-resgister',function () {
     var uri = 'news/winxinCode' ;
    var currentJumpHref = window.localStorage.getItem('currentJumpHref');
     if(currentJumpHref == undefined){
-        currentJumpHref = window.location.host;
+        currentJumpHref = window.location.origin;
     }
    //var currentJumpHref = 'http://www.blockcomet.com/comment.html?reviewId=04de1987-0147-41b6-b6ef-e33c6a67de3c&projectId=hx077';
     doJavaGet(uri, function(res) {
