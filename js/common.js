@@ -199,7 +199,7 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-      /var currentHref = window.location.href;
+        var currentHref = window.location.href;
         currentHref.indexOf('login.html')>0 ? currentHref = window.location.host : currentHref;
         //var currentHref = 'http://www.blockcomet.com';
         if(res.code === 0){
