@@ -1,6 +1,7 @@
 //举报弹出框
 var userId = $.cookie('userid');//获取userid
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+var wechatInfo = JSON.parse($.cookie('wechatInfo'));
 var quotedReviewId = null
 var projectId = getUrlParam('projectId')
 $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {
@@ -292,6 +293,18 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     var quote = '';
     if($(".reply-comment").is(':visible')){
         quote = $(".reply-comment-wrap .quote-comment-txt").html();
+    }
+    if( wechatInfo != null && userId == undefined){
+        layer.open({
+            closeBtn:1,
+            title: '',
+            content: '您暂未进行账号绑定，请前去进行绑定',
+            btn: ['绑定'],
+            yes: function(){
+                window.location.href='bindUser.html'
+            }
+        });
+        return;
     }
     if(userId == undefined){
         layer.msg('您还没有登录');

@@ -157,7 +157,6 @@ $("#sign-in-form-submit-btn1").click(function() {
 			phoneCode: $("#phone_code").val()
 			//userType: 3,
 		}
-
 		var uri = 'news/registerUser'
 		param = JSON.stringify(param)
 

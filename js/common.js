@@ -103,6 +103,7 @@ function Loginout(){
     $.removeCookie("token");
     $.removeCookie("userid");
     $.removeCookie("username");
+    $.removeCookie("wechatInfo");
     window.location.href = "login.html";
 }
 
@@ -129,22 +130,61 @@ $.get("header-tpl.html",function(data){
     }
     //页面加载完成之后做账户信息处理
     var username = $.cookie('username');
-    var userinfo = JSON.parse(localStorage.getItem('userinfo'))
-    if(username == undefined){
-        $("#nav_login").fadeIn();
-        $("#nav_register").fadeIn();
-        $(".scrollbar-container").fadeIn();
-    }else {
-        $(".nav-user-account #nav_user_mes").text(username);
-        if ( userinfo.userPic ) {
-          if ($("#user_pic")[0]) {
-            $("#user_pic")[0].src = userinfo.userPic
-          }
+    // 微信登陆后用户信息展示
+    var wechatCode = getUrlParam('code');
+    var localCookieWechatInfo = $.cookie('wechatInfo');
+    if(wechatCode != null || localCookieWechatInfo != null){
+        if(localCookieWechatInfo == null){
+            var uri = '/news/getUserInfo?code='+wechatCode;
+            doJavaGet(uri, function(res) {
+                if(res.code === 0){
+                    console.log(res)
+                    //cookie保存微信登录标识，设置时效
+                    $(".nav-user-account #nav_user_mes").text(res.datas.nickname);
+                    $("#user_pic")[0].src = res.datas.headimgurl;
+                    $(".nav-user-account .more-active").css('display','block');
+                    $(".login-right").css('display','block');
+                    var wechatInfo = JSON.stringify(res.datas);
+                    var expireDate= new Date();
+                    expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+                    $.cookie('wechatInfo', wechatInfo,{ expires: expireDate});
+                    setTimeout(function () {
+                        layer.open({
+                            closeBtn:1,
+                            title: '',
+                            content: '登录成功，前去绑定开启更多权限',
+                            btn: ['绑定'],
+                            yes: function(){
+                                window.location.href='bindUser.html'
+                            }
+                        });
+                    },2000)
+                }
+            }, "json");
         }else{
-          $("#user_pic")[0].src = 'img/normal-user.png'
+            var JsonWechatInfo = JSON.parse(localCookieWechatInfo)
+            $(".nav-user-account #nav_user_mes").text(JsonWechatInfo.nickname);
+            $("#user_pic")[0].src = JsonWechatInfo.headimgurl;
+            $(".nav-user-account .more-active").css('display','block');
+            $(".login-right").css('display','block');
         }
-        $(".nav-user-account .more-active").css('display','block');
-        $(".login-right").css('display','block');
+
+    }else {
+        var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+        if (username == undefined) {
+            $("#nav_login").fadeIn();
+            $("#nav_register").fadeIn();
+            $(".scrollbar-container").fadeIn();
+        } else {
+            $(".nav-user-account #nav_user_mes").text(username);
+            if (userinfo.userPic) {
+                $("#user_pic")[0].src = userinfo.userPic
+            } else {
+                $("#user_pic")[0].src = 'img/normal-user.png'
+            }
+            $(".nav-user-account .more-active").css('display', 'block');
+            $(".login-right").css('display', 'block');
+        }
     }
 });
 $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function () {
@@ -156,3 +196,45 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
         window.location.href = "personalCenter.html?personType=1";
 })
 //通知鼠标悬停出现隐藏div
+
+//微信登陆
+$(document).on('click','.more-sign .wechat-login',function () {
+    var uri = 'news/winxinCode' ;
+    doJavaGet(uri, function(res) {
+      /var currentHref = window.location.href;
+        currentHref.indexOf('login.html')>0 ? currentHref = window.location.host : currentHref;
+        //var currentHref = 'http://www.blockcomet.com';
+        if(res.code === 0){
+            var resData = res.datas;
+            var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentHref);
+            window.location.href = jumpHref;
+    }
+    }, "json");
+})
+//微信注册
+$(document).on('click','.more-sign .wechat-resgister',function () {
+    var uri = 'news/winxinCode' ;
+   var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+    if(currentJumpHref == undefined){
+        currentJumpHref = window.location.host;
+    }
+   //var currentJumpHref = 'http://www.blockcomet.com/comment.html?reviewId=04de1987-0147-41b6-b6ef-e33c6a67de3c&projectId=hx077';
+    doJavaGet(uri, function(res) {
+        if(res.code === 0){
+            var resData = res.datas;
+            var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
+            window.location.href = jumpHref;
+        }
+    }, "json");
+})
+//页面中的注册跳转
+$(document).on('click','#js-sign-up-btn',function () {
+    var currentJumpHref = window.location.href;
+    if(currentJumpHref.indexOf('register.html')>0 ){
+        currentHref = window.location.host
+    }else{
+        window.location.href = 'register.html';
+    }
+    window.localStorage.setItem('currentJumpHref',currentJumpHref);
+})
+
