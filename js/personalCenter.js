@@ -443,12 +443,12 @@ $("#save-reset-pwd").click(function() {
 // 显示头像
 $(function(){
 	var preview = $('#result').find('img')[0];
-	if (userinfo.userPic) {
+	if (userinfo && userinfo.userPic) {
 		preview.src = userinfo.userPic
+		$('#ownname').val(userinfo.realName)
 	}else{
 		preview.src = 'img/normal-user.png'
 	}
-	$('#ownname').val(userinfo.realName)
 })
 
 //预览图片
