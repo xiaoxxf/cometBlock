@@ -181,3 +181,11 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 $('#writting-article').on('click',function(){
 	window.location.href='article-new.html';
 })
+
+//点击登录手动跳转
+
+$(document).on('click','#nav_login',function () {
+    var currentJumpHref = window.location.href;
+    window.localStorage.setItem('currentJumpHref',currentJumpHref);
+    window.location.href = 'login.html';
+})
