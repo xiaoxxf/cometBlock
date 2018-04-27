@@ -1,3 +1,18 @@
+window.wangEditor.fullscreen = {
+	// editor create之后调用
+	init: function(editorSelector){
+		$(editorSelector + " .w-e-toolbar").append('<div class="w-e-menu"><a class="_wangEditor_btn_fullscreen" href="###" onclick="window.wangEditor.fullscreen.toggleFullscreen(\'' + editorSelector + '\')">全屏</a></div>');
+	},
+	toggleFullscreen: function(editorSelector){
+		$(editorSelector).toggleClass('fullscreen-editor');
+		if($(editorSelector + ' ._wangEditor_btn_fullscreen').text() == '全屏'){
+			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('退出全屏');
+		}else{
+			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('全屏');
+		}
+	}
+};
+
 var userId = $.cookie('userid');//获取userid
 var ui = {
   'submiting': false
@@ -20,8 +35,6 @@ $(function(){
     });
   }
 })
-
-
 
 var E = window.wangEditor
 var editor = new E('#editor')
@@ -69,7 +82,7 @@ editor.customConfig.uploadImgHooks = {
 // editor.customConfig.debug = true
 editor.create();
 $('.w-e-text-container').attr('style','height:auto;');
-
+E.fullscreen.init('#editor');
 
 // 修改菜单栏样式
 $('.w-e-toolbar').css(
@@ -82,7 +95,7 @@ $('.w-e-toolbar').css(
 );
 $('.w-e-menu').css('font-size','20px')
 $('.w-e-text-container').css('border','0px')
-
+$('.w-e-text').css('font-size','18px')
 
 
 // 提交
