@@ -108,7 +108,7 @@ function Loginout(){
 
 //头部尾部全局加载
 $.get("footer-tpl.html",function(data){
-    if ( !window.location.pathname == '/cometBlock/article-new.html') {
+    if ( window.location.pathname != '/cometBlock/article-new.html') {
       $(".block-comet-main-wrap").append(data);
     }
 });
