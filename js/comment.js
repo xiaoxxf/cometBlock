@@ -1,7 +1,8 @@
 //举报弹出框
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'));
-var wechatInfo = JSON.parse($.cookie('wechatInfo'));
+var wechatInfo = $.cookie('wechatInfo');
+wechatInfo == null ? wechatInfo : JSON.parse(wechatInfo);
 var quotedReviewId = null
 var projectId = getUrlParam('projectId')
 $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {

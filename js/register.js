@@ -45,12 +45,16 @@ function RegisterFromValid() {
 
 //昵称手机号失去焦点事件
 $("#realName").blur(function() {
-	gainCode()
+	if(RegisterFromValid()){
+        gainCode()
+	}
+
 });
 
 $("#session_phone").blur(function() {
-	gainCode()
-
+    if(RegisterFromValid()){
+        gainCode()
+    }
 });
 
 //验证昵称手机号
@@ -66,7 +70,7 @@ function gainCode() {
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 		} else {
-				layer.msg(res.msg);
+				//layer.msg(res.msg);
 			}
 		
 
