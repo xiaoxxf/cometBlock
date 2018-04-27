@@ -237,4 +237,3 @@ $(document).on('click','#js-sign-up-btn',function () {
     }
     window.localStorage.setItem('currentJumpHref',currentJumpHref);
 })
-

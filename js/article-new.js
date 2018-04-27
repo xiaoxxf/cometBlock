@@ -112,7 +112,7 @@ $('.submit_comment').on('click',function(){
     type: 4,
     userId: userId, //userId
   }
-  debugger
+
   if (data.textTitle.length == 0 || editor.txt.text().length == 0) {
     // $('#identifier').modal()
     layer.msg('请保证标题、内容均填写完整')
