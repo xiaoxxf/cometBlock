@@ -14,6 +14,7 @@
 		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" href="css/long-comment.css">
+		<link rel="stylesheet" href="css/article-new.css">
 		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 
 	</head>
@@ -52,13 +53,13 @@
 							<!--预览-->
 							<ul class="nav navbar-nav navbar-right log_writting">
 								<li>
-									<button class="btn preview-article">预览</button>
+									<button class="btn preview-article" style="margin-right:100px">预览</button>
 								</li>
 							</ul>
 							<!--写文章-->
 							<ul class="nav navbar-nav navbar-right log_writting">
 								<li>
-									<button class="btn" id="writting-article">写文章</button>
+									<button class="btn submit_comment" >发布</button>
 								</li>
 							</ul>
 
@@ -79,17 +80,13 @@
 				<!-- 正文 -->
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
-						<div id="editor" class="edit-comment" style="margin-left:-10px">
+						<div id="editor" class="edit-comment" style="margin-left:-10px;">
 
 						</div>
 					</div>
 				</div>
 				<br>
-				<div class="row">
-					<div class="col-md-6 col-md-offset-5 col-xs-5 col-xs-offset-4">
-						<a href="#" class="btn btn-primary submit_comment">提交</a>
-					</div>
-				</div>
+
 
 
 				<div class="modal fade" id="identifier" style="z-index:12000" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -116,9 +113,8 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src="js/common.js"></script>
-
 		<script src="js/wangEditor.js"></script>
-		<script src="js/jquery.star-rating-svg.js"></script>
+		<!-- <script src="js/jquery.star-rating-svg.js"></script> -->
 		<script src="js/article-new.js"></script>
 
 	</body>
