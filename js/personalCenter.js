@@ -324,7 +324,7 @@ $("#save_realname").click(function(){
 			obj.realName = realName;
 			var nameStr=JSON.stringify(obj);
 			localStorage.setItem('userinfo',nameStr); //存储
-			
+
 		} else {
 			layer.msg(res.msg);
 		}
@@ -334,12 +334,12 @@ $("#save_realname").click(function(){
 })
 /*
  	var tempStr=JSON.stringify(temp);
-			localStorage.setItem("temp",tempStr); 
+			localStorage.setItem("temp",tempStr);
 			debugger
 			var obj=localStorage.getItem("temp");
 			var tempStr=JSON.parse(obj);
 			var objvalue=JSON.stringify(tempStr);
-			localStorage.setItem("temp",objvalue); 
+			localStorage.setItem("temp",objvalue);
  * */
 
 //保存修改信息
@@ -391,7 +391,7 @@ $("#save-register-info").click(function() {
 	doJavaGet(uri, function(res) {
 
 		if(res != null && res.code == 0) {
-			
+
 			setTimeout(function() {
 				layer.msg(res.msg+",请重新登录");
 				Loginout()
@@ -443,12 +443,12 @@ $("#save-reset-pwd").click(function() {
 // 显示头像
 $(function(){
 	var preview = $('#result').find('img')[0];
-	if (userinfo.userPic) {
+	if (userinfo && userinfo.userPic) {
 		preview.src = userinfo.userPic
+		$('#ownname').val(userinfo.realName)
 	}else{
 		preview.src = 'img/normal-user.png'
 	}
-	$('#ownname').val(userinfo.realName)
 })
 
 //预览图片
@@ -533,7 +533,7 @@ function uploadIcon(e){
 
 
 //新建专题
-$("#new_subject").click(function(){
- 	$("#show_subject").toggle();
- 	$(".menu").toggle();
- });
+// $("#new_subject").click(function(){
+//  	$("#show_subject").toggle();
+//  	$(".menu").toggle();
+//  });
