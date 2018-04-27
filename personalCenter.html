@@ -13,6 +13,9 @@
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/chain-new.css" />
 		<link rel="stylesheet" href="css/personalCenter.css">
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="css/load.css" />
+		
 	</head>
 
 	<body lang="zh-CN" class="reader-black-font">
@@ -68,11 +71,6 @@
 											 <div class="setting-icon"><i class="fa fa-plus-square-o"></i></div> <span class="option-name">我的专题</span><span  class="badge badge-icon reject-count"></span>
 										</a>
 									</li>
-									<li >
-										<a>
-											 <div class="setting-icon"><i class="fa fa-cog"></i></div> <span class="option-name">账号管理</span><span  class="badge badge-icon reject-count"></span>
-										</a>
-									</li>
 								</ul>
 							</div>
 						<!--</div>-->
@@ -80,64 +78,72 @@
 						<div class="col-xs-12 col-md-8 col-sm-12  col-md-offset-4 show_right">
 							<!--更换头像-->
 							<div class="show_table cont0">
-								<table>
-									<tbody class="base">
-										<tr class="base_setting">
-											<td>
-												<div class="avatar" id="result">
-													<img src="">
-												</div>
-											</td>
-											<td>
-												<a href="javascript:;" class="file btn btn-hollow ">更改头像
-													<input type="file" id="user_logo_input" class='user_logo' >
-												</a>
-												<button type="button" class="btn btn-default upload-button upload-project-logo btn-hollow">保存
-												</button>
-											</td>
-										</tr>
-										<tr class="base_setting">
-											<td class=" setting-title">
-												昵称
-											</td>
-											<td class=""><input type="text" placeholder="请输入昵称" id="ownname" ></td>
-											<td>
-												<button type="button" class="btn btn-default " id="save_realname">保存
-												</button>
-											</td>
-											
-										</tr>
-									</tbody>
-								</table>
-
-								<table>
-										<tr>
-											<td class=" setting-title" >
-												<a class="accordion-toggle setting-psw" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="change-pwd-msg">
-													<span class="fa fa-angle-down down_icon"></span>
-													修改密码
-												</a>
-												<div id="collapseOne" class="accordion-body collapse col-xs-10 col-sm-10 col-md-12 " >
-													<div class="accordion-inner col-xs-12 col-md-8 col-sm-12">
-														<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
-															<input placeholder="手机验证码" type="text" name="tel" id="phone_code" class="phone_code_tip">
-															<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="send_code">发送验证码</a>
-														</div>
-														<div class="row-new-pwd" >
-															<div class="col-xs-10 col-md-6 col-sm-10 row-input"><a>请输入新的密码</a></div>
-															<div class="col-xs-10 col-md-6 col-sm-10"><input type="text"  id="newPwd" class="new-input-pwd"></div>
-														</div>
+								<div class="base_setting">
+									<div class="col-md-3">
+										<div class="avatar" id="result">
+											<img src="">
+										</div>
+									</div>
+									<div class="col-md-4">
+										<a href="javascript:;" class="file btn btn-hollow ">更改头像
+											<input type="file" id="user_logo_input" class='user_logo' >
+										</a>
+										<button type="button" class="btn btn-default upload-button upload-project-logo btn-hollow">保存
+										</button>
+									</div>
+									<div class="col-md-1">
+										
+									</div>
+								</div>
+								
+								<div class="base_setting">
+									<div class="col-md-3 col-xs-12 col-sm-12">
+										<div class=" setting-title">
+											昵称
+										</div>
+									</div>
+									<div class="col-md-4 col-xs-12 col-sm-12">
+										<input type="text" placeholder="请输入昵称" id="ownname" >
+									</div>
+									<div class="col-md-1 col-xs-12 col-sm-12">
+										<button type="button" class="btn btn-default save_realname" id="save_realname">保存
+										</button>
+									</div>
+								</div>
+								<div class="base_setting_pwd">
+									<div class="col-md-10 reset-pwd">
+										<div class=" setting-title" >
+											<a class="accordion-toggle setting-psw" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="change-pwd-msg">
+												<span class="fa fa-angle-down down_icon"></span>
+												修改密码
+											</a>
+											<div id="collapseOne" class="accordion-body collapse col-xs-10 col-sm-10 col-md-12 " >
+												<div class="accordion-inner col-xs-12 col-md-10 col-sm-12">
+													<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
+														<input placeholder="手机验证码" type="text" name="tel" id="phone_code" class="phone_code_tip">
+														<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="send_code">发送验证码</a>
+													</div>
+													<div class="row-new-pwd" >
+														<div class="col-xs-12 col-md-6 col-sm-12 row-input"><a>请输入新的密码</a></div>
+														<div class="col-xs-12 col-md-6 col-sm-12"><input type="text"  id="newPwd" class="new-input-pwd"></div>
 													</div>
 												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
-											</td>
-										</tr>
-								</table>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-10 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
+								</div>
+								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="绑定用户" id="bind_now_user">
+								</div>
+								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="绑定新用户" id="bind_new_user">
+								</div>
+								
 							</div>
+							
 							<!-- 引用 -->
 							<div class="show_table show_table_detail cont1 quote">
 								<div class="menu">引用</div>
@@ -247,58 +253,6 @@
 									</div>
 							</div>
 							<!-- 账号管理 -->
-							<!--<div class="show_table show_table_detail cont8 account ">
-								<div class="menu">我的账号</div>
-								<ul class="my-account">
-									<table>
-										<tr>
-											<td class=" setting-title" >
-												<a class="accordion-toggle setting-psw" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="change-pwd-msg">
-													修改密码
-												</a>
-												<div id="collapseOne" class="accordion-body collapse col-xs-10 col-sm-10 col-md-12 " >
-													<div class="accordion-inner col-xs-12 col-md-8 col-sm-12">
-														<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
-															<input placeholder="手机验证码" type="text" name="tel" id="phone_code" class="phone_code_tip">
-															<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="send_code">发送验证码</a>
-														</div>
-														
-														<div class="row-new-pwd" >
-															<div class="col-xs-10 col-md-6 col-sm-10 row-input"><a>请输入新的密码</a></div>
-															<div class="col-xs-10 col-md-6 col-sm-10"><input type="text"  id="newPwd" class="new-input-pwd"></div>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
-											</td>
-										</tr>
-									</table>
-									<div class="col-md-10 col-xs-12 col-sm-12 account_right">
-										<a class="accordion-toggle setting-psw" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="change-pwd-msg">
-													修改密码
-										</a>
-										<div id="collapseOne" class="accordion-body collapse col-xs-10 col-sm-10 col-md-12 " >
-											<div class="accordion-inner col-xs-12 col-md-8 col-sm-12">
-												<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
-													<input placeholder="手机验证码" type="text" name="tel" id="phone_code" class="phone_code_tip">
-													<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="send_code">发送验证码</a>
-												</div>
-												
-												<div class="row-new-pwd" >
-													<div class="col-xs-10 col-md-6 col-sm-10 row-input"><a>请输入新的密码</a></div>
-													<div class="col-xs-10 col-md-6 col-sm-10"><input type="text"  id="newPwd" class="new-input-pwd"></div>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-								</ul>
-							</div>-->
 						</div>
 				</div>
 			</div>
@@ -427,7 +381,73 @@
 					</a>
 			<%}%>
 		</script>
+		<!--绑定现有用户弹出-->
+		<script type="text/html" id="bind-now-commit-layer">
+				<div class="main report-login">
 
+					<h4 class="title">
+					    <div class="normal-title">
+							<a class="active" style="border-bottom:none;">绑定</a>
+						</div>
+					</h4>
+					<div class="js-sign-in-container">
+
+						<div class="input-prepend  restyle ">
+							<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="input-prepend border_radiusB">
+							<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+							<i class="fa fa-unlock-alt"></i>
+
+						</div>
+						<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+
+						<input class="sign-in-button bind_box" id="sign-in-form-submit-btn" type="button" value="绑定" style="margin-top: 30px;">
+						<span class="ouro">
+						    <span class="left"><span class="anim"></span></span>
+						    <span class="right"><span class="anim"></span></span>
+						 </span>
+					</div>
+				</div>
+			</script>
+			<!--绑定新用户弹出-->
+		<script type="text/html" id="bind-new-commit-layer">
+				<div class="main report-login">
+					<h4 class="title">
+					    <div class="normal-title">
+							<a class="active" style="border-bottom:none;">绑定</a>
+						</div>
+					</h4>
+					<div class="js-sign-in-container">
+						<div class="input-prepend restyle ">
+							<input placeholder="你的昵称" type="text" class="border_radT" name="realName" id="realName">
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="input-prepend">
+							<input placeholder="手机号" type="text" name="tel" id="session_phone">
+							<i class="fa fa-mobile"></i>
+						</div>
+						<div class="input-prepend phone_code_hide">
+							<input placeholder="手机验证码" type="text" name="tel" class="border_radC " id="phone_code">
+							<i class="fa fa-key"></i>
+							<a class="btn-up-resend js-send-code-button" href="javascript:void(0);" id="send_code">发送验证码</a>
+						</div>
+						<div class="input-prepend">
+							<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
+							<i class="fa fa-unlock-alt"></i>
+						</div>
+
+						<input class="sign-in-button" id="sign-in-form-submit-btn1" type="button" value="绑定" style="margin-top: 30px;">
+						<span class="ouro">
+						    <span class="left"><span class="anim"></span></span>
+						    <span class="right"><span class="anim"></span></span>
+						 </span>
+					</div>
+				</div>
+			</script>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -435,7 +455,7 @@
 		<script src="js/common.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src="js/personalCenter.js"></script>
-
+		<script src="js/login.js"></script>
 
 	</body>
 

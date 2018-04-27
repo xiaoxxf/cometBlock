@@ -24,6 +24,9 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
         parentTxt = self.data('parenttxt');
         $(".comment-list-hook").find('.reply-comment-click').removeClass('reply-comment-click')
         self.addClass('reply-comment-click');
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -48,6 +51,9 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         author = self.data('user_name'),
         passWord = userinfo.userPwd,
         reviewId = self.data('reviewid');
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -90,6 +96,9 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
   var self = $(e.currentTarget)
 
   var reviewId = self.data('reviewid');
+  if(!wechatBindNotice()){
+    	return;
+    }
   if(userId == undefined){
       layer.msg('您还没有登录');
       layer.open({
@@ -171,6 +180,9 @@ $(".comment-detail-mian-hook").on('click','.main-panel-useful button',function (
     var usefull = self.data('useful');
     var reviewId = getUrlParam('reviewId');
     //var reviewid = self.data('reviewid');
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -213,6 +225,9 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     var likes = 0;
     var score = $("#n_rating").val();
     var shortTxt = $(".short-comment").val();
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -294,7 +309,10 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     if($(".reply-comment").is(':visible')){
         quote = $(".reply-comment-wrap .quote-comment-txt").html();
     }
-    if( wechatInfo != null && userId == undefined){
+    if(!wechatBindNotice()){
+    	return;
+    }
+    /*if( wechatInfo != null && userId == undefined){
         layer.open({
             closeBtn:1,
             title: '',
@@ -305,7 +323,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
             }
         });
         return;
-    }
+    }*/
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -360,6 +378,10 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
         passWord = userinfo.userPwd,
         reviewId = self.data('reviewid');
         parentTxt = self.data('parenttxt');
+        
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({

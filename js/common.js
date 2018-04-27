@@ -13,9 +13,9 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
+//var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
-// var WebApiHostJavaApi = "http://10.0.0.183:8080/";
+var WebApiHostJavaApi = "http://10.0.0.183:8080/";
 
 
 var WebRankHostApi = "//rank.blockcomet.com/"
@@ -235,4 +235,23 @@ $(document).on('click','#js-sign-up-btn',function () {
     }
     window.localStorage.setItem('currentJumpHref',currentJumpHref);
 })
+
+//微信登录绑定提示
+function wechatBindNotice(){
+	var userId = $.cookie('userid');//获取userid
+	var wechatInfo = JSON.parse($.cookie('wechatInfo'));
+	 if( wechatInfo != null && userId == undefined){
+        layer.open({
+            closeBtn:1,
+            title: '',
+            content: '您暂未进行账号绑定，请前去进行绑定',
+            btn: ['绑定'],
+            yes: function(){
+                window.location.href='bindUser.html'
+            }
+        });
+        return false;
+    }
+}
+
 
