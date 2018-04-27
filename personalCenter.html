@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>个人中心</title>
-		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>  
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 		<!--<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />-->
@@ -63,16 +63,16 @@
 											 <div class="setting-icon"><i class="fa fa-file-text-o"></i></div> <span class="option-name">我的文章</span><span  class="badge badge-icon reject-count"></span>
 										</a>
 									</li>
-									<li >
+									<!-- <li >
 										<a>
 											 <div class="setting-icon"><i class="fa fa-plus-square-o"></i></div> <span class="option-name">我的专题</span><span  class="badge badge-icon reject-count"></span>
 										</a>
-									</li>
-									<li >
+									</li> -->
+									<!-- <li >
 										<a>
 											 <div class="setting-icon"><i class="fa fa-cog"></i></div> <span class="option-name">账号管理</span><span  class="badge badge-icon reject-count"></span>
 										</a>
-									</li>
+									</li> -->
 								</ul>
 							</div>
 						<!--</div>-->
@@ -105,7 +105,7 @@
 												<button type="button" class="btn btn-default " id="save_realname">保存
 												</button>
 											</td>
-											
+
 										</tr>
 									</tbody>
 								</table>
@@ -180,125 +180,7 @@
 								<ul class="my-article">
 								</ul>
 							</div>
-							<!--专题-->
-							<div class="show_table show_table_detail cont7 subject">
-								<div class="menu">我的专题</div>
-								<div class="col-md-10 col-xs-10 col-sm-10">
-									<button type="button" class="btn btn-primary" id="new_subject"><span>+</span>新建专题</button>
-								</div>
-									<!--Form表单-->
-									<div class=" col-xs-12 col-md-10 col-sm-10" id="show_subject">
-										<form id="form1" class="form-horizontal" role="form" name="new_coin" enctype="multipart/form-data">
-											<br />
-											<div class="form-group row">
-												<div class="col-xs-12 col-md-3 col-sm-10">
-													<!--图片显示-->
-													<div class="coin_image_box">
-														<img src="" class="coin_image" />
-													</div>
-												</div>
-												<div class="col-xs-12 col-md-9 col-sm-10">
-													
-													<a href="javascript:;" class="file upload_topic">上传专题封面
-														<input type="file" id="project_logo_input" class='project_logo' name="project_logo" >
-													</a>
-												</div>
-											</div>
-					
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">名称：</label>
-												<div class="col-xs-12 col-md-8 col-sm-5">
-													<input class="form-control" name="project_name" type="text" placeholder="填写名称,不超过50字">
-												</div>
-											</div>
-					
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label ">描述：</label>
-												<div class="col-xs-12 col-md-8 col-sm-5">
-													<textarea class="form-control" name="project_description" type="text" placeholder="填写描述"></textarea>
-												</div>
-											</div>
-					
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">其他管理员</label>
-												<div class="col-xs-12 col-md-8 col-sm-5">
-													<input class="form-control" name="project_admin" type="text" placeholder="输入用户名">
-												</div>
-											</div>
-											
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">是否允许投稿</label>
-												<div class="col-xs-12 col-md-8 col-sm-5 allow_submit">
-													<input type="radio" name="contribute" value="1" checked="checked">允许
-													<input type="radio" name="contribute" value="2">不允许
-													
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">投稿是否需要申请</label>
-												<div class="col-xs-12 col-md-8 col-sm-5 allow_submit">
-													<input type="radio" name="apply" value="1" checked="checked">需要
-													<input type="radio" name="apply" value="2">不需要
-													
-												</div>
-											</div>
-											<button type="button" class="btn btn-primary" id="submit_subject">提交专题</button>
-										</form>
-									</div>
-							</div>
-							<!-- 账号管理 -->
-							<!--<div class="show_table show_table_detail cont8 account ">
-								<div class="menu">我的账号</div>
-								<ul class="my-account">
-									<table>
-										<tr>
-											<td class=" setting-title" >
-												<a class="accordion-toggle setting-psw" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="change-pwd-msg">
-													修改密码
-												</a>
-												<div id="collapseOne" class="accordion-body collapse col-xs-10 col-sm-10 col-md-12 " >
-													<div class="accordion-inner col-xs-12 col-md-8 col-sm-12">
-														<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
-															<input placeholder="手机验证码" type="text" name="tel" id="phone_code" class="phone_code_tip">
-															<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="send_code">发送验证码</a>
-														</div>
-														
-														<div class="row-new-pwd" >
-															<div class="col-xs-10 col-md-6 col-sm-10 row-input"><a>请输入新的密码</a></div>
-															<div class="col-xs-10 col-md-6 col-sm-10"><input type="text"  id="newPwd" class="new-input-pwd"></div>
-														</div>
-														
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
-											</td>
-										</tr>
-									</table>
-									<div class="col-md-10 col-xs-12 col-sm-12 account_right">
-										<a class="accordion-toggle setting-psw" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="change-pwd-msg">
-													修改密码
-										</a>
-										<div id="collapseOne" class="accordion-body collapse col-xs-10 col-sm-10 col-md-12 " >
-											<div class="accordion-inner col-xs-12 col-md-8 col-sm-12">
-												<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
-													<input placeholder="手机验证码" type="text" name="tel" id="phone_code" class="phone_code_tip">
-													<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="send_code">发送验证码</a>
-												</div>
-												
-												<div class="row-new-pwd" >
-													<div class="col-xs-10 col-md-6 col-sm-10 row-input"><a>请输入新的密码</a></div>
-													<div class="col-xs-10 col-md-6 col-sm-10"><input type="text"  id="newPwd" class="new-input-pwd"></div>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-								</ul>
-							</div>-->
+
 						</div>
 				</div>
 			</div>
