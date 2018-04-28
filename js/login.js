@@ -37,6 +37,17 @@ function loginFromValid(){
 
 
 $(document).on('click','#sign-in-form-submit-btn',function() {
+	signIn()
+});
+//登录绑定回车
+$(document).keydown(function(event){
+	if(event.keyCode == 13){
+		$('#sign-in-form-submit-btn').click();
+		}
+});
+
+
+function signIn(){
 	if(loginFromValid()){
 		var param = {
 		userName: $("#session_phone").val(),
@@ -46,7 +57,7 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 	}
 	var uri = 'news/login?userName=' + param.userName + '&userPwd=' + hex_md5(param.userName + param.userPwd);
 	param = JSON.stringify(param);
-    var currentHref = location.href
+		var currentHref = location.href
 	window.localStorage.setItem('currentHref',currentHref);
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
@@ -57,20 +68,20 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 
 			setTimeout(function() { //两秒后跳转
 				//设置用户信息cookie失效时间，一个小时
-                var expireDate= new Date();
-                expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+								var expireDate= new Date();
+								expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
 				localStorage.setItem('userinfo', res.datas); //存储
 				localStorage.setItem('userid', res.datas.id);
 				localStorage.setItem('userinfo', JSON.stringify(res.datas));
 				$.cookie('token', res.datas.id,{ expires: expireDate});
 				$.cookie('userid', res.datas.id,{ expires: expireDate });
-                $.cookie('username', res.datas.realName,{ expires: expireDate });
+								$.cookie('username', res.datas.realName,{ expires: expireDate });
 				var localCurrentHref = window.localStorage.getItem('currentHref');
 				if(localCurrentHref.indexOf('login.html')>0){
 
-                    window.location.href = "index.html";
+										window.location.href = "index.html";
 				}else{
-                    window.location.href = localCurrentHref;
+										window.location.href = localCurrentHref;
 				}
 			}, 1500);
 
@@ -80,11 +91,4 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 	}, "json");
 
 	}
-
-});
-//登录绑定回车
-$(document).keydown(function(event){
-	if(event.keyCode == 13){
-		$('#sign-in-form-submit-btn').click();
-		}
-});
+}
