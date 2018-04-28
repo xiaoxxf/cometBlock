@@ -344,7 +344,6 @@ $("#save_realname").click(function(){
 
 //保存修改信息
 $("#save-register-info").click(function() {
-
 	var param = {}
 	var str = localStorage.getItem('userinfo');
 
@@ -358,7 +357,7 @@ $("#save-register-info").click(function() {
 		return
 	}
 
-	if($("#phone_code").val()==""|| !$("#phone_code")){//新密码为空
+	if($("#phone_code").val()==""|| !$("#phone_code")){//验证码为空
 
 		layer.tips('请输入验证码', '#phone_code', {
 			tips: [2, '#3595CC'],
@@ -556,6 +555,58 @@ function uploadIcon(e){
 
 
 //新建专题
+
+$("#new_subject").click(function(){
+ 	$("#show_subject").toggle();
+ 	$(".menu").toggle();
+ });
+
+
+//绑定现有用户弹出框
+$("#bind_now_user").on('click',function (e) {
+    var area_width
+    var area_height
+    if($(window).width() <= 767)
+ 	{
+	 	area_width = '320px'
+	    area_height = '500px'
+ 	}else{
+ 		 area_width = '370px'
+	     area_height = '460px'
+ 	}
+    layer.open({
+        type: 1,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        area: [area_width,area_height ], //宽高
+        content: $("#bind-now-commit-layer").html()
+    });
+
+})
+
+//绑定新用户弹出框
+$("#bind_new_user").on('click',function (e) {
+    var area_width
+    var area_height
+    if($(window).width() <= 767)
+ 	{
+	 	area_width = '320px'
+	    area_height = '500px'
+ 	}else{
+ 		 area_width = '370px'
+	     area_height = '460px'
+ 	}
+    layer.open({
+        type: 1,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        area: [area_width,area_height ], //宽高
+        content: $("#bind-new-commit-layer").html()
+    });
+
+})
 // $("#new_subject").click(function(){
 //  	$("#show_subject").toggle();
 //  	$(".menu").toggle();
