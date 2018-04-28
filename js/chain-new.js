@@ -144,11 +144,8 @@ document.getElementById("project_logo_input").addEventListener("change", functio
 // 团队图片选择及预览
 $('.team').on('change', $('.member_pic'), function(e) {
   if (e.target.type != 'file') {
-    return false
+    return
   }
-
-  team_image_box = e.target.parentNode.previousElementSibling// team_image_box
-  $(team_image_box).children('img').remove()
 
   var file = e.target.files[0];
 
@@ -156,13 +153,20 @@ $('.team').on('change', $('.member_pic'), function(e) {
   if (!file) {
     member_pic_name = e.target.parentElement.nextElementSibling.firstElementChild;
     member_pic_name.value = '';
-    return false
+    return
   }
   // 校验图片
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
     layer.msg('请选择小于2M的图片文件',{time:1000})
-    return false
+    return
   }
+
+
+  team_image_box = e.target.parentNode.previousElementSibling// team_image_box
+  debugger
+  $(team_image_box).children('img').remove()
+
+
 
   // 图片预览
   var img = document.createElement("img");
@@ -183,7 +187,8 @@ var t = null
 // 上传币种图片
 function upLoadPorjectLogo(){
   var file = $('#project_logo_input')[0].files[0]
-  if (ui.fileUpLoading || file == undefined) {
+  debugger
+  if (file == undefined) {
     return
   }
   if (!file.type.match(imageType) || file.size > imageMaxSize) {
@@ -204,12 +209,12 @@ function upLoadPorjectLogo(){
     processData: false,  // 不处理数据
     contentType: false,   // 不设置内容类型
 
-    beforeSend: function(){
-      ui.fileUpLoading = true
-    },
+    // beforeSend: function(){
+    //   // ui.fileUpLoading = true
+    // },
 
     success:function(data){
-      ui.fileUpLoading = false
+      // ui.fileUpLoading = false
       // project_logo
       if (data.code == 0) {
         $('#project_logo_file').val(data.datas[0])
@@ -225,7 +230,7 @@ function upLoadPorjectLogo(){
 // 上传白皮书
 function upLoadWhitePaper(){
   var file = $('.white_paper')[0].files[0]
-  if (ui.fileUpLoading || file == undefined) {
+  if (file == undefined) {
     return
   }
   if (!file.type.match(pdfType) || file.size > whitePaperMaxSize) {
@@ -246,13 +251,13 @@ function upLoadWhitePaper(){
     processData: false,  // 不处理数据
     contentType: false,   // 不设置内容类型
 
-    beforeSend: function(){
-      ui.fileUpLoading = true
-    },
+    // beforeSend: function(){
+    //   ui.fileUpLoading = true
+    // },
 
     success:function(data){
       // project_logo
-      ui.fileUpLoading = false
+      // ui.fileUpLoading = false
       if (data.code == 0) {
         $('#white_paper_file').val(data.datas[0])
         // layer.msg('上传成功')
@@ -267,7 +272,7 @@ function upLoadWhitePaper(){
 // 上传团队图片
 function uploadMemberPic(e){
   var file = e.files[0];
-  if (ui.fileUpLoading || e.files.length == 0) {
+  if (file == undefined) {
     return
   }
 
@@ -290,12 +295,12 @@ function uploadMemberPic(e){
     processData: false,  // 不处理数据
     contentType: false,   // 不设置内容类型
 
-    beforeSend: function(){
-      ui.fileUpLoading = true
-    },
+    // beforeSend: function(){
+    //   ui.fileUpLoading = true
+    // },
 
     success:function(data){
-      ui.fileUpLoading = false
+      // ui.fileUpLoading = false
       if (data.code == 0) {
         // 把照片的值存在对应的input
         member_pic_name = t.parentElement.nextElementSibling.firstElementChild
@@ -306,7 +311,7 @@ function uploadMemberPic(e){
       }
     },
     error:function(e){
-      ui.fileUpLoading = false
+      // ui.fileUpLoading = false
       layer.msg("上传错误，请重试！");
     }
   });
@@ -420,7 +425,7 @@ $('#form1').validator({
             ui.submiting = false
             if (result.code == 0) {
               layer.msg('提交成功，请等待审核', {
-                time: 2000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
                 end:function(){
                 window.location.href='chain.html';
                 }
