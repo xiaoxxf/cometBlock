@@ -476,12 +476,7 @@ textarea.form-control{
 /*绑定弹窗自适应*/
 @media (max-width: 767px){
     .main{
-	    text-align: center;
-	    padding: 50px 50px 30px;
-	    background-color: #fff;
-	    border-radius: 4px;
-	    vertical-align: middle;
-	    
+   		width: 320px !important;
     }
 }
 /*更改引进样式*/
