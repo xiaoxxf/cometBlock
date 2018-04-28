@@ -102,7 +102,7 @@ var article_pgae = 1
 $(function(){
   article_pgae = 1
   article_loading = true
-  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
+  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=15&type=2&like=1'
   doJavaGet(uri, function(result){
       // $('.hot_review_region').html("");
 
@@ -125,7 +125,6 @@ $(function(){
         //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
         // }
 
-
       }
 
       var tpl = document.getElementById('hot_article_tpl').innerHTML;
@@ -145,7 +144,7 @@ var noMoreData = false
 $('.read-more').on('click',function(){
 
   article_pgae+=1
-  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
+  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=15&type=2&like=1'
 
   if (!noMoreData && !article_loading) {
     $('.read-more').html('加载中...')
