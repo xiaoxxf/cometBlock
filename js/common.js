@@ -202,11 +202,11 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-        // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-        // if(currentJumpHref == undefined){
-        //     currentJumpHref = window.location.origin;
-        // }
-        var currentJumpHref = 'http://www.blockcomet.com';
+        var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+        if(currentJumpHref == undefined){
+            currentJumpHref = window.location.origin;
+        }
+        // var currentJumpHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
