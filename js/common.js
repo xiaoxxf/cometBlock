@@ -288,3 +288,4 @@ function wechatBindNotice(){
         return false;
     }
 }
+

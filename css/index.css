@@ -1,6 +1,10 @@
 body {
 	background-color: #f3f6f7;
 }
+/*导航栏logo*/
+.nav_logo{
+	height: 40px !important;
+}
 .have-img {
 	background-color: white;
 	padding: 30px 50px 25px 50px !important;
