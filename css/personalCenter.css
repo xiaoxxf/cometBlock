@@ -13,7 +13,7 @@ body{
 	overflow: auto;
 }
 
-@media only screen and (max-width: 895px) {
+@media  (max-width: 900px) {
 	.aside{
 		position: relative;
 	}
@@ -313,6 +313,9 @@ tbody {
 .reset-pwd{
 	padding: 20px 10px;
 }
+.reset_pwd_bottom{
+	border-bottom: solid 1px gainsboro;
+}
 .show_table input {
     overflow: visible;
     vertical-align: middle;
@@ -352,6 +355,7 @@ tbody {
 }
 .phone_code_tip{
 	width: 630px;
+	height:30px !important;
 }
 .upload-button {
     margin-top: -2px;

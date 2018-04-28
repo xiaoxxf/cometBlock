@@ -189,3 +189,23 @@ $(document).on('click','#nav_login',function () {
     window.localStorage.setItem('currentJumpHref',currentJumpHref);
     window.location.href = 'login.html';
 })
+
+//输入框下拉事件
+$("#head_search").keyup(function(e){
+    $(".nav_search_list").css("display","block");
+    var liDown=$(".nav_search_list ul li");
+        e = e || window.event;
+	    switch (e.keyCode) {
+	        case 38:liDown.animate({"top":"-=20px"},"slow");
+	        break;//上
+	        case 40:liDown.animate({"top":"+=20px"},"slow");
+	    	break;//下
+	        
+	    }
+    
+});
+$("#head_search").blur(function(){
+    $(".nav_search_list").css("display","none");
+});
+
+

@@ -193,7 +193,26 @@ body{
     vertical-align: middle;
     padding-top: 5px;
 }
+.nav_search_list {
+    position: absolute;
+    top: 25px;
+    width: 200px;
+    left: 0px;
+    background:white;
+    display: none;
 
+}
+.nav_search_list li{
+    border: 10px;
+    border: solid 1px #999999e3;
+    text-indent: 15px;
+    height: 30px;
+    line-height: 30px;
+    color:#777;
+}
+.nav_search_list li:hover{
+    background-color:#ccccccb8 ;
+}
 @media (max-width: 1200px) {
   .nav_search{
     width: 200px;
