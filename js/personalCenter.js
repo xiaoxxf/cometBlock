@@ -266,7 +266,7 @@ function getCode() {
 	var uri = 'blockchain/getCode?phoneNo=' + tel //输入手机号请求验证码验证
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
-			debugger
+
 			layer.msg("验证码已发送");
 			//验证码倒计时
 			CountDown()
@@ -315,7 +315,7 @@ $("#save_realname").click(function(){
 	var userId = jsonStr.id;
 	var uri = 'news/changeRealname?realName='+realName+"&passWord="+userPwd+"&userId="+userId
 	doJavaGet(uri, function(res) {
-		debugger
+
 		if(res != null && res.code == 0) {
 			layer.msg(res.msg);
 			var realName=$("#ownname").val();
@@ -347,7 +347,7 @@ $("#save-register-info").click(function() {
 
 	var param = {}
 	var str = localStorage.getItem('userinfo');
-	debugger
+
 	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
 	if($("#newPwd").val()==""|| !$("#newPwd")){//新密码为空
 
@@ -445,16 +445,32 @@ $(function(){
 	var preview = $('#result').find('img')[0];
 	if (userinfo && userinfo.userPic) {
 		preview.src = userinfo.userPic
-		$('#ownname').val(userinfo.realName)
 	}else{
 		preview.src = 'img/normal-user.png'
 	}
+	if (userinfo && userinfo.realName) {
+		$('#ownname').val(userinfo.realName)
+	}
 })
+
+var imageType = /image.*/;
+var imageMaxSize = 1*1024*1024;
 
 //预览图片
 $('#user_logo_input').on('change',function(){
-	var preview = $('#result').find('img')[0];
 	var file = this.files[0]
+
+  if(!file){
+    return false;
+  }
+
+  // 校验图片
+  if (!file.type.match(imageType) || file.size > imageMaxSize) {
+    layer.msg('请选择小于1M的图片文件',{time:1000})
+    return false
+  }
+
+	var preview = $('#result').find('img')[0];
 	var reader = new FileReader();
 
 	reader.addEventListener("load", function() {
@@ -477,6 +493,13 @@ var logo_file = null
 $('.upload-project-logo').on('click',function(){
 
 	var file = $('#user_logo_input')[0].files[0]
+
+	// 校验图片
+	if (!file.type.match(imageType) || file.size > imageMaxSize) {
+		layer.msg('请选择小于1M的图片文件',{time:1000})
+		return false
+	}
+
 	var formData = new FormData();
 	formData.append('file', file);
 
