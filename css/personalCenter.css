@@ -217,7 +217,7 @@ tbody {
 }
 .show_table .show_table_detail .subject ul {
 	/*float: right;*/
-   
+
 }
 .avatar_receive{
 	display: inline-block;
@@ -321,7 +321,7 @@ tbody {
     border: 1px solid #c8c8c8;
     border-radius: 5px;
 }
-//注册页验证码按钮样式
+/* //注册页验证码按钮样式 */
 
 .phone_code_position {
     position: relative !important;

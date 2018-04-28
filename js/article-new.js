@@ -1,3 +1,18 @@
+window.wangEditor.fullscreen = {
+	// editor create之后调用
+	init: function(editorSelector){
+		$(editorSelector + " .w-e-toolbar").append('<div class="w-e-menu"><a class="_wangEditor_btn_fullscreen" href="###" onclick="window.wangEditor.fullscreen.toggleFullscreen(\'' + editorSelector + '\')">全屏</a></div>');
+	},
+	toggleFullscreen: function(editorSelector){
+		$(editorSelector).toggleClass('fullscreen-editor');
+		if($(editorSelector + ' ._wangEditor_btn_fullscreen').text() == '全屏'){
+			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('退出全屏');
+		}else{
+			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('全屏');
+		}
+	}
+};
+
 var userId = $.cookie('userid');//获取userid
 var ui = {
   'submiting': false
@@ -21,71 +36,67 @@ $(function(){
   }
 })
 
-
-$(function(){
-  createEditor()
-})
-
 var E = window.wangEditor
 var editor = new E('#editor')
-function createEditor(){
-  // 编辑器
+// 编辑器
 
-  editor.customConfig.menus = [
-    'bold',
-    'italic',
-    'head',
-    'emoticon',
-    'link',  // 插入链接
-    'image',  // 插入图片
-  ]
+editor.customConfig.menus = [
+  'bold',
+  'italic',
+  'head',
+  'emoticon',
+  'link',  // 插入链接
+  'image',  // 插入图片
+]
 
-  var uploadUri = 'common/upload'
+var uploadUri = 'common/upload'
 
-  editor.customConfig.uploadImgServer = WebApiHostJavaApi + uploadUri;
-  editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024 //图片大小为5M
-  editor.customConfig.uploadFileName = 'file'
+editor.customConfig.uploadImgServer = WebApiHostJavaApi + uploadUri;
+editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024 //图片大小为5M
+editor.customConfig.uploadFileName = 'file'
 
 
-  editor.customConfig.uploadImgHooks = {
-      before: function (xhr, editor, files) {
+editor.customConfig.uploadImgHooks = {
+    before: function (xhr, editor, files) {
 
-      },
-      success: function (xhr, editor, result) {
-        console.log('ok')
-      },
-      fail: function (xhr, editor, result) {
-        alert('插入错误')
-      },
-      error: function (xhr, editor) {
-        alert('上传错误')
-      },
-      timeout: function (xhr, editor) {
+    },
+    success: function (xhr, editor, result) {
+      console.log('ok')
+    },
+    fail: function (xhr, editor, result) {
+      alert('插入错误')
+    },
+    error: function (xhr, editor) {
+      alert('上传错误')
+    },
+    timeout: function (xhr, editor) {
 
-      },
+    },
 
-      customInsert: function (insertImg, result, editor) {
-        var url = result.datas[0]
-        insertImg(url)
-      }
-
-  }
-  editor.customConfig.debug = true
-  editor.create()
-
-  // 修改菜单栏样式
-  $('.w-e-toolbar').css(
-    {
-     'background-color':'white',
-     "border-left":"0px",
-     "border-right":"0px",
-     "border-bottom":"0px",
+    customInsert: function (insertImg, result, editor) {
+      var url = result.datas[0]
+      insertImg(url)
     }
-  );
-  $('.w-e-menu').css('font-size','20px')
-  $('.w-e-text-container').css('border','0px')
 
 }
+// editor.customConfig.debug = true
+editor.create();
+$('.w-e-text-container').attr('style','height:auto;');
+E.fullscreen.init('#editor');
+
+// 修改菜单栏样式
+$('.w-e-toolbar').css(
+  {
+   'background-color':'white',
+   "border-left":"0px",
+   "border-right":"0px",
+   "border-bottom":"0px",
+  }
+);
+$('.w-e-menu').css('font-size','20px')
+$('.w-e-text-container').css('border','0px')
+$('.w-e-text').css('font-size','18px')
+
 
 // 提交
 $('.submit_comment').on('click',function(){
@@ -101,7 +112,7 @@ $('.submit_comment').on('click',function(){
     type: 4,
     userId: userId, //userId
   }
-  debugger
+
   if (data.textTitle.length == 0 || editor.txt.text().length == 0) {
     // $('#identifier').modal()
     layer.msg('请保证标题、内容均填写完整')
