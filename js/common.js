@@ -260,3 +260,4 @@ function wechatBindNotice(){
         return false;
     }
 }
+
