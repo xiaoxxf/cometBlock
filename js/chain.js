@@ -93,7 +93,7 @@ function getChainByTime(){
 }
 
 function lodeMoreChainByTime(){
-	var uri = 'blockchain/quaryProjetList?currentPage=' + byTime_page + '&pageSize=' + pageSize +  'timeOrder=1'
+	var uri = 'blockchain/quaryProjetList?currentPage=' + byTime_page + '&pageSize=' + pageSize +  '&timeOrder=1'
 
 	$(".loader1").css('display','flex');
 	$(".no-more-hook").css('display','none')
