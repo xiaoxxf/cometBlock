@@ -68,8 +68,8 @@ function signIn(){
 
 			setTimeout(function() { //两秒后跳转
 				//设置用户信息cookie失效时间，一个小时
-								var expireDate= new Date();
-								expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+				var expireDate= new Date();
+				expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
 				localStorage.setItem('userinfo', res.datas); //存储
 				localStorage.setItem('userid', res.datas.id);
 				localStorage.setItem('userinfo', JSON.stringify(res.datas));

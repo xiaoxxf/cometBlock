@@ -554,9 +554,11 @@ function uploadIcon(e){
 }
 
 
-//新建专题
-
-$("#new_subject").click(function(){
- 	$("#show_subject").toggle();
- 	$(".menu").toggle();
- });
+// 绑定微信显示
+$(function(){
+	if (userinfo) {
+		$('.wechat-bind-user').css('display','none')
+	}else{
+		$('.wechat-bind-user').css('display','none')
+	}
+})
