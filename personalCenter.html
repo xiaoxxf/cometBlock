@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="css/login.css" />
 		<link rel="stylesheet" href="css/load.css" />
 		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+
 	</head>
 
 	<body lang="zh-CN" class="reader-black-font">
@@ -87,10 +88,10 @@
 										</button>
 									</div>
 									<div class="col-md-1">
-										
+
 									</div>
 								</div>
-								
+
 								<div class="base_setting">
 									<div class="col-md-3 col-xs-12 col-sm-12">
 										<div class=" setting-title">
@@ -138,9 +139,9 @@
 								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
 									<input type="submit" class="btn btn-success setting-save" value="绑定新用户" id="bind_new_user">
 								</div>
-								
+
 							</div>
-							
+
 							<!-- 引用 -->
 							<div class="show_table show_table_detail cont1 quote">
 								<div class="menu">引用</div>
@@ -201,40 +202,40 @@
 													</div>
 												</div>
 												<div class="col-xs-12 col-md-9 col-sm-10">
-													
+
 													<a href="javascript:;" class="file upload_topic">上传专题封面
 														<input type="file" id="project_logo_input" class='project_logo' name="project_logo" >
 													</a>
 												</div>
 											</div>
-					
+
 											<div class="form-group row">
 												<label class="col-xs-12 col-md-3 col-sm-2 control-label">名称：</label>
 												<div class="col-xs-12 col-md-8 col-sm-5">
 													<input class="form-control" name="project_name" type="text" placeholder="填写名称,不超过50字">
 												</div>
 											</div>
-					
+
 											<div class="form-group row">
 												<label class="col-xs-12 col-md-3 col-sm-2 control-label ">描述：</label>
 												<div class="col-xs-12 col-md-8 col-sm-5">
 													<textarea class="form-control" name="project_description" type="text" placeholder="填写描述"></textarea>
 												</div>
 											</div>
-					
+
 											<div class="form-group row">
 												<label class="col-xs-12 col-md-3 col-sm-2 control-label">其他管理员</label>
 												<div class="col-xs-12 col-md-8 col-sm-5">
 													<input class="form-control" name="project_admin" type="text" placeholder="输入用户名">
 												</div>
 											</div>
-											
+
 											<div class="form-group row">
 												<label class="col-xs-12 col-md-3 col-sm-2 control-label">是否允许投稿</label>
 												<div class="col-xs-12 col-md-8 col-sm-5 allow_submit">
 													<input type="radio" name="contribute" value="1" checked="checked">允许
 													<input type="radio" name="contribute" value="2">不允许
-													
+
 												</div>
 											</div>
 											<div class="form-group row">
@@ -242,7 +243,7 @@
 												<div class="col-xs-12 col-md-8 col-sm-5 allow_submit">
 													<input type="radio" name="apply" value="1" checked="checked">需要
 													<input type="radio" name="apply" value="2">不需要
-													
+
 												</div>
 											</div>
 											<button type="button" class="btn btn-primary" id="submit_subject">提交专题</button>
@@ -401,7 +402,7 @@
 						<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
 
 
-						<input class="sign-in-button bind_box" id="sign-in-form-submit-btn" type="button" value="绑定" style="margin-top: 30px;">
+						<input class="sign-in-button bind_box" id="bind-exist-user-btn" type="button" value="绑定" style="margin-top: 30px;">
 						<span class="ouro">
 						    <span class="left"><span class="anim"></span></span>
 						    <span class="right"><span class="anim"></span></span>
@@ -409,7 +410,7 @@
 					</div>
 				</div>
 			</script>
-			<!--绑定新用户弹出-->
+		<!--绑定新用户弹出-->
 		<script type="text/html" id="bind-new-commit-layer">
 				<div class="main report-login">
 					<h4 class="title">
@@ -436,7 +437,7 @@
 							<i class="fa fa-unlock-alt"></i>
 						</div>
 
-						<input class="sign-in-button" id="sign-in-form-submit-btn1" type="button" value="绑定" style="margin-top: 30px;">
+						<input class="sign-in-button" id="bind-new-user-btn" type="button" value="绑定" style="margin-top: 30px;">
 						<span class="ouro">
 						    <span class="left"><span class="anim"></span></span>
 						    <span class="right"><span class="anim"></span></span>
@@ -451,8 +452,10 @@
 		<script src="js/common.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src="js/personalCenter.js"></script>
-		<script src="js/login.js"></script>
-
+		<script src="js/md5.js"></script>
+		<!-- <script src="js/login.js"></script> -->
+		<!-- <script src="js/register.js"></script> -->
+		<script src='js/wechatBindUser.js'></script>
 	</body>
 
 </html>

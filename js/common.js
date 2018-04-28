@@ -156,7 +156,7 @@ $.get("header-tpl.html",function(data){
                             content: '登录成功，前去绑定开启更多权限',
                             btn: ['绑定'],
                             yes: function(){
-                                window.location.href='bindUser.html'
+                                window.location.href='personalCenter.html?personType=1'
                             }
                         });
                     },2000)
@@ -206,7 +206,7 @@ $(document).on('click','.more-sign .wechat-login',function () {
         if(currentJumpHref == undefined){
             currentJumpHref = window.location.origin;
         }
-        //var currentJumpHref = 'http://www.blockcomet.com';
+        // var currentJumpHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
@@ -260,5 +260,4 @@ function wechatBindNotice(){
         return false;
     }
 }
-
 

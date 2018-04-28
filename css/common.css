@@ -4,7 +4,6 @@
 /*导航栏头像*/
 .user-icon{
 	border-radius: 20px;
-  padding-top: 3px;
 }
 /*内容超过一屏需要留出底部导航的位置*/
 .detail-wrap{
