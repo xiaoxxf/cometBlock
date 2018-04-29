@@ -1,0 +1,302 @@
+<style type="text/css">body {
+	background-color: #f3f6f7;
+}
+
+.header_title {
+	color: rgb(79, 163, 237);
+	font-size: 26px;
+}
+
+.container {
+	/*width: 100%;*/
+}
+/*form表单*/
+
+.main {
+	text-align: center;
+	width: 500px;
+	margin: 80px auto 0;
+	padding: 50px 50px 30px;
+	background-color: #fff;
+	border-radius: 4px;
+	vertical-align: middle;
+	display: inline-block;
+}
+@media only screen and (max-width:480px) {
+		.main {
+			width: 320px;
+		}
+		
+	}
+.main-shadow{
+	box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
+.reset-title,
+.title {
+	margin: 0 auto 50px;
+	padding: 10px;
+	font-weight: 400;
+	color: #969696;
+}
+
+.main .title {
+	padding: 10px;
+	font-weight: 400;
+	color: #969696;
+}
+
+.active {
+	padding: 10px;
+	font-weight: 700;
+	color: #3194d0;
+	border-bottom: 2px solid #3194d0;
+}
+
+h4 {
+	font-size: 18px;
+}
+
+.sign {
+	height: 100%;
+	min-height: 750px;
+	text-align: center;
+	font-size: 14px;
+	background-color: #f1f1f1;
+}
+
+#js-sign-up-btn {
+	padding: 10px;
+	color: #969696;
+}
+
+.sign form {
+	margin-bottom: 30px;
+}
+
+form {
+	text-align: center;
+}
+
+.input-prepend {
+	position: relative;
+}
+
+.input-prepend input {
+	width: 100%;
+	height: 50px;
+	margin-bottom: 0;
+	padding: 4px 12px 4px 35px;
+	border: 1px solid #c8c8c8;
+	background-color: hsla(0, 0%, 71%, .1);
+	vertical-align: middle;
+	/* border-radius:  5px;*/
+}
+
+.input-prepend i {
+	position: absolute;
+	top: 14px;
+	left: 10px;
+	font-size: 18px;
+	color: #969696;
+}
+
+.iconfont {
+	font-family: iconfont!important;
+	font-size: inherit;
+	font-style: normal;
+	font-weight: 400!important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fa-bitcoin:before,
+.fa-btc:before {
+	content: "\f15a";
+}
+
+.border_radT {
+	border-radius: 5px 5px 0 0;
+	border-bottom: none !important;
+}
+
+.border_radB {
+	border-radius: 0 0 5px 5px;
+}
+
+.remember-btn {
+	float: left;
+	margin: 15px 0;
+}
+/*.loader {
+	width: 50px;
+	height: 50px;
+	display: -webkit-flex;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	margin-top: -45px;
+	margin-left: 120px;
+}
+
+.loader2 div {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	border: 2px #fff solid;
+	border-bottom-color: transparent;
+	background: transparent;
+	display: none;
+	-webkit-animation: loader2 1s 0.23s linear infinite;
+}*/
+.forget-btn {
+	float: right;
+	position: relative;
+	margin: 15px 0;
+	font-size: 14px;
+}
+
+.remember-btn span {
+	margin-left: 5px;
+	font-size: 15px;
+	color: #969696;
+	vertical-align: middle;
+}
+
+#realName-error,
+#session_phone-error,
+#session_password-error {
+	float: right;
+	position: absolute;
+	display: inline-table;
+	margin-left: 10px;
+	bottom: 4px;
+	border: 1px solid #3194d0;
+	padding: 6px 15px;
+	/* display: block; */
+	border-radius: 4px;
+	font-size: 12px;
+	color: #333333ad;
+	box-shadow: 0 0 15px #0088cc61;
+}
+
+.sign-in-button {
+	background: #3194d0;
+}
+
+.sign-in-button {
+	width: 100%;
+	padding: 9px 18px;
+	font-size: 18px;
+	border: none;
+	border-radius: 25px;
+	color: #fff;
+	cursor: pointer;
+	outline: none;
+	display: block;
+	clear: both;
+}
+
+.more-sign {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.more-sign h6 {
+	position: relative;
+	margin: 0 0 26px;
+	font-size: 12px;
+	color: #555555c9;
+}
+
+h6 {
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.1;
+}
+
+.more-sign h6:before {
+	content: "";
+	border-top: 1px solid #b5b5b5;
+	display: block;
+	position: absolute;
+	width: 60px;
+	top: 5px;
+}
+
+.more-sign h6:before {
+	left: 30px;
+}
+
+.more-sign h6:after,
+.more-sign h6:before {
+	content: "";
+	border-top: 1px solid #b5b5b5;
+	display: block;
+	position: absolute;
+	width: 90px;
+	top: 5px;
+}
+
+*,
+ :after,
+ :before {
+	box-sizing: border-box;
+}
+
+.more-sign h6:after {
+	right: 30px;
+}
+
+.more-sign ul {
+	text-align: center;
+}
+
+.more-sign ul li {
+	display: inline-block;
+}
+
+.more-sign li {
+	line-height: 20px;
+}
+
+.more-sign li img {}
+
+.more-sign ul a {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	display: block;
+}
+
+.sign .more-sign .ic-more {
+	color: #999;
+}
+
+.more-sign ul li a {
+	color: darkgray;
+	text-decoration: none;
+	margin-left: 20px;
+}
+
+
+/*用户头像*/
+
+.input-user {
+	display: inline-block;
+}
+
+
+/*校验*/
+
+#check_en {
+	color: red;
+}
+
+.n-bottom {
+	display: inherit !important;
+	top: 10px !important;
+	text-align: right !important;
+	line-height: 0;
+	vertical-align: top;
+	outline: 0;
+}

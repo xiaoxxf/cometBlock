@@ -192,6 +192,8 @@ body{
     vertical-align: middle;
     padding-top: 5px;
 }
+
+/* 搜索框下拉菜单 */
 .nav_search_list {
     position: absolute;
     top: 25px;
@@ -199,19 +201,25 @@ body{
     left: 0px;
     background:white;
     display: none;
-
 }
 .nav_search_list li{
     border: 10px;
     border: solid 1px #999999e3;
     text-indent: 15px;
-    height: 30px;
+    max-height: 30px;
     line-height: 30px;
     color:#777;
+    cursor: pointer;
 }
+
 .nav_search_list li:hover{
     background-color:#ccccccb8 ;
 }
+
+.nav_search_list_li_on_foucs{
+  background-color:#ccccccb8 ;
+}
+
 @media (max-width: 1200px) {
   .nav_search{
     width: 200px;

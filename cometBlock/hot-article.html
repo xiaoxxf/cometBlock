@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>文章详情</title>
+    <link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/loading.css">
+	  <link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+	  <link rel="stylesheet" href="css/hot-article.css" />
+</head>
+<body lang="zh-CN" class="reader-black-font">
+	<div class="comet-main block-comet-main-wrap">
+	    <div class="navbar-fixed-container navbar-fixed-container-hook">
+	    </div>
+	    <div class="mian-container">
+	       <div class="container">
+	        	<div class="article-top-box">
+
+	        	</div>
+		    </div>
+
+        <div class="load-more-container-wrap">
+  					<div class="container">
+  									<div class="load-more-wrap load-more-hook">
+  											<div class="loader1 loader" style="display: none">
+  													<div></div>
+  													<div></div>
+  													<div></div>
+  											</div>
+  											<div class="loading-more"  style="display: none">
+  													加载更多
+  											</div>
+  									</div>
+  									<div class="load-more-wrap no-more-hook" style="display: none">
+  											<div class="loading-more">
+  													已无更多数据
+  											</div>
+  									</div>
+  							</div>
+  			</div>
+
+	    </div>
+
+	</div>
+
+<script type="text/html" id="article_tpl">
+  <%for(var i = 0; i < list.length; i++) {%>
+    <div class="hot_zone bottom_line">
+
+    <div class="article-detail">
+        <div class="article-content">
+          <div class="article-info">
+            <%if(list[i].userPic == null ){%>
+              <img src="img/normal-user.png" class="article-creator-pic"/>
+            <%} else {%>
+              <img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+            <% } %>
+            <span class="real_name"><%=list[i].realName %></span>
+            <span class="article-time"><%=list[i].createTime.split(' ')[0] %></span>
+
+            <h3 class="article-title">
+              <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>"><%=list[i].textTitle %></a>
+            </h3>
+          </div>
+
+
+          <div style="display:flex">
+            <div class="article-introduce">
+              <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" style="color: #959595">
+                <%:=list[i].textContent%>
+              </a>
+            </div>
+
+            <div class="article-icon">
+               <a href="chain-detail.html?projectId=<%=list[i].projectId %>">
+                    <img class="article-img" src="<%=list[i].projectLogo %>">
+                </a>
+            </div>
+
+          </div>
+
+          <div class="meta">
+            <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%=list[i].review %></a>
+            <a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart"></i> <%=list[i].likes %></a>
+          </div>
+        </div>
+
+    </div>
+    </div>
+  <%}%>
+
+</script>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/template.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/hot-article.js"></script>
+</body>
+</html>

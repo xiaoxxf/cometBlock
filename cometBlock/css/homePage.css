@@ -1,0 +1,448 @@
+a img {
+    border-width: 0;
+    vertical-align: middle;
+}
+
+.bottom_line{
+	border-bottom:solid 1px gainsboro ;
+  min-height: 271px;
+}
+/*糖果盒*/
+.candy_box{
+	margin-top:30px ;
+}
+
+.hot_candy img{
+    background-size: cover;
+    height: 250px;
+    width: 100%;
+}
+
+.row .col-md-3 .candy_box a{
+	color: #006bb3;
+    margin: 15px;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    border: solid 1px #006bb3;
+    border-radius: 8px;
+}
+
+.included_ariticle{
+	text-align: center;
+	padding: 20px;
+}
+.row .col-md-3 span{
+	display: inline-block;
+
+}
+.candy_right,.hot_zone {
+	background-color: white;
+}
+
+/*热门专区*/
+
+.swiper-btn-prev{
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.swiper-btn-next{
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.hot_zone{
+	padding: 10px;
+	/* height: 260px; */
+  border-radius: 3px;
+}
+.hot_block{
+	display: inline-block;
+	width: 10px;
+    height: 20px;
+    margin-right: 15px;
+    background-color: #006bb3;
+
+}
+.hot_main_area{
+	   top: 30px;
+    position: absolute;
+}
+
+
+.hot_zone_title,.hot_zone_title_right{
+	  height: 48px;
+    padding: 10px;
+    border-bottom: solid 1px gainsboro;
+}
+
+.hot_zone_title span{
+	float: left;
+}
+.hot_zone_title_right span:last-child
+,.hot_review_title span:last-child{
+	float: right;
+	color: #006bb3;
+}
+.hot_zones .hot_zone_title_right a{
+	display: initial;
+    border: none;
+}
+.hot_zone_coin,.hot_zone_coin h3:first-child{
+	color: darkgray;
+}
+.hot_zone_coin .col-md-2 img{
+	/*width: 120px;*/
+	height: 100px;
+}
+
+/* .hot_zone_coin .row .col-md-2{
+    margin: 8px;
+    text-align: center;
+} */
+
+.hot_zone_coin .hot_coin_region .coin-detail{
+
+
+}
+.hot_zone_coin .hot_coin_region .coin-detail img{
+  margin-left: 10px;
+}
+.hot_zone_coin{
+		height: 200px
+}
+
+.hot_zone_coin .hot_coin_region .project-name{
+	margin-top:10px;
+	margin-bottom: 10px;
+  text-align: center;
+}
+
+.hot_zone_coin .hot_coin_region .score{
+    text-align: center;
+    font-size: 16px;
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+		font-size: 12px;
+		color: #006bb3;
+		margin-bottom: 15px;
+		margin-top: 10px;
+}
+
+.hot_zone_coin .hot_coin_region .score span{
+	color:#ffac2d;
+
+}
+.hot_coin_region{
+	padding-left: 10px;
+}
+
+
+
+.mobile-hot-coin{
+	display: none;
+	overflow: scroll;
+	width: 100%;
+	margin-left: 10px;
+}
+
+.mobile-hot-coin .coin-detail-mobile{
+	width: 100%;
+	height: 100%;
+  margin-right: 25px;
+}
+@media (max-width:900px) {
+  .hot_zone_box{
+    height: 250px
+  }
+	.mobile-hot-coin{
+		display: flex;
+	}
+	.hot_zone_coin .swiper-container{
+		display: none
+	}
+  .swiper-btn{
+    display: none
+  }
+	/* .hot_zone_coin .slide{
+		display: none
+	} */
+}
+
+
+.hot_zone_news{
+	text-align: center;
+}
+.hot_zone_news p{
+	font-size: 14px;
+	line-height: 40px;
+	height: 40px;
+  margin-left: 10px;
+}
+
+.new_title{
+	float: left;
+	color: black;
+}
+
+
+@media only screen and (max-width:220px ) {
+	.hot_zone_news p{
+		text-align: left;
+	}
+}
+
+/*热门评测*/
+.read-more{
+	cursor: pointer;
+}
+
+.article-detail{
+   margin-top: 10px;
+	 /* display: flex; */
+}
+
+
+.article-detail .article-icon{
+		/* float: right; */
+    width: 80px;
+    height: 63px;
+    /* margin: 0px 30px; */
+		position: relative;
+		/* background-color: #fff; */
+		/* -moz-box-shadow: 2px 2px 5px #a79e9e; */
+		/* -webkit-box-shadow: 2px 2px 5px #a79e9e; */
+		/* box-shadow: 2px 2px 5px #a79e9e; */
+		/* border-radius: 10px; */
+
+		/* margin-bottom: 5px; */
+		/* margin-top: 115px; */
+    border:1px solid #a79e9e;
+}
+
+.article-detail .article-icon img{
+	width: 70%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.hot_review_title{
+	background-color: white;
+	padding: 10px 20px;
+  height: 58px;
+  border-bottom: solid 1px gainsboro;
+}
+
+.hot_review_box, .hot_zones_box{
+	margin-top: 20px;
+}
+
+.article-top-box{
+	margin-top: 30px;
+}
+
+.hot_article_zone{
+  background-color: white;
+  padding: 10px;
+}
+
+
+.article-detail .article-title{
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
+    margin: 15px 0px;
+    width: 80%;
+}
+
+.article-detail .article-title a{
+  color: #333333
+}
+
+.article-detail .article-title a:hover{
+  color: #1c5397
+}
+
+
+.article-detail .article-content{
+  margin-left: 18px;
+	/* width: 90%; */
+  display: flex;
+  flex-direction: column;
+}
+
+.article-detail .article-introduce{
+	min-height: 80px;
+  width: 80%;
+  margin-right: 20px;
+}
+
+.article-detail .article-introduce .textContent{
+  color: #333333
+}
+
+.article-detail .article-introduce .textContent:hover{
+  color: #646464
+}
+
+.article-content.article-info{
+	display: inline;
+}
+.article-info .ariticle_user{
+	font-weight: bold;
+}
+.article-info .real_name{
+  font-size: 16px;
+  color: #3c3c3c
+}
+.article-content .article-time{
+  margin: 10px 10px;
+  display: inline-block;
+  font-size: 16px;
+  color: #3c3c3c
+}
+.article-content .article-introduce,.meta{
+	 /* line-height: 25px; */
+	color: black;
+}
+
+.article-creator-pic{
+	width: 28px;
+	height: 28px;
+	border-radius: 20px;
+	margin-right:10px;
+	margin-bottom:5px;
+}
+
+
+.meta{
+	margin-top:15px ;
+	margin-bottom: 10px;
+}
+.meta a{
+	/* margin-left:10px ; */
+	color: #777777c4;
+}
+.read-more{
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background-color: white;
+
+}
+
+
+/* 小屏文章 */
+@media (max-width: 767px) {
+  .bottom_line{
+    min-height: 101px;
+  }
+
+  .article-detail .article-content{
+    margin-left: 5px;
+  }
+
+	.article-detail .article-title {
+		font-size: 15px;
+		line-height: 20px;
+    width: 100%;
+    margin: 10px 0px;
+	}
+
+
+
+
+	.article-detail .article-introduce{
+		min-height: 50px;
+		/* overflow: scroll; */
+	}
+
+
+	.article-detail .article-icon{
+		/* float: right; */
+		width: 60px;
+		/* margin: 0px 30px; */
+	}
+
+	.article-detail .article-icon img{
+		width: 70%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+	}
+}
+
+/*
+/*轮播*/
+/*
+.carousel-indicators{
+	  top: -40px !important;
+    text-align: right;
+    left: 71%;
+    height: 40px;
+    width: 55%;
+}
+.carousel-indicators li{
+	    border: 1px solid rgb(79, 163, 237) !important;
+}
+.carousel-indicators .active{
+	background-color: #ddd;
+}
+.carousel-control.right,.carousel-control.left{
+	background-image:none;
+}
+.carousel-control{
+	color:rgba(0,0,0,.0001) ;
+	width: 5%;
+	position: absolute;
+    top: -25px;
+    bottom: none;
+    left: 227px;
+    width: 15%;
+    font-size: 20px;
+    color: #fff;
+}
+.carousel-control.right{
+	right: -40px;
+    left: auto;
+	}
+.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{
+	width: 20px;
+    height: 20px;
+    background-color: #0c81bb;
+    border-radius: 20px;
+    padding: 3px;
+    display: inline-block;
+}
+.carousel-control .glyphicon-chevron-right,.carousel-control .glyphicon-chevron-left{
+	font-size: 12px !important;
+}
+
+@media only screen and (max-width: 900px) {
+	.carousel-inner{
+	width: 380px;
+	}
+}
+
+
+ */
+
+ @media (max-width: 992px){
+ 	.side{
+ 		margin-top: 20px;
+ 	}
+ }
+
+.article-count{
+	color: red
+}
+.hot-span{
+	color: black
+}
+/*广告位*/

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>写文章</title>
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/long-comment.css">
+		<link rel="stylesheet" href="css/article-new.css">
+		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+
+	</head>
+	<style>
+		body{
+			background-color: white
+		}
+		.w-e-text{
+			overflow-y: auto!important;
+		}
+	</style>
+	<body lang="zh-CN" class="reader-black-font">
+		<div class="block-comet-main-wrap">
+
+		<div class="comet-main">
+			<!-- 顶部导航栏 -->
+			<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1" style="z-index:100000">
+				<nav role="navigation" class="nav_shadow">
+					<div class="container collapsed">
+						<div class="nav navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+			                    <span class="icon-bar"></span>
+			                    <span class="icon-bar"></span>
+			                    <span class="icon-bar"></span>
+			                </button>
+							<a class="navbar-brand navbar-brand-xs" href="index.html"><span itemprop="name">彗星</span></a>
+						</div>
+						<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+							<ul class="nav navbar-nav navbar-left nav-menu">
+								<li>
+									<a href="#" class="chain">写长文</a>
+								</li>
+							</ul>
+							<!--预览-->
+							<ul class="nav navbar-nav navbar-right log_writting">
+								<li>
+									<button class="btn preview-article" style="margin-right:100px" onclick="window.wangEditor.fullscreen.toggleFullscreen('#editor')">预览</button>
+								</li>
+							</ul>
+							<!--写文章-->
+							<ul class="nav navbar-nav navbar-right log_writting">
+								<li>
+									<button class="btn submit_comment" >发布</button>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+				</nav>
+			</div>
+      <br><br><br><br><br>
+			<!-- 评测 -->
+			<div class="container">
+				<!-- 标题 -->
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
+						<input type="text" name="head" value="" placeholder="请输入标题" required="true" class="input-head" autofocus="true">
+					</div>
+				</div>
+
+				<!-- 正文 -->
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+						<div id="editor" class="edit-comment" style="margin-left:-10px;">
+
+						</div>
+					</div>
+				</div>
+				<br>
+
+
+
+				<div class="modal fade" id="identifier" style="z-index:12000" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				                <h4 class="modal-title" id="myModalLabel">提交错误</h4>
+				            </div>
+				            <div class="modal-body">请确保数据填写完整</div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				            </div>
+				        </div><!-- /.modal-content -->
+				    </div><!-- /.modal -->
+				</div>
+
+
+			</div>
+		</div>
+	  </div>
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/plugins/layer/layer.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/wangEditor.js"></script>
+		<!-- <script src="js/jquery.star-rating-svg.js"></script> -->
+		<script src="js/article-new.js"></script>
+
+	</body>
+
+</html>

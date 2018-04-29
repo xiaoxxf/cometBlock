@@ -203,7 +203,6 @@ function getChain(){
 	}, "json")
 	flag = 1;
 }
-getChain();
 
 function loadMoreChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + index_page + '&pageSize=' + pageSize
@@ -398,4 +397,19 @@ $(window).on('resize', function () {
 
 	}, 100);
 
+})
+
+// 不是从全局搜索进来时候
+if ( !getUrlParam('serach_word_by_navbar') ) {
+	getChain();
+}
+
+// 从全局搜索进来
+$(function(){
+	var keyWord = getUrlParam('serach_word_by_navbar')
+
+	if (keyWord) {
+		$('.search_bar')[0].value = keyWord
+		serachChain()
+	}
 })

@@ -191,21 +191,70 @@ $(document).on('click','#nav_login',function () {
 })
 
 //输入框下拉事件
+
+//  输入时显示下拉菜单 & 搜索框内容绑定下拉框内容
 $("#head_search").keyup(function(e){
+
     $(".nav_search_list").css("display","block");
-    var liDown=$(".nav_search_list ul li");
-        e = e || window.event;
-	    switch (e.keyCode) {
-	        case 38:liDown.animate({"top":"-=20px"},"slow");
-	        break;//上
-	        case 40:liDown.animate({"top":"+=20px"},"slow");
-	    	break;//下
-	        
-	    }
-    
+		key_word = $(e.target).val()
+
+		$('.search_key_word').html(key_word)
+
 });
-$("#head_search").blur(function(){
-    $(".nav_search_list").css("display","none");
+
+// 失去焦点时隐藏下拉菜单
+$("#head_search").blur(function(e){
+	setTimeout(function(){
+		$(".nav_search_list").css("display","none");
+ }, 100);
 });
 
 
+// 搜索项目
+var search_project = document.getElementById('search_project')
+search_project.addEventListener('mousedown',function() {
+	console.log('search_project')
+	var key_word = $('#head_search').val()
+
+	window.location.href='chain.html?serach_word_by_navbar=' + key_word
+
+})
+
+// 搜索内容
+var search_article = document.getElementById('search_project')
+search_article.addEventListener('mousedown',function() {
+
+})
+
+// 搜索新闻
+var search_news = document.getElementById('search_project')
+search_news.addEventListener('mousedown',function() {
+
+})
+
+// 搜索用户
+var search_user = document.getElementById('search_project')
+search_user.addEventListener('mousedown',function() {
+
+})
+
+
+
+
+$('#head_search').keydown(function(e){
+	var index = 0
+	var liDown=$(".nav_search_list li")
+	switch (e.keyCode) {
+			//上
+			case 38:
+
+
+			break;
+			// 下
+			case 40:
+
+			break;
+	}
+
+
+})
