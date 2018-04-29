@@ -12,11 +12,11 @@
 
  /*写文章*/
 .log_writting .btn{
-	color: white;
+	  color: white;
     background-color: #006bb3;
     margin-top: 8px;
     margin-left: 10px;
-    margin-right: -15px;
+    margin-right: 15px;
     width: 100px;
 }
 
@@ -31,7 +31,7 @@
 .fixed-footer-wrap{
     position: absolute;
     left:0;
-    bottom: -80px;
+    bottom: -120px;
     width: 100%;
     height: 75px;
     /*background: #fff;*/
@@ -139,8 +139,8 @@ body{
 .navbar-inverse .navbar-toggle .icon-bar{
     background-color: #333;
 }
-.navbar-right>li>a {
-    /*padding: 10px 15px;*/
+.navbar-right>li {
+    padding: 0px 5px;
     line-height: 20px;
 }
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover,  .navbar-inverse .navbar-nav>li>a.cur-nav{
@@ -163,9 +163,9 @@ body{
 .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
     color: rgb(79, 163, 237);
 }
-.navbar-inverse .navbar-nav>li>a{
+.navbar-inverse .navbar-left>li{
     font-size: 18px;
-    padding-left: 35px;
+    padding: 0px 10px;
 }
 
 /*顶部搜索框样式*/
@@ -176,28 +176,10 @@ body{
     border-radius: 3px;
     margin-top: 11px;
     background-color: #f3f6f7;
-    margin-right: 200px;
+    margin-right: 50px;
     margin-left: 20px;
 }
-/* @media only screen and (min-width:1070px) {
-	.nav_search{
-		margin-right: 195px;
-	}
-} */
-@media (max-width: 1200px) {
-  .nav_search{
-    width: 200px;
-    margin-right: 130px;
-  }
-}
 
-@media (max-width: 1000px) {
-  .nav_search{
-    width: 120px;
-    margin-right: 20px;
-  }
-
-}
 .nav_search .nav_input {
     width: 100%;
     height: 100%;
@@ -208,16 +190,78 @@ body{
     background: transparent;
     padding-left: 15px;
     vertical-align: middle;
+    padding-top: 5px;
 }
+
+/* 搜索框下拉菜单 */
+.nav_search_list {
+    position: absolute;
+    top: 25px;
+    width: 200px;
+    left: 0px;
+    background:white;
+    display: none;
+}
+.nav_search_list li{
+    border: 10px;
+    border: solid 1px #999999e3;
+    text-indent: 15px;
+    max-height: 30px;
+    line-height: 30px;
+    color:#777;
+    cursor: pointer;
+}
+
+.nav_search_list li:hover{
+    background-color:#ccccccb8 ;
+}
+
+.nav_search_list_li_on_foucs{
+  background-color:#ccccccb8 ;
+}
+
+@media (max-width: 1200px) {
+  .nav_search{
+    width: 200px;
+    margin-right: 10px;
+  }
+  .notification-btn{
+
+    margin-right: -15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .nav_search{
+    width: 110px;
+    margin-right: -5px;
+  }
+
+  .navbar-inverse .navbar-left>li{
+      font-size: 18px;
+      padding: 0px 0px;
+  }
+
+  .nav_search .nav_input {
+      font-size:5px;
+      padding-top: 5px;
+      padding-left: 0px;
+  }
+}
+
 .nav-index-img a img{
     border-radius: 15px;
 }
+
+
+
 /*主体内容*/
 .mian-container{
     margin-top: 50px;
 }
 .body-container-wrap{
 }
+
 
 /*加载更多*/
 .load-more-wrap{
@@ -324,12 +368,14 @@ body{
 }
 .nav-user-account{
     position: relative;
+
 }
 .nav-user-account .more-active{
     display: none;
 }
 #nav_login, #nav_register{
     display: none;
+    margin-left: -10px
 }
 .nav_show_message{
     border: solid 1px rgb(79, 163, 237);
@@ -341,7 +387,7 @@ body{
 }
 .nav-user-account .more-active{
     position: relative;
-    padding: 14px 15px 14px 35px !important;
+    padding: 14px 15px 14px 14px !important;
 }
 .nav-user-account .more-active:hover .droplist-wrap{
     display: block;
@@ -396,7 +442,7 @@ tbody a{
     font-size: 14px;
 }
 .nav-user-account img{
-	margin-top: -6px;
+	/*margin-top: -6px;*/
 }
 .arrow {
     position: relative;
@@ -415,6 +461,13 @@ tbody a{
 }
 
 /*通知弹出面板*/
+
+
+
+.notification-btn{
+  font-size: 18px;
+}
+
 .login-right{
 	display: none;
 }
@@ -486,12 +539,11 @@ tbody a{
 .show-alert-inform-content .right-news{
 	line-height: 20px;
   margin: 0px 10px;
+  text-align: left;
+  font-size: 12px;
+  /* color: darkgray; */
 }
-.show-alert-inform-content .right-news div:last-child{
-	text-align: left;
-    font-size: 12px;
-    color: darkgray;
-}
+
 .show-alert-inform-bottom{
 	 margin-right: 20px;
 	 display: block;

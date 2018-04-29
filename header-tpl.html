@@ -8,15 +8,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-				<a class="navbar-brand navbar-brand-xs" href="index.html"><span itemprop="name">彗星</span></a>
+				<a class="navbar-brand navbar-brand-xs" href="index.html"><img src="img/favicon.png" class="nav_logo" /><span itemprop="name">彗星</span></a>
 			</div>
 			<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
-				<ul class="nav navbar-nav navbar-left">
+				<ul class="nav navbar-nav navbar-left nav-menu">
 					<li>
-						<a href="index.html" class="chain">首页</a>
+						<a href="index.html" class="chain">发现</a>
 					</li>
 					<li>
 						<a href="news.html" class="new-report cur-nav">播报</a>
+					</li>
+					<li>
+						<a href="chain.html" class="new-report cur-nav">分类</a>
 					</li>
 					<li>
 						<a href="code-rank.html" class="code-rank">代码榜</a>
@@ -30,9 +33,9 @@
 					</li>
 				</ul>
 				<!--  -->
-				<ul class="nav navbar-nav navbar-right log-nvabar-right">
+				<ul class="nav navbar-nav navbar-right log-nvabar-right" style="cursor: pointer;">
 					<li id="nav_login">
-						<a href="login.html" class="log_nav nav_font">登录</a>
+						<a href="javascript:;" class="log_nav nav_font">登录</a>
 					</li>
 					<li id="nav_register">
 						<a href="register.html" class="log_nav reg_c nav_show_message nav_font login-btn-xs">注册</a>
@@ -56,7 +59,7 @@
 
 				<ul class="nav navbar-nav navbar-right log-nvabar-right login-right message-notification">
 					<li class="tab notification">
-							<a data-hover="dropdown" href="" class="notification-btn" style="padding-left: 0px;">
+							<a data-hover="dropdown" href="personalCenter.html?personType=1" class="notification-btn">
 								<span><i class="fa fa-bell-o"></i></span>
 								<span class="badge badge-inform"></span>
 							</a>
@@ -87,14 +90,20 @@
 
 				<!--搜索-->
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<div class="nav_search">
+					<li class="nav_search">
+						<div class="search_content">
 							<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search">
-							<!-- <a class="nav_search_icon">
-							</a> -->
+						 	<ul class="nav_search_list">
+						 		<li id="search_project" >项目搜索：<span class="search_key_word"></span></li>
+						 		<!-- <li id="search_article" >内容搜索：<span class="search_key_word"></span></li> -->
+						 		<!-- <li id="search_news" >新闻搜索：<span class="search_key_word"></span></li> -->
+						 		<!-- <li id="search_user" >用户搜索：<span class="search_key_word"></span></li> -->
+						 	</ul>
 						</div>
 					</li>
+
 				</ul>
+
 			</div>
 		</div>
 	</nav>
@@ -103,16 +112,15 @@
 
 <script type="text/html" id="like_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
-
+		<%if(list[i].status == 0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>"  >
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" >
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
 		<%}%>
 			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
 				<div><%:=list[i].realName%> <%:=dictionary[3]%></div>
-				<div>8个月前</div>
+				<div></div>
 			</div>
 		</div>
 	<%}%>
@@ -122,16 +130,16 @@
 <script type="text/html" id="comment_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
 		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
 				<div>
 					<%:=list[i].realName%> <%:=dictionary[2]%>
 					<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《<%:=list[i].title%>》</a>
 				</div>
-				<div>8个月前</div>
+				<div></div>
 			</div>
 		</div>
 	<%}%>
@@ -140,17 +148,17 @@
 <script type="text/html" id="quote_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
 		<%}%>
 			<!-- <img src="img/001-signs.png" width="35px" /> -->
 			<div class="right-news">
 				<div>
 					<%:=list[i].realName%> <%:=dictionary[1]%>
 				</div>
-				<div>8个月前</div>
+				<div></div>
 			</div>
 		</div>
 	<%}%>
@@ -159,11 +167,11 @@
 <script type="text/html" id="notification_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 
 		<%}else{%>
-			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>">
-		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
+		<%}%>
 			<div class="right-news">
 				<div>
 					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已审核通过
@@ -176,20 +184,19 @@
 <script type="text/html" id="reject_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<%if(list[i].status ==0 ){%>
-			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>"  >
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
 
 		<%}else{%>
-			<div class="show-alert-inform-list" >
-		<%}%>			<!-- <img src="img/001-signs.png" width="35px" /> -->
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
+		<%}%>
 			<div class="right-news">
 				<div>
-					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已审核通过
+					您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已被驳回
 				</div>
 			</div>
 		</div>
 	<%}%>
 </script>
-
 
 
 <script src=./js/header-tpl.js></script>

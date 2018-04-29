@@ -93,7 +93,7 @@ function getChainByTime(){
 }
 
 function lodeMoreChainByTime(){
-	var uri = 'blockchain/quaryProjetList?currentPage=' + byTime_page + '&pageSize=' + pageSize +  'timeOrder=1'
+	var uri = 'blockchain/quaryProjetList?currentPage=' + byTime_page + '&pageSize=' + pageSize +  '&timeOrder=1'
 
 	$(".loader1").css('display','flex');
 	$(".no-more-hook").css('display','none')
@@ -203,7 +203,6 @@ function getChain(){
 	}, "json")
 	flag = 1;
 }
-getChain();
 
 function loadMoreChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + index_page + '&pageSize=' + pageSize
@@ -384,6 +383,7 @@ $('.load-category').on('click',function(){
 	$('.category').fadeToggle()
 })
 
+
 var resizeTimer = null;
 $(window).on('resize', function () {
 
@@ -392,9 +392,24 @@ $(window).on('resize', function () {
 	 }
 	 resizeTimer = setTimeout(function(){
 		 // 图片白底适应
-     var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
+		 var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
      $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
 
 	}, 100);
 
+})
+
+// 不是从全局搜索进来时候
+if ( !getUrlParam('serach_word_by_navbar') ) {
+	getChain();
+}
+
+// 从全局搜索进来
+$(function(){
+	var keyWord = getUrlParam('serach_word_by_navbar')
+
+	if (keyWord) {
+		$('.search_bar')[0].value = keyWord
+		serachChain()
+	}
 })
