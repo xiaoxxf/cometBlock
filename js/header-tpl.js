@@ -221,19 +221,20 @@ search_project.addEventListener('mousedown',function() {
 })
 
 // 搜索内容
-var search_article = document.getElementById('search_project')
+var search_article = document.getElementById('search_article')
 search_article.addEventListener('mousedown',function() {
 
 })
 
 // 搜索新闻
-var search_news = document.getElementById('search_project')
+var search_news = document.getElementById('search_news')
 search_news.addEventListener('mousedown',function() {
-
+	var key_word = $('#head_search').val()
+	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
 })
 
 // 搜索用户
-var search_user = document.getElementById('search_project')
+var search_user = document.getElementById('search_user')
 search_user.addEventListener('mousedown',function() {
 
 })

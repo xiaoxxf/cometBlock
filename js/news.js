@@ -103,28 +103,28 @@ $(document).ready(function () {
         return time
     }
 
-    function getQuary() {
-        var url = window.location.href;
-        if(url.split("?")[1]) {
-            var quarys = url.split("?")[1].split("&")
-            for(var i = 0; i < quarys.length; i++) {
-                if(quarys[i].split("=")[0] == "keys") {
-                    $('#head_search').val(decodeURI(quarys[i].split("=")[1]))
-                    return
-                }
-            }
-        }
-    }
+    // function getQuary() {
+    //     var url = window.location.href;
+    //     if(url.split("?")[1]) {
+    //         var quarys = url.split("?")[1].split("&")
+    //         for(var i = 0; i < quarys.length; i++) {
+    //             if(quarys[i].split("=")[0] == "keys") {
+    //                 $('#head_search').val(decodeURI(quarys[i].split("=")[1]))
+    //                 return
+    //             }
+    //         }
+    //     }
+    // }
 
     function load() {
-        getQuary();
+        // getQuary();
         $(".loading-more").hide();
         $(".loader1").css('display','flex');
-        if($('#head_search').val() != "" && $('#head_search').val() != undefined ) {
-            var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20 + '&keywords=' + $('#head_search').val();
-        } else {
+        // if($('#head_search').val() != "" && $('#head_search').val() != undefined ) {
+            // var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20 + '&keywords=' + $('#head_search').val();
+        // } else {
             var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20;
-        }
+        // }
         doJavaGet(uri, function(res) {
             //                  console.log(res.datas)
             if(res != null && res.code == 0) {
@@ -143,7 +143,32 @@ $(document).ready(function () {
         pageNum++;
     }
 
-    load();
+    function getSearch(){
+      var keyWord = getUrlParam('serach_word_by_navbar')
+
+      var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20 + '&keywords=' + keyWord;
+
+      doJavaGet(uri, function(res){
+        if(res != null && res.code == 0) {
+            if(res.datas.length != 0){
+                setTimeout(function () {
+                    searchDataShowAppend(res.datas)
+                },200)
+                $(".loading-more").show();
+                $(".loader1").css('display','none');
+            }else{
+                $(".no-more-hook").fadeIn();
+            }
+
+        }
+      })
+    }
+
+    if (getUrlParam('serach_word_by_navbar')) {
+      getSearch()
+    }else{
+      load();
+    }
 
     function searchDataShowAppend(data) {
         var html = ''
