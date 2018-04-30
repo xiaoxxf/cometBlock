@@ -195,7 +195,12 @@ $(document).on('click','#nav_login',function () {
 //  输入时显示下拉菜单 & 搜索框内容绑定下拉框内容
 $("#head_search").keyup(function(e){
 
-    $(".nav_search_list").css("display","block");
+		if (!$('#head_search').val()) {
+			$(".nav_search_list").css("display","none");
+		}else{
+			$(".nav_search_list").css("display","block");
+		}
+
 		key_word = $(e.target).val()
 
 		$('.search_key_word').html(key_word)
@@ -238,8 +243,6 @@ var search_user = document.getElementById('search_user')
 search_user.addEventListener('mousedown',function() {
 
 })
-
-
 
 
 $('#head_search').keydown(function(e){
