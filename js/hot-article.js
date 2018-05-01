@@ -2,7 +2,8 @@ var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var article_page = 1
 var article_page_search = 1;
-var key_word = $('.search_bar').val()
+// var key_word = $('.search_bar').val()
+var key_word = getUrlParam('serach_word_by_navbar')
 
 // 判断下拉加载，1 -> 加载全部， 2 -> 加载搜索内容
 var flag = null
@@ -20,11 +21,14 @@ if ( !getUrlParam('serach_word_by_navbar') ) {
 
 // 从全局搜索进来，执行搜索
 $(function(){
-	var keyWord = getUrlParam('serach_word_by_navbar')
+	if ( getUrlParam('serach_word_by_navbar') != '') {
+		key_word = getUrlParam('serach_word_by_navbar');
+		$('.search_bar').val(key_word)
+	}
 
-	if (keyWord) {
-		$('.search_bar').val(keyWord);
-		searchArticle(keyWord);
+	if (key_word) {
+		$('.search_bar').val(key_word);
+		searchArticle();
 	}
 })
 
@@ -135,52 +139,115 @@ function loadMoreArticle(){
 
 // 搜索文章
 $('.search-click-hook').on('click',function(){
+	key_word = $('.search_bar').val();
   if (key_word != '') {
-    searchArticle(key_word);
+    searchArticle();
   }
 })
 
-
-function searchArticle(keyWord){
+// 搜索文章结果
+function searchArticle(){
   flag = 2;
-  var uri = 'blockchain/quaryArticle?articleKeyWord=' + keyWord + 'currentPage=' + article_page + 'pageSize=12'
+	article_page_search = 1;
+	$(".waiting-data").fadeIn();
+	// $(".no-more-hook").css('display','none')
 
-  doJavaGet(uri, function(){
+	ui.loading = true;
+  ui.noMoreData = false;
+	var uri = 'blockchain/quaryArticle?articlekeyWord=' + key_word + 'currentPage=' + article_page_search + 'pageSize=12'
+  doJavaGet(uri, function(result){
 
-		if (article_page_search == 1) {
 			$('.article-top-box').html("");
 
-		}
-    var content_length = null
+      var content_length = null
 
-    for (var i = 0; i < result.datas.length; i++) {
-      result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+			if (result.datas.length != 0) {
 
-      if ($(window).width() < 767) {
-        content_length = 55
-      }else{
-        content_length = 300
-      }
+				for (var i = 0; i < result.datas.length; i++) {
+					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
 
-      if (result.datas[i].textContent.length > content_length) {
-        result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-      }
+					if ($(window).width() < 767) {
+						content_length = 55
+					}else{
+						content_length = 300
+					}
 
-      // if (result.datas[i].textTitle.length > 30) {
-      //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-      // }
+					if (result.datas[i].textContent.length > content_length) {
+						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+					}
 
-    }
+					// if (result.datas[i].textTitle.length > 30) {
+					//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+					// }
 
-    var tpl = document.getElementById('article_tpl').innerHTML;
-    var content = template(tpl, {list: result.datas});
-    $('.article-top-box').append(content)
+				}
 
-    var imgW = $(".hot_zone .article-detail .article-icon").width();
-    $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+				var tpl = document.getElementById('article_tpl').innerHTML;
+				var content = template(tpl, {list: result.datas});
+				$('.article-top-box').append(content)
 
+				var imgW = $(".hot_zone .article-detail .article-icon").width();
+				$(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+
+			}else{
+				ui.noMoreData = true;
+				$(".no-more-hook").fadeIn();
+			}
+			$(".waiting-data").hide();
+			ui.loading = false
   })
-	article_page_search++;
+
+}
+
+
+// 加载更多（搜索）
+function loadMoreSearchArticle(){
+	flag = 2;
+	ui.loading = true
+	$(".loader1").css('display','flex');
+
+	var uri = 'blockchain/quaryArticle?articlekeyWord=' + key_word + 'currentPage=' + article_page_search + 'pageSize=12'
+	doJavaGet(uri, function(result){
+
+			var content_length = null
+
+			if (result.datas.length != 0) {
+
+				for (var i = 0; i < result.datas.length; i++) {
+					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+					if ($(window).width() < 767) {
+						content_length = 55
+					}else{
+						content_length = 300
+					}
+
+					if (result.datas[i].textContent.length > content_length) {
+						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+					}
+
+					// if (result.datas[i].textTitle.length > 30) {
+					//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+					// }
+
+				}
+
+				var tpl = document.getElementById('article_tpl').innerHTML;
+				var content = template(tpl, {list: result.datas});
+				$('.article-top-box').append(content)
+
+				var imgW = $(".hot_zone .article-detail .article-icon").width();
+				$(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+
+			}else{
+				ui.noMoreData = true;
+				$(".loader1").css('display','none');
+				$(".no-more-hook").fadeIn();
+			}
+			ui.loading = false;
+
+	})
+
 }
 
 
@@ -211,8 +278,9 @@ $(window).scroll(function(){
           loadMoreArticle();
         }else if(!ui.noMoreData && !ui.loading && flag == 2){
           // debugger
+					article_page_search += 1;
 					ui.loading = true;
-          searchArticle();
+          loadMoreSearchArticle();
         }
 
 		}
