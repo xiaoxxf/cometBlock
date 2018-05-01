@@ -5,6 +5,7 @@
 .user-icon{
 	border-radius: 20px;
 }
+
 /*内容超过一屏需要留出底部导航的位置*/
 .detail-wrap{
    padding-bottom: 85px;

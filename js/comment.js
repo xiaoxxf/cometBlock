@@ -264,7 +264,6 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
 
 window.onload = function(){
     ajaxGetReviewDetail();
-    ajaxGetLongCommentReview();
 }
 function  ajaxGetChainDetail() {
     // var projectId = projectId ;
@@ -276,6 +275,10 @@ function  ajaxGetChainDetail() {
         } else {
             layer.msg(res.msg);
         }
+
+    // 加载完文章再加载评论
+    ajaxGetLongCommentReview();
+
     }, "json");
 }
 var longCommentCurrentPage = 1 ;
@@ -379,7 +382,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
         passWord = userinfo.userPwd,
         reviewId = self.data('reviewid');
         parentTxt = self.data('parenttxt');
-        
+
     if(!wechatBindNotice()){
     	return;
     }
