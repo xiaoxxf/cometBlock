@@ -209,14 +209,19 @@ $(document).on('click','#nav_login',function () {
 
 //输入框下拉事件
 var liDown=$(".nav_search_list li");
+var key_word = $('#head_search').val();
+var index = 0; //判断键盘选择
+var flag = false; //判断下拉选单是否已显示
 
 //  输入时显示下拉菜单 & 搜索框内容绑定下拉框内容
 $("#head_search").keyup(function(e){
-
+    key_word = $('#head_search').val()
 		if (!$('#head_search').val()) {
 			$(".nav_search_list").css("display","none");
+      flag = false;
 		}else{
 			$(".nav_search_list").css("display","block");
+      flag = true;
 		}
 
 		key_word = $(e.target).val()
@@ -229,7 +234,6 @@ $("#head_search").keyup(function(e){
 
 // 鼠标选择
 $(".nav_search_list").on("mouseenter mouseleave", 'li',function(e){
-  // debugger
 
   if ((e.type == "mouseenter")) {
     $(e.target).addClass('nav_search_list_focus')
@@ -240,8 +244,10 @@ $(".nav_search_list").on("mouseenter mouseleave", 'li',function(e){
 
 })
 
-var index = 0;
 $('#head_search').keydown(function(e){
+  if ( !flag ) {
+    return
+  }
 
   for (var i = 0; i < liDown.length; i++) {
     if ( $(liDown[i]).hasClass('nav_search_list_focus') ) {
@@ -273,15 +279,12 @@ $('#head_search').keydown(function(e){
   if (e.keyCode == 13) {
     switch (index) {
       case 0:
-        var key_word = $('#head_search').val()
     	   window.location.href='chain.html?serach_word_by_navbar=' + key_word
         break;
       case 1:
-        var key_word = $('#head_search').val()
     	   window.location.href = 'hot-article.html?serach_word_by_navbar=' + key_word
         break;
       case 2:
-        var key_word = $('#head_search').val()
       	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
         break;
       case 3:
@@ -291,10 +294,7 @@ $('#head_search').keydown(function(e){
 
   }
 
-
 })
-
-
 
 
 // 失去焦点时隐藏下拉菜单
@@ -302,30 +302,19 @@ $("#head_search").blur(function(e){
   $(liDown).removeClass('nav_search_list_focus')
   $(liDown[0]).addClass('nav_search_list_focus')
 	$(".nav_search_list").css("display","none");
-
+  flag = false;
 });
-
-
-// $("#head_search").keydown(function(e){
-//   if (e.keyCode == 13) {
-//     var key_word = $('#head_search').val()
-//   	window.location.href='chain.html?serach_word_by_navbar=' + key_word
-//   }
-// });
-//
 
 // 搜索项目
 var search_project = document.getElementById('search_project')
 search_project.addEventListener('mousedown',function() {
-	var key_word = $('#head_search').val()
-
 	window.location.href='chain.html?serach_word_by_navbar=' + key_word
 })
+
 
 // 搜索内容
 var search_article = document.getElementById('search_article')
 search_article.addEventListener('mousedown',function() {
-	var key_word = $('#head_search').val()
 	window.location.href = 'hot-article.html?serach_word_by_navbar=' + key_word
 
 })
@@ -333,7 +322,6 @@ search_article.addEventListener('mousedown',function() {
 // 搜索新闻
 var search_news = document.getElementById('search_news')
 search_news.addEventListener('mousedown',function() {
-	var key_word = $('#head_search').val()
 	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
 })
 
