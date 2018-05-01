@@ -178,8 +178,25 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 	}
 })
 
+
+// 点击写文章页面
 $('#writting-article').on('click',function(){
-	window.location.href='article-new.html';
+  if(userId == undefined){
+    layer.open({
+      closeBtn:1,
+      title: '',
+      content: '请先登录您的账号',
+      btn: ['登录', '注册'],
+      yes: function(){
+        window.location.href='login.html'
+      },
+      btn2: function(){
+        window.location.href='register.html'
+      }
+    });
+  }else{
+    window.location.href='article-new.html';
+  }
 })
 
 //点击登录手动跳转
