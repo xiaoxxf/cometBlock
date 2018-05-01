@@ -30,7 +30,10 @@ $(function(){
 
 // 渲染评测
 function getArticle(){
-  flag = 1
+  flag = 1;
+
+	$(".waiting-data").fadeIn();
+	$(".no-more-hook").css('display','none')
 
   ui.noMoreData = false;
   var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
@@ -69,6 +72,8 @@ function getArticle(){
 			}else{
 				// $(".no-more-hook").fadeIn();
 			}
+			$(".waiting-data").hide();
+
 
   })
 	article_pgae++;
