@@ -208,6 +208,7 @@ $(document).on('click','#nav_login',function () {
 })
 
 //输入框下拉事件
+var liDown=$(".nav_search_list li");
 
 //  输入时显示下拉菜单 & 搜索框内容绑定下拉框内容
 $("#head_search").keyup(function(e){
@@ -219,27 +220,106 @@ $("#head_search").keyup(function(e){
 		}
 
 		key_word = $(e.target).val()
-
-		$('.search_key_word').html(key_word)
+    $('#search_project').html('项目搜索: ' + key_word)
+    $('#search_article').html('内容搜索: ' + key_word)
+    $('#search_news').html('新闻搜索: ' + key_word)
+    $('#search_user').html('用户搜索: ' + key_word)
 
 });
+
+// 鼠标选择
+$(".nav_search_list").on("mouseenter mouseleave", 'li',function(e){
+  // debugger
+
+  if ((e.type == "mouseenter")) {
+    $(e.target).addClass('nav_search_list_focus')
+
+  }else if((e.type == "mouseleave")){
+    $(e.target).removeClass('nav_search_list_focus')
+  }
+
+})
+
+var index = 0;
+$('#head_search').keydown(function(e){
+
+  for (var i = 0; i < liDown.length; i++) {
+    if ( $(liDown[i]).hasClass('nav_search_list_focus') ) {
+      index = i;
+      break;
+    }
+  }
+
+	switch (e.keyCode) {
+			case 38: //上
+        if (index > 0 ) {
+          $(liDown).removeClass('nav_search_list_focus')
+          index--;
+          console.log(index)
+          $(liDown[index]).addClass('nav_search_list_focus')
+        }
+
+			  break;
+			case 40: // 下
+        if (index < 3 ) {
+          $(liDown).removeClass('nav_search_list_focus')
+          index++;
+          console.log(index)
+          $(liDown[index]).addClass('nav_search_list_focus')
+        }
+        break;
+	}
+
+  if (e.keyCode == 13) {
+    switch (index) {
+      case 0:
+        var key_word = $('#head_search').val()
+    	   window.location.href='chain.html?serach_word_by_navbar=' + key_word
+        break;
+      case 1:
+        var key_word = $('#head_search').val()
+    	   window.location.href = 'hot-article.html?serach_word_by_navbar=' + key_word
+        break;
+      case 2:
+        var key_word = $('#head_search').val()
+      	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
+        break;
+      case 3:
+        console.log('搜索用户')
+        break;
+    }
+
+  }
+
+
+})
+
+
+
 
 // 失去焦点时隐藏下拉菜单
 $("#head_search").blur(function(e){
-	setTimeout(function(){
-		$(".nav_search_list").css("display","none");
- }, 100);
+  $(liDown).removeClass('nav_search_list_focus')
+  $(liDown[0]).addClass('nav_search_list_focus')
+	$(".nav_search_list").css("display","none");
+
 });
 
+
+// $("#head_search").keydown(function(e){
+//   if (e.keyCode == 13) {
+//     var key_word = $('#head_search').val()
+//   	window.location.href='chain.html?serach_word_by_navbar=' + key_word
+//   }
+// });
+//
 
 // 搜索项目
 var search_project = document.getElementById('search_project')
 search_project.addEventListener('mousedown',function() {
-	console.log('search_project')
 	var key_word = $('#head_search').val()
 
 	window.location.href='chain.html?serach_word_by_navbar=' + key_word
-
 })
 
 // 搜索内容
@@ -260,24 +340,5 @@ search_news.addEventListener('mousedown',function() {
 // 搜索用户
 var search_user = document.getElementById('search_user')
 search_user.addEventListener('mousedown',function() {
-
-})
-
-
-$('#head_search').keydown(function(e){
-	var index = 0
-	var liDown=$(".nav_search_list li")
-	switch (e.keyCode) {
-			//上
-			case 38:
-
-
-			break;
-			// 下
-			case 40:
-
-			break;
-	}
-
 
 })

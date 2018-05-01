@@ -213,8 +213,12 @@ body{
     cursor: pointer;
 }
 
-.nav_search_list li:hover{
+/* .nav_search_list li:hover{
     background-color:#ccccccb8 ;
+} */
+
+.nav_search_list_focus{
+  background-color:#ccccccb8 ;
 }
 
 .nav_search_list_li_on_foucs{
@@ -463,7 +467,9 @@ tbody a{
 
 /*通知弹出面板*/
 
-
+.unread{
+	background: #f3f6f7;
+}
 
 .notification-btn{
   font-size: 18px;
@@ -559,4 +565,18 @@ tbody a{
 }
 .inform2{
 	display: none;
+}
+
+
+/*导航栏阴影*/
+.nav_shadow{
+	box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
+
+
+/*导航栏logo*/
+.nav_logo{
+	float: left;
+    width: 40px;
+    margin-top: -9px;
 }
