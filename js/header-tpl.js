@@ -1,4 +1,4 @@
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+  var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var like_tpl_flag = false
 var comment_tpl_flag = false
 var notification_tpl_flag = false
@@ -228,6 +228,8 @@ search_project.addEventListener('mousedown',function() {
 // 搜索内容
 var search_article = document.getElementById('search_article')
 search_article.addEventListener('mousedown',function() {
+	var key_word = $('#head_search').val()
+	window.location.href = 'hot-article.html?serach_word_by_navbar=' + key_word
 
 })
 
