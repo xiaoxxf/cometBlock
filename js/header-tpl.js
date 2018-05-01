@@ -211,17 +211,17 @@ $(document).on('click','#nav_login',function () {
 var liDown=$(".nav_search_list li");
 var key_word = $('#head_search').val();
 var index = 0; //判断键盘选择
-var flag = false; //判断下拉选单是否已显示
+var list_show_flag = false; //判断下拉选单是否已显示
 
 //  输入时显示下拉菜单 & 搜索框内容绑定下拉框内容
 $("#head_search").keyup(function(e){
     key_word = $('#head_search').val()
 		if (!$('#head_search').val()) {
 			$(".nav_search_list").css("display","none");
-      flag = false;
+      list_show_flag = false;
 		}else{
 			$(".nav_search_list").css("display","block");
-      flag = true;
+      list_show_flag = true;
 		}
 
 		key_word = $(e.target).val()
@@ -236,6 +236,7 @@ $("#head_search").keyup(function(e){
 $(".nav_search_list").on("mouseenter mouseleave", 'li',function(e){
 
   if ((e.type == "mouseenter")) {
+    $(liDown).removeClass('nav_search_list_focus')
     $(e.target).addClass('nav_search_list_focus')
 
   }else if((e.type == "mouseleave")){
@@ -245,7 +246,7 @@ $(".nav_search_list").on("mouseenter mouseleave", 'li',function(e){
 })
 
 $('#head_search').keydown(function(e){
-  if ( !flag ) {
+  if ( !list_show_flag ) {
     return
   }
 
@@ -261,7 +262,7 @@ $('#head_search').keydown(function(e){
         if (index > 0 ) {
           $(liDown).removeClass('nav_search_list_focus')
           index--;
-          console.log(index)
+          // console.log(index)
           $(liDown[index]).addClass('nav_search_list_focus')
         }
 
@@ -270,7 +271,7 @@ $('#head_search').keydown(function(e){
         if (index < 3 ) {
           $(liDown).removeClass('nav_search_list_focus')
           index++;
-          console.log(index)
+          // console.log(index)
           $(liDown[index]).addClass('nav_search_list_focus')
         }
         break;
@@ -288,7 +289,7 @@ $('#head_search').keydown(function(e){
       	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
         break;
       case 3:
-        console.log('搜索用户')
+        // console.log('搜索用户')
         break;
     }
 
@@ -302,7 +303,7 @@ $("#head_search").blur(function(e){
   $(liDown).removeClass('nav_search_list_focus')
   $(liDown[0]).addClass('nav_search_list_focus')
 	$(".nav_search_list").css("display","none");
-  flag = false;
+  list_show_flag = false;
 });
 
 // 搜索项目
@@ -326,7 +327,7 @@ search_news.addEventListener('mousedown',function() {
 })
 
 // 搜索用户
-var search_user = document.getElementById('search_user')
-search_user.addEventListener('mousedown',function() {
-
-})
+// var search_user = document.getElementById('search_user')
+// search_user.addEventListener('mousedown',function() {
+//
+// })

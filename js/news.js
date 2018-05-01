@@ -4,12 +4,16 @@ $(document).ready(function () {
     var maxnum = 3; //设置加载最多次数
     var num = 1;
     var pageNum = 1;
+    var pageNumSearch = 1;
+    var flag = 1; // 1 -> 加载全部， 2 -> 加载搜索
     var search_page = 1;
     //var rankPageIndex = 1;
     var totalheight = 0;
-    var isLoaded = true
+    var isLoaded = true;
     //新消息通知
-    var count = 0
+    var count = 0;
+    var keyWord = getUrlParam('serach_word_by_navbar')
+
     //默认不显示通知消息
     $('#div1').css("display", "none")
     function notice() { //请求后台查询最新通报
@@ -60,7 +64,11 @@ $(document).ready(function () {
     }
     //点击加载更多
     $(".load-more-hook .loading-more").on('click',function () {
+      if (flag == 1) {
         load();
+      }else if(flag == 2){
+        getSearch();
+      }
     })
     $(".news_look").on('click',function () {
          location.reload()
@@ -71,13 +79,18 @@ $(document).ready(function () {
         //console.log("页面的文档高度 ："+$(document).height());
         //console.log('浏览器的高度：'+$(window).height());
         totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
-        if(($(document).height() - range) <= totalheight && num != maxnum && isLoaded) {
+        if(($(document).height() - range) <= totalheight && num != maxnum && isLoaded && flag == 1) {
             isLoaded = false
             num = num + 1;
             load();
         }
+        else if(($(document).height() - range) <= totalheight && num != maxnum && isLoaded && flag == 2){
+          isLoaded = false
+          num = num + 1;
+          getSearch();
+        }
         if(num == maxnum+1){
-           $(".loading-more").show();
+            $(".loading-more").show();
             $(".loader1").css('display','none');
         }
     });
@@ -118,13 +131,10 @@ $(document).ready(function () {
 
     function load() {
         // getQuary();
+        flag = 1;
         $(".loading-more").hide();
         $(".loader1").css('display','flex');
-        // if($('#head_search').val() != "" && $('#head_search').val() != undefined ) {
-            // var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20 + '&keywords=' + $('#head_search').val();
-        // } else {
-            var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20;
-        // }
+        var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20;
         doJavaGet(uri, function(res) {
             //                  console.log(res.datas)
             if(res != null && res.code == 0) {
@@ -144,10 +154,10 @@ $(document).ready(function () {
     }
 
     function getSearch(){
-      var keyWord = getUrlParam('serach_word_by_navbar')
-
-      var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20 + '&keywords=' + keyWord;
-
+      flag = 2;
+      var uri = 'news/search?currentPage=' + pageNumSearch + '&pageSize=' + 20 + '&keywords=' + keyWord;
+      $(".loading-more").hide();
+      $(".loader1").css('display','flex');
       doJavaGet(uri, function(res){
         if(res != null && res.code == 0) {
             if(res.datas.length != 0){
@@ -156,18 +166,16 @@ $(document).ready(function () {
                 },200)
                 $(".loading-more").show();
                 $(".loader1").css('display','none');
-            }else{
-                $(".no-more-hook").fadeIn();
+            }else if( res.datas.length == 0 ){
+                $(".loader1").css('display','none');
+                $(".no-more-hook").css('display','');
+                $(".no-more-hook .loading-more").css('display','');
+
             }
 
         }
       })
-    }
-
-    if (getUrlParam('serach_word_by_navbar')) {
-      getSearch()
-    }else{
-      load();
+      pageNumSearch++;
     }
 
     function searchDataShowAppend(data) {
@@ -191,31 +199,31 @@ $(document).ready(function () {
         $('#dataList').append(html);
         isLoaded = true
     }
-    $(".navbar-fixed-container").on('keydown','#head_search',function(e) {
-        if (e.keyCode == 13) {
-            pageNum = 1
-            var keywords = $('#head_search').val()
-            console.log(keywords)
-            $(".loading-more").hide();
-            $(".loader1").css('display', 'flex');
-            var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20 + '&keywords=' + keywords;
-            doJavaGet(uri, function (res) {
-                //                      console.log(res.datas)
-                if (res != null && res.code == 0) {
-                    if (res.datas.length != 0) {
-                        setTimeout(function () {
-                            searchDataShow(res.datas);
-                        }, 200)
-                        $(".loading-more").show();
-                        $(".loader1").css('display', 'none');
-                    } else {
-                        $(".no-more-hook").fadeIn();
-                    }
-                }
-            }, "json");
-
-        }
-    });
+    // $(".navbar-fixed-container").on('keydown','#head_search',function(e) {
+    //     if (e.keyCode == 13) {
+    //         pageNum = 1
+    //         var keywords = $('#head_search').val()
+    //         console.log(keywords)
+    //         $(".loading-more").hide();
+    //         $(".loader1").css('display', 'flex');
+    //         var uri = 'news/search?currentPage=' + pageNum + '&pageSize=' + 20 + '&keywords=' + keywords;
+    //         doJavaGet(uri, function (res) {
+    //             //                      console.log(res.datas)
+    //             if (res != null && res.code == 0) {
+    //                 if (res.datas.length != 0) {
+    //                     setTimeout(function () {
+    //                         searchDataShow(res.datas);
+    //                     }, 200)
+    //                     $(".loading-more").show();
+    //                     $(".loader1").css('display', 'none');
+    //                 } else {
+    //                     $(".no-more-hook").fadeIn();
+    //                 }
+    //             }
+    //         }, "json");
+    //
+    //     }
+    // });
 
     function searchDataShow(data) {
         var html = ''
@@ -235,9 +243,9 @@ $(document).ready(function () {
         //$('#dataList').append(html);
         $('#dataList').html(html);
     }
-        function dispear() {
-            $('#div1').css("display", "none")
-        }
+    function dispear() {
+        $('#div1').css("display", "none")
+    }
     function dataShowRight(data) {
         var html = ''
         for(var i = 0; i < data.length; i++) {
@@ -255,11 +263,25 @@ $(document).ready(function () {
             }
         }, "json");
     }
-    loadRight(1);
 
     //js出来左右边距问题
     $(".right_container").width($(".right-container-wrap").width());
     $(window).resize(function() {
         $(".right_container").width($(".right-container-wrap").width());
     })
+
+
+    if (getUrlParam('serach_word_by_navbar')) {
+      getSearch();
+    }else{
+      load();
+    }
+
+    loadRight(1);
+
+    // if ($(window).width() <= 767){
+    //   $('.aside').css('display','none');
+    // }
+
+
 })

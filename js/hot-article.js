@@ -1,6 +1,9 @@
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var article_pgae = 1
+var article_page_search = 1;
+var key_word = $('.search_bar').val()
+
 // 判断下拉加载，1 -> 加载全部， 2 -> 加载搜索内容
 var flag = null
 
@@ -28,93 +31,53 @@ $(function(){
 // 渲染评测
 function getArticle(){
   flag = 1
-  article_pgae = 1
+
   ui.noMoreData = false;
   var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
   doJavaGet(uri, function(result){
-      $('.article-top-box').html("");
+			if (	article_pgae == 1) {
+				$('.article-top-box').html("");
+			}
       var content_length = null
 
-      for (var i = 0; i < result.datas.length; i++) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+			if (result.datas.length != 0) {
+				for (var i = 0; i < result.datas.length; i++) {
+					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
 
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 300
-        }
+					if ($(window).width() < 767) {
+						content_length = 55
+					}else{
+						content_length = 300
+					}
 
-        if (result.datas[i].textContent.length > content_length) {
-          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-        }
+					if (result.datas[i].textContent.length > content_length) {
+						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+					}
 
-        // if (result.datas[i].textTitle.length > 30) {
-        //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-        // }
+					// if (result.datas[i].textTitle.length > 30) {
+					//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+					// }
 
-      }
+				}
 
-      var tpl = document.getElementById('article_tpl').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.article-top-box').append(content)
+				var tpl = document.getElementById('article_tpl').innerHTML;
+				var content = template(tpl, {list: result.datas});
+				$('.article-top-box').append(content)
 
-      var imgW = $(".hot_zone .article-detail .article-icon").width();
-      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+				var imgW = $(".hot_zone .article-detail .article-icon").width();
+				$(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+			}else{
+				// $(".no-more-hook").fadeIn();
+			}
 
   })
-
-}
-
-// 评测加载更多(全部)
-function loadMoreArticle(){
-
-  article_pgae+=1
-  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
-
-  $(".loader1").css('display','flex');
-
-  doJavaGet(uri,function(result){
-		if (result.datas.length == 0) {
-      ui.noMoreData = true;
-			$(".loader1").css('display','none');
-			$(".no-more-hook").fadeIn();
-		}else{
-
-      for (var i = 0; i < result.datas.length; i++) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 300
-        }
-
-        if (result.datas[i].textContent.length > content_length) {
-          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-        }
-
-      }
-
-
-      var tpl = document.getElementById('article_tpl').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.article-top-box').append(content)
-
-      var imgW = $(".hot_zone .article-detail .article-icon").width();
-      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
-
-      $(".loader1").css('display','none');
-		}
-		ui.loading = false;
-	}, "json")
+	article_pgae++;
 
 }
 
 
 // 搜索文章
 $('.search-click-hook').on('click',function(){
-  var key_word = $('.search_bar').val()
-
   if (key_word != '') {
     searchArticle(key_word);
   }
@@ -123,12 +86,14 @@ $('.search-click-hook').on('click',function(){
 
 function searchArticle(keyWord){
   flag = 2;
-  articl_pgae = 1;
   var uri = 'blockchain/quaryArticle?articleKeyWord=' + keyWord + 'currentPage=' + articl_pgae + 'pageSize=12'
 
   doJavaGet(uri, function(){
 
-    $('.article-top-box').html("");
+		if (article_page_search == 1) {
+			$('.article-top-box').html("");
+
+		}
     var content_length = null
 
     for (var i = 0; i < result.datas.length; i++) {
@@ -158,54 +123,7 @@ function searchArticle(keyWord){
     $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
 
   })
-}
-
-// 搜索内容加载更多
-function loadMoreSearchArticle(){
-  flag = 2;
-
-  var key_word = $('.search_bar').val()
-
-  article_pgae+=1
-  var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage=' + articl_pgae + '&pageSize=12'
-
-  $(".loader1").css('display','flex');
-
-  doJavaGet(uri,function(result){
-		if (result.datas.length == 0) {
-      ui.noMoreData = true;
-			$(".loader1").css('display','none');
-			$(".no-more-hook").fadeIn();
-		}else{
-
-      for (var i = 0; i < result.datas.length; i++) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 300
-        }
-
-        if (result.datas[i].textContent.length > content_length) {
-          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-        }
-
-      }
-
-
-      var tpl = document.getElementById('article_tpl').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.article-top-box').append(content)
-
-      var imgW = $(".hot_zone .article-detail .article-icon").width();
-      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
-
-      $(".loader1").css('display','none');
-		}
-		ui.loading = false;
-	}, "json")
-
+	article_page_search++;
 }
 
 
@@ -232,11 +150,11 @@ $(window).scroll(function(){
 				if (!ui.noMoreData && !ui.loading && flag == 1) {
 					// debugger
 					ui.loading = true;
-          loadMoreArticle();
+          getArticle();
         }else if(!ui.noMoreData && !ui.loading && flag == 2){
           // debugger
 					ui.loading = true;
-          loadMoreSearchArticle();
+          searchArticle();
         }
 
 		}
