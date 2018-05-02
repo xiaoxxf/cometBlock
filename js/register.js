@@ -72,7 +72,7 @@ function gainCode() {
 		} else {
 				//layer.msg(res.msg);
 			}
-		
+
 
 	}, "json");
 
@@ -137,7 +137,7 @@ function dingshiqi() {
 }
 
 function CountDown() {
-	
+
 	countdown = setInterval(dingshiqi, 1000);
 
 }
@@ -171,7 +171,7 @@ $("#sign-in-form-submit-btn1").click(function() {
 				$(".ouro").attr({
 					style: "display:inline-block"
 				});
-				setTimeout(function() { //两秒后跳转  
+				setTimeout(function() { //两秒后跳转
 					login()
 					//location.href = "login.html";
 				}, 1500);
@@ -221,7 +221,7 @@ function login() {
 					window.location.href = "index.html";
 
 				} else {
-					window.location.href = "personalCenter.html";
+					window.location.href = "personal-homepage.html.html";
 				}
 
 			} else {
@@ -267,4 +267,3 @@ function loginFromValid() {
 	return true;
 
 }
-

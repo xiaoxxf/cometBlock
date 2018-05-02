@@ -214,7 +214,7 @@ function getUserInfoByWeChat(wechatCode){
             $(".nav-user-account .more-active").css('display','block');
             $(".login-right").css('display','block');
 
-            window.location.href='personalCenter.html?personType=1'
+            window.location.href='personal-homepage.html'
             // setTimeout(function () {
             //     layer.open({
             //         closeBtn:1,
@@ -252,11 +252,11 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
 
 $('.block-comet-main-wrap').on('click','.nav-user-account .inform-btn',function(){
         window.location.href = "notification.html?personType=1";
-	
+
 })
 $('.block-comet-main-wrap').on('click','.nav-user-account .setting-btn',function(){
         window.location.href = "person-setting.html?personType=1";
-	
+
 
 })
 //通知鼠标悬停出现隐藏div
