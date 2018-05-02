@@ -100,6 +100,24 @@
 				<label class="col-xs-12 col-md-2 col-sm-2 control-label">团队：</label>
 				<div class="team">
 
+					<!-- <%for(var i = 0; i < list.chainTeamList.length; i++) {%>
+
+					<div class="col-xs-6 col-md-2 col-sm-3">
+						<div class="team_image_box">
+							<img src="<%=list.chainTeamList[i].picHref%>" class="" />
+							<span class="glyphicon glyphicon-remove remove" style="display:none" ></span>
+						</div>
+						<div>
+							<input type="file"  name="file" class="member_pic" style="display:none">
+							<button type="button" name="member_pic_choose_button" class="btn btn-default upload-button member_pic_choose_button">选择</button>
+						</div>
+						<div class="member_msg">
+							<input type="hidden" class="member_pic_name" name="member_pic_name" value="<%=list.chainTeamList[i].picHref %>">
+							<input type="text" class="form-control member_name" name="member_name" value="<%=list.chainTeamList[i].name %>" placeholder="名称">
+							<input type="text" class="form-control member_position" name="member_position" value="<%=list.chainTeamList[i].position %>" placeholder="职位" >
+						</div>
+					</div>
+					<%}%> -->
 
 				</div>
 
@@ -115,7 +133,11 @@
 			<div class="form-group row date_pick">
 				<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行日期：</label>
 				<div class="col-xs-12 col-md-5 col-sm-5">
-					<input type="text" name="fundraising_time" class="form-control"  id="date_pick" value="<%=list.fundraisingTime.split(' ')[0]%>">
+					<%if( list.fundraisingTime != null ){%>
+						<input type="text" name="fundraising_time" class="form-control"  id="date_pick" value="<%=list.fundraisingTime %>">
+					<%}else{%>
+						<input type="text" name="fundraising_time" class="form-control"  id="date_pick" value="">
+					<%}%>
 				</div>
 			</div>
 
@@ -144,14 +166,22 @@
 			<div class="form-group row">
 				<label class="col-xs-12 col-md-2 col-sm-2 control-label">发行总量：</label>
 				<div class="col-xs-12 col-md-5 col-sm-5">
-					<input class="form-control" name="currency_count" type="text" value="<%=list.currencyCount%>">
+					<%if(list.currencyCount != null ){%>
+						<input class="form-control" name="currency_count" type="text" value="<%=list.currencyCount%>">
+					<%}else{%>
+						<input class="form-control" name="currency_count" type="text" value="">
+					<%}%>
 				</div>
 			</div>
 
 			<div class="form-group row">
 				<label class="col-xs-12 col-md-2 col-sm-2 control-label">流通总量：</label>
 				<div class="col-xs-12 col-md-5 col-sm-5">
-					<input class="form-control" name="currency_circulation" type="text" value="<%=list.currencyCirculation%>">
+					<%if( list.currencyCirculation != null ){%>
+						<input class="form-control" name="currency_circulation" type="text" value="<%=list.currencyCirculation%>">
+					<%}else{%>
+						<input class="form-control" name="currency_circulation" type="text" value="">
+					<%}%>
 				</div>
 			</div>
 

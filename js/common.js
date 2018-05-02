@@ -182,7 +182,7 @@ function getUserInfoByWeChat(wechatCode){
           var wechatInfo = JSON.stringify(res.datas);
 
           expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
-          $.cookie('wechatInfo', res.datas,{ expires: expireDate});
+          $.cookie('wechatInfo', wechatInfo,{ expires: expireDate});
 
           // wechatInfo = JSON.stringify(res.datas);
           wechatInfo = JSON.parse('wechatInfo')
@@ -229,6 +229,11 @@ function getUserInfoByWeChat(wechatCode){
           }
 
 
+      }else if(res.code == -1){
+        layer.msg('登录失败，请重试');
+        $("#nav_login").fadeIn();
+        $("#nav_register").fadeIn();
+        $(".scrollbar-container").fadeIn();
       }
   }, "json");
 }
@@ -252,16 +257,16 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .userCenter-btn',func
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-        var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-        if(currentJumpHref == undefined){
-            currentJumpHref = window.location.origin;
-        }
-        // var currentJumpHref = 'http://www.blockcomet.com';
+        // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+        // if(currentJumpHref == undefined){
+        //     currentJumpHref = window.location.origin;
+        // }
+        var currentJumpHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
             window.location.href = jumpHref;
-    }
+        }
     }, "json");
 })
 //微信注册
