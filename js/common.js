@@ -177,14 +177,14 @@ function getUserInfoByWeChat(wechatCode){
   doJavaGet(uri, function(res) {
       if(res.code === 0){
           console.log(res)
-          wechatInfo = JSON.stringify(res.datas);
-          wechatInfo = JSON.parse(wechatInfo)
-          var userinfo_wechat = wechatInfo.userInfo;
-
           //cookie保存微信登录标识，设置时效
           var expireDate= new Date();
           expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
-          $.cookie('wechatInfo', wechatInfo,{ expires: expireDate});
+          $.cookie('wechatInfo', res.datas,{ expires: expireDate});
+
+          // wechatInfo = JSON.stringify(res.datas);
+          wechatInfo = res.datas
+          var userinfo_wechat = wechatInfo.userInfo;
 
           // 已绑定
           if (wechatInfo.userinfo) {
