@@ -181,6 +181,7 @@ a img {
 }
 .article_content{
   color: grey;
+  margin-top: 40px;
 }
 .article_title_main{
 	font-size: 18px;
@@ -190,7 +191,6 @@ a img {
 }
 .article_content_bottom{
 	color: gray;
-  margin-top: -20px;
 }
 
 
@@ -260,6 +260,7 @@ a img {
 	 /* line-height: 25px; */
 	color: black;
 }
+
 
 .meta{
 	margin-top:15px ;

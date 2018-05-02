@@ -77,6 +77,7 @@ function verbTeam(chainTeamList){
   										<input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" >\
   									</div>\
   								</div>'
+
   for (var i = 0; i < chainTeamList.length; i++) {
     $('.team').append(string);
   }

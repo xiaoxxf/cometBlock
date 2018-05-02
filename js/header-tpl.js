@@ -289,7 +289,7 @@ $('#head_search').keydown(function(e){
       	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
         break;
       case 3:
-        // console.log('搜索用户')
+				window.location.href = 'search_user.html?serach_word_by_navbar=' + key_word
         break;
     }
 
@@ -327,7 +327,7 @@ search_news.addEventListener('mousedown',function() {
 })
 
 // 搜索用户
-// var search_user = document.getElementById('search_user')
-// search_user.addEventListener('mousedown',function() {
-//
-// })
+var search_user = document.getElementById('search_user')
+search_user.addEventListener('mousedown',function() {
+	window.location.href = 'search_user.html?serach_word_by_navbar=' + key_word
+})

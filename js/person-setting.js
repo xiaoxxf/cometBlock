@@ -69,7 +69,6 @@ function changePwdClick() {
 }
 
 //地址栏传入参数，从哪里进来拼上参数即可
-//http://127.0.0.1:8020/cometBlock/personalCenter.html?personType=1
 //加入personType=1/2  进入基础设置 /消息
 
 var pT = getUrlParam("personType");
@@ -102,7 +101,7 @@ var article_flag = false
 // 渲染
  $(document).ready(function(){
         $(".person-left-menu li a").click(function(){
-	
+
         var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
 				switch (order) {
 					case 0:
@@ -113,7 +112,7 @@ var article_flag = false
 						$(".cont0").css("display","none");
 						$(".cont1").css("display","block");
 						break;
-					
+
 					default:
 						// console.log('这是默认')
 						break;
