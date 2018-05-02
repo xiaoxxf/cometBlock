@@ -116,7 +116,8 @@ a img {
 .hot_zone_coin .hot_coin_region .project-name{
 	margin-top:10px;
 	margin-bottom: 10px;
-  text-align: center;
+  	text-align: center;
+  	color: #333;
 }
 
 .hot_zone_coin .hot_coin_region .score{
@@ -133,7 +134,7 @@ a img {
 }
 
 .hot_zone_coin .hot_coin_region .score span{
-	color:#ffac2d;
+	color:#006bb3;
 
 }
 .hot_coin_region{
@@ -333,6 +334,7 @@ a img {
 	height: 50px;
 	line-height: 50px;
 	background-color: white;
+	color: #006bb3;
 
 }
 

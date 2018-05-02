@@ -5,14 +5,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>个人中心</title>
+		<title>消息通知</title>
 		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 		<!--<link rel="stylesheet" media="all" href="css/bootstrap-datetimepicker.min.css" />-->
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/chain-new.css" />
-		<link rel="stylesheet" href="css/personalCenter.css">
+		<link rel="stylesheet" href="css/notification.css">
 		<link rel="stylesheet" href="css/login.css" />
 		<link rel="stylesheet" href="css/load.css" />
 		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
@@ -30,13 +30,13 @@
 						<!--<div class="col-xs-12 col-md-4 col-sm-12">-->
 							<div class="aside">
 								<ul class="person-left-menu">
-									<li class="router-link-exact-active active" >
+									<!--<li class="router-link-exact-active active" >
 										<a class="toogle-acive" id="baseSetting">
 											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span class="option-name">基础设置</span>
 										</a>
-									</li>
-									<li >
-										<a>
+									</li>-->
+									<li class="router-link-exact-active active">
+										<a class="toogle-acive">
 											<div class="setting-icon"><i class="fa fa-external-link"></i></div>
 											<span class="option-name">引用</span>
 											<span class="badge badge-icon quote-count"></span>
@@ -62,128 +62,49 @@
 											 <div class="setting-icon"><i class="fa fa-sign-out"></i></div> <span class="option-name">驳回</span><span  class="badge badge-icon reject-count"></span>
 										</a>
 									</li>
+									
 								</ul>
 							</div>
 						<!--</div>-->
 
 						<div class="col-xs-12 col-md-8 col-sm-12  col-md-offset-4 show_right">
-							<!--更换头像-->
-							<div class="show_table cont0">
-								<div class="base_setting">
-									<div class="col-md-3">
-										<div class="avatar" id="result">
-											<img src="">
-										</div>
-									</div>
-									<div class="col-md-4">
-										<a href="javascript:;" class="file btn btn-hollow ">更改头像
-											<input type="file" id="user_logo_input" class='user_logo' >
-										</a>
-										<button type="button" class="btn btn-default upload-button upload-project-logo btn-hollow">保存
-										</button>
-									</div>
-									<div class="col-md-1">
-
-									</div>
-								</div>
-
-								<div class="base_setting">
-									<div class="col-md-3 col-xs-12 col-sm-12">
-										<div class=" setting-title">
-											昵称
-										</div>
-									</div>
-									<div class="col-md-4 col-xs-12 col-sm-12">
-										<input type="text" placeholder="请输入昵称" id="ownname" >
-									</div>
-									<div class="col-md-1 col-xs-12 col-sm-12">
-										<button type="button" class="btn btn-default save_realname" id="save_realname">保存
-										</button>
-									</div>
-								</div>
-								<div class="base_setting_pwd">
-									<div class="col-md-12 reset_pwd_bottom">
-									<div class="col-md-10 reset-pwd ">
-										<div class=" setting-title">
-											<a class=" setting-psw" data-toggle="collapse"   >
-												<span class="fa fa-angle-down down_icon"></span>
-												修改密码
-											</a>
-											<div id="collapseOne" class="accordion-body  col-xs-10 col-sm-10 col-md-12 " >
-												<div class="accordion-inner col-xs-12 col-md-10 col-sm-12">
-													<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
-														<input placeholder="手机验证码" type="text" name="tel" id="phone_code" class="phone_code_tip">
-														<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="send_code">发送验证码</a>
-													</div>
-													<div class="row-new-pwd" >
-														<div class="col-xs-12 col-md-6 col-sm-12 row-input"><a>请输入新的密码</a></div>
-														<div class="col-xs-12 col-md-6 col-sm-12"><input type="text"  id="newPwd" class="new-input-pwd"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									</div>
-								</div>
-								<div class="col-md-10 col-xs-12 col-sm-12 reset-pwd">
-									<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
-								</div>
-								<div class="bind-user">
-									<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
-										<input type="submit" class="btn btn-success setting-save" value="绑定用户" id="bind_now_user">
-									</div>
-									<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
-										<input type="submit" class="btn btn-success setting-save" value="绑定新用户" id="bind_new_user">
-									</div>
-								</div>
-
-
-							</div>
-
 							<!-- 引用 -->
-							<div class="show_table show_table_detail cont1 quote">
+							<div class="show_table show_table_detail cont0 quote">
 								<div class="menu">引用</div>
 								<ul class="notification—list quote-list">
 
 								</ul>
 							</div>
 							<!-- 评论 -->
-							<div class="show_table show_table_detail cont2 comment">
+							<div class="show_table show_table_detail cont1 comment">
 								<div class="menu">收到的评论</div>
 								<ul class="notification—list comment-list">
 
 								</ul>
 							</div>
 							<!--喜欢提示-->
-							<div class="show_table show_table_detail cont3 like">
+							<div class="show_table show_table_detail cont2 like">
 								<div class="menu">收到的点赞</div>
 								<ul class="notification—list like-list">
 
 								</ul>
 							</div>
 							<!-- 审核通过 -->
-							<div class="show_table show_table_detail cont4 pass">
+							<div class="show_table show_table_detail cont3 pass">
 								<div class="menu">审核通过的项目</div>
 								<ul class="notification—list pass-list">
 
 								</ul>
 							</div>
 							<!-- 驳回 -->
-							<div class="show_table show_table_detai cont5 reject">
+							<div class="show_table show_table_detai cont4 reject">
 								<div class="menu">被驳回的项目</div>
 								<ul class="notification—list reject-list">
 
 								</ul>
 							</div>
-
-							<!-- 文章 -->
-							<div class="show_table show_table_detail cont6 quote">
-								<div class="menu">我的文章</div>
-								<ul class="my-article">
-								</ul>
-							</div>
 							<!--专题-->
-							<div class="show_table show_table_detail cont7 subject">
+							<div class="show_table show_table_detail cont6 subject">
 								<div class="menu">我的专题</div>
 								<div class="col-md-10 col-xs-10 col-sm-10">
 									<button type="button" class="btn btn-primary" id="new_subject"><span>+</span>新建专题</button>
@@ -449,7 +370,7 @@
 		<script src="js/template.js"></script>
 		<script src="js/common.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
-		<script src="js/personalCenter.js"></script>
+		<script src="js/notification.js"></script>
 		<script src="js/md5.js"></script>
 		<!-- <script src="js/login.js"></script> -->
 		<!-- <script src="js/register.js"></script> -->

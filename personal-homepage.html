@@ -12,19 +12,8 @@
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 	<link rel="stylesheet" href="css/personal-homepage.css" />
-
 	<!-- 导航栏 -->
 </head>
-<style>
-	.swiper-container {
-		width: 100%;
-		height: 200px;
-	}
-	.swiper-btn{
-		position: relative;
-		float: right;
-	}
-</style>
 <body lang="zh-CN" class="reader-black-font">
 		<div class="comet-main block-comet-main-wrap">
 		<!-- 全局顶部导航栏 -->
@@ -38,7 +27,7 @@
 							<img src="img/banner.png"  style="border-radius:3px"/>
 						</div>
 						<div class="intro_bottom">
-							<div class="col-md-9">
+							<div class="col-md-9 col-xs-12 col-xs-12">
 								<img src="img/hot_icon.jpg" width="200px"/>
 								<div class="person_edit">
 									<span class="person_title">尼古拉奥斯特</span>
@@ -47,7 +36,7 @@
 								</div>
 
 							</div>
-							<div class="col-md-3 col-xs-12 col-sm-12">
+							<div class="col-md-2 col-xs-12 col-xs-12 edit_person_msg">
 								<a href="" class="edit_btn">编辑个人资料</a>
 							</div>
 							
@@ -61,9 +50,10 @@
 										<div class="dynamic_title">
 											<span class="hot_block" style="margin-top:10px"></span>
 											<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门评测</a></span>
-											<a href="long_comment" >长评</a>
-											<a href="short_comment" class="dynimic_box">短评</a>
-											<a href="article" class="dynimic_box">文章</a>
+											<a href="long_comment" class="hot_main_area_item">长评</a>
+											<a href="short_comment" class="hot_main_area_item">短评</a>
+											<a href="article" class="hot_main_area_item">文章</a>
+											
 										</div>
 										<div class="hot_review_region">
 											<!--我的长评-->
@@ -114,7 +104,7 @@
 															
 															<div class="meta">
 																<a class="article-time">昨天：14：22</a>
-																<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>
+																<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>-->
 																<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> 123</a>
 															</div>
 														</div>
@@ -144,7 +134,7 @@
 											</div>
 											
 										</div>
-										<div class="read-more">下拉更多&gt;&gt;</div>
+										<div class="read-more"><i class="fa fa-arrow-down"></i>下拉更多</div>
 								</div>
 							</div>
 							<!--关注-->
@@ -164,7 +154,7 @@
 								</div>
 							</div>
 							<!--创建的专题-->
-							<div class="col-md-3 col-sm-12 col-xs-12">
+							<div class="col-md-3 col-sm-12 col-xs-12 create_subject">
 								<div class="hot_zone side">
 									<div class="pay-attention">
 										<a href="">创建的专题</a>

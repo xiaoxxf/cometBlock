@@ -312,6 +312,7 @@ body{
     margin: 0 3px 0 0;
     overflow: hidden;
 }
+/*更改星星颜色*/
 .allstar50{background-position:0 0px}
 .allstar45{background-position:0 -11px}
 .allstar40{background-position:0 -22px}

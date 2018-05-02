@@ -49,6 +49,21 @@
     transition: all 0.5s;
     transform: scale(1.2);
 }
+/*创建新项目*/
+.create_new_subject{
+	margin-left: 40px;
+}
+.create_new_subject_btn{
+	display: inline-block;
+    text-align: center;
+    width: 100px;
+    background-color: rgba(79, 163, 237, 0.5);
+    height: 30px;
+    line-height: 30px;
+    color: #22556e;
+    border-radius: 3px;
+}
+
 
 .top-nav-wrap .content{
 
@@ -60,6 +75,29 @@
     /* flex-direction: column; */
     /* justify-content: space-between; */
     /* align-items: left; */
+}
+/*排序*/
+.coin_order_list{
+	margin-bottom: 30px
+	
+}
+.coin_order_list a:first-child{
+	display: inline-block;
+    text-align: center;
+    width: 100px;
+    background-color: rgba(79, 163, 237, 0.5);
+    height: 30px;
+    line-height: 30px;
+    color: #22556e;
+}
+.coin_order_list a{
+	display: inline-block;
+    text-align: center;
+    width: 100px;
+    background-color: white;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
 }
 
 .coin-item span{
