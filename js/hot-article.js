@@ -154,9 +154,10 @@ function searchArticle(){
 
 	ui.loading = true;
   ui.noMoreData = false;
-	var uri = 'blockchain/quaryArticle?articlekeyWord=' + key_word + 'currentPage=' + article_page_search + 'pageSize=12'
-  doJavaGet(uri, function(result){
+	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
+						+ article_page_search + '&pageSize=12'
 
+  doJavaGet(uri, function(result){
 			$('.article-top-box').html("");
 
       var content_length = null
@@ -206,7 +207,8 @@ function loadMoreSearchArticle(){
 	ui.loading = true
 	$(".loader1").css('display','flex');
 
-	var uri = 'blockchain/quaryArticle?articlekeyWord=' + key_word + 'currentPage=' + article_page_search + 'pageSize=12'
+	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
+						+ article_page_search + '&pageSize=12'
 	doJavaGet(uri, function(result){
 
 			var content_length = null
