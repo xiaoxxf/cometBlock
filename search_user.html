@@ -10,6 +10,7 @@
 	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 	<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/loading.css">
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 	<link rel="stylesheet" href="css/search_user.css" />
 	<!-- 导航栏 -->
@@ -22,76 +23,80 @@
 			<div class="mian-container">
 				<div class="container" >
 					<!--个人简介-->
+
 					<div class="search_user">
-						<ul>
-							<li>
-								<a href=""> 
-									<img src="img/normal-user.png">
-								</a>
-								<div class="user_info">
-									<p>区块链</p>
-									<p class="user_info_item">
-										<span>关注：10</span>
-										<span>粉丝：20</span>
-									</p>
-								</div>
-								<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-							</li>
-							<li>
-								<a href=""> 
-									<img src="img/normal-user.png">
-								</a>
-								<div class="user_info">
-									<p>区块链</p>
-									<p class="user_info_item">
-										<span>关注：10</span>
-										<span>粉丝：20</span>
-									</p>
-								</div>
-								<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-							</li>
-							<li>
-								<a href=""> 
-									<img src="img/normal-user.png">
-								</a>
-								<div class="user_info">
-									<p>区块链</p>
-									<p class="user_info_item">
-										<span>关注：10</span>
-										<span>粉丝：20</span>
-									</p>
-								</div>
-								<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-							</li>
-							<li>
-								<a href=""> 
-									<img src="img/normal-user.png">
-								</a>
-								<div class="user_info">
-									<p>区块链</p>
-									<p class="user_info_item">
-										<span>关注：10</span>
-										<span>粉丝：20</span>
-									</p>
-								</div>
-								<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-							</li>
+						<ul class="search_user_result">
+
 						</ul>
 					</div>
-					
+
+					<div class="no-result" style="display:none">
+						找不到该用户
+					</div>
+
 				</div>
 			</div>
 		</div>
+		<div class="waiting-data">
+				<div class="loader9">
+						<div class="loader-nine">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+						</div>
+				</div>
+		</div>
 
+		<div class="load-more-container-wrap">
+				<div class="container">
+								<div class="load-more-wrap load-more-hook">
+										<div class="loader1 loader" style="display: none">
+												<div></div>
+												<div></div>
+												<div></div>
+										</div>
+										<div class="loading-more"  style="display: none">
+												加载更多
+										</div>
+								</div>
+								<div class="load-more-wrap no-more-hook" style="display: none">
+										<div class="loading-more">
+												已无更多数据
+										</div>
+								</div>
+						</div>
+		</div>
+<script type="text/html" id="user_search_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+			<li>
+				<a href="">
+					<img src="<%:=list[i].userPic %>">
+				</a>
+				<div class="user_info">
+					<p><%:=list[i].realName %></p>
+					<p class="user_info_item">
+						<span>关注：0</span>
+						<span>粉丝：0</span>
+					</p>
+				</div>
+				<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
+			</li>
+	<%}%>
+</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/swiper/swiper-4.2.2.min.js"></script>
+<!-- <script src="js/plugins/swiper/swiper-4.2.2.min.js"></script> -->
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
-</script>
+<script src='js/search_user.js'></script>
+
 
 </body>
 
 </html>
-
