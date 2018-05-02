@@ -227,8 +227,12 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
         Loginout();
 })
 
-$('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
-        window.location.href = "personalCenter.html?personType=1";
+// 头像下拉菜单跳转
+$('.block-comet-main-wrap').on('click', '.nav-user-account .notification-btn',function () {
+    window.location.href = "personalCenter.html?personType=1";
+})
+$('.block-comet-main-wrap').on('click', '.nav-user-account .userCenter-btn',function () {
+    window.location.href = "personal-homepage.html";
 })
 //通知鼠标悬停出现隐藏div
 
