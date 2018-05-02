@@ -1,4 +1,4 @@
-  var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var like_tpl_flag = false
 var comment_tpl_flag = false
 var notification_tpl_flag = false
