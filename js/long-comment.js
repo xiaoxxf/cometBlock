@@ -1,5 +1,6 @@
 var userId = $.cookie('userid');//获取userid
-var wechatInfo = JSON.parse($.cookie('wechatInfo'));
+var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
+
 // 判断是否登录
 $(function(){
   if(userId == undefined){

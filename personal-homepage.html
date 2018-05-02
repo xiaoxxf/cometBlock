@@ -170,7 +170,7 @@
 									<p><%:=list[i].textTitle %></p>
 								</div>
 								<div class="article-icon">
-									<a href="">
+									<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'>
 										<img class="article-img" src="<%:=list[i].projectLogo %>">
 									</a>
 								</div>
@@ -226,20 +226,21 @@
 						</div>
 						<div class="long_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<p class="article_title"><%:=list[i].textTitle %></p>
-								<p>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>&projectId=<%:=list[i].projectId %>" class="long_comment_title article_title"><%:=list[i].textTitle %></a>
+								<br>
+								<a href="" class="article_content">
 									<%:=list[i].textContent %>
-								</p>
+								</a>
 							</div>
 							<div class="article-icon">
-								<a href="">
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
 									<img class="article-img" src="img/coin_2.png">
 								</a>
 							</div>
 						</div>
 
 						<div class="meta">
-							<a class="article-time">昨天：14：22</a>
+							<a class="article-time"><%:=list[i].createTime %></a>
 							<a href="" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
 							<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
 						</div>
@@ -262,12 +263,12 @@
 						<div class="short_comment_box" style="display:flex">
 							<div class="article-introduce">
 								<p class="article_title">项目链接:
-									<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'>BTc</a>
+									<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'><%:=list[i].projectBigName %></a>
 								</p>
 								<p><%:=list[i].textTitle %></p>
 							</div>
 							<div class="article-icon">
-								<a href="">
+								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'>
 									<img class="article-img" src="<%:=list[i].projectLogo %>">
 								</a>
 							</div>
@@ -295,7 +296,7 @@
 						</div>
 						<div class="article_box" style="display:flex">
 							<div >
-								<p class="article_title_main"><%:=list[i].textTitle %></p>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
 								<p class="article_content_bottom">
 									<%:=list[i].textContent %>
 								</p>
