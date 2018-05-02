@@ -118,15 +118,20 @@ $.get("header-tpl.html",function(data){
     var href = location.href;
     $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
     //判断当前页面加cur-nav样式
-   if(href.indexOf('news.html')>0 || href.indexOf('detail.html')>0){
+    if(href.indexOf('news.html')>0 || href.indexOf('detail.html')>0){
        $(".navbar-fixed-container-hook .navbar-left .new-report").addClass('cur-nav');
-   }
+    }
     if(href.indexOf('code-rank.html')>0){
         $(".navbar-fixed-container-hook .navbar-left .code-rank").addClass('cur-nav');
     }
-    if(href.indexOf('index.html')>0 || href.indexOf('chain-detail.html')>0  || href.indexOf('comment.html')>0 ){
+    if(href.indexOf('index.html')>0 || href.indexOf('comment.html')>0 ){
         $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
-        $(".navbar-fixed-container-hook .navbar-left .chain").addClass('cur-nav');
+        $(".navbar-fixed-container-hook .navbar-left .index").addClass('cur-nav');
+    }
+
+    if (href.indexOf('chain.html')>0 || href.indexOf('chain-detail.html')>0 || href.indexOf('comment.html')>0 ) {
+      $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+      $(".navbar-fixed-container-hook .navbar-left .chain-category").addClass('cur-nav');
     }
 
     //页面加载完成之后做账户信息处理
@@ -173,7 +178,8 @@ function getUserInfoByWeChat(wechatCode){
       if(res.code === 0){
           console.log(res)
           wechatInfo = JSON.stringify(res.datas);
-          var userinfo_wechat = wechatInfo.userinfo;
+          wechatInfo = JSON.parse(wechatInfo)
+          var userinfo_wechat = wechatInfo.userInfo;
 
           //cookie保存微信登录标识，设置时效
           var expireDate= new Date();
@@ -221,8 +227,12 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
         Loginout();
 })
 
-$('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
-        window.location.href = "personalCenter.html?personType=1";
+// 头像下拉菜单跳转
+$('.block-comet-main-wrap').on('click', '.nav-user-account .notification-btn',function () {
+    window.location.href = "personalCenter.html?personType=1";
+})
+$('.block-comet-main-wrap').on('click', '.nav-user-account .userCenter-btn',function () {
+    window.location.href = "personal-homepage.html";
 })
 //通知鼠标悬停出现隐藏div
 
@@ -230,11 +240,11 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-        var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-        if(currentJumpHref == undefined){
-            currentJumpHref = window.location.origin;
-        }
-        // var currentJumpHref = 'http://www.blockcomet.com';
+        // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+        // if(currentJumpHref == undefined){
+        //     currentJumpHref = window.location.origin;
+        // }
+        var currentJumpHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
@@ -288,4 +298,3 @@ function wechatBindNotice(){
         return false;
     }
 }
-
