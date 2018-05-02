@@ -14,10 +14,11 @@ $(function(){
 	// 看别人
 	if (getUrlParam('userId')) {
 		userId = getUrlParam('userId');
+		$('.edit_person_msg').css('display','none') //看别人时隐藏编辑按钮
 	}
 	// 看自己
 	else{
-		userId = $.cookie('userid')
+		userId = $.cookie('userid');
 	}
 
   if(userId == undefined){
