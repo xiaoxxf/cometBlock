@@ -185,15 +185,15 @@ function getUserInfoByWeChat(wechatCode){
           $.cookie('wechatInfo', wechatInfo,{ expires: expireDate});
 
           // wechatInfo = JSON.stringify(res.datas);
-          wechatInfo = JSON.parse('wechatInfo')
+          // wechatInfo = JSON.parse('wechatInfo')
           // 已绑定
-          if (wechatInfo.userinfo) {
-            userinfo_wechat = JSON.parse(userinfo_wechat)
+          if (res.datas.userInfo) {
+            userinfo_wechat = res.datas.userInfo
             // localStorage.setItem('userinfo', userinfo_wechat);
-            localStorage.setItem('userid', userinfo_wechat.id);
-            localStorage.setItem('userinfo', JSON.stringify(userinfo_wechat));
+            localStorage.setItem('userid', res.datas.userInfo.id);
+            localStorage.setItem('userinfo', JSON.stringify(res.datas.userInfo));
             $.cookie('token', res.datas.id,{ expires: expireDate});
-            $.cookie('userid', res.datas.id,{ expires: expireDate });
+            $.cookie('userid', res.datas.userInfo.id,{ expires: expireDate });
 
             userinfo = JSON.parse(localStorage.getItem('userinfo'))
             // 显示头像，没有则显示默认头像
