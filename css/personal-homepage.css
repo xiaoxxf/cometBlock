@@ -135,6 +135,7 @@ a img {
 }
 .read-more{
 	cursor: pointer;
+  display: none;
 }
 
 .article-detail{
