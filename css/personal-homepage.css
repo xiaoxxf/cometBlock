@@ -32,7 +32,7 @@ a img {
 	float: left;
 	margin-left: 20px;
 }
-.person_edit .person_title{
+.person_edit .person_name{
 	font-weight: 1000;
     font-size: 18px;
     margin-bottom: 10px;
@@ -45,7 +45,7 @@ a img {
 .person_edit .concern_right{
 	margin-left: 30px;
 }
-   
+
 .edit_btn{
 	color: #006bb3;
     margin-top: 60px;
@@ -69,9 +69,14 @@ a img {
     border-radius: 8px;
 }
 /*动态*/
-.dynamic_title a{
+/* .dynamic_title a{
 	padding: 0px 10px;
+  color: black;
 }
+.dynamic_title a:hover{
+  color: #006bb3;
+} */
+
 
 .hot_zone{
 	padding: 10px;
@@ -92,15 +97,21 @@ a img {
     background-color: #006bb3;
 
 }
-.hot_main_area{
-	top: 30px;
-    position: absolute;
+
+.menuOnClick{
+  color: #006bb3;
 }
+
 .dynamic_title .hot_main_area_item{
-	display: inline-block;
-    position: relative;
-    top: -4px;
-    left: 80px;
+  display: inline-block;
+  position: relative;
+  top: -4px;
+  /* left: 80px; */
+  padding: 0px 10px;
+  cursor: pointer;
+}
+.dynamic_title .hot_main_area_item:hover{
+  color:#006bb3;
 }
 .meta .fa-ico{
 	float: right;
@@ -118,8 +129,7 @@ a img {
 .hot_zone_title span{
 	float: left;
 }
-.hot_zone_title_right span:last-child
-,.dynamic_title span:last-child{
+.hot_zone_title_right span:last-child{
 	/*float: right;*/
 	color: #006bb3;
 }
