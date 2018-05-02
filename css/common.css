@@ -227,23 +227,28 @@ body{
 
 @media (max-width: 1200px) {
   .nav_search{
-    width: 200px;
-    margin-right: 10px;
+    width: 150px;
+    margin-right: 15px;
   }
   .notification-btn{
-
-    margin-right: -15px;
+    margin-right: -10px;
   }
+
+  /* .navbar-inverse .navbar-left>li{
+      font-size: 15px;
+      padding: 0px 0px;
+  } */
+
 }
 
 @media (max-width: 1000px) {
   .nav_search{
-    width: 110px;
-    margin-right: -5px;
+    width: 100px;
+    margin-right: 0px;
   }
 
   .navbar-inverse .navbar-left>li{
-      font-size: 18px;
+      font-size: 15px;
       padding: 0px 0px;
   }
 

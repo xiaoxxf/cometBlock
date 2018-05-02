@@ -163,7 +163,7 @@ $('.team').on('change', $('.member_pic'), function(e) {
 
 
   team_image_box = e.target.parentNode.previousElementSibling// team_image_box
-  debugger
+  // debugger
   $(team_image_box).children('img').remove()
 
 
@@ -187,7 +187,7 @@ var t = null
 // 上传币种图片
 function upLoadPorjectLogo(){
   var file = $('#project_logo_input')[0].files[0]
-  debugger
+  // debugger
   if (file == undefined) {
     return
   }
