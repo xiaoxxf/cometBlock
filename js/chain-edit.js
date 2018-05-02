@@ -84,7 +84,6 @@ function verbTeam(chainTeamList){
   var member_pic_name = $('.member_pic_name')
   var name = $('.member_name')
   var position = $('.member_position')
-
   // 预览图片样式
   for (var i = 0; i < img.length; i++) {
     $(img[i]).css("width","110px")

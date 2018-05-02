@@ -5,6 +5,7 @@
 .user-icon{
 	border-radius: 20px;
 }
+
 /*内容超过一屏需要留出底部导航的位置*/
 .detail-wrap{
    padding-bottom: 85px;
@@ -212,8 +213,12 @@ body{
     cursor: pointer;
 }
 
-.nav_search_list li:hover{
+/* .nav_search_list li:hover{
     background-color:#ccccccb8 ;
+} */
+
+.nav_search_list_focus{
+  background-color:#ccccccb8 ;
 }
 
 .nav_search_list_li_on_foucs{
@@ -222,23 +227,28 @@ body{
 
 @media (max-width: 1200px) {
   .nav_search{
-    width: 200px;
-    margin-right: 10px;
+    width: 150px;
+    margin-right: 15px;
   }
   .notification-btn{
-
-    margin-right: -15px;
+    margin-right: -10px;
   }
+
+  /* .navbar-inverse .navbar-left>li{
+      font-size: 15px;
+      padding: 0px 0px;
+  } */
+
 }
 
 @media (max-width: 1000px) {
   .nav_search{
-    width: 110px;
-    margin-right: -5px;
+    width: 100px;
+    margin-right: 0px;
   }
 
   .navbar-inverse .navbar-left>li{
-      font-size: 18px;
+      font-size: 15px;
       padding: 0px 0px;
   }
 
@@ -462,7 +472,9 @@ tbody a{
 
 /*通知弹出面板*/
 
-
+.unread{
+	background: #f3f6f7;
+}
 
 .notification-btn{
   font-size: 18px;
@@ -558,4 +570,18 @@ tbody a{
 }
 .inform2{
 	display: none;
+}
+
+
+/*导航栏阴影*/
+.nav_shadow{
+	box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+}
+
+
+/*导航栏logo*/
+.nav_logo{
+	float: left;
+    width: 40px;
+    margin-top: -9px;
 }

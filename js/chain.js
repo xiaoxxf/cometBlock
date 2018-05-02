@@ -258,16 +258,31 @@ function serachChain(){
 			// 限制搜索结果描述的长度
 			var descriptions = document.getElementsByClassName('coin-description');
 
-			var show_length = 220
+			var show_length = 350
 			if ($(window).width() <= 767) {
 				show_length = 50
 			}
-
 			for (var i = 0; i < descriptions.length; i++) {
-				if (descriptions[i].innerText.length > show_length) {
-					descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+				descriptions[i].innerHTML = descriptions[i].innerHTML.replace(/<[^>]+>/g,"")
+
+
+				if (descriptions[i].innerHTML.length > show_length) {
+					descriptions[i].innerHTML = descriptions[i].innerHTML.substring(0,show_length) + "..."
 				}
+
+				// if (result.datas[i].textTitle.length > 30) {
+				//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+				// }
+
+
 			}
+
+
+			// for (var i = 0; i < descriptions.length; i++) {
+			// 	if (descriptions[i].innerText.length > show_length) {
+			// 		descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+			// 	}
+			// }
 
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);

@@ -118,15 +118,20 @@ $.get("header-tpl.html",function(data){
     var href = location.href;
     $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
     //判断当前页面加cur-nav样式
-   if(href.indexOf('news.html')>0 || href.indexOf('detail.html')>0){
+    if(href.indexOf('news.html')>0 || href.indexOf('detail.html')>0){
        $(".navbar-fixed-container-hook .navbar-left .new-report").addClass('cur-nav');
-   }
+    }
     if(href.indexOf('code-rank.html')>0){
         $(".navbar-fixed-container-hook .navbar-left .code-rank").addClass('cur-nav');
     }
-    if(href.indexOf('index.html')>0 || href.indexOf('chain-detail.html')>0  || href.indexOf('comment.html')>0 ){
+    if(href.indexOf('index.html')>0 || href.indexOf('comment.html')>0 ){
         $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
-        $(".navbar-fixed-container-hook .navbar-left .chain").addClass('cur-nav');
+        $(".navbar-fixed-container-hook .navbar-left .index").addClass('cur-nav');
+    }
+
+    if (href.indexOf('chain.html')>0 || href.indexOf('chain-detail.html')>0 || href.indexOf('comment.html')>0 ) {
+      $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+      $(".navbar-fixed-container-hook .navbar-left .chain-category").addClass('cur-nav');
     }
 
     //页面加载完成之后做账户信息处理
@@ -172,22 +177,34 @@ function getUserInfoByWeChat(wechatCode){
   doJavaGet(uri, function(res) {
       if(res.code === 0){
           console.log(res)
-          wechatInfo = JSON.stringify(res.datas);
-          var userinfo_wechat = wechatInfo.userinfo;
-
           //cookie保存微信登录标识，设置时效
           var expireDate= new Date();
+          var wechatInfo = JSON.stringify(res.datas);
+
           expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
           $.cookie('wechatInfo', wechatInfo,{ expires: expireDate});
 
+          // wechatInfo = JSON.stringify(res.datas);
+          // wechatInfo = JSON.parse('wechatInfo')
           // 已绑定
-          if (wechatInfo.userinfo) {
-            userinfo_wechat = JSON.parse(userinfo_wechat)
+          if (res.datas.userInfo) {
+            userinfo_wechat = res.datas.userInfo
             // localStorage.setItem('userinfo', userinfo_wechat);
-            localStorage.setItem('userid', userinfo_wechat.id);
-            localStorage.setItem('userinfo', JSON.stringify(userinfo_wechat));
+            localStorage.setItem('userid', res.datas.userInfo.id);
+            localStorage.setItem('userinfo', JSON.stringify(res.datas.userInfo));
             $.cookie('token', res.datas.id,{ expires: expireDate});
-            $.cookie('userid', res.datas.id,{ expires: expireDate });
+            $.cookie('userid', res.datas.userInfo.id,{ expires: expireDate });
+
+            userinfo = JSON.parse(localStorage.getItem('userinfo'))
+            // 显示头像，没有则显示默认头像
+            if (userinfo.userPic) {
+                $("#user_pic")[0].src = userinfo.userPic
+            } else {
+                $("#user_pic")[0].src = 'img/normal-user.png'
+            }
+            $(".nav-user-account .more-active").css('display', 'block');
+            $(".login-right").css('display', 'block');
+
           }
           // 未绑定
           else{
@@ -197,20 +214,26 @@ function getUserInfoByWeChat(wechatCode){
             $(".nav-user-account .more-active").css('display','block');
             $(".login-right").css('display','block');
 
-            setTimeout(function () {
-                layer.open({
-                    closeBtn:1,
-                    title: '',
-                    content: '登录成功，前去绑定开启更多权限',
-                    btn: ['绑定'],
-                    yes: function(){
-                        window.location.href='personalCenter.html?personType=1'
-                    }
-                });
-            },2000)
+            window.location.href='personalCenter.html?personType=1'
+            // setTimeout(function () {
+            //     layer.open({
+            //         closeBtn:1,
+            //         title: '',
+            //         content: '登录成功，前去绑定开启更多权限',
+            //         btn: ['绑定'],
+            //         yes: function(){
+            //             window.location.href='personalCenter.html?personType=1'
+            //         }
+            //     });
+            // },2000)
           }
 
 
+      }else if(res.code == -1){
+        layer.msg('登录失败，请重试');
+        $("#nav_login").fadeIn();
+        $("#nav_register").fadeIn();
+        $(".scrollbar-container").fadeIn();
       }
   }, "json");
 }
@@ -221,8 +244,12 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
         Loginout();
 })
 
-$('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
-        window.location.href = "personalCenter.html?personType=1";
+// 头像下拉菜单跳转
+$('.block-comet-main-wrap').on('click', '.nav-user-account .notification-btn',function () {
+    window.location.href = "personalCenter.html?personType=1";
+})
+$('.block-comet-main-wrap').on('click', '.nav-user-account .userCenter-btn',function () {
+    window.location.href = "personal-homepage.html";
 })
 //通知鼠标悬停出现隐藏div
 
@@ -230,16 +257,16 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',func
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-        var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-        if(currentJumpHref == undefined){
-            currentJumpHref = window.location.origin;
-        }
-        // var currentJumpHref = 'http://www.blockcomet.com';
+        // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+        // if(currentJumpHref == undefined){
+        //     currentJumpHref = window.location.origin;
+        // }
+        var currentJumpHref = 'http://www.blockcomet.com';
         if(res.code === 0){
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
             window.location.href = jumpHref;
-    }
+        }
     }, "json");
 })
 //微信注册
@@ -288,4 +315,3 @@ function wechatBindNotice(){
         return false;
     }
 }
-
