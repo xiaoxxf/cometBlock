@@ -179,13 +179,13 @@ function getUserInfoByWeChat(wechatCode){
           console.log(res)
           //cookie保存微信登录标识，设置时效
           var expireDate= new Date();
+          var wechatInfo = JSON.stringify(res.datas);
+
           expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
           $.cookie('wechatInfo', res.datas,{ expires: expireDate});
 
           // wechatInfo = JSON.stringify(res.datas);
-          wechatInfo = res.datas
-          var userinfo_wechat = wechatInfo.userInfo;
-
+          wechatInfo = JSON.parse('wechatInfo')
           // 已绑定
           if (wechatInfo.userinfo) {
             userinfo_wechat = JSON.parse(userinfo_wechat)
@@ -214,17 +214,18 @@ function getUserInfoByWeChat(wechatCode){
             $(".nav-user-account .more-active").css('display','block');
             $(".login-right").css('display','block');
 
-            setTimeout(function () {
-                layer.open({
-                    closeBtn:1,
-                    title: '',
-                    content: '登录成功，前去绑定开启更多权限',
-                    btn: ['绑定'],
-                    yes: function(){
-                        window.location.href='personalCenter.html?personType=1'
-                    }
-                });
-            },2000)
+            window.location.href='personalCenter.html?personType=1'
+            // setTimeout(function () {
+            //     layer.open({
+            //         closeBtn:1,
+            //         title: '',
+            //         content: '登录成功，前去绑定开启更多权限',
+            //         btn: ['绑定'],
+            //         yes: function(){
+            //             window.location.href='personalCenter.html?personType=1'
+            //         }
+            //     });
+            // },2000)
           }
 
 
