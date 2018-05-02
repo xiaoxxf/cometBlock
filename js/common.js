@@ -194,6 +194,17 @@ function getUserInfoByWeChat(wechatCode){
             localStorage.setItem('userinfo', JSON.stringify(userinfo_wechat));
             $.cookie('token', res.datas.id,{ expires: expireDate});
             $.cookie('userid', res.datas.id,{ expires: expireDate });
+
+            userinfo = JSON.parse(localStorage.getItem('userinfo'))
+            // 显示头像，没有则显示默认头像
+            if (userinfo.userPic) {
+                $("#user_pic")[0].src = userinfo.userPic
+            } else {
+                $("#user_pic")[0].src = 'img/normal-user.png'
+            }
+            $(".nav-user-account .more-active").css('display', 'block');
+            $(".login-right").css('display', 'block');
+
           }
           // 未绑定
           else{
