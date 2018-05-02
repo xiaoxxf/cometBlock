@@ -287,9 +287,9 @@ $("#save-register-info").click(function() {
 		return
 	}
 
-	if($("#phone_code").val()==""|| !$("#phone_code")){//验证码为空
+	if($("#setting_phone_code").val()==""|| !$("#setting_phone_code")){//验证码为空
 
-		layer.tips('请输入验证码', '#phone_code', {
+		layer.tips('请输入验证码', '#setting_phone_code', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
@@ -301,11 +301,11 @@ $("#save-register-info").click(function() {
 		param.tel = jsonStr.tel;
 		param.passWord =  jsonStr.userPwd;
 		param.realName =  $("#ownname").val();
-		param.code = $("#phone_code").val();
+		param.code = $("#setting_phone_code").val();
 		newpassWord =  $("#newPwd").val();
 	}else{
 
-		layer.tips('请先登录', '#phone_code', {
+		layer.tips('请先登录', '#setting_phone_code', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
