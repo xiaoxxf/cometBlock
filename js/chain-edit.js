@@ -15,6 +15,8 @@ function  ajaxGetChainDetail() {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
             console.log(chainInfoData)
+            $('title').html(res.datas.projectName + '项目编辑')
+
             // if (chainInfoData.creator == userId) {
             if (userinfo && (userinfo.level <= 2 || userinfo.id == chainInfoData.creator)) {
               creator = chainInfoData.creator // 保存creator，用于提交

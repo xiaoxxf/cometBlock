@@ -39,6 +39,8 @@ function  ajaxGetReviewDetail() {
         if(res != null && res.code == 0) {
           commentInfoData = res.datas
           // console.log(commentInfoData)
+          $('title').html('编辑-' + commentInfoData.textTitle)
+
           if (commentInfoData.creator == userId) {
             // 评价的币种的信息
             ajaxGetProjectInfo(commentInfoData.projectId)

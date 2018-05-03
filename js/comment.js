@@ -270,8 +270,8 @@ function  ajaxGetChainDetail() {
     var uri = 'blockchain/detail?projectId='+projectId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
-           $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
-            $(".main-hd .project-name").text(res.datas.projectName)
+          $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
+          $(".main-hd .project-name").text(res.datas.projectName)
         } else {
             layer.msg(res.msg);
         }
@@ -292,6 +292,7 @@ function  ajaxGetReviewDetail() {
             if (!projectId) {
               projectId = res.datas.projectId
             }
+            $('title').html(commentInfoData.textTitle)
             console.log(commentInfoData)
             $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
             $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
