@@ -1,4 +1,8 @@
 
+// 隐藏加载更多
+$(function(){
+	$('.load-more-container-wrap').css('display','none')
+})
 // 渲染类型
 var chainType = []
 $(function(){
@@ -49,7 +53,12 @@ var index_page = 1;
 var search_page = 1;
 var byTime_page = 1;
 
-var pageSize = 12;
+if (($(window).width() <= 767)) {
+	var pageSize = 12;
+}else{
+	var pageSize = 15;
+}
+
 var ui = {
 	"noData": false,
 	"noMoreData": false,
@@ -80,7 +89,7 @@ function getChainByTime(){
 			$('.coin-list-wrap').append(content)
 	    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
 	    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
-			if (result.datas.length < 12) {
+			if (result.datas.length < pageSize) {
 				ui.noMoreData = true;
 				$(".no-more-hook").fadeIn();
 			}
@@ -97,7 +106,7 @@ function lodeMoreChainByTime(){
 
 	$(".loader1").css('display','flex');
 	$(".no-more-hook").css('display','none')
-
+	$('.load-more-container-wrap').css('display','')
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
@@ -109,6 +118,7 @@ function lodeMoreChainByTime(){
 			$('.coin-list-wrap').append(content)
 			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
 			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			$('.load-more-container-wrap').css('display','none')
 			$(".loader1").css('display','none');
 		}
 		ui.loading = false;
@@ -144,7 +154,7 @@ function searchFromType(e){
 			$('.coin-list-wrap').append(content)
 	    var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
 	    $(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
-			if (result.datas.length < 12) {
+			if (result.datas.length < pageSize) {
 				ui.noMoreData = true;
 				$(".no-more-hook").fadeIn();
 			}
@@ -158,6 +168,7 @@ function searchFromType(e){
 function loadMoreSearchFromType(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_type_page + '&pageSize=' + pageSize + '&projectType=' + searchType
 	$(".loader1").css('display','flex');
+	$('.load-more-container-wrap').css('display','')
 	$(".no-more-hook").css('display','none')
 
 	doJavaGet(uri,function(result){
@@ -171,6 +182,7 @@ function loadMoreSearchFromType(){
 			$('.coin-list-wrap').append(content)
 			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
 			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			$('.load-more-container-wrap').css('display','none')
 			$(".loader1").css('display','none');
 		}
 		ui.loading = false;
@@ -207,7 +219,7 @@ function getChain(){
 function loadMoreChain(){
 	var uri = 'blockchain/quaryProjetList?currentPage=' + index_page + '&pageSize=' + pageSize
 	$(".loader1").css('display','flex');
-
+  $('.load-more-container-wrap').css('display','')
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
@@ -219,6 +231,7 @@ function loadMoreChain(){
 			$('.coin-list-wrap').append(content);
 			var imgW = $(".coin-list-wrap li .inner-img-wrap").width();
 			$(".coin-list-wrap li .inner-img-wrap").css('height',imgW*270/230);
+			$('.load-more-container-wrap').css('display','none')
 			$(".loader1").css('display','none');
 		}
 		ui.loading = false;
@@ -286,7 +299,7 @@ function serachChain(){
 
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);
-			if (result.datas.length < 12) {
+			if (result.datas.length < pageSize) {
 				ui.noMoreData = true;
 				$(".no-more-hook").fadeIn();
 			}
@@ -305,7 +318,7 @@ function loadMoreSearch(){
 	var key_word = $('.search_bar')[0].value
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
 	$(".loader1").css('display','flex');
-
+	$('.load-more-container-wrap').css('display','')
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui.noMoreData = true;
@@ -330,6 +343,7 @@ function loadMoreSearch(){
 					descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
 				}
 			}
+			$('.load-more-container-wrap').css('display','none')
 			$(".loader1").css('display','none');
 		}
 		ui.loading = false;

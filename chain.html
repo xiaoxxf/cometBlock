@@ -81,9 +81,9 @@
 												<span class="caret"></span>
 										</button>
 									</div>
-									<div class="create_new_subject">
+									<!-- <div class="create_new_subject">
 										<a href="chain-new.html" class="create_new_subject_btn" id="writting-article">创建新项目</a>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -172,7 +172,7 @@
 													已无更多数据
 											</div>
 									</div>
-							</div>
+					</div>
 			</div>
 
 
@@ -191,7 +191,7 @@
 <script id="tpl" type="text/html">
   <%for(var i = 0; i < list.length; i++) {%>
 		<li>
-			<a href="chain-detail.html?projectId=<%=list[i].projectId %>"  >
+			<a href="chain-detail.html?projectId=<%=list[i].projectId %>" >
 				<div class="inner-img-wrap">
 					<img src='<%=list[i].projectLogo %>'  alt="">
 				</div>
