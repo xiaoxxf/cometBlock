@@ -123,7 +123,7 @@
 <script type="text/html" id="all_dynamic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 
-		<%if list[i].type == 2 {%>
+		<%if (list[i].type == 2) {%>
 			<!-- 我的长评 -->
 			<div class="hot_article_zone bottom_line">
 				<div class="article-detail">
@@ -133,7 +133,7 @@
 							</div>
 							<div class="long_comment_box" style="display:flex">
 								<div class="article-introduce">
-									<p class="article_title"><%:=list[i].textTitle %></p>
+									<a class="article_title"><%:=list[i].textTitle %></a>
 									<p>
 										<%:=list[i].textContent %>
 									</p>
@@ -148,13 +148,13 @@
 							<div class="meta">
 								<a class="article-time">昨天：14：22</a>
 								<a href="" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
-								<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 							</div>
 						</div>
 				</div>
 			</div>
 
-		<%} else if list[i].type == 1 {%>
+		<%} else if (list[i].type == 1) {%>
 			<!--短评-->
 			<div class="hot_article_zone bottom_line">
 				<div class="article-detail">
@@ -164,9 +164,9 @@
 							</div>
 							<div class="short_comment_box" style="display:flex">
 								<div class="article-introduce">
-									<p class="article_title">项目链接:
+									<a class="article_title">项目链接:
 										<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'><%:=list[i].projectBigName %></a>
-									</p>
+									</a>
 									<p><%:=list[i].textTitle %></p>
 								</div>
 								<div class="article-icon">
@@ -179,12 +179,12 @@
 							<div class="meta">
 								<a class="article-time"><%:=list[i].createTime %></a>
 								<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>-->
-								<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 							</div>
 						</div>
 				</div>
 			</div>
-		<%} else if list[i].type == 4 {%>
+		<%} else if (list[i].type == 4) {%>
 			<!-- 文章 -->
 			<div class="hot_article_zone bottom_line">
 				<div class="article-detail">
@@ -204,7 +204,7 @@
 							<div class="meta">
 								<a class="article-time"><%:=list[i].createTime %></a>
 								<a href="" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
-								<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 							</div>
 						</div>
 				</div>
@@ -227,10 +227,9 @@
 						<div class="long_comment_box" style="display:flex">
 							<div class="article-introduce">
 								<a href="comment.html?reviewId=<%:=list[i].reviewId %>&projectId=<%:=list[i].projectId %>" class="long_comment_title article_title"><%:=list[i].textTitle %></a>
-								<br>
-								<a href="" class="article_content">
+								<p href="" class="article_content">
 									<%:=list[i].textContent %>
-								</a>
+								</p>
 							</div>
 							<div class="article-icon">
 								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
@@ -242,7 +241,7 @@
 						<div class="meta">
 							<a class="article-time"><%:=list[i].createTime %></a>
 							<a href="" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
-							<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+							<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>
 			</div>
@@ -262,9 +261,9 @@
 						</div>
 						<div class="short_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<p class="article_title">项目链接:
+								<a href=""  class="article_title">项目链接:
 									<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'><%:=list[i].projectBigName %></a>
-								</p>
+								</a>
 								<p><%:=list[i].textTitle %></p>
 							</div>
 							<div class="article-icon">
@@ -277,7 +276,7 @@
 						<div class="meta">
 							<a class="article-time"><%:=list[i].createTime %></a>
 							<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>-->
-							<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+							<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>
 			</div>
@@ -306,7 +305,7 @@
 						<div class="meta">
 							<a class="article-time"><%:=list[i].createTime %></a>
 							<a href="" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
-							<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+							<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>
 			</div>
