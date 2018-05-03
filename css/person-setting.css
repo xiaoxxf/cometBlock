@@ -4,9 +4,7 @@ body{
 .nav_shadow{
 	box-shadow: 0 0 10px rgb(117, 113, 113);
 }
-.row {
-	/*padding-top: 30px;*/
-}
+/*aside*/
 .aside {
 	position: fixed;
 	width: 300px;
@@ -18,17 +16,9 @@ body{
 		position: relative;
 	}
 }
-table {
-	width: 100%;
-	background-color: transparent;
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-
 .aside ul {
 	margin-top: 20px;
 }
-
 .aside ul li {
 	line-height: 30px;
 	display: list-item;
@@ -38,7 +28,6 @@ table {
 }
 
 .aside li.active a {
-	/*background-color: #dddddd6b;*/
 	border-radius: 4px;
 }
 .aside ul li a:active{
@@ -60,12 +49,13 @@ table {
 	font-size: 15px;
 	display: block;
 }
-
-tbody {
-	display: table-row-group;
+.aside span {
+	margin: 0 20px 0 6px;
+	font-size: 15px;
 	vertical-align: middle;
-	border-color: inherit;
+	color: #333;
 }
+
 
 /*基础设置border-bottom*/
 .base_setting
@@ -74,66 +64,51 @@ tbody {
 	line-height: 140px;
 	border-bottom: 1px solid #f0f0f0;
 }
-#ownname{
-	height: 30px;
+.base_setting_introduce{
+	padding-top: 50px;
+	height: 140px;
+	border-bottom: 1px solid #f0f0f0;
 }
 .save_realname{
-	box-shadow: 0 0 10px #31708f;
+	width: 90px;
     color: white;
     background-color: #006bb3;
     border-color: #ccc;
 }
-/*个人简介*/
-.person-introduce{
-	border-radius: 3px;
-    overflow: hidden;
-    width: 300px;
-    height: 80px;
-    line-height: 80px;
-    margin-top: 30px;
-    background-color: #f8f8f8;
-}
- .avatar {
-	width: 50px;
-	height: 100px;
+#ownname{
+	height: 30px;
 }
 
+
+/*个人简介*/
+.person-introduce{
+	margin-top: -27px;
+	border-radius: 3px;
+    background-color: #f8f8f8;
+}
+ 
 .avatar {
+	width: 50px;
+	height: 100px;
 	display: block;
 	cursor: pointer;
 }
 
+
+
+
+/*个人头像*/
 .btn-hollow {
 	font-size: 14px;
-	border: 1px solid rgb(79, 163, 237);
-	color: rgb(79, 163, 237)!important;
+	border: 1px solid #006bb3;
+	color: #006bb3!important;
 	padding: 4px 12px;
 	font-weight: 400;
 	line-height: normal;
-	/*border-radius: 40px;*/
 	background: none;
 }
 
- .setted div {
-	font-size: 15px;
-	display: inline-block;
-}
 
-.aside span {
-	margin: 0 20px 0 6px;
-	font-size: 15px;
-	vertical-align: middle;
-	color: #333;
-}
-
- p {
-	display: block;
-	margin: 0;
-	padding: 8px 0 0;
-	font-size: 12px;
-	color: #969696;
-	clear: both;
-}
 
 .setting-title {
 	color: #969696;
@@ -184,16 +159,6 @@ tbody {
     border: 1px solid #ddd;
     /*border-radius: 50%;*/
 }
-.coin_image_box {
-    width: 110px;
-    height: 100px;
-    max-width: 100%;
-    max-height: 100%;
-    overflow: hidden;
-    border-radius: 10px;
-    border: 1px solid rgb(234, 227, 227);
-    margin-bottom: 5px;
-}
 .fa-align-justify:before {
     content: "\E63C";
 }
@@ -214,97 +179,14 @@ tbody {
 	display: none;
 	margin-top: 20px;
 }
-/*消息提示*/
-.show_table .menu {
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: 700;
-}
-.show_table ul li{
-	padding: 20px 10px;
-  border-top: 1px solid #f0f0f0;
-  line-height: 20px;
-}
-.show_table .show_table_detail .subject ul {
-	/*float: right;*/
-
-}
-.avatar_receive{
-	display: inline-block;
-  margin-right: 5px;
-  width: 40px;
-  height: 40px;
-}
-.avatar_receive img {
-    width: 100%;
-    height: 100%;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-}
- .info{
-	display: inline-block;
-    vertical-align: top;
-    width: 535px;
-    font-size: 0;
-    line-height: 1.7;
-}
-.info .user{
-	 margin: 0 5px 0 0;
-   /* color: #333; */
-}
-.info .article{
-	color: #3194d0;
-}
- .notification—list .info,.notification—list .info a{
- 		font-size: 15px;
-    /* color: #3194d0; */
-    width: 400px;
- }
-.notification—list .info .comment-slogan{
-	margin: 0 5px 0 0;
-    color: #333;
-}
-.notification—list .info .user{
-	margin: 0 5px 0 0;
-    color: #3194d0;
-}
- .notification—list .time{
- 	 margin-top: 2px;
-    font-size: 12px;
-    color: #969696;
-    line-height: normal;
- }
- .notification—list p{
- 	margin: 10px 0 0;
-    font-size: 15px;
-    line-height: 1.7;
-    color: #333;
- }
- .notification—list p a{
- 	margin-right: 5px;
-    color: #3194d0;
- }
- .notification—list .meta {
- 	margin-top: 10px;
-    height: 20px;
- }
-.meta .function-btn{
-	float: left;
-    margin-right: 30px;
-    font-size: 13px;
-    color: #969696;
-}
 
 /*修改密码显示隐藏*/
+/*显示新密码*/
 .put-newpwd{
 	display: none;
 }
-/*显示新密码*/
 .accordion-inner{
-	/*border: 1px solid gainsboro;*/
-	/*margin-top: 20px;*/
 	margin: 20px -30px;
-
 }
 .accordion-inner div{
 	 padding: 20px 0
@@ -328,38 +210,32 @@ tbody {
 }
 .show_table input {
     overflow: visible;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     outline: none;
     background-color: hsla(0, 0%, 71%, .1);
     border: 1px solid #c8c8c8;
     border-radius: 5px;
 }
-/* //注册页验证码按钮样式 */
 
+/* //注册页验证码按钮样式 */
 .phone_code_position {
     position: relative !important;
-
 }
-
 .input-prepend input {
     width: 100%;
-    /*height: 50px;*/
     margin-bottom: 0;
     padding: 4px 12px 4px 2px;
     border: 1px solid #c8c8c8;
     background-color: hsla(0, 0%, 71%, .1);
-    vertical-align: middle;
 }
 .btn-up-resend {
     position: absolute;
     top: 26px;
     right: 7px;
     width: 110px;
-    /*height: 36px;*/
     font-size: 13px;
-    background-color: rgb(79, 163, 237);
+    background-color: #006bb3;
     border-radius: 20px;
-    /*line-height: 36px;*/
     text-align: center;
     color: white !important;
 }
@@ -376,15 +252,6 @@ tbody {
     width: 80px;
 }
 
-
-.badge {
-    padding: 3px 6px;
-    font-size: 13px!important;
-    background-color: rgb(236, 107, 107);
-}
-.badge-icon{
-	float: right;
-}
 .new-input-pwd{
 	float: right;
 }
@@ -393,10 +260,7 @@ tbody {
 		float: none;
 	}
 }
-.unread{
-	background-color: #f3f6f7;
 
-}
 .readed{
 	background-color: white
 }
@@ -405,92 +269,10 @@ tbody {
 	cursor:pointer
 }
 
-.review-content {
-	margin-top: 20px;
-	font-size: 15px;
-	margin-bottom: 20px;
-}
-
-.reviewed-article .time{
-	margin-top: 5px;
-}
-
-.option span{
-	color: grey
-}
-
 .box .con0{
     display: block;
 }
 
-.option .inspect_review{
-	color: grey
-}
-
-.waiting-data{
-    display: none;
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    line-height: 200px;
-    margin-left: -100px;
-    margin-top: -100px;
-    top:50%;
-    left: 50%;
-}
-.waiting-data .loader9 {
-    width: 200px;
-    height: 200px;
-    float: left;
-    display: -webkit-flex;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-}
-.waiting-data .loader-nine div{
-    background-color:#999
-}
-/*新建专题*/
-#show_subject,.menu{
-	display: none;
-}
-#new_subject{
-	float: right;
-}
-.form-group{
-	margin-bottom: 30px;
-}
-textarea.form-control{
-	height: 100px;
-}
-.upload_topic{
-	border-radius: 15px;
-	margin-top: 30px;
-    color: #006bb3;
-    border-color: #006bb3;
-    text-decoration: none;
-}
-.upload_topic:hover{
-	color: #006bb3;
-    border-color: #006bb3;
-    background-color: white;
-}
-.allow_submit input{
-	margin-left: 20px;
-}
-/*基础设置*/
-.account_right{
-	margin-top: 20px;
-}
-.down_icon{
-	float: right;
-    margin-top: 4px;
-    margin-left: 4px;
-}
-
-.bind_box{
-	border-bottom:none;
-}
 /*绑定弹窗自适应*/
 @media (max-width: 767px){
     .main{
