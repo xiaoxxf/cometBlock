@@ -1,5 +1,5 @@
-var userId = $.cookie('userid');//获取userid
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userId = $.cookie('userid');//获取userid
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var projectData = null
 var commentInfoData = null
 var ui = {

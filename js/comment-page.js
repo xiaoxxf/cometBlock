@@ -1,4 +1,4 @@
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 
 //加载长评列表
 function ajaxGetLongCommentReview() {

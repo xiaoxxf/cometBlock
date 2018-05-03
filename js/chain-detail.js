@@ -1,4 +1,4 @@
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 
 $("#rating #stars img").on('mouseenter',function (e) {
     var self = $(e.currentTarget);

@@ -1,5 +1,8 @@
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var localCookieWechatInfo = $.cookie('wechatInfo');
+localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
+
 $(function(){
   var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=15'
 
