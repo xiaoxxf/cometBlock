@@ -81,7 +81,6 @@ a img {
   color: #006bb3;
 } */
 
-
 .hot_zone{
 	padding: 10px;
   	border-radius: 3px;
@@ -92,8 +91,8 @@ a img {
 }
 .pay-attention{
 	background-color: white;
-	height: 120px;
 	padding: 10px;
+	min-height: 130px;
 }
 
 .hot_block{
@@ -304,4 +303,15 @@ a img {
 }
 .pay-attention a:first-child{
 	color: #333;
+}
+.create_new_subject{
+	margin-top:10px;
+}
+.create_new_subject_btn{
+	color: #006bb3 !important;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    border: solid 1px #006bb3;
+    border-radius: 3px;
 }
