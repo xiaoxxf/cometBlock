@@ -8,6 +8,9 @@ var ui = {
 
 // 判断是否登录
 $(function(){
+  if(!wechatBindNotice()){
+    return;
+  }
   if(userId == undefined){
     layer.open({
       closeBtn:0,
@@ -23,7 +26,6 @@ $(function(){
     });
   }
 })
-
 
 window.onload = function(){
   ajaxGetReviewDetail();

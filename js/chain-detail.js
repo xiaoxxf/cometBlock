@@ -70,14 +70,26 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
 	    var area_height = '600px'
  	}
     var shortTxt = $(".short-comment").val();
-    if(userId == undefined){
+    if ( $.cookie('wechatInfo') && !wechatInfo.userInfo ) {
+      layer.open({
+          closeBtn:1,
+          title: '',
+          content: '请先绑定账号，开启更多权限',
+          btn: ['绑定'],
+          yes: function(){
+              window.location.href='person-setting.html?personType=1'
+          }
+      });
+      // return
+    }
+    else if(userId == undefined){
         layer.msg('您还没有登录')
         layer.open({
             type: 1,
             shade:0,
             title: 0,
             skin: 'layui-layer-report', //加上边框
-            area: [area_width, area_height], //宽高
+            area: [area_width,area_height ], //宽高
             content: $("#short-comment-commit-layer").html()
         });
         return;
@@ -296,6 +308,10 @@ $(".short-comment-commit").on('click',function (e) {
 	     area_height = '600px'
  	}
 
+    // 判断是否登录
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
         layer.msg('您还没有登录')
         layer.open({

@@ -3,6 +3,9 @@
 
 // 判断是否登录
 $(function(){
+	if(!wechatBindNotice()){
+    return;
+  }
   if(userId == undefined){
     layer.open({
       closeBtn:0,
@@ -18,7 +21,6 @@ $(function(){
     });
   }
 })
-
 
 var getOnloadFunc = function(aImg) {
 	return function(evt) {

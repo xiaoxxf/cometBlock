@@ -620,7 +620,10 @@ var ui = {
 
 // 判断是否登录
 $(function(){
-if(userId == undefined){
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
     layer.open({
       closeBtn:0,
       title: '',
@@ -633,5 +636,5 @@ if(userId == undefined){
         window.location.href='register.html'
       }
     });
-}
+  }
 })
