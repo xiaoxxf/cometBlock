@@ -92,8 +92,8 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="content">
 									<div class="coin-item">
-										<span class="cur" onclick="getChain()">热门专区</span>
-										<span onclick="getChainByTime()">上新</span>
+										<span class="cur" onclick="getChain(0)">所有</span>
+										<!-- <span onclick="getChainByTime()">上新</span> -->
 										<!-- <span>数字货币</span>
 										<span>数字货币</span>
 										<span>数字货币</span>
@@ -108,9 +108,9 @@
 					</div>
 			<!--排序-->
 			<div class="coin_order_list">
-				<a href="">按热度排序</a>
-				<a href="">按时间排序</a>
-				<a href="">按评价排序</a>
+				<a href="" class="order_by_review coin_order_list_on_click">按热度排序</a>
+				<a href="" class="order_by_time">按时间排序</a>
+				<a href="" class="order_by_score">按评价排序</a>
 			</div>
 			<div class="row coin-content">
 				<div class="col-md-12 col-sm-12 col-xs-12">
@@ -183,7 +183,7 @@
 
 <script id="coin-type" type="text/html">
 <%for(var i = 0; i < list.length; i++) {%>
-	<span onclick="searchFromType(<%=list[i].dicType%>)"><%=list[i].dicValue%></span>
+	<span onclick="getChain(<%=list[i].dicType%>)"><%=list[i].dicValue%></span>
 <%}%>
 
 </script>
