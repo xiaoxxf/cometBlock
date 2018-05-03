@@ -234,17 +234,38 @@ $('#setting_send_code').click(function() {
 })
 
 
-//修改昵称
+//textarea限制长度
+function textareaLenght(){
+	var personIntro=$(".person-introduce").val();
+	if(personIntro.length>=100){
+		layer.tips('请输入100字符以内', '.person-introduce', {
+		  tips: [2, '#3595CC'],
+		  time: 2000
+		});
+      return false;
+	}
+	return true;
+}
 
+
+//修改昵称g
 $("#save_realname").click(function(){
+	uploadImg();
+	if (textareaLenght()){
+		changeUser();
+	}
+
+})
+
+function changeUser(){
 	var str = localStorage.getItem('userinfo');
 	var jsonStr = JSON.parse(str); //从一个字符串中解析出json对象
 	var realName=jsonStr.realName;
 	var userPwd =  jsonStr.userPwd;
+	var personIntroduce=$(".person-introduce").val();
 	var userId = jsonStr.id;
-	var uri = 'news/changeRealname?realName='+realName+"&passWord="+userPwd+"&userId="+userId
+	var uri = 'news/changeRealname?realName='+realName+"&passWord="+userPwd+"&userId="+userId+"&personIntro="+personIntroduce
 	doJavaGet(uri, function(res) {
-
 		if(res != null && res.code == 0) {
 			layer.msg(res.msg);
 			var realName=$("#ownname").val();
@@ -259,8 +280,25 @@ $("#save_realname").click(function(){
 		}
 
 	}, "json");
+}
 
-})
+//if(userPwd.length=""){
+//      layer.tips('密码不能为空', '#session_password', {
+//		  tips: [2, '#3595CC'],
+//		  time: 2000
+//		});
+//      return false;
+//  }
+//	if(userPwd.length<6){
+//      layer.tips('密码长度不能少于6位', '#session_password', {
+//		  tips: [2, '#3595CC'],
+//		  time: 2000
+//		});
+//      return false;
+//  }
+//	return true;
+
+
 /*
  	var tempStr=JSON.stringify(temp);
 			localStorage.setItem("temp",tempStr);
@@ -273,6 +311,7 @@ $("#save_realname").click(function(){
 
 //保存修改信息
 $("#save-register-info").click(function() {
+	
 	var param = {}
 	var str = localStorage.getItem('userinfo');
 
@@ -332,7 +371,8 @@ $("#save-register-info").click(function() {
 		}
 
 	}, "json");
-
+	
+	
 });
 
 
@@ -417,17 +457,23 @@ var ui = {
 	'fileUpLoading': false
 }
 var logo_file = null
+//上传头像
+//$('.upload-project-logo').on('click',function(){
+//	
+//})
 
-$('.upload-project-logo').on('click',function(){
-
+function uploadImg(){
 	var file = $('#user_logo_input')[0].files[0]
-
 	// 校验图片
-	if (!file.type.match(imageType) || file.size > imageMaxSize) {
+	if(file==null){
+//		layer.msg('未更改头像');
+		return false
+	}
+	else if (!file.type.match(imageType) || file.size > imageMaxSize) {
 		layer.msg('请选择小于1M的图片文件',{time:1000})
 		return false
 	}
-
+	
 	var formData = new FormData();
 	formData.append('file', file);
 
@@ -455,7 +501,7 @@ $('.upload-project-logo').on('click',function(){
 	    }
 
 	});
-})
+}
 
 function uploadIcon(e){
 	var data ={
