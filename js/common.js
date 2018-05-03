@@ -1,3 +1,8 @@
+var username = $.cookie('username');
+var userId = $.cookie('userid');//获取userid
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
+
 function guid() {
     function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -13,9 +18,9 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-//var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
+var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
-var WebApiHostJavaApi = "http://10.0.0.184:8080/";
+// var WebApiHostJavaApi = "http://10.0.0.184:8080/";
 
 
 var WebRankHostApi = "//rank.blockcomet.com/"
@@ -140,7 +145,7 @@ $.get("header-tpl.html",function(data){
     // 微信登陆后用户信息展示
     var wechatCode = getUrlParam('code');
     var localCookieWechatInfo = $.cookie('wechatInfo');
-    localCookieWechatInfo = localCookieWechatInfo == null ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
+    localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
 
     // 没有登录时，显示注册/登录
     if (username == undefined && wechatCode == null && localCookieWechatInfo == null ) {
@@ -150,8 +155,21 @@ $.get("header-tpl.html",function(data){
     }
     // 微信登录
     else if(wechatCode != null || localCookieWechatInfo != null){
-      // 取得微信登录返回的信息
-      getUserInfoByWeChat(wechatCode);
+      // 已绑定账户的
+      if (userinfo){
+        // 显示头像，没有则显示默认头像
+        if (userinfo.userPic) {
+            $("#user_pic")[0].src = userinfo.userPic
+        } else {
+            $("#user_pic")[0].src = 'img/normal-user.png'
+        }
+        $(".nav-user-account .more-active").css('display', 'block');
+        $(".login-right").css('display', 'block');
+      }
+      // 首次微信登录，取得微信登录返回的信息
+      else {
+        getUserInfoByWeChat(wechatCode);
+      }
     }
     // 账号登录
     else if(username != undefined){
@@ -188,7 +206,7 @@ function getUserInfoByWeChat(wechatCode){
           // wechatInfo = JSON.parse('wechatInfo')
           // 已绑定
           if (res.datas.userInfo) {
-            userinfo_wechat = res.datas.userInfo
+            // userinfo_wechat = res.datas.userInfo
             // localStorage.setItem('userinfo', userinfo_wechat);
             localStorage.setItem('userid', res.datas.userInfo.id);
             localStorage.setItem('userinfo', JSON.stringify(res.datas.userInfo));
@@ -214,7 +232,7 @@ function getUserInfoByWeChat(wechatCode){
             $(".nav-user-account .more-active").css('display','block');
             $(".login-right").css('display','block');
 
-            window.location.href='personal-homepage.html'
+            window.location.href='person-setting.html?personType=1'
             // setTimeout(function () {
             //     layer.open({
             //         closeBtn:1,
@@ -308,9 +326,8 @@ $(document).on('click','#js-sign-up-btn',function () {
 
 //微信登录绑定提示
 function wechatBindNotice(){
-	var userId = $.cookie('userid');//获取userid
-	var wechatInfo = JSON.parse($.cookie('wechatInfo'));
-	 if( wechatInfo != null && userId == undefined){
+
+	 if( wechatInfo && !wechatInfo.userInfo){
         layer.open({
             closeBtn:1,
             title: '',
@@ -322,4 +339,5 @@ function wechatBindNotice(){
         });
         return false;
     }
+    return true
 }

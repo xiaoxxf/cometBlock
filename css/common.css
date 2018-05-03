@@ -225,6 +225,7 @@ body{
   background-color:#ccccccb8 ;
 }
 
+/* 搜索栏自适应 */
 @media (max-width: 1200px) {
   .nav_search{
     width: 150px;
@@ -243,6 +244,7 @@ body{
 
 @media (max-width: 1000px) {
   .nav_search{
+    margin-left: -20px;
     width: 100px;
     margin-right: 0px;
   }
@@ -282,6 +284,10 @@ body{
     text-align: center;
     margin: 40px 0 80px 0;
     border-radius: 10px;
+}
+.no-more-hook{
+  margin-top: -30px;
+  margin-bottom: 30px;
 }
 .load-container-wrap{
     background-color: #fff;

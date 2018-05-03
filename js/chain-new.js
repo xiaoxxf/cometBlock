@@ -1,4 +1,4 @@
-var userId = $.cookie('userid');//获取userid
+// var userId = $.cookie('userid');//获取userid
 
 var ui = {
   'submiting': false,
@@ -7,7 +7,10 @@ var ui = {
 
 // 判断是否登录
 $(function(){
-if(userId == undefined){
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
     layer.open({
       closeBtn:0,
       title: '',
@@ -20,8 +23,9 @@ if(userId == undefined){
         window.location.href='register.html'
       }
     });
-}
+  }
 })
+
 
 //日期选择
 $("#date_pick").datetimepicker({

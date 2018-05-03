@@ -1,5 +1,5 @@
-var userId = $.cookie('userid');//获取userid
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userId = $.cookie('userid');//获取userid
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var creator = null;
 var projectId = null;
 window.onload = function(){
@@ -15,6 +15,8 @@ function  ajaxGetChainDetail() {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
             console.log(chainInfoData)
+            $('title').html(res.datas.projectName + '项目编辑')
+
             // if (chainInfoData.creator == userId) {
             if (userinfo && (userinfo.level <= 2 || userinfo.id == chainInfoData.creator)) {
               creator = chainInfoData.creator // 保存creator，用于提交
@@ -620,7 +622,10 @@ var ui = {
 
 // 判断是否登录
 $(function(){
-if(userId == undefined){
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
     layer.open({
       closeBtn:0,
       title: '',
@@ -633,5 +638,5 @@ if(userId == undefined){
         window.location.href='register.html'
       }
     });
-}
+  }
 })
