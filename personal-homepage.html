@@ -123,7 +123,7 @@
 <script type="text/html" id="all_dynamic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 
-		<%if list[i].type == 2 {%>
+		<%if (list[i].type == 2) {%>
 			<!-- 我的长评 -->
 			<div class="hot_article_zone bottom_line">
 				<div class="article-detail">
@@ -154,7 +154,7 @@
 				</div>
 			</div>
 
-		<%} else if list[i].type == 1 {%>
+		<%} else if (list[i].type == 1) {%>
 			<!--短评-->
 			<div class="hot_article_zone bottom_line">
 				<div class="article-detail">
@@ -184,7 +184,7 @@
 						</div>
 				</div>
 			</div>
-		<%} else if list[i].type == 4 {%>
+		<%} else if (list[i].type == 4) {%>
 			<!-- 文章 -->
 			<div class="hot_article_zone bottom_line">
 				<div class="article-detail">
