@@ -187,15 +187,17 @@ $(window).scroll(function(){
 //}
 
 //验证码校验
-function getCode() {
+function getCodeResetPwd() {
 	//var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
 	var str = localStorage.getItem('userinfo');
 	var jsonStr = JSON.parse(str)
-	var tel = jsonStr.tel;
-	var uri = 'blockchain/getCode?phoneNo=' + tel //输入手机号请求验证码验证
+//	var tel = jsonStr.tel;
+	//var tel = jsonStr.userName;
+	var userName = jsonStr.userName;
+	debugger
+	var uri = 'blockchain/getCode?phoneNo=' + userName //输入手机号请求验证码验证
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
-
 			layer.msg("验证码已发送");
 			//验证码倒计时
 			CountDown()
@@ -230,7 +232,7 @@ function CountDown() {
 $('#setting_send_code').click(function() {
 	$("#setting_send_code").css("text-decoration", "none");
 	$("#setting_send_code").css("color", "white");
-	getCode()
+	getCodeResetPwd();
 })
 
 
