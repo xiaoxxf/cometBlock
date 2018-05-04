@@ -19,7 +19,7 @@
     margin-right: 20px;
     height: 60px;
     width: 60px;
- 	
+
 }
 .pay_attent{
 	margin-top: 20px;
@@ -39,6 +39,10 @@
  .user_info_item{
 	color:#969696 ;
 }
+
+.user_name{
+	cursor: pointer;
+}
 /*.search_user ul li a{
 	display: inline-block;
 	width: 50px;
@@ -57,6 +61,3 @@
 }
 
 */
-
-
-

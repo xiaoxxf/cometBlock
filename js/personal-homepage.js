@@ -28,7 +28,8 @@ $(function(){
 })
 
 window.onload = function(){
-	getUserInfo()
+	getUserInfo();
+	getUserProject();
 
 	// 首次加载全部动态
 	loadFlag = 3;
@@ -85,9 +86,12 @@ function getUserInfo(){
 	var uri = 'news/quaryusers?currentPage=' + currentPage + '&pageSize=1&userId=' + userid_search
 
 	doJavaGet(uri, function(res){
-		$('.person_name').html(res.datas[0].realName);
-		$('.person_logo')[0].src = res.datas[0].userPic ? res.datas[0].userPic : 'img/normal-user.png';
-		$('.personal-intro').html('个人简介') + res.datas[0].personIntro ? res.datas[0].personIntro : ''
+
+		$('.person_name').html(res.datas.realName);
+		$('.person_logo')[0].src = res.datas.userPic ? res.datas.userPic : 'img/normal-user.png';
+
+		var intro = res.datas.personIntro ? res.datas.personIntro : ''
+		$('.personal-intro').html('个人简介:' + intro)
 	})
 
   // $('.person_name').html(userinfo.realName);
@@ -210,12 +214,47 @@ function loadMore(){
 	})
 }
 
-
-
+// 加载更多动态
 $('.read-more').on('click',function(){
 	if (!ui.noMoreData && !ui.loading) {
 		loadMore();
 	}
+})
+
+
+// 加载用户创建的项目
+var project_page = 1;
+function getUserProject(){
+	project_page = 1
+	var uri = 'blockchain/quaryProjetList?currentPage=' + project_page + '&pageSize=5&creator=' + userid_search
+
+	doJavaGet(uri, function(res){
+
+		var tpl = document.getElementById('project_tpl').innerHTML;
+		var content = template(tpl, {list: res.datas});
+
+		$('.created_project').append(content)
+	})
+}
+
+// 加载更多项目
+$('.load-more-project').on('click',function(){
+	project_page++
+	var uri = 'blockchain/quaryProjetList?currentPage=' + project_page + '&pageSize=5&creator=' + userid_search
+
+	doJavaGet(uri, function(res){
+
+		var tpl = document.getElementById('project_tpl').innerHTML;
+		var content = template(tpl, {list: res.datas});
+
+		$('.created_project').append(content)
+	})
+})
+
+$('.created_project').on('click', $('.project_name'), function(e){
+	var self = $(e.target);
+	var	project_id = self.data('projectid');
+	window.location = 'chain-detail.html?projectId=' + project_id
 })
 
 //

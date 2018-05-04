@@ -306,6 +306,7 @@ a img {
 }
 .create_new_subject{
 	margin-top:10px;
+  margin-bottom: 10px;
 }
 .create_new_subject_btn{
 	color: #006bb3 !important;
@@ -314,4 +315,12 @@ a img {
     line-height: 30px;
     border: solid 1px #006bb3;
     border-radius: 3px;
+}
+.project_name{
+  cursor: pointer;
+}
+.load-more-project{
+  margin-left: 10px;
+  color: #006bb3;
+  cursor: pointer;
 }
