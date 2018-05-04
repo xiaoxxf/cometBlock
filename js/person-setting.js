@@ -181,7 +181,7 @@ function getCodeResetPwd() {
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
 			//验证码倒计时
-			CountDown()
+			CountDownResetPwd();
 
 		} else {
 			layer.msg(res.msg);
@@ -189,24 +189,24 @@ function getCodeResetPwd() {
 	}, "json");
 
 }
-var count = 60;
-var countdown;
+var count_reset = 60;
+var countdownreset;
 
-function dingshiqi() {
-	if(count > 0) {
-		count = count - 1
-		$("#setting_send_code").html(count + " s")
-	} else if(count == 0) {
+function dingshiqi_reset() {
+	if(count_reset > 0) {
+		count_reset = count_reset - 1
+		$("#setting_send_code").html(count_reset + " s")
+	} else if(count_reset == 0) {
 
 		$("#setting_send_code").html("重新发送验证码")
-		clearInterval(countdown);
-		count = 60
+		clearInterval(countdownreset);
+		count_reset = 60
 	}
 
 }
 
-function CountDown() {
-	countdown = setInterval(dingshiqi, 1000);
+function CountDownResetPwd() {
+	countdownreset = setInterval(dingshiqi_reset, 1000);
 
 }
 //点击验证

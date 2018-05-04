@@ -11,7 +11,7 @@ body{
 	overflow: auto;
 }
 
-@media  (max-width: 980px) {
+@media (max-width: 980px) {
 	.aside{
 		position: relative;
 	}
@@ -76,12 +76,14 @@ body{
     border-color: #ccc;
 }
 #ownname{
+	text-indent: 10px;
 	height: 30px;
 }
 
 
 /*个人简介*/
 .person-introduce{
+	text-indent: 10px;
 	margin-top: -27px;
 	border-radius: 3px;
     background-color: #f8f8f8;
