@@ -26,70 +26,7 @@
 
 					<div class="search_user">
 						<ul class="search_user_result">
-							<li>
-								<div class="col-md-9 col-xs-12 col-sm-12 " class="search_user_info">
-									<img src="img/normal-user.png" class="user_icon">
-									<div class="user_info">
-										<p>区块链</p>
-										<p class="user_info_item">
-											<span>关注：0</span>
-											<span>粉丝：0</span>
-										</p>
-											<p class="user_info_item">个人简介：他没有写下任何信息</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-12 col-xs-12 ">
-									<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-								</div>
-							</li>
-							<li>
-								<div class="col-md-9 col-xs-12 col-sm-12 " class="search_user_info">
-									<img src="img/normal-user.png" class="user_icon">
-									<div class="user_info">
-										<p>区块链</p>
-										<p class="user_info_item">
-											<span>关注：0</span>
-											<span>粉丝：0</span>
-										</p>
-											<p class="user_info_item">个人简介：他没有写下任何信息</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-12 col-xs-12 ">
-									<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-								</div>
-							</li>
-							<li>
-								<div class="col-md-9 col-xs-12 col-sm-12 " class="search_user_info">
-									<img src="img/normal-user.png" class="user_icon">
-									<div class="user_info">
-										<p>区块链</p>
-										<p class="user_info_item">
-											<span>关注：0</span>
-											<span>粉丝：0</span>
-										</p>
-											<p class="user_info_item">个人简介：他没有写下任何信息</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-12 col-xs-12 ">
-									<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-								</div>
-							</li>
-							<li>
-								<div class="col-md-9 col-xs-12 col-sm-12 " class="search_user_info">
-									<img src="img/normal-user.png" class="user_icon">
-									<div class="user_info">
-										<p>区块链</p>
-										<p class="user_info_item">
-											<span>关注：0</span>
-											<span>粉丝：0</span>
-										</p>
-											<p class="user_info_item">个人简介：他没有写下任何信息</p>
-									</div>
-								</div>
-								<div class="col-md-2 col-sm-12 col-xs-12 ">
-									<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-								</div>
-							</li>
+							
 						</ul>
 					</div>
 
@@ -134,41 +71,41 @@
 								</div>
 						</div>
 		</div>
-<!--<script type="text/html" id="user_search_tpl">
-	<%for(var i = 0; i < list.length; i++) {%>
-			<li>
-				<a href="" >
-					<%if(list[i].userPic ){%>
-						<img src="<%:=list[i].userPic %>">
-					<%}else{%>
-						<img src="img/normal-user.png">
-					<%}%>
-				</a>
-				<div class="user_info">
-					<p><%:=list[i].realName %></p>
-					<p class="user_info_item">
-						<span>关注：0</span>
-						<span>粉丝：0</span>
-					</p>
-					<%if(list[i].personIntro ){%>
-						<p class="user_info_item">个人简介：<%:=list[i].personIntro %></p>
-
-					<%}else{%>
-						<p class="user_info_item">个人简介：他没有写下任何信息</p>
-					<%}%>
-
-				</div>
-				<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>
-			</li>
-	<%}%>
-</script>-->
+		<script type="text/html" id="user_search_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+					<li>
+						<a href="" >
+							<%if(list[i].userPic ){%>
+								<img src="<%:=list[i].userPic %>" class="user_icon">
+							<%}else{%>
+								<img src="img/normal-user.png" class="user_icon">
+							<%}%>
+						</a>
+						<div class="user_info">
+							<p><%:=list[i].realName %></p>
+							<p class="user_info_item">
+								<span>关注：0</span>
+								<span>粉丝：0</span>
+							</p>
+							<%if(list[i].personIntro ){%>
+								<p class="user_info_item">个人简介：<%:=list[i].personIntro %></p>
+		
+							<%}else{%>
+								<p class="user_info_item">个人简介：他没有写下任何信息</p>
+							<%}%>
+		
+						</div>
+						<!--<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>-->
+					</li>
+			<%}%>
+		</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <!-- <script src="js/plugins/swiper/swiper-4.2.2.min.js"></script> -->
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
-<!--<script src='js/search_user.js'></script>-->
+<script src='js/search_user.js'></script>
 
 
 </body>
