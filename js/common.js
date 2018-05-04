@@ -177,9 +177,9 @@ $.get("header-tpl.html",function(data){
       $(".nav-user-account #nav_user_mes").text(username);
 
       // 显示头像，没有则显示默认头像
-      if (userinfo.userPic) {
+      if (userinfo.userPic && $("#user_pic")[0]) {
           $("#user_pic")[0].src = userinfo.userPic
-      } else {
+      } else if(!userinfo.userPic && $("#user_pic")[0]){
           $("#user_pic")[0].src = 'img/normal-user.png'
       }
       $(".nav-user-account .more-active").css('display', 'block');

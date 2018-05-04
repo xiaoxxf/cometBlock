@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+		<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+		<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/loading.css">
+
+		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" href="js/page/jquery.pagination.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+		<!-- <link rel="stylesheet" href="css/comment.css"> -->
+		<!-- <link rel="stylesheet" href="css/login.css" /> -->
+		<!-- 导航栏 -->
+	</head>
+	<style>
+	</style>
+	<body lang="zh-CN" class="reader-black-font">
+	<div class="block-comet-main-wrap">
+		<div class="comet-main">
+			<!-- <div class="navbar-fixed-container">
+				<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar long-comment-nav" data-spy="affix" data-offset-top="1">
+					<nav role="navigation">
+						<div class="container collapsed">
+							<div class="nav navbar-header">
+								<span class="long-comment-title">长文</span>
+								<a class="navbar-brand" href="index.html"><span itemprop="name">彗星</span></a>
+							</div>
+
+						</div>
+					</nav>
+				</div>
+			</div> -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook"  style="margin-bottom:100px">
+			</div>
+			<div class="mian-container">
+				<div class="container">
+					<div class="comment-container-wrap">
+						<h1 class="comment-detail-title"></h1>
+						<div class="comment-detail-main comment-detail-mian-hook">
+
+						</div>
+
+						<div class="waiting-data">
+							<div class="loader9">
+								<div class="loader-nine">
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+	</div>
+
+
+		<script type="text/html" id="template-mian-detail">
+			<a class="avatar author-avatar pull-left" href="javascript:;">
+				<!-- TODO：显示个人头像 -->
+				<img width="48" height="48" src="img/normal-user.png">
+			</a>
+			<header class="main-hd">
+				<!-- TODO：跳转到个人中心页 -->
+				<a href="">
+					<span property="v:reviewer"><%:=list.realName%></span>
+				</a>
+				评论
+				<!-- <a class="project-name" href="chain-detail.html?projectId=<%:=list.parentId%>"></a> -->
+
+				<!-- <span class="allstar<%:=list.score*10%> main-title-rating" title=""></span> -->
+				<!-- <span property="v:rating" class="main-title-hide">5</span> -->
+				<!-- <span property="v:dtreviewed" content="2018-03-15" class="main-meta"><%:=list.createTime%></span> -->
+			</header>
+			<div class="main-bd">
+				<div id="link-report">
+					<div property="v:description" class="review-content clearfix" data-author="" data-url="" data-original="1">
+						<%:=list.textContent%>
+					</div>
+				</div>
+				<div class="copyright">
+					© 本文版权归作者&nbsp;
+					<a href="javascript:;"><%:=list.realName%></a> &nbsp;所有，任何形式转载请联系作者。
+				</div>
+				<!-- <div class="option">
+					<%if(userinfo && list.realName == userinfo.realName){%>
+						<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<a href="javacript:;" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
+					<%}%>
+				</div> -->
+			</div>
+			<!-- <div class="main-ft">
+				<div class="main-panel" name="9157555">
+					<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
+						<button class="btn useful_count 9157555 j a_show_login" data-useful="true">
+							有用 <span class="num"><%:=list.usefull%></span>
+						</button>
+						<button class="btn useless_count 9157555 j a_show_login" data-useful="false">
+							没用 <span class="num"><%:=list.unusefull%></span>
+						</button>
+					</div>
+					<div class="main-like clearfix">
+						<button class="LikeButton pull-right" data-reviewId="<%:=list.reviewId%>" data-likes_nums="<%:=list.likes%>" title="标为喜欢?">喜欢<span class="LikeButton-count"></span></button>
+					</div>
+				</div>
+			</div> -->
+		</script>
+
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/template.js"></script>
+		<!-- <script src="js/plugins/layer/layer.js"></script> -->
+		<!-- <script src='js/page/jquery.pagination.min.js'></script> -->
+		<script src="js/common.js"></script>
+		<!-- <script src="js/comment.js"></script> -->
+		<!-- <script src="js/comment-page.js"></script> -->
+		<!-- <script src="js/md5.js"></script> -->
+		<!-- <script src="js/register.js"></script> -->
+		<!-- <script src="js/login.js"></script> -->
+	</body>
+	<script>
+	</script>
+
+</html>

@@ -136,12 +136,14 @@ function serachChain(){
 	}
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
 
-	// 点击搜索后隐藏分类和币种内容
+	// 点击搜索后隐藏分类、币种内容、排序菜单
 	$('.category').css('display','none')
 	$('.coin-list-wrap').html('')
 	$('.search-result-box').html('');
 	$(".waiting-data").fadeIn();
 	$(".no-more-hook").css('display','none')
+	$('.coin_order_list').css('display','none')
+
 
 	if (($(window).width() <= 767)) {
 		$('.load-category-box').css('display','none')
