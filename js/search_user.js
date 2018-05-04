@@ -32,3 +32,9 @@ function searchUser(){
     ui.loading = false;
   })
 }
+
+$('.search_user_result').on('click', $('.user_name'), function(e){
+	var self = $(e.target);
+	var	search_id = self.data('userid');
+	window.location = 'personal-homepage.html?userId=' + search_id
+})

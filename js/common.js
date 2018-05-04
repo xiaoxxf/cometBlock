@@ -18,9 +18,9 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
+// var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
-// var WebApiHostJavaApi = "http://10.0.0.184:8080/";
+var WebApiHostJavaApi = "http://10.0.0.185:8080/";
 
 
 var WebRankHostApi = "//rank.blockcomet.com/"
@@ -140,39 +140,42 @@ $.get("header-tpl.html",function(data){
     }
 
     //页面加载完成之后做账户信息处理
-    var username = $.cookie('username');
-    var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+    // var username = $.cookie('username');
+    // var userid = $.cookie('userid');
+    // var userinfo = JSON.parse(localStorage.getItem('userinfo'))
     // 微信登陆后用户信息展示
+
     var wechatCode = getUrlParam('code');
     var localCookieWechatInfo = $.cookie('wechatInfo');
+    var wechatInfo_flag = false; // 是否已取得微信返回数据
     localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
 
     // 没有登录时，显示注册/登录
-    if (username == undefined && wechatCode == null && localCookieWechatInfo == null ) {
+    if (!username && !wechatCode && !localCookieWechatInfo ) {
       $("#nav_login").fadeIn();
       $("#nav_register").fadeIn();
       $(".scrollbar-container").fadeIn();
     }
     // 微信登录
-    else if(wechatCode != null || localCookieWechatInfo != null){
-      // 已绑定账户的
-      if (userinfo){
-        // 显示头像，没有则显示默认头像
-        if (userinfo.userPic) {
-            $("#user_pic")[0].src = userinfo.userPic
-        } else {
-            $("#user_pic")[0].src = 'img/normal-user.png'
-        }
-        $(".nav-user-account .more-active").css('display', 'block');
-        $(".login-right").css('display', 'block');
-      }
-      // 首次微信登录，取得微信登录返回的信息
-      else {
-        getUserInfoByWeChat(wechatCode);
-      }
+    else if(wechatCode && !wechatInfo_flag){
+      // 取得返回信息
+      getUserInfoByWeChat();
     }
-    // 账号登录
-    else if(username != undefined){
+    // 微信登录后，已取得返回数据，但没有绑定的
+    else if(localCookieWechatInfo && wechatInfo_flag){
+      var wechatInfo_data = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
+
+      // 显示头像，没有则显示默认头像
+      if (userinfo.userPic && $("#user_pic")[0]) {
+          $("#user_pic")[0].src = wechatInfo_data.userPic
+      } else if(!wechatInfo_data.userPic && $("#user_pic")[0]){
+          $("#user_pic")[0].src = 'img/normal-user.png'
+      }
+      $(".nav-user-account .more-active").css('display', 'block');
+      $(".login-right").css('display', 'block');
+    }
+    // 账号登录 或 微信登录后已绑定的
+    else if(userId){
       userinfo = JSON.parse(localStorage.getItem('userinfo'))
       $(".nav-user-account #nav_user_mes").text(username);
 
@@ -191,10 +194,12 @@ $.get("header-tpl.html",function(data){
 
 // 微信登录后取得返回信息
 function getUserInfoByWeChat(wechatCode){
+  var wechatCode = getUrlParam('code');
   var uri = '/news/getUserInfo?code='+ wechatCode;
   doJavaGet(uri, function(res) {
       if(res.code === 0){
-          console.log(res)
+          wechatInfo_flag = true;
+          console.log(res);
           //cookie保存微信登录标识，设置时效
           var expireDate= new Date();
           var wechatInfo = JSON.stringify(res.datas);

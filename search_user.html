@@ -26,7 +26,7 @@
 
 					<div class="search_user">
 						<ul class="search_user_result">
-							
+
 						</ul>
 					</div>
 
@@ -74,7 +74,7 @@
 		<script type="text/html" id="user_search_tpl">
 			<%for(var i = 0; i < list.length; i++) {%>
 					<li>
-						<a href="" >
+						<a href="personal-homepage.html?userId=<%:=list[i].id %>" >
 							<%if(list[i].userPic ){%>
 								<img src="<%:=list[i].userPic %>" class="user_icon">
 							<%}else{%>
@@ -82,19 +82,19 @@
 							<%}%>
 						</a>
 						<div class="user_info">
-							<p><%:=list[i].realName %></p>
+							<p data-userid="<%:=list[i].id %>" class="user_name"><%:=list[i].realName %></p>
 							<p class="user_info_item">
 								<span>关注：0</span>
 								<span>粉丝：0</span>
 							</p>
 							<%if(list[i].personIntro ){%>
 								<p class="user_info_item">个人简介：<%:=list[i].personIntro %></p>
-		
 							<%}else{%>
 								<p class="user_info_item">个人简介：他没有写下任何信息</p>
 							<%}%>
-		
+
 						</div>
+
 					</li>
 			<%}%>
 		</script>

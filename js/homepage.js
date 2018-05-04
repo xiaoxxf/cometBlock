@@ -26,6 +26,7 @@ $(function(){
    var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
    var content = template(tpl, {list: result.datas});
    $('.hot_coin_region_1').append(content)
+   $('.article-count').html(result.count)
 
   }, "json")
 })

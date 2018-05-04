@@ -35,7 +35,7 @@
 								<div class="person_edit">
 									<span class="person_name"></span>
 									<p><span>关注：0人</span><sapn class="concern_right">被关注：0人</sapn></p>
-									<p>个人简介：热爱彗星</p>
+									<p class="personal-intro"></p>
 								</div>
 
 							</div>
@@ -104,17 +104,21 @@
 
 								<!--创建的专题-->
 								<div class="hot_zone side create_subject">
-									<div class="pay-attention">
-										<span>我创建的项目</span>
-										<div class="included_ariticle">
+									<div class="pay-attention created_project">
+										<span class="">我创建的项目</span>
+										<!-- <div class="included_ariticle">
 											<span>暂无专题</span><span class="article-count"></span>
 										</div>
 										 <div class="included_ariticle">
 											<span>币种专题</span><span class="article-count">0</span>
-										</div>
+										</div> -->
 										<div class="create_new_subject">
 											<a href="chain-new.html" class="create_new_subject_btn"><i class="fa fa-plus"></i>创建新项目</a>
 										</div>
+
+									</div>
+									<div class="load-more-project">
+										查看更多
 									</div>
 								</div>
 							</div>
@@ -124,6 +128,12 @@
 				</div>
 			</div>
 		</div>
+
+<script type="text/html" id="project_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<p data-projectid='<%=list[i].projectId %>' class="project_name"><%=list[i].projectName %></p>
+	<%}%>
+</script>
 
 <script type="text/html" id="all_dynamic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
