@@ -1,18 +1,3 @@
-window.wangEditor.fullscreen = {
-	// editor create之后调用
-	init: function(editorSelector){
-		$(editorSelector + " .w-e-toolbar").append('<div class="w-e-menu"><a class="_wangEditor_btn_fullscreen" href="###" onclick="window.wangEditor.fullscreen.toggleFullscreen(\'' + editorSelector + '\')">全屏</a></div>');
-	},
-	toggleFullscreen: function(editorSelector){
-		$(editorSelector).toggleClass('fullscreen-editor');
-		if($(editorSelector + ' ._wangEditor_btn_fullscreen').text() == '全屏'){
-			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('退出全屏');
-		}else{
-			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('全屏');
-		}
-	}
-};
-
 var userId = $.cookie('userid');//获取userid
 var ui = {
   'submiting': false
@@ -85,7 +70,7 @@ editor.customConfig.uploadImgHooks = {
 // editor.customConfig.debug = true
 editor.create();
 $('.w-e-text-container').attr('style','height:auto;');
-E.fullscreen.init('#editor');
+
 
 // 修改菜单栏样式
 $('.w-e-toolbar').css(
@@ -134,6 +119,36 @@ $('.submit_comment').on('click',function(){
   }
   var uri = 'blockchain/addReview'
   doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
+})
 
 
+var preivew_flag = false
+function preview(){
+	preivew_flag = true
+	$('.preview-article').html('退出预览')
+	$('.preview-container').css('display','')
+	$('.write-container').css('display', 'none')
+	var textContent = editor.txt.html();
+	$('.review-content').html(textContent);
+	var textTitle = $('.input-head').val()
+	$('.comment-detail-title').html(textTitle);
+	$('.realName').html(userinfo.realName);
+	if (userinfo.userPic) {
+		$('.avatar img')[0].src = userinfo.userPic
+	}
+}
+
+function quitPreview(){
+	preivew_flag = false
+	$('.preview-article').html('预览')
+	$('.preview-container').css('display','none')
+	$('.write-container').css('display', '')
+}
+
+$('.preview-article').on('click',function(){
+	if (!preivew_flag) {
+		preview()
+	}else{
+		quitPreview()
+	}
 })

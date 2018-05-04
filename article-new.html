@@ -15,7 +15,7 @@
 		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
 		<link rel="stylesheet" href="css/common.css">
-		<link rel="stylesheet" href="css/long-comment.css">
+		<!-- <link rel="stylesheet" href="css/long-comment.css"> -->
 		<link rel="stylesheet" href="css/article-new.css">
 		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 
@@ -53,7 +53,7 @@
 							<!--预览-->
 							<ul class="nav navbar-nav navbar-right log_writting">
 								<li>
-									<button class="btn preview-article" style="margin-right:100px" onclick="window.wangEditor.fullscreen.toggleFullscreen('#editor')">预览</button>
+									<button class="btn preview-article" style="margin-right:100px">预览</button>
 								</li>
 							</ul>
 							<!--写文章-->
@@ -67,9 +67,9 @@
 					</div>
 				</nav>
 			</div>
-      <br><br><br><br><br>
+
 			<!-- 评测 -->
-			<div class="container">
+			<div class="container write-container" style="margin-top:100px">
 				<!-- 标题 -->
 				<div class="row">
 					<div class="col-md-10 col-md-offset-1 col-xs-12 col-xs-offset-1">
@@ -104,8 +104,43 @@
 				    </div><!-- /.modal -->
 				</div>
 
-
 			</div>
+
+
+			<!-- 预览 -->
+			<div class="container preview-container" style="margin-top:100px;display:none;">
+				<div class="comment-container-wrap">
+					<h1 class="comment-detail-title"></h1>
+					<div class="comment-detail-main comment-detail-mian-hook">
+
+						<a class="avatar author-avatar pull-left" href="javascript:;">
+							<!-- TODO：显示个人头像 -->
+							<img width="48" height="48" src="img/normal-user.png">
+						</a>
+						<header class="main-hd">
+							<!-- TODO：跳转到个人中心页 -->
+							<!-- <a href=""> -->
+								<span class="realName"></span>
+							<!-- </a> -->
+						</header>
+						<div class="main-bd">
+							<!-- <div id="link-report"> -->
+								<div property="v:description" class="review-content clearfix" data-author="" data-url="" data-original="1">
+
+								</div>
+							<!-- </div> -->
+							<div class="copyright">
+								© 本文版权归作者&nbsp;
+								<span class="realName"></span> &nbsp;所有，任何形式转载请联系作者。
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
 		</div>
 	  </div>
 		<script src="js/jquery-2.1.1.js"></script>
