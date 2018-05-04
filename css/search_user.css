@@ -5,25 +5,22 @@
 .search_user ul li{
     border-bottom: 1px solid #f0f0f0;
     padding: 10px;
+    min-height: 120px;
+    padding: 30px 20px;
 }
-.search_user ul li a{
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	margin:20px 10px;
+.user_icon, .user_info{
+	float: left !important;
 }
-.search_user ul li img{
-	width: 100%;
-	height: 100%;
+.user_info p:first-child{
+	font-weight: 700;
+    color: #333;
 }
-.user_info{
-    margin-left: 20px;
-    display: inline-block;
-}
-.user_info_item{
-	color:#969696 ;
+ .user_icon{
+    margin-right: 20px;
+ 	
 }
 .pay_attent{
+	margin-top: 20px;
 	float: right;
 	color: white;
 	text-align: center;
@@ -37,3 +34,27 @@
  .pay_attent span{
  	margin-left: 2px;
  }
+ .user_info_item{
+	color:#969696 ;
+}
+/*.search_user ul li a{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	margin:20px 10px;
+}*/
+/*
+
+.search_user ul li img{
+	width: 100%;
+	height: 100%;
+}
+.user_info{
+    margin-left: 20px;
+    display: inline-block;
+}
+
+*/
+
+
+
