@@ -3,6 +3,7 @@ var loadFlag = null; //1->短评  2->长评  4->文章  3->全部动态
 var type = null; //  	1->短评	  2->长评  4->文章  不传->所有
 var tpl_id = null;
 var current_page = 1;
+var userid_search = null;
 var ui = {
 	"noData": false,
 	"noMoreData": false,
@@ -13,15 +14,15 @@ var ui = {
 $(function(){
 	// 看别人
 	if (getUrlParam('userId')) {
-		userId = getUrlParam('userId');
+		userid_search = getUrlParam('userId');
 		$('.edit_person_msg').css('display','none') //看别人时隐藏编辑按钮
 	}
 	// 看自己
 	else{
-		userId = $.cookie('userid');
+		userid_search = $.cookie('userid');
 	}
 
-  if(userId == undefined){
+  if(userid_search == undefined){
     window.location.href = 'index.html'
   }
 })
@@ -81,8 +82,17 @@ $('.load_all_dynamic').on('click',function(){
 
 // 加载用户信息
 function getUserInfo(){
-  $('.person_name').html(userinfo.realName);
-  $('.person_logo')[0].src = userinfo.userPic;
+	var uri = 'news/quaryusers?currentPage=' + currentPage + '&pageSize=1&userId=' + userid_search
+
+	doJavaGet(uri, function(res){
+		$('.person_name').html(res.datas[0].realName);
+		$('.person_logo')[0].src = res.datas[0].userPic ? res.datas[0].userPic : 'img/normal-user.png';
+		$('.personal-intro').html('个人简介') + res.datas[0].personIntro ? res.datas[0].personIntro : ''
+	})
+
+  // $('.person_name').html(userinfo.realName);
+  // $('.person_logo')[0].src = userinfo.userPic;
+	// $('.personal-intro').html('个人简介：') + userinfo.userIntro
 }
 
 function getPersonHomePageData(){
@@ -91,9 +101,11 @@ function getPersonHomePageData(){
 	ui.loading = true;
 	ui.noMoreData = false;
 	if (type) {
-		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&creator=' + userId + '&type=' + type;
+		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12'
+							+ '&creator=' + userid_search + '&type=' + type;
 	}else{
-		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&creator=' + userId;
+		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12'
+							+ '&creator=' + userid_search;
 	}
 
 	// 首次加载
@@ -149,9 +161,11 @@ function loadMore(){
 	ui.loading = true;
 	ui.noMoreData = false;
 	if (type) {
-		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&creator=' + userId + '&type=' + type;
+		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12'
+							+ '&creator=' + userid_search + '&type=' + type;
 	}else{
-		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&creator=' + userId;
+		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12'
+		 					+ '&creator=' + userid_search;
 	}
 
 	// 加载更多

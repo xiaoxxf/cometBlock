@@ -26,7 +26,7 @@
 
 					<div class="search_user">
 						<ul class="search_user_result">
-							
+
 						</ul>
 					</div>
 
@@ -82,20 +82,19 @@
 							<%}%>
 						</a>
 						<div class="user_info">
-							<p><%:=list[i].realName %></p>
+							<p class="user_name"><%:=list[i].realName %></p>
 							<p class="user_info_item">
 								<span>关注：0</span>
 								<span>粉丝：0</span>
 							</p>
 							<%if(list[i].personIntro ){%>
 								<p class="user_info_item">个人简介：<%:=list[i].personIntro %></p>
-		
 							<%}else{%>
 								<p class="user_info_item">个人简介：他没有写下任何信息</p>
 							<%}%>
-		
+
 						</div>
-						<!--<a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a>-->
+						<!-- <a href="" class="pay_attent"><i class="fa fa-plus"></i><span>关注</span></a> -->
 					</li>
 			<%}%>
 		</script>
