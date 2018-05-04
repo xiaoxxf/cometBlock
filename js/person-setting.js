@@ -166,25 +166,7 @@ $(window).scroll(function(){
 })
 
 
-//发送验证码
-//function sendCode() {
-//	var str = localStorage.getItem('userinfo');
-//	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
-//	$("#ownname").val(jsonStr.realName) //输入框获取localStorage中存储值
-//	var realName = jsonStr.realName;
-//	var tel = jsonStr.tel;
-//	var uri = 'news/virty?' + 'realName=' + realName + '&phoneNo' + tel
-//	doJavaGet(uri, function(res) {
-//		debugger
-//		if(res != null && res.code == 0) {
-//			getCode() //验证码验证
-//		} else {
-//			layer.msg(res.msg);
-//		}
-//
-//	}, "json");
-//
-//}
+
 
 //验证码校验
 function getCodeResetPwd() {
@@ -194,13 +176,12 @@ function getCodeResetPwd() {
 //	var tel = jsonStr.tel;
 	//var tel = jsonStr.userName;
 	var userName = jsonStr.userName;
-	debugger
 	var uri = 'blockchain/getCode?phoneNo=' + userName //输入手机号请求验证码验证
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
 			//验证码倒计时
-			CountDown()
+			CountDownResetPwd();
 
 		} else {
 			layer.msg(res.msg);
@@ -208,24 +189,24 @@ function getCodeResetPwd() {
 	}, "json");
 
 }
-var count = 60;
-var countdown;
+var count_reset = 60;
+var countdownreset;
 
-function dingshiqi() {
-	if(count > 0) {
-		count = count - 1
-		$("#setting_send_code").html(count + " s")
-	} else if(count == 0) {
+function dingshiqi_reset() {
+	if(count_reset > 0) {
+		count_reset = count_reset - 1
+		$("#setting_send_code").html(count_reset + " s")
+	} else if(count_reset == 0) {
 
 		$("#setting_send_code").html("重新发送验证码")
-		clearInterval(countdown);
-		count = 60
+		clearInterval(countdownreset);
+		count_reset = 60
 	}
 
 }
 
-function CountDown() {
-	countdown = setInterval(dingshiqi, 1000);
+function CountDownResetPwd() {
+	countdownreset = setInterval(dingshiqi_reset, 1000);
 
 }
 //点击验证
@@ -284,32 +265,6 @@ function changeUser(){
 	}, "json");
 }
 
-//if(userPwd.length=""){
-//      layer.tips('密码不能为空', '#session_password', {
-//		  tips: [2, '#3595CC'],
-//		  time: 2000
-//		});
-//      return false;
-//  }
-//	if(userPwd.length<6){
-//      layer.tips('密码长度不能少于6位', '#session_password', {
-//		  tips: [2, '#3595CC'],
-//		  time: 2000
-//		});
-//      return false;
-//  }
-//	return true;
-
-
-/*
- 	var tempStr=JSON.stringify(temp);
-			localStorage.setItem("temp",tempStr);
-			debugger
-			var obj=localStorage.getItem("temp");
-			var tempStr=JSON.parse(obj);
-			var objvalue=JSON.stringify(tempStr);
-			localStorage.setItem("temp",objvalue);
- * */
 
 //保存修改信息
 $("#save-register-info").click(function() {

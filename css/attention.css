@@ -1,0 +1,399 @@
+a img {
+    border-width: 0;
+    vertical-align: middle;
+}
+
+.bottom_line{
+	border-bottom:solid 1px gainsboro ;
+  min-height: 271px;
+}
+/*糖果盒*/
+.attention_box{
+	margin-top:30px ;
+}
+
+.hot_candy img{
+    background-size: cover;
+    height: 250px;
+    width: 100%;
+}
+.row .col-md-3 .attention_box a:first-child{
+	background-color: #006bb3;
+	color: white;
+}
+.row .col-md-3 .attention_box a{
+	color: #006bb3;
+    margin: 15px;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    border: solid 1px #006bb3;
+    border-radius: 5px;
+}
+
+.included_ariticle{
+	text-align: center;
+	padding: 20px;
+}
+.row .col-md-3 span{
+	display: inline-block;
+
+}
+.candy_right,.hot_zone {
+	background-color: white;
+}
+
+/*热门专区*/
+
+.swiper-btn-prev{
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.swiper-btn-next{
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.hot_zone{
+	padding: 10px;
+	/* height: 260px; */
+  border-radius: 3px;
+}
+.hot_block{
+	display: inline-block;
+	width: 10px;
+    height: 20px;
+    margin-right: 15px;
+    background-color: #006bb3;
+
+}
+.hot_main_area{
+	   top: 30px;
+    position: absolute;
+}
+
+
+.hot_zone_title,.hot_zone_title_right{
+	  height: 48px;
+    padding: 10px;
+    border-bottom: solid 1px gainsboro;
+}
+
+.hot_zone_title span{
+	float: left;
+}
+.hot_zone_title_right span:last-child
+,.hot_review_title span:last-child{
+	float: right;
+	color: #006bb3;
+}
+.hot_zones .hot_zone_title_right a{
+	display: initial;
+    border: none;
+}
+.hot_zone_coin,.hot_zone_coin h3:first-child{
+	color: darkgray;
+}
+.hot_zone_coin .col-md-2 img{
+	/*width: 120px;*/
+	height: 100px;
+}
+
+/* .hot_zone_coin .row .col-md-2{
+    margin: 8px;
+    text-align: center;
+} */
+
+.hot_zone_coin .hot_coin_region .coin-detail{
+
+
+}
+.hot_zone_coin .hot_coin_region .coin-detail img{
+  margin-left: 10px;
+}
+.hot_zone_coin{
+		height: 200px
+}
+
+.hot_zone_coin .hot_coin_region .project-name{
+	margin-top:10px;
+	margin-bottom: 10px;
+  	text-align: center;
+  	color: #333;
+}
+
+.hot_zone_coin .hot_coin_region .score{
+    text-align: center;
+    font-size: 16px;
+    color: #000;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+		font-size: 12px;
+		color: #006bb3;
+		margin-bottom: 15px;
+		margin-top: 10px;
+}
+
+.hot_zone_coin .hot_coin_region .score span{
+	color:#006bb3;
+
+}
+.hot_coin_region{
+	padding-left: 10px;
+}
+
+
+
+.mobile-hot-coin{
+	display: none;
+	overflow: scroll;
+	width: 100%;
+	margin-left: 10px;
+}
+
+.mobile-hot-coin .coin-detail-mobile{
+	width: 100%;
+	height: 100%;
+  margin-right: 25px;
+}
+@media (max-width:900px) {
+  .hot_zone_box{
+    height: 250px
+  }
+	.mobile-hot-coin{
+		display: flex;
+	}
+	.hot_zone_coin .swiper-container{
+		display: none
+	}
+  .swiper-btn{
+    display: none
+  }
+	/* .hot_zone_coin .slide{
+		display: none
+	} */
+}
+
+
+.hot_zone_news{
+	text-align: center;
+}
+.hot_zone_news p{
+	font-size: 14px;
+	line-height: 40px;
+	height: 40px;
+  margin-left: 10px;
+}
+
+.new_title{
+	float: left;
+	color: black;
+}
+
+
+@media only screen and (max-width:220px ) {
+	.hot_zone_news p{
+		text-align: left;
+	}
+}
+
+/*热门评测*/
+.read-more{
+	cursor: pointer;
+}
+
+.comment-detail{
+   margin-top: 10px;
+}
+
+
+.comment-detail .comment-icon{
+    width: 80px;
+    height: 63px;
+	position: relative;
+    border:1px solid #a79e9e;
+}
+
+.comment-detail .comment-icon img{
+	width: 70%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.hot_review_title{
+	background-color: white;
+	padding: 10px 20px;
+  height: 58px;
+  border-bottom: solid 1px gainsboro;
+}
+
+.hot_review_box, .hot_zones_box{
+	margin-top: 20px;
+}
+
+.comment-top-box{
+	margin-top: 30px;
+}
+
+.attention_zone{
+  background-color: white;
+  padding: 10px;
+}
+
+
+.comment-detail .comment-title{
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 20px;
+    margin: 15px 0px;
+    width: 80%;
+}
+
+.comment-detail .comment-title a{
+  color: #333333
+}
+
+.comment-detail .comment-title a:hover{
+  color: #1c5397
+}
+
+
+.comment-detail .comment-content{
+  margin-left: 18px;
+	/* width: 90%; */
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-detail .comment-introduce{
+  min-height: 80px;
+  width: 75%;
+  margin-right: 50px;
+}
+.comment-introduce a{
+	color: #333333;
+}
+.comment-detail .comment-introduce .textContent{
+  color: #333333
+}
+
+.comment-detail .comment-introduce .textContent:hover{
+  color: #646464
+}
+
+.comment-content.comment-info{
+	display: inline;
+}
+.comment-info .ariticle_user{
+	font-weight: bold;
+}
+.comment-info .real_name{
+  font-size: 16px;
+  color: #3c3c3c
+}
+.comment-content .comment-time{
+  margin: 10px 10px;
+  display: inline-block;
+  font-size: 16px;
+  color: #3c3c3c
+}
+.comment-content .comment-introduce,.meta{
+	 /* line-height: 25px; */
+	color: black;
+}
+
+.comment-creator-pic{
+	width: 28px;
+	height: 28px;
+	border-radius: 20px;
+	margin-right:10px;
+	margin-bottom:5px;
+}
+
+
+.meta{
+	margin-top:15px ;
+	margin-bottom: 10px;
+}
+.meta a{
+	/* margin-left:10px ; */
+	color: #777777c4;
+}
+.read-more{
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background-color: white;
+	color: #006bb3;
+
+}
+
+
+/* 小屏文章 */
+@media (max-width: 767px) {
+  .bottom_line{
+    min-height: 101px;
+  }
+
+  .comment-detail .comment-content{
+    margin-left: 5px;
+  }
+
+	.comment-detail .comment-title {
+		font-size: 15px;
+		line-height: 20px;
+    width: 100%;
+    margin: 10px 0px;
+	}
+
+	
+
+
+	.comment-detail .comment-introduce{
+		min-height: 50px;
+		/* overflow: scroll; */
+	}
+
+
+	.comment-detail .comment-icon{
+		/* float: right; */
+		width: 60px;
+		/* margin: 0px 30px; */
+	}
+
+	.comment-detail .comment-icon img{
+		width: 70%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+	}
+}
+
+
+ @media (max-width: 992px){
+ 	.side{
+ 		margin-top: 20px;
+ 	}
+ }
+
+.comment-count{
+	color: red
+}
+.hot-span{
+	color: black
+}
+/*广告位*/
+.long-comment{
+	margin-top: 30px;
+}
+.write-comment{
+	line-height: 50px;
+}
+.write-comment a{
+	color: #006bb3;
+}
