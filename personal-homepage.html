@@ -211,7 +211,7 @@
 							</div>
 							<div class="article_box" style="display:flex">
 								<div >
-									<p class="article_title_main"><%:=list[i].textTitle %></p>
+									<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
 									<p class="article_content_bottom">
 										<%:=list[i].textContent %>
 									</p>
@@ -312,7 +312,7 @@
 						</div>
 						<div class="article_box" style="display:flex">
 							<div >
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
+								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
 								<p class="article_content_bottom">
 									<%:=list[i].textContent %>
 								</p>

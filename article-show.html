@@ -19,8 +19,8 @@
 		<link rel="stylesheet" href="js/page/jquery.pagination.css">
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
-		<!-- <link rel="stylesheet" href="css/comment.css"> -->
-		<!-- <link rel="stylesheet" href="css/login.css" /> -->
+		<link rel="stylesheet" href="css/comment.css">
+		<link rel="stylesheet" href="css/login.css" />
 		<!-- 导航栏 -->
 	</head>
 	<style>
@@ -48,9 +48,7 @@
 					<div class="comment-container-wrap">
 						<h1 class="comment-detail-title"></h1>
 						<div class="comment-detail-main comment-detail-mian-hook">
-
 						</div>
-
 						<div class="waiting-data">
 							<div class="loader9">
 								<div class="loader-nine">
@@ -65,16 +63,116 @@
 								</div>
 							</div>
 						</div>
+						<div id="comments" class="commment-list comment-list-hook">
 
+
+						</div>
+						<div class="paginator-warp">
+							<div id="paginator">
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
+			<!--<div id="footer" class="container">
+				<div class="footer-extra"></div>
+				<span id="icp" class="pull-right gray-link">
+				© 2018 blockcomet.com all rights reserved 深圳彗星科技有限公司
+			</span>
+			</div>-->
 
 
 	</div>
+		<script type="text/html" id="template-report-popup">
+			<div id='report_value'>
+				<ul>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='0'
+								   checked
+							/> 广告或垃圾信息
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='1'
+							/> 色情、淫秽或低俗内容
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='2'
+							/> 激进时政或意识形态话题
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='other' /> 其他原因
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class='bn-flat'>
+				<input type='submit' class='btn-report' value='举报'>
+			</div>
+		</script>
+		<!--引入弹框-->
+		<script type="text/html" id="template-reply">
+			<div class="main report-login">
 
+				<h4 class="title">
+					<div class="normal-title">
+						<a class="active" href="">登录</a>
+						<b>·</b>
+						<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+					</div>
+				</h4>
+				<div class="js-sign-in-container">
 
+					<div class="input-prepend  restyle ">
+						<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+						<i class="fa fa-user"></i>
+					</div>
+					<div class="input-prepend border_radiusB">
+						<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+						<i class="fa fa-unlock-alt"></i>
+
+					</div>
+					<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+					<div class="remember-btn">
+						<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+					</div>
+					<div class="forget-btn">
+						<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="">用手机号重置密码</a>
+							</li>
+
+						</ul>
+					</div>
+
+					<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
+					<span class="loader2 loader loaderadd" id="load">
+										<div></div>
+								</span>
+
+					<div class="more-sign">
+						<h6>社交帐号登录</h6>
+						<ul>
+							<li>
+								<img src="img/wechat.png" width="40px">
+							</li>
+							<li>
+								<a href="">其它</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</script>
 		<script type="text/html" id="template-mian-detail">
 			<a class="avatar author-avatar pull-left" href="javascript:;">
 				<!-- TODO：显示个人头像 -->
@@ -85,12 +183,10 @@
 				<a href="">
 					<span property="v:reviewer"><%:=list.realName%></span>
 				</a>
-				评论
-				<!-- <a class="project-name" href="chain-detail.html?projectId=<%:=list.parentId%>"></a> -->
 
-				<!-- <span class="allstar<%:=list.score*10%> main-title-rating" title=""></span> -->
-				<!-- <span property="v:rating" class="main-title-hide">5</span> -->
-				<!-- <span property="v:dtreviewed" content="2018-03-15" class="main-meta"><%:=list.createTime%></span> -->
+				<span class="allstar<%:=list.score*10%> main-title-rating" title=""></span>
+				<span property="v:rating" class="main-title-hide">5</span>
+				<span property="v:dtreviewed" content="2018-03-15" class="main-meta"><%:=list.createTime%></span>
 			</header>
 			<div class="main-bd">
 				<div id="link-report">
@@ -102,14 +198,14 @@
 					© 本文版权归作者&nbsp;
 					<a href="javascript:;"><%:=list.realName%></a> &nbsp;所有，任何形式转载请联系作者。
 				</div>
-				<!-- <div class="option">
+				<div class="option">
 					<%if(userinfo && list.realName == userinfo.realName){%>
 						<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
 						<a href="javacript:;" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
 					<%}%>
-				</div> -->
+				</div>
 			</div>
-			<!-- <div class="main-ft">
+			<div class="main-ft">
 				<div class="main-panel" name="9157555">
 					<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
 						<button class="btn useful_count 9157555 j a_show_login" data-useful="true">
@@ -123,21 +219,87 @@
 						<button class="LikeButton pull-right" data-reviewId="<%:=list.reviewId%>" data-likes_nums="<%:=list.likes%>" title="标为喜欢?">喜欢<span class="LikeButton-count"></span></button>
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</script>
-
+		<script type="text/html" id="template-comment-list">
+			<%for(var i = 0; i < list.length; i++) {%>
+			<div class="comment-item" data-parentId="<%:=list[i].parentId%>" data-reviewId="<%:=list[i].reviewId%>"  data-user_name="<%:=list[i].realName%>" data-user_url="javascript:;" data-target_id="9041269" data-target_kind="1012" data-ref_cid="9119669">
+				<div class="avatar left">
+					<!-- TODO：显示个人头像 -->
+					<a href="javascript:;"><img width="48" height="48" src="img/normal-user.png" alt="<%:=list[i].realName%>"></a>
+				</div>
+				<div class="content report-comment">
+					<div class="header">
+						<!-- TODO：跳转到个人中心页 -->
+						<a href=""><%:=list[i].realName%></a>
+						<span><%:=list[i].createTime%></span>
+						<span class="num pull-right"><%:=i+1%>#</span>
+					</div>
+					<%if(list[i].quote != null){%>
+						<div class="reply-quote" style="">
+							<%:=list[i].quote%>
+						</div>
+					<%}%>
+					<p class="comment-text"><%:=list[i].textTitle%></p>
+					<div class="op-lnks">
+						<%if(userinfo && list[i].realName == userinfo.realName){%>
+							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_edit">编辑</a>
+							&nbsp;
+							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_delete">删除</a>
+							&nbsp;
+						<%}%>
+						<a href="javacript:;" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="reply_comment">引用</a>
+						&nbsp;
+						<a rel="nofollow" href="javascript:;" data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="report report_comment">举报</a>
+					</div>
+				</div>
+			</div>
+			<%}%>
+			<section class="review-comment-form" id="add_comment">
+				<div class="reply-comment middle" data-ref_cid="" data-user_name="" data-user_url="">
+					<div class="reply-comment-wrap">
+						<a href="javascript:;" class="close_reply lnk-close">×</a>
+						<div class="quote-comment-txt">
+							<p>
+								引用<i class="number"></i># <span class="at-sypm">@</span>
+								<a href="javascript:;" class="author"></a>发表的:
+								<a href="javascript:;" class="quotedReviewId"></a>
+							</p>
+							<p class="parent-txt">
+								<span class="short"></span>
+								<span class="all"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="form-textarea-wrapper">
+					<div class="avatar ">
+						<!-- TODO：跳转到个人中心页 -->
+						<a href="">
+							<!-- TODO：显示个人头像 -->
+							<img width="48" height="48" src="img/normal-user.png" alt="">
+						</a>
+					</div>
+					<div class="form-field">
+						<textarea class="form-textarea textarea-txt-hook" placeholder=" 添加回应" rows="4" cols="64"></textarea>
+						<button class="add_comment js-verify-account add_comment-hook" data-is-verified="True">加上去</button>
+						<span class="error hidden">你的回应中有被禁止的内容</span>
+					</div>
+				</div>
+			</section>
+		</script>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/template.js"></script>
-		<!-- <script src="js/plugins/layer/layer.js"></script> -->
-		<!-- <script src='js/page/jquery.pagination.min.js'></script> -->
+		<script src="js/plugins/layer/layer.js"></script>
+		<script src='js/page/jquery.pagination.min.js'></script>
 		<script src="js/common.js"></script>
-		<!-- <script src="js/comment.js"></script> -->
-		<!-- <script src="js/comment-page.js"></script> -->
-		<!-- <script src="js/md5.js"></script> -->
-		<!-- <script src="js/register.js"></script> -->
-		<!-- <script src="js/login.js"></script> -->
+		<script src="js/article-show.js"></script>
+		<script src="js/comment-page.js"></script>
+		<script src="js/md5.js"></script>
+		<script src="js/register.js"></script>
+		<script src="js/login.js"></script>
 	</body>
 	<script>
 	</script>
