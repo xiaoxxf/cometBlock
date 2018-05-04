@@ -208,6 +208,10 @@ body{
 .reset_pwd_bottom{
 	border-bottom: solid 1px gainsboro;
 }
+.bottom_line{
+	padding-bottom: 50px;
+    border-bottom: solid 1px gainsboro;
+}
 .show_table input {
     overflow: visible;
     /*vertical-align: middle;*/
