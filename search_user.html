@@ -75,7 +75,11 @@
 	<%for(var i = 0; i < list.length; i++) {%>
 			<li>
 				<a href="">
-					<img src="<%:=list[i].userPic %>">
+					<%if(list[i].userPic ){%>
+						<img src="<%:=list[i].userPic %>">
+					<%}else{%>
+						<img src="img/normal-user.png">
+					<%}%>
 				</a>
 				<div class="user_info">
 					<p><%:=list[i].realName %></p>
