@@ -111,7 +111,7 @@
 										</div>
 										 <div class="included_ariticle">
 											<span>币种专题</span><span class="article-count">0</span>
-										</div> 
+										</div>
 										<div class="create_new_subject">
 											<a href="" class="create_new_subject_btn"><i class="fa fa-plus"></i>创建新项目</a>
 										</div>
@@ -152,9 +152,9 @@
 								<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></a>
 								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].review %></i><%:=list[i].likes %></span>-->
 							<div class="meta">
-								<a class="article-time">昨天：14：22</a>
-								<a href="" class="fa-ico"><i class="fa fa-commenting"></i><%:=list[i].review %></a>
-								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].likes %></span>
+								<a class="article-time"><%=list[i].createTime %></a>
+								<a href="" class="fa-ico"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
+								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 
 							</div>
 						</div>
@@ -171,8 +171,8 @@
 							</div>
 							<div class="short_comment_box" style="display:flex">
 								<div class="article-introduce">
-									<a class="article_title">项目链接:
-										<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'><%:=list[i].projectBigName %></a>
+									<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' class="article_title">
+										项目链接:<%:=list[i].projectBigName %>
 									</a>
 									<p><%:=list[i].textTitle %></p>
 								</div>
@@ -209,9 +209,9 @@
 							</div>
 
 							<div class="meta">
-								<a class="article-time"><%:=list[i].createTime %></a>
-								<a href="" class="fa-ico"><i class="fa fa-commenting "></a>
-								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].review %></i><%:=list[i].likes %></span>
+								<a class="article-time"> <%:=list[i].createTime %></a>
+								<a href="" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+								<span class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 							</div>
 						</div>
 				</div>
@@ -268,8 +268,8 @@
 						</div>
 						<div class="short_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<a href=""  class="article_title">项目链接:
-									<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'><%:=list[i].projectBigName %></a>
+								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' class="article_title">
+									项目链接:<%:=list[i].projectBigName %>
 								</a>
 								<p><%:=list[i].textTitle %></p>
 							</div>
