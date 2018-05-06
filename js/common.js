@@ -237,7 +237,7 @@ function getUserInfoByWeChat(wechatCode){
             $(".nav-user-account .more-active").css('display','block');
             $(".login-right").css('display','block');
 
-            window.location.href='person-setting.html?personType=1'
+            window.location.href='person-setting.html?personType=2'
             // setTimeout(function () {
             //     layer.open({
             //         closeBtn:1,

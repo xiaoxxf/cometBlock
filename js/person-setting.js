@@ -78,6 +78,11 @@ if(pT == 1){
 	$(".cont0").fadeIn();
 	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
 }
+else if(pT == 2){
+	$(".cont1").fadeIn();
+	$(".person-left-menu li a").eq(1).addClass("toogle-acive");
+}
+
 
 })
 
@@ -268,7 +273,7 @@ function changeUser(){
 
 //保存修改信息
 $("#save-register-info").click(function() {
-	
+
 	var param = {}
 	var str = localStorage.getItem('userinfo');
 
@@ -328,8 +333,8 @@ $("#save-register-info").click(function() {
 		}
 
 	}, "json");
-	
-	
+
+
 });
 
 
@@ -416,7 +421,7 @@ var ui = {
 var logo_file = null
 //上传头像
 //$('.upload-project-logo').on('click',function(){
-//	
+//
 //})
 
 function uploadImg(){
@@ -430,7 +435,7 @@ function uploadImg(){
 		layer.msg('请选择小于1M的图片文件',{time:1000})
 		return false
 	}
-	
+
 	var formData = new FormData();
 	formData.append('file', file);
 
