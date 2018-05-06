@@ -392,7 +392,8 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
       var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
       doJavaGet(uri, function(res) {
           if(res != null && res.code == 0) {
-              window.location.href= localStorage.currentHref ? localStorage.currentHref : 'index.html'
+              // window.location.href= localStorage.currentHref ? localStorage.currentHref : 'index.html'
+              window.location.href = 'personal-homepage.html'
           }
       }, "json");
     }
