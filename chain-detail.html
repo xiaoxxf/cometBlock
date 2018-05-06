@@ -236,7 +236,7 @@
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
         <span class="comment-info">
-        <a href="javascript:;" class=""><%:=list[i].realName%></a>
+        <a href="personal-homepage.html?userId=<%=list[i].creator %>" class=""><%:=list[i].realName%></a>
         <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
         <span class="comment-time " title="2017-12-03 09:47:30">
         <%:=list[i].createTime%>
@@ -260,7 +260,7 @@
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
         <span class="comment-info">
-        <a href="comment.html?reviewId=<%:=list[i].reviewId%>" class=""><%:=list[i].realName%></a>
+        <a href="personal-homepage.html?userId=<%=list[i].creator %>" class=""><%:=list[i].realName%></a>
         <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
         <span class="comment-time " title="2017-12-03 09:47:30">
         <%:=list[i].createTime%>

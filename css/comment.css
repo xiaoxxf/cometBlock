@@ -556,3 +556,13 @@ a img {
 	height: 20%;
 	width: 40%;
 }
+
+
+/* 评论者头像 */
+.review-creator-pic{
+	width: 48px;
+	height: 48px;
+	/* border-radius: 50px; */
+	/* margin-right:10px; */
+	/* margin-bottom:5px; */
+}

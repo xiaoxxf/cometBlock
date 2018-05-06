@@ -238,12 +238,14 @@
 			<div class="article-detail">
 					<div class="article-content">
 						<div class="article-info">
+							<a href="personal-homepage.html?userId=<%=list[i].creator %>">
 							<%if(list[i].userPic == null ){%>
 								<img src="img/normal-user.png" class="article-creator-pic"/>
 							<%} else {%>
 								<img src="<%=list[i].userPic %>" class="article-creator-pic"/>
 							<% } %>
-							<span class="real_name"><%=list[i].realName %></span>
+							</a>
+							<a href="personal-homepage.html?userId=<%=list[i].creator %>" class="real_name"><%=list[i].realName %></a>
 							<span class="article-time"><%=list[i].createTime.split(' ')[0] %></span>
 
 							<h3 class="article-title">
