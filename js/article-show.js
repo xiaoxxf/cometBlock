@@ -401,3 +401,65 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
     }
     );
 });
+
+
+//点击悬浮新建
+var flag_close = false;
+
+$(".news_alert_fixed").on('click',function (e) {
+		
+	if(flag_close){
+		$('.layui-layer-close2').click();
+		 flag_close = false;
+
+		return
+	}
+	
+    var area_width
+    var area_height
+    if($(window).width() <= 767)
+ 	{
+	 	area_width = '320px'
+	    area_height = '500px'
+ 	}else{
+ 		 area_width = '520px'
+	     area_height = '600px'
+ 	}
+    layer.open({
+        type: 1,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        area: [area_width,area_height ], //宽高
+        content: $("#templay-news-fixed").html()
+    });
+    
+    flag_close = true;
+   
+})
+
+//点击显示隐藏
+
+//搜索项目
+function searchSubject(){
+	var search_page = 1;
+	var key_word = $('.search_subject').val()
+	if (key_word == '') {
+		return false
+	}
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
+	doJavaGet(uri,function(result){
+		$('.list_item').html('');
+		var search = document.getElementById('search_subject_list').innerHTML;
+		var content = template(search, {list: result.datas});
+		$('.list_item').append(content);
+		
+	}, "json");
+}
+
+
+function keyEnter(){
+	if(event.keyCode ==13){
+   	 	searchSubject();
+  	}
+}
