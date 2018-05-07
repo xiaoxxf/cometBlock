@@ -1,9 +1,9 @@
 body{
 	background-color: white
 }
-.nav_shadow{
+/* .nav_shadow{
 	box-shadow: 0 0 10px rgb(117, 113, 113);
-}
+} */
 .row {
 	/*padding-top: 30px;*/
 }
@@ -497,4 +497,3 @@ textarea.form-control{
     border-radius: 4px !important;
     vertical-align: middle;
    }
-  

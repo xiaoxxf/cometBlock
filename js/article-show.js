@@ -339,7 +339,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     }
     var data = {
         textTitle: shortTxt,
-        parentId: reviewId, //项目
+        parentId: reviewId, 
         type: 3, //长文的type为2
         userId:userId,
         quote:quote,

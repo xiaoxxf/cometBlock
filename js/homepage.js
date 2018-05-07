@@ -196,37 +196,38 @@ $('.read-more').on('click',function(){
 
 
 // 长文点赞
-// $(".hot_review_region").on('click','.like-button',function (e) {
-//     e.preventDefault()
-//     var self = $(e.currentTarget);
-//     var reviewid = self.data('reviewid');
-//     var likes = 0;
-//     var like_count = $(self[0]).text().split('')[1];
-//     debugger
-//
-//     if(userinfo == null){
-//         layer.msg('您还没有登录')
-//         layer.open({
-//             type: 1,
-//             shade:0,
-//             title: 0,
-//             skin: 'layui-layer-report', //加上边框
-//             area: ['550px', '680px'], //宽高
-//             content: $("#short-comment-commit-layer").html()
-//         });
-//         return;
-//     }
-//
-//     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
-//     doJavaGet(uri, function(res) {
-//         if(res.code == 0) {
-//           $(self[0]).text('' + like_count++)
-//           layer.msg(res.msg);
-//         } else {
-//           layer.msg(res.msg);
-//         }
-//     }, "json");
-// });
+$(".hot_review_region").on('click','.like-button',function (e) {
+    e.preventDefault()
+    var self = $(e.currentTarget);
+    var reviewid = self.data('reviewid');
+    var likes = 1;
+    var like_count = $(self[0]).text().split('')[1];
+
+    if(userinfo == null){
+        layer.msg('您还没有登录')
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#short-comment-commit-layer").html()
+        });
+        return;
+    }
+
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+    doJavaGet(uri, function(res) {
+        if(res.code == 0) {
+          like_count++;
+          var str = '<i class="fa fa-heart"></i>'
+          self.html(str + ' ' + like_count)
+          layer.msg(res.msg);
+        } else {
+          layer.msg(res.msg);
+        }
+    }, "json");
+});
 
 var resizeTimer = null;
 $(window).on('resize', function () {

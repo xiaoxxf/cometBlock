@@ -179,7 +179,7 @@ header {
 	background: #e5e5e5;
 	cursor: auto;
 }
-.btn,
+/* .btn, */
 .review-comment-form .add_comment {
 	outline: 0;
 	display: inline-block;

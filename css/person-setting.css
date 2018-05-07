@@ -1,9 +1,9 @@
 body{
 	background-color: white
 }
-.nav_shadow{
+/* .nav_shadow{
 	box-shadow: 0 0 10px rgb(117, 113, 113);
-}
+} */
 /*aside*/
 .aside {
 	position: fixed;
@@ -88,7 +88,7 @@ body{
 	border-radius: 3px;
     background-color: #f8f8f8;
 }
- 
+
 .avatar {
 	width: 50px;
 	height: 100px;
@@ -295,4 +295,3 @@ body{
     border-radius: 4px !important;
     vertical-align: middle;
    }
-  
