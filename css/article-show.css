@@ -556,3 +556,9 @@ a img {
 	height: 20%;
 	width: 40%;
 }
+.return_result{
+	line-height: 30px;
+    display: block;
+    height: 30px;
+    margin: 20px 10px;
+}

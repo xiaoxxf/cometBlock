@@ -296,19 +296,19 @@
 		<script type="text/html" id="templay-news-fixed">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title">收入到我管理的项目
+					<h4 class="modal-title">投稿
 	      			<a class="new-subject-btn">
-	      				<a href="" target="_blank" >新建项目</a>
+	      				<a href="chain-new.html" target="_blank" >新建项目</a>
 	      			</a>
 					</h4>
 				</div> 
 				<div class="modal-body">
 					<div class="search">
-						<input type="search" name="search-self" placeholder="搜索我管理的项目"> 
-							<a class="search-subject-icon"><i class="fa fa-search"></i></a>
+						<input type="search" name="search-self" class="search_subject" onkeydown="keyEnter()" placeholder="搜索项目"> 
+						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
 					</div> 
 					<ul class="list_item">
-						<li class="">
+						<!--<li class="">
 								<a href="/c/4c53c6129281" class="avatar-collection">
 									<img src="img/banner.png" class="title_logo">
 								</a> 
@@ -317,11 +317,31 @@
 									<div class="meta">熙沅 编</div> 
 								</div>
 								<a class="action-btn_push" href="">投稿</a>
-						</li> 
+						</li> -->
 					</ul>
 				</div> 
 			</div>
 		</script>
+		<script id="search_subject_list" type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="return_result">没有结果</span>
+			<%}else{%>
+				<%for(var i=0;i<list.length;i++){ %>  
+				<li class="">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<img src="<%=list[i].projectLogo %>" class="title_logo">
+					</a> 
+					<div class="collection-info">
+						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a> 
+						<div class="meta"></div> 
+					</div>
+					<a class="action-btn_push" href="">投稿</a>
+				</li> 
+				<% }%>
+			<%}%>
+
+		</script> 
+		
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
