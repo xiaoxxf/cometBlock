@@ -63,3 +63,27 @@ $("#paginator").on('click','.goPre',function (e) {
     longCommentCurrentPage = pageNum;
     ajaxGetLongCommentReview();
 })*/
+
+
+//点击悬浮新建
+$(".news_alert_fixed").on('click',function (e) {
+    var area_width
+    var area_height
+    if($(window).width() <= 767)
+ 	{
+	 	area_width = '320px'
+	    area_height = '500px'
+ 	}else{
+ 		 area_width = '520px'
+	     area_height = '600px'
+ 	}
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: [area_width,area_height ], //宽高
+            content: $("#templay-news-fixed").html()
+        });
+   
+})
