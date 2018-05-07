@@ -4,7 +4,7 @@
 function ajaxGetLongCommentReview() {
     // var projectId = getUrlParam('projectId');
     var reviewId = getUrlParam('reviewId');
-    var uri = 'blockchain/quaryReview?parentId='+reviewId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+3;
+    var uri = 'blockchain/queryArticles?parentId='+reviewId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+3;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
            // if(res.datas.length >0 ){
@@ -25,15 +25,6 @@ function ajaxGetLongCommentReview() {
             $(".waiting-data").css('display','none');
         } else {
             layer.msg(res.msg);
-        }
-
-
-        // 有锚点时，滑动到评论处
-        var url = window.location.toString();//进这个页面的url
-        var id = url.split('#')[1];
-        if(id == 'toComments'){
-           var t = $('#comments').offset().top;
-           $(window).scrollTop(t);//滚动到锚点位置
         }
     }, "json");
 }
@@ -63,7 +54,3 @@ $("#paginator").on('click','.goPre',function (e) {
     longCommentCurrentPage = pageNum;
     ajaxGetLongCommentReview();
 })*/
-
-
-
-

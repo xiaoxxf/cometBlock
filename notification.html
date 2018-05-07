@@ -37,7 +37,7 @@
 											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span class="option-name">基础设置</span>
 										</a>
 									</li>-->
-									<li class="router-link-exact-active active">
+									<li class="router-link-exact-active active ">
 										<a class="toogle-acive">
 											<div class="setting-icon"><i class="fa fa-external-link"></i></div>
 											<span class="option-name">引用</span>
@@ -105,72 +105,7 @@
 
 								</ul>
 							</div>
-							<!--专题-->
-							<div class="show_table show_table_detail cont6 subject">
-								<div class="menu">我的专题</div>
-								<div class="col-md-10 col-xs-10 col-sm-10">
-									<button type="button" class="btn btn-primary" id="new_subject"><span>+</span>新建专题</button>
-								</div>
-									<!--Form表单-->
-									<div class=" col-xs-12 col-md-10 col-sm-10" id="show_subject">
-										<form id="form1" class="form-horizontal" role="form" name="new_coin" enctype="multipart/form-data">
-											<br />
-											<div class="form-group row">
-												<div class="col-xs-12 col-md-3 col-sm-10">
-													<!--图片显示-->
-													<div class="coin_image_box">
-														<img src="" class="coin_image" />
-													</div>
-												</div>
-												<div class="col-xs-12 col-md-9 col-sm-10">
 
-													<a href="javascript:;" class="file upload_topic">上传专题封面
-														<input type="file" id="project_logo_input" class='project_logo' name="project_logo" >
-													</a>
-												</div>
-											</div>
-
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">名称：</label>
-												<div class="col-xs-12 col-md-8 col-sm-5">
-													<input class="form-control" name="project_name" type="text" placeholder="填写名称,不超过50字">
-												</div>
-											</div>
-
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label ">描述：</label>
-												<div class="col-xs-12 col-md-8 col-sm-5">
-													<textarea class="form-control" name="project_description" type="text" placeholder="填写描述"></textarea>
-												</div>
-											</div>
-
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">其他管理员</label>
-												<div class="col-xs-12 col-md-8 col-sm-5">
-													<input class="form-control" name="project_admin" type="text" placeholder="输入用户名">
-												</div>
-											</div>
-
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">是否允许投稿</label>
-												<div class="col-xs-12 col-md-8 col-sm-5 allow_submit">
-													<input type="radio" name="contribute" value="1" checked="checked">允许
-													<input type="radio" name="contribute" value="2">不允许
-
-												</div>
-											</div>
-											<div class="form-group row">
-												<label class="col-xs-12 col-md-3 col-sm-2 control-label">投稿是否需要申请</label>
-												<div class="col-xs-12 col-md-8 col-sm-5 allow_submit">
-													<input type="radio" name="apply" value="1" checked="checked">需要
-													<input type="radio" name="apply" value="2">不需要
-
-												</div>
-											</div>
-											<button type="button" class="btn btn-primary" id="submit_subject">提交专题</button>
-										</form>
-									</div>
-							</div>
 						</div>
 				</div>
 			</div>
@@ -189,7 +124,7 @@
 
 					<div class="info">
 						<div class="reviewed-article">
-							<%:=list[i].realName%>
+							<a href="personal-homepage.html?userId=<%:=list[i].userId %>"><%:=list[i].realName%></a>
 							<!-- 在文章<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《》</a> -->
 							引用了你的评论
 							<div class="time"><%:=list[i].createTime%></div>
@@ -217,7 +152,8 @@
 					<a href="/u/ea0b38543aae" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div>
-							<%:=list[i].realName%> 赞了你的的评论  <a href="#" style="margin-left:5px"><%:=list[i].title%></a>
+							<a href="personal-homepage.html?userId=<%:=list[i].userId %>"><%:=list[i].realName%></a>
+							赞了你的的评论  <a href="#" style="margin-left:5px"><%:=list[i].title%></a>
 						</div>
 
 						<div class="time"><%:=list[i].createTime%></div>
@@ -238,10 +174,10 @@
 					<a href="#" class="avatar_receive"><img src="img/huixing.png"></a>
 					<div class="info">
 						<div class="reviewed-article">
-							<%:=list[i].realName%>
+							<a href="personal-homepage.html?userId=<%:=list[i].userId %>"><%:=list[i].realName%></a>
 							</a>
 							评论了你的文章
-							<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《<%:=list[i].title%>》</a>
+							<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>#toComments">《<%:=list[i].title%>》</a>
 							</a>
 							<div class="time"><%:=list[i].createTime%></div>
 						</div>

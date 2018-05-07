@@ -16,6 +16,52 @@ $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) 
         content: $("#template-report-popup").html()
     });
 });
+
+window.onload = function(){
+    ajaxGetReviewDetail();
+}
+function  ajaxGetChainDetail() {
+    // var projectId = projectId ;
+    var uri = 'blockchain/detail?projectId='+projectId ;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+          $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
+          $(".main-hd .project-name").text(res.datas.projectName)
+        } else {
+            layer.msg(res.msg);
+        }
+
+    // 加载完文章再加载评论
+    ajaxGetLongCommentReview();
+
+    }, "json");
+}
+var longCommentCurrentPage = 1 ;
+var pageSize = 5;
+function  ajaxGetReviewDetail() {
+    var reviewId = getUrlParam('reviewId');
+    var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+            var commentInfoData = res.datas;
+            if (!projectId) {
+              projectId = res.datas.projectId
+            }
+            $('title').html(commentInfoData.textTitle)
+            console.log(commentInfoData)
+            $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
+            $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
+            var commentTpl = $("#template-mian-detail").html();
+            var content = template(commentTpl, {list: commentInfoData});
+            $(".comment-detail-mian-hook").append(content);
+            // 从消息中心页进来，url不带projectId，需要给projectId赋值后再用projectId去请求项目信息
+            ajaxGetChainDetail()
+        } else {
+            layer.msg(res.msg);
+        }
+    }, "json");
+}
+
 //点击引用
 $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     var self =$(e.currentTarget),
@@ -262,50 +308,7 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     }, "json");
 })
 
-window.onload = function(){
-    ajaxGetReviewDetail();
-}
-function  ajaxGetChainDetail() {
-    // var projectId = projectId ;
-    var uri = 'blockchain/detail?projectId='+projectId ;
-    doJavaGet(uri, function(res) {
-        if(res != null && res.code == 0) {
-          $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
-          $(".main-hd .project-name").text(res.datas.projectName)
-        } else {
-            layer.msg(res.msg);
-        }
 
-    // 加载完文章再加载评论
-    ajaxGetLongCommentReview();
-
-    }, "json");
-}
-var longCommentCurrentPage = 1 ;
-var pageSize = 5;
-function  ajaxGetReviewDetail() {
-    var reviewId = getUrlParam('reviewId');
-    var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
-    doJavaGet(uri, function(res) {
-        if(res != null && res.code == 0) {
-            var commentInfoData = res.datas;
-            if (!projectId) {
-              projectId = res.datas.projectId
-            }
-            $('title').html(commentInfoData.textTitle)
-            console.log(commentInfoData)
-            $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
-            $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
-            var commentTpl = $("#template-mian-detail").html();
-            var content = template(commentTpl, {list: commentInfoData});
-            $(".comment-detail-mian-hook").append(content);
-            // 从消息中心页进来，url不带projectId，需要给projectId赋值后再用projectId去请求项目信息
-            ajaxGetChainDetail()
-        } else {
-            layer.msg(res.msg);
-        }
-    }, "json");
-}
 //点击提交评论
 $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     var reviewId = getUrlParam('reviewId');

@@ -26,10 +26,13 @@ $(".person-left-menu li a").on('click', function(e) {
 var pT = getUrlParam("personType");
 $(".person-left-menu li a").removeClass('toogle-acive');
 $(function(){
-if(pT == 1){
-	$(".cont0").fadeIn();
-	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
-}
+	if(pT == 1){
+		// $(".cont0").fadeIn();
+		$(".person-left-menu li a").eq(0).addClass("toogle-acive");
+		// 首次加载时显示引用
+		var quote_click = $(".person-left-menu li a").eq(0)[0]
+		getMessage(quote_click)
+	}
 })
 
 // 点击已读
@@ -50,70 +53,72 @@ var currentPage = 1
 var noMoreData = false
 
 // 渲染
- $(document).ready(function(){
-        $(".person-left-menu li a").click(function(){
-				noMoreData = false
-        var order = $(".person-left-menu li a").index(this);//获取点击之后返回当前a标签index的值
-				switch (order) {
-					// case 0:
-					// 	type = 0;
-					// 	count_class = ''
-					// 	break;
-					case 0:
-						append_class = '.quote-list'
-						count_class = '.quote-count'
-						id = 'quote'
-						type = '1'
-						break;
-					case 1:
-						append_class = '.comment-list'
-						count_class = '.comment-count'
-						id = 'comment'
-						type = '2'
-						break;
-					case 2:
-						append_class = '.like-list'
-						count_class = '.like-count'
-						id = 'like'
-						type = '3'
-						break;
-					case 3:
-						append_class = '.pass-list'
-						count_class = '.pass-count'
-						id = 'pass'
-						type = '4'
-						break;
-					case 4:
-						append_class = '.reject-list'
-						count_class = '.reject-count'
-						id = 'reject'
-						type = '5'
-						break;
-					default:
-						// console.log('这是默认')
-						break;
-				}
+$(".person-left-menu li a").click(function(){
+	getMessage(this);
+});
 
-				if (type) {
-					currentPage = 1
-					var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
+function getMessage(e){
+	noMoreData = false
+	var order = $(".person-left-menu li a").index(e);//获取点击之后返回当前a标签index的值
+	switch (order) {
+	// case 0:
+	// 	type = 0;
+	// 	count_class = ''
+	// 	break;
+	case 0:
+		append_class = '.quote-list'
+		count_class = '.quote-count'
+		id = 'quote'
+		type = '1'
+		break;
+	case 1:
+		append_class = '.comment-list'
+		count_class = '.comment-count'
+		id = 'comment'
+		type = '2'
+		break;
+	case 2:
+		append_class = '.like-list'
+		count_class = '.like-count'
+		id = 'like'
+		type = '3'
+		break;
+	case 3:
+		append_class = '.pass-list'
+		count_class = '.pass-count'
+		id = 'pass'
+		type = '4'
+		break;
+	case 4:
+		append_class = '.reject-list'
+		count_class = '.reject-count'
+		id = 'reject'
+		type = '5'
+		break;
+	default:
+		// console.log('这是默认')
+		break;
+	}
 
-					doJavaGet(uri, function(result){
-						if (result.datas.length < 12) {
-							noMoreData = true
-						}
-						// console.log(result)
-						var tpl = document.getElementById(id).innerHTML;
-						var content = template(tpl, {list: result.datas});
-					 	$(append_class).html('')
-						$(append_class).append(content)
+	if (type) {
+	currentPage = 1
+	var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
-					})
-				}
+	doJavaGet(uri, function(result){
+		if (result.datas.length < 12) {
+			noMoreData = true
+		}
+		// console.log(result)
+		var tpl = document.getElementById(id).innerHTML;
+		var content = template(tpl, {list: result.datas});
+		$(append_class).html('')
+		$(append_class).append(content)
 
-        $(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
-    });
-})
+	})
+	}
+
+	$(".cont" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
+}
 
 var resetTimer = null;
 $(window).scroll(function(){

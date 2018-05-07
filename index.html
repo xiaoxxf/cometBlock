@@ -14,6 +14,8 @@
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 	<link rel="stylesheet" href="css/homePage.css" />
+	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/load.css" />
 	<link rel="stylesheet" href="js/plugins/swiper/swiper-4.2.2.min.css">
 
 	<!-- 导航栏 -->
@@ -272,7 +274,7 @@
 
 
 						<div class="meta">
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#comments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%=list[i].review %></a>
+							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%=list[i].review %></a>
 							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart"></i> <%=list[i].likes %></a>
 						</div>
 					</div>
@@ -282,6 +284,64 @@
 		</div>
 	<%}%>
 
+</script>
+<script type="text/html" id="short-comment-commit-layer">
+	<div class="main report-login">
+
+		<h4 class="title">
+		    <div class="normal-title">
+				<a class="active" href="">登录</a>
+				<b>·</b>
+				<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+			</div>
+		</h4>
+		<div class="js-sign-in-container">
+
+			<div class="input-prepend  restyle ">
+				<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+				<i class="fa fa-user"></i>
+			</div>
+			<div class="input-prepend border_radiusB">
+				<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+				<i class="fa fa-unlock-alt"></i>
+
+			</div>
+			<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+			<div class="remember-btn">
+				<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+			</div>
+			<div class="forget-btn">
+				<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="">用手机号重置密码</a>
+					</li>
+
+				</ul>
+			</div>
+
+			<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+				 <span class="ouro">
+						<span class="left"><span class="anim"></span></span>
+						<span class="right"><span class="anim"></span></span>
+				 </span>
+			</input>
+
+			<div class="more-sign">
+				<h6>社交帐号登录</h6>
+				<ul>
+					<li>
+						<img src="img/wechat.png" width="40px">
+					</li>
+					<li>
+						<a href="">其它</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </script>
 
 <script type="text/html" id="news_tpl">
@@ -297,6 +357,8 @@
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/login.js"></script>
 <script src="js/homepage.js">
 </script>
 
