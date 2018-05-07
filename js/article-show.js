@@ -17,7 +17,6 @@ function  ajaxGetReviewDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var commentInfoData = res.datas;
-
             $('title').html(commentInfoData.textTitle)
             console.log(commentInfoData)
             $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
@@ -25,7 +24,10 @@ function  ajaxGetReviewDetail() {
             var commentTpl = $("#template-mian-detail").html();
             var content = template(commentTpl, {list: commentInfoData});
             $(".comment-detail-mian-hook").append(content);
-            // 从消息中心页进来，url不带projectId，需要给projectId赋值后再用projectId去请求项目信息
+            // 作者打开时可以投稿
+            if (userinfo && commentInfoData.creator == userinfo.id) {
+              $('.news_alert_fixed').css('display','')
+            }
         } else {
             layer.msg(res.msg);
         }
@@ -415,30 +417,28 @@ $(".news_alert_fixed").on('click',function (e) {
 		return
 	}
 
-    var area_width
-    var area_height
-    if($(window).width() <= 767)
- 	{
-	 	area_width = '320px'
-	    area_height = '500px'
- 	}else{
- 		 area_width = '520px'
-	     area_height = '600px'
- 	}
-    layer.open({
-        type: 1,
-        shade:0,
-        title: 0,
-        skin: 'layui-layer-report', //加上边框
-        area: [area_width,area_height ], //宽高
-        content: $("#templay-news-fixed").html()
-    });
+  var area_width
+  var area_height
+  if($(window).width() <= 767)
+  {
+    area_width = '320px'
+    area_height = '500px'
+  }else{
+    area_width = '520px'
+    area_height = '600px'
+  }
+  layer.open({
+      type: 1,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      area: [area_width,area_height ], //宽高
+      content: $("#templay-news-fixed").html()
+  });
 
     flag_close = true;
 
 })
-
-//点击显示隐藏
 
 //搜索项目
 var search_page = 1;
@@ -489,5 +489,71 @@ function load_more_search_project_result(){
 function keyEnter(){
 	if(event.keyCode ==13){
    	 	searchSubject();
-  	}
+  }
+}
+
+function sendArticleToProject(e){
+  var self =$(e),
+      projectId = self.data('projectid');
+  layer.open({
+    title: '评分',
+    content: $('#add_score').html(),
+    yes: function(index, layero){
+      var score = parseInt($(".live-rating")[0].innerHTML);
+      debugger
+      if(!score){
+          layer.tips('给这个项目打个分哦', '.my-rating', {
+              tips: [1, '#4fa3ed'],
+              time: 2000
+          });
+          return;
+      }
+      doSendArticle(projectId,score);
+      layer.close(index)
+    }
+  });
+
+  createScore();
+}
+
+// 投稿到项目，即新增长评
+function doSendArticle(projectId,score){
+  var data = {
+    textTitle: $('.comment-detail-title').html(),
+    textContent: $('.review-content').html(),
+    projectId: projectId, //项目Id
+    score: score, //评分
+    type: 2, //长文的type为2
+    userId: userinfo.id, //userId
+  }
+  var uri = 'blockchain/addReview'
+  doPostJavaApi(uri, JSON.stringify(data), function(res){
+    if (res.code == 0) {
+      layer.msg('投稿成功')
+    }else if(res.code == -1){
+      layer.msg('投稿失败，请重试')
+    }
+  }, 'json')
+
+}
+
+function createScore(){
+  $(".my-rating").starRating({
+    strokeColor:'#ffc900',
+    ratedColor:'#ffc900',
+    activeColor:'#ffc900',
+    hoverColor:'#ffc900',
+    strokeWidth: 10,
+    useGradient:false,
+    starSize: 25,
+    initialRating: 0,
+    useFullStars:true,
+    disableAfterRate: false,
+    onHover: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentIndex);
+    },
+    onLeave: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentRating);
+    }
+  });
 }

@@ -14,7 +14,7 @@
 		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 		<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/loading.css">
-
+		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
 		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" href="js/page/jquery.pagination.css">
 		<link rel="stylesheet" href="css/common.css">
@@ -64,6 +64,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div id="comments" class="commment-list comment-list-hook">
 
 
@@ -82,7 +83,7 @@
 			</span>
 			</div>-->
 			<!--新建弹出框-->
-			<div class="news_alert_fixed">
+			<div class="news_alert_fixed" style="display:none">
 				<span class="news_subject_btn"><i class="fa fa-plus"></i></span>
 			</div>
 
@@ -337,6 +338,7 @@
 				</div>
 			</div>
 		</script>
+		<!-- 搜索投稿项目 -->
 		<script id="search_subject_list" type="text/html">
 			<%if(list.length == 0 ){%>
 				<span class="return_result">没有结果</span>
@@ -351,17 +353,26 @@
 						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
 						<div class="meta"></div>
 					</div>
-					<a class="action-btn_push" href="">投稿</a>
+				<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)" href="">投稿</span>
 				</li>
 				<% }%>
 			<%}%>
 			<!-- <span class="load_more_result" onclick="load_more_search_project_result()">查看更多</span> -->
+		</script>
+		<!-- 投稿评分 -->
+		<script id="add_score" type="text/html">
+			<div class="coin-score">
+				请给项目打个分<br/>
+				<span class="my-rating" style="font-size:10px"></span>
+				<span class="live-rating" style="display:none"></span>
+			</div>
 		</script>
 
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/template.js"></script>
+		<script src="js/jquery.star-rating-svg.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src='js/page/jquery.pagination.min.js'></script>
 		<script src="js/common.js"></script>

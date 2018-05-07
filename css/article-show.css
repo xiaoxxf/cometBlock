@@ -658,14 +658,16 @@ a img {
 
 .action-btn_push{
 	position: absolute;
-    top: 45%;
-    right: 20px;
-    display: block;
-    margin-top: -12px;
-    padding: 2px 8px;
-    font-size: 13px;
-    border-radius: 12px;
-    line-height: normal;
-    border: solid 1px rgb(79, 163, 237);
-    float: right;
+  top: 45%;
+  right: 20px;
+  display: block;
+  margin-top: -12px;
+  padding: 2px 8px;
+  font-size: 13px;
+  border-radius: 12px;
+  line-height: normal;
+  border: solid 1px rgb(79, 163, 237);
+  float: right;
+	cursor: pointer;
+	color: rgb(79, 163, 237)
 }
