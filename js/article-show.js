@@ -407,14 +407,14 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
 var flag_close = false;
 
 $(".news_alert_fixed").on('click',function (e) {
-		
+
 	if(flag_close){
 		$('.layui-layer-close2').click();
 		 flag_close = false;
 
 		return
 	}
-	
+
     var area_width
     var area_height
     if($(window).width() <= 767)
@@ -433,16 +433,18 @@ $(".news_alert_fixed").on('click',function (e) {
         area: [area_width,area_height ], //宽高
         content: $("#templay-news-fixed").html()
     });
-    
+
     flag_close = true;
-   
+
 })
 
 //点击显示隐藏
 
 //搜索项目
+var search_page = 1;
+
 function searchSubject(){
-	var search_page = 1;
+  search_page = 1;
 	var key_word = $('.search_subject').val()
 	if (key_word == '') {
 		return false
@@ -453,10 +455,36 @@ function searchSubject(){
 		var search = document.getElementById('search_subject_list').innerHTML;
 		var content = template(search, {list: result.datas});
 		$('.list_item').append(content);
-		
+    $('.load_more_result').css('display', 'block')
 	}, "json");
 }
 
+
+// 加载更多搜索项目的
+var ui = {
+  'loading': false
+}
+function load_more_search_project_result(){
+  if (ui.loading) {
+    return
+  }
+  $('.load_more_result').text('加载中')
+  ui.loading = true
+  search_page ++;
+	var key_word = $('.search_subject').val()
+	if (key_word == '') {
+		return false
+	}
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
+	doJavaGet(uri,function(result){
+		// $('.list_item').html('');
+		var search = document.getElementById('search_subject_list').innerHTML;
+		var content = template(search, {list: result.datas});
+		$('.list_item').append(content);
+    $('.load_more_result').text('加载更多')
+    ui.loading = false
+	}, "json");
+}
 
 function keyEnter(){
 	if(event.keyCode ==13){
