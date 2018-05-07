@@ -26,6 +26,15 @@ function ajaxGetLongCommentReview() {
         } else {
             layer.msg(res.msg);
         }
+
+
+        // 有锚点时，滑动到评论处
+        var url = window.location.toString();//进这个页面的url
+        var id = url.split('#')[1];
+        if(id == 'toComments'){
+           var t = $('#comments').offset().top;
+           $(window).scrollTop(t);//滚动到锚点位置
+        }
     }, "json");
 }
 function initPage(count) {
