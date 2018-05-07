@@ -5,6 +5,34 @@
 // wechatInfo == null ? wechatInfo : JSON.parse(wechatInfo);
 var quotedReviewId = null
 
+window.onload = function(){
+    ajaxGetReviewDetail();
+}
+
+var longCommentCurrentPage = 1 ;
+var pageSize = 5;
+function  ajaxGetReviewDetail() {
+    var reviewId = getUrlParam('reviewId');
+    var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+            var commentInfoData = res.datas;
+
+            $('title').html(commentInfoData.textTitle)
+            console.log(commentInfoData)
+            $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
+            $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
+            var commentTpl = $("#template-mian-detail").html();
+            var content = template(commentTpl, {list: commentInfoData});
+            $(".comment-detail-mian-hook").append(content);
+            // 从消息中心页进来，url不带projectId，需要给projectId赋值后再用projectId去请求项目信息
+        } else {
+            layer.msg(res.msg);
+        }
+        ajaxGetLongCommentReview()
+    }, "json");
+}
+
 $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {
     console.log($(e.currentTarget))
     layer.open({
@@ -261,33 +289,7 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     }, "json");
 })
 
-window.onload = function(){
-    ajaxGetReviewDetail();
-}
 
-var longCommentCurrentPage = 1 ;
-var pageSize = 5;
-function  ajaxGetReviewDetail() {
-    var reviewId = getUrlParam('reviewId');
-    var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
-    doJavaGet(uri, function(res) {
-        if(res != null && res.code == 0) {
-            var commentInfoData = res.datas;
-
-            $('title').html(commentInfoData.textTitle)
-            console.log(commentInfoData)
-            $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
-            $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
-            var commentTpl = $("#template-mian-detail").html();
-            var content = template(commentTpl, {list: commentInfoData});
-            $(".comment-detail-mian-hook").append(content);
-            // 从消息中心页进来，url不带projectId，需要给projectId赋值后再用projectId去请求项目信息
-        } else {
-            layer.msg(res.msg);
-        }
-        ajaxGetLongCommentReview()
-    }, "json");
-}
 //点击提交评论
 $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     var reviewId = getUrlParam('reviewId');
@@ -339,7 +341,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     }
     var data = {
         textTitle: shortTxt,
-        parentId: reviewId, 
+        parentId: reviewId,
         type: 3, //长文的type为2
         userId:userId,
         quote:quote,
