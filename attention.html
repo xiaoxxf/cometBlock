@@ -115,12 +115,12 @@
 									<% } %>
 								</a>
 								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
-								<p>发表了长评</p>
+								<p style="color:rgb(79, 163, 237) ;">发表了长评</p>
 								<p class="comment-title">
 									<a href="comment.html?reviewId=<%:=list[i].reviewId %>"><%:=list[i].textTitle %></a>
 								</p>
 							</div>
-							<div style="display:flex">
+							<div style="display:flex; background-color: #1a92e31c;margin-right: 30px; padding: 20px;" >   
 								<div class="comment-introduce">
 									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
 										<%:=list[i].textContent %>
@@ -151,9 +151,9 @@
 								<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
 							<% } %>
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
-							<p>写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评</p>
+							<p style="color:rgb(79, 163, 237);">写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评</p>
 						</div>
-						<div class="long-comment" style="display:flex">
+						<div class="long-comment" style="display:flex; background-color: #1a92e31c;margin-right: 30px; padding: 20px;">
 							<div class="comment-introduce">
 								<a href="">
 									<%:=list[i].textTitle %>
@@ -184,14 +184,14 @@
 								<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
 							<% } %>
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
-							<p>发表了文章</p>
+							<p style="color:rgb(79, 163, 237);">发表了文章</p>
 							<p class="comment-title">
 								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>">
 									<%:=list[i].textTitle %>
 								</a>
 							</p>
 						</div>
-						<div style="display:flex">
+						<div style="display:flex; background-color: #1a92e31c;margin-right: 30px; padding: 20px;">
 							<div class="comment-introduce">
 								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
 									<%:=list[i].textContent %>
