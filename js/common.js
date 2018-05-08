@@ -139,6 +139,11 @@ $.get("header-tpl.html",function(data){
       $(".navbar-fixed-container-hook .navbar-left .chain-category").addClass('cur-nav');
     }
 
+    if (href.indexOf('attention.html')>0) {
+      $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+      $(".navbar-fixed-container-hook .navbar-left .attetion-category").addClass('cur-nav');
+    }
+
     //页面加载完成之后做账户信息处理
     // var username = $.cookie('username');
     // var userid = $.cookie('userid');

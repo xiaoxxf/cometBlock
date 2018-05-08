@@ -22,7 +22,7 @@ $(function(){
 		userid_search = $.cookie('userid');
 	}
 
-  if(userid_search == undefined){
+  if(!userid_search){
     window.location.href = 'index.html'
   }
 })

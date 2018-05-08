@@ -10,14 +10,46 @@ window.onload = function(){
 
 var tpl_id = 'all_dynamic';
 var currentPage = 1;
+var like = '';
+
+$('.attention_box').on('click', 'span', function(e){
+	var index_menu = $('.attention_box span').index(e.currentTarget);
+	$('.attention_box span').removeClass('dynamic_menu_on_focus');
+	$(e.currentTarget).addClass('dynamic_menu_on_focus');
+	switch (index_menu) {
+		case 0:
+			like = '';
+			break;
+		case 1:
+			like = 1;
+			break;
+		default:
+	}
+
+	getAllUserDynamic();
+
+})
+
+// $('.load_all_user_dynamic').on('click',function(){
+// 	like = '';
+// 	getAllUserDynamic();
+// })
+//
+// $('.load_recommend_dynamic').on('click',function(){
+// 	like = 1;
+// 	getAllUserDynamic();
+// })
 
 function getAllUserDynamic(){
+	if (ui.loading) {
+		return
+	}
   // loadFlag = 1;
   currentPage = 1;
   ui.loading = true;
   ui.noMoreData = false;
 
-  var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12'
+  var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&like=' + like
 
   // 首次加载
   // $('.read-more').css('display','none')
@@ -71,14 +103,18 @@ function loadMoreDynamic(){
   ui.loading = true;
   ui.noMoreData = false;
 
-  var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12'
+	var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&like=' + like
 
   // TODO: loading效果
+	$(".loader1").css('display','flex');
+  $('.load-more-container-wrap').css('display','')
 
   doJavaGet(uri,function(result){
     if (result.datas.length == 0) {
       ui.noMoreData = true
       // TODO: loading效果结束
+			$(".loader1").css('display','none');
+			$(".no-more-hook").fadeIn();
       return
     }
 
@@ -106,9 +142,39 @@ function loadMoreDynamic(){
     var content = template(tpl, {list: result.datas});
     // TODO: loading效果结束
     $('.dynamic_region').append(content)
-    // $('.read-more').css('display','block')
-    // $('.read-more').html('点击加载更多')
+
+		$('.load-more-container-wrap').css('display','none')
+		$(".loader1").css('display','none');
     ui.loading = false;
   })
 
 }
+
+
+
+var resetTimer = null;
+$(window).scroll(function(){
+	if (resetTimer) {
+		clearTimeout(resetTimer)
+	}
+
+	resetTimer = setTimeout(function(){
+
+		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+		// console.log("页面的文档高度 ："+$(document).height());
+		// console.log('浏览器的高度：'+$(window).height());
+
+		var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+
+		if ($(document).height() <= totalheight){
+				//当滚动条到底时,这里是触发内容
+				//异步请求数据,局部刷新dom
+				if (!ui.noMoreData && !ui.loading) {
+					// debugger
+					ui.loading = true;
+					loadMoreDynamic();
+				}
+		}
+	},200)
+})

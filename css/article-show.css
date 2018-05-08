@@ -179,7 +179,7 @@ header {
 	background: #e5e5e5;
 	cursor: auto;
 }
-.btn,
+/* .btn, */
 .review-comment-form .add_comment {
 	outline: 0;
 	display: inline-block;
@@ -670,4 +670,13 @@ a img {
   float: right;
 	cursor: pointer;
 	color: rgb(79, 163, 237)
+}
+
+/* 评论者头像 */
+.review-creator-pic{
+	width: 48px;
+	height: 48px;
+	/* border-radius: 50px; */
+	/* margin-right:10px; */
+	/* margin-bottom:5px; */
 }
