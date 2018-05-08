@@ -2,6 +2,14 @@
 var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 var noMoreData = false
 var dictionary = []
+
+// 微信登录时才显示绑定
+$(function(){
+	if ($.cookie('wechatInfo')) {
+		$('.bind-user').css('display','')
+	}
+})
+
 $(function(){
 	var uri = 'blockchain/quary?parentId=20'
 	doJavaGet(uri, function(result){

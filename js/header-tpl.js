@@ -17,7 +17,7 @@ $(document).ready(function() {
 });
 
 //通知显示隐藏提示面板
-var currentPage = 1
+var currentPage = 1;
 
 $(document).ready(function(){
   $(".login-right").hover(function(){

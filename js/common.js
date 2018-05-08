@@ -18,9 +18,9 @@ var WebApiToken;
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
+// var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
-// var WebApiHostJavaApi = "http://10.0.0.185:8080/";
+var WebApiHostJavaApi = "http://10.0.0.185:8080/";
 
 
 var WebRankHostApi = "//rank.blockcomet.com/"
@@ -137,6 +137,11 @@ $.get("header-tpl.html",function(data){
     if (href.indexOf('chain.html')>0 || href.indexOf('chain-detail.html')>0 || href.indexOf('comment.html')>0 ) {
       $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
       $(".navbar-fixed-container-hook .navbar-left .chain-category").addClass('cur-nav');
+    }
+
+    if (href.indexOf('attention.html')>0) {
+      $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+      $(".navbar-fixed-container-hook .navbar-left .attetion-category").addClass('cur-nav');
     }
 
     //页面加载完成之后做账户信息处理
