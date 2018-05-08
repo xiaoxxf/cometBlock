@@ -6,6 +6,15 @@
 #show_subject,.menu{
 
 }
+.row{
+	background-color: white;
+}
+#show_subject{
+	 background-color: white;
+   min-height: 700px;
+   padding-left: 10%;
+}
+   
 #new_subject{
 	float: right;
 }
@@ -75,4 +84,10 @@ textarea.form-control{
 
 .control-label{
   text-align: left !important
+}
+.allow_submit span{
+	  display: inline-block;
+    margin-left: 10px;
+    position: relative;
+    top: 4px;
 }
