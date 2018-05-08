@@ -327,3 +327,9 @@
 .sign-up-btn{
 	border-bottom: none !important;
 }
+
+.wechat_logo{
+	width:40px;
+	border-radius:50px;
+	cursor: pointer;
+}
