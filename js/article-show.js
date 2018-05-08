@@ -405,7 +405,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
 });
 
 
-//点击悬浮新建
+//点击悬浮新建投稿
 var flag_close = false;
 
 $(".news_alert_fixed").on('click',function (e) {
@@ -439,6 +439,44 @@ $(".news_alert_fixed").on('click',function (e) {
     flag_close = true;
 
 })
+
+
+//点击悬浮新建专题
+var flag_close = false;
+
+$(".news_alert_subject").on('click',function (e) {
+
+	if(flag_close){
+		$('.layui-layer-close2').click();
+		 flag_close = false;
+
+		return
+	}
+
+  var area_width
+  var area_height
+  if($(window).width() <= 767)
+  {
+    area_width = '320px'
+    area_height = '500px'
+  }else{
+    area_width = '520px'
+    area_height = '600px'
+  }
+  layer.open({
+      type: 1,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      area: [area_width,area_height ], //宽高
+      content: $("#templay-news-subject").html()
+  });
+
+    flag_close = true;
+
+})
+
+
 
 //搜索项目
 var search_page = 1;
