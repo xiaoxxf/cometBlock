@@ -254,6 +254,12 @@ a img {
     font-size: 16px;
     color: #999;
 }
+.article-info .real_name a{
+    color: #999;
+}
+.article-info .real_name a:hover{
+  color: #006bb3;
+}
 .long_comment_box,.short_comment_box{
 	padding: 20px;
 	background-color: #1a92e31c;

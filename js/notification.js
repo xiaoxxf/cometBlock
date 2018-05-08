@@ -109,6 +109,8 @@ function getMessage(e){
 	var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
 	// $(".waiting-data").fadeIn();
+	$(".no-more-hook").css('display','none');
+
 
 	doJavaGet(uri, function(result){
 		if (result.datas.length == 0) {

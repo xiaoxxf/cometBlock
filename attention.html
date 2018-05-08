@@ -76,23 +76,21 @@
 					</div>
 
 					<div class="load-more-container-wrap" style="margin-left:45%;">
-	            <div class="container">
-	                    <div class="load-more-wrap load-more-hook">
-	                        <div class="loader1 loader" style="display: none">
-	                            <div></div>
-	                            <div></div>
-	                            <div></div>
-	                        </div>
-	                        <div class="loading-more"  style="display: none">
-	                            加载更多
-	                        </div>
-	                    </div>
-	                    <div class="load-more-wrap no-more-hook" style="display: none">
-	                        <div class="loading-more">
-	                            已无更多数据
-	                        </div>
-	                    </div>
-	                </div>
+	          <div class="load-more-wrap load-more-hook">
+	              <div class="loader1 loader" style="display: none">
+	                  <div></div>
+	                  <div></div>
+	                  <div></div>
+	              </div>
+	              <div class="loading-more"  style="display: none">
+	                  加载更多
+	              </div>
+	          </div>
+	          <div class="load-more-wrap no-more-hook" style="display: none">
+	              <div class="loading-more">
+	                  已无更多数据
+	              </div>
+	          </div>
 	        </div>
 
 				</div>
@@ -119,12 +117,12 @@
 								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
 								<p>发表了长评</p>
 								<p class="comment-title">
-									<a href=""><%:=list[i].textTitle %></a>
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>"><%:=list[i].textTitle %></a>
 								</p>
 							</div>
 							<div style="display:flex">
 								<div class="comment-introduce">
-									<a href="" class="textContent">
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
 										<%:=list[i].textContent %>
 								</div>
 								<div class="comment-icon" style="height: 91.5897px;">
@@ -195,8 +193,9 @@
 						</div>
 						<div style="display:flex">
 							<div class="comment-introduce">
-								<a href="" class="textContent">
-									01—项目概述支付是区块链的杀手级应用，但是目前基于区块链的支付承载能力非常有限。船长找到了2015年支付宝和Visa卡的支付承载数据，和比特币/以太坊进行一个对比。								</a>
+								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
+									<%:=list[i].textContent %>
+								</a>
 							</div>
 							<!-- <div class="comment-icon" style="height: 91.5897px;">
 								<a href="">
