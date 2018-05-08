@@ -98,7 +98,9 @@ a img {
 }
 
 .comment-detail .comment-title a{
-  color: #333333
+  	font-weight: 500;
+    color: #0e0d0d;
+    font-size: 18px;
 }
 
 .comment-detail .comment-title a:hover{
@@ -190,12 +192,9 @@ a img {
 	.comment-detail .comment-title {
 		font-size: 15px;
 		line-height: 20px;
-    width: 100%;
-    margin: 10px 0px;
+	    width: 100%;
+	    margin: 10px 0px;
 	}
-
-
-
 
 	.comment-detail .comment-introduce{
 		min-height: 50px;
