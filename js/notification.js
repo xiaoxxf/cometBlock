@@ -58,7 +58,11 @@ $(".person-left-menu li a").click(function(){
 });
 
 function getMessage(e){
-	noMoreData = false
+	noMoreData = false;
+
+							$('.load-more-container-wrap').css('display','none')
+							$(".loader1").css('display','none');
+
 	var order = $(".person-left-menu li a").index(e);//获取点击之后返回当前a标签index的值
 	switch (order) {
 	// case 0:
@@ -104,15 +108,19 @@ function getMessage(e){
 	currentPage = 1
 	var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
+	// $(".waiting-data").fadeIn();
+
 	doJavaGet(uri, function(result){
-		if (result.datas.length < 12) {
+		if (result.datas.length == 0) {
 			noMoreData = true
 		}
 		// console.log(result)
 		var tpl = document.getElementById(id).innerHTML;
 		var content = template(tpl, {list: result.datas});
-		$(append_class).html('')
-		$(append_class).append(content)
+		// $(".waiting-data").hide();
+
+		$(append_class).html('');
+		$(append_class).append(content);
 
 	})
 	}
@@ -135,15 +143,27 @@ $(window).scroll(function(){
 				currentPage += 1
 				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
+				$(".loader1").css('display','flex');
+				$('.load-more-container-wrap').css('display','')
+
 				doJavaGet(uri, function(result){
 					if (result.datas.length == 0) {
+
+						$(".loader1").css('display','none');
+						$(".no-more-hook").fadeIn();
+
 						noMoreData = true
 					}else{
 						console.log(result.datas)
 						var tpl = document.getElementById(id).innerHTML;
 						var content = template(tpl, {list: result.datas});
 						// $(append_class).html('')
+
+						$('.load-more-container-wrap').css('display','none')
+						$(".loader1").css('display','none');
+
 						$(append_class).append(content)
+
 					}
 				})
 			}
