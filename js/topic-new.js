@@ -26,3 +26,48 @@ document.getElementById("topic_logo_input").addEventListener("change", function(
   };
   reader.readAsDataURL(file);
 }, false);
+
+
+function uploadFile(){
+  let file = $('#topic_logo_input')[0].files[0]
+
+  // debugger
+  if (file == undefined) {
+    return
+  }
+  if (!file.type.match(imageType) || file.size > imageMaxSize) {
+    return
+  }
+
+  var formData = new FormData();
+
+  formData.append('file', file);
+  formData.append(userId, userId);
+
+  $.ajax({
+    url : WebApiHostJavaApi + 'common/upload',
+    type: "post",
+    data: formData,
+    datType: "json",
+    async: false,//使用同步的方式,true为异步方式
+    processData: false,  // 不处理数据
+    contentType: false,   // 不设置内容类型
+
+    success:function(data){
+      // ui.fileUpLoading = false
+      // project_logo
+      if (data.code == 0) {
+        $('#project_logo_file').val(data.datas[0])
+        // layer.msg('上传成功')
+      }else if(data.code == -1){
+        lay.msg(data.msg)
+      }
+    },
+
+  });
+}
+
+
+function createTopic(){
+  
+}

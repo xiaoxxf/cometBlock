@@ -1,7 +1,12 @@
 //重置密码校验
 var userinfo = JSON.parse(localStorage.getItem('userinfo'));
-var noMoreData = false
-var dictionary = []
+var ui = {
+	"noData": false,
+	"noMoreData": false,
+	"loading": false
+}
+
+var dictionary = [];
 $(function(){
 	var uri = 'blockchain/quary?parentId=20'
 	doJavaGet(uri, function(result){
@@ -58,10 +63,11 @@ $(".person-left-menu li a").click(function(){
 });
 
 function getMessage(e){
-	noMoreData = false;
+	ui.noMoreData = false;
+	ui.loading = true;
 
-							$('.load-more-container-wrap').css('display','none')
-							$(".loader1").css('display','none');
+	$('.load-more-container-wrap').css('display','none')
+	$(".loader1").css('display','none');
 
 	var order = $(".person-left-menu li a").index(e);//获取点击之后返回当前a标签index的值
 	switch (order) {
@@ -114,7 +120,7 @@ function getMessage(e){
 
 	doJavaGet(uri, function(result){
 		if (result.datas.length == 0) {
-			noMoreData = true
+			ui.noMoreData = true
 		}
 		// console.log(result)
 		var tpl = document.getElementById(id).innerHTML;
@@ -124,6 +130,7 @@ function getMessage(e){
 		$(append_class).html('');
 		$(append_class).append(content);
 
+		ui.loading = false;
 	})
 	}
 
@@ -141,8 +148,9 @@ $(window).scroll(function(){
 		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
 
 		if ($(document).height() <= totalheight && !noMoreData){
-			if (type) {
+			if (type && !ui.loading && !ui.noMoreData) {
 				currentPage += 1
+				ui.loading = true
 				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
 				$(".loader1").css('display','flex');
@@ -154,7 +162,7 @@ $(window).scroll(function(){
 						$(".loader1").css('display','none');
 						$(".no-more-hook").fadeIn();
 
-						noMoreData = true
+						ui.noMoreData = true
 					}else{
 						console.log(result.datas)
 						var tpl = document.getElementById(id).innerHTML;
@@ -165,7 +173,7 @@ $(window).scroll(function(){
 						$(".loader1").css('display','none');
 
 						$(append_class).append(content)
-
+						ui.loading = false
 					}
 				})
 			}
