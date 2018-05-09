@@ -69,8 +69,19 @@ a img {
 	   top: 30px;
     position: absolute;
 }
-
-
+.hot_main_area a{
+    padding: 17px 10px;
+}
+.hot_main_area .hot-span-item{
+	border-bottom: solid 2px rgb(79, 163, 237);
+    color: rgb(79, 163, 237);
+    text-decoration: none;
+}
+.hot_main_area .hot-span-item:visited{
+	border-bottom: solid 2px rgb(79, 163, 237);
+    color: rgb(79, 163, 237);
+    text-decoration: none;
+}
 .hot_zone_title,.hot_zone_title_right{
 	  height: 48px;
     padding: 10px;
@@ -212,15 +223,7 @@ a img {
     width: 80px;
     height: 63px;
     /* margin: 0px 30px; */
-		position: relative;
-		/* background-color: #fff; */
-		/* -moz-box-shadow: 2px 2px 5px #a79e9e; */
-		/* -webkit-box-shadow: 2px 2px 5px #a79e9e; */
-		/* box-shadow: 2px 2px 5px #a79e9e; */
-		/* border-radius: 10px; */
-
-		/* margin-bottom: 5px; */
-		/* margin-top: 115px; */
+	position: relative;
     border:1px solid #a79e9e;
 }
 
@@ -451,4 +454,5 @@ a img {
 .hot-span{
 	color: black
 }
+
 /*广告位*/
