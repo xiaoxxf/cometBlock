@@ -159,3 +159,8 @@ label{
   top: 10px;
   right: 125px;
 }
+
+/*footer样式复写*/
+.footer-detail .container{
+    background-color: #f3f6f7;
+}

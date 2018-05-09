@@ -26,7 +26,9 @@ function  ajaxGetReviewDetail() {
             $(".comment-detail-mian-hook").append(content);
             // 作者打开时可以投稿
             if (userinfo && commentInfoData.creator == userinfo.id) {
-              $('.news_alert_fixed').css('display','')
+              $('.news_alert_project').css('display','')
+              $('.news_alert_subject').css('display','')
+
             }
         } else {
             layer.msg(res.msg);
@@ -590,3 +592,25 @@ function createScore(){
     }
   });
 }
+
+
+// 鼠标悬停时提示
+$('.news_alert_project').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    layer.tips('投稿到项目', '.news_alert_project', {
+        tips: [1, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.closeAll()
+  };
+})
+
+$('.news_alert_subject').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    layer.tips('投稿到专题', '.news_alert_subject', {
+        tips: [1, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.closeAll()
+  };
+})

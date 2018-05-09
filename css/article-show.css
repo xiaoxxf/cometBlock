@@ -574,7 +574,7 @@ a img {
 
 /* 投稿 */
 
-.news_alert_fixed{
+.news_alert_project{
 	right: 50px;
   bottom: 150px;
   position: fixed;
@@ -602,7 +602,7 @@ a img {
     top: 12px;
     left: 12px;
 }
-    
+
 /*测试*/
 .modal-content{
 	border: none;

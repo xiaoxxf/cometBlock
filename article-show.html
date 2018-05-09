@@ -83,10 +83,10 @@
 			</span>
 			</div>-->
 			<!--新建弹出框-->
-			<div class="news_alert_fixed" style="display:none">
+			<div class="news_alert_project" style="display:none" >
 				<span class="news_subject_btn"><i class="fa fa-plus fa-2x"></i></span>
 			</div>
-			<div class="news_alert_subject">
+			<div class="news_alert_subject" style="display:none">
 				<span class="news_subject_btn"><i class="fa fa-share-alt fa-2x"></i></span>
 			</div>
 
@@ -339,10 +339,10 @@
 				</div>
 			</div>
 		</script>
-		
+
 		<!--投稿专题彈窗-->
 		<script type="text/html" id="templay-news-subject">
-			<div class="modal-content">
+			<div class="modal-content" onmouseover="showSendToSubject()">
 				<div class="modal-header">
 					<h4 class="modal-title">投稿到专题
 	      			<a class="new-subject-btn">
@@ -372,7 +372,7 @@
 				</div>
 			</div>
 		</script>
-		
+
 		<!-- 搜索投稿项目 -->
 		<script id="search_subject_list" type="text/html">
 			<%if(list.length == 0 ){%>
