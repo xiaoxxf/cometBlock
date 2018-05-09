@@ -640,7 +640,7 @@ a img {
     border-radius: 40px;
     font-size: 15px;
 }
-.list_item{
+.list_item,.list_subject_item{
 	margin-top: 10px;
 }
 
@@ -667,7 +667,7 @@ a img {
 	height: 50px;
 	margin-right: 10px;
 }
-.collection-info{
+.collection-info,.collection-subject-info{
 	display: inline-block;
     position: absolute;
 }
@@ -677,7 +677,7 @@ a img {
     color: #333;
     display: block;
 }
-.collection-info .meta{
+.collection-info .meta,.subject-meta{
 	font-size: 12px;
     color: #969696;
     display: inline-block;

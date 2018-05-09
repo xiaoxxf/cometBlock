@@ -123,11 +123,6 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
     });
 });
 
-
-
-
-
-
 // 点击编辑短文
 $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
   var self = $(e.currentTarget)
