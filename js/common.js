@@ -20,7 +20,7 @@ var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 
-// var WebApiHostJavaApi = "http://10.0.0.185:8080/";
+// var WebApiHostJavaApi = "http://10.0.0.186:8080/";
 
 
 var WebRankHostApi = "//rank.blockcomet.com/"
