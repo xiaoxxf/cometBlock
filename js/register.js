@@ -1,3 +1,4 @@
+(function(){
 //输入框校验
 function RegisterFromValid() {
 	var realName = $("#realName").val();
@@ -42,17 +43,45 @@ function RegisterFromValid() {
 	return true;
 
 }
+function RegistergainCodeValid() {
+	var realName = $("#realName").val();
+	var tel = $("#session_phone").val();
+	var userPwd = $("#session_password").val();
+	if(realName == "") {
+		layer.tips('用戶名不能为空', '#realName', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+	if(tel == "") {
+		layer.tips('手机号不能为空', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+	if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
+		layer.tips('输入手机错误', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+	return true;
+
+}
 
 //昵称手机号失去焦点事件
 $("#realName").blur(function() {
-	if(RegisterFromValid()){
+	if(RegistergainCodeValid()){
         gainCode()
 	}
 
 });
 
 $("#session_phone").blur(function() {
-    if(RegisterFromValid()){
+    if(RegistergainCodeValid()){
         gainCode()
     }
 });
@@ -119,6 +148,7 @@ function getCode() {
 	}, "json");
 
 }
+
 var count = 60;
 var countdown;
 
@@ -131,8 +161,9 @@ function dingshiqi() {
 
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
-		count = 60
+		count = 60;
 	}
+	
 
 }
 
@@ -267,3 +298,4 @@ function loginFromValid() {
 	return true;
 
 }
+})();
