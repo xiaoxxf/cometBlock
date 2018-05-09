@@ -86,11 +86,12 @@
 			<div class="news_alert_project" style="display:none" >
 				<span class="news_subject_btn"><i class="fa fa-plus fa-2x"></i></span>
 			</div>
-			<div class="news_alert_subject" style="display:none">
+			<div class="news_alert_subject" style="display:none;">
 				<span class="news_subject_btn"><i class="fa fa-share-alt fa-2x"></i></span>
 			</div>
 
 	</div>
+		<!-- 举报弹框  -->
 		<script type="text/html" id="template-report-popup">
 			<div id='report_value'>
 				<ul>
@@ -124,7 +125,7 @@
 				<input type='submit' class='btn-report' value='举报'>
 			</div>
 		</script>
-		<!--引入弹框-->
+		<!--登录弹框-->
 		<script type="text/html" id="template-reply">
 			<div class="main report-login">
 
@@ -307,7 +308,8 @@
 				</div>
 			</section>
 		</script>
-		<!--新建项目彈窗-->
+
+		<!--投稿到项目彈窗-->
 		<script type="text/html" id="templay-news-fixed">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -319,25 +321,37 @@
 				</div>
 				<div class="modal-body">
 					<div class="search">
-						<input type="search" name="search-self" class="search_subject" onkeydown="keyEnter()" placeholder="搜索项目">
-						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
+						<input type="search" name="search-self" class="search_project" onkeydown="keyEnterSearchProject()" placeholder="搜索项目">
+						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
 					</div>
 					<ul class="list_item">
-						<!--<li class="">
-								<a href="/c/4c53c6129281" class="avatar-collection">
-									<img src="img/banner.png" class="title_logo">
-								</a>
-								<div class="collection-info">
-									<a href="" class="collection-name">彗星</a>
-									<div class="meta">熙沅 编</div>
-								</div>
-								<a class="action-btn_push" href="">投稿</a>
-						</li> -->
+
 					</ul>
-					<span class="load_more_result" onclick="load_more_search_project_result()">查看更多</span>
+					<span class="load_more_project_result" onclick="load_more_search_project_result()">查看更多</span>
 
 				</div>
 			</div>
+		</script>
+
+		<!-- 搜索 投稿 项目 -->
+		<script id='search_project_list' type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="return_result">没有结果</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+
+				<li class="">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<img src="<%=list[i].projectLogo %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
+						<div class="meta"></div>
+					</div>
+					<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)">投稿</span>
+				</li>
+				<% }%>
+			<%}%>
 		</script>
 
 		<!--投稿专题彈窗-->
@@ -352,49 +366,40 @@
 				</div>
 				<div class="modal-body">
 					<div class="search">
-						<input type="search" name="search-self" class="search_subject"  placeholder="搜索专题">
-						<a class="search-subject-icon" ><i class="fa fa-search"></i></a>
+						<input type="search" name="search-self" class="search_subject" onkeydown="keyEnterSearchSubject()" placeholder="搜索专题">
+						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
 					</div>
 					<ul class="list_subject_item">
-						<li class="">
-							<a href="/c/4c53c6129281" class="avatar-collection">
-								<img src="img/banner.png" class="subject_title_logo">
-							</a>
-							<div class="collection-subject-info">
-								<a href="" class="collection-subject-name">彗星</a>
-								<div class="subject-meta">熙沅 编</div>
-							</div>
-							<a class="action-btn_push" href="">投稿</a>
-						</li> 
+
 					</ul>
-					<span class="load_more_result">查看更多</span>
+					<span class="load_more_subject_result" onclick="load_more_search_subject_result()">查看更多</span>
 
 				</div>
 			</div>
 		</script>
 
-		<!-- 搜索投稿项目 -->
+		<!-- 搜索 投稿 专题 -->
 		<script id="search_subject_list" type="text/html">
 			<%if(list.length == 0 ){%>
 				<span class="return_result">没有结果</span>
 			<%}else{%>
 				<%for(var i = 0; i < list.length; i++) {%>
-
-				<li class="">
-					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
-						<img src="<%=list[i].projectLogo %>" class="title_logo">
-					</a>
-					<div class="collection-info">
-						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
-						<div class="meta"></div>
-					</div>
-				<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)" href="">投稿</span>
-				</li>
+					<li class="">
+						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+							<img src="<%=list[i].topicPic %>" class="title_logo">
+						</a>
+						<div class="collection-info">
+							<a class="collection-name"><%=list[i].topic %></a>
+							<div class="subject-meta">创建人: <%=list[i].realName %></div>
+							<div class="meta"></div>
+						</div>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>'>投稿</span>
+					</li>
 				<% }%>
 			<%}%>
-			<!-- <span class="load_more_result" onclick="load_more_search_project_result()">查看更多</span> -->
 		</script>
-		<!-- 投稿评分 -->
+
+		<!-- 投稿到项目时评分 -->
 		<script id="add_score" type="text/html">
 			<div class="coin-score">
 				请给项目打个分<br/>

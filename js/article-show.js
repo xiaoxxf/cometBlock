@@ -3,7 +3,11 @@
 // var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 // var wechatInfo = $.cookie('wechatInfo');
 // wechatInfo == null ? wechatInfo : JSON.parse(wechatInfo);
-var quotedReviewId = null
+var quotedReviewId = null;
+var ui = {
+  'loading': false,
+  'noMoreData': false,
+}
 
 window.onload = function(){
     ajaxGetReviewDetail();
@@ -402,14 +406,16 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
 });
 
 
-//点击悬浮新建投稿
-var flag_close = false;
+//点击悬浮新建投稿到项目
+var flag_close_project = false;
 
+var project_alert_close_index = null;
 $(".news_alert_project").on('click',function (e) {
 
-	if(flag_close){
-		$('.layui-layer-close2').click();
-		 flag_close = false;
+	if(flag_close_project){
+		// $('.layui-layer-close2').click();
+    layer.close(project_alert_close_index);
+		flag_close_project = false;
 
 		return
 	}
@@ -424,7 +430,7 @@ $(".news_alert_project").on('click',function (e) {
     area_width = '520px'
     area_height = '600px'
   }
-  layer.open({
+  project_alert_close_index = layer.open({
       type: 1,
       shade:0,
       title: 0,
@@ -433,19 +439,21 @@ $(".news_alert_project").on('click',function (e) {
       content: $("#templay-news-fixed").html()
   });
 
-    flag_close = true;
+    flag_close_project = true;
 
 })
 
 
-//点击悬浮新建专题
-var flag_close = false;
+//点击悬浮投稿到专题
+var flag_close_subject = false;
+var subject_alert_close_index = null;
 
 $(".news_alert_subject").on('click',function (e) {
 
-	if(flag_close){
-		$('.layui-layer-close2').click();
-		 flag_close = false;
+	if(flag_close_subject){
+		// $('.layui-layer-close2').click();
+    layer.close(subject_alert_close_index);
+    flag_close_subject = false;
 
 		return
 	}
@@ -460,7 +468,7 @@ $(".news_alert_subject").on('click',function (e) {
     area_width = '520px'
     area_height = '600px'
   }
-  layer.open({
+  subject_alert_close_index = layer.open({
       type: 1,
       shade:0,
       title: 0,
@@ -469,64 +477,76 @@ $(".news_alert_subject").on('click',function (e) {
       content: $("#templay-news-subject").html()
   });
 
-    flag_close = true;
+  flag_close_subject = true;
 
 })
 
 
 
 //搜索项目
-var search_page = 1;
-
-function searchSubject(){
-  search_page = 1;
-	var key_word = $('.search_subject').val()
-	if (key_word == '') {
+var search_page_project = 1;
+var key_word_project = '';
+// 搜索项目
+function searchProject(){
+  ui.loading = true;
+  ui.noMoreData = false;
+  search_page_project = 1;
+	key_word_project  = $('.search_project').val()
+	if (key_word_project  == '') {
 		return false
 	}
-	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page_project + '&pageSize=' + pageSize
+            + '&projectName=' + key_word_project
 	doJavaGet(uri,function(result){
-		$('.list_item').html('');
-		var search = document.getElementById('search_subject_list').innerHTML;
-		var content = template(search, {list: result.datas});
-		$('.list_item').append(content);
-    $('.load_more_result').css('display', 'block')
+    $('.list_item').html('');
+    var search = document.getElementById('search_project_list').innerHTML;
+    var content = template(search, {list: result.datas});
+    $('.list_item').append(content);
+    $('.load_more_project_result').css('display', 'block')
+    // 有结果时显示加载更多
+    if (result.datas.length != 0) {
+      $('.load_more_subject_result').css('display', 'block')
+    }
+    ui.loading = false;
 	}, "json");
 }
-
-
-// 加载更多搜索项目的
-var ui = {
-  'loading': false
+// 回车搜索项目
+function keyEnterSearchProject(){
+	if(event.keyCode ==13){
+   	 	searchProject();
+  }
 }
+
+// 加载更多搜索项目
 function load_more_search_project_result(){
-  if (ui.loading) {
+  if (ui.loading || ui.noMoreData) {
     return
   }
-  $('.load_more_result').text('加载中')
-  ui.loading = true
-  search_page ++;
-	var key_word = $('.search_subject').val()
-	if (key_word == '') {
-		return false
-	}
-	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page + '&pageSize=' + pageSize + '&projectName=' + key_word
+  $('.load_more_project_result').text('加载中')
+  ui.loading = true;
+
+  search_page_project ++;
+
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page_project + '&pageSize=' + pageSize
+            + '&projectName=' + key_word_project
 	doJavaGet(uri,function(result){
 		// $('.list_item').html('');
-		var search = document.getElementById('search_subject_list').innerHTML;
-		var content = template(search, {list: result.datas});
-		$('.list_item').append(content);
-    $('.load_more_result').text('加载更多')
-    ui.loading = false
+    if (result.datas.length == 0) {
+      ui.noMoreData = true;
+      $('.load_more_project_result').text('已无更多数据');
+    }else{
+      var search = document.getElementById('search_project_list').innerHTML;
+  		var content = template(search, {list: result.datas});
+  		$('.list_item').append(content);
+      $('.load_more_project_result').text('加载更多')
+      ui.loading = false
+    }
+
 	}, "json");
 }
 
-function keyEnter(){
-	if(event.keyCode ==13){
-   	 	searchSubject();
-  }
-}
 
+// 投稿到项目按钮，弹出评分
 function sendArticleToProject(e){
   var self =$(e),
       projectId = self.data('projectid');
@@ -571,7 +591,7 @@ function doSendArticle(projectId,score){
   }, 'json')
 
 }
-
+// 星星评分
 function createScore(){
   $(".my-rating").starRating({
     strokeColor:'#ffc900',
@@ -593,24 +613,88 @@ function createScore(){
   });
 }
 
+var search_subject_page = 1;
+var key_word_subject = '';
+// 搜索专题
+function searchSubject(){
+  ui.loading = true;
+  ui.noMoreData = false;
+  search_page = 1;
+	var key_word_subject = $('.search_subject').val()
+	if (key_word_subject == '') {
+		return false
+	}
+	var uri = 'topic/seachTopic?currentPage=' + search_subject_page + '&pageSize=' + pageSize
+            + '&topic=' + key_word_subject
+	doJavaGet(uri,function(result){
+
+		$('.list_subject_item').html('');
+		var search = document.getElementById('search_subject_list').innerHTML;
+		var content = template(search, {list: result.datas});
+		$('.list_subject_item').append(content);
+    // 有结果时显示加载更多
+    if (result.datas.length != 0) {
+      $('.load_more_subject_result').css('display', 'block')
+    }
+	}, "json");
+}
+
+// 回车搜索专题
+function keyEnterSearchSubject(){
+  if(event.keyCode ==13){
+    searchSubject();
+  }
+}
+
+// 加载更多搜索专题的结果
+function load_more_search_subject_result(){
+  if (ui.loading || ui.noMoreData) {
+    return
+  }
+  ui.loading = true;
+  search_page++;
+
+  var uri = 'topic/seachTopic?currentPage=' + search_subject_page + '&pageSize=' + pageSize
+            + '&topic=' + key_word_subject
+  doJavaGet(uri,function(result){
+    if (result.datas.length == 0) {
+      ui.noMoreData = true;
+    }else {
+      var search = document.getElementById('search_subject_list').innerHTML;
+      var content = template(search, {list: result.datas});
+      $('.list_subject_item').append(content);
+      $('.load_more_subject_result').css('display', 'block')
+    }
+    ui.loading = false;
+  }, "json");
+}
+
+// 投稿到专题
+function sendArticleToSubject(e){
+  var self =$(e),
+      topicId = self.data('subjectid');
+
+}
 
 // 鼠标悬停时提示
-//$('.news_alert_project').on("mouseenter mouseleave", function(e){
-//if(e.type == "mouseenter"){
-//  layer.tips('投稿到项目', '.news_alert_project', {
-//      tips: [1, '#4fa3ed']
-//  });
-//}else if(e.type == "mouseleave"){
-//  layer.closeAll()
-//};
-//})
-//
-//$('.news_alert_subject').on("mouseenter mouseleave", function(e){
-//if(e.type == "mouseenter"){
-//  layer.tips('投稿到专题', '.news_alert_subject', {
-//      tips: [1, '#4fa3ed']
-//  });
-//}else if(e.type == "mouseleave"){
-//  layer.closeAll()
-//};
-//})
+var index_project = null;
+$('.news_alert_project').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    index_project  = layer.tips('投稿到项目', '.news_alert_project', {
+        tips: [4, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.close(index_project )
+  };
+})
+
+var index_subject = null;
+$('.news_alert_subject').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    index_subject = layer.tips('投稿到专题', '.news_alert_subject', {
+        tips: [4, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.close(index_subject)
+  };
+})

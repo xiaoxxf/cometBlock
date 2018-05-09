@@ -105,7 +105,7 @@ function createTopic(){
 
   var data = {
     'topicPic':  newTopicForm.topic_logo_file_name.value,
-    'topic':    newTopicForm.topic_name.value,//专题名称
+    'topic':    newTopicForm.topic_name.value, //专题名称
     'description': newTopicForm.topic_description.value,
     'topicType': topicType, //0->投稿的文章需要审核， 1->不需要审核
     'creator': userinfo.id,
@@ -115,8 +115,10 @@ function createTopic(){
   ui.submiting = true;
   // data = JSON.stringify(data);
 
-  var uri = 'topic/addtopic';
-  doPostJavaApi(uri,data,function(){
+  var uri = 'topic/addtopic?topicPic=' + data.topicPic + '&topic=' + data.topic + '&description=' + data.description
+            + '&topicType=' + data.topicType + '&creator=' + data.creator + '&password=' + data.password;
+
+  doJavaGet(uri, function(result){
     ui.submiting = false
     if (result.code == 0) {
       layer.msg('提交成功，请等待审核', {
@@ -131,33 +133,7 @@ function createTopic(){
     }else if(result.code == -1){
       layer.msg(result.msg)
     }
-  },'json')
-
-  // $.ajax({
-  //   type: 'POST',
-  //   url : WebApiHostJavaApi + '',
-  //   data: JSON.stringify(data),
-  //   dataType : 'json',
-  //   contentType: 'application/json; charset=UTF-8',
-  //
-  //   beforeSend: function(){
-  //     ui.submiting = true
-  //   },
-  //   success: function (result) {
-  //     ui.submiting = false
-  //     if (result.code == 0) {
-  //       layer.msg('提交成功，请等待审核', {
-  //         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-  //         end:function(){
-  //         // window.location.href='chain.html';
-  //         }
-  //       });
-  //     }else if(result.code == -1){
-  //       layer.msg(result.msg)
-  //     }
-  //   },
-  // });
-
+  })
 }
 
 

@@ -562,7 +562,7 @@ a img {
   height: 30px;
   margin: 20px 10px;
 }
-.load_more_result{
+.load_more_project_result,.load_more_subject_result{
 	line-height: 30px;
 	display: block;
 	height: 30px;
@@ -572,11 +572,12 @@ a img {
 	display: none;
 }
 
+
 /* 投稿 */
 
 .news_alert_project{
 	right: 50px;
-  bottom: 150px;
+  bottom: 70px;
   position: fixed;
   width: 50px;
   height: 50px;
@@ -588,7 +589,7 @@ a img {
 .news_alert_subject{
 	margin-bottom: 50px;
 	right: 50px;
-  bottom: 150px;
+  bottom: 80px;
   position: fixed;
   width: 50px;
   height: 50px;
@@ -645,17 +646,23 @@ a img {
 
 .list_item li{
 	position: relative;
-    padding: 20px;
-    border-bottom: 1px solid #f0f0f0;
-    line-height: normal;
+	padding: 20px;
+	border-bottom: 1px solid #f0f0f0;
+	line-height: normal;
 }
+
+.list_subject_item{
+	margin-top: 10px;
+}
+
 .list_subject_item li{
 	position: relative;
-    padding: 20px;
-    border-bottom: 1px solid #f0f0f0;
-    line-height: normal;
-}   
-  .title_logo,.subject_title_logo{
+	padding: 20px;
+	border-bottom: 1px solid #f0f0f0;
+	line-height: normal;
+}
+
+.title_logo{
 	width: 50px;
 	height: 50px;
 	margin-right: 10px;
