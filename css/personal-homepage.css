@@ -293,7 +293,7 @@ a img {
 	color: #006bb3;
 }
 /*创建的专题*/
-.create_subject{
+.create_subject,.create_topic_list{
 	margin-top: 15px;
 }
 .article-count{
@@ -310,11 +310,11 @@ a img {
 .pay-attention a:first-child{
 	color: #333;
 }
-.create_new_subject{
+.create_new_subject,.create_topic_list{
 	margin-top:10px;
   margin-bottom: 10px;
 }
-.create_new_subject_btn{
+.create_new_subject_btn,.create_new_topic_list_btn{
 	color: #006bb3 !important;
     display: block;
     text-align: center;
