@@ -225,7 +225,7 @@
             <div class="item">
                 <span class="desc-title">白皮书</span>:
                 <%if(list.whitePaper.length ==0 ){%>
-                  <span class="desc-title">暂无白皮书</span>
+                  <span class="desc-detail">暂无白皮书</span>
                 <%}else{%>
                 <a target="_blank" href="<%:=list.whitePaper%>" class="desc-detail">点击查看</a>
                 <%}%>
@@ -261,10 +261,17 @@
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
         <span class="comment-info">
-        <a href="personal-homepage.html?userId=<%=list[i].creator %>" class=""><%:=list[i].realName%></a>
-        <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
-        <span class="comment-time " title="2017-12-03 09:47:30">
-        <%:=list[i].createTime%>
+        <a href="personal-homepage.html?userId=<%=list[i].creator %>">
+        <%if(list[i].userPic == null ){%>
+          <img src="img/normal-user.png" class="article-creator-pic"/>
+        <%} else {%>
+          <img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+        <% } %>
+        </a>
+        <a href="personal-homepage.html?userId=<%=list[i].creator %>" class=""><%:=list[i].realName%> </a>
+        <span class="allstar<%:=list[i].score*5%>" title="推荐"></span>
+        <span class="comment-time ">
+          <%:=list[i].createTime %>
         </span>
         </span>
         <div class="long-comment-article-title">

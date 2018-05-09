@@ -3,8 +3,10 @@
 }
 
 .submit_comment{
-  background-color: #77DDFF	!important;
-  color: #1E90FF 		 !important
+  background-color: white	!important;
+  color: #006bb3 		 !important;
+  border: solid 1px #006bb3;
+  margin-right :100px !important;
 }
 
 

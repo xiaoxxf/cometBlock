@@ -116,11 +116,13 @@
 								</a>
 								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
 								<p style="color:rgb(79, 163, 237) ;">发表了长评</p>
+								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+
 								<p class="comment-title">
 									<a href="comment.html?reviewId=<%:=list[i].reviewId %>"><%:=list[i].textTitle %></a>
 								</p>
 							</div>
-							<div style="display:flex; background-color: #1a92e31c;margin-right: 30px; padding: 20px;" >   
+							<div style="display:flex; background-color: #1a92e31c;margin-right: 30px; padding: 20px;" >
 								<div class="comment-introduce">
 									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
 										<%:=list[i].textContent %>

@@ -101,18 +101,18 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!--创建的专题-->
 								<div class="hot_zone side create_topic_list">
 									<div class="pay-attention created_topic_list">
 										<span class="">我创建的专题</span>
 										<div class="create_topic_list">
-											<a href="my-topic-list.html" class="create_new_topic_list_btn"><i class="fa fa-plus"></i>创建新专题</a>
+											<a href="topic-new.html" class="create_new_topic_list_btn"><i class="fa fa-plus"></i>创建新专题</a>
 										</div>
 									</div>
-									<div class="load-more-project">
+									<!-- <div class="load-more-project">
 										查看更多
-									</div>
+									</div> -->
 								</div>
 								<!--创建的项目-->
 								<div class="hot_zone side create_subject">
@@ -150,9 +150,10 @@
 						<div class="article-content">
 							<div class="article-info">
 								<span class="real_name">我的长评：评论了
-									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
-									<%:=list[i].projectBigName %>
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
+										<%:=list[i].projectBigName %>
 									</a>
+									<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
 								</span>
 							</div>
 							<div class="long_comment_box" style="display:flex">
@@ -185,7 +186,12 @@
 				<div class="article-detail">
 						<div class="article-content">
 							<div class="article-info">
-								<span class="real_name">我的短评：评论了<%:=list[i].projectBigName %></span>
+								<span class="real_name">我的短评：评论了
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
+										<%:=list[i].projectBigName %>
+									</a>
+									<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+								</span>
 							</div>
 							<div class="short_comment_box" style="display:flex">
 								<div class="article-introduce">
@@ -248,28 +254,30 @@
 					<div class="article-content">
 						<div class="article-info">
 							<span class="real_name">我的长评：评论了
-								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
 								<%:=list[i].projectBigName %>
 								</a>
+								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
 							</span>
 						</div>
 						<div class="long_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>&projectId=<%:=list[i].projectId %>" class="long_comment_title article_title"><%:=list[i].textTitle %></a>
-								<p href="" class="article_content">
+								<a class="article_title"><%:=list[i].textTitle %></a>
+								<p>
 									<%:=list[i].textContent %>
 								</p>
 							</div>
 							<div class="article-icon">
-								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId%>">
 									<img class="article-img" src="<%:=list[i].projectLogo %>">
 								</a>
 							</div>
 						</div>
-
+							<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></a>
+							<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].review %></i><%:=list[i].likes %></span>-->
 						<div class="meta">
-							<a class="article-time"><%:=list[i].createTime %></a>
-							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments	" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+							<a class="article-time"><%=list[i].createTime %></a>
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
 							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>
@@ -286,7 +294,9 @@
 			<div class="article-detail">
 					<div class="article-content">
 						<div class="article-info">
-							<span class="real_name">我的短评：评论了<%:=list[i].projectBigName %></span>
+							<span class="real_name">我的短评：评论了<%:=list[i].projectBigName %>
+								<span class="allstar<%:=list[i].score*10%> rating" title="推荐" class="targetProjectBigName"></span>
+							</span>
 						</div>
 						<div class="short_comment_box" style="display:flex">
 							<div class="article-introduce">

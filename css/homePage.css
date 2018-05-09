@@ -119,6 +119,9 @@ a img {
 }
 .hot_zone_coin .hot_coin_region .coin-detail img{
   margin-left: 10px;
+  margin-top: 30px;
+  width:80px;
+  height:80px;
 }
 .hot_zone_coin{
 		height: 200px
@@ -127,8 +130,9 @@ a img {
 .hot_zone_coin .hot_coin_region .project-name{
 	margin-top:10px;
 	margin-bottom: 10px;
-  	text-align: center;
-  	color: #333;
+  text-align: center;
+  color: #333;
+  min-height: 20px;
 }
 
 .hot_zone_coin .hot_coin_region .score{
@@ -257,8 +261,8 @@ a img {
 
 
 .article-detail .article-title{
-    font-weight: bold;
-    font-size: 17px;
+    font-weight: 450;
+    font-size: 16px;
     line-height: 20px;
     margin: 15px 0px;
     width: 80%;
@@ -287,7 +291,9 @@ a img {
 }
 
 .article-detail .article-introduce .textContent{
-  color: #333333
+  /* color: #333333 */
+  color: #696969
+
 }
 
 .article-detail .article-introduce .textContent:hover{
