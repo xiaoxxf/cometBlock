@@ -303,7 +303,7 @@ $("#head_search").blur(function(e){
   $(liDown).removeClass('nav_search_list_focus')
   $(liDown[0]).addClass('nav_search_list_focus')
 	$(".nav_search_list").css("display","none");
-  list_show_flag = false;
+  	list_show_flag = false;
 });
 
 // 搜索项目

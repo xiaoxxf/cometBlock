@@ -129,7 +129,17 @@
 								<div class="hot_zone">
 										<div class="hot_review_title">
 												<span class="hot_block" style="margin-top:10px"></span>
-												<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门评测</a></span>
+												<!--<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门推荐</a></span>-->
+												<span class="hot_main_area">
+													<a href="hot-article.html" class="hot-span hot-span-item">热门推荐</a>
+													<a href="" class="hot-span ">编辑推荐</a>
+													<a href="" class="hot-span ">项目评测</a>
+													<a href="" class="hot-span ">共识算法</a>
+													<a href="" class="hot-span ">加密经济</a>
+													<a href="" class="hot-span ">行情分析</a>
+													<a href="" class="hot-span ">投研报告</a>
+													<a href="" class="hot-span ">新手科普</a>
+												</span>
 												<a href="hot-article.html"><span style="margin-top:10px">更多&gt;&gt;</span></a>
 										</div>
 										<div class="hot_review_region">
@@ -265,21 +275,17 @@
 
 							<div class="article-icon">
 								<a href="chain-detail.html?projectId=<%=list[i].projectId %>">
-											<img class="article-img" src="<%=list[i].projectLogo %>">
-									</a>
+									<img class="article-img" src="<%=list[i].projectLogo %>">
+								</a>
 							</div>
 
 						</div>
-
-
 
 						<div class="meta">
 							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%=list[i].review %></a>
 							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart"></i> <%=list[i].likes %></a>
 						</div>
 					</div>
-
-
 			</div>
 		</div>
 	<%}%>

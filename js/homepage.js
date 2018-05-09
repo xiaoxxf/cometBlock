@@ -302,3 +302,11 @@ $(document).ready(function () {
        mySwiper.autoplay.start();
     })
 })
+
+//热门推荐点击互相切换效果
+$(".hot_main_area a").on('click', function(e) {
+	e.preventDefault()
+	e.stopPropagation()
+	$(this).parent().parent().find('a').removeClass('hot-span-item');
+	$(this).addClass('hot-span-item');
+})
