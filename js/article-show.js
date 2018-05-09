@@ -405,7 +405,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
 //点击悬浮新建投稿
 var flag_close = false;
 
-$(".news_alert_fixed").on('click',function (e) {
+$(".news_alert_project").on('click',function (e) {
 
 	if(flag_close){
 		$('.layui-layer-close2').click();
@@ -595,22 +595,22 @@ function createScore(){
 
 
 // 鼠标悬停时提示
-$('.news_alert_project').on("mouseenter mouseleave", function(e){
-  if(e.type == "mouseenter"){
-    layer.tips('投稿到项目', '.news_alert_project', {
-        tips: [1, '#4fa3ed']
-    });
-  }else if(e.type == "mouseleave"){
-    layer.closeAll()
-  };
-})
-
-$('.news_alert_subject').on("mouseenter mouseleave", function(e){
-  if(e.type == "mouseenter"){
-    layer.tips('投稿到专题', '.news_alert_subject', {
-        tips: [1, '#4fa3ed']
-    });
-  }else if(e.type == "mouseleave"){
-    layer.closeAll()
-  };
-})
+//$('.news_alert_project').on("mouseenter mouseleave", function(e){
+//if(e.type == "mouseenter"){
+//  layer.tips('投稿到项目', '.news_alert_project', {
+//      tips: [1, '#4fa3ed']
+//  });
+//}else if(e.type == "mouseleave"){
+//  layer.closeAll()
+//};
+//})
+//
+//$('.news_alert_subject').on("mouseenter mouseleave", function(e){
+//if(e.type == "mouseenter"){
+//  layer.tips('投稿到专题', '.news_alert_subject', {
+//      tips: [1, '#4fa3ed']
+//  });
+//}else if(e.type == "mouseleave"){
+//  layer.closeAll()
+//};
+//})

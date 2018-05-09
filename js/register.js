@@ -221,7 +221,7 @@ function login() {
 					window.location.href = "index.html";
 
 				} else {
-					window.location.href = "personal-homepage.html.html";
+					window.location.href = "personal-homepage.html";
 				}
 
 			} else {
