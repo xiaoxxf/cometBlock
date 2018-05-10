@@ -91,12 +91,16 @@
 /*专题公告*/
 .topic_announcement{
 	min-height: 80px;
-    border-bottom: solid 1px gainsboro;
+  border-bottom: solid 1px gainsboro;
+}
+.topic_announcement p:first-child{
+	color: #999;
+	height: 30px;
 }
 .topic_announcement{
 	color: #999;
-	height: 30px;
-	margin-top: 50px;
+	height: 130px;
+	/* margin-top: 50px; */
 }
 .topic_announcement .topic_des{
 	font-weight: 600;
