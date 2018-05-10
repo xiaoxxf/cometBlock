@@ -420,23 +420,15 @@ $('#user_logo_input').on('change',function(){
 	}
 })
 
-//function previewICon() {
-//
-//}
 var ui = {
 	'fileUpLoading': false
 }
 var logo_file = null
-//上传头像
-//$('.upload-project-logo').on('click',function(){
-//
-//})
-
 function uploadImg(){
 	var file = $('#user_logo_input')[0].files[0]
 	// 校验图片
 	if(file==null){
-//		layer.msg('未更改头像');
+	//layer.msg('未更改头像');
 		return false
 	}
 	else if (!file.type.match(imageType) || file.size > imageMaxSize) {
@@ -495,9 +487,7 @@ function uploadIcon(e){
 		}
 	})
 
-
 }
-
 
 // 绑定微信显示
 $(function(){
