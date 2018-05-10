@@ -149,7 +149,7 @@
 <script type="text/html" id="subject_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<p>
-			<a data-subjectid='<%=list[i].id %>' class="subject_name">
+			<a href="topic-show.html?subjectId=<%=list[i].id %>" class="subject_name">
 				<%:=list[i].topic %>
 			</a>
 			<!-- 看自己时显示编辑删除按钮 -->

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/loading.css">
 	  <link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
-    <link rel="stylesheet" href="css/topic- included.css">
+    <link rel="stylesheet" href="css/topic-show.css">
 
 </head>
 <body lang="zh-CN" class="reader-black-font">
@@ -29,51 +29,26 @@
 		                 		<div class="topic_info_left">
 		                 			<img src="img/huixing.png" class="topic_icon" />
 		                 			<div class="topic_title">
-		                 				<p>区块链</p>
-		                 				<p>收录了0篇文章.0人关注</p>
+		                 				<p class="topic_name"></p>
+		                 				<p class="topic_article_count">收录了0篇文章</p>
 		                 			</div>
 		                 		</div>
 		                 		<div class="topic_info_right">
 		                 			<a href="">收录</a>
-		                 			
-		                 			<a href=""><span class=""></span>关注</a>
+
+		                 			<!-- <a href=""><span class=""></span>关注</a> -->
 		                 		</div>
 	                 		</div>
 	                 		<div class="topic topic_border">
 	                 			<div class="topic_include">
 	                 				<a><span class="fa fa-copy"></span><span>最新收录</span></a>
+
 	                 			</div>
 	                 		</div>
 	                 	</div>
 	                 	<!--专题公告-->
-	                 	<div class="col-md-4 col-xs-12 col-sm-12">
-	                 		<!--专题公告-->
-	                 		<div class="topic_announcement">
-	                 			<p>专题公告</p>
-	                 			<p>区块链</p>
-	                 		</div>
-	                 		<!--分享-->
-	                 		<div class="topic_share">
-	                 			<p>
-	                 				<span>分享到</span>
-	                 				<a href=""><i class="fa fa-weixin" aria-hidden="true"></i></a>
-	                 				<a href=""><i class="fa fa-weibo" aria-hidden="true"></i></a>
-	                 				<a href=""><i class="fa fa-spinner" aria-hidden="true"></i></a>
-	                 			</p>
-	                 		</div>
-	                 		<!--管理员-->
-	                 		<div class="topic_manage">
-	                 			<p>管理员</p>
-	                 			<p class="manage_info">
-	                 				<img src="img/hot_icon.jpg" />
-	                 				<span>低不语</span>
-	                 				<a href="">创建者</a>
-	                 			</p>
-	                 		</div>
-	                 		<!--编辑专题-->
-	                 		<div class="topic_edit">
-	                 			<a href="">编辑专题</a>.<a href="">删除专题</a>
-	                 		</div>
+	                 	<div class="col-md-4 col-xs-12 col-sm-12 topic_detail">
+
 	                 	</div>
 	               </div>
            		</div>
@@ -81,6 +56,34 @@
 	    </div>
 	</div>
 
+<script type="text/html" id="topic_detail_tpl">
+  <%for(var i = 0; i < list.length; i++) {%>
+    <!--专题公告-->
+    <div class="topic_announcement">
+      <!-- <p><%:=list[i].topic %></p> -->
+      <p class="topic_des"><%:=list[i].description %></p>
+    </div>
+
+    <!--管理员-->
+    <div class="topic_manage">
+      <p>管理员</p>
+      <p class="manage_info">
+        <!-- <img src="img/hot_icon.jpg" /> -->
+        <a class="creator_name"><%:=list[i].realName %></a>
+        <span class="creator_icon">创建者</span>
+      </p>
+    </div>
+    <!--编辑删除专题，创建者打开时才显示-->
+    <%if( list[i].creator == $.cookie('userid') ){%>
+      <div class="topic_option">
+        <a class="edit_topic" href="topic-edit.html?subjectId=<%:=list[i].id %>">编辑专题</a>
+        <a class="del_topic" href="#" data-subjectid='<%:=list[i].id %>' onclick="deleteTopic(this)">删除专题</a>
+      </div>
+    <%}%>
+
+  <%}%>
+
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/template.js"></script>
@@ -89,7 +92,7 @@
 <script src="js/plugins/layer/layer.js"></script>
 <script src="js/nice-validator/jquery.validator.js?local=zh-CN"></script>
 <script src="js/common.js"></script>
-<script src="js/topic- included.js"></script>
+<script src="js/topic-show.js"></script>
 
 </body>
 </html>

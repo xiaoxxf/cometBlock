@@ -38,12 +38,12 @@
     top: 15px;
     left: 10px;
 }
-.topic_title p:first-child{
+.topic_title .topic_name{
 	height: 30px;
 	font-weight: 700;
 	font-size:18px ;
 }
-.topic_title p:last-child{
+.topic_title .topic_article_count{
 	color:#999 ;
 }
 
@@ -81,11 +81,11 @@
     text-align: center;
     height: 30px;
     width: 80px;
-	color: #999;	
-    
+	color: #999;
+
 }
 .topic_include a span:first-child{
-	margin-right: 10px;	
+	margin-right: 10px;
 }
 
 /*专题公告*/
@@ -93,11 +93,12 @@
 	min-height: 80px;
     border-bottom: solid 1px gainsboro;
 }
-.topic_announcement p:first-child{
+.topic_announcement{
 	color: #999;
 	height: 30px;
+	margin-top: 50px;
 }
-.topic_announcement p:last-child{
+.topic_announcement .topic_des{
 	font-weight: 600;
 }
 /*分享*/
@@ -119,31 +120,38 @@
 .topic_manage p{
 	margin-top: 5px;
 }
-.topic_manage p:first-child{
-	color: #999;
-}
+
 .manage_info img{
 	width: 50px;
     height: 50px;
     border-radius: 50px;
 }
-.manage_info a{
+.manage_info .creator_name{
+	color: black;
+	/* margin-left: 10px; */
+}
+
+.manage_info .creator_icon{
 	display: inline-block;
-    color: #999;
-    border: solid 1px #999;
-    margin-left: 10px;
-    border-radius: 3px;
+  color: #999;
+  border: solid 1px #999;
+  margin-left: 20px;
+  border-radius: 3px;
 }
 
 /*编辑专题*/
-.topic_edit{
+.topic_option {
 	margin-top: 20px;
 }
-.topic_edit a:first-child{
+.topic_option a{
 	color: #999;
+}
+.topic_option a:hover{
+	color: black;
+}
+.topic_option .edit_topic{
 	padding-right:10px;
 }
-.topic_edit a:last-child{
-	color: #999;
+.topic_option .del_topic{
 	padding: 0px 10px;
 }

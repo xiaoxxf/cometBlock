@@ -183,7 +183,7 @@
 			</div>
 		</script>
 		<script type="text/html" id="template-mian-detail">
-			<a class="avatar author-avatar pull-left" href="javascript:;">
+			<a class="avatar author-avatar pull-left" href="personal-homepage.html?userId=<%=list.creator %>">
 				<!-- TODO：显示个人头像 -->
 				<%if(list.userPic == null ){%>
 					<img src="img/normal-user.png" class="review-creator-pic"/>
@@ -197,8 +197,8 @@
 					<span property="v:reviewer"><%:=list.realName%></span>
 				</a>
 
-				<span class="allstar<%:=list.score*10%> main-title-rating" title=""></span>
-				<span property="v:rating" class="main-title-hide">5</span>
+				<!-- <span class="allstar<%:=list.score*10%> main-title-rating" title=""></span> -->
+				<!-- <span property="v:rating" class="main-title-hide">5</span> -->
 				<span property="v:dtreviewed" content="2018-03-15" class="main-meta"><%:=list.createTime%></span>
 			</header>
 			<div class="main-bd">
