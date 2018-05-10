@@ -297,19 +297,19 @@ a img {
 	margin-top: 15px;
 }
 
-.created_topic .subject_name{
+.created_subject .created_subject_list .subject_name{
   color: #808080c9;
 }
-.created_topic .subject_name:hover{
+.created_subject .created_subject_list .subject_name:hover{
   color: black;
 }
 
 
-.created_topic .subject_option_menu{
+.created_subject .created_subject_list .subject_option_menu{
   color: #808080c9;
   float: right;
 }
-.created_topic .subject_option_menu:hover{
+.created_subject .created_subject_list .subject_option_menu:hover{
   color: black;
 }
 

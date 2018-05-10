@@ -5,27 +5,31 @@ var ui = {
   'submiting': false
 };
 
+window.onload = function(){
+  getTopicDetail();
+}
 
-
+var topicId = null;
 function getTopicDetail(){
-  var topicId = getUrlParam('topicId')
+  topicId = getUrlParam('subjectId')
   var uri = 'topic/seachTopic?currentPage=1&pageSize=12&topicId=' + topicId;
 
   doJavaGet(uri, function(result){
     // 图片
-    $('.topic_image')[0].src =
-    $('.topic_logo_file_name').val()
+
+    $('.topic_image')[0].src = result.datas[0].topicPic;
+    $('.topic_logo_file_name').val(result.datas[0].topicPic);
 
     // 标题
-    $('.topic_name').val()
+    $('.topic_name').val(result.datas[0].topic)
 
     // 描述
-    $('.topic_description').val()
+    $('.topic_description').val(result.datas[0].description)
 
     // 类型 1->不审核， 0->审核
-    if (true) {
+    if (result.datas[0].topicType == 0) {
       $('.apply').attr('checked','checked')
-    }else if(){
+    }else if(result.datas[0].topicType == 1){
       $('.apply_not').attr('checked','checked')
     }
 
@@ -64,7 +68,7 @@ function uploadFile(){
 
   // debugger
   if (file == undefined || !file.type.match(imageType) || file.size > imageMaxSize) {
-    $('.topic_logo_file_name').val('');
+    // $('.topic_logo_file_name').val('');
     return
   }
 
@@ -103,8 +107,8 @@ function editTopic(){
   uploadFile();
 
   // 判断是否有图片
-  if ($('.topic_logo_file_name').val() == '') {
-    layer.msg('必须上传币种图片')
+  if ( !$('.topic_logo_file_name').val() ) {
+    layer.msg('必须上传专题图片');
     return
   }
 
@@ -138,23 +142,25 @@ function editTopic(){
     'topicType': topicType, //0->投稿的文章需要审核， 1->不需要审核
     'creator': userinfo.id,
     'password': userinfo.userPwd,
+    'topicId': topicId
   }
 
   ui.submiting = true;
   // data = JSON.stringify(data);
 
-  var uri = 'topic/addtopic?topicPic=' + data.topicPic + '&topic=' + data.topic + '&description=' + data.description
-            + '&topicType=' + data.topicType + '&creator=' + data.creator + '&password=' + data.password;
+  var uri = 'topic/modifyTopic?topicPic=' + data.topicPic + '&topic=' + data.topic + '&description=' + data.description
+            + '&topicType=' + data.topicType + '&creator=' + data.creator + '&password=' + data.password
+            + '&topicId=' + data.topicId;
 
   doJavaGet(uri, function(result){
     ui.submiting = false
     if (result.code == 0) {
-      layer.msg('提交成功，请等待审核', {
+      layer.msg('修改成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           layer.msg(result.msg);
           setTimeout(function(){
-            window.location.href='personal-homepage.html.html';
+            window.location.href='personal-homepage.html';
           },200)
         }
       });

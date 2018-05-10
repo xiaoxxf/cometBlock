@@ -83,18 +83,18 @@ function createTopic(){
   // 判断投稿选项
 
   // 判断投稿是否审核
-  var topicType;
+  var topicType = undefined;
   // 不审核
-  if (  $(newTopicForm.apply).is(':checked') )
+  if (  $(newTopicForm.apply_not).is(':checked') )
   {
     topicType = 1;
   }
   // 审核
-  else if( $(newTopicForm.apply_not).is('checked') )
+  else if( $(newTopicForm.apply).is(':checked') )
   {
     topicType = 0;
   }
-  else if(!topicType){
+  else if(topicType == undefined){
     layer.tips('请选择投稿是否需要审核', '.allow_submit', {
         tips: [1, '#4fa3ed'],
         time: 2000
@@ -121,12 +121,12 @@ function createTopic(){
   doJavaGet(uri, function(result){
     ui.submiting = false
     if (result.code == 0) {
-      layer.msg('提交成功，请等待审核', {
+      layer.msg('提交成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           layer.msg(result.msg);
           setTimeout(function(){
-            window.location.href='personal-homepage.html.html';
+            window.location.href='personal-homepage.html';
           },200)
         }
       });

@@ -294,8 +294,8 @@ function getUserSubject(){
 
 		var tpl = document.getElementById('subject_tpl').innerHTML;
 		var content = template(tpl, {list: res.datas});
-
-		$('.created_topic').append(content)
+		$('.created_subject_list').html('');
+		$('.created_subject_list').append(content);
 		ui_subject.loading = false;
 	})
 }
@@ -319,26 +319,38 @@ $('.load-more-subject').on('click',function(){
 		var tpl = document.getElementById('subject_tpl').innerHTML;
 		var content = template(tpl, {list: res.datas});
 
-		$('.created_topic').append(content);
+		$('.created_subject_list').append(content)
 		ui_subject.loading = false;
 	})
 })
 
 // 删除专题
-$('.created_subject').on('click', $('.delete_subject'), function(e){
+$('.created_subject').on('click', '.delete_subject', function(e){
 	var self = $(e.target),
 			subject_id = self.data('subjectid');
 
-	var uri = 'topic/deleteTopic?topicId=' + subject_id + '&creator=' + userinfo.id + '&password=' + userinfo.userPwd;
+	layer.confirm('确定删除你的专题么?',
+      {
+      icon: 3,
+      title:0,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      },
+      function(index){
+				var uri = 'topic/deleteTopic?topicId=' + subject_id + '&creator=' + userinfo.id + '&password=' + userinfo.userPwd;
+				doJavaGet(uri, function(res){
+					if (res.code == 0) {
+						layer.msg(res.msg);
+						getUserSubject();
+					}else if(res.code == -1){
+						layer.msg(res.msg)
+					}
+				})
+      layer.close(index);
+  });
 
-	doJavaGet(uri, function(res){
-		if (res.code == 0) {
-			layer.msg(res.msg);
-			getUserSubject();
-		}else if(res.code == -1){
-			layer.msg(res.msg)
-		}
-	})
+
 })
 
 
