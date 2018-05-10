@@ -293,23 +293,35 @@ a img {
 	color: #006bb3;
 }
 /*创建的专题*/
-.create_subject,.create_topic_list{
+.create_subject_box,.create_project_box{
 	margin-top: 15px;
 }
-.article-count{
-	color: #808080c9;
-	float: right;
+
+.created_topic .subject_name{
+  color: #808080c9;
 }
-.hot-span{
-	color: black
+.created_topic .subject_name:hover{
+  color: black;
 }
-.included_ariticle{
-	padding: 10px 0px;
-	color: #808080c9;
+
+
+.created_topic .subject_option_menu{
+  color: #808080c9;
+  float: right;
 }
-.pay-attention a:first-child{
-	color: #333;
+.created_topic .subject_option_menu:hover{
+  color: black;
 }
+
+/* 创建的项目 */
+.created_project .project_name{
+  cursor: pointer;
+  color: #808080c9;
+}
+.created_project .project_name:hover{
+  color: black
+}
+
 .create_new_subject,.create_topic_list{
 	margin-top:10px;
   margin-bottom: 10px;
@@ -322,14 +334,28 @@ a img {
     border: solid 1px #006bb3;
     border-radius: 3px;
 }
-.project_name{
-  cursor: pointer;
-}
-.load-more-project{
+
+.load-more-project, .load-more-subject{
   margin-left: 10px;
   color: #006bb3;
   cursor: pointer;
 }
+
+.article-count{
+	color: #808080c9;
+	float: right;
+}
+.hot-span{
+	color: black
+}
+.included_ariticle{
+	padding: 10px 0px;
+	color: #808080c9;
+}
+/* .pay-attention a:first-child{
+	color: #333;
+} */
+
 
 .targetProjectBigName{
   margin-left: -3px;

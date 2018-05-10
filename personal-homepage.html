@@ -103,19 +103,20 @@
 								</div>
 
 								<!--创建的专题-->
-								<div class="hot_zone side create_topic_list">
-									<div class="pay-attention created_topic_list">
+								<div class="hot_zone side create_subject_box">
+									<div class="pay-attention created_topic">
 										<span class="">我创建的专题</span>
 										<div class="create_topic_list">
 											<a href="topic-new.html" class="create_new_topic_list_btn"><i class="fa fa-plus"></i>创建新专题</a>
 										</div>
 									</div>
-									<!-- <div class="load-more-project">
+									<div class="load-more-subject">
 										查看更多
-									</div> -->
+									</div>
 								</div>
+
 								<!--创建的项目-->
-								<div class="hot_zone side create_subject">
+								<div class="hot_zone side create_project_box">
 									<div class="pay-attention created_project">
 										<span class="">我创建的项目</span>
 										<div class="create_new_subject">
@@ -134,12 +135,30 @@
 			</div>
 		</div>
 
+<!-- 我创建的项目 -->
 <script type="text/html" id="project_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<p data-projectid='<%=list[i].projectId %>' class="project_name"><%=list[i].projectName %></p>
 	<%}%>
 </script>
 
+<!-- 我创建的专题 -->
+<script type="text/html" id="subject_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<p>
+			<a data-subjectid='<%=list[i].id %>' class="subject_name">
+				<%:=list[i].topic %>
+			</a>
+			<!-- 看自己时显示编辑删除按钮 -->
+			<%if( !getUrlParam('userId') || getUrlParam('userId') == $.cookie('userid') ){%>
+				<a data-subjectid="<%:=list[i].id %>" class="delete_subject subject_option_menu">删除</a>
+				<a href="topic-edit.html?subjectId=<%:=list[i].id %>"  class="subject_option_menu">编辑 &nbsp</a>
+			<%}%>
+		</p>
+	<%}%>
+</script>
+
+<!-- 全部动态 -->
 <script type="text/html" id="all_dynamic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 
