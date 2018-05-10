@@ -672,7 +672,18 @@ function load_more_search_subject_result(){
 // 投稿到专题
 function sendArticleToSubject(e){
   var self =$(e),
-      topicId = self.data('subjectid');
+      topicId = self.data('subjectid'),
+      reviewId = getUrlParam('reviewId');
+  var uri = 'topic/submission?creator=' + userinfo.id + '&password=' + userinfo.userPwd
+           + '&topicId=' + topicId + '&reviewId=' + reviewId
+
+  doJavaGet(uri,function(result){
+    if (result.code == 0) {
+
+    }else if(result.code == -1){
+      layer.msg(result.msg);
+    }
+  })
 
 }
 

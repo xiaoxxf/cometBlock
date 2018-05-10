@@ -356,7 +356,7 @@
 
 		<!--投稿专题彈窗-->
 		<script type="text/html" id="templay-news-subject">
-			<div class="modal-content" onmouseover="showSendToSubject()">
+			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">投稿到专题
 	      			<a class="new-subject-btn">
@@ -393,7 +393,7 @@
 							<div class="subject-meta">创建人: <%=list[i].realName %></div>
 							<div class="meta"></div>
 						</div>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>'>投稿</span>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
 					</li>
 				<% }%>
 			<%}%>
