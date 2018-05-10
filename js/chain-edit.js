@@ -155,13 +155,6 @@ function chainDetailJs(chainInfoData){
     todayBtn : true,
   })
 
-  // 增加发行价格
-  function add_issue_price()
-  {
-  	var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
-  	$('#add_issue_price').append(div);
-  }
-
   //网站跳转
   function jump_website(){
      var website = $('.website').val()
@@ -619,6 +612,12 @@ var ui = {
   'fileUpLoading': false
 }
 
+// 增加发行价格
+function add_issue_price()
+{
+  var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
+  $('#add_issue_price').append(div);
+}
 
 // 判断是否登录
 $(function(){

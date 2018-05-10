@@ -385,11 +385,11 @@
 			<%}else{%>
 				<%for(var i = 0; i < list.length; i++) {%>
 					<li class="">
-						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
 							<img src="<%=list[i].topicPic %>" class="title_logo">
 						</a>
 						<div class="collection-info">
-							<a class="collection-name"><%=list[i].topic %></a>
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
 							<div class="subject-meta">创建人: <%=list[i].realName %></div>
 							<div class="meta"></div>
 						</div>
