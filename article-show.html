@@ -83,7 +83,7 @@
 			</span>
 			</div>-->
 			<!--新建弹出框-->
-			<div class="news_alert_include" >
+			<div class="news_alert_include" style="display:none">
 				<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
 			</div>
 			<div class="news_alert_project" style="display:none" >
@@ -92,7 +92,7 @@
 			<div class="news_alert_subject" style="display:none;">
 				<span class="news_subject_btn"><i class="fa fa-share-alt fa-2x"></i></span>
 			</div>
-			
+
 	</div>
 		<!-- 举报弹框  -->
 		<script type="text/html" id="template-report-popup">
@@ -325,7 +325,7 @@
 						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
 					</div>
 					</h4>
-					
+
 				</div>
 				<div class="modal-body">
 					<ul class="list_item">
@@ -336,7 +336,7 @@
 			</div>
 		</script>
 
-		<!-- 搜索 投稿 项目 -->
+		<!-- 搜索投稿项目 -->
 		<script id='search_project_list' type="text/html">
 			<%if(list.length == 0 ){%>
 				<span class="return_result">没有结果</span>
@@ -357,7 +357,7 @@
 			<%}%>
 		</script>
 
-		<!--投稿专题彈窗-->
+		<!--投稿到专题彈窗-->
 		<script type="text/html" id="templay-news-subject">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -370,36 +370,31 @@
 						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
 					</div>
 					</h4>
-					
+
 				</div>
 				<div class="modal-body">
+					<!-- 搜索结果 -->
 					<ul class="list_subject_item">
 
+
 					</ul>
+					<!-- 推荐专题 -->
 					<ul class="list_subject_recommend">
 						<p>推荐专题</p>
-						<li class="">
-							<a href="" class="avatar-collection">
-								<img src="img/hot_icon.jpg" class="recomment_title_logo">
-							</a>
-							<div class="recomment-info">
-								<a href="" class="recomment-name">a</a> 
-								<div class="recomment-meta">创建人: as</div> 							
-								<div class="meta"></div>
-							</div>
-							<span class="action-recommend-btn" data-subjectid="11" >投稿</span>
-						</li>
-						<li class="">
-							<a href="" class="avatar-collection">
-								<img src="img/hot_icon.jpg" class="recomment_title_logo">
-							</a>
-							<div class="recomment-info">
-								<a href="" class="recomment-name">a</a> 
-								<div class="recomment-meta">创建人: as</div> 							
-								<div class="meta"></div>
-							</div>
-							<span class="action-recommend-btn" data-subjectid="11" >投稿</span>
-						</li>
+						<div class="recommend_topic_result">
+							<li class="">
+								<a href="" class="avatar-collection">
+									<img src="img/hot_icon.jpg" class="recomment_title_logo">
+								</a>
+								<div class="recomment-info">
+									<a href="" class="recomment-name">a</a>
+									<div class="recomment-meta">创建人: as</div>
+									<div class="meta"></div>
+								</div>
+								<span class="action-recommend-btn" data-subjectid="11" >投稿</span>
+							</li>
+						</div>
+
 					</ul>
 					<span class="load_more_recomment_result" >查看更多</span>
 
@@ -431,7 +426,7 @@
 				<% }%>
 			<%}%>
 		</script>
-		
+
 		<!--收录专题彈窗-->
 		<script type="text/html" id="templay-news-include">
 			<div class="modal-content">
@@ -441,7 +436,7 @@
 	      				<a href="topic-new.html" target="_blank" >新建专题</a>
 	      			</a>
 					</h4>
-					
+
 				</div>
 				<div class="modal-body">
 					<ul class="list_subject_item">
@@ -454,19 +449,19 @@
 								<img src="img/hot_icon.jpg" class="recomment_title_logo">
 							</a>
 							<div class="include-info">
-								<a href="" class="include-name">a</a> 
-								<div class="include-meta">创建人: as</div> 							
+								<a href="" class="include-name">a</a>
+								<div class="include-meta">创建人: as</div>
 								<div class="meta"></div>
 							</div>
 							<span class="action-include-btn" data-subjectid="11" >收录</span>
 						</li>
-						
+
 					</ul>
 				</div>
 			</div>
 		</script>
 
-		
+
 		<!-- 投稿到项目时评分 -->
 		<script id="add_score" type="text/html">
 			<div class="coin-score">
@@ -474,6 +469,27 @@
 				<span class="my-rating" style="font-size:10px"></span>
 				<span class="live-rating" style="display:none"></span>
 			</div>
+		</script>
+
+		<!-- 推荐专题  -->
+		<script type="text/html" id="recomment_topic_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+				<li class="">
+					<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+						<img src="<%=list[i].topicPic %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+						<div class="subject-meta">创建人: <%=list[i].realName %></div>
+						<div class="meta"></div>
+					</div>
+					<%if( list[i].state ){%>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已投稿</span>
+					<%} else {%>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+					<% } %>
+				</li>
+			<% }%>
 		</script>
 
 		<script src="js/jquery-2.1.1.js"></script>

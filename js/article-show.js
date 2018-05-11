@@ -39,6 +39,7 @@ function  ajaxGetReviewDetail() {
             if (userinfo && commentInfoData.creator == userinfo.id) {
               $('.news_alert_project').css('display','')
               $('.news_alert_subject').css('display','')
+              $('.news_alert_include').css('display','')
 
             }
         } else {
@@ -483,22 +484,46 @@ $(".news_alert_subject").on('click',function (e) {
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-subject").html()
   });
-
+  getRecommendSubject();
   flag_close_subject = true;
 
 })
 
+// 加载推荐专题
+function getRecommendSubject(){
+
+	var uri = 'topic/seachTopic?currentPage=1&pageSize=8'
+	doJavaGet(uri,function(result){
+    // 判断是否已投稿
+    for (var i = 0; i < result.datas.length; i++) {
+      // 有
+      if ( article_topic_list.indexOf(result.datas[i].id) > -1) {
+        result.datas[i]['state'] = 1
+      }
+      // 无
+      else{
+        result.datas[i]['state'] = 0
+      }
+    }
+    // console.log(result.datas)
+		$('.recommend_topic_result').html('');
+		var search = document.getElementById('recomment_topic_tpl').innerHTML;
+		var content = template(search, {list: result.datas});
+		$('.recommend_topic_result').append(content);
+
+	}, "json");
+}
+
 //点击悬浮收录专题
-var flag_close_subject = false;
-var subject_alert_close_index = null;
+var flag_close_collect = false;
+var collect_alert_close_index = null;
 
 $(".news_alert_include").on('click',function (e) {
 
 	if(flag_close_subject){
 		// $('.layui-layer-close2').click();
-    layer.close(subject_alert_close_index);
-    flag_close_subject = false;
-
+    layer.close(collect_alert_close_index);
+    flag_close_collect = false;
 		return
 	}
 
@@ -762,6 +787,17 @@ var index_subject = null;
 $('.news_alert_subject').on("mouseenter mouseleave", function(e){
   if(e.type == "mouseenter"){
     index_subject = layer.tips('投稿到专题', '.news_alert_subject', {
+        tips: [4, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.close(index_subject)
+  };
+})
+
+var index_collect = null;
+$('.news_alert_include').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    index_subject = layer.tips('收录该文章到专题', '.news_alert_include', {
         tips: [4, '#4fa3ed']
     });
   }else if(e.type == "mouseleave"){

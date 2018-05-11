@@ -79,7 +79,7 @@
       </p>
     </div>
     <!--编辑删除专题，创建者打开时才显示-->
-    <%if( list[i].creator == $.cookie('userid') ){%>
+    <%if( list[i].creator == userinfo.id ){%>
       <div class="topic_option">
         <a class="edit_topic" href="topic-edit.html?subjectId=<%:=list[i].id %>">编辑专题</a>
         <a class="del_topic" href="#" data-subjectid='<%:=list[i].id %>' onclick="deleteTopic(this)">删除专题</a>
