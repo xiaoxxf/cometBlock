@@ -140,13 +140,13 @@
 													<a href="" class="hot-span ">投研报告</a>
 													<a href="" class="hot-span ">新手科普</a> -->
 												</span>
-												<a href="attention.html"><span style="margin-top:10px">更多&gt;&gt;</span></a>
+												<!-- <a href="attention.html"><span style="margin-top:10px">更多&gt;&gt;</span></a> -->
 										</div>
 										<div class="hot_review_region">
 
 										</div>
 
-										<div class="read-more">阅读更多&gt;&gt;</div>
+										<div class="read-more" style="display:none">阅读更多</div>
 								</div>
 							</div>
 
@@ -300,7 +300,7 @@
 <!-- 专题列表 -->
 <script type="text/html" id="topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<a class="hot-span "><%=list[i].topic %></a>
+		<a data-topicid='<%=list[i].id %>' class="hot-span"><%=list[i].topic %></a>
 	<%}%>
 </script>
 
