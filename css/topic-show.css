@@ -207,3 +207,78 @@
 .footer-detail .container .row{
     background-color: #f3f6f7;
 }
+/*收录*/
+.search_article_title{
+	  font-weight: 700;
+    font-size: 18px;
+}
+.modal-content {
+    border: none;
+    box-shadow: none;
+}
+.search_include{
+	float: right;
+}
+.search_include_items{
+	 float: right;
+    width: 60%;
+    padding: 7px 18px;
+    background-color: hsla(0,0%,71%,.25);
+    border: none;
+    border-radius: 40px;
+    font-size: 15px;
+}
+.search-include-icon{
+	  font-size: 12px;
+    margin-left: 10px;
+	  display: block;
+    position: absolute;
+    top: 23px;
+    float: right;
+    right: 30px;
+    color: #969696;
+}
+/*li*/
+.include_row{
+	  position: relative;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: normal;
+}
+.include_title_logo{
+	  width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.include-info{
+	display: inline-block;
+  position: absolute;
+}
+.recomment-name{
+	  font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    display: block;
+}
+.recomment-meta{
+	font-size: 12px;
+  color: #969696;
+  display: inline-block;
+}
+
+.action-include-btn{
+	    position: absolute;
+    top: 45%;
+    right: 20px;
+    display: block;
+    margin-top: -12px;
+    padding: 2px 8px;
+    font-size: 13px;
+    border-radius: 12px;
+    line-height: normal;
+    border: solid 1px rgb(79, 163, 237);
+    float: right;
+    cursor: pointer;
+    color: rgb(79, 163, 237);
+}
