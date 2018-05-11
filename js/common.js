@@ -4,7 +4,8 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
 var login_uri = 'http://127.0.0.1:8020/cometBlock/login.html';
 var register_uri = 'http://127.0.0.1:8020/cometBlock/login.html';
-if (window.location.href != login_uri && window.location.href != register_uri ) {
+var find_pass_word_uri = 'http://127.0.0.1:8020/cometBlock/find-pwd.html'
+if (window.location.href != login_uri && window.location.href != register_uri && window.location.href != find_pass_word_uri ) {
   var currentJumpHref = window.location.href;
   window.localStorage.setItem('currentJumpHref',currentJumpHref);
 }

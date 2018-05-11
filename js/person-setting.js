@@ -3,6 +3,21 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 var noMoreData = false
 var dictionary = []
 
+//加入personType=1/2  进入基础设置 /消息
+var pT = getUrlParam("personType");
+$(".person-left-menu li a").removeClass('toogle-acive');
+$(function(){
+	if(pT == 1){
+		$(".cont0").fadeIn();
+		$(".person-left-menu li a").eq(0).addClass("toogle-acive");
+	}
+	else if(pT == 2){
+		$(".cont1").fadeIn();
+		$(".person-left-menu li a").eq(1).addClass("toogle-acive");
+	}
+})
+
+
 // 渲染个人信息
 $(function(){
 	var preview = $('#result').find('img')[0];
@@ -89,24 +104,6 @@ function changePwdClick() {
 	$(".put-newpwd").css("display", "block");
 
 }
-
-//地址栏传入参数，从哪里进来拼上参数即可
-//加入personType=1/2  进入基础设置 /消息
-
-var pT = getUrlParam("personType");
-$(".person-left-menu li a").removeClass('toogle-acive');
-$(function(){
-if(pT == 1){
-	$(".cont0").fadeIn();
-	$(".person-left-menu li a").eq(0).addClass("toogle-acive");
-}
-else if(pT == 2){
-	$(".cont1").fadeIn();
-	$(".person-left-menu li a").eq(1).addClass("toogle-acive");
-}
-
-
-})
 
 // 点击已读
 $('.show_right').on('click', '.message' , function(e){
@@ -493,7 +490,7 @@ function uploadIcon(e){
 
 // 绑定微信显示
 $(function(){
-	if (userinfo) {
+	if (userId) {
 		$('.wechat-bind-user').css('display','none')
 	}else{
 		$('.wechat-bind-user').css('display','none')
