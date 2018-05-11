@@ -83,13 +83,16 @@
 			</span>
 			</div>-->
 			<!--新建弹出框-->
+			<div class="news_alert_include" >
+				<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
+			</div>
 			<div class="news_alert_project" style="display:none" >
 				<span class="news_subject_btn"><i class="fa fa-plus fa-2x"></i></span>
 			</div>
 			<div class="news_alert_subject" style="display:none;">
 				<span class="news_subject_btn"><i class="fa fa-share-alt fa-2x"></i></span>
 			</div>
-
+			
 	</div>
 		<!-- 举报弹框  -->
 		<script type="text/html" id="template-report-popup">
@@ -317,18 +320,18 @@
 	      			<a class="new-subject-btn">
 	      				<a href="chain-new.html" target="_blank" >新建项目</a>
 	      			</a>
-					</h4>
-				</div>
-				<div class="modal-body">
-					<div class="search">
+	      			<div class="search">
 						<input type="search" name="search-self" class="search_project" onkeydown="keyEnterSearchProject()" placeholder="搜索项目">
 						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
 					</div>
+					</h4>
+					
+				</div>
+				<div class="modal-body">
 					<ul class="list_item">
 
 					</ul>
 					<span class="load_more_project_result" onclick="load_more_search_project_result()">查看更多</span>
-
 				</div>
 			</div>
 		</script>
@@ -362,17 +365,43 @@
 	      			<a class="new-subject-btn">
 	      				<a href="topic-new.html" target="_blank" >新建专题</a>
 	      			</a>
-					</h4>
-				</div>
-				<div class="modal-body">
-					<div class="search">
+	      			<div class="search">
 						<input type="search" name="search-self" class="search_subject" onkeydown="keyEnterSearchSubject()" placeholder="搜索专题">
 						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
 					</div>
+					</h4>
+					
+				</div>
+				<div class="modal-body">
 					<ul class="list_subject_item">
 
 					</ul>
-					<span class="load_more_subject_result" onclick="load_more_search_subject_result()">查看更多</span>
+					<ul class="list_subject_recommend">
+						<p>推荐专题</p>
+						<li class="">
+							<a href="" class="avatar-collection">
+								<img src="img/hot_icon.jpg" class="recomment_title_logo">
+							</a>
+							<div class="recomment-info">
+								<a href="" class="recomment-name">a</a> 
+								<div class="recomment-meta">创建人: as</div> 							
+								<div class="meta"></div>
+							</div>
+							<span class="action-recommend-btn" data-subjectid="11" >投稿</span>
+						</li>
+						<li class="">
+							<a href="" class="avatar-collection">
+								<img src="img/hot_icon.jpg" class="recomment_title_logo">
+							</a>
+							<div class="recomment-info">
+								<a href="" class="recomment-name">a</a> 
+								<div class="recomment-meta">创建人: as</div> 							
+								<div class="meta"></div>
+							</div>
+							<span class="action-recommend-btn" data-subjectid="11" >投稿</span>
+						</li>
+					</ul>
+					<span class="load_more_recomment_result" >查看更多</span>
 
 				</div>
 			</div>
@@ -402,7 +431,42 @@
 				<% }%>
 			<%}%>
 		</script>
+		
+		<!--收录专题彈窗-->
+		<script type="text/html" id="templay-news-include">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">收录文章
+	      			<a class="new-subject-btn">
+	      				<a href="topic-new.html" target="_blank" >新建专题</a>
+	      			</a>
+					</h4>
+					
+				</div>
+				<div class="modal-body">
+					<ul class="list_subject_item">
 
+					</ul>
+					<ul class="list_subject_include">
+						<p>我管理的专题</p>
+						<li class="">
+							<a href="" class="avatar-collection">
+								<img src="img/hot_icon.jpg" class="recomment_title_logo">
+							</a>
+							<div class="include-info">
+								<a href="" class="include-name">a</a> 
+								<div class="include-meta">创建人: as</div> 							
+								<div class="meta"></div>
+							</div>
+							<span class="action-include-btn" data-subjectid="11" >收录</span>
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+		</script>
+
+		
 		<!-- 投稿到项目时评分 -->
 		<script id="add_score" type="text/html">
 			<div class="coin-score">

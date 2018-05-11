@@ -488,6 +488,43 @@ $(".news_alert_subject").on('click',function (e) {
 
 })
 
+//点击悬浮收录专题
+var flag_close_subject = false;
+var subject_alert_close_index = null;
+
+$(".news_alert_include").on('click',function (e) {
+
+	if(flag_close_subject){
+		// $('.layui-layer-close2').click();
+    layer.close(subject_alert_close_index);
+    flag_close_subject = false;
+
+		return
+	}
+
+  var area_width
+  var area_height
+  if($(window).width() <= 767)
+  {
+    area_width = '320px'
+    area_height = '500px'
+  }else{
+    area_width = '520px'
+    area_height = '600px'
+  }
+  subject_alert_close_index = layer.open({
+      type: 1,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      area: [area_width,area_height ], //宽高
+      content: $("#templay-news-include").html()
+  });
+
+  flag_close_subject = true;
+
+})
+
 
 
 //搜索项目
