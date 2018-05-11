@@ -36,9 +36,12 @@ function  ajaxGetReviewDetail() {
             var content = template(commentTpl, {list: commentInfoData});
             $(".comment-detail-mian-hook").append(content);
             // 作者打开时可以投稿
-            if (userinfo && commentInfoData.creator == userinfo.id) {
+            if (userId && commentInfoData.creator == userId) {
               $('.news_alert_project').css('display','')
               $('.news_alert_subject').css('display','')
+            }
+            // 登录时可以收录文章到专题
+            if (userId) {
               $('.news_alert_include').css('display','')
             }
         } else {
@@ -392,7 +395,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
         });
         return;
     }
-    layer.confirm('确定删除您的评测么?',
+    layer.confirm('确定删除您的文章么?',
     {
       icon: 3,
       title:0,
@@ -760,10 +763,10 @@ function load_more_search_subject_result(){
 // 投稿到专题 & 收录文章到专题
 var _send_button = null;
 function sendArticleToSubject(e){
-  if (ui.submiting) {
-    return
-  }
-  ui.submiting = true;
+  // if (ui.submiting) {
+  //   return
+  // }
+  // ui.submiting = true;
   _send_button = e;
   var self =$(e),
       topicId = self.data('subjectid'),
@@ -778,7 +781,7 @@ function sendArticleToSubject(e){
     }else if(result.code == -1){
       layer.msg(result.msg);
     }
-    ui.submiting = false;
+    // ui.submiting = false;
   })
 
 }

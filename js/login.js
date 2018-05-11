@@ -76,12 +76,11 @@ function signIn(){
 				$.cookie('token', res.datas.id,{ expires: expireDate});
 				$.cookie('userid', res.datas.id,{ expires: expireDate });
 								$.cookie('username', res.datas.realName,{ expires: expireDate });
-				var localCurrentHref = window.localStorage.getItem('currentHref');
-				if(localCurrentHref.indexOf('login.html')>0){
-
-										window.location.href = "index.html";
+				var localCurrentHref = window.localStorage.getItem('currentJumpHref');
+				if(!localCurrentHref){
+						window.location.href = "index.html";
 				}else{
-										window.location.href = localCurrentHref;
+						window.location.href = localCurrentHref;
 				}
 			}, 1500);
 

@@ -2,12 +2,12 @@ var username = $.cookie('username');
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
-// var login_uri = 'http://10.0.0.71:8020/cometBlock/login.html';
-// var register_uri = 'http://10.0.0.71:8020/cometBlock/login.html';
-// if (window.location.href != login_uri && window.location.href != register_uri ) {
-//   var currentJumpHref = window.location.href;
-//   window.localStorage.setItem('currentJumpHref',currentJumpHref);
-// }
+var login_uri = 'http://127.0.0.1:8020/cometBlock/login.html';
+var register_uri = 'http://127.0.0.1:8020/cometBlock/login.html';
+if (window.location.href != login_uri && window.location.href != register_uri ) {
+  var currentJumpHref = window.location.href;
+  window.localStorage.setItem('currentJumpHref',currentJumpHref);
+}
 
 function guid() {
     function s4() {
@@ -160,6 +160,7 @@ $.get("header-tpl.html",function(data){
     var localCookieWechatInfo = $.cookie('wechatInfo');
     var wechatInfo_flag = false; // 是否已取得微信返回数据
     localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
+    var wechatInfo_json_data = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
 
     // 没有登录时，显示注册/登录
     if (!username && !wechatCode && !localCookieWechatInfo ) {
@@ -173,15 +174,10 @@ $.get("header-tpl.html",function(data){
       getUserInfoByWeChat();
     }
     // 微信登录后，已取得返回数据，但没有绑定的
-    else if(localCookieWechatInfo && wechatInfo_flag){
-      var wechatInfo_data = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
-
-      // 显示头像，没有则显示默认头像
-      if (userinfo.userPic && $("#user_pic")[0]) {
-          $("#user_pic")[0].src = wechatInfo_data.userPic
-      } else if(!wechatInfo_data.userPic && $("#user_pic")[0]){
-          $("#user_pic")[0].src = 'img/normal-user.png'
-      }
+    else if(localCookieWechatInfo && wechatInfo_flag && !wechatInfo_json_data.userinfo ){
+      // 显示微信头像和名称
+      $(".nav-user-account #nav_user_mes").text(wechatInfo_json_data.nickname);
+      $("#user_pic")[0].src = wechatInfo_json_data.headimgurl;
       $(".nav-user-account .more-active").css('display', 'block');
       $(".login-right").css('display', 'block');
     }
@@ -209,7 +205,6 @@ function getUserInfoByWeChat(wechatCode){
   var uri = '/news/getUserInfo?code='+ wechatCode;
   doJavaGet(uri, function(res) {
       if(res.code === 0){
-          wechatInfo_flag = true;
           console.log(res);
           //cookie保存微信登录标识，设置时效
           var expireDate= new Date();
@@ -217,11 +212,14 @@ function getUserInfoByWeChat(wechatCode){
 
           expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
           $.cookie('wechatInfo', wechatInfo,{ expires: expireDate});
+          wechatInfo = JSON.parse(wechatInfo);
+
+          wechatInfo_flag = true; //表示已取得返回信息
 
           // wechatInfo = JSON.stringify(res.datas);
           // wechatInfo = JSON.parse('wechatInfo')
           // 已绑定
-          if (res.datas.userInfo) {
+          if (wechatInfo.userInfo) {
             // userinfo_wechat = res.datas.userInfo
             // localStorage.setItem('userinfo', userinfo_wechat);
             localStorage.setItem('userid', res.datas.userInfo.id);

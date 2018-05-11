@@ -126,6 +126,8 @@ var topicName = '';
 var raise = ''
 // 渲染专题下的文章
 $('.hot_main_area').on('click', 'a', function(e){
+	ui.loading = true;
+	ui.noMoreData = false;
   topic_article_page = 1;
   var self = $(e.currentTarget);
 	topicName = self.data('topicname');

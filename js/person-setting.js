@@ -3,6 +3,20 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 var noMoreData = false
 var dictionary = []
 
+// 渲染个人信息
+$(function(){
+	var preview = $('#result').find('img')[0];
+	if (userinfo && userinfo.userPic) {
+		preview.src = userinfo.userPic
+	}else{
+		preview.src = 'img/normal-user.png'
+	}
+	if (userinfo && userinfo.realName) {
+		$('#ownname').val(userinfo.realName)
+		$('.person-introduce').val(userinfo.personIntro)
+	}
+})
+
 // 微信登录时才显示绑定
 $(function(){
 	if ($.cookie('wechatInfo')) {
@@ -264,10 +278,12 @@ function changeUser(){
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 			layer.msg(res.msg);
-			var realName=$("#ownname").val();
+			var realName = $("#ownname").val();
+			var personIntro = $(".person-introduce").val();
 			var str = localStorage.getItem('userinfo');
 			var obj=JSON.parse(str);
 			obj.realName = realName;
+			obj.personIntro = personIntro;
 			var nameStr=JSON.stringify(obj);
 			localStorage.setItem('userinfo',nameStr); //存储
 
@@ -376,20 +392,6 @@ $("#save-reset-pwd").click(function() {
 	}
 
 });
-
-
-// 显示头像
-$(function(){
-	var preview = $('#result').find('img')[0];
-	if (userinfo && userinfo.userPic) {
-		preview.src = userinfo.userPic
-	}else{
-		preview.src = 'img/normal-user.png'
-	}
-	if (userinfo && userinfo.realName) {
-		$('#ownname').val(userinfo.realName)
-	}
-})
 
 var imageType = /image.*/;
 var imageMaxSize = 1*1024*1024;
