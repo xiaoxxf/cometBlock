@@ -366,7 +366,7 @@
 	      				<a href="topic-new.html" target="_blank" >新建专题</a>
 	      			</a>
 	      			<div class="search">
-						<input type="search" name="search-self" class="search_subject" onkeydown="keyEnterSearchSubject()" placeholder="搜索专题">
+						<input type="search" name="search-self" class="search_subject" onkeyup="keyEnterSearchSubject(this)" placeholder="搜索专题">
 						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
 					</div>
 					</h4>
@@ -378,25 +378,15 @@
 
 
 					</ul>
+					<span class="load_more_subject_result" onclick="load_more_search_subject_result()" >查看更多</span>
 					<!-- 推荐专题 -->
 					<ul class="list_subject_recommend">
 						<p>推荐专题</p>
 						<div class="recommend_topic_result">
-							<li class="">
-								<a href="" class="avatar-collection">
-									<img src="img/hot_icon.jpg" class="recomment_title_logo">
-								</a>
-								<div class="recomment-info">
-									<a href="" class="recomment-name">a</a>
-									<div class="recomment-meta">创建人: as</div>
-									<div class="meta"></div>
-								</div>
-								<span class="action-recommend-btn" data-subjectid="11" >投稿</span>
-							</li>
+
 						</div>
 
 					</ul>
-					<span class="load_more_recomment_result" >查看更多</span>
 
 				</div>
 			</div>
@@ -427,7 +417,7 @@
 			<%}%>
 		</script>
 
-		<!--收录专题彈窗-->
+		<!--收录文章到专题彈窗-->
 		<script type="text/html" id="templay-news-include">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -439,23 +429,12 @@
 
 				</div>
 				<div class="modal-body">
-					<ul class="list_subject_item">
 
-					</ul>
 					<ul class="list_subject_include">
 						<p>我管理的专题</p>
-						<li class="">
-							<a href="" class="avatar-collection">
-								<img src="img/hot_icon.jpg" class="recomment_title_logo">
-							</a>
-							<div class="include-info">
-								<a href="" class="include-name">a</a>
-								<div class="include-meta">创建人: as</div>
-								<div class="meta"></div>
-							</div>
-							<span class="action-include-btn" data-subjectid="11" >收录</span>
-						</li>
+						<div class="my_topic_list">
 
+						</div>
 					</ul>
 				</div>
 			</div>
@@ -473,6 +452,27 @@
 
 		<!-- 推荐专题  -->
 		<script type="text/html" id="recomment_topic_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+				<li class="">
+					<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+						<img src="<%=list[i].topicPic %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+						<div class="subject-meta">创建人: <%=list[i].realName %></div>
+						<div class="meta"></div>
+					</div>
+					<%if( list[i].state ){%>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+					<%} else {%>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">收录</span>
+					<% } %>
+				</li>
+			<% }%>
+		</script>
+
+		<!-- 我管理的专题 -->
+		<script type="text/html" id="my_topic_tpl">
 			<%for(var i = 0; i < list.length; i++) {%>
 				<li class="">
 					<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">

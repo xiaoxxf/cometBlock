@@ -520,7 +520,7 @@ var collect_alert_close_index = null;
 
 $(".news_alert_include").on('click',function (e) {
 
-	if(flag_close_subject){
+	if(flag_close_collect){
 		// $('.layui-layer-close2').click();
     layer.close(collect_alert_close_index);
     flag_close_collect = false;
@@ -537,7 +537,7 @@ $(".news_alert_include").on('click',function (e) {
     area_width = '520px'
     area_height = '600px'
   }
-  subject_alert_close_index = layer.open({
+  collect_alert_close_index = layer.open({
       type: 1,
       shade:0,
       title: 0,
@@ -545,11 +545,34 @@ $(".news_alert_include").on('click',function (e) {
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-include").html()
   });
-
-  flag_close_subject = true;
+  getMyTopic();
+  flag_close_collect = true;
 
 })
 
+// 加载我管理的专题
+function getMyTopic(){
+  var uri = 'topic/seachTopic?currentPage=1&pageSize=8&creator=' + userinfo.id
+  doJavaGet(uri,function(result){
+    // 判断是否已投稿
+    for (var i = 0; i < result.datas.length; i++) {
+      // 有
+      if ( article_topic_list.indexOf(result.datas[i].id) > -1) {
+        result.datas[i]['state'] = 1
+      }
+      // 无
+      else{
+        result.datas[i]['state'] = 0
+      }
+    }
+    // console.log(result.datas)
+    $('.my_topic_list').html('');
+    var search = document.getElementById('my_topic_tpl').innerHTML;
+    var content = template(search, {list: result.datas});
+    $('.my_topic_list').append(content);
+
+  }, "json");
+}
 
 
 //搜索项目
@@ -557,13 +580,15 @@ var search_page_project = 1;
 var key_word_project = '';
 // 搜索项目
 function searchProject(){
-  ui.loading = true;
-  ui.noMoreData = false;
-  search_page_project = 1;
+  // 判断是否有搜索内容
 	key_word_project  = $('.search_project').val()
 	if (key_word_project  == '') {
 		return false
 	}
+
+  ui.loading = true;
+  ui.noMoreData = false;
+  search_page_project = 1;
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page_project + '&pageSize=' + pageSize
             + '&projectName=' + key_word_project
 	doJavaGet(uri,function(result){
@@ -686,13 +711,18 @@ var search_subject_page = 1;
 var key_word_subject = '';
 // 搜索专题
 function searchSubject(){
-  ui.loading = true;
-  ui.noMoreData = false;
-  search_page = 1;
-	var key_word_subject = $('.search_subject').val()
+
+	key_word_subject = $('.search_subject').val()
 	if (key_word_subject == '') {
 		return false
 	}
+  ui.loading = true;
+  ui.noMoreData = false;
+  search_subject_page = 1;
+  // 隐藏推荐专题，显示搜索结果
+  $('.list_subject_recommend').css('display','none')
+  $('.list_subject_item').css('display','')
+
 	var uri = 'topic/seachTopic?currentPage=' + search_subject_page + '&pageSize=' + pageSize
             + '&topic=' + key_word_subject
 	doJavaGet(uri,function(result){
@@ -713,18 +743,33 @@ function searchSubject(){
 		var content = template(search, {list: result.datas});
 		$('.list_subject_item').append(content);
     // 有结果时显示加载更多
-    if (result.datas.length == 12) {
+    if (result.datas.length != 0) {
       $('.load_more_subject_result').css('display', 'block')
     }
+    ui.loading = false;
+
 	}, "json");
 }
 
-// 回车搜索专题
-function keyEnterSearchSubject(){
+// 搜索专题绑定键盘事件
+function keyEnterSearchSubject(e){
+  // 回车键搜索
   if(event.keyCode ==13){
     searchSubject();
   }
+
+  // 删除键，判断显示推荐还是搜索结果
+  else if (event.keyCode == 8) {
+    if ( !$(e).val() ) {
+      // 显示推荐专题，隐藏搜索结果及加载更多
+      $('.list_subject_item').css('display','none')
+      $('.list_subject_recommend').css('display','')
+      $('.load_more_subject_result').css('display', 'none')
+    }
+  }
 }
+
+
 
 // 加载更多搜索专题的结果
 function load_more_search_subject_result(){
@@ -732,19 +777,21 @@ function load_more_search_subject_result(){
     return
   }
   ui.loading = true;
-  search_page++;
-
+  search_subject_page++;
+  $('.load_more_subject_result').text('加载中')
   var uri = 'topic/seachTopic?currentPage=' + search_subject_page + '&pageSize=' + pageSize
             + '&topic=' + key_word_subject
   doJavaGet(uri,function(result){
     if (result.datas.length == 0) {
       ui.noMoreData = true;
+      // $('.load_more_subject_result').css('display', 'block')
+      $('.load_more_subject_result').text('已无更多数据')
     }else {
       var search = document.getElementById('search_subject_list').innerHTML;
       var content = template(search, {list: result.datas});
       $('.list_subject_item').append(content);
-      $('.load_more_subject_result').css('display', 'block')
-
+      // $('.load_more_subject_result').css('display', 'block')
+      $('.load_more_subject_result').text('查看更多')
     }
     ui.loading = false;
   }, "json");
