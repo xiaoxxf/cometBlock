@@ -27,7 +27,7 @@ function getTopicDetail(){
     // 描述
     $('.topic_description').val(result.datas[0].description)
 
-    // 类型 1->不审核， 0->审核
+    // 类型 0->需要审核， 1->不需要审核
     if (result.datas[0].topicType == 0) {
       $('.apply').attr('checked','checked')
     }else if(result.datas[0].topicType == 1){
@@ -113,28 +113,25 @@ function editTopic(){
     return
   }
 
-  // 判断投稿选项
-
   // 判断投稿是否审核
   var topicType;
-  // 不审核
+  // 需要审核
   if (  $(newTopicForm.apply).is(':checked') )
-  {
-    topicType = 1;
-  }
-  // 审核
-  else if( $(newTopicForm.apply_not).is('checked') )
   {
     topicType = 0;
   }
-  else if(!topicType){
+  // 不需要审核
+  else if( $(newTopicForm.apply_not).is(':checked') )
+  {
+    topicType = 1;
+  }
+  else if(topicType == undefined){
     layer.tips('请选择投稿是否需要审核', '.allow_submit', {
         tips: [1, '#4fa3ed'],
         time: 2000
     });
     return;
   }
-
 
   var data = {
     'topicPic':  newTopicForm.topic_logo_file_name.value,

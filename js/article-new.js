@@ -94,9 +94,12 @@ $('.submit_comment').on('click',function(){
   }
 
   ui.submiting = true
+  // var text_content = encodeURI(editor.txt.html())
+  var text_content = editor.txt.html()
+
   var data = {
     textTitle: $('input[name="head"]')[0].value,
-    textContent: editor.txt.html(),
+    textContent: text_content,
     type: 4,
     userId: userId, //userId
   }
@@ -109,15 +112,15 @@ $('.submit_comment').on('click',function(){
   }
 
   function callback(result){
-    ui.submiting = false
     layer.msg('提交成功', {
       time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
       end:function(){
         window.location.href='personal-homepage.html'
       }
     });
+    ui.submiting = false
   }
-  var uri = 'blockchain/addReview'
+  var uri = 'blockchain/addReview';
   doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
 })
 
