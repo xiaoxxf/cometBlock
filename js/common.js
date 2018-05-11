@@ -2,14 +2,12 @@ var username = $.cookie('username');
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
-// var login_uri = 'http://127.0.0.1:8020/cometBlock/login.html';
-// var register_uri = 'http://127.0.0.1:8020/cometBlock/login.html';
-// var find_pass_word_uri = 'http://127.0.0.1:8020/cometBlock/find-pwd.html'
+
 // 不跳回登录、注册、找回密码的页面
-var login_uri = 'http://www.blockcomet.com/cometBlock/login.html';
-var register_uri = 'http://www.blockcomet.com/cometBlock/register.html';
-var find_pass_word_uri = 'http://www.blockcomet.com/cometBlock/find-pwd.html'
-if (window.location.href != login_uri && window.location.href != register_uri && window.location.href != find_pass_word_uri ) {
+var login_uri = '/cometBlock/login.html';
+var register_uri = '/cometBlock/register.html';
+var find_pass_word_uri = '/cometBlock/find-pwd.html'
+if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri ) {
   var currentJumpHref = window.location.href;
   window.localStorage.setItem('currentJumpHref',currentJumpHref);
 }
