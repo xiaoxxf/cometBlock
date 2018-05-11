@@ -414,19 +414,8 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
 });
 
 
-//点击悬浮新建投稿到项目
-var flag_close_project = false;
-
-var project_alert_close_index = null;
+//点击悬浮投稿到项目
 $(".news_alert_project").on('click',function (e) {
-
-	if(flag_close_project){
-		// $('.layui-layer-close2').click();
-    layer.close(project_alert_close_index);
-		flag_close_project = false;
-
-		return
-	}
 
   var area_width
   var area_height
@@ -438,33 +427,21 @@ $(".news_alert_project").on('click',function (e) {
     area_width = '520px'
     area_height = '600px'
   }
-  project_alert_close_index = layer.open({
+  layer.open({
       type: 1,
-      shade:0,
+      shadeClose:true,
       title: 0,
       skin: 'layui-layer-report', //加上边框
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-fixed").html()
   });
 
-    flag_close_project = true;
 
 })
 
 
 //点击悬浮投稿到专题
-var flag_close_subject = false;
-var subject_alert_close_index = null;
-
 $(".news_alert_subject").on('click',function (e) {
-
-	if(flag_close_subject){
-		// $('.layui-layer-close2').click();
-    layer.close(subject_alert_close_index);
-    flag_close_subject = false;
-
-		return
-	}
 
   var area_width
   var area_height
@@ -478,14 +455,13 @@ $(".news_alert_subject").on('click',function (e) {
   }
   subject_alert_close_index = layer.open({
       type: 1,
-      shade:0,
+      shadeClose:true,
       title: 0,
       skin: 'layui-layer-report', //加上边框
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-subject").html()
   });
   getRecommendSubject();
-  flag_close_subject = true;
 
 })
 
@@ -515,18 +491,8 @@ function getRecommendSubject(){
 }
 
 //点击悬浮收录专题
-var flag_close_collect = false;
-var collect_alert_close_index = null;
 
 $(".news_alert_include").on('click',function (e) {
-
-	if(flag_close_collect){
-		// $('.layui-layer-close2').click();
-    layer.close(collect_alert_close_index);
-    flag_close_collect = false;
-		return
-	}
-
   var area_width
   var area_height
   if($(window).width() <= 767)
@@ -537,16 +503,15 @@ $(".news_alert_include").on('click',function (e) {
     area_width = '520px'
     area_height = '600px'
   }
-  collect_alert_close_index = layer.open({
+  layer.open({
       type: 1,
-      shade:0,
+      shadeClose:true,
       title: 0,
       skin: 'layui-layer-report', //加上边框
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-include").html()
   });
   getMyTopic();
-  flag_close_collect = true;
 
 })
 

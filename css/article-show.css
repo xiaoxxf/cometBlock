@@ -703,7 +703,7 @@ a img {
 .include-info{
 	display: inline-block;
     position: absolute;
-} 
+}
 .action-include-btn{
 	position: absolute;
     top: 45%;
@@ -718,19 +718,19 @@ a img {
     float: right;
     cursor: pointer;
     color: rgb(79, 163, 237);
-} 
+}
 .recomment-name{
 	font-size: 15px;
     font-weight: 700;
     color: #333;
     display: block;
-} 
+}
 .include-meta{
 	font-size: 12px;
     color: #969696;
     display: inline-block;
 }
-   
+
 
 .title_logo,.recomment_title_logo{
 	width: 50px;
@@ -749,8 +749,9 @@ a img {
 }
 .collection-info .meta,.subject-meta{
 	font-size: 12px;
-    color: #969696;
-    display: inline-block;
+  color: #969696;
+  display: inline-block;
+	margin-top: 13px;
 }
 .recomment-info,.collection-subject-info{
 	display: inline-block;
@@ -775,15 +776,15 @@ a img {
   margin-top: -12px;
   padding: 2px 8px;
   font-size: 13px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   line-height: normal;
-  border: solid 1px rgb(79, 163, 237);
+  /* border: solid 1px rgb(79, 163, 237); */
   float: right;
   cursor: pointer;
   color: rgb(79, 163, 237)
 }
 
- 
+
 
 /* 评论者头像 */
 .review-creator-pic{
