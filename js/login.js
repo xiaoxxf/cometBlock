@@ -1,4 +1,4 @@
-
+(function(){
 function loginFromValid(){
 	var tel=$("#session_phone").val();
 	var userPwd=$("#session_password").val();
@@ -92,3 +92,4 @@ function signIn(){
 
 	}
 }
+})();
