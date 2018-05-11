@@ -75,8 +75,8 @@ function FindPwdFromValid() {
 //发送验证码
 function getCode() {
 	if(SendCodeFromValid()){
-		var userName=$("#session_phone").val();
-		var uri = 'news/recoverPassword?userName=' + userName +'&type='+1//输入手机号请求验证码验证
+		var userPhone = $("#session_phone").val();
+		var uri = 'blockchain/getCode?phoneNo=' + userPhone//输入手机号请求验证码验证
 		doJavaGet(uri, function(res) {
 			if(res != null && res.code == 0) {
 				layer.msg("验证码已发送");
@@ -121,9 +121,6 @@ $('#send_code').click(function() {
 //重置密码
 $("#sign-in-form-submit-btn").click(function() {
 	if(FindPwdFromValid()){
-		$(".ouro").attr({
-			style: "display:inline-block"
-		});
 		var userName=$("#session_phone").val();
 		var code=$("#phone_code").val();
 		var newPassword=$("#confirm_password").val();
@@ -136,9 +133,15 @@ $("#sign-in-form-submit-btn").click(function() {
 				setTimeout(function() {
 					window.location.href = "login.html";
 				}, 1500);
+				$(".ouro").attr({
+					style: "display:inline-block"
+				});
 
 			} else {
 				layer.msg(res.msg);
+				$(".ouro").attr({
+					style: "display:none"
+				});
 			}
 	
 		}, "json");
