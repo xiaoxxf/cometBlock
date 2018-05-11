@@ -264,7 +264,7 @@
 
 							<h3 class="article-title">
 								<% if(list[i].type == 4) {%>
-									<a href="article-show.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textTitle"><%=list[i].textTitle %></a>
+									<a href="article-show.html?reviewId=<%=list[i].reviewId %>" class="textTitle"><%=list[i].textTitle %></a>
 								<%}else if(list[i].type == 2){%>
 									<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textTitle"><%=list[i].textTitle %></a>
 								<%}%>
@@ -275,7 +275,7 @@
 						<div style="display:flex">
 							<div class="article-introduce">
 								<% if(list[i].type == 4) {%>
-									<a href="article-show.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textContent">
+									<a href="article-show.html?reviewId=<%=list[i].reviewId %>" class="textContent">
 										<%:=list[i].textContent%>
 									</a>
 								<%}else if(list[i].type == 2){%>
@@ -286,20 +286,21 @@
 
 							</div>
 
-							<%if(list[i].projectId){%>
+							<!-- 长文评测时显示项目 -->
+							<!-- <%if(list[i].type == 2){%>
 								<div class="article-icon">
 									<a href="chain-detail.html?projectId=<%=list[i].projectId %>">
 										<img class="article-img" src="<%=list[i].projectLogo %>">
 									</a>
 								</div>
-							<%}%>
+							<%}%> -->
 
 
 						</div>
 
 						<div class="meta">
 							<% if(list[i].type == 4) {%>
-								<a href="article-show.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" style="margin-right:20px">
+								<a href="article-show.html?reviewId=<%=list[i].reviewId %>#toComments" style="margin-right:20px">
 							<%}else if(list[i].type == 2){%>
 								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" style="margin-right:20px">
 							<%}%>

@@ -2,6 +2,12 @@ var username = $.cookie('username');
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
+// var login_uri = 'http://10.0.0.71:8020/cometBlock/login.html';
+// var register_uri = 'http://10.0.0.71:8020/cometBlock/login.html';
+// if (window.location.href != login_uri && window.location.href != register_uri ) {
+//   var currentJumpHref = window.location.href;
+//   window.localStorage.setItem('currentJumpHref',currentJumpHref);
+// }
 
 function guid() {
     function s4() {

@@ -4,10 +4,11 @@
 // var wechatInfo = $.cookie('wechatInfo');
 // wechatInfo == null ? wechatInfo : JSON.parse(wechatInfo);
 var quotedReviewId = null
-var projectId = getUrlParam('projectId');
+var projectId = '';
 var ui = {
   'loading': false,
   'noMoreData': false,
+  'submiting': false
 }
 var article_topic_list = [];
 
@@ -50,16 +51,15 @@ function  ajaxGetReviewDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var commentInfoData = res.datas;
-            // 从消息中心页进来，url不带projectId，需要给projectId赋值后再用projectId去请求项目信息
-            if (!projectId) {
-              projectId = res.datas.projectId
-            }
+            // 给projectId赋值后再用projectId去请求项目信息
+            projectId = res.datas.projectId
+
             // 保存文章的专题id
             for (var i = 0; i < res.datas.topiclist.length; i++) {
               article_topic_list.push(res.datas.topiclist[i].id)
             }
             $('title').html(commentInfoData.textTitle)
-            console.log(commentInfoData)
+            // console.log(commentInfoData)
             $(".comet-navbar .long-comment-title").text(commentInfoData.textTitle);
             $(".comment-container-wrap .comment-detail-title").text(commentInfoData.textTitle);
             var commentTpl = $("#template-mian-detail").html();
@@ -550,8 +550,6 @@ function keyEnterSearchSubject(e){
   }
 }
 
-
-
 // 加载更多搜索专题的结果
 function load_more_search_subject_result(){
   if (ui.loading || ui.noMoreData) {
@@ -581,6 +579,10 @@ function load_more_search_subject_result(){
 // 投稿到专题
 var _send_button = null;
 function sendArticleToSubject(e){
+  if (ui.submiting) {
+    return
+  }
+  ui.submiting = true;
   _send_button = e;
   var self =$(e),
       topicId = self.data('subjectid'),
@@ -595,6 +597,7 @@ function sendArticleToSubject(e){
     }else if(result.code == -1){
       layer.msg(result.msg);
     }
+    ui.submiting = false;
   })
 
 }

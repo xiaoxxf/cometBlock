@@ -778,3 +778,13 @@ a img {
   cursor: pointer;
   color: rgb(79, 163, 237)
 }
+
+.load_more_subject_result,.load_more_recomment_result{
+	line-height: 30px;
+	display: block;
+	height: 30px;
+	margin: 20px 10px;
+	text-align: center;
+	cursor: pointer;
+	display: none;
+}
