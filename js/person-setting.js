@@ -267,11 +267,16 @@ $("#save_realname").click(function(){
 function changeUser(){
 	var str = localStorage.getItem('userinfo');
 	var jsonStr = JSON.parse(str); //从一个字符串中解析出json对象
-	var realName=jsonStr.realName;
+	var realName=$("#ownname").val();
 	var userPwd =  jsonStr.userPwd;
 	var personIntroduce=$(".person-introduce").val();
 	var userId = jsonStr.id;
 	var uri = 'news/changeRealname?realName='+realName+"&passWord="+userPwd+"&userId="+userId+"&personIntro="+personIntroduce
+	
+	if(!realName){
+		layer.msg('昵称不能为空');
+		return
+	}
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 			layer.msg(res.msg);
