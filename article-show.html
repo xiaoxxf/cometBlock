@@ -200,8 +200,6 @@
 					<span property="v:reviewer"><%:=list.realName%></span>
 				</a>
 
-				<!-- <span class="allstar<%:=list.score*10%> main-title-rating" title=""></span> -->
-				<!-- <span property="v:rating" class="main-title-hide">5</span> -->
 				<span property="v:dtreviewed" content="2018-03-15" class="main-meta"><%:=list.createTime%></span>
 			</header>
 			<div class="main-bd">
@@ -453,21 +451,23 @@
 		<!-- 推荐专题  -->
 		<script type="text/html" id="recomment_topic_tpl">
 			<%for(var i = 0; i < list.length; i++) {%>
-				<li class="">
-					<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
-						<img src="<%=list[i].topicPic %>" class="title_logo">
-					</a>
-					<div class="collection-info">
-						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
-						<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
-						<div class="meta"></div>
-					</div>
-					<%if( list[i].state ){%>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
-					<%} else {%>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
-					<% } %>
-				</li>
+					<%if(list[i].topic != '编辑推荐' ){%>
+						<li class="">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+								<img src="<%=list[i].topicPic %>" class="title_logo">
+							</a>
+							<div class="collection-info">
+								<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+								<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+								<div class="meta"></div>
+							</div>
+							<%if( list[i].state ){%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+							<%} else {%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+							<% } %>
+						</li>
+					<% }%>
 			<% }%>
 		</script>
 

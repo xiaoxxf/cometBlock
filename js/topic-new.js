@@ -80,19 +80,17 @@ function createTopic(){
     return
   }
 
-  // 判断投稿选项
-
   // 判断投稿是否审核
   var topicType = undefined;
-  // 不审核
-  if (  $(newTopicForm.apply_not).is(':checked') )
-  {
-    topicType = 1;
-  }
-  // 审核
-  else if( $(newTopicForm.apply).is(':checked') )
+  // 需要审核
+  if (  $(newTopicForm.apply).is(':checked') )
   {
     topicType = 0;
+  }
+  // 不需要审核
+  else if( $(newTopicForm.apply_not).is(':checked') )
+  {
+    topicType = 1;
   }
   else if(topicType == undefined){
     layer.tips('请选择投稿是否需要审核', '.allow_submit', {

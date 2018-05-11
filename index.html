@@ -140,13 +140,13 @@
 													<a href="" class="hot-span ">投研报告</a>
 													<a href="" class="hot-span ">新手科普</a> -->
 												</span>
-												<a href="attention.html"><span style="margin-top:10px">更多&gt;&gt;</span></a>
+												<!-- <a href="attention.html"><span style="margin-top:10px">更多&gt;&gt;</span></a> -->
 										</div>
 										<div class="hot_review_region">
 
 										</div>
 
-										<div class="read-more">阅读更多&gt;&gt;</div>
+										<div class="read-more" style="display:none">阅读更多</div>
 								</div>
 							</div>
 
@@ -245,7 +245,7 @@
 </script>
 
 
-<!-- 热门评测 -->
+<!-- 专题下的文章 -->
 <script type="text/html" id="hot_article_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="hot_article_zone bottom_line">
@@ -263,28 +263,49 @@
 							<span class="article-time"><%=list[i].createTime.split(' ')[0] %></span>
 
 							<h3 class="article-title">
-								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textTitle"><%=list[i].textTitle %></a>
+								<% if(list[i].type == 4) {%>
+									<a href="article-show.html?reviewId=<%=list[i].reviewId %>" class="textTitle"><%=list[i].textTitle %></a>
+								<%}else if(list[i].type == 2){%>
+									<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textTitle"><%=list[i].textTitle %></a>
+								<%}%>
 							</h3>
 						</div>
 
 
 						<div style="display:flex">
 							<div class="article-introduce">
-								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textContent">
-									<%:=list[i].textContent%>
-								</a>
+								<% if(list[i].type == 4) {%>
+									<a href="article-show.html?reviewId=<%=list[i].reviewId %>" class="textContent">
+										<%:=list[i].textContent%>
+									</a>
+								<%}else if(list[i].type == 2){%>
+									<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>" class="textContent">
+										<%:=list[i].textContent%>
+									</a>
+								<%}%>
+
 							</div>
 
-							<div class="article-icon">
-								<a href="chain-detail.html?projectId=<%=list[i].projectId %>">
-									<img class="article-img" src="<%=list[i].projectLogo %>">
-								</a>
-							</div>
+							<!-- 长文评测时显示项目 -->
+							<!-- <%if(list[i].type == 2){%>
+								<div class="article-icon">
+									<a href="chain-detail.html?projectId=<%=list[i].projectId %>">
+										<img class="article-img" src="<%=list[i].projectLogo %>">
+									</a>
+								</div>
+							<%}%> -->
+
 
 						</div>
 
 						<div class="meta">
-							<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%=list[i].review %></a>
+							<% if(list[i].type == 4) {%>
+								<a href="article-show.html?reviewId=<%=list[i].reviewId %>#toComments" style="margin-right:20px">
+							<%}else if(list[i].type == 2){%>
+								<a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" style="margin-right:20px">
+							<%}%>
+								<i class="fa fa-commenting"></i> <%=list[i].review %>
+							</a>
 							<a class="like-button" data-reviewId="<%:=list[i].reviewId%>"><i class="fa fa-heart"></i> <%=list[i].likes %></a>
 						</div>
 					</div>
@@ -297,7 +318,7 @@
 <!-- 专题列表 -->
 <script type="text/html" id="topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<a class="hot-span "><%=list[i].topic %></a>
+		<a data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span"><%=list[i].topic %></a>
 	<%}%>
 </script>
 

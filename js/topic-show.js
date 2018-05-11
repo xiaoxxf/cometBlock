@@ -18,7 +18,9 @@ function getTopicDetail(){
   doJavaGet(uri,function(result){
 
   $('title').html('专题-' + result.datas[0].topic );
-
+		// if (result.datas[0].description.length > 100) {
+		// 	result.datas[0].description = result.datas[0].description.substring(0,100) + "..."
+		// }
 
     var tpl= document.getElementById('topic_detail_tpl').innerHTML;
     var content = template(tpl, {list: result.datas});
