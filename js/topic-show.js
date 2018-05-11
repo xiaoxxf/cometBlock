@@ -185,3 +185,41 @@ $(".topic_article_list").on('click','.like-button',function (e) {
         }
     }, "json");
 });
+
+
+//点击收录搜索文章
+var flag_close_project = false;
+
+var project_alert_close_index = null;
+$(".collect_button").on('click',function (e) {
+
+	if(flag_close_project){
+		// $('.layui-layer-close2').click();
+    layer.close(project_alert_close_index);
+		flag_close_project = false;
+
+		return
+	}
+
+  var area_width
+  var area_height
+  if($(window).width() <= 767)
+  {
+    area_width = '320px'
+    area_height = '500px'
+  }else{
+    area_width = '520px'
+    area_height = '600px'
+  }
+  project_alert_close_index = layer.open({
+      type: 1,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      area: [area_width,area_height ], //宽高
+      content: $("#templay-search-article").html()
+  });
+
+    flag_close_project = true;
+
+})
