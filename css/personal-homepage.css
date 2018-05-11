@@ -284,6 +284,10 @@ a img {
 	/* margin-left:10px ; */
 	color: #777777c4;
 }
+.article-time{
+	float: left;
+	margin-right: 20px;
+}
 .read-more{
 	text-align: center;
 	height: 50px;
@@ -359,4 +363,21 @@ a img {
 
 .targetProjectBigName{
   margin-left: -3px;
+}
+
+
+/*文章标签*/
+.article-tag{
+	float: left;
+}
+.article-tag a{
+	display: inline-block;
+    margin: 0px 12px;
+    padding: 5px;
+    margin-top: -8px;
+    background-color: #f7f7f7;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    vertical-align: top;
+    overflow: hidden;
 }
