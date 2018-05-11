@@ -39,6 +39,7 @@ function  ajaxGetReviewDetail() {
             if (userinfo && commentInfoData.creator == userinfo.id) {
               $('.news_alert_project').css('display','')
               $('.news_alert_subject').css('display','')
+              $('.news_alert_include').css('display','')
 
             }
         } else {
@@ -413,19 +414,8 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
 });
 
 
-//点击悬浮新建投稿到项目
-var flag_close_project = false;
-
-var project_alert_close_index = null;
+//点击悬浮投稿到项目
 $(".news_alert_project").on('click',function (e) {
-
-	if(flag_close_project){
-		// $('.layui-layer-close2').click();
-    layer.close(project_alert_close_index);
-		flag_close_project = false;
-
-		return
-	}
 
   var area_width
   var area_height
@@ -437,33 +427,21 @@ $(".news_alert_project").on('click',function (e) {
     area_width = '520px'
     area_height = '600px'
   }
-  project_alert_close_index = layer.open({
+  layer.open({
       type: 1,
-      shade:0,
+      shadeClose:true,
       title: 0,
       skin: 'layui-layer-report', //加上边框
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-fixed").html()
   });
 
-    flag_close_project = true;
 
 })
 
 
 //点击悬浮投稿到专题
-var flag_close_subject = false;
-var subject_alert_close_index = null;
-
 $(".news_alert_subject").on('click',function (e) {
-
-	if(flag_close_subject){
-		// $('.layui-layer-close2').click();
-    layer.close(subject_alert_close_index);
-    flag_close_subject = false;
-
-		return
-	}
 
   var area_width
   var area_height
@@ -477,31 +455,44 @@ $(".news_alert_subject").on('click',function (e) {
   }
   subject_alert_close_index = layer.open({
       type: 1,
-      shade:0,
+      shadeClose:true,
       title: 0,
       skin: 'layui-layer-report', //加上边框
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-subject").html()
   });
-
-  flag_close_subject = true;
+  getRecommendSubject();
 
 })
 
+// 加载推荐专题
+function getRecommendSubject(){
+
+	var uri = 'topic/seachTopic?currentPage=1&pageSize=8'
+	doJavaGet(uri,function(result){
+    // 判断是否已投稿
+    for (var i = 0; i < result.datas.length; i++) {
+      // 有
+      if ( article_topic_list.indexOf(result.datas[i].id) > -1) {
+        result.datas[i]['state'] = 1
+      }
+      // 无
+      else{
+        result.datas[i]['state'] = 0
+      }
+    }
+    // console.log(result.datas)
+		$('.recommend_topic_result').html('');
+		var search = document.getElementById('recomment_topic_tpl').innerHTML;
+		var content = template(search, {list: result.datas});
+		$('.recommend_topic_result').append(content);
+
+	}, "json");
+}
+
 //点击悬浮收录专题
-var flag_close_subject = false;
-var subject_alert_close_index = null;
 
 $(".news_alert_include").on('click',function (e) {
-
-	if(flag_close_subject){
-		// $('.layui-layer-close2').click();
-    layer.close(subject_alert_close_index);
-    flag_close_subject = false;
-
-		return
-	}
-
   var area_width
   var area_height
   if($(window).width() <= 767)
@@ -512,19 +503,41 @@ $(".news_alert_include").on('click',function (e) {
     area_width = '520px'
     area_height = '600px'
   }
-  subject_alert_close_index = layer.open({
+  layer.open({
       type: 1,
-      shade:0,
+      shadeClose:true,
       title: 0,
       skin: 'layui-layer-report', //加上边框
       area: [area_width,area_height ], //宽高
       content: $("#templay-news-include").html()
   });
-
-  flag_close_subject = true;
+  getMyTopic();
 
 })
 
+// 加载我管理的专题
+function getMyTopic(){
+  var uri = 'topic/seachTopic?currentPage=1&pageSize=8&creator=' + userinfo.id
+  doJavaGet(uri,function(result){
+    // 判断是否已投稿
+    for (var i = 0; i < result.datas.length; i++) {
+      // 有
+      if ( article_topic_list.indexOf(result.datas[i].id) > -1) {
+        result.datas[i]['state'] = 1
+      }
+      // 无
+      else{
+        result.datas[i]['state'] = 0
+      }
+    }
+    // console.log(result.datas)
+    $('.my_topic_list').html('');
+    var search = document.getElementById('my_topic_tpl').innerHTML;
+    var content = template(search, {list: result.datas});
+    $('.my_topic_list').append(content);
+
+  }, "json");
+}
 
 
 //搜索项目
@@ -532,13 +545,15 @@ var search_page_project = 1;
 var key_word_project = '';
 // 搜索项目
 function searchProject(){
-  ui.loading = true;
-  ui.noMoreData = false;
-  search_page_project = 1;
+  // 判断是否有搜索内容
 	key_word_project  = $('.search_project').val()
 	if (key_word_project  == '') {
 		return false
 	}
+
+  ui.loading = true;
+  ui.noMoreData = false;
+  search_page_project = 1;
 	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page_project + '&pageSize=' + pageSize
             + '&projectName=' + key_word_project
 	doJavaGet(uri,function(result){
@@ -661,13 +676,18 @@ var search_subject_page = 1;
 var key_word_subject = '';
 // 搜索专题
 function searchSubject(){
-  ui.loading = true;
-  ui.noMoreData = false;
-  search_page = 1;
-	var key_word_subject = $('.search_subject').val()
+
+	key_word_subject = $('.search_subject').val()
 	if (key_word_subject == '') {
 		return false
 	}
+  ui.loading = true;
+  ui.noMoreData = false;
+  search_subject_page = 1;
+  // 隐藏推荐专题，显示搜索结果
+  $('.list_subject_recommend').css('display','none')
+  $('.list_subject_item').css('display','')
+
 	var uri = 'topic/seachTopic?currentPage=' + search_subject_page + '&pageSize=' + pageSize
             + '&topic=' + key_word_subject
 	doJavaGet(uri,function(result){
@@ -688,18 +708,33 @@ function searchSubject(){
 		var content = template(search, {list: result.datas});
 		$('.list_subject_item').append(content);
     // 有结果时显示加载更多
-    if (result.datas.length == 12) {
+    if (result.datas.length != 0) {
       $('.load_more_subject_result').css('display', 'block')
     }
+    ui.loading = false;
+
 	}, "json");
 }
 
-// 回车搜索专题
-function keyEnterSearchSubject(){
+// 搜索专题绑定键盘事件
+function keyEnterSearchSubject(e){
+  // 回车键搜索
   if(event.keyCode ==13){
     searchSubject();
   }
+
+  // 删除键，判断显示推荐还是搜索结果
+  else if (event.keyCode == 8) {
+    if ( !$(e).val() ) {
+      // 显示推荐专题，隐藏搜索结果及加载更多
+      $('.list_subject_item').css('display','none')
+      $('.list_subject_recommend').css('display','')
+      $('.load_more_subject_result').css('display', 'none')
+    }
+  }
 }
+
+
 
 // 加载更多搜索专题的结果
 function load_more_search_subject_result(){
@@ -707,19 +742,21 @@ function load_more_search_subject_result(){
     return
   }
   ui.loading = true;
-  search_page++;
-
+  search_subject_page++;
+  $('.load_more_subject_result').text('加载中')
   var uri = 'topic/seachTopic?currentPage=' + search_subject_page + '&pageSize=' + pageSize
             + '&topic=' + key_word_subject
   doJavaGet(uri,function(result){
     if (result.datas.length == 0) {
       ui.noMoreData = true;
+      // $('.load_more_subject_result').css('display', 'block')
+      $('.load_more_subject_result').text('已无更多数据')
     }else {
       var search = document.getElementById('search_subject_list').innerHTML;
       var content = template(search, {list: result.datas});
       $('.list_subject_item').append(content);
-      $('.load_more_subject_result').css('display', 'block')
-
+      // $('.load_more_subject_result').css('display', 'block')
+      $('.load_more_subject_result').text('查看更多')
     }
     ui.loading = false;
   }, "json");
@@ -762,6 +799,17 @@ var index_subject = null;
 $('.news_alert_subject').on("mouseenter mouseleave", function(e){
   if(e.type == "mouseenter"){
     index_subject = layer.tips('投稿到专题', '.news_alert_subject', {
+        tips: [4, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.close(index_subject)
+  };
+})
+
+var index_collect = null;
+$('.news_alert_include').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    index_subject = layer.tips('收录该文章到专题', '.news_alert_include', {
         tips: [4, '#4fa3ed']
     });
   }else if(e.type == "mouseleave"){

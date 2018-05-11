@@ -76,7 +76,7 @@ function createTopic(){
 
   // 判断是否有图片
   if ($('.topic_logo_file_name').val() == '') {
-    layer.msg('必须上传币种图片')
+    layer.msg('必须上传专题图片')
     return
   }
 

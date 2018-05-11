@@ -26,7 +26,7 @@ function getTopicDetail(){
 
     // 渲染左侧专题信息
     $('.topic_title .topic_name').html(result.datas[0].topic);
-    $('.topic_title .topic_article_count').html('共收录了' + result.datas[0].count + '篇文章');
+    $('.topic_title .topic_article_count').html('共收录了 ' + result.datas[0].counts + ' 篇文章');
     $('.topic_info_left .topic_icon')[0].src = result.datas[0].topicPic;
   })
 }

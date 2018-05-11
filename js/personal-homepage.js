@@ -14,7 +14,7 @@ var ui = {
 $(function(){
 	// 看别人
 	url_id = getUrlParam('userId');
-	cookie_id = $.cookie('userid');
+	cookie_id = userinfo.id;
 	if (url_id && url_id != cookie_id ) {
 		userid_search = getUrlParam('userId');
 		//看别人时隐藏编辑按钮

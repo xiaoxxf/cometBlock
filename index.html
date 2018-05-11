@@ -131,14 +131,14 @@
 												<span class="hot_block" style="margin-top:10px"></span>
 												<!--<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门推荐</a></span>-->
 												<span class="hot_main_area">
-													<a href="hot-article.html" class="hot-span hot-span-item">热门推荐</a>
-													<a href="" class="hot-span ">编辑推荐</a>
+													<!-- <a class="hot-span hot-span-item">热门推荐</a> -->
+													<!-- <a href="" class="hot-span ">编辑推荐</a>
 													<a href="" class="hot-span ">项目评测</a>
 													<a href="" class="hot-span ">共识算法</a>
 													<a href="" class="hot-span ">加密经济</a>
 													<a href="" class="hot-span ">行情分析</a>
 													<a href="" class="hot-span ">投研报告</a>
-													<a href="" class="hot-span ">新手科普</a>
+													<a href="" class="hot-span ">新手科普</a> -->
 												</span>
 												<a href="attention.html"><span style="margin-top:10px">更多&gt;&gt;</span></a>
 										</div>
@@ -152,7 +152,7 @@
 
 							<div class="col-md-3 col-sm-12 col-xs-12">
 								<div class="hot_zone right_ad side">
-									<img src="img/hot_icon.jpg"  class="img-responsive" style="height: 200px;"/>
+									<img src="img/advertisement.png"  class="img-responsive" style="height: 200px;"/>
 								</div>
 							</div>
 						</div>
@@ -162,88 +162,90 @@
 			</div>
 		</div>
 
-		<script type="text/html" id="hot_coin_tpl_mobile">
-			<%for(var i = 0; i < list.length; i++) {%>
-			<div class="coin-detail-mobile">
-				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-					<br>
-					<img src='<%=list[i].projectLogo %>'  alt="" style="width:56px;height:56px">
-					<h3 class="project-name"><%=list[i].projectBigName%></h3>
-					<p class="score">
-						<%if(list[i].score ==0 ){%>
-						<span>暂无评分</span>
-						<%}else{%>
-						<span class="allstar<%:=list[i].score*5%>"></span>
-						<span><%=list[i].score%></span>
-						<%}%>
-					</p>
-				</a>
-			</div>
-			<%}%>
-		</script>
+<!-- 手机端热门项目 -->
+<script type="text/html" id="hot_coin_tpl_mobile">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="coin-detail-mobile">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:56px;height:56px">
+			<h3 class="project-name"><%=list[i].projectBigName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
 
-		<script type="text/html" id="hot_coin_tpl_1">
-			<%for(var i = 0; i < list.length; i++) {%>
-			<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-				<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-					<!-- <br> -->
-					<img src='<%=list[i].projectLogo %>'  alt="">
-					<h3 class="project-name"><%=list[i].projectBigName%></h3>
-					<p class="score">
-						<%if(list[i].score ==0 ){%>
-						<span>暂无评分</span>
-						<%}else{%>
-						<span class="allstar<%:=list[i].score*5%>"></span>
-						<span><%=list[i].score%></span>
-						<%}%>
-					</p>
-				</a>
-			</div>
-			<%}%>
-		</script>
+<!-- pc端热门项目 -->
+<script type="text/html" id="hot_coin_tpl_1">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<!-- <br> -->
+			<img src='<%=list[i].projectLogo %>'  alt="">
+			<h3 class="project-name"><%=list[i].projectBigName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
 
-		<script type="text/html" id="hot_coin_tpl_2">
-			<%for(var i = 0; i < list.length; i++) {%>
-				<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-					<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-						<!-- <br> -->
-						<img src='<%=list[i].projectLogo %>'  alt="">
-						<h3 class="project-name"><%=list[i].projectBigName%></h3>
-						<p class="score">
-							<%if(list[i].score ==0 ){%>
-							<span>暂无评分</span>
-							<%}else{%>
-							<span class="allstar<%:=list[i].score*5%>"></span>
-							<span><%=list[i].score%></span>
-							<%}%>
-						</p>
-					</a>
-				</div>
-			<%}%>
-		</script>
+<script type="text/html" id="hot_coin_tpl_2">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+				<!-- <br> -->
+				<img src='<%=list[i].projectLogo %>'  alt="">
+				<h3 class="project-name"><%=list[i].projectBigName%></h3>
+				<p class="score">
+					<%if(list[i].score ==0 ){%>
+					<span>暂无评分</span>
+					<%}else{%>
+					<span class="allstar<%:=list[i].score*5%>"></span>
+					<span><%=list[i].score%></span>
+					<%}%>
+				</p>
+			</a>
+		</div>
+	<%}%>
+</script>
 
-		<script type="text/html" id="hot_coin_tpl_3">
-			<%for(var i = 0; i < list.length; i++) {%>
-				<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-					<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
-						<!-- <br> -->
-						<img src='<%=list[i].projectLogo %>'  alt="">
-						<h3 class="project-name"><%=list[i].projectBigName%></h3>
-						<p class="score">
-							<%if(list[i].score ==0 ){%>
-							<span>暂无评分</span>
-							<%}else{%>
-							<span class="allstar<%:=list[i].score*5%>"></span>
-							<span><%=list[i].score%></span>
-							<%}%>
-						</p>
-					</a>
-				</div>
-			<%}%>
-		</script>
+<script type="text/html" id="hot_coin_tpl_3">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+				<!-- <br> -->
+				<img src='<%=list[i].projectLogo %>'  alt="">
+				<h3 class="project-name"><%=list[i].projectBigName%></h3>
+				<p class="score">
+					<%if(list[i].score ==0 ){%>
+					<span>暂无评分</span>
+					<%}else{%>
+					<span class="allstar<%:=list[i].score*5%>"></span>
+					<span><%=list[i].score%></span>
+					<%}%>
+				</p>
+			</a>
+		</div>
+	<%}%>
+</script>
 
 
-
+<!-- 热门评测 -->
 <script type="text/html" id="hot_article_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="hot_article_zone bottom_line">
@@ -289,8 +291,24 @@
 			</div>
 		</div>
 	<%}%>
-
 </script>
+
+
+<!-- 专题列表 -->
+<script type="text/html" id="topic_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<a class="hot-span "><%=list[i].topic %></a>
+	<%}%>
+</script>
+
+<!-- 播报新闻 -->
+<script type="text/html" id="news_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<p><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
+	<%}%>
+</script>
+
+<!-- 登录弹窗 -->
 <script type="text/html" id="short-comment-commit-layer">
 	<div class="main report-login">
 
@@ -348,12 +366,6 @@
 			</div>
 		</div>
 	</div>
-</script>
-
-<script type="text/html" id="news_tpl">
-	<%for(var i = 0; i < list.length; i++) {%>
-		<p><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
-	<%}%>
 </script>
 
 <script src="js/jquery-2.1.1.js"></script>

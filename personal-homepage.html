@@ -153,7 +153,7 @@
 				<%:=list[i].topic %>
 			</a>
 			<!-- 看自己时显示编辑删除按钮 -->
-			<%if( !getUrlParam('userId') || getUrlParam('userId') == $.cookie('userid') ){%>
+			<%if( !getUrlParam('userId') || getUrlParam('userId') == userinfo.id ){%>
 				<a data-subjectid="<%:=list[i].id %>" class="delete_subject subject_option_menu">删除</a>
 				<a href="topic-edit.html?subjectId=<%:=list[i].id %>"  class="subject_option_menu">编辑 &nbsp</a>
 			<%}%>
@@ -180,7 +180,7 @@
 							</div>
 							<div class="long_comment_box" style="display:flex">
 								<div class="article-introduce">
-									<a class="article_title"><%:=list[i].textTitle %></a>
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
 									<p>
 										<%:=list[i].textContent %>
 									</p>
@@ -284,7 +284,7 @@
 						</div>
 						<div class="long_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<a class="article_title"><%:=list[i].textTitle %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
 								<p>
 									<%:=list[i].textContent %>
 								</p>
