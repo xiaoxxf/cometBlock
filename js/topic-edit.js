@@ -15,8 +15,9 @@ function getTopicDetail(){
   var uri = 'topic/seachTopic?currentPage=1&pageSize=12&topicId=' + topicId;
 
   doJavaGet(uri, function(result){
-    // 图片
+    $('title').html('编辑专题-' + result.datas[0].topic );
 
+    // 图片
     $('.topic_image')[0].src = result.datas[0].topicPic;
     $('.topic_logo_file_name').val(result.datas[0].topicPic);
 

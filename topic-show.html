@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>专题收录</title>
+    <title></title>
     <link rel="icon" href="img/huixing.png" type="image/x-icon"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
@@ -21,32 +21,37 @@
 	    </div>
 	    <div class="mian-container">
 	       <div class="container">
-               <!--专题收录-->
-               <div class="row row-box">
-	               <div class="col-xs-12 col-md-12 col-sm-12" id="show_subject">
+
+               <div class="row">
+	               <div class="col-xs-12 col-md-12 col-sm-12 show_subject">
 	                 	<div class="col-md-8 col-xs-12 col-sm-12">
 	                 		<div class="topic">
+                        <!-- 专题名 -->
 		                 		<div class="topic_info_left">
 		                 			<img src="img/huixing.png" class="topic_icon" />
 		                 			<div class="topic_title">
 		                 				<p class="topic_name"></p>
-		                 				<p class="topic_article_count">收录了0篇文章</p>
+		                 				<p class="topic_article_count"></p>
 		                 			</div>
 		                 		</div>
 		                 		<div class="topic_info_right">
-		                 			<a href="">收录</a>
-
+		                 			<a class="collect_button" href="">收录</a>
 		                 			<!-- <a href=""><span class=""></span>关注</a> -->
 		                 		</div>
 	                 		</div>
+                      <!-- 专题文章 -->
 	                 		<div class="topic topic_border">
 	                 			<div class="topic_include">
-	                 				<a><span class="fa fa-copy"></span><span>最新收录</span></a>
+                          <span class="recent_collect">最新收录</span>
 
 	                 			</div>
+                        <div class="topic_article_list">
+
+                        </div>
+                        <div class="read-more">阅读更多</div>
 	                 		</div>
 	                 	</div>
-	                 	<!--专题公告-->
+	                 	<!--专题描述、管理员、操作-->
 	                 	<div class="col-md-4 col-xs-12 col-sm-12 topic_detail">
 
 	                 	</div>
@@ -59,8 +64,8 @@
 <script type="text/html" id="topic_detail_tpl">
   <%for(var i = 0; i < list.length; i++) {%>
     <!--专题公告-->
-    <div class="topic_announcement">
-      <p class="">专题描述</p>
+    <div class="topic_info">
+      <p class="topic_description_span">专题描述</p>
       <p class="topic_des"><%:=list[i].description %></p>
     </div>
 
@@ -69,7 +74,7 @@
       <p>管理员</p>
       <p class="manage_info">
         <!-- <img src="img/hot_icon.jpg" /> -->
-        <a class="creator_name"><%:=list[i].realName %></a>
+        <a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="creator_name"><%:=list[i].realName %></a>
         <span class="creator_icon">创建者</span>
       </p>
     </div>
@@ -83,6 +88,36 @@
 
   <%}%>
 
+</script>
+
+<script type="text/html" id="topic_article_tpl">
+  <%for(var i = 0; i < list.length; i++) {%>
+
+		<div class="topic_article_zone">
+				<div class="article_box">
+          <a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+          <%if(list[i].userPic == null ){%>
+            <img src="img/normal-user.png" class="article-creator-pic"/>
+          <%} else {%>
+            <img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+          <% } %>
+          </a>
+          <a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
+					<div class="article_info">
+						<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
+						<p class="article_content">
+							<%:=list[i].textContent %>
+						</p>
+					</div>
+				</div>
+
+				<div class="meta">
+					<a class="article-time"> <%=list[i].createTime.split(' ')[0] %> </a>
+					<a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="review-count"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
+					<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+				</div>
+		</div>
+	<%}%>
 </script>
 
 <script src="js/jquery-2.1.1.js"></script>

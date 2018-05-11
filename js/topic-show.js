@@ -1,13 +1,24 @@
+var ui = {
+	"noData": false,
+	"noMoreData": false,
+	"loading": false
+}
+var article_page = 1;
 
 window.onload = function(){
   getTopicDetail();
+  getTopicArticle();
 }
 
+// 渲染专题信息
 function getTopicDetail(){
   topicId = getUrlParam('subjectId')
   var uri = 'topic/seachTopic?currentPage=1&pageSize=12&topicId=' + topicId;
 
   doJavaGet(uri,function(result){
+
+  $('title').html('专题-' + result.datas[0].topic );
+
 
     var tpl= document.getElementById('topic_detail_tpl').innerHTML;
     var content = template(tpl, {list: result.datas});
@@ -20,6 +31,96 @@ function getTopicDetail(){
   })
 }
 
+// 渲染专题下的文章
+function getTopicArticle(){
+  ui.loading = true;
+  ui.noMoreData = false;
+
+  article_page = 1;
+  topicId = getUrlParam('subjectId');
+  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + article_page +'&pageSize=12'
+
+  doJavaGet(uri, function(result){
+    if (result.datas.length == 0) {
+      ui.loading = false;
+      ui.noMoreData = true;
+      return;
+    }
+
+    // 限制内容长度
+    for (var i = 0; i < result.datas.length; i++) {
+
+      if (result.datas[i].textContent) {
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+        var content_length = null
+        if ($(window).width() < 767) {
+          content_length = 55
+        }else{
+          content_length = 120
+        }
+
+        if (result.datas[i].textContent.length > content_length) {
+          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+        }
+      }
+    }
+
+    var tpl= document.getElementById('topic_article_tpl').innerHTML;
+    var content = template(tpl, {list: result.datas});
+    $('.topic_article_list').html('');
+    $('.topic_article_list').append(content);
+    ui.loading = false;
+
+  })
+
+}
+
+// 专题文章加载更多
+$('.topic_border .read-more').on('click',function(){
+  if (ui.loaindg || ui.noMoreData) {
+    return
+  }
+  ui.loading = true;
+  $('.topic_border .read-more').text('加载中...')
+  article_page++;
+  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + article_page +'&pageSize=12'
+
+  doJavaGet(uri, function(result){
+    if (result.datas.length == 0) {
+      ui.loading = false;
+      ui.noMoreData = true;
+      $('.topic_border .read-more').text('已无更多');
+      return;
+    }
+
+    // 限制内容长度
+    for (var i = 0; i < result.datas.length; i++) {
+
+      if (result.datas[i].textContent) {
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+        var content_length = null
+        if ($(window).width() < 767) {
+          content_length = 55
+        }else{
+          content_length = 120
+        }
+
+        if (result.datas[i].textContent.length > content_length) {
+          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+        }
+      }
+
+    }
+    var tpl= document.getElementById('topic_article_tpl').innerHTML;
+    var content = template(tpl, {list: result.datas});
+    $('.topic_article_list').append(content)
+    $('.topic_border .read-more').text('加载更多');
+    ui.loading = false;
+
+  })
+})
 
 // 删除专题
 function deleteTopic(e){
@@ -48,3 +149,39 @@ function deleteTopic(e){
   });
 
 }
+
+
+
+// 文章点赞
+$(".topic_article_list").on('click','.like-button',function (e) {
+    e.preventDefault()
+    var self = $(e.currentTarget);
+    var reviewid = self.data('reviewid');
+    var likes = 1;
+    var like_count = $(self[0]).text().split('')[1];
+
+    if(userinfo == null){
+        layer.msg('您还没有登录')
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#short-comment-commit-layer").html()
+        });
+        return;
+    }
+
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+    doJavaGet(uri, function(res) {
+        if(res.code == 0) {
+          like_count++;
+          var str = '<i class="fa fa-heart"></i>'
+          self.html(str + ' ' + like_count)
+          layer.msg(res.msg);
+        } else {
+          layer.msg(res.msg);
+        }
+    }, "json");
+});

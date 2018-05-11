@@ -221,10 +221,10 @@
 			<div class="main-ft">
 				<div class="main-panel" name="9157555">
 					<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
-						<button class="btn useful_count 9157555 j a_show_login" data-useful="true">
+						<button class="btn btn-default useful_count" data-useful="true">
 							有用 <span class="num"><%:=list.usefull%></span>
 						</button>
-						<button class="btn useless_count 9157555 j a_show_login" data-useful="false">
+						<button class="btn btn-default useless_count" data-useful="false">
 							没用 <span class="num"><%:=list.unusefull%></span>
 						</button>
 					</div>
@@ -393,7 +393,11 @@
 							<div class="subject-meta">创建人: <%=list[i].realName %></div>
 							<div class="meta"></div>
 						</div>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已投稿</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
 					</li>
 				<% }%>
 			<%}%>

@@ -115,8 +115,10 @@
 									<% } %>
 								</a>
 								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
-								<p style="color:rgb(79, 163, 237) ;">发表了长评</p>
-								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+								<p style="color:rgb(79, 163, 237) ;">
+									发表了长评
+									 <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+								</p>
 
 								<p class="comment-title">
 									<a href="comment.html?reviewId=<%:=list[i].reviewId %>"><%:=list[i].textTitle %></a>
@@ -153,7 +155,11 @@
 								<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
 							<% } %>
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
-							<p style="color:rgb(79, 163, 237);">写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评</p>
+							<p style="color:rgb(79, 163, 237);">
+								写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评
+								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+
+							</p>
 						</div>
 						<div class="long-comment" style="display:flex; background-color: #1a92e31c;margin-right: 30px; padding: 20px;">
 							<div class="comment-introduce">
