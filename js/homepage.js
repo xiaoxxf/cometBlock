@@ -100,6 +100,19 @@ $(function(){
 
 })
 
+// 渲染专题
+$(function(){
+  var uri = 'topic/seachTopic?&currentPage=1&pageSize=6'
+
+  doJavaGet(uri, function(result){
+    var tpl = document.getElementById('topic_tpl').innerHTML;
+    var content = template(tpl, {list: result.datas});
+    $('.hot_main_area').append(content);
+    $($('.hot_main_area').find('a')[0]).addClass('hot-span-item')
+  })
+
+})
+
 var article_loading = false
 var article_pgae = 1
 // 渲染评测
@@ -304,7 +317,7 @@ $(document).ready(function () {
 })
 
 //热门推荐点击互相切换效果
-$(".hot_main_area a").on('click', function(e) {
+$(".hot_main_area").on('click', 'a', function(e) {
 	e.preventDefault()
 	e.stopPropagation()
 	$(this).parent().parent().find('a').removeClass('hot-span-item');
