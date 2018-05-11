@@ -181,7 +181,7 @@ $(window).scroll(function(){
 
 
 
-//验证码校验
+//验证码发送
 function getCodeResetPwd() {
 	//var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
 	var str = localStorage.getItem('userinfo');
@@ -195,7 +195,7 @@ function getCodeResetPwd() {
 			layer.msg("验证码已发送");
 			//验证码倒计时
 			CountDownResetPwd();
-
+			
 		} else {
 			layer.msg(res.msg);
 		}
@@ -222,7 +222,7 @@ function CountDownResetPwd() {
 	countdownreset = setInterval(dingshiqi_reset, 1000);
 
 }
-//点击验证
+//点击发送验证
 $('#setting_send_code').click(function() {
 	$("#setting_send_code").css("text-decoration", "none");
 	$("#setting_send_code").css("color", "white");
@@ -279,7 +279,7 @@ function changeUser(){
 }
 
 
-//保存修改信息
+//提交修改密码信息
 $("#save-register-info").click(function() {
 
 	var param = {}
@@ -287,7 +287,6 @@ $("#save-register-info").click(function() {
 
 	var jsonStr = JSON.parse(str) //从一个字符串中解析出json对象
 	if($("#newPwd").val()==""|| !$("#newPwd")){//新密码为空
-
 		layer.tips('请输入新密码', '#newPwd', {
 			tips: [2, '#3595CC'],
 			time: 2000
@@ -309,18 +308,16 @@ $("#save-register-info").click(function() {
 		param.tel = jsonStr.tel;
 		param.passWord =  jsonStr.userPwd;
 		param.realName =  $("#ownname").val();
-		param.code = $("#setting_phone_code").val();
+		param.code = $(".phone_code_tip").val();
 		newpassWord =  $("#newPwd").val();
 	}else{
 
-		layer.tips('请先登录', '#setting_phone_code', {
+		layer.tips('请先登录', '.phone_code_tip', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
 		return
 	}
-
-	//param = JSON.stringify(param)
 
 	var str = "userId="+param.userId+"&tel="+ param.tel+"&passWord="+param.passWord +"&realName="+ param.realName+"&code="+param.code+"&newPassword="+newpassWord
 	var ownName = $("#ownname").val();
@@ -331,7 +328,10 @@ $("#save-register-info").click(function() {
 
 			setTimeout(function() {
 				layer.msg(res.msg+",请重新登录");
-				Loginout()
+
+				setTimeout(function(){
+					Loginout()
+				},200)
 			}, 1000);
 
 		} else {
@@ -354,29 +354,6 @@ function Loginout(){
     $.removeCookie("username");
     window.location.href = "login.html";
 }
-
-//确认修改密码
-
-$("#save-reset-pwd").click(function() {
-	if(ResetFromValid()) {
-		var resetPwd = $("#reset-pwd").val() //拿到新密码传到后台
-		var uri = 'news/resetPwd?userPwd=' + hex_md5(param.resetPwd);
-		doPostJavaApi(uri, function(res) {
-			if(res != null && res.code == 0) {
-
-				layer.msg(res.msg);
-
-			} else {
-
-				layer.msg(res.msg);
-
-			}
-
-		}, "json");
-	}
-
-});
-
 
 // 显示头像
 $(function(){
