@@ -13,13 +13,16 @@ var ui = {
 // 判断userId
 $(function(){
 	// 看别人
-	if (getUrlParam('userId')) {
+	url_id = getUrlParam('userId');
+	cookie_id = $.cookie('userid');
+	if (url_id && url_id != cookie_id ) {
 		userid_search = getUrlParam('userId');
-		$('.edit_person_msg').css('display','none') //看别人时隐藏编辑按钮
+		//看别人时隐藏编辑按钮
+		$('.edit_person_msg').css('display','none');
 	}
 	// 看自己
 	else{
-		userid_search = $.cookie('userid');
+		userid_search = cookie_id;
 	}
 
   if(!userid_search){
@@ -27,9 +30,11 @@ $(function(){
   }
 })
 
+
 window.onload = function(){
 	getUserInfo();
 	getUserProject();
+	getUserSubject();
 
 	// 首次加载全部动态
 	loadFlag = 3;
@@ -221,33 +226,48 @@ $('.read-more').on('click',function(){
 	}
 })
 
+var ui_project = {
+	"noData": false,
+	"noMoreData": false,
+	"loading": false
+}
 
 // 加载用户创建的项目
 var project_page = 1;
 function getUserProject(){
 	project_page = 1
-	var uri = 'blockchain/quaryProjetList?currentPage=' + project_page + '&pageSize=5&creator=' + userid_search
-
+	var uri = 'blockchain/quaryProjetList?currentPage=' + project_page + '&pageSize=5&creator=' + userid_search;
+	ui_project.loading = true;
+	ui_project.noMoreData = false;
 	doJavaGet(uri, function(res){
 
 		var tpl = document.getElementById('project_tpl').innerHTML;
 		var content = template(tpl, {list: res.datas});
 
-		$('.created_project').append(content)
+		$('.created_project').append(content);
+		ui_project.loading = false;
 	})
 }
 
 // 加载更多项目
 $('.load-more-project').on('click',function(){
+	if ( ui_project.noMoreData ) {
+		return
+	}
 	project_page++
 	var uri = 'blockchain/quaryProjetList?currentPage=' + project_page + '&pageSize=5&creator=' + userid_search
-
+	ui_project.loading = true;
 	doJavaGet(uri, function(res){
-
+		if (res.datas.length == 0) {
+			ui_project.loading = false;
+			ui_project.noMoreData = true;
+			return
+		}
 		var tpl = document.getElementById('project_tpl').innerHTML;
 		var content = template(tpl, {list: res.datas});
 
-		$('.created_project').append(content)
+		$('.created_project').append(content);
+		ui_project.loading = false;
 	})
 })
 
@@ -255,6 +275,82 @@ $('.created_project').on('click', $('.project_name'), function(e){
 	var self = $(e.target);
 	var	project_id = self.data('projectid');
 	window.location = 'chain-detail.html?projectId=' + project_id
+})
+
+var ui_subject = {
+	"noData": false,
+	"noMoreData": false,
+	"loading": false
+}
+
+// 加载用户创建的专题
+var subject_page = 1;
+function getUserSubject(){
+	subject_page = 1
+	var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=' + userid_search
+	ui_subject.loading = true;
+	ui_subject.noMoreData = false;
+	doJavaGet(uri, function(res){
+
+		var tpl = document.getElementById('subject_tpl').innerHTML;
+		var content = template(tpl, {list: res.datas});
+		$('.created_subject_list').html('');
+		$('.created_subject_list').append(content);
+		ui_subject.loading = false;
+	})
+}
+
+// 加载更多专题
+$('.load-more-subject').on('click',function(){
+	if (ui_subject.noMoreData) {
+		return
+	}
+	subject_page++;
+	var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=' + userid_search;
+
+	ui_subject.loading = true;
+
+	doJavaGet(uri, function(res){
+		if (res.datas.length == 0) {
+			ui_subject.noMoreData = true;
+			ui_subject.loading = false;
+			return
+		}
+		var tpl = document.getElementById('subject_tpl').innerHTML;
+		var content = template(tpl, {list: res.datas});
+
+		$('.created_subject_list').append(content)
+		ui_subject.loading = false;
+	})
+})
+
+// 删除专题
+$('.created_subject').on('click', '.delete_subject', function(e){
+	var self = $(e.target),
+			subject_id = self.data('subjectid');
+
+	layer.confirm('确定删除你的专题么?',
+      {
+      icon: 3,
+      title:0,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      },
+      function(index){
+				var uri = 'topic/deleteTopic?topicId=' + subject_id + '&creator=' + userinfo.id + '&password=' + userinfo.userPwd;
+				doJavaGet(uri, function(res){
+					if (res.code == 0) {
+						layer.msg(res.msg);
+						getUserSubject();
+					}else if(res.code == -1){
+						layer.msg(res.msg)
+					}
+				})
+      layer.close(index);
+  });
+
+
 })
 
 

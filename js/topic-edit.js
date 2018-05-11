@@ -4,6 +4,39 @@ var imageMaxSize = 2*1024*1024;
 var ui = {
   'submiting': false
 };
+
+window.onload = function(){
+  getTopicDetail();
+}
+
+var topicId = null;
+function getTopicDetail(){
+  topicId = getUrlParam('subjectId')
+  var uri = 'topic/seachTopic?currentPage=1&pageSize=12&topicId=' + topicId;
+
+  doJavaGet(uri, function(result){
+    $('title').html('编辑专题-' + result.datas[0].topic );
+
+    // 图片
+    $('.topic_image')[0].src = result.datas[0].topicPic;
+    $('.topic_logo_file_name').val(result.datas[0].topicPic);
+
+    // 标题
+    $('.topic_name').val(result.datas[0].topic)
+
+    // 描述
+    $('.topic_description').val(result.datas[0].description)
+
+    // 类型 1->不审核， 0->审核
+    if (result.datas[0].topicType == 0) {
+      $('.apply').attr('checked','checked')
+    }else if(result.datas[0].topicType == 1){
+      $('.apply_not').attr('checked','checked')
+    }
+
+  })
+}
+
 document.getElementById("topic_logo_input").addEventListener("change", function() {
   $(".topic_image_box").html("");
 
@@ -36,7 +69,7 @@ function uploadFile(){
 
   // debugger
   if (file == undefined || !file.type.match(imageType) || file.size > imageMaxSize) {
-    $('.topic_logo_file_name').val('');
+    // $('.topic_logo_file_name').val('');
     return
   }
 
@@ -70,31 +103,31 @@ function uploadFile(){
 }
 
 
-function createTopic(){
+function editTopic(){
   // 先传图片
   uploadFile();
 
   // 判断是否有图片
-  if ($('.topic_logo_file_name').val() == '') {
-    layer.msg('必须上传币种图片')
+  if ( !$('.topic_logo_file_name').val() ) {
+    layer.msg('必须上传专题图片');
     return
   }
 
   // 判断投稿选项
 
   // 判断投稿是否审核
-  var topicType = undefined;
+  var topicType;
   // 不审核
-  if (  $(newTopicForm.apply_not).is(':checked') )
+  if (  $(newTopicForm.apply).is(':checked') )
   {
     topicType = 1;
   }
   // 审核
-  else if( $(newTopicForm.apply).is(':checked') )
+  else if( $(newTopicForm.apply_not).is('checked') )
   {
     topicType = 0;
   }
-  else if(topicType == undefined){
+  else if(!topicType){
     layer.tips('请选择投稿是否需要审核', '.allow_submit', {
         tips: [1, '#4fa3ed'],
         time: 2000
@@ -110,17 +143,20 @@ function createTopic(){
     'topicType': topicType, //0->投稿的文章需要审核， 1->不需要审核
     'creator': userinfo.id,
     'password': userinfo.userPwd,
+    'topicId': topicId
   }
 
   ui.submiting = true;
   // data = JSON.stringify(data);
 
-  var uri = 'topic/addtopic?topicPic=' + data.topicPic + '&topic=' + data.topic + '&description=' + data.description
-            + '&topicType=' + data.topicType + '&creator=' + data.creator + '&password=' + data.password;
+  var uri = 'topic/modifyTopic?topicPic=' + data.topicPic + '&topic=' + data.topic + '&description=' + data.description
+            + '&topicType=' + data.topicType + '&creator=' + data.creator + '&password=' + data.password
+            + '&topicId=' + data.topicId;
 
   doJavaGet(uri, function(result){
+    ui.submiting = false
     if (result.code == 0) {
-      layer.msg('提交成功', {
+      layer.msg('修改成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           layer.msg(result.msg);
@@ -132,7 +168,6 @@ function createTopic(){
     }else if(result.code == -1){
       layer.msg(result.msg)
     }
-    ui.submiting = false
   })
 }
 
@@ -163,7 +198,7 @@ $('#newTopicForm').validator({
   },
 
   valid: function(form) {
-    createTopic()
+    editTopic()
   }
 
 });

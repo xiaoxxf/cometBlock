@@ -183,7 +183,7 @@
 			</div>
 		</script>
 		<script type="text/html" id="template-mian-detail">
-			<a class="avatar author-avatar pull-left" href="javascript:;">
+			<a class="avatar author-avatar pull-left" href="personal-homepage.html?userId=<%=list.creator %>">
 				<!-- TODO：显示个人头像 -->
 				<%if(list.userPic == null ){%>
 					<img src="img/normal-user.png" class="review-creator-pic"/>
@@ -197,8 +197,8 @@
 					<span property="v:reviewer"><%:=list.realName%></span>
 				</a>
 
-				<span class="allstar<%:=list.score*10%> main-title-rating" title=""></span>
-				<span property="v:rating" class="main-title-hide">5</span>
+				<!-- <span class="allstar<%:=list.score*10%> main-title-rating" title=""></span> -->
+				<!-- <span property="v:rating" class="main-title-hide">5</span> -->
 				<span property="v:dtreviewed" content="2018-03-15" class="main-meta"><%:=list.createTime%></span>
 			</header>
 			<div class="main-bd">
@@ -221,10 +221,10 @@
 			<div class="main-ft">
 				<div class="main-panel" name="9157555">
 					<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
-						<button class="btn useful_count 9157555 j a_show_login" data-useful="true">
+						<button class="btn btn-default useful_count" data-useful="true">
 							有用 <span class="num"><%:=list.usefull%></span>
 						</button>
-						<button class="btn useless_count 9157555 j a_show_login" data-useful="false">
+						<button class="btn btn-default useless_count" data-useful="false">
 							没用 <span class="num"><%:=list.unusefull%></span>
 						</button>
 					</div>
@@ -356,7 +356,7 @@
 
 		<!--投稿专题彈窗-->
 		<script type="text/html" id="templay-news-subject">
-			<div class="modal-content" onmouseover="showSendToSubject()">
+			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title">投稿到专题
 	      			<a class="new-subject-btn">
@@ -385,15 +385,19 @@
 			<%}else{%>
 				<%for(var i = 0; i < list.length; i++) {%>
 					<li class="">
-						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
 							<img src="<%=list[i].topicPic %>" class="title_logo">
 						</a>
 						<div class="collection-info">
-							<a class="collection-name"><%=list[i].topic %></a>
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
 							<div class="subject-meta">创建人: <%=list[i].realName %></div>
 							<div class="meta"></div>
 						</div>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>'>投稿</span>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已投稿</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
 					</li>
 				<% }%>
 			<%}%>

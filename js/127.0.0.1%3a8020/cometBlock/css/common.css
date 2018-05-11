@@ -1,17 +1,17 @@
 .current_nav{
     color: #2f2f2f !important;
 }
-/*导航栏头像*/
+/*å¯¼èˆªæ å¤´åƒ*/
 .user-icon{
 	border-radius: 20px;
 }
 
-/*内容超过一屏需要留出底部导航的位置*/
+/*å†…å®¹è¶…è¿‡ä¸€å±éœ€è¦ç•™å‡ºåº•éƒ¨å¯¼èˆªçš„ä½ç½®*/
 .detail-wrap{
    padding-bottom: 85px;
 }
 
- /*写文章*/
+ /*å†™æ–‡ç« */
 .log_writting .btn{
 	  color: white;
     background-color: #006bb3;
@@ -21,7 +21,7 @@
     width: 100px;
 }
 
-/*底部导航*/
+/*åº•éƒ¨å¯¼èˆª*/
 
 .block-comet-main-wrap{
     position: relative;
@@ -103,7 +103,7 @@ i{
     font-style: normal;
 }
 
-/*IE下a:hover 背景闪烁*/
+/*IEä¸‹a:hover èƒŒæ™¯é—ªçƒ*/
 *html{overflow:-moz-scrollbars-vertical;zoom:expression(function(ele){ele.style.zoom = "1";document.execCommand("BackgroundImageCache",false,true)}(this))}
 
 
@@ -124,7 +124,7 @@ textarea {
     resize: none;
 }
 
-/*自定义样式覆盖boot样式*/
+/*è‡ªå®šä¹‰æ ·å¼è¦†ç›–bootæ ·å¼*/
 body{
     background-color: #f3f6f7;
 }
@@ -169,7 +169,7 @@ body{
     padding: 0px 10px;
 }
 
-/*顶部搜索框样式*/
+/*é¡¶éƒ¨æœç´¢æ¡†æ ·å¼*/
 .nav_search {
     position: relative;
     width: 200px;
@@ -194,7 +194,7 @@ body{
     padding-top: 5px;
 }
 
-/* 搜索框下拉菜单 */
+/* æœç´¢æ¡†ä¸‹æ‹‰èœå• */
 .nav_search_list {
     position: absolute;
     top: 25px;
@@ -213,7 +213,7 @@ body{
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-
+   
 }
 
 .nav_search_list_focus{
@@ -224,7 +224,7 @@ body{
   background-color:#ccccccb8 ;
 }
 
-/* 搜索栏自适应 */
+/* æœç´¢æ è‡ªé€‚åº” */
 @media (max-width: 1200px) {
   .nav_search{
     width: 150px;
@@ -276,7 +276,7 @@ body{
 
 
 
-/*主体内容*/
+/*ä¸»ä½“å†…å®¹*/
 .mian-container{
     margin-top: 50px;
 }
@@ -284,7 +284,7 @@ body{
 }
 
 
-/*加载更多*/
+/*åŠ è½½æ›´å¤š*/
 .load-more-wrap{
     cursor: pointer;
     height: 45px;
@@ -317,7 +317,7 @@ body{
     background-color: #999;
 }
 
-/**评分显示*/
+/**è¯„åˆ†æ˜¾ç¤º*/
 .allstar50, .allstar45, .allstar40, .allstar35, .allstar30, .allstar25, .allstar20, .allstar15, .allstar10, .allstar05, .allstar00, .rating1-t, .rating15-t, .rating2-t, .rating25-t, .rating3-t, .rating35-t, .rating4-t, .rating45-t, .rating5-t, .rating-t, .starb ~ .stars5, .starb ~ .stars4, .starb ~ .stars3, .starb ~ .stars2, .starb ~ .stars1, .collectors .stars5, .collectors .stars4, .collectors .stars3, .collectors .stars2, .collectors .stars1 {
     display: inline-block;
     zoom: 1;
@@ -327,7 +327,7 @@ body{
     margin: 0 3px 0 0;
     overflow: hidden;
 }
-/*更改星星颜色*/
+/*æ›´æ”¹æ˜Ÿæ˜Ÿé¢œè‰²*/
 .allstar50{background-position:0 0px}
 .allstar45{background-position:0 -11px}
 .allstar40{background-position:0 -22px}
@@ -388,7 +388,7 @@ body{
 }
 
 
-/*导航栏登录提示*/
+/*å¯¼èˆªæ ç™»å½•æç¤º*/
 .log-nvabar-right{
     margin-right: 15px;
 }
@@ -486,7 +486,7 @@ tbody a{
     font-size: 12px !important;
 }
 
-/*通知弹出面板*/
+/*é€šçŸ¥å¼¹å‡ºé¢æ¿*/
 
 .unread{
 	background: #f3f6f7;
@@ -589,13 +589,13 @@ tbody a{
 }
 
 
-/*导航栏阴影*/
+/*å¯¼èˆªæ é˜´å½±*/
 .nav_shadow{
 	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
 
 
-/*导航栏logo*/
+/*å¯¼èˆªæ logo*/
 .nav_logo{
 	float: left;
     width: 40px;
