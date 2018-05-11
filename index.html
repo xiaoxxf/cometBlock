@@ -300,7 +300,7 @@
 <!-- 专题列表 -->
 <script type="text/html" id="topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<a data-topicid='<%=list[i].id %>' class="hot-span"><%=list[i].topic %></a>
+		<a data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span"><%=list[i].topic %></a>
 	<%}%>
 </script>
 

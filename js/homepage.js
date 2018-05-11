@@ -122,12 +122,22 @@ $(function(){
 
 var topicId = ''
 var topic_article_page = 1;
+var topicName = '';
+var raise = ''
 // 渲染专题下的文章
 $('.hot_main_area').on('click', 'a', function(e){
   topic_article_page = 1;
   var self = $(e.currentTarget);
+	topicName = self.data('topicname');
   topicId = self.data('topicid');
+
+	if (topicName == '编辑推荐') {
+		raise = 1;
+	}else{
+		raise = '';
+	}
   var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=12'
+						+ '&raise=' + raise
 
   doJavaGet(uri, function(result){
     if (result.datas.length == 0) {
@@ -177,7 +187,15 @@ $('.read-more').on('click',function(){
   ui.loading = true;
   $('.read-more').text('加载中...')
   topic_article_page++
+
+	if (topicName == '编辑推荐') {
+		raise = 1;
+	}else{
+		raise = '';
+	}
+
   var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=12'
+						+ '&raise=' + raise
 
   doJavaGet(uri, function(result){
     if (result.datas.length == 0) {
