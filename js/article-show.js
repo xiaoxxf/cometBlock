@@ -23,7 +23,6 @@ function  ajaxGetReviewDetail() {
         if(res != null && res.code == 0) {
             var commentInfoData = res.datas;
             // 保存文章的专题id
-
             for (var i = 0; i < res.datas.topiclist.length; i++) {
               article_topic_list.push(res.datas.topiclist[i].id)
             }
@@ -40,7 +39,6 @@ function  ajaxGetReviewDetail() {
               $('.news_alert_project').css('display','')
               $('.news_alert_subject').css('display','')
               $('.news_alert_include').css('display','')
-
             }
         } else {
             layer.msg(res.msg);
@@ -614,7 +612,6 @@ function sendArticleToProject(e){
     content: $('#add_score').html(),
     yes: function(index, layero){
       var score = parseInt($(".live-rating")[0].innerHTML);
-      debugger
       if(!score){
           layer.tips('给这个项目打个分哦', '.my-rating', {
               tips: [1, '#4fa3ed'],

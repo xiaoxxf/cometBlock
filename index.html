@@ -275,11 +275,14 @@
 								</a>
 							</div>
 
-							<div class="article-icon">
-								<a href="chain-detail.html?projectId=<%=list[i].projectId %>">
-									<img class="article-img" src="<%=list[i].projectLogo %>">
-								</a>
-							</div>
+							<%if(list[i].projectId){%>
+								<div class="article-icon">
+									<a href="chain-detail.html?projectId=<%=list[i].projectId %>">
+										<img class="article-img" src="<%=list[i].projectLogo %>">
+									</a>
+								</div>
+							<%}%>
+
 
 						</div>
 
