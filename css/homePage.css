@@ -1,13 +1,40 @@
+/* 每个模块公用  */
 a img {
     border-width: 0;
     vertical-align: middle;
+}
+
+/* 模块名称 */
+.hot-span{
+  color: #333
+}
+.hot_block{
+  float: left;
+	width: 10px;
+  height: 20px;
+  margin-right: 15px;
+  background-color: #006bb3;
+}
+
+.hot_zone{
+	padding: 10px;
+	/* height: 260px; */
+  border-radius: 3px;
 }
 
 .bottom_line{
 	border-bottom:solid 1px gainsboro ;
   min-height: 271px;
 }
-/*糖果盒*/
+
+@media (max-width:767px) {
+  .side{
+    margin-top: 20px;
+  }
+}
+
+
+/*糖果盒 & 创建项目*/
 .candy_box{
 	margin-top:30px ;
 }
@@ -20,12 +47,12 @@ a img {
 
 .row .col-md-3 .candy_box a{
 	color: #006bb3;
-    margin: 15px;
-    display: block;
-    text-align: center;
-    line-height: 30px;
-    border: solid 1px #006bb3;
-    border-radius: 8px;
+  margin: 15px;
+  display: block;
+  text-align: center;
+  line-height: 30px;
+  border: solid 1px #006bb3;
+  border-radius: 8px;
 }
 
 .included_ariticle{
@@ -34,13 +61,19 @@ a img {
 }
 .row .col-md-3 span{
 	display: inline-block;
-
 }
 .candy_right,.hot_zone {
 	background-color: white;
 }
 
-/*热门专区*/
+.project-count{
+  color: red
+}
+
+/*热门项目专区*/
+.hot_zones_box{
+	margin-top: 20px;
+}
 
 .swiper-btn-prev{
   margin-right: 8px;
@@ -52,53 +85,15 @@ a img {
   cursor: pointer;
 }
 
-.hot_zone{
-	padding: 10px;
-	/* height: 260px; */
-  border-radius: 3px;
-}
-.hot_block{
-	display: inline-block;
-	width: 10px;
-    height: 20px;
-    margin-right: 15px;
-    background-color: #006bb3;
-
-}
-.hot_main_area{
-	   top: 30px;
-    position: absolute;
-}
-.hot_main_area a{
-    padding: 17px 10px;
-}
-.hot_main_area .hot-span-item{
-	border-bottom: solid 2px rgb(79, 163, 237);
-    color: rgb(79, 163, 237);
-    text-decoration: none;
-}
-.hot_main_area .hot-span-item:visited{
-	border-bottom: solid 2px rgb(79, 163, 237);
-    color: rgb(79, 163, 237);
-    text-decoration: none;
-}
 .hot_zone_title,.hot_zone_title_right{
 	  height: 48px;
     padding: 10px;
     border-bottom: solid 1px gainsboro;
 }
 
-.hot_zone_title span{
-	float: left;
-}
-.hot_zone_title_right span:last-child
-,.hot_review_title span:last-child{
-	float: right;
-	color: #006bb3;
-}
 .hot_zones .hot_zone_title_right a{
 	display: initial;
-    border: none;
+  border: none;
 }
 .hot_zone_coin,.hot_zone_coin h3:first-child{
 	color: darkgray;
@@ -108,15 +103,6 @@ a img {
 	height: 100px;
 }
 
-/* .hot_zone_coin .row .col-md-2{
-    margin: 8px;
-    text-align: center;
-} */
-
-.hot_zone_coin .hot_coin_region .coin-detail{
-
-
-}
 .hot_zone_coin .hot_coin_region .coin-detail img{
   margin-left: 10px;
   margin-top: 30px;
@@ -156,8 +142,7 @@ a img {
 	padding-left: 10px;
 }
 
-
-
+/* 小屏时热门项目专区 */
 .mobile-hot-coin{
 	display: none;
 	overflow: scroll;
@@ -189,6 +174,7 @@ a img {
 }
 
 
+/* 播报 */
 .hot_zone_news{
 	text-align: center;
 }
@@ -211,9 +197,42 @@ a img {
 	}
 }
 
-/*热门评测*/
-.read-more{
-	cursor: pointer;
+
+/* 专题标签 */
+
+.hot_review_box{
+	margin-top: 20px;
+}
+
+.hot_review_title{
+  height: 48px;
+  padding: 10px;
+  border-bottom: solid 1px gainsboro;
+  width: 100%;
+  overflow: scroll;
+  white-space:nowrap;
+}
+
+.hot_review_title .topic_name{
+  margin-right: 15px;
+  padding-bottom: 16px;
+}
+.hot_review_title .hot-span-item{
+	border-bottom: solid 2px rgb(79, 163, 237); */
+  color: rgb(79, 163, 237);
+  text-decoration: none;
+}
+.hot_review_title .hot-span-item:visited{
+	border-bottom: solid 2px rgb(79, 163, 237);
+  color: rgb(79, 163, 237);
+  text-decoration: none;
+}
+
+
+/* 专题下的文章 */
+.hot_article_zone{
+  background-color: white;
+  padding: 10px;
 }
 
 .article-detail{
@@ -238,27 +257,6 @@ a img {
 	left: 50%;
 	transform: translate(-50%,-50%);
 }
-
-.hot_review_title{
-	background-color: white;
-	padding: 10px 20px;
-  height: 58px;
-  border-bottom: solid 1px gainsboro;
-}
-
-.hot_review_box, .hot_zones_box{
-	margin-top: 20px;
-}
-
-.article-top-box{
-	margin-top: 30px;
-}
-
-.hot_article_zone{
-  background-color: white;
-  padding: 10px;
-}
-
 
 .article-detail .article-title{
     font-weight: 450;
@@ -348,7 +346,7 @@ a img {
 	line-height: 50px;
 	background-color: white;
 	color: #006bb3;
-
+  cursor: pointer;
 }
 
 
@@ -369,14 +367,10 @@ a img {
     margin: 10px 0px;
 	}
 
-
-
-
 	.article-detail .article-introduce{
 		min-height: 50px;
 		/* overflow: scroll; */
 	}
-
 
 	.article-detail .article-icon{
 		/* float: right; */
@@ -391,74 +385,6 @@ a img {
 		left: 50%;
 		transform: translate(-50%,-50%);
 	}
-}
-
-/*
-/*轮播*/
-/*
-.carousel-indicators{
-	  top: -40px !important;
-    text-align: right;
-    left: 71%;
-    height: 40px;
-    width: 55%;
-}
-.carousel-indicators li{
-	    border: 1px solid rgb(79, 163, 237) !important;
-}
-.carousel-indicators .active{
-	background-color: #ddd;
-}
-.carousel-control.right,.carousel-control.left{
-	background-image:none;
-}
-.carousel-control{
-	color:rgba(0,0,0,.0001) ;
-	width: 5%;
-	position: absolute;
-    top: -25px;
-    bottom: none;
-    left: 227px;
-    width: 15%;
-    font-size: 20px;
-    color: #fff;
-}
-.carousel-control.right{
-	right: -40px;
-    left: auto;
-	}
-.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{
-	width: 20px;
-    height: 20px;
-    background-color: #0c81bb;
-    border-radius: 20px;
-    padding: 3px;
-    display: inline-block;
-}
-.carousel-control .glyphicon-chevron-right,.carousel-control .glyphicon-chevron-left{
-	font-size: 12px !important;
-}
-
-@media only screen and (max-width: 900px) {
-	.carousel-inner{
-	width: 380px;
-	}
-}
-
-
- */
-
- @media (max-width: 992px){
- 	.side{
- 		margin-top: 20px;
- 	}
- }
-
-.article-count{
-	color: red
-}
-.hot-span{
-	color: black
 }
 
 /*广告位*/
