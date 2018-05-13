@@ -53,7 +53,7 @@
 										<a href="chain-new.html" style="margin-top:70px">创建项目</a>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<span >共 <span class="article-count"></span> 个项目被收录</span>
+											<span >共 <span class="project-count"></span> 个项目被收录</span>
 										</div>
 									</div>
 								</div>
@@ -101,6 +101,7 @@
 											<!-- 如果需要分页器 -->
 											<div class="swiper-pagination"></div>
 										</div>
+										<!-- 小屏时 -->
 										<div class="hot_coin_region mobile-hot-coin">
 										</div>
 									</div>
@@ -120,28 +121,18 @@
 							</div>
 						</div>
 					</div>
-					<!--热门专区-->
-					<!--热门评测-->
+
+					<!--专题-->
 					<div class="hot_review_box">
 						<div class="row">
 
 							<div class="col-md-9 col-sm-12 col-xs-12">
 								<div class="hot_zone">
 										<div class="hot_review_title">
-												<span class="hot_block" style="margin-top:10px"></span>
-												<!--<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门推荐</a></span>-->
-												<span class="hot_main_area">
-													<!-- <a class="hot-span hot-span-item">热门推荐</a> -->
-													<!-- <a href="" class="hot-span ">编辑推荐</a>
-													<a href="" class="hot-span ">项目评测</a>
-													<a href="" class="hot-span ">共识算法</a>
-													<a href="" class="hot-span ">加密经济</a>
-													<a href="" class="hot-span ">行情分析</a>
-													<a href="" class="hot-span ">投研报告</a>
-													<a href="" class="hot-span ">新手科普</a> -->
-												</span>
-												<!-- <a href="attention.html"><span style="margin-top:10px">更多&gt;&gt;</span></a> -->
+											<span class="hot_block"></span>
+
 										</div>
+
 										<div class="hot_review_region">
 
 										</div>
@@ -151,13 +142,14 @@
 							</div>
 
 							<div class="col-md-3 col-sm-12 col-xs-12">
-								<div class="hot_zone right_ad side">
+								<div class="hot_zone side">
 									<img src="img/advertisement.png"  class="img-responsive" style="height: 200px;"/>
 								</div>
 							</div>
+
 						</div>
 					</div>
-					<!--热门评测-->
+
 				</div>
 			</div>
 		</div>
@@ -318,7 +310,11 @@
 <!-- 专题列表 -->
 <script type="text/html" id="topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<a data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span"><%=list[i].topic %></a>
+		<!-- <div> -->
+			<span data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span topic_name"><%=list[i].topic %></span>
+			<!-- <span data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span topic_name"><%=list[i].topic %></span> -->
+
+		<!-- </div> -->
 	<%}%>
 </script>
 

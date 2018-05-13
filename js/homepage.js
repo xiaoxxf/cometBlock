@@ -31,7 +31,7 @@ $(function(){
    var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
    var content = template(tpl, {list: result.datas});
    $('.hot_coin_region_1').append(content)
-   $('.article-count').html(result.count)
+   $('.project-count').html(result.count)
 
   }, "json")
 })
@@ -112,9 +112,9 @@ $(function(){
   doJavaGet(uri, function(result){
     var tpl = document.getElementById('topic_tpl').innerHTML;
     var content = template(tpl, {list: result.datas});
-    $('.hot_main_area').append(content);
-    $($('.hot_main_area').find('a')[0]).addClass('hot-span-item');
-    $($('.hot_main_area').find('a')[0]).click();
+    $('.hot_review_title').append(content);
+    $($('.hot_review_title .topic_name')[0]).addClass('hot-span-item');
+    $($('.hot_review_title .topic_name')[0]).click();
 
   })
 
@@ -125,7 +125,7 @@ var topic_article_page = 1;
 var topicName = '';
 var raise = ''
 // 渲染专题下的文章
-$('.hot_main_area').on('click', 'a', function(e){
+$('.hot_review_title').on('click', '.topic_name', function(e){
 	ui.loading = true;
 	ui.noMoreData = false;
   topic_article_page = 1;
@@ -345,9 +345,9 @@ $(document).ready(function () {
 })
 
 //热门推荐点击互相切换效果
-$(".hot_main_area").on('click', 'a', function(e) {
+$(".hot_review_title").on('click', '.topic_name', function(e) {
 	e.preventDefault()
 	e.stopPropagation()
-	$(this).parent().parent().find('a').removeClass('hot-span-item');
+	$(this).parent().parent().find('.topic_name').removeClass('hot-span-item');
 	$(this).addClass('hot-span-item');
 })
