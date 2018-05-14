@@ -1,3 +1,4 @@
+
 (function(){
 //输入框校验
 function RegisterFromValid() {
@@ -118,8 +119,8 @@ function sendCode() {
 	}
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
-//			getCode()
-			CountDown()
+			getCode()
+//			CountDown()
 		} else {
 
 			if($("#session_phone").val()) { //校验手机号
@@ -138,6 +139,7 @@ function sendCode() {
 function getCode() {
 	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
 	doJavaGet(uri, function(res) {
+		
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
 			//验证码倒计时
@@ -182,6 +184,7 @@ $('#send_code').click(function() {
 })
 
 var flag_register_submiting = false;
+//注册
 $("#sign-in-form-submit-btn1").click(function() {
 	if(flag_register_submiting){
 		return
@@ -212,8 +215,8 @@ $("#sign-in-form-submit-btn1").click(function() {
 				}, 1500);
 
 			} else {
-
-				layer.msg(res.msg);
+				
+				layer.msg('注册失败');
 
 			}
 			flag_register_submiting = false;
