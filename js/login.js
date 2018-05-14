@@ -46,9 +46,13 @@ $(document).keydown(function(event){
 		}
 });
 
-
+var flag_login_submiting = false;
 function signIn(){
+	if(flag_login_submiting){
+		return
+	}
 	if(loginFromValid()){
+		flag_login_submiting = true;
 		var param = {
 		userName: $("#session_phone").val(),
 		userPwd: $("#session_password").val(),
@@ -88,6 +92,8 @@ function signIn(){
 		} else {
 			layer.msg(res.msg);
 		}
+			var flag_login_submiting = false;
+		
 	}, "json");
 
 	}
