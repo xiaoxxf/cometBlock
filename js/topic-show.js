@@ -4,7 +4,6 @@ var ui = {
 	"loading": false
 }
 var topicId = getUrlParam('subjectId') //判断文章是否已被该专题收录
-
 var article_page = 1;
 
 window.onload = function(){
@@ -20,9 +19,10 @@ function getTopicDetail(){
   doJavaGet(uri,function(result){
 
   $('title').html('专题-' + result.datas[0].topic );
-		// if (result.datas[0].description.length > 100) {
-		// 	result.datas[0].description = result.datas[0].description.substring(0,100) + "..."
-		// }
+		// 专题创建人显示收录按钮
+		if (result.datas[0].creator == userId) {
+			$('.collect_button').css('display','inline-block')
+		}
 
     var tpl= document.getElementById('topic_detail_tpl').innerHTML;
     var content = template(tpl, {list: result.datas});
@@ -140,7 +140,7 @@ function deleteTopic(e){
       skin: 'layui-layer-report', //加上边框
       },
       function(index){
-        var uri = 'topic/deleteTopic?topicId=' + subject_id + '&creator=' + userinfo.id + '&password=' + userinfo.userPwd;
+        var uri = 'topic/deleteTopic?topicId=' + subject_id + '&creator=' + userId + '&password=' + userinfo.userPwd;
         doJavaGet(uri, function(res){
           if (res.code == 0) {
             layer.msg(res.msg);
@@ -307,7 +307,7 @@ function collectArticle(e){
 	var self =$(e),
 			reviewId = self.data('reviewid'),
 			topicId = getUrlParam('subjectId');
-	var uri = 'topic/submission?creator=' + userinfo.id + '&password=' + userinfo.userPwd
+	var uri = 'topic/submission?creator=' + userId + '&password=' + userinfo.userPwd
 					 + '&topicId=' + topicId + '&reviewId=' + reviewId
 
 	doJavaGet(uri,function(result){

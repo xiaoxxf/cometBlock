@@ -44,14 +44,14 @@
 }
 
 .topic_info_right .collect_button{
-	display: inline-block;
-    width: 80px;
-    border: solid 1px rgb(79, 163, 237);
-    text-align: center;
-    border-radius: 30px;
-    line-height: 30px;
-    height: 30px;
-    margin-right: 10px;
+	display: none;
+  width: 80px;
+  border: solid 1px rgb(79, 163, 237);
+  text-align: center;
+  border-radius: 30px;
+  line-height: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .topic_include{

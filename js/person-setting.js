@@ -3,6 +3,12 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 var noMoreData = false
 var dictionary = []
 
+$(function(){
+	if (userinfo.id != userId) {
+		window.location.href = 'index.html'
+	}
+})
+
 //加入personType=1/2  进入基础设置 /消息
 var pT = getUrlParam("personType");
 $(".person-left-menu li a").removeClass('toogle-acive');
@@ -272,7 +278,7 @@ function changeUser(){
 	var personIntroduce=$(".person-introduce").val();
 	var userId = jsonStr.id;
 	var uri = 'news/changeRealname?realName='+realName+"&passWord="+userPwd+"&userId="+userId+"&personIntro="+personIntroduce
-	
+
 	if(!realName){
 		layer.msg('昵称不能为空');
 		return

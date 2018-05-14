@@ -73,6 +73,7 @@ function signIn(){
 				localStorage.setItem('userinfo', res.datas); //存储
 				localStorage.setItem('userid', res.datas.id);
 				localStorage.setItem('userinfo', JSON.stringify(res.datas));
+
 				$.cookie('token', res.datas.id,{ expires: expireDate});
 				$.cookie('userid', res.datas.id,{ expires: expireDate });
 								$.cookie('username', res.datas.realName,{ expires: expireDate });

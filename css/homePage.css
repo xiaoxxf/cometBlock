@@ -213,8 +213,13 @@ a img {
   padding: 10px;
   border-bottom: solid 1px gainsboro;
   width: 100%;
-  overflow: scroll;
   white-space:nowrap;
+}
+
+@media (max-width: 767px) {
+  .hot_review_title{
+    overflow: scroll;
+  }
 }
 
 .hot_review_title .topic_name{
