@@ -1,0 +1,169 @@
+/*专题查看*/
+
+/*头部*/
+body{
+	background-color: white;
+}
+.topic_box{
+    margin-top: 20px;
+}
+.topic_top{
+	text-align: center;
+    padding: 30px;
+}
+.topic_title{
+	display: block;
+    font-weight: 600;
+    font-size: 20px;
+}
+.send_sucess{
+	display: block;
+    margin-top: 20px;
+}
+/*悬浮关闭*/
+.close_icon{
+	position: fixed;
+    right: 130px;
+    top: 130px;
+    color: #333;
+    font-size: 24px;
+}
+/*管理的专题*/
+.topic_send_article{
+	padding: 50px 50px;
+}
+.article_left{
+	color: #333;
+	font-weight: 600;
+	float: left;
+}
+.article_right{
+	float: right;
+	color: gainsboro;
+    position: relative;
+}
+@media only screen and (max-width:800px ) {
+	.article_right{
+	float: none;
+	margin-top: 80px;	
+}
+}
+/*搜索专题*/
+.search_topic_article{
+	border-radius: 10px;
+    text-indent: 10px;
+    border: solid 1px gainsboro;
+    overflow: visible;
+    vertical-align: middle;
+    outline: none;
+}
+.search_icon{
+	left: 10px;
+    top: 9px;
+    position: absolute;
+}
+.search_topic_article {
+    border-radius: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 28px;
+    border: solid 1px gainsboro;
+    overflow: visible;
+    vertical-align: middle;
+    outline: none;
+}
+/*管理专题*/
+.manage_topic_subject{
+	padding: 20px 50px;
+}
+.new_topic_subject{
+	margin-left: 20px;
+}
+.manage_topic_title{
+	text-indent: 10px;
+	background-color: gainsboro;
+	height: 30px;
+	line-height: 30px;
+	color: #333;
+	font-weight: 600;
+}
+.manage_topic_info{
+	padding: 0px 20px;
+	width: 200px;
+    height: 80px;
+    line-height: 80px;
+    border: solid 1px gainsboro;
+}
+.info_icon{
+	margin-top: 14px;
+	width: 50px;
+	height: 50px;
+	float: left;
+}
+.info_title{
+	float: left;
+	margin-left: 20px;
+}
+.info_include{
+	float: right;
+}
+/*推荐专题*/
+.comment_topic_subject{
+	padding: 20px 50px;
+}
+.topic_subject_title{
+	color: #333;
+    font-weight: 600;
+	text-indent: 10px;
+	display: block;
+	height: 30px;
+    line-height: 30px;
+    background-color: gainsboro;
+}
+.topic_subject_content{
+	float: left;
+}
+.content_title{
+	text-decoration: none;
+	height: 30px;
+    display: block;
+    color: #333;
+    font-weight: 600;
+}
+.content_num{
+	color: #999;
+}
+.topic_subject_info{
+	padding: 10px;
+	border: solid 1px gainsboro;
+}
+.info_left{
+	float: left;
+}
+.info_right{
+	float: right;
+}
+
+.subject_icon{
+	float: left;
+    margin-right: 20px;
+	width: 50px;
+	height: 50px;
+}
+.border_right{
+	margin: -10px;
+    padding: 20px 40px;
+    border-right: solid 1px gainsboro;
+}
+@media only screen and (max-width:980px ) {
+	.border_right{
+    border-right:none;
+}
+}
+.border_box{
+	margin: -10px;
+	padding: 20px 40px;
+}
+.loop_border-top{
+	border-top: none;
+}
