@@ -21,6 +21,27 @@ $(function(){
   }, "json")
 })
 
+// 判断登录状态才能创建项目
+$('.create_project_button').on('click', function(){
+	if (userId) {
+		window.location.href = 'chain-new.html'
+	}else{
+		layer.open({
+			closeBtn:0,
+			title: '',
+			closeBtn:1,
+			content: '请先登录您的账号',
+			btn: ['登录', '注册'],
+			yes: function(){
+				window.location.href='login.html'
+			},
+			btn2: function(){
+				window.location.href='register.html'
+			}
+		});
+	}
+})
+
 // 渲染热门专区
 $(function(){
   var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=6'
