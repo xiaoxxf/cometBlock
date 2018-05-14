@@ -287,7 +287,7 @@ $('#head_search').keydown(function(e){
         break;
       case 2:
       	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
-        break; 
+        break;
       case 3:
 				window.location.href = 'search_user.html?serach_word_by_navbar=' + key_word
         break;

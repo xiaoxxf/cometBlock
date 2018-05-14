@@ -264,6 +264,10 @@
 	font-size: 12px;
   color: #969696;
   display: inline-block;
+  margin-top: 15px;
+}
+.recomment-meta a{
+  color: #969696;
 }
 
 .action-include-btn{
@@ -280,4 +284,15 @@
     float: right;
     cursor: pointer;
     color: rgb(79, 163, 237);
+}
+
+.load_more_article_result{
+	line-height: 30px;
+	height: 30px;
+  display: block;
+
+	margin: 20px 10px;
+	text-align: center;
+	cursor: pointer;
+	display: none;
 }

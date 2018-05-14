@@ -3,6 +3,8 @@ var ui = {
 	"noMoreData": false,
 	"loading": false
 }
+var topicId = getUrlParam('subjectId') //判断文章是否已被该专题收录
+
 var article_page = 1;
 
 window.onload = function(){
@@ -12,7 +14,7 @@ window.onload = function(){
 
 // 渲染专题信息
 function getTopicDetail(){
-  topicId = getUrlParam('subjectId')
+	// debugger
   var uri = 'topic/seachTopic?currentPage=1&pageSize=12&topicId=' + topicId;
 
   doJavaGet(uri,function(result){
@@ -126,7 +128,7 @@ $('.topic_border .read-more').on('click',function(){
 
 // 删除专题
 function deleteTopic(e){
-  debugger
+  // debugger
   var subject_id = $(e).data('subjectid');
 
   layer.confirm('确定删除你的专题么?',
@@ -189,19 +191,14 @@ $(".topic_article_list").on('click','.like-button',function (e) {
 });
 
 
-//点击收录搜索文章
-var flag_close_project = false;
 
-var project_alert_close_index = null;
+var ui_search_article = {
+	"noData": false,
+	"noMoreData": false,
+	"loading": false
+}
+// 收录弹窗
 $(".collect_button").on('click',function (e) {
-
-	if(flag_close_project){
-		// $('.layui-layer-close2').click();
-    layer.close(project_alert_close_index);
-		flag_close_project = false;
-
-		return
-	}
 
   var area_width
   var area_height
@@ -215,13 +212,111 @@ $(".collect_button").on('click',function (e) {
   }
   project_alert_close_index = layer.open({
       type: 1,
-      shade:0,
+			shadeClose:true,
       title: 0,
       skin: 'layui-layer-report', //加上边框
       area: [area_width,area_height ], //宽高
       content: $("#templay-search-article").html()
   });
-
-    flag_close_project = true;
-
 })
+
+// 搜索文章
+function searchArticle(e){
+	if (event.keyCode == 13) {
+		doSearchArticle()
+	}
+}
+
+var article_page_search = 1;
+var key_word = '';
+
+function doSearchArticle(){
+	ui_search_article.loading = true;
+	ui_search_article.noMoreData = false;
+
+	article_page_search = 1;
+	key_word = $('.search_include_items').val();
+	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
+						+ article_page_search + '&pageSize=12'
+
+	doJavaGet(uri,function(result){
+		$('.list_item').html('')
+
+		if (result.datas.length == 0) {
+			ui_search_article.noMoreData = true;
+		}else{
+
+			// 判断文章是被收录
+			for (var i = 0; i < result.datas.length; i++) {
+				if (result.datas[i].topiclist) {
+					result.datas[i].topiclist.indexOf(topicId) > 1 ? result.datas[i]['state'] = 1 : result.datas[i]['state'] = 0
+				}
+				if (result.datas[i].textTitle.length > 20) {
+					result.datas[i].textTitle = result.datas[i].textTitle.substring(0,20) + "..."
+				}
+			}
+
+			var search = document.getElementById('search_article_result_tpl').innerHTML;
+			var content = template(search, {list: result.datas});
+			$('.list_item').append(content);
+			$('.load_more_article_result').css('display','block');
+		}
+		ui_search_article.loading = false;
+
+	})
+}
+
+// 搜索文章更多
+function load_more_search_article_result(){
+	if (ui_search_article.noMoreData) {
+		return
+	}
+	ui_search_article.loading = true;
+	article_page_search++;
+
+	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
+						+ article_page_search + '&pageSize=12'
+
+	doJavaGet(uri,function(result){
+		if (result.datas.length == 0) {
+			ui_search_article.noMoreData = true;
+		}else{
+
+			// 判断文章是被收录
+			for (var i = 0; i < result.datas.length; i++) {
+				if (result.datas[i].topiclist) {
+					result.datas[i].topiclist.indexOf(topicId) > 1 ? result.datas[i]['state'] = 1 : result.datas[i]['state'] = 0
+				}
+				if (result.datas[i].textTitle.length > 10) {
+					result.datas[i].textTitle = result.datas[i].textTitle.substring(0,10) + "..."
+				}
+			}
+
+			var search = document.getElementById('search_article_result_tpl').innerHTML;
+			var content = template(search, {list: result.datas});
+			$('.list_item').append(content);
+		}
+		ui_search_article.loading = false;
+	})
+}
+
+// 收录文章
+var _send_button = null;
+function collectArticle(e){
+	_send_button = e;
+	var self =$(e),
+			reviewId = self.data('reviewid'),
+			topicId = getUrlParam('subjectId');
+	var uri = 'topic/submission?creator=' + userinfo.id + '&password=' + userinfo.userPwd
+					 + '&topicId=' + topicId + '&reviewId=' + reviewId
+
+	doJavaGet(uri,function(result){
+		if (result.code == 0) {
+			layer.msg('收录成功');
+			$(_send_button).text('已收录')
+		}else if(result.code == -1){
+			layer.msg(result.msg);
+		}
+		// ui.submiting = false;
+	})
+}

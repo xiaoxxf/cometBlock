@@ -128,37 +128,63 @@
 	<%}%>
 </script>
 
-
-	<!--收录彈窗-->
-	<script type="text/html" id="templay-search-article">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">
-	  			<span class="search_article_title">搜索文章</span>
-	  			<div class="search_include">
-					<input type="search" name="search-self" class="search_include_items" placeholder="搜索文章">
-					<a class="search-include-icon"><i class="fa fa-search"></i></a>
-				</div>
-				</h4>
-
+<!--收录彈窗-->
+<script type="text/html" id="templay-search-article">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">
+  			<span class="search_article_title">搜索文章</span>
+  			<div class="search_include">
+				<input type="search" name="search-self" class="search_include_items" placeholder="搜索文章" onkeyup="searchArticle()">
+				<a class="search-include-icon"><i class="fa fa-search"></i></a>
 			</div>
-			<div class="modal-body">
-				<ul class="list_item">
-					<li class="include_row">
-						<a href="" class="avatar-include">
-							<img src="img/hot_icon.jpg" class="include_title_logo">
-						</a>
-						<div class="include-info">
-							<a href="" class="recomment-name">这个type应该等于4</a>
-							<div class="recomment-meta">as</div>
-							<div class="meta"></div>
-						</div>
-						<span class="action-include-btn" data-subjectid="11">收录</span>
-					</li>
-				</ul>
-			</div>
+			</h4>
+
 		</div>
-	</script>
+		<div class="modal-body">
+			<ul class="list_item">
+
+			</ul>
+      <span class="load_more_article_result" onclick="load_more_search_article_result()" >查看更多</span>
+		</div>
+	</div>
+</script>
+
+<!-- 搜索文章结果 -->
+<script type="text/html" id="search_article_result_tpl">
+  <%for(var i = 0; i < list.length; i++) {%>
+    <li class="include_row">
+      <%if(list[i].type == 2){%>
+        <a href="" class="avatar-include">
+          <img src="<%:=list[i].projectLogo %>" class="include_title_logo">
+        </a>
+      <%} else {%>
+        <a href="" class="avatar-include">
+          <img src="img/huixing.png" class="include_title_logo">
+        </a>
+      <%}%>
+
+      <div class="include-info">
+        <% if(list[i].type == 4) {%>
+          <a href="article-show.html?reviewId=<%=list[i].reviewId %>#toComments" class="recomment-name"><%:=list[i].textTitle %></a>
+        <%}else if(list[i].type == 2){%>
+          <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" class="recomment-name"><%:=list[i].textTitle %></a>
+        <%}%>
+        <div class="recomment-meta">
+          <a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+          <%:=list[i].realName %>
+          </a>
+        </div>
+        <div class="meta"></div>
+      </div>
+      <%if( list[i].state ){%>
+        <span class="action-include-btn">已收录</span>
+      <%} else {%>
+        <span class="action-include-btn" data-reviewid="<%:=list[i].reviewId %>" onclick="collectArticle(this)">收录</span>
+      <% } %>
+    </li>
+  <%}%>
+</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/template.js"></script>
 <script src="js/bootstrap.min.js"></script>
