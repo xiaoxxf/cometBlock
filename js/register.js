@@ -108,6 +108,18 @@ function gainCode() {
 
 }
 
+//点击发送验证码
+var flag_send_code=false;
+$('#send_code').click(function() {
+	if(flag_send_code){
+		return
+	}
+	flag_send_code=true;
+	$("#send_code").css("text-decoration", "none");
+	$("#send_code").css("color", "white");
+	sendCode()
+
+})
 //校验对象是否存在
 function sendCode() {
 	var uri = 'news/virty?'
@@ -130,11 +142,11 @@ function sendCode() {
 			}
 
 		}
+		
 
 	}, "json");
 
 }
-
 //发送验证码
 function getCode() {
 	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
@@ -148,6 +160,8 @@ function getCode() {
 		} else {
 			layer.msg(res.msg);
 		}
+		
+		
 	}, "json");
 
 }
@@ -164,9 +178,9 @@ function dingshiqi() {
 
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
-//		count = 60;
+		flag_send_code=false
 	}
-		
+	
 }
 
 function CountDown() {
@@ -174,14 +188,7 @@ function CountDown() {
 	countdown = setInterval(dingshiqi, 1000);	
 
 }
-//点击发送验证码
-$('#send_code').click(function() {
-	$("#send_code").css("text-decoration", "none");
-	$("#send_code").css("color", "white");
 
-	sendCode()
-
-})
 
 var flag_register_submiting = false;
 //注册
