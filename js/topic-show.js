@@ -40,6 +40,7 @@ function getTopicArticle(){
   ui.loading = true;
   ui.noMoreData = false;
 
+	$('.topic_article_list').html('');
   article_page = 1;
   topicId = getUrlParam('subjectId');
   var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + article_page +'&pageSize=12'
@@ -72,8 +73,8 @@ function getTopicArticle(){
 
     var tpl= document.getElementById('topic_article_tpl').innerHTML;
     var content = template(tpl, {list: result.datas});
-    $('.topic_article_list').html('');
     $('.topic_article_list').append(content);
+
     ui.loading = false;
 
   })
@@ -229,40 +230,41 @@ function searchArticle(e){
 
 var article_page_search = 1;
 var key_word = '';
+var article_search_page_size = 12;
 
 function doSearchArticle(){
 	ui_search_article.loading = true;
 	ui_search_article.noMoreData = false;
+	// 隐藏查看更多
+	$('.load_more_article_result').css('display','none');
 
 	article_page_search = 1;
 	key_word = $('.search_include_items').val();
+
 	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
-						+ article_page_search + '&pageSize=12'
+						+ article_page_search + '&pageSize=' + article_search_page_size
 
 	doJavaGet(uri,function(result){
 		$('.list_item').html('')
-
-		if (result.datas.length == 0) {
-			ui_search_article.noMoreData = true;
-		}else{
-
 			// 判断文章是被收录
-			for (var i = 0; i < result.datas.length; i++) {
-				if (result.datas[i].topiclist) {
-					result.datas[i].topiclist.indexOf(topicId) > 1 ? result.datas[i]['state'] = 1 : result.datas[i]['state'] = 0
-				}
-				if (result.datas[i].textTitle.length > 20) {
-					result.datas[i].textTitle = result.datas[i].textTitle.substring(0,20) + "..."
-				}
+		for (var i = 0; i < result.datas.length; i++) {
+			if (result.datas[i].topiclist) {
+				result.datas[i].topiclist.indexOf(topicId) > 1 ? result.datas[i]['state'] = 1 : result.datas[i]['state'] = 0
 			}
+			if (result.datas[i].textTitle.length > 20) {
+				result.datas[i].textTitle = result.datas[i].textTitle.substring(0,20) + "..."
+			}
+		}
 
-			var search = document.getElementById('search_article_result_tpl').innerHTML;
-			var content = template(search, {list: result.datas});
-			$('.list_item').append(content);
+		var search = document.getElementById('search_article_result_tpl').innerHTML;
+		var content = template(search, {list: result.datas});
+		$('.list_item').append(content);
+		// 有结果时显示加载更多
+		if (result.datas.length == article_search_page_size) {
 			$('.load_more_article_result').css('display','block');
 		}
 		ui_search_article.loading = false;
-
+		
 	})
 }
 
@@ -273,13 +275,15 @@ function load_more_search_article_result(){
 	}
 	ui_search_article.loading = true;
 	article_page_search++;
+	$('.load_more_article_result').text('加载中');
 
 	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
-						+ article_page_search + '&pageSize=12'
+						+ article_page_search + '&pageSize=' + article_search_page_size
 
 	doJavaGet(uri,function(result){
 		if (result.datas.length == 0) {
 			ui_search_article.noMoreData = true;
+			$('.load_more_article_result').text('已无更多结果');
 		}else{
 
 			// 判断文章是被收录
@@ -295,8 +299,11 @@ function load_more_search_article_result(){
 			var search = document.getElementById('search_article_result_tpl').innerHTML;
 			var content = template(search, {list: result.datas});
 			$('.list_item').append(content);
+			$('.load_more_article_result').text('查看更多');
+
 		}
 		ui_search_article.loading = false;
+
 	})
 }
 

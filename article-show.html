@@ -464,7 +464,7 @@
 							<%if( list[i].state ){%>
 								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
 							<%} else {%>
-								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">收录</span>
 							<% } %>
 						</li>
 					<% }%>
@@ -486,7 +486,7 @@
 					<%if( list[i].state ){%>
 						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
 					<%} else {%>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">收录</span>
 					<% } %>
 				</li>
 			<% }%>
