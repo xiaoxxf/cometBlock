@@ -612,11 +612,26 @@ a img {
   text-align: center;
 	cursor: pointer;
 }
+/* 二维码分享 */
+.create_qrcode{
+  margin-bottom: 170px;
+  right: 50px;
+  bottom: 80px;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border: solid 1px gainsboro;
+  text-align: center;
+	cursor: pointer;
+}
 .news_subject_btn i{
 	position: absolute;
     top: 12px;
     left: 12px;
 }
+
+
 
 /*测试*/
 .modal-content{
@@ -793,4 +808,11 @@ a img {
 	/* border-radius: 50px; */
 	/* margin-right:10px; */
 	/* margin-bottom:5px; */
+}
+
+#qrcode{
+	right: 50px;
+  bottom: 310px;
+  position: fixed;
+	cursor: pointer;
 }

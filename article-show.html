@@ -46,6 +46,7 @@
 			</div>
 			<div class="mian-container">
 				<div class="container">
+
 					<div class="comment-container-wrap">
 						<h1 class="comment-detail-title"></h1>
 						<div class="comment-detail-main comment-detail-mian-hook">
@@ -76,13 +77,13 @@
 					</div>
 				</div>
 			</div>
-			<!--<div id="footer" class="container">
-				<div class="footer-extra"></div>
-				<span id="icp" class="pull-right gray-link">
-				© 2018 blockcomet.com all rights reserved 深圳彗星科技有限公司
-			</span>
-			</div>-->
-			<!--新建弹出框-->
+
+			<input id="qrcode_val" type="hidden" value="" style="width:80%" /><br />
+			<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+			<!--右下角弹出框-->
+			<div class="create_qrcode">
+				<span class="news_subject_btn"><i class="fa fa-qrcode fa-2x"></i></span>
+			</div>
 			<div class="news_alert_include" style="display:none">
 				<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
 			</div>
@@ -491,10 +492,15 @@
 			<% }%>
 		</script>
 
+		<script type="text/html" id="qr_code_tpl">
+
+		</script>
+
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/template.js"></script>
+		<script src="js/qrcode.js"></script>
 		<script src="js/jquery.star-rating-svg.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src='js/page/jquery.pagination.min.js'></script>
