@@ -10,7 +10,7 @@ window.onload = function(){
 
 var tpl_id = 'all_dynamic';
 var currentPage = 1;
-var pageSize = 5;
+var pageSize = 6;
 var like = '';
 
 $('.attention_box').on('click', 'span', function(e){

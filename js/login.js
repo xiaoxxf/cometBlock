@@ -87,13 +87,15 @@ function signIn(){
 				}else{
 						window.location.href = localCurrentHref;
 				}
+				// 账号登录时清除wechatinfo的信息
+				$.removeCookie("wechatInfo")
 			}, 1500);
 
 		} else {
 			layer.msg(res.msg);
 		}
 			var flag_login_submiting = false;
-		
+
 	}, "json");
 
 	}

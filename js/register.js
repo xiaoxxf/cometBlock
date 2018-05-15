@@ -139,7 +139,7 @@ function sendCode() {
 function getCode() {
 	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
 	doJavaGet(uri, function(res) {
-		
+
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
 			//验证码倒计时
@@ -166,12 +166,12 @@ function dingshiqi() {
 		clearInterval(countdown);
 //		count = 60;
 	}
-		
+
 }
 
 function CountDown() {
 	count = 60;
-	countdown = setInterval(dingshiqi, 1000);	
+	countdown = setInterval(dingshiqi, 1000);
 
 }
 //点击发送验证码
@@ -215,7 +215,7 @@ $("#sign-in-form-submit-btn1").click(function() {
 				}, 1500);
 
 			} else {
-				
+
 				layer.msg('注册失败');
 
 			}
@@ -265,6 +265,8 @@ function login() {
 			} else {
 				layer.msg(res.msg);
 			}
+			// 账号登录时清除cookie信息
+			$.removeCookie("wechatInfo")
 		}, "json");
 
 	}

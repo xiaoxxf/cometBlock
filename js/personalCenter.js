@@ -69,7 +69,7 @@ function changePwdClick() {
 }
 
 //地址栏传入参数，从哪里进来拼上参数即可
-//http://127.0.0.1:8020/cometBlock/personalCenter.html?personType=1
+
 //加入personType=1/2  进入基础设置 /消息
 
 var pT = getUrlParam("personType");
