@@ -2,6 +2,7 @@ var username = $.cookie('username');
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
+var wechatInfo_flag = false; // 是否已取得微信返回数据
 
 // 不跳回登录、注册、找回密码的页面
 var login_uri = '/login.html';
@@ -160,9 +161,7 @@ $.get("header-tpl.html",function(data){
 
     var wechatCode = getUrlParam('code');
     var localCookieWechatInfo = $.cookie('wechatInfo');
-    var wechatInfo_flag = false; // 是否已取得微信返回数据
     localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
-    var wechatInfo_json_data = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
 
     // 没有登录时，显示注册/登录
     if (!username && !wechatCode && !localCookieWechatInfo ) {
@@ -176,10 +175,10 @@ $.get("header-tpl.html",function(data){
       getUserInfoByWeChat();
     }
     // 微信登录后，已取得返回数据，但没有绑定的
-    else if(localCookieWechatInfo && wechatInfo_flag && !wechatInfo_json_data.userinfo ){
+    else if(localCookieWechatInfo && wechatInfo_flag && !localCookieWechatInfo.userinfo ){
       // 显示微信头像和名称
-      $(".nav-user-account #nav_user_mes").text(wechatInfo_json_data.nickname);
-      $("#user_pic")[0].src = wechatInfo_json_data.headimgurl;
+      $(".nav-user-account #nav_user_mes").text(localCookieWechatInfo.nickname);
+      $("#user_pic")[0].src = localCookieWechatInfo.headimgurl;
       $(".nav-user-account .more-active").css('display', 'block');
       $(".login-right").css('display', 'block');
     }

@@ -4,7 +4,7 @@ var noMoreData = false
 var dictionary = []
 
 $(function(){
-	if (userinfo.id != userId) {
+	if (!userinfo.id || userinfo.id != userId) {
 		window.location.href = 'index.html'
 	}
 })
