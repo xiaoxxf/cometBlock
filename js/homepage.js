@@ -106,13 +106,10 @@ $(function(){
     // 限制描述播报
     var descriptions = document.getElementsByClassName('new_title');
 
-    if ($(window).width() > 970 && $(window).width() < 1260) {
-      var show_length = 10
-    }else if($(window).width() <= 990){
-      var show_length = 20
-    }
-    else{
+    if ($(window).width() > 990) {
       var show_length = 15
+    }else if($(window).width() <= 990){
+      var show_length = 40
     }
 
     for (var i = 0; i < descriptions.length; i++) {
@@ -291,6 +288,7 @@ $(".hot_review_region").on('click','.like-button',function (e) {
     }, "json");
 });
 
+// 调整浏览器宽度时自适应
 var resizeTimer = null;
 $(window).on('resize', function () {
   if (resizeTimer) {
@@ -301,22 +299,20 @@ $(window).on('resize', function () {
      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
 
      // 限制搜索结果描述的长度
-     var descriptions = document.getElementsByClassName('new_title');
-     var show_length = null
-     if ( $(window).width() > 767 && $(window).width() < 1200) {
-       show_length = 10
-     }else{
-       show_length = 25
-     }
-
-     for (var i = 0; i < descriptions.length; i++) {
-       if (descriptions[i].innerText.length > show_length) {
-         descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
-       }
-     }
+     // var descriptions = document.getElementsByClassName('new_title');
+     // var show_length = null
+		 // if ($(window).width() < 767) {
+			//  show_length = 55
+		 // }else{
+			//  show_length = 120
+		 // }
+		 //
+     // for (var i = 0; i < descriptions.length; i++) {
+     //   if (descriptions[i].innerText.length > show_length) {
+     //     descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+     //   }
+     // }
 	}, 100);
-
-
 })
 $(document).ready(function () {
     //api 参考地址 http://www.swiper.com.cn/api/index.html
