@@ -676,3 +676,5 @@ $('.news_alert_include').on("mouseenter mouseleave", function(e){
     layer.close(index_subject)
   };
 })
+
+
