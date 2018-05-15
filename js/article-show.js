@@ -352,8 +352,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         });
         return;
     }
-    // 过滤js标签
-    shortTxt.replace(/<script.*?>.*?<\/script>/g,'');
+    // 过滤js和style标签
+    shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
     var data = {
         textTitle: shortTxt,
         parentId: reviewId,

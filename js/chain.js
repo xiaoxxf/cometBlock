@@ -165,16 +165,13 @@ function serachChain(){
 				show_length = 50
 			}
 			for (var i = 0; i < descriptions.length; i++) {
+				// 过滤HTML和style标签
+				descriptions[i].innerHTML = descriptions[i].innerText.replace(/(<style.*?<\/style>)/g, "")
 				descriptions[i].innerHTML = descriptions[i].innerHTML.replace(/<[^>]+>/g,"")
 
 				if (descriptions[i].innerHTML.length > show_length) {
 					descriptions[i].innerHTML = descriptions[i].innerHTML.substring(0,show_length) + "..."
 				}
-
-				// if (result.datas[i].textTitle.length > 30) {
-				//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-				// }
-
 			}
 
       var imgW = $(".search-result .inner-img-wrap").width();

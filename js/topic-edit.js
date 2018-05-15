@@ -133,7 +133,8 @@ function editTopic(){
     return;
   }
 
-  var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g, '')
+  // 过滤js和style标签
+  var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
   var data = {
     'topicPic':  newTopicForm.topic_logo_file_name.value,
     'topic':    newTopicForm.topic_name.value, //专题名称

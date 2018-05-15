@@ -504,8 +504,8 @@ function chainDetailJs(chainInfoData){
         $('input[name="exchange_rate"]').each(function(i) {
       	   exchangeRate += $(this).val();
         });
-        // 过滤js标签
-        var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'')
+        // 过滤js和style标签
+        var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
         // 提交数据
         var data = {
           "projectLogo":          form1.projectLogoFile.value,
