@@ -188,14 +188,14 @@
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
 							<p style="color:rgb(79, 163, 237);">发表了文章</p>
 							<p class="comment-title">
-								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>">
 									<%:=list[i].textTitle %>
 								</a>
 							</p>
 						</div>
 						<div class="comment_bottom_box">
 							<div class="comment-introduce">
-								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
 									<%:=list[i].textContent %>
 								</a>
 							</div>
@@ -206,7 +206,8 @@
 							</div> -->
 						</div>
 						<div class="meta">
-							<a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+							<!-- <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%:=list[i].review %></a> -->
 							<a class="like-button add_like" data-reviewid="<%:=list[i].reviewId %>"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
 						</div>
 					</div>

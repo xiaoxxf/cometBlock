@@ -607,6 +607,19 @@ a img {
   text-align: center;
 	cursor: pointer;
 }
+/* 二维码分享 */
+.create_qrcode{
+  margin-bottom: 170px;
+  right: 50px;
+  bottom: 80px;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border: solid 1px gainsboro;
+  text-align: center;
+	cursor: pointer;
+}
 .news_subject_btn i{
 	position: absolute;
     top: 12px;
@@ -787,4 +800,21 @@ a img {
 	text-align: center;
 	cursor: pointer;
 	display: none;
+}
+
+/* 我管理的专题 */
+.no_topic_show{
+	line-height: 30px;
+	display: block;
+	height: 30px;
+	margin: 20px 10px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#qrcode{
+	right: 50px;
+  bottom: 310px;
+  position: fixed;
+	cursor: pointer;
 }

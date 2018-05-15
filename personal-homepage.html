@@ -248,7 +248,7 @@
 							</div>
 							<div class="article_box" style="display:flex">
 								<div >
-									<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
 									<p class="article_content_bottom">
 										<%:=list[i].textContent %>
 									</p>
@@ -257,7 +257,8 @@
 
 							<div class="meta">
 								<a class="article-time"> <%:=list[i].createTime %></a>
-								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+								<!-- <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a> -->
 								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 
 							</div>
@@ -358,7 +359,7 @@
 						</div>
 						<div class="article_box" style="display:flex">
 							<div >
-								<a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
 								<p class="article_content_bottom">
 									<%:=list[i].textContent %>
 								</p>
@@ -373,7 +374,7 @@
 								<a href="">标签3</a>
 								<a href="">标签4</a>
 							</div> -->
-							<a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
 							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>

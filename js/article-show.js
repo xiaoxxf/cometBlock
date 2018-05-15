@@ -314,18 +314,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     if(!wechatBindNotice()){
     	return;
     }
-    /*if( wechatInfo != null && userId == undefined){
-        layer.open({
-            closeBtn:1,
-            title: '',
-            content: '您暂未进行账号绑定，请前去进行绑定',
-            btn: ['绑定'],
-            yes: function(){
-                window.location.href='bindUser.html'
-            }
-        });
-        return;
-    }*/
+
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -353,7 +342,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         return;
     }
     // 过滤js和style标签
-    shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
+    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
     var data = {
         textTitle: shortTxt,
         parentId: reviewId,

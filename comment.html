@@ -75,10 +75,16 @@
 					</div>
 
 					<!--新建弹出框-->
+					<input id="qrcode_val" type="hidden" value="" style="width:80%" /><br />
+					<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+					<div class="create_qrcode">
+						<span class="news_subject_btn"><i class="fa fa-qrcode fa-2x"></i></span>
+					</div>
+					<!-- 弹出收录 -->
 					<div class="news_alert_include" style="display:none">
 						<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
 					</div>
-
+					<!-- 弹出投稿 -->
 					<div class="news_alert_subject" style="display:none;">
 						<span class="news_subject_btn"><i class="fa fa-share-alt fa-2x"></i></span>
 					</div>
@@ -199,7 +205,9 @@
 				<a href="personal-homepage.html?userId=<%=list.creator %>">
 					<span property="v:reviewer"><%:=list.realName%></span>
 				</a>
-				评论
+				<% if (list.type == 2) {%>
+					评论
+				<% } %>
 				<a class="project-name" href="chain-detail.html?projectId=<%:=list.parentId%>"></a>
 
 				<span class="allstar<%:=list.score*10%> main-title-rating" title=""></span>
@@ -447,29 +455,36 @@
 
 		<!-- 我管理的专题 -->
 		<script type="text/html" id="my_topic_tpl">
-			<%for(var i = 0; i < list.length; i++) {%>
-				<li class="">
-					<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
-						<img src="<%=list[i].topicPic %>" class="title_logo">
-					</a>
-					<div class="collection-info">
-						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
-						<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
-						<div class="meta"></div>
-					</div>
-					<%if( list[i].state ){%>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
-					<%} else {%>
-						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
-					<% } %>
-				</li>
-			<% }%>
+			<%if( list.length == 0 ){%>
+				<a href="topic-new.html" class="no_topic_show">还没有创建专题，去创建一个吧</a>
+			<%} else {%>
+				<%for(var i = 0; i < list.length; i++) {%>
+					<li class="">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+							<img src="<%=list[i].topicPic %>" class="title_logo">
+						</a>
+						<div class="collection-info">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+							<div class="meta"></div>
+						</div>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
+					</li>
+				<% }%>
+			<% } %>
+
+
 		</script>
 
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/template.js"></script>
+		<script src="js/qrcode.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src='js/page/jquery.pagination.min.js'></script>
 		<script src="js/common.js"></script>

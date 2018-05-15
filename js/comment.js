@@ -27,27 +27,12 @@ $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) 
 window.onload = function(){
     ajaxGetReviewDetail();
 }
-function  ajaxGetChainDetail() {
-    // var projectId = projectId ;
-    var uri = 'blockchain/detail?projectId='+projectId ;
-    doJavaGet(uri, function(res) {
-        if(res != null && res.code == 0) {
-          $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
-          $(".main-hd .project-name").text(res.datas.projectName)
-        } else {
-            layer.msg(res.msg);
-        }
 
-    // 加载完文章再加载评论
-    ajaxGetLongCommentReview();
-
-    }, "json");
-}
 var longCommentCurrentPage = 1 ;
 var pageSize = 5;
 function  ajaxGetReviewDetail() {
     var reviewId = getUrlParam('reviewId');
-    var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
+    var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var commentInfoData = res.datas;
@@ -74,13 +59,32 @@ function  ajaxGetReviewDetail() {
             if (userId) {
               $('.news_alert_include').css('display','')
             }
-            ajaxGetChainDetail()
+            // 有项目则加载项目
+            if (projectId) {
+              ajaxGetChainDetail()
+            }
+            // 加载评论列表
+            ajaxGetLongCommentReview();
+
         } else {
             layer.msg('查询不到该文章');
         }
     }, "json");
 }
+function  ajaxGetChainDetail() {
+    // var projectId = projectId ;
+    var uri = 'blockchain/detail?projectId='+projectId ;
+    doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+          $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
+          $(".main-hd .project-name").text(res.datas.projectName)
+        } else {
+            layer.msg(res.msg);
+        }
 
+    // 加载完文章再加载评论
+    }, "json");
+}
 //点击引用
 $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     var self =$(e.currentTarget),
@@ -339,18 +343,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     if(!wechatBindNotice()){
     	return;
     }
-    /*if( wechatInfo != null && userId == undefined){
-        layer.open({
-            closeBtn:1,
-            title: '',
-            content: '您暂未进行账号绑定，请前去进行绑定',
-            btn: ['绑定'],
-            yes: function(){
-                window.location.href='bindUser.html'
-            }
-        });
-        return;
-    }*/
+
     if(userId == undefined){
         layer.msg('您还没有登录');
         layer.open({
@@ -378,7 +371,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         return;
     }
     // 过滤js和style标签
-    shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
+    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
     var data = {
         textTitle: shortTxt,
         parentId: reviewId, //项目
@@ -677,4 +670,39 @@ $('.news_alert_include').on("mouseenter mouseleave", function(e){
   }else if(e.type == "mouseleave"){
     layer.close(index_subject)
   };
+})
+
+var index_qrcode = null;
+$('.create_qrcode').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    index_subject = layer.tips('点击扫码分享', '.create_qrcode', {
+        tips: [4, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.close(index_subject)
+  };
+})
+
+
+
+
+// 生成二维码分享
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+	width : 100,
+	height : 100
+});
+
+function makeCode () {
+  var elText = document.getElementById("qrcode_val");
+  elText.value = window.location
+	if (!elText.value) {
+		alert("Input a text");
+		elText.focus();
+		return;
+	}
+	qrcode.makeCode(elText.value);
+}
+
+$('.create_qrcode').on('click',function(){
+  makeCode();
 })
