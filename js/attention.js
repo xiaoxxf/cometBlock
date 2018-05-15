@@ -10,6 +10,7 @@ window.onload = function(){
 
 var tpl_id = 'all_dynamic';
 var currentPage = 1;
+var pageSize = 5;
 var like = '';
 
 $('.attention_box').on('click', 'span', function(e){
@@ -49,7 +50,7 @@ function getAllUserDynamic(){
   ui.loading = true;
   ui.noMoreData = false;
 
-  var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&like=' + like
+  var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=' + pageSize + '&like=' + like
 
   // 首次加载
   // $('.read-more').css('display','none')
@@ -103,7 +104,7 @@ function loadMoreDynamic(){
   ui.loading = true;
   ui.noMoreData = false;
 
-	var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&like=' + like
+	var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=' + pageSize + '&like=' + like
 
   // TODO: loading效果
 	$(".loader1").css('display','flex');
