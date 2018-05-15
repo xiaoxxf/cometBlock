@@ -17,6 +17,7 @@
 
 		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" href="js/page/jquery.pagination.css">
+		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" href="css/load.css" />
 		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
@@ -84,7 +85,11 @@
 					<div class="news_alert_include" style="display:none">
 						<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
 					</div>
-					<!-- 弹出投稿 -->
+					<!-- 弹出投稿到项目 -->
+					<div class="news_alert_project" style="display:none" >
+						<span class="news_subject_btn"><i class="fa fa-plus fa-2x"></i></span>
+					</div>
+					<!-- 弹出投稿到专题 -->
 					<div class="news_alert_subject" style="display:none;">
 						<span class="news_subject_btn"><i class="fa fa-share-alt fa-2x"></i></span>
 					</div>
@@ -323,6 +328,50 @@
 			</section>
 		</script>
 
+		<!-- 搜索投稿项目 -->
+		<script id='search_project_list' type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="return_result">没有结果</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+
+				<li class="">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<img src="<%=list[i].projectLogo %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
+						<div class="meta"></div>
+					</div>
+					<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)">投稿</span>
+				</li>
+				<% }%>
+			<%}%>
+		</script>
+
+		<!--投稿到项目彈窗-->
+		<script type="text/html" id="templay-news-fixed">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">投稿到项目
+	      			<a class="new-subject-btn">
+	      				<a href="chain-new.html" target="_blank" >新建项目</a>
+	      			</a>
+	      			<div class="search">
+						<input type="search" name="search-self" class="search_project" onkeydown="keyEnterSearchProject()" placeholder="搜索项目">
+						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
+					</div>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<ul class="list_item">
+
+					</ul>
+					<span class="load_more_project_result" onclick="load_more_search_project_result()">查看更多</span>
+				</div>
+			</div>
+		</script>
 
 		<!-- 搜索投稿项目 -->
 		<script id='search_project_list' type="text/html">
@@ -343,6 +392,15 @@
 				</li>
 				<% }%>
 			<%}%>
+		</script>
+
+		<!-- 投稿到项目时评分 -->
+		<script id="add_score" type="text/html">
+			<div class="coin-score">
+				请给项目打个分<br/>
+				<span class="my-rating" style="font-size:10px"></span>
+				<span class="live-rating" style="display:none"></span>
+			</div>
 		</script>
 
 		<!--投稿到专题彈窗-->
@@ -485,6 +543,7 @@
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/template.js"></script>
 		<script src="js/qrcode.js"></script>
+		<script src="js/jquery.star-rating-svg.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src='js/page/jquery.pagination.min.js'></script>
 		<script src="js/common.js"></script>

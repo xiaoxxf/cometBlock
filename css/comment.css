@@ -792,7 +792,7 @@ a img {
   color: rgb(79, 163, 237)
 }
 
-.load_more_subject_result,.load_more_recomment_result{
+.load_more_project_result,.load_more_subject_result,.load_more_recomment_result{
 	line-height: 30px;
 	display: block;
 	height: 30px;

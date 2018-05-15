@@ -51,9 +51,14 @@ function  ajaxGetReviewDetail() {
             var content = template(commentTpl, {list: commentInfoData});
             $(".comment-detail-mian-hook").append(content);
             // 作者打开时可以投稿
+            debugger
+
             if (userId && commentInfoData.creator == userId) {
-              $('.news_alert_project').css('display','')
               $('.news_alert_subject').css('display','')
+              // 没有projectId，即为长文，可以投稿到项目
+              if(!projectId){
+                $('.news_alert_project').css('display','')
+              }
             }
             // 登录时可以收录文章到专题
             if (userId) {
@@ -436,6 +441,163 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
 });
 
 
+//点击悬浮投稿到项目
+$(".news_alert_project").on('click',function (e) {
+
+  var area_width
+  var area_height
+  if($(window).width() <= 767)
+  {
+    area_width = '320px'
+    area_height = '500px'
+  }else{
+    area_width = '520px'
+    area_height = '600px'
+  }
+  layer.open({
+      type: 1,
+      shadeClose:true,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      area: [area_width,area_height ], //宽高
+      content: $("#templay-news-fixed").html()
+  });
+
+
+})
+
+//搜索项目
+var search_page_project = 1;
+var key_word_project = '';
+// 搜索项目
+function searchProject(){
+  // 判断是否有搜索内容
+	key_word_project  = $('.search_project').val()
+	if (key_word_project  == '') {
+		return false
+	}
+
+  ui.loading = true;
+  ui.noMoreData = false;
+  search_page_project = 1;
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page_project + '&pageSize=' + pageSize
+            + '&projectName=' + key_word_project
+	doJavaGet(uri,function(result){
+    $('.list_item').html('');
+    var search = document.getElementById('search_project_list').innerHTML;
+    var content = template(search, {list: result.datas});
+    $('.list_item').append(content);
+    $('.load_more_project_result').css('display', 'block')
+    // 有结果时显示加载更多
+    if (result.datas.length != 0) {
+      $('.load_more_subject_result').css('display', 'block')
+    }
+    ui.loading = false;
+	}, "json");
+}
+// 回车搜索项目
+function keyEnterSearchProject(){
+	if(event.keyCode ==13){
+   	 	searchProject();
+  }
+}
+
+// 加载更多搜索项目
+function load_more_search_project_result(){
+  if (ui.loading || ui.noMoreData) {
+    return
+  }
+  $('.load_more_project_result').text('加载中')
+  ui.loading = true;
+
+  search_page_project ++;
+
+	var uri = 'blockchain/quaryProjetList?currentPage=' + search_page_project + '&pageSize=' + pageSize
+            + '&projectName=' + key_word_project
+	doJavaGet(uri,function(result){
+		// $('.list_item').html('');
+    if (result.datas.length == 0) {
+      ui.noMoreData = true;
+      $('.load_more_project_result').text('已无更多数据');
+    }else{
+      var search = document.getElementById('search_project_list').innerHTML;
+  		var content = template(search, {list: result.datas});
+  		$('.list_item').append(content);
+      $('.load_more_project_result').text('加载更多')
+      ui.loading = false
+    }
+
+	}, "json");
+}
+
+
+// 投稿到项目按钮，弹出评分
+function sendArticleToProject(e){
+  var self =$(e),
+      projectId = self.data('projectid');
+  layer.open({
+    title: '评分',
+    content: $('#add_score').html(),
+    yes: function(index, layero){
+      var score = parseInt($(".live-rating")[0].innerHTML);
+      if(!score){
+          layer.tips('给这个项目打个分哦', '.my-rating', {
+              tips: [1, '#4fa3ed'],
+              time: 2000
+          });
+          return;
+      }
+      doSendArticle(projectId,score);
+      layer.close(index)
+    }
+  });
+
+  createScore();
+}
+
+// 投稿到项目，即新增长评
+function doSendArticle(projectId,score){
+  var data = {
+    textTitle: $('.comment-detail-title').html(),
+    textContent: $('.review-content').html(),
+    projectId: projectId, //项目Id
+    score: score, //评分
+    type: 2, //长文的type为2
+    userId: userinfo.id, //userId
+  }
+  var uri = 'blockchain/addReview'
+  doPostJavaApi(uri, JSON.stringify(data), function(res){
+    if (res.code == 0) {
+      layer.msg('投稿成功')
+    }else if(res.code == -1){
+      layer.msg('投稿失败，请重试')
+    }
+  }, 'json')
+
+}
+// 星星评分
+function createScore(){
+  $(".my-rating").starRating({
+    strokeColor:'#ffc900',
+    ratedColor:'#ffc900',
+    activeColor:'#ffc900',
+    hoverColor:'#ffc900',
+    strokeWidth: 10,
+    useGradient:false,
+    starSize: 25,
+    initialRating: 0,
+    useFullStars:true,
+    disableAfterRate: false,
+    onHover: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentIndex);
+    },
+    onLeave: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentRating);
+    }
+  });
+}
+
+
 
 //点击悬浮投稿到专题
 $(".news_alert_subject").on('click',function (e) {
@@ -658,6 +820,18 @@ $('.news_alert_subject').on("mouseenter mouseleave", function(e){
     });
   }else if(e.type == "mouseleave"){
     layer.close(index_subject)
+  };
+})
+
+// 鼠标悬停时提示
+var index_project = null;
+$('.news_alert_project').on("mouseenter mouseleave", function(e){
+  if(e.type == "mouseenter"){
+    index_project  = layer.tips('投稿到项目', '.news_alert_project', {
+        tips: [4, '#4fa3ed']
+    });
+  }else if(e.type == "mouseleave"){
+    layer.close(index_project )
   };
 })
 
