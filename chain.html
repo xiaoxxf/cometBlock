@@ -82,9 +82,9 @@
 												<span class="caret"></span>
 										</button>
 									</div>
-									<!-- <div class="create_new_subject">
+									<div class="create_new_subject">
 										<a href="chain-new.html" class="create_new_subject_btn" id="writting-article">创建新项目</a>
-									</div> -->
+									</div>
 								</div>
 							</div>
 						</div>
@@ -189,6 +189,7 @@
 
 </script>
 
+<!-- 列表 -->
 <script id="tpl" type="text/html">
   <%for(var i = 0; i < list.length; i++) {%>
 		<li>
@@ -213,6 +214,7 @@
   <%}%>
 </script>
 
+<!-- 搜索结果 -->
 <script id="search" type="text/html">
 	<%for(var i = 0; i < searchList.length; i++) {%>
 		<div class="search-result row">
@@ -229,6 +231,13 @@
 				<div class="search-result-coin">
 					<div class="">
 						<a href="chain-detail.html?projectId=<%=searchList[i].projectId %>" class="title"><%= searchList[i].projectName %></a>
+						<%if(searchList[i].score ==0 ){%>
+						<span style="color:#ffac2d">暂无评分</span>
+						<%}else{%>
+						<span class="allstar<%:=searchList[i].score*5%>"></span>
+						<span style="color:#ffac2d"><%=searchList[i].score%></span>
+						<%}%>
+
 					</div>
 					<div class="coin-description">
 							<%:=searchList[i].projectContent%>

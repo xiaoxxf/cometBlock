@@ -45,7 +45,7 @@ function  ajaxGetReviewDetail() {
               $('.news_alert_include').css('display','')
             }
         } else {
-            layer.msg(res.msg);
+            layer.msg('查询不到该文章');
         }
         ajaxGetLongCommentReview()
     }, "json");

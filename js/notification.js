@@ -1,5 +1,5 @@
 //重置密码校验
-var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 var ui = {
 	"noData": false,
 	"noMoreData": false,
@@ -44,9 +44,13 @@ $(function(){
 $('.show_right').on('click', '.message' , function(e){
 	var self = $(e.currentTarget)
 	var messageId = self.data('messageid')
-	var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
-	doJavaGet(uri, function(e){
-		self.css('background-color','white')
+	var uri = "news/readMessage?userId=" + userId + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
+	doJavaGet(uri, function(result){
+		if (result.code == 0) {
+			self.css('background-color','white')
+		}else if(result.code == -1){
+			layer.msg(result.msg)
+		}
 	})
 })
 
@@ -112,23 +116,28 @@ function getMessage(e){
 
 	if (type) {
 	currentPage = 1
-	var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
+	var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
 	// $(".waiting-data").fadeIn();
 	$(".no-more-hook").css('display','none');
 
 
 	doJavaGet(uri, function(result){
-		if (result.datas.length == 0) {
-			ui.noMoreData = true
-		}
-		// console.log(result)
-		var tpl = document.getElementById(id).innerHTML;
-		var content = template(tpl, {list: result.datas});
-		// $(".waiting-data").hide();
+		if (result.code == 0) {
+			if (result.datas.length == 0) {
+				ui.noMoreData = true
+			}
+			// console.log(result)
+			var tpl = document.getElementById(id).innerHTML;
+			var content = template(tpl, {list: result.datas});
+			// $(".waiting-data").hide();
 
-		$(append_class).html('');
-		$(append_class).append(content);
+			$(append_class).html('');
+			$(append_class).append(content);
+		}else if(result.code == -1){
+			layer.msg(result.msg)
+		}
+
 
 		ui.loading = false;
 	})
@@ -151,7 +160,7 @@ $(window).scroll(function(){
 			if (type && !ui.loading && !ui.noMoreData) {
 				currentPage += 1
 				ui.loading = true
-				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
+				var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage + '&pageSize=12' + '&type=' + type
 
 				$(".loader1").css('display','flex');
 				$('.load-more-container-wrap').css('display','')

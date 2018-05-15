@@ -167,7 +167,6 @@ function serachChain(){
 			for (var i = 0; i < descriptions.length; i++) {
 				descriptions[i].innerHTML = descriptions[i].innerHTML.replace(/<[^>]+>/g,"")
 
-
 				if (descriptions[i].innerHTML.length > show_length) {
 					descriptions[i].innerHTML = descriptions[i].innerHTML.substring(0,show_length) + "..."
 				}
@@ -176,15 +175,7 @@ function serachChain(){
 				//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
 				// }
 
-
 			}
-
-
-			// for (var i = 0; i < descriptions.length; i++) {
-			// 	if (descriptions[i].innerText.length > show_length) {
-			// 		descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
-			// 	}
-			// }
 
       var imgW = $(".search-result .inner-img-wrap").width();
       $(".search-result .inner-img-wrap").css('height',imgW);

@@ -173,7 +173,7 @@ $(".topic_article_list").on('click','.like-button',function (e) {
             title: 0,
             skin: 'layui-layer-report', //加上边框
             area: ['550px', '680px'], //宽高
-            content: $("#short-comment-commit-layer").html()
+            content: $("#template-reply").html()
         });
         return;
     }
@@ -264,7 +264,7 @@ function doSearchArticle(){
 			$('.load_more_article_result').css('display','block');
 		}
 		ui_search_article.loading = false;
-		
+
 	})
 }
 

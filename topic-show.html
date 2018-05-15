@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/loading.css">
+    <!-- 登录load -->
+    <link rel="stylesheet" href="css/load.css" />
+    <link rel="stylesheet" href="css/login.css">
 	  <link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
     <link rel="stylesheet" href="css/topic-show.css">
 
@@ -61,6 +64,65 @@
 	    </div>
 	</div>
 
+<!--登录弹框-->
+<script type="text/html" id="template-reply">
+  <div class="main report-login">
+
+    <h4 class="title">
+      <div class="normal-title">
+        <a class="active" href="">登录</a>
+        <b>·</b>
+        <a id="js-sign-up-btn" class="" href="register.html">注册</a>
+      </div>
+    </h4>
+    <div class="js-sign-in-container">
+
+      <div class="input-prepend  restyle ">
+        <input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="input-prepend border_radiusB">
+        <input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+        <i class="fa fa-unlock-alt"></i>
+
+      </div>
+      <input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+      <div class="remember-btn">
+        <input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+      </div>
+      <div class="forget-btn">
+        <a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="">用手机号重置密码</a>
+          </li>
+
+        </ul>
+      </div>
+
+
+      <input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+				 <span class="ouro">
+						<span class="left"><span class="anim"></span></span>
+						<span class="right"><span class="anim"></span></span>
+				 </span>
+			</input>
+
+
+      <div class="more-sign">
+        <h6>社交帐号登录</h6>
+        <ul>
+          <li class="wechat-login">
+            <img src="img/wechat.png" class="wechat_logo"  />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</script>
+
 <script type="text/html" id="topic_detail_tpl">
   <%for(var i = 0; i < list.length; i++) {%>
     <!--专题公告-->
@@ -79,7 +141,7 @@
       </p>
     </div>
     <!--编辑删除专题，创建者打开时才显示-->
-    <%if( list[i].creator == userinfo.id ){%>
+    <%if( list[i].creator == $.cookie('userid') ){%>
       <div class="topic_option">
         <a class="edit_topic" href="topic-edit.html?subjectId=<%:=list[i].id %>">编辑专题</a>
         <a class="del_topic" href="#" data-subjectid='<%:=list[i].id %>' onclick="deleteTopic(this)">删除专题</a>
@@ -196,6 +258,8 @@
 <script src="js/jquery.cookie.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
 <script src="js/nice-validator/jquery.validator.js?local=zh-CN"></script>
+<script src="js/login.js"></script>
+<script src="js/md5.js"></script>
 <script src="js/common.js"></script>
 <script src="js/topic-show.js"></script>
 
