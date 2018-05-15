@@ -103,7 +103,7 @@ $(function(){
     $('.hot_zone_news').append(content)
 
 
-    // 限制搜索结果描述的长度
+    // 限制描述播报
     var descriptions = document.getElementsByClassName('new_title');
 
     if ($(window).width() > 970 && $(window).width() < 1260) {

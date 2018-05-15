@@ -3,11 +3,11 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 var noMoreData = false
 var dictionary = []
 
-$(function(){
-	if (!userinfo.id || userinfo.id != userId) {
-		window.location.href = 'index.html'
-	}
-})
+// $(function(){
+// 	if (!userinfo.id || userinfo.id != userId) {
+// 		window.location.href = 'index.html'
+// 	}
+// })
 
 //加入personType=1/2  进入基础设置 /消息
 var pT = getUrlParam("personType");
@@ -232,7 +232,7 @@ function dingshiqi_reset() {
 		clearInterval(countdownreset);
 		count_reset = 60
 		flag_resetPwd_sendCode =false
-		
+
 	}
 
 }

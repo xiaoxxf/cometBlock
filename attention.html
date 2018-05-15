@@ -66,7 +66,7 @@
 					</div>
 
 					<div class="load-more-container-wrap" >
-	          <div class="load-more-wrap load-more-hook" style="margin-left:45%;">
+	          <div class="load-more-wrap load-more-hook" >
 	              <div class="loader1 loader" style="display: none" >
 	                  <div></div>
 	                  <div></div>
@@ -139,11 +139,13 @@
 				<div class="comment-detail">
 					<div class="comment-content">
 						<div class="comment-info">
-							<%if(list[i].userPic == null ){%>
-								<img src="img/normal-user.png" class="comment-creator-pic"/>
-							<%} else {%>
-								<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
-							<% } %>
+							<a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+								<%if(list[i].userPic == null ){%>
+									<img src="img/normal-user.png" class="comment-creator-pic"/>
+								<%} else {%>
+									<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
+								<% } %>
+							</a>
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
 							<p style="color:rgb(79, 163, 237);">
 								写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评
@@ -176,11 +178,13 @@
 				<div class="comment-detail">
 					<div class="comment-content">
 						<div class="comment-info">
-							<%if(list[i].userPic == null ){%>
-								<img src="img/normal-user.png" class="comment-creator-pic"/>
-							<%} else {%>
-								<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
-							<% } %>
+							<a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+								<%if(list[i].userPic == null ){%>
+									<img src="img/normal-user.png" class="comment-creator-pic"/>
+								<%} else {%>
+									<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
+								<% } %>
+							</a>
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
 							<p style="color:rgb(79, 163, 237);">发表了文章</p>
 							<p class="comment-title">

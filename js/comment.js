@@ -76,7 +76,7 @@ function  ajaxGetReviewDetail() {
             }
             ajaxGetChainDetail()
         } else {
-            layer.msg(res.msg);
+            layer.msg('查询不到该文章');
         }
     }, "json");
 }

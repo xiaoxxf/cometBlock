@@ -181,6 +181,8 @@ a img {
 /* 播报 */
 .hot_zone_news{
 	text-align: center;
+  white-space:nowrap;
+  overflow: scroll;
 }
 .hot_zone_news p{
 	font-size: 14px;

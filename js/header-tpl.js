@@ -137,10 +137,11 @@ $(function(){
 	if (userinfo) {
 		var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=12'
 		doJavaGet(uri,function(result){
-			count = result.count
-			if (count!=0) {
-				$('.badge-inform').html(count)
+			if (result.code == 0) {
+
+				result.count ? $('.badge-inform').text(result.count) : $('.badge-inform').text('')
 			}
+
 		})
 	}
 
