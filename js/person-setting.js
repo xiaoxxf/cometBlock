@@ -231,6 +231,8 @@ function dingshiqi_reset() {
 		$("#setting_send_code").html("重新发送验证码")
 		clearInterval(countdownreset);
 		count_reset = 60
+		flag_resetPwd_sendCode =false
+		
 	}
 
 }
@@ -240,7 +242,12 @@ function CountDownResetPwd() {
 
 }
 //点击发送验证
+var flag_resetPwd_sendCode =false
 $('#setting_send_code').click(function() {
+	if(flag_resetPwd_sendCode){
+		return
+	}
+	flag_resetPwd_sendCode =true
 	$("#setting_send_code").css("text-decoration", "none");
 	$("#setting_send_code").css("color", "white");
 	getCodeResetPwd();

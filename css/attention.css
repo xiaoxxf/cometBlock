@@ -9,7 +9,7 @@ a img {
 }
 
 .attention_box{
-	margin-top:30px ;
+	/*margin-top:30px ;*/
 }
 
 
@@ -91,7 +91,7 @@ a img {
 .comment-detail .comment-title{
     font-weight: bold;
     font-size: 17px;
-    line-height: 20px;
+    line-height: 0px;
     margin: 15px 0px;
     width: 80%;
 }
@@ -99,11 +99,12 @@ a img {
 .comment-detail .comment-title a{
   	font-weight: 500;
     color: #0e0d0d;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .comment-detail .comment-title a:hover{
-  color: #1c5397
+  color: #1c5397;
+  cursor: pointer;
 }
 
 
@@ -150,7 +151,14 @@ a img {
 	 /* line-height: 25px; */
 	color: black;
 }
-
+.comment_bottom_box{
+	display: flex;
+    background-color: #eee;
+    margin-right: 30px;
+    padding: 20px;
+    border-radius: 4px;
+    margin-top: 5px;
+}
 .comment-creator-pic{
 	width: 28px;
 	height: 28px;
@@ -190,7 +198,7 @@ a img {
 
 	.comment-detail .comment-title {
 		font-size: 15px;
-		line-height: 20px;
+		line-height: 0px;
 	    width: 100%;
 	    margin: 10px 0px;
 	}
@@ -233,7 +241,7 @@ a img {
 }
 /*广告位*/
 .long-comment{
-	margin-top: 30px;
+	margin-top: 5px;
 }
 .write-comment{
 	line-height: 50px;
