@@ -677,4 +677,3 @@ $('.news_alert_include').on("mouseenter mouseleave", function(e){
   };
 })
 
-
