@@ -262,8 +262,8 @@ a img {
 }
 .long_comment_box,.short_comment_box{
 	padding: 20px;
-	background-color: #1a92e31c;
-  min-height: 150px;
+	background-color: #eee;
+    min-height: 150px;
 }
 .article_box{
 	background-color: white;

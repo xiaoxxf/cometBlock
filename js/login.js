@@ -48,6 +48,7 @@ $(document).keydown(function(event){
 
 var flag_login_submiting = false;
 function signIn(){
+
 	if(flag_login_submiting){
 		return
 	}
@@ -92,7 +93,7 @@ function signIn(){
 		} else {
 			layer.msg(res.msg);
 		}
-			var flag_login_submiting = false;
+		flag_login_submiting = false;
 		
 	}, "json");
 
