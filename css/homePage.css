@@ -24,7 +24,7 @@ a img {
 
 .bottom_line{
 	border-bottom:solid 1px gainsboro ;
-  min-height: 271px;
+  /*min-height: 271px;*/
 }
 
 @media (max-width:767px) {
@@ -33,7 +33,9 @@ a img {
   }
 }
 
-
+.like-button{
+	margin-left: 20px;
+}
 /*糖果盒 & 创建项目*/
 .candy_box{
 	margin-top:30px ;
@@ -339,6 +341,7 @@ a img {
 
 
 .meta{
+	color: #777777c4;
 	margin-top:15px ;
 	margin-bottom: 10px;
 }
