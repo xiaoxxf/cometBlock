@@ -237,6 +237,8 @@ function getUserInfoByWeChat(wechatCode){
             $(".nav-user-account .more-active").css('display', 'block');
             $(".login-right").css('display', 'block');
 
+            // 清除wechatinfo
+            $.removeCookie("wechatInfo")
           }
           // 未绑定
           else{
