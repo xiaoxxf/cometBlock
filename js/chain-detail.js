@@ -345,6 +345,8 @@ $(".short-comment-commit").on('click',function (e) {
         });
         return;
     }
+    // 过滤js标签
+    shortTxt.replace(/<script.*?>.*?<\/script>/g,'');
     var data = {
         textTitle: shortTxt,
         projectId: projectId, //项目

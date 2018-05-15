@@ -133,15 +133,16 @@ function editTopic(){
     return;
   }
 
+  var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g, '')
   var data = {
     'topicPic':  newTopicForm.topic_logo_file_name.value,
     'topic':    newTopicForm.topic_name.value, //专题名称
-    'description': newTopicForm.topic_description.value,
+    'description': topic_des,
     'topicType': topicType, //0->投稿的文章需要审核， 1->不需要审核
-    'creator': userinfo.id,
+    'creator': userId,
     'password': userinfo.userPwd,
-    'topicId': topicId
   }
+
 
   ui.submiting = true;
   // data = JSON.stringify(data);

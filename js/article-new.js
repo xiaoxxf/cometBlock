@@ -95,7 +95,8 @@ $('.submit_comment').on('click',function(){
 
   ui.submiting = true
   // var text_content = encodeURI(editor.txt.html())
-  var text_content = editor.txt.html()
+  // 过滤js标签
+  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'')
 
   var data = {
     textTitle: $('input[name="head"]')[0].value,

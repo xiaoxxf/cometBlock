@@ -377,6 +377,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         });
         return;
     }
+    // 过滤js标签
+    shortTxt.replace(/<script.*?>.*?<\/script>/g,'');
     var data = {
         textTitle: shortTxt,
         parentId: reviewId, //项目
@@ -676,5 +678,3 @@ $('.news_alert_include').on("mouseenter mouseleave", function(e){
     layer.close(index_subject)
   };
 })
-
-

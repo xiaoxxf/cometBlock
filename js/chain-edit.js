@@ -504,7 +504,8 @@ function chainDetailJs(chainInfoData){
         $('input[name="exchange_rate"]').each(function(i) {
       	   exchangeRate += $(this).val();
         });
-
+        // 过滤js标签
+        var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'')
         // 提交数据
         var data = {
           "projectLogo":          form1.projectLogoFile.value,
@@ -515,7 +516,7 @@ function chainDetailJs(chainInfoData){
           "currencyCirculation":  form1.currency_circulation.value,
           "fundraisingTime":      form1.fundraising_time.value,
           "companyWebsite":       form1.compay_website.value,
-          "projectContent":       editor.txt.html(),
+          "projectContent":       projectContent,
           "whitePaper":           form1.whitePaperFile.value,
           "exchangeRate":			    exchangeRate,
           "userId":               userId,

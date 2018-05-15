@@ -141,12 +141,14 @@ $(function(){
     if (ui.submiting) {
       return false
     }
+		// 过滤js标签
+	  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'')
 
     ui.submiting = true
     score = parseInt($(".live-rating")[0].innerHTML)
   	var data = {
   		textTitle: $('input[name="head"]')[0].value,
-  		textContent: editor.txt.html(),
+  		textContent: text_content,
   		projectId: projectData.projectId, //项目Id
   		score: score, //评分
   		type: 2, //长文的type为2
