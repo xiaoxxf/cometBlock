@@ -164,9 +164,11 @@ $(".topic_article_list").on('click','.like-button',function (e) {
     var reviewid = self.data('reviewid');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
-
+		if(!wechatBindNotice()){
+    	return;
+    }
     if(userinfo == null){
-        layer.msg('您还没有登录')
+        // layer.msg('您还没有登录')
         layer.open({
             type: 1,
             shade:0,

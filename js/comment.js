@@ -51,7 +51,6 @@ function  ajaxGetReviewDetail() {
             var content = template(commentTpl, {list: commentInfoData});
             $(".comment-detail-mian-hook").append(content);
             // 作者打开时可以投稿
-            debugger
 
             if (userId && commentInfoData.creator == userId) {
               $('.news_alert_subject').css('display','')
@@ -103,7 +102,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     	return;
     }
     if(userId == undefined){
-        layer.msg('您还没有登录');
+        // layer.msg('您还没有登录');
         layer.open({
             type: 1,
             shade:0,
@@ -130,7 +129,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
     	return;
     }
     if(userId == undefined){
-        layer.msg('您还没有登录');
+        // layer.msg('您还没有登录');
         layer.open({
             type: 1,
             shade:0,
@@ -175,7 +174,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
     	return;
     }
   if(userId == undefined){
-      layer.msg('您还没有登录');
+      // layer.msg('您还没有登录');
       layer.open({
           type: 1,
           shade:0,
@@ -259,7 +258,7 @@ $(".comment-detail-mian-hook").on('click','.main-panel-useful button',function (
     	return;
     }
     if(userId == undefined){
-        layer.msg('您还没有登录');
+        // layer.msg('您还没有登录');
         layer.open({
             type: 1,
             shade:0,
@@ -304,7 +303,7 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     	return;
     }
     if(userId == undefined){
-        layer.msg('您还没有登录');
+        // layer.msg('您还没有登录');
         layer.open({
             type: 1,
             shade:0,
@@ -350,7 +349,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     }
 
     if(userId == undefined){
-        layer.msg('您还没有登录');
+        // layer.msg('您还没有登录');
         layer.open({
             type: 1,
             shade:0,
@@ -410,7 +409,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
     	return;
     }
     if(userId == undefined){
-        layer.msg('您还没有登录');
+        // layer.msg('您还没有登录');
         layer.open({
             type: 1,
             shade:0,

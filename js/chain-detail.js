@@ -83,7 +83,7 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
       // return
     }
     else if(userId == undefined){
-        layer.msg('您还没有登录')
+        // layer.msg('您还没有登录')
         layer.open({
             type: 1,
             shade:0,
@@ -313,7 +313,7 @@ $(".short-comment-commit").on('click',function (e) {
     	return;
     }
     if(userId == undefined){
-        layer.msg('您还没有登录')
+        // layer.msg('您还没有登录')
         layer.open({
             type: 1,
             shade:0,

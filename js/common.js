@@ -202,7 +202,7 @@ $.get("header-tpl.html",function(data){
 // 微信登录后取得返回信息
 function getUserInfoByWeChat(wechatCode){
   var wechatCode = getUrlParam('code');
-  var uri = '/news/getUserInfo?code='+ wechatCode;
+  var uri = 'news/getUserInfo?code='+ wechatCode;
   doJavaGet(uri, function(res) {
       if(res.code === 0){
           console.log(res);
