@@ -39,7 +39,7 @@ editor.customConfig.menus = [
   'image',  // 插入图片
   'fontSize',  // 字号
   'code',  // 插入代码
-
+  'justify',  // 对齐方式
 
 ]
 
@@ -76,17 +76,10 @@ editor.customConfig.uploadImgHooks = {
 // editor.customConfig.debug = true
 editor.create();
 $('.w-e-text-container').attr('style','height:auto;');
-
+$('.w-e-text-container').attr('style','width:auto;');
 
 // 修改菜单栏样式
-$('.w-e-toolbar').css(
-  {
-   'background-color':'white',
-   "border-left":"0px",
-   "border-right":"0px",
-   "border-bottom":"0px",
-  }
-);
+
 $('.w-e-menu').css('font-size','20px')
 $('.w-e-text-container').css('border','0px')
 $('.w-e-text').css('font-size','18px')
