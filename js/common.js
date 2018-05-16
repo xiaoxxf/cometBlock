@@ -164,7 +164,7 @@ $.get("header-tpl.html",function(data){
     localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
 
     // 没有登录时，显示注册/登录
-    if (!username && !wechatCode && !localCookieWechatInfo ) {
+    if (!userId && !wechatCode && !localCookieWechatInfo ) {
       $("#nav_login").fadeIn();
       $("#nav_register").fadeIn();
       $(".scrollbar-container").fadeIn();
@@ -173,13 +173,6 @@ $.get("header-tpl.html",function(data){
     else if(wechatCode && !localCookieWechatInfo){
       // 取得返回信息
       getUserInfoByWeChat();
-    }
-    // 微信登录后，已取得返回数据，但没有绑定的
-    else if(localCookieWechatInfo && !localCookieWechatInfo.userinfo ){
-      // 显示微信头像和名称
-      $("#user_pic")[0].src = localCookieWechatInfo.headimgurl;
-      $(".nav-user-account .more-active").css('display', 'block');
-      $(".login-right").css('display', 'block');
     }
     // 账号登录 或 微信登录后已绑定的
     else if(userId){
@@ -195,6 +188,13 @@ $.get("header-tpl.html",function(data){
       $(".nav-user-account .more-active").css('display', 'block');
       $(".login-right").css('display', 'block');
 
+    }
+    // 微信登录后，已取得返回数据，但没有绑定的
+    else if(localCookieWechatInfo && !localCookieWechatInfo.userinfo ){
+      // 显示微信头像和名称
+      $("#user_pic")[0].src = localCookieWechatInfo.headimgurl;
+      $(".nav-user-account .more-active").css('display', 'block');
+      $(".login-right").css('display', 'block');
     }
 
 });
@@ -238,7 +238,7 @@ function getUserInfoByWeChat(wechatCode){
             $(".login-right").css('display', 'block');
 
             // 清除wechatinfo
-            $.removeCookie("wechatInfo")
+            // $.removeCookie("wechatInfo")
           }
           // 未绑定
           else{
