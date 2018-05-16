@@ -72,6 +72,16 @@ function FindPwdFromValid() {
 	return true;
 }
 
+
+//点击验证
+var flag_resetPwd_sendCode =false
+$('#send_code').click(function() {
+	if(flag_resetPwd_sendCode){
+		return
+	}
+ 	flag_resetPwd_sendCode =true
+	getCode()
+})
 //发送验证码
 function getCode() {
 	if(SendCodeFromValid()){
@@ -102,6 +112,7 @@ function dingshiqi() {
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
 		count = 60
+		flag_resetPwd_sendCode =false
 	}
 
 }
@@ -110,11 +121,6 @@ function CountDown() {
 	countdown = setInterval(dingshiqi, 1000);
 
 }
-//点击验证
-$('#send_code').click(function() {
-	getCode()
-})
-
 
 
 

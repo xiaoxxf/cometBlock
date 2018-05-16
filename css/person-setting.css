@@ -299,3 +299,17 @@ body{
     border-radius: 4px !important;
     vertical-align: middle;
    }
+/*重置密码刷新*/
+.refresh_add_top{
+    position: relative !important;
+	top: -36px !important;
+    bottom: none !important;
+    right: 60px !important;
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 50% !important;
+    background: none repeat scroll 0 0 white !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 10px rgba(0,0,0,.1) inset, 0 0 25px rgba(0,0,255,0.075) !important;
+
+}
