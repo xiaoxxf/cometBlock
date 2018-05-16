@@ -177,7 +177,7 @@
 									<%}else{%>
 									他的长评：评论了
 									<%}%>
-									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
 										<%:=list[i].projectBigName %>
 									</a>
 									<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
@@ -185,13 +185,13 @@
 							</div>
 							<div class="long_comment_box" style="display:flex">
 								<div class="article-introduce">
-									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title" target="_blank"><%:=list[i].textTitle %></a>
 									<p>
 										<%:=list[i].textContent %>
 									</p>
 								</div>
 								<div class="article-icon">
-									<a href="chain-detail.html?projectId=<%:=list[i].projectId%>">
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId%>" target="_blank">
 										<img class="article-img" src="<%:=list[i].projectLogo %>">
 									</a>
 								</div>
@@ -200,7 +200,7 @@
 								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].review %></i><%:=list[i].likes %></span>-->
 							<div class="meta">
 								<a class="article-time"><%=list[i].createTime %></a>
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
 								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 
 							</div>
@@ -220,7 +220,7 @@
 									<%}else{%>
 									他的短评：评论了
 									<%}%>
-									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
 										<%:=list[i].projectBigName %>
 									</a>
 									<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
@@ -228,13 +228,13 @@
 							</div>
 							<div class="short_comment_box" style="display:flex">
 								<div class="article-introduce">
-									<a href='chain-detail.html?projectId=<%:=list[i].projectId %>' class="article_title">
+									<a href='chain-detail.html?projectId=<%:=list[i].projectId %>' class="article_title" target="_blank">
 										项目链接:<%:=list[i].projectBigName %>
 									</a>
 									<p><%:=list[i].textTitle %></p>
 								</div>
 								<div class="article-icon">
-									<a href='chain-detail.html?projectId=<%:=list[i].projectId %>'>
+									<a href='chain-detail.html?projectId=<%:=list[i].projectId %>' target="_blank">
 										<img class="article-img" src="<%:=list[i].projectLogo %>">
 									</a>
 								</div>
@@ -258,7 +258,7 @@
 							</div>
 							<div class="article_box" style="display:flex">
 								<div >
-									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main" target="_blank"><%:=list[i].textTitle %></a>
 									<p class="article_content_bottom">
 										<%:=list[i].textContent %>
 									</p>
@@ -267,7 +267,7 @@
 
 							<div class="meta">
 								<a class="article-time"> <%:=list[i].createTime %></a>
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
 								<!-- <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a> -->
 								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 
@@ -294,15 +294,15 @@
 								<%}else{%>
 									他的长评：评论了
 								<%}%>
-								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
-								<%:=list[i].projectBigName %>
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
+									<%:=list[i].projectBigName %>
 								</a>
 								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
 							</span>
 						</div>
 						<div class="long_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title" target="_blank"><%:=list[i].textTitle %></a>
 								<p>
 									<%:=list[i].textContent %>
 								</p>
@@ -317,7 +317,7 @@
 							<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].review %></i><%:=list[i].likes %></span>-->
 						<div class="meta">
 							<a class="article-time"><%=list[i].createTime %></a>
-							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
 							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>
@@ -340,19 +340,21 @@
 								<%}else{%>
 									他的短评：评论了
 								<%}%>
-								<%:=list[i].projectBigName %>
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
+									<%:=list[i].projectBigName %>
+								</a>
 								<span class="allstar<%:=list[i].score*10%> rating" title="推荐" class="targetProjectBigName"></span>
 							</span>
 						</div>
 						<div class="short_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' class="article_title">
+								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' class="article_title" target="_blank">
 									项目链接:<%:=list[i].projectBigName %>
 								</a>
 								<p><%:=list[i].textTitle %></p>
 							</div>
 							<div class="article-icon">
-								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>'>
+								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' target="_blank">
 									<img class="article-img" src="<%:=list[i].projectLogo %>">
 								</a>
 							</div>
@@ -380,7 +382,7 @@
 						</div>
 						<div class="article_box" style="display:flex">
 							<div >
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main"><%:=list[i].textTitle %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main" target="_blank"><%:=list[i].textTitle %></a>
 								<p class="article_content_bottom">
 									<%:=list[i].textContent %>
 								</p>
@@ -395,7 +397,7 @@
 								<a href="">标签3</a>
 								<a href="">标签4</a>
 							</div> -->
-							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
 							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>

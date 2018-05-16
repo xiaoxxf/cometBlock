@@ -113,13 +113,14 @@
 								</p>
 
 								<p class="comment-title">
-									<a href="comment.html?reviewId=<%:=list[i].reviewId %>"><%:=list[i].textTitle %></a>
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" target="_blank"><%:=list[i].textTitle %></a>
 								</p>
 							</div>
 							<div class="comment_bottom_box">
 								<div class="comment-introduce">
-									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent" target="_blank">
 										<%:=list[i].textContent %>
+									</a>
 								</div>
 								<div class="comment-icon" style="height: 91.5897px;">
 									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
@@ -157,9 +158,9 @@
 						</div>
 						<div class="long-comment" style="display:flex; background-color: #eee;margin-right: 30px; padding: 20px; border-radius: 4px;">
 							<div class="comment-introduce">
-								<a href="">
+								<p>
 									<%:=list[i].textTitle %>
-								</a>
+								</p>
 							</div>
 							<div class="comment-icon" style="height: 91.5897px;">
 								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
@@ -190,14 +191,14 @@
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
 							<p style="color:rgb(79, 163, 237);">发表了文章</p>
 							<p class="comment-title">
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" target="_blank">
 									<%:=list[i].textTitle %>
 								</a>
 							</p>
 						</div>
 						<div class="comment_bottom_box">
 							<div class="comment-introduce">
-								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent" target="_blank">
 									<%:=list[i].textContent %>
 								</a>
 							</div>
