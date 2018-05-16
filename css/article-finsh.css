@@ -4,14 +4,14 @@
 body{
 	background-color: white;
 }
-.topic_box{
+.article_box{
     margin-top: 20px;
 }
-.topic_top{
+.article_top{
 	text-align: center;
     padding: 30px;
 }
-.topic_title{
+.article_title{
 	display: block;
     font-weight: 600;
     font-size: 20px;
@@ -26,7 +26,7 @@ body{
     right: 130px;
     top: 130px;
     color: #333;
-    
+
 }
 /*管理的专题*/
 .topic_send_article{
@@ -45,7 +45,7 @@ body{
 @media only screen and (max-width:800px ) {
 	.article_right{
 	float: none;
-	margin-top: 80px;	
+	margin-top: 80px;
 }
 }
 /*搜索专题*/
@@ -111,14 +111,15 @@ body{
 .comment_topic_subject{
 	padding: 20px 50px;
 }
+
 .topic_subject_title{
 	color: #333;
-    font-weight: 600;
+  font-weight: 600;
 	text-indent: 10px;
 	display: block;
 	height: 30px;
-    line-height: 30px;
-    background-color: gainsboro;
+  line-height: 30px;
+  background-color: gainsboro;
 }
 .topic_subject_content{
 	float: left;
@@ -134,8 +135,8 @@ body{
 	color: #999;
 }
 .topic_subject_info{
-	padding: 10px;
-	border: solid 1px gainsboro;
+	/* padding: 10px; */
+	/* border: solid 1px gainsboro; */
 }
 .info_left{
 	float: left;
@@ -146,14 +147,17 @@ body{
 
 .subject_icon{
 	float: left;
-    margin-right: 20px;
+  margin-right: 20px;
 	width: 50px;
 	height: 50px;
 }
 .border_right{
-	margin: -10px;
-    padding: 20px 40px;
-    border-right: solid 1px gainsboro;
+	/* margin: -10px; */
+  padding: 20px 40px;
+  border-right: solid 1px gainsboro;
+	border-bottom: solid 1px gainsboro;
+	border-left: solid 1px gainsboro;
+
 }
 @media only screen and (max-width:980px ) {
 	.border_right{
@@ -166,4 +170,24 @@ body{
 }
 .loop_border-top{
 	border-top: none;
+}
+
+/* 投稿按钮 */
+.send_to_topic{
+	cursor: pointer;
+	color: #006bb3;
+}
+
+/* 搜索专题结果 */
+.search_topic{
+	padding: 20px 50px;
+}
+.load_more_subject_result{
+	line-height: 30px;
+	display: block;
+	height: 30px;
+	margin: 20px 10px;
+	text-align: center;
+	cursor: pointer;
+	display: none;
 }

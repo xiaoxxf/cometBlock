@@ -647,7 +647,7 @@ function getRecommendSubject(){
     }
     // console.log(result.datas)
 		$('.recommend_topic_result').html('');
-		var search = document.getElementById('recomment_topic_tpl').innerHTML;
+		var search = document.getElementById('recommend_topic_tpl').innerHTML;
 		var content = template(search, {list: result.datas});
 		$('.recommend_topic_result').append(content);
 
@@ -794,7 +794,7 @@ $(".news_alert_include").on('click',function (e) {
 
 // 加载我管理的专题
 function getMyTopic(){
-  var uri = 'topic/seachTopic?currentPage=1&pageSize=8&creator=' + userinfo.id
+  var uri = 'topic/seachTopic?currentPage=1&pageSize=8&creator=' + userId
   doJavaGet(uri,function(result){
     // 判断是否已投稿
     for (var i = 0; i < result.datas.length; i++) {

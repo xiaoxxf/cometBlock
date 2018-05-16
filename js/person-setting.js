@@ -42,12 +42,14 @@ $(function(){
 $(function(){
 	// 账号登录
 	if (userId || wechatInfo.userInfo) {
-		$('.account_login').css('display','block')
+		$('.wechat_login').css('display','block')
+		// $('.wechat_info_logo')[0].src = wechatInfo.headimgurl
 	}
 	// 微信登录
 	else if(wechatInfo && !wechatInfo.userInfo){
-		$('.wechat_login').css('display','block')
-		$('.wechat_info_logo')[0].src = wechatInfo.headimgurl
+
+		$('.account_login').css('display','block')
+
 	}
 	// 没登录
 	else{

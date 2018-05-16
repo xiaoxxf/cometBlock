@@ -79,10 +79,7 @@ body{
 	height: 140px;
 	border-bottom: 1px solid #f0f0f0;
 }
-.bind-user{
-	padding-bottom: 50px;
-    border-bottom: solid 1px gainsboro;
-}
+
 .save_realname{
 	width: 90px;
     color: white;
@@ -128,16 +125,6 @@ body{
 
 .setting-title {
 	color: #969696;
-}
-
-.setting-save {
-	margin-top: 10px;
-	color: white;
-	background-color: #006bb3!important;
-	border-color: #006bb3!important;
-	border-radius: 20px;
-	min-width: 138px;
-	box-shadow: 0 0 10px #31708f;
 }
 
 .aside .setting-icon {
@@ -330,6 +317,29 @@ body{
     box-shadow: 0 0 10px rgba(0,0,0,.1) inset, 0 0 25px rgba(0,0,255,0.075) !important;
 
 }
+
+
+
+
+ /* 绑定微信 */
+ .wechat_info_logo{
+   border-radius: 10px;
+   width:120px;
+	 margin-left: 16px;
+ }
+ .bind-user{
+ 	padding-bottom: 50px;
+   /* border-bottom: solid 1px gainsboro; */
+ }
+ .setting-save {
+ 	margin-top: 10px;
+ 	color: white;
+ 	background-color: #006bb3!important;
+ 	border-color: #006bb3!important;
+ 	border-radius: 20px;
+ 	min-width: 138px;
+ 	/* box-shadow: 0 0 10px #31708f; */
+ }
 
  /*footer样式复写*/
  .footer-detail .container{
