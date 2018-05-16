@@ -32,9 +32,15 @@ editor.customConfig.menus = [
   'bold',
   'italic',
   'head',
-  'emoticon',
+  'fontName',  // 字体
+  'foreColor',  // 文字颜色
+  // 'emoticon',
   'link',  // 插入链接
   'image',  // 插入图片
+  'fontSize',  // 字号
+  'code',  // 插入代码
+
+
 ]
 
 var uploadUri = 'common/upload'

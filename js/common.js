@@ -350,7 +350,7 @@ function wechatBindNotice(){
             content: '您暂未进行账号绑定，请前去进行绑定',
             btn: ['绑定'],
             yes: function(){
-                window.location.href='bindUser.html'
+                window.location.href='person-setting.html?personType=2'
             }
         });
         return false;
