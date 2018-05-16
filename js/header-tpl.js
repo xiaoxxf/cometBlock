@@ -182,6 +182,9 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 
 // 点击写文章页面
 $('#writting-article').on('click',function(){
+	if(!wechatBindNotice()){
+		return;
+	}
   if(userId == undefined){
     layer.open({
       closeBtn:1,

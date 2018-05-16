@@ -38,10 +38,20 @@ $(function(){
 	}
 })
 
-// 微信登录时才显示绑定
+// 账号登录 or 微信登录
 $(function(){
-	if ($.cookie('wechatInfo')) {
-		$('.bind-user').css('display','')
+	// 账号登录
+	if (userId || wechatInfo.userInfo) {
+		$('.account_login').css('display','block')
+	}
+	// 微信登录
+	else if(wechatInfo && !wechatInfo.userInfo){
+		$('.wechat_login').css('display','block')
+		$('.wechat_info_logo')[0].src = wechatInfo.headimgurl
+	}
+	// 没登录
+	else{
+			window.location.href = 'index.html'
 	}
 })
 
@@ -361,7 +371,7 @@ $("#save-register-info").click(function() {
 				layer.msg(res.msg+",请重新登录");
 
 				setTimeout(function(){
-					Loginout()
+					Loginout() //common.js内方法
 				},200)
 			}, 1000);
 
@@ -377,14 +387,6 @@ $("#save-register-info").click(function() {
 });
 
 
-//注销
-function Loginout(){
-    localStorage.clear();
-    $.removeCookie("token");
-    $.removeCookie("userid");
-    $.removeCookie("username");
-    window.location.href = "login.html";
-}
 
 var imageType = /image.*/;
 var imageMaxSize = 1*1024*1024;

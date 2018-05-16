@@ -43,8 +43,8 @@ function  ajaxGetReviewDetail() {
 
           if (commentInfoData.creator == userId) {
 
-            // 评价内容
-            createEditor(commentInfoData.textContent);
+            // 加载评价内容及提交、预览的js方法
+            createEditorAndGetContent(commentInfoData.textContent);
             // 标题
             $('.input-head').val(commentInfoData.textTitle)
 
@@ -62,7 +62,7 @@ function  ajaxGetReviewDetail() {
 
 
 
-function createEditor(content){
+function createEditorAndGetContent(content){
     // 编辑器
     var E = window.wangEditor
     var editor = new E('#editor')
@@ -108,6 +108,7 @@ function createEditor(content){
     // editor.customConfig.debug = true
     editor.create()
     editor.txt.html(content)
+    $('.w-e-text-container').attr('style','height:auto;');
 
     // 修改菜单栏样式
     $('.w-e-toolbar').css(
@@ -120,6 +121,8 @@ function createEditor(content){
     );
     $('.w-e-menu').css('font-size','20px')
     $('.w-e-text-container').css('border','0px')
+    $('.w-e-text').css('font-size','18px')
+
 
 
     // 提交
@@ -160,4 +163,36 @@ function createEditor(content){
       doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
     })
 
+
+    // 预览
+    var preivew_flag = false
+    function preview(){
+    	preivew_flag = true
+    	$('.preview-article').html('退出预览')
+    	$('.preview-container').css('display','')
+    	$('.write-container').css('display', 'none')
+    	var textContent = editor.txt.html();
+    	$('.review-content').html(textContent);
+    	var textTitle = $('.input-head').val()
+    	$('.comment-detail-title').html(textTitle);
+    	$('.realName').html(userinfo.realName);
+    	if (userinfo.userPic) {
+    		$('.avatar img')[0].src = userinfo.userPic
+    	}
+    }
+
+    function quitPreview(){
+    	preivew_flag = false
+    	$('.preview-article').html('预览')
+    	$('.preview-container').css('display','none')
+    	$('.write-container').css('display', '')
+    }
+
+    $('.preview-article').on('click',function(){
+    	if (!preivew_flag) {
+    		preview()
+    	}else{
+    		quitPreview()
+    	}
+    })
 }

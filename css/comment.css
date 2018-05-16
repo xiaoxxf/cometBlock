@@ -812,6 +812,14 @@ a img {
 	cursor: pointer;
 }
 
+/* 微信扫码分享 */
+.wechat_share{
+	float: right;
+	width:40px;
+	border-radius:50px;
+	cursor: pointer;
+}
+
 #qrcode{
 	right: 50px;
   bottom: 310px;

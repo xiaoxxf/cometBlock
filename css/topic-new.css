@@ -92,6 +92,12 @@ textarea.form-control{
     top: 4px;
 }
 
+.topic_image{
+  height: 100px;
+  width: 110px;
+}
+
+
 /*footer样式复写*/
 .footer-detail .container .row{
     background-color: #f3f6f7;

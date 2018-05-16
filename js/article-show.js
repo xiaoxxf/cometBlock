@@ -206,7 +206,6 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
       }
   );
 
-
 })
 
 //点击关闭

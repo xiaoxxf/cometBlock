@@ -5,6 +5,16 @@ body{
 	box-shadow: 0 0 10px rgb(117, 113, 113);
 } */
 /*aside*/
+
+/* 微信登录模块 */
+.wechat_login{
+	display: none
+}
+/* 账号登录模块 */
+.account_login{
+	display: none
+}
+
 .aside {
 	position: fixed;
 	width: 300px;
@@ -120,13 +130,13 @@ body{
 	color: #969696;
 }
 
-.btn-success {
+.setting-save {
 	margin-top: 10px;
 	color: white;
 	background-color: #006bb3!important;
 	border-color: #006bb3!important;
 	border-radius: 20px;
-	width: 100px;
+	min-width: 138px;
 	box-shadow: 0 0 10px #31708f;
 }
 
@@ -265,6 +275,13 @@ body{
 .new-input-pwd{
 	float: right;
 }
+
+/* 发送验证码按钮 */
+.js-send-code-button{
+	text-decoration: none;
+	color: white;
+}
+
 @media only screen and (max-width:360px ) {
 	.new-input-pwd{
 		float: none;
@@ -292,10 +309,17 @@ body{
 /*更改引进样式*/
 .main {
 	margin: 50px auto 0 !important;
-    text-align: center !important;
-    width: 360px !important;
-    padding: 10px 30px !important;
-    background-color: #fff !important;
-    border-radius: 4px !important;
-    vertical-align: middle;
-   }
+  text-align: center !important;
+  width: 360px !important;
+  padding: 10px 30px !important;
+  background-color: #fff !important;
+  border-radius: 4px !important;
+  vertical-align: middle;
+}
+
+
+
+ /*footer样式复写*/
+ .footer-detail .container{
+     background-color: white;
+ }

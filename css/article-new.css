@@ -109,3 +109,11 @@ h1 {
 	padding: 0 0 15px 0;
 	line-height: 1.1;
 }
+
+.w-e-toolbar{
+  background-color:white !important;
+  border-left:0px !important;
+  border-right:0px !important;
+  border-bottom:0px !important;
+
+}

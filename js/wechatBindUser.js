@@ -1,32 +1,3 @@
-//绑定现有用户弹出框
-$("#bind_now_user").on('click',function (e) {
-
-  var area_width
-  var area_height
-  if($(window).width() <= 767)
- 	{
-	 	area_width = '320px'
-	    area_height = '500px'
- 	}else{
- 		 area_width = '370px'
-	     area_height = '460px'
- 	}
-  layer.open({
-      type: 1,
-      shade:0,
-      title: 0,
-      skin: 'layui-layer-report', //加上边框
-      area: [area_width,area_height ], //宽高
-      content: $("#bind-now-commit-layer").html()
-  });
-	$('#bind-exist-user-btn').on('click',function(){
-    var currentHref = location.href
-    window.localStorage.setItem('currentHref', currentHref);
-		loginBeforeBind();
-	})
-
-})
-
 //绑定新用户弹出框
 $("#bind_new_user").on('click',function (e) {
     var area_width
@@ -49,14 +20,14 @@ $("#bind_new_user").on('click',function (e) {
   });
 
 	$('#bind-new-user-btn').on('click',function(){
-    var currentHref = location.href
-    window.localStorage.setItem('currentHref', currentHref);
+    // var currentHref = location.href
+    // window.localStorage.setItem('currentHref', currentHref);
 		signUpBeforeBind();
 	})
 
 })
 
-// 绑定新用户，绑定前注册
+// 绑定新用户，先注册
 function signUpBeforeBind(){
 	if(RegisterFromValid()) {
 		var param = {
@@ -82,7 +53,7 @@ function signUpBeforeBind(){
         loginAfterSignUp()
 			} else {
 
-				layer.msg(res.msg);
+				layer.msg('注册失败，请重试');
 
 			}
 
@@ -90,7 +61,7 @@ function signUpBeforeBind(){
 	}
 }
 
-
+// 绑定新用户，注册后登录
 function loginAfterSignUp() {
 	if(loginFromValid()) {
 		var param = {
@@ -121,14 +92,6 @@ function loginAfterSignUp() {
 					expires: expireDate
 				});
 
-				// var localCurrentHref = window.localStorage.getItem('currentHref');
-				// if(localCurrentHref.indexOf('login.html') > 0) {
-				// 	window.location.href = "index.html";
-        //
-				// } else {
-				// 	window.location.href = "personalCenter.html";
-				// }
-
         // 登录后绑定
         bindNewUser()
 			} else {
@@ -139,7 +102,7 @@ function loginAfterSignUp() {
 	}
 }
 
-
+// 绑定新用户，注册-登录-绑定
 function bindNewUser(){
 	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 	var userId = $.cookie('userid');//获取userid
@@ -161,7 +124,39 @@ function bindNewUser(){
 }
 
 
-// 绑定现有用户
+//绑定现有用户弹出框
+$("#bind_now_user").on('click',function (e) {
+
+
+
+  var area_width
+  var area_height
+  if($(window).width() <= 767)
+ 	{
+	 	area_width = '320px'
+	    area_height = '500px'
+ 	}else{
+ 		 area_width = '370px'
+	     area_height = '460px'
+ 	}
+  layer.open({
+      type: 1,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      area: [area_width,area_height ], //宽高
+      content: $("#bind-now-commit-layer").html()
+  });
+	$('#bind-exist-user-btn').on('click',function(){
+    // var currentHref = location.href
+    // window.localStorage.setItem('currentHref', currentHref);
+		loginBeforeBind();
+	})
+
+
+})
+
+// 绑定现有用户前，先登录
 function loginBeforeBind(){
 	if(loginFromValid()){
 		var param = {
@@ -204,9 +199,9 @@ function loginBeforeBind(){
 }
 
 function bindExistUser(){
-	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
-	var userId = $.cookie('userid');//获取userid
-	var wechatInfo = JSON.parse($.cookie('wechatInfo'))
+	// var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+	// var userId = $.cookie('userid');//获取userid
+	// var wechatInfo = JSON.parse($.cookie('wechatInfo'))
 	var uri = 'news/bindingUser?userId=' + userId + '&userPwd=' + userinfo.userPwd +'&openid=' + wechatInfo.openid
 	doJavaGet(uri, function(res){
 		if (res.code == 0) {
@@ -222,8 +217,6 @@ function bindExistUser(){
 		}
 	})
 }
-
-
 
 
 
@@ -344,9 +337,12 @@ function gainCode() {
 	}, "json");
 
 }
-
+var flag_send_code=false;
 //校验对象是否存在
-function sendCode() {
+function verifyPhone() {
+  if(flag_send_code){
+    return
+  }
 	var uri = 'news/virty?'
 	if(!$("#session_phone").val()) { //校验手机号
 		layer.msg("请输入手机号");
@@ -358,13 +354,7 @@ function sendCode() {
 		if(res != null && res.code == 0) {
 			getCode()
 		} else {
-
-			if($("#session_phone").val()) { //校验手机号
-
-				layer.msg("手机号已存在");
-
-			}
-
+			layer.msg("手机号已存在");
 		}
 
 	}, "json");
@@ -373,7 +363,8 @@ function sendCode() {
 
 //发送验证码
 function getCode() {
-	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
+  flag_send_code = true;
+	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val();
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
@@ -383,9 +374,11 @@ function getCode() {
 		} else {
 			layer.msg(res.msg);
 		}
+
 	}, "json");
 
 }
+
 var count = 60;
 var countdown;
 
@@ -398,21 +391,12 @@ function dingshiqi() {
 
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
-		count = 60
+		flag_send_code=false
 	}
 
 }
 
 function CountDown() {
-
+	count = 60;
 	countdown = setInterval(dingshiqi, 1000);
-
 }
-//点击发送验证码
-$('#send_code').click(function() {
-	$("#send_code").css("text-decoration", "none");
-	$("#send_code").css("color", "white");
-
-	sendCode()
-
-})

@@ -231,7 +231,11 @@
 				</div>
 				<div class="option">
 					<%if(userinfo && list.realName == userinfo.realName){%>
-						<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<% if (list.type == 2) {%>
+							<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<%} else if(list.type == 4) {%>
+							<a href="article-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<%}%>
 						<a href="javacript:;" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
 					<%}%>
 				</div>
@@ -239,7 +243,7 @@
 			<div class="main-ft">
 				<div class="main-panel" name="9157555">
 					<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
-						<button class="btn btn-defaultuseful_count" data-useful="true">
+						<button class="btn btn-default btn-defaultuseful_count" data-useful="true">
 							有用 <span class="num"><%:=list.usefull%></span>
 						</button>
 						<button class="btn btn-default useless_count" data-useful="false">
