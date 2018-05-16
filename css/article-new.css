@@ -14,15 +14,39 @@
 .input-head{
   background-color: white;
   border:0px;
-  height: 50px;
+  height: 100px;
   font-size: 20px;
-  width: 100%;
+  min-width: 100%;
+  margin-left: -25px;
+  /* padding-top: 50px; */
 }
 
 .input-head::-webkit-input-placeholder{
     color:rgb(179,179,179);
     font-weight: 900;
     font-size: 30px
+}
+.w-e-toolbar{
+  /* background-color:#494949 !important; */
+  /* border-left:0px !important;
+  border-right:0px !important;
+  border-bottom:0px !important; */
+  position: fixed !important;
+  top: 130px !important;
+  width: 70% !important;
+  z-index: 100000 !important;
+}
+
+.w-e-text-container{
+  margin-top: 100px !important;
+  border: 0px !important;
+}
+
+.article-title-box{
+  position: fixed;
+  top: 50px;
+  z-index: 100000 !important;
+  width: 100%;
 }
 
 /* 预览 */
@@ -108,12 +132,4 @@ h1 {
 	margin: 0;
 	padding: 0 0 15px 0;
 	line-height: 1.1;
-}
-
-.w-e-toolbar{
-  background-color:white !important;
-  border-left:0px !important;
-  border-right:0px !important;
-  border-bottom:0px !important;
-
 }
