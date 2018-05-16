@@ -38,15 +38,23 @@
 }
 
 .w-e-text-container{
-  margin-top: 100px !important;
+  /* margin-top: 90px !important; */
+  position: relative !important;
+  top: 80px !important;
   border: 0px !important;
 }
 
 .article-title-box{
   position: fixed;
   top: 50px;
-  z-index: 100000 !important;
+  z-index: 1000 !important;
   width: 100%;
+}
+
+.w-e-text{
+  cursor: text;
+  min-height: 500px !important;
+
 }
 
 /* 预览 */
@@ -118,9 +126,11 @@
   min-height: 400px;
 }
 
-html h1 {
-	font-size: 26px;
-	padding-bottom: 18px;
+
+
+/* common.css样式复写 */
+html, body {
+    height: 90%;
 }
 
 h1 {
