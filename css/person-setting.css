@@ -69,6 +69,10 @@ body{
 	height: 140px;
 	border-bottom: 1px solid #f0f0f0;
 }
+.bind-user{
+	padding-bottom: 50px;
+    border-bottom: solid 1px gainsboro;
+}
 .save_realname{
 	width: 90px;
     color: white;
