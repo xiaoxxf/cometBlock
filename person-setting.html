@@ -25,7 +25,28 @@
 			<!-- 全局顶部导航栏 -->
 			<div class="navbar-fixed-container navbar-fixed-container-hook">
 			</div>
-			<div class="container form-box" style="background-color: white;">
+
+			<!-- 微信登录，未绑定的 -->
+			<div class="container wechat_login" style="margin-top:150px">
+					<div class="row">
+						<div class="col-md-1 col-md-offset-5">
+							<img src="img/huixing.png" class="wechat_info_logo" alt="">
+
+							<!--微信綁定-->
+							<div class="bind-user">
+								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="关联已有彗星账号" id="bind_now_user">
+								</div>
+								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="关联新彗星账号" id="bind_new_user">
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+
+			<!-- 账号登录/微信登录已绑定的 -->
+			<div class="container form-box account_login" style="background-color: white;display:none">
 				<div class="row ">
 					<!--<div class=" col-xs-12 col-md-12 col-sm-12 ">-->
 						<!--<div class="col-xs-12 col-md-4 col-sm-12">-->
@@ -113,7 +134,7 @@
 														<div class="accordion-inner col-xs-12 col-md-10 col-sm-12">
 															<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
 																<input placeholder="手机验证码" type="text" class="phone_code_tip">
-																<a class="btn-up-resend js-send-code-button" href="javascript:void(0);"  id="setting_send_code">发送验证码</a>
+																<a class="btn-up-resend js-send-code-button" id="setting_send_code">发送验证码</a>
 															</div>
 															<div class="row-new-pwd" >
 																<div class="col-xs-12 col-md-6 col-sm-12 row-input"><a>请输入新的密码</a></div>
@@ -127,15 +148,6 @@
 									</div>
 									<div class="col-md-10 col-xs-12 col-sm-12 reset-pwd bottom_line">
 										<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
-									</div>
-									<!--微信綁定-->
-									<div class="bind-user" style="display:none">
-										<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
-											<input type="submit" class="btn btn-success setting-save" value="关联已有彗星账号" id="bind_now_user">
-										</div>
-										<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
-											<input type="submit" class="btn btn-success setting-save" value="关联新彗星账号" id="bind_new_user">
-										</div>
 									</div>
 
 								</ul>
@@ -152,7 +164,7 @@
 
 					<h4 class="title">
 					    <div class="normal-title">
-							<a class="active" style="border-bottom:none;">绑定</a>
+							<a class="active" style="border-bottom:none;">关联已有账户</a>
 						</div>
 					</h4>
 					<div class="js-sign-in-container">
@@ -169,21 +181,28 @@
 						</div>
 						<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
 
+						<input class="sign-in-button" id="bind-exist-user-btn" type="button" value="绑定" style="margin-top:20px;" >
+							 <span class="ouro">
+									<span class="left"><span class="anim"></span></span>
+									<span class="right"><span class="anim"></span></span>
+							 </span>
+						</input>
 
-						<input class="sign-in-button bind_box" id="bind-exist-user-btn" type="button" value="绑定" style="margin-top: 30px;">
-						<span class="ouro">
-						    <span class="left"><span class="anim"></span></span>
-						    <span class="right"><span class="anim"></span></span>
-						 </span>
+						<!-- <input class="sign-in-button " id="bind-exist-user-btn" type="button" value="绑定" style="margin-top: 30px;">
+							<span class="ouro">
+							    <span class="left"><span class="anim"></span></span>
+							    <span class="right"><span class="anim"></span></span>
+							 </span>
+					 	</input> -->
 					</div>
 				</div>
-			</script>
+		</script>
 		<!--绑定新用户弹出-->
 		<script type="text/html" id="bind-new-commit-layer">
 				<div class="main report-login">
 					<h4 class="title">
 					    <div class="normal-title">
-							<a class="active" style="border-bottom:none;">绑定</a>
+							<a class="active" style="border-bottom:none;">关联新账户	</a>
 						</div>
 					</h4>
 					<div class="js-sign-in-container">
@@ -198,7 +217,7 @@
 						<div class="input-prepend phone_code_hide">
 							<input placeholder="手机验证码" type="text" name="tel" class="border_radC " id="phone_code">
 							<i class="fa fa-key"></i>
-							<a class="btn-up-resend btn_up_press js-send-code-button" href="javascript:void(0);" id="send_code">发送验证码</a>
+							<a class="btn-up-resend btn_up_press js-send-code-button" id="send_code" onclick="verifyPhone()">发送验证码</a>
 						</div>
 						<div class="input-prepend">
 							<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
@@ -210,10 +229,11 @@
 						    <span class="left"><span class="anim"></span></span>
 						    <span class="right"><span class="anim"></span></span>
 						 </span>
+					 	</input>
 					</div>
 				</div>
 			</script>
-		<!--textarea指针-->
+
 
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>

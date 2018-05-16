@@ -393,7 +393,7 @@ $("#save-register-info").click(function() {
 
 			setTimeout(function() {
 				layer.msg(res.msg+",请重新登录");
-				Loginout()
+				Loginout() //common.js内方法
 			}, 1000);
 
 		} else {
@@ -406,15 +406,6 @@ $("#save-register-info").click(function() {
 
 });
 
-
-//注销
-function Loginout(){
-    localStorage.clear();
-    $.removeCookie("token");
-    $.removeCookie("userid");
-    $.removeCookie("username");
-    window.location.href = "login.html";
-}
 
 //确认修改密码
 
