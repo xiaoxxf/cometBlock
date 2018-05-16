@@ -3,12 +3,6 @@ var like_tpl_flag = false
 var comment_tpl_flag = false
 var notification_tpl_flag = false
 
-$(document).ready(function() {
-	$("#user_mess_click").click(function() {
-		$(".more-items").toggle();
-	});
-});
-
 //	通知
 $(document).ready(function() {
 	$(".login-right").on("hover",function(){
@@ -16,9 +10,20 @@ $(document).ready(function() {
 	})
 });
 
+// 点击头像跳转
+$('.nav-user-account').on('click',function(){
+	// 账号登录 or 已绑定的微信账号
+	if (userId) {
+		window.location = 'personal-homepage.html'
+	}
+	// 未绑定的微信账号
+	else if(wechatInfo && !wechatInfo.userInfo){
+		window.location = 'personal-setting.html'
+	}
+})
+
 //通知显示隐藏提示面板
 var currentPage = 1;
-
 $(document).ready(function(){
   $(".login-right").hover(function(){
     	$(".show-alert-inform").css("display","block");
@@ -130,9 +135,7 @@ $(document).ready(function(){
 })
 
 
-
-
-
+// 取得通知信息
 $(function(){
 	if (userinfo) {
 		var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=12'
@@ -147,7 +150,7 @@ $(function(){
 
 })
 
-
+// 配置字典
 var dictionary = []
 $(function(){
 	var uri = 'blockchain/quary?parentId=20'
