@@ -231,7 +231,11 @@
 				</div>
 				<div class="option">
 					<%if(userinfo && list.realName == userinfo.realName){%>
-						<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<% if (list.type == 2) {%>
+							<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<%} else if(list.type == 4) {%>
+							<a href="article-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<%}%>
 						<a href="javacript:;" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
 					<%}%>
 				</div>

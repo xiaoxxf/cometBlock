@@ -535,7 +535,10 @@ function load_more_search_project_result(){
 
 
 // 投稿到项目按钮，弹出评分
+var _send_project_button = null
 function sendArticleToProject(e){
+  debugger
+  _send_project_button = e;
   var self =$(e),
       projectId = self.data('projectid');
   layer.open({
@@ -572,6 +575,7 @@ function doSendArticle(projectId,score){
   doPostJavaApi(uri, JSON.stringify(data), function(res){
     if (res.code == 0) {
       layer.msg('投稿成功')
+      $('._send_project_button').text('已投稿');
     }else if(res.code == -1){
       layer.msg('投稿失败，请重试')
     }
