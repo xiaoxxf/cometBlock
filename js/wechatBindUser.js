@@ -324,6 +324,12 @@ $("#session_phone").blur(function() {
     }
 });
 
+
+//点击发送验证码
+$('#send_code').click(function() {
+	sendCode()
+})
+
 //验证昵称手机号
 function gainCode() {
 	var uri = 'news/virty?'
@@ -408,11 +414,3 @@ function CountDown() {
 	countdown = setInterval(dingshiqi, 1000);
 
 }
-//点击发送验证码
-$('#send_code').click(function() {
-	$("#send_code").css("text-decoration", "none");
-	$("#send_code").css("color", "white");
-
-	sendCode()
-
-})
