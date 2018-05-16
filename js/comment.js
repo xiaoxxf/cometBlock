@@ -165,11 +165,6 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
 });
 
 
-
-
-
-
-// 点击编辑短文
 // 点击编辑短文
 $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
   var self = $(e.currentTarget)
@@ -541,7 +536,7 @@ function load_more_search_project_result(){
 // 投稿到项目按钮，弹出评分
 var _send_project_button = null
 function sendArticleToProject(e){
-  debugger
+
   _send_project_button = e;
   var self =$(e),
       projectId = self.data('projectid');
@@ -858,9 +853,9 @@ $('.news_alert_include').on("mouseenter mouseleave", function(e){
 })
 
 var index_qrcode = null;
-$('.create_qrcode').on("mouseenter mouseleave", function(e){
+$('.wechat_share').on("mouseenter mouseleave", function(e){
   if(e.type == "mouseenter"){
-    index_subject = layer.tips('点击扫码分享', '.create_qrcode', {
+    index_subject = layer.tips('点击扫码分享', '.wechat_share', {
         tips: [4, '#4fa3ed']
     });
   }else if(e.type == "mouseleave"){
@@ -872,22 +867,48 @@ $('.create_qrcode').on("mouseenter mouseleave", function(e){
 
 
 // 生成二维码分享
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-	width : 100,
-	height : 100
-});
 
-function makeCode () {
-  var elText = document.getElementById("qrcode_val");
-  elText.value = window.location
-	if (!elText.value) {
-		alert("Input a text");
-		elText.focus();
-		return;
-	}
-	qrcode.makeCode(elText.value);
+
+
+// var qr_code_flag = true;
+function showQrCode(){
+  $('#qrcode').html('')
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+  	width : 260,
+  	height : 260
+  });
+  $('#qrCodeModal').modal()
+  qrcode.makeCode(window.location);
+  // if (qr_code_flag) {
+  //
+  //
+  //   qr_code_flag = false;
+  // }else if(!qr_code_flag){
+  //   $('#qrcode').html('');
+  //   qrcode.clear();
+  //   qr_code_flag = true;
+  // }
+  // var area_width
+  // var area_height
+  // if($(window).width() <= 767)
+  // {
+  //   area_width = '320px'
+  //   area_height = '500px'
+  // }else{
+  //   area_width = '520px'
+  //   area_height = '600px'
+  // }
+  //
+  // layer.open({
+  //     type: 1,
+  //     shadeClose:true,
+  //     title: 0,
+  //     skin: 'layui-layer-report', //加上边框
+  //     area: [area_width,area_height ], //宽高
+  //     content: $("#qr_code_tpl").html()
+  // });
 }
 
-$('.create_qrcode').on('click',function(){
-  makeCode();
-})
+function makeCode(){
+
+}

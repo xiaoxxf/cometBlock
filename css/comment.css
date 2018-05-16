@@ -821,8 +821,5 @@ a img {
 }
 
 #qrcode{
-	right: 50px;
-  bottom: 310px;
-  position: fixed;
-	cursor: pointer;
+	margin-left: 28%;
 }

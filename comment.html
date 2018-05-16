@@ -65,6 +65,23 @@
 								</div>
 							</div>
 						</div>
+
+
+						<div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" style="z-index:12000" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel" style="text-align:center">
+										扫码分享
+									</h4>
+								</div>
+								<div class="modal-body">
+									<div id="qrcode" ></div>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal -->
+					</div>
+
 						<div id="comments" class="commment-list comment-list-hook">
 
 
@@ -76,11 +93,9 @@
 					</div>
 
 					<!--新建弹出框-->
-					<input id="qrcode_val" type="hidden" value="" style="width:80%" /><br />
-					<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
-					<div class="create_qrcode">
+					<!-- <div class="create_qrcode">
 						<span class="news_subject_btn"><i class="fa fa-qrcode fa-2x"></i></span>
-					</div>
+					</div> -->
 					<!-- 弹出收录 -->
 					<div class="news_alert_include" style="display:none">
 						<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
@@ -226,8 +241,7 @@
 					</div>
 				</div>
 				<div class="copyright">
-					© 本文版权归作者&nbsp;
-					<a href="javascript:;"><%:=list.realName%></a> &nbsp;所有，任何形式转载请联系作者。
+					© 本文版权归作者所有，任何形式转载请联系作者。
 				</div>
 				<div class="option">
 					<%if(userinfo && list.realName == userinfo.realName){%>
@@ -249,6 +263,7 @@
 						<button class="btn btn-default useless_count" data-useful="false">
 							没用 <span class="num"><%:=list.unusefull%></span>
 						</button>
+						<img src="img/wechat.png" class="wechat_share" onclick="showQrCode()"  />
 					</div>
 					<div class="main-like clearfix">
 						<button class="LikeButton pull-right" data-reviewId="<%:=list.reviewId%>" data-likes_nums="<%:=list.likes%>" title="标为喜欢?">喜欢<span class="LikeButton-count"></span></button>
@@ -538,8 +553,9 @@
 					</li>
 				<% }%>
 			<% } %>
+		</script>
 
-
+		<script type="text/html" id='qr_code_tpl'>
 		</script>
 
 		<script src="js/jquery-2.1.1.js"></script>
