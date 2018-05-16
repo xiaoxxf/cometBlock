@@ -163,19 +163,8 @@ $.get("header-tpl.html",function(data){
     var localCookieWechatInfo = $.cookie('wechatInfo');
     localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
 
-    // 没有登录时，显示注册/登录
-    if (!userId && !wechatCode && !localCookieWechatInfo ) {
-      $("#nav_login").fadeIn();
-      $("#nav_register").fadeIn();
-      $(".scrollbar-container").fadeIn();
-    }
-    // 微信登录
-    else if(wechatCode && !localCookieWechatInfo){
-      // 取得返回信息
-      getUserInfoByWeChat();
-    }
     // 账号登录 或 微信登录后已绑定的
-    else if(userId){
+    if(userId){
       userinfo = JSON.parse(localStorage.getItem('userinfo'))
       $(".nav-user-account #nav_user_mes").text(username);
 
@@ -187,7 +176,6 @@ $.get("header-tpl.html",function(data){
       }
       $(".nav-user-account .more-active").css('display', 'block');
       $(".login-right").css('display', 'block');
-
     }
     // 微信登录后，已取得返回数据，但没有绑定的
     else if(localCookieWechatInfo && !localCookieWechatInfo.userinfo ){
@@ -195,7 +183,22 @@ $.get("header-tpl.html",function(data){
       $("#user_pic")[0].src = localCookieWechatInfo.headimgurl;
       $(".nav-user-account .more-active").css('display', 'block');
       $(".login-right").css('display', 'block');
+      // 隐藏个人中心和消息通知
+      $('.inform-btn').css('display','none');
+      $('.usercenter-btn').css('display','none');
     }
+    // 微信登录
+    else if(wechatCode && !localCookieWechatInfo){
+      // 取得返回信息
+      getUserInfoByWeChat();
+    }
+    // 没有登录时，显示注册/登录
+    else if (!userId && !wechatCode && !localCookieWechatInfo ) {
+      $("#nav_login").fadeIn();
+      $("#nav_register").fadeIn();
+      $(".scrollbar-container").fadeIn();
+    }
+
 
 });
 
@@ -247,7 +250,9 @@ function getUserInfoByWeChat(wechatCode){
             $("#user_pic")[0].src = res.datas.headimgurl;
             $(".nav-user-account .more-active").css('display','block');
             $(".login-right").css('display','block');
-
+            // 隐藏个人中心和消息通知
+            $('.inform-btn').css('display','none');
+            $('.usercenter-btn').css('display','none');
             window.location.href='person-setting.html?personType=2'
             // setTimeout(function () {
             //     layer.open({

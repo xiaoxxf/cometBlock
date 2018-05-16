@@ -260,6 +260,8 @@ $(".search_bar").bind('keypress',function(event){
 		serachChain();
 })
 var resetTimer = null;
+var range = 50; //距下边界长度/单位px
+
 $(window).scroll(function(){
 	if (resetTimer) {
 		clearTimeout(resetTimer)
@@ -267,14 +269,13 @@ $(window).scroll(function(){
 
 	resetTimer = setTimeout(function(){
 
-		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
-		// console.log("页面的文档高度 ："+$(document).height());
-		// console.log('浏览器的高度：'+$(window).height());
-
-		var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+		var srollPos = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
+		console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+		console.log("页面的文档高度 ："+$(document).height());
+		console.log('浏览器的高度：'+$(window).height());
 		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
 
-		if ($(document).height() <= totalheight){
+		if (($(document).height() - range) <= totalheight){
 				//当滚动条到底时,这里是触发内容
 				//异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {
@@ -341,5 +342,30 @@ $(function(){
 	if (keyWord) {
 		$('.search_bar')[0].value = keyWord
 		serachChain()
+	}
+})
+
+
+// 创建新项目
+$('.create_new_project').on('click', function(){
+  // 判断是否登录
+  if(!wechatBindNotice()){
+    return;
+  }
+	else if(userId == undefined){
+    layer.open({
+      closeBtn:1,
+      title: '',
+      content: '请先登录您的账号',
+      btn: ['登录', '注册'],
+      yes: function(){
+        window.location.href='login.html'
+      },
+      btn2: function(){
+        window.location.href='register.html'
+      }
+    });
+  }else{
+		window.location.href = 'chain-new.html'
 	}
 })

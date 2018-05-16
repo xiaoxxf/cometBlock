@@ -17,8 +17,10 @@ $(function(){
 	// 看别人
 	if (url_id && url_id != cookie_id ) {
 		userid_search = getUrlParam('userId');
-		//看别人时隐藏编辑按钮
+		//看别人时隐藏编辑、创建按钮
 		$('.edit_person_msg').css('display','none');
+		$('.create_new_topic_list_btn').css('display','none');
+		$('.create_new_subject_btn').css('display','none');
 	}
 	// 看自己
 	else{
@@ -240,18 +242,20 @@ function getUserProject(){
 	ui_project.loading = true;
 	ui_project.noMoreData = false;
 	doJavaGet(uri, function(res){
-
-		var tpl = document.getElementById('project_tpl').innerHTML;
-		var content = template(tpl, {list: res.datas});
-
-		$('.created_project').append(content);
+		if (res.datas.length > 0) {
+			var tpl = document.getElementById('project_tpl').innerHTML;
+			var content = template(tpl, {list: res.datas});
+			$('.created_project').append(content);
+			$('.load-more-subject').css('display','')
+		}
 		ui_project.loading = false;
+
 	})
 }
 
 // 加载更多项目
 $('.load-more-project').on('click',function(){
-	if ( ui_project.noMoreData ) {
+	if ( ui_project.noMoreData || ui_project.loading) {
 		return
 	}
 	project_page++
@@ -259,15 +263,15 @@ $('.load-more-project').on('click',function(){
 	ui_project.loading = true;
 	doJavaGet(uri, function(res){
 		if (res.datas.length == 0) {
-			ui_project.loading = false;
 			ui_project.noMoreData = true;
-			return
+			$('.load-more-project').text('已无更多数据')
+		}else{
+			var tpl = document.getElementById('project_tpl').innerHTML;
+			var content = template(tpl, {list: res.datas});
+			$('.created_project').append(content);
 		}
-		var tpl = document.getElementById('project_tpl').innerHTML;
-		var content = template(tpl, {list: res.datas});
-
-		$('.created_project').append(content);
 		ui_project.loading = false;
+
 	})
 })
 
@@ -291,18 +295,20 @@ function getUserSubject(){
 	ui_subject.loading = true;
 	ui_subject.noMoreData = false;
 	doJavaGet(uri, function(res){
-
-		var tpl = document.getElementById('subject_tpl').innerHTML;
-		var content = template(tpl, {list: res.datas});
-		$('.created_subject_list').html('');
-		$('.created_subject_list').append(content);
+		if (res.datas.length > 0) {
+			var tpl = document.getElementById('subject_tpl').innerHTML;
+			var content = template(tpl, {list: res.datas});
+			$('.created_subject_list').html('');
+			$('.created_subject_list').append(content);
+			$('.load-more-subject').css('display','')
+		}
 		ui_subject.loading = false;
 	})
 }
 
 // 加载更多专题
 $('.load-more-subject').on('click',function(){
-	if (ui_subject.noMoreData) {
+	if (ui_subject.noMoreData || ui_subject.loading) {
 		return
 	}
 	subject_page++;
@@ -313,13 +319,12 @@ $('.load-more-subject').on('click',function(){
 	doJavaGet(uri, function(res){
 		if (res.datas.length == 0) {
 			ui_subject.noMoreData = true;
-			ui_subject.loading = false;
-			return
+			$('.load-more-subject').text('已无更多数据');
+		}else{
+			var tpl = document.getElementById('subject_tpl').innerHTML;
+			var content = template(tpl, {list: res.datas});
+			$('.created_subject_list').append(content)
 		}
-		var tpl = document.getElementById('subject_tpl').innerHTML;
-		var content = template(tpl, {list: res.datas});
-
-		$('.created_subject_list').append(content)
 		ui_subject.loading = false;
 	})
 })

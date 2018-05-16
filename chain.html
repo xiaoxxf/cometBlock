@@ -83,7 +83,7 @@
 										</button>
 									</div>
 									<div class="create_new_subject">
-										<a href="chain-new.html" class="create_new_subject_btn" id="writting-article">创建新项目</a>
+										<a class="create_new_subject_btn create_new_project" id="writting-article">创建新项目</a>
 									</div>
 								</div>
 							</div>
@@ -136,7 +136,7 @@
 
 				<div class="row create-coin">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<a href="chain-new.html">新建币种</a>
+						<a class="create_new_project">新建币种</a>
 					</div>
 				</div>
 			</div>
@@ -248,6 +248,62 @@
 		</div>
 	<%}%>
 </script>
+<!-- 登录弹窗 -->
+<script type="text/html" id="short-comment-commit-layer">
+	<div class="main report-login">
+
+		<h4 class="title">
+		    <div class="normal-title">
+				<a class="active" href="">登录</a>
+				<b>·</b>
+				<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+			</div>
+		</h4>
+		<div class="js-sign-in-container">
+
+			<div class="input-prepend  restyle ">
+				<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+				<i class="fa fa-user"></i>
+			</div>
+			<div class="input-prepend border_radiusB">
+				<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+				<i class="fa fa-unlock-alt"></i>
+
+			</div>
+			<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+			<div class="remember-btn">
+				<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+			</div>
+			<div class="forget-btn">
+				<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="">用手机号重置密码</a>
+					</li>
+
+				</ul>
+			</div>
+
+			<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+				 <span class="ouro">
+						<span class="left"><span class="anim"></span></span>
+						<span class="right"><span class="anim"></span></span>
+				 </span>
+			</input>
+
+			<div class="more-sign">
+				<h6>社交帐号登录</h6>
+				<ul>
+					<li class="wechat-login">
+						<img src="img/wechat.png" class="wechat_logo"  />
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</script>
 
 
 <script src="js/jquery-2.1.1.js"></script>
@@ -256,7 +312,6 @@
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
-
 <script src="js/chain.js"></script>
 
 </body>

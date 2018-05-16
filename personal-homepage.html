@@ -93,11 +93,11 @@
 										<span >关注</span>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<span>我关注的人</span> <span>0</span>
+											<span>关注的人</span> <span>0</span>
 										</div>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<span>我关注的人</span> <span>0</span>
+											<span>关注的人</span> <span>0</span>
 										</div>
 									</div>
 								</div>
@@ -105,7 +105,7 @@
 								<!--创建的专题-->
 								<div class="hot_zone side create_subject_box">
 									<div class="pay-attention created_subject">
-										<span class="">我创建的专题</span>
+										<span class="">创建的专题</span>
 										<div class="create_topic_list">
 											<a href="topic-new.html" class="create_new_topic_list_btn"><i class="fa fa-plus"></i>创建新专题</a>
 										</div>
@@ -113,7 +113,7 @@
 
 										</div>
 									</div>
-									<div class="load-more-subject">
+									<div class="load-more-subject" style="display:none">
 										查看更多
 									</div>
 								</div>
@@ -121,12 +121,12 @@
 								<!--创建的项目-->
 								<div class="hot_zone side create_project_box">
 									<div class="pay-attention created_project">
-										<span class="">我创建的项目</span>
+										<span class="">创建的项目</span>
 										<div class="create_new_subject">
 											<a href="chain-new.html" class="create_new_subject_btn"><i class="fa fa-plus"></i>创建新项目</a>
 										</div>
 									</div>
-									<div class="load-more-project">
+									<div class="load-more-project" style="display:none">
 										查看更多
 									</div>
 								</div>
@@ -171,7 +171,12 @@
 				<div class="article-detail">
 						<div class="article-content">
 							<div class="article-info">
-								<span class="real_name">我的长评：评论了
+								<span class="real_name">
+									<%if(list[i].creator == userId ){%>
+									我的长评：评论了
+									<%}else{%>
+									他的长评：评论了
+									<%}%>
 									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
 										<%:=list[i].projectBigName %>
 									</a>
@@ -209,7 +214,12 @@
 				<div class="article-detail">
 						<div class="article-content">
 							<div class="article-info">
-								<span class="real_name">我的短评：评论了
+								<span class="real_name">
+									<%if(list[i].creator == userId ){%>
+									我的短评：评论了
+									<%}else{%>
+									他的短评：评论了
+									<%}%>
 									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
 										<%:=list[i].projectBigName %>
 									</a>
@@ -278,7 +288,12 @@
 			<div class="article-detail">
 					<div class="article-content">
 						<div class="article-info">
-							<span class="real_name">我的长评：评论了
+							<span class="real_name">
+								<%if(list[i].creator == userId ){%>
+									我的长评：评论了
+								<%}else{%>
+									他的长评：评论了
+								<%}%>
 								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName">
 								<%:=list[i].projectBigName %>
 								</a>
@@ -319,7 +334,13 @@
 			<div class="article-detail">
 					<div class="article-content">
 						<div class="article-info">
-							<span class="real_name">我的短评：评论了<%:=list[i].projectBigName %>
+							<span class="real_name">
+								<%if(list[i].creator == userId ){%>
+									我的短评：评论了
+								<%}else{%>
+									他的短评：评论了
+								<%}%>
+								<%:=list[i].projectBigName %>
 								<span class="allstar<%:=list[i].score*10%> rating" title="推荐" class="targetProjectBigName"></span>
 							</span>
 						</div>

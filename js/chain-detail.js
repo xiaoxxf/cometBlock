@@ -125,7 +125,7 @@ var pageSize = 10;
 function  ajaxGetChainDetail() {
     var projectId = getUrlParam('projectId');
     var uri = 'blockchain/detail?projectId='+projectId ;
-    $(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
+    // $(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
@@ -472,4 +472,36 @@ $(window).on('resize', function () {
      $(".img-wrap .team-img").css('height',teamImgW*120/150);
 	}, 100);
 
+})
+
+
+$('.write-long-discuss').on('click',function(){
+
+  // 判断是否登录
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
+    var area_width
+    var area_height
+    if($(window).width() <= 767)
+    {
+      area_width = '320px'
+        area_height = '500px'
+    }else{
+       area_width = '520px'
+         area_height = '600px'
+    }
+    // layer.msg('您还没有登录')
+    layer.open({
+        type: 1,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        area: [area_width,area_height ], //宽高
+        content: $("#short-comment-commit-layer").html()
+    });
+    return;
+  }
+  window.location.href = 'long-comment.html?projectId='+projectId
 })

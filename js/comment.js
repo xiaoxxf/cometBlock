@@ -424,7 +424,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
         });
         return;
     }
-    layer.confirm('确定删除您的评测么?',
+    layer.confirm('确定删除您的文章么?',
     {
       icon: 3,
       title:0,
@@ -436,7 +436,11 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
       var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
       doJavaGet(uri, function(res) {
           if(res != null && res.code == 0) {
-              window.location.href= 'chain-detail.html?projectId=' + projectId
+              if (projectId) {
+                window.location.href= 'chain-detail.html?projectId=' + projectId
+              }else if(!projectId){
+                window.location.href= 'personal-homepage.html'
+              }
           }
       }, "json");
     }
