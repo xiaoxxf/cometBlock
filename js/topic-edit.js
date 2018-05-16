@@ -137,6 +137,7 @@ function editTopic(){
   var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
   var data = {
     'topicPic':  newTopicForm.topic_logo_file_name.value,
+    'topicId': topicId,
     'topic':    newTopicForm.topic_name.value, //专题名称
     'description': topic_des,
     'topicType': topicType, //0->投稿的文章需要审核， 1->不需要审核
@@ -158,7 +159,6 @@ function editTopic(){
       layer.msg('修改成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
-          layer.msg(result.msg);
           setTimeout(function(){
             window.location.href='personal-homepage.html';
           },200)
