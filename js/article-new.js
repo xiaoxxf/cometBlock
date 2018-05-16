@@ -39,7 +39,7 @@ editor.customConfig.menus = [
   'image',  // 插入图片
   'fontSize',  // 字号
   'code',  // 插入代码
-
+  'justify',  // 对齐方式
 
 ]
 

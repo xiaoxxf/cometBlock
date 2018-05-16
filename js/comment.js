@@ -50,19 +50,23 @@ function  ajaxGetReviewDetail() {
             var commentTpl = $("#template-mian-detail").html();
             var content = template(commentTpl, {list: commentInfoData});
             $(".comment-detail-mian-hook").append(content);
-            // 作者打开时可以投稿
 
-            if (userId && commentInfoData.creator == userId) {
-              $('.news_alert_subject').css('display','')
-              // 没有projectId，即为长文，可以投稿到项目
-              if(!projectId){
-                $('.news_alert_project').css('display','')
+            // 手机上不加载投稿等功能
+            if ($(window).width() > 767) {
+              // 作者打开时可以投稿
+              if (userId && commentInfoData.creator == userId) {
+                $('.news_alert_subject').css('display','')
+                // 没有projectId，即为长文，可以投稿到项目
+                if(!projectId){
+                  $('.news_alert_project').css('display','')
+                }
+              }
+              // 登录时可以收录文章到专题
+              if (userId) {
+                $('.news_alert_include').css('display','')
               }
             }
-            // 登录时可以收录文章到专题
-            if (userId) {
-              $('.news_alert_include').css('display','')
-            }
+
             // 有项目则加载项目
             if (projectId) {
               ajaxGetChainDetail()
@@ -166,13 +170,14 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
 
 
 // 点击编辑短文
+// 点击编辑短文
 $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
   var self = $(e.currentTarget)
 
   var reviewId = self.data('reviewid');
   if(!wechatBindNotice()){
     	return;
-    }
+  }
   if(userId == undefined){
       // layer.msg('您还没有登录');
       layer.open({
@@ -209,7 +214,6 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
         var data = {
           textTitle: $('#edit-short-content').val(),
           reviewId: reviewId , //项目
-          projectId: projectId, //项目Id
           type: 3, //长文的type为2
           userId: userId,
           password: userinfo.userPwd,
@@ -239,8 +243,8 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
       }
   );
 
-
 })
+
 
 //点击关闭
 $(".comment-list-hook").on('click','.review-comment-form .lnk-close',function (e) {

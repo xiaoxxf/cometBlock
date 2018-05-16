@@ -23,13 +23,13 @@ $(function(){
 
 // 判断登录状态才能创建项目
 $('.create_project_button').on('click', function(){
-	if (userId) {
-		window.location.href = 'chain-new.html'
-	}else{
+	if(!wechatBindNotice()){
+		return;
+	}
+	if(userId == undefined){
 		layer.open({
 			closeBtn:0,
 			title: '',
-			closeBtn:1,
 			content: '请先登录您的账号',
 			btn: ['登录', '注册'],
 			yes: function(){
@@ -39,7 +39,10 @@ $('.create_project_button').on('click', function(){
 				window.location.href='register.html'
 			}
 		});
+	}else{
+		window.location.href = 'chain-new.html'
 	}
+
 })
 
 // 渲染热门专区

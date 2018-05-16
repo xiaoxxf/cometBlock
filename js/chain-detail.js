@@ -62,27 +62,19 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var area_height
 
     if($(window).width() <= 767)
- 	{
-	 	var area_width = '320px'
+ 	  {
+	 	  var area_width = '320px'
 	    var area_height = '500px'
- 	}else{
- 		var area_width = '520px'
+ 	  }else{
+ 		  var area_width = '520px'
 	    var area_height = '600px'
- 	}
+ 	  }
     var shortTxt = $(".short-comment").val();
-    if ( $.cookie('wechatInfo') && !wechatInfo.userInfo ) {
-      layer.open({
-          closeBtn:1,
-          title: '',
-          content: '请先绑定账号，开启更多权限',
-          btn: ['绑定'],
-          yes: function(){
-              window.location.href='person-setting.html?personType=1'
-          }
-      });
-      // return
+    // 判断是否登录
+    if(!wechatBindNotice()){
+    	return;
     }
-    else if(userId == undefined){
+    if(userId == undefined){
         // layer.msg('您还没有登录')
         layer.open({
             type: 1,
