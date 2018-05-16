@@ -239,6 +239,24 @@ $("#head_search").keyup(function(e){
 
 });
 
+$("#head_search").focus(function(e){
+    key_word = $('#head_search').val()
+		if (!$('#head_search').val()) {
+			$(".nav_search_list").css("display","none");
+      list_show_flag = false;
+		}else{
+			$(".nav_search_list").css("display","block");
+      list_show_flag = true;
+		}
+
+		key_word = $(e.target).val()
+    $('#search_project').html('项目搜索: ' + key_word)
+    $('#search_article').html('内容搜索: ' + key_word)
+    $('#search_news').html('新闻搜索: ' + key_word)
+    $('#search_user').html('用户搜索: ' + key_word)
+
+});
+
 // 鼠标选择
 $(".nav_search_list").on("mouseenter mouseleave", 'li',function(e){
 
@@ -310,7 +328,7 @@ $("#head_search").blur(function(e){
   $(liDown).removeClass('nav_search_list_focus')
   $(liDown[0]).addClass('nav_search_list_focus')
 	$(".nav_search_list").css("display","none");
-  	list_show_flag = false;
+  list_show_flag = false;
 });
 
 // 搜索项目

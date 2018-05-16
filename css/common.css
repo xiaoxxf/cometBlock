@@ -217,11 +217,7 @@ body{
 }
 
 .nav_search_list_focus{
-  background-color:#ccccccb8 ;
-}
-
-.nav_search_list_li_on_foucs{
-  background-color:#ccccccb8 ;
+  background-color:#e1f4fe ;
 }
 
 /* 搜索栏自适应 */
