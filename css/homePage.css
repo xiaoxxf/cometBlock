@@ -232,6 +232,7 @@ a img {
 }
 
 .hot_review_title .topic_name{
+  cursor: pointer;
   margin-right: 15px;
   padding-bottom: 16px;
 }
