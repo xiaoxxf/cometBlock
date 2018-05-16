@@ -317,6 +317,12 @@ $("#session_phone").blur(function() {
     }
 });
 
+
+//点击发送验证码
+$('#send_code').click(function() {
+	sendCode()
+})
+
 //验证昵称手机号
 function gainCode() {
 	var uri = 'news/virty?'

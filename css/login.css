@@ -154,7 +154,9 @@ form {
 	margin: 15px 0;
 	font-size: 14px;
 }
-
+.forget-btn a:link,.forget-btn a:hover{
+	text-decoration: none;
+}
 .remember-btn span {
 	margin-left: 5px;
 	font-size: 15px;

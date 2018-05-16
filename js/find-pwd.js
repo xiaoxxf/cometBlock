@@ -16,7 +16,6 @@ function SendCodeFromValid(){
 	 });
 	 return false;
 	 
-	 
    }
    return true;
 }
@@ -72,6 +71,45 @@ function FindPwdFromValid() {
 	return true;
 }
 
+//找回密码输入框检测输入手机号时检测是否有注册过
+$("#session_phone").blur(function(){
+	if(SendCodeFromValid()){
+		getRegister()
+	}
+		
+});
+
+// 校验手机号是否已注册
+var ifRegister = false
+function getRegister(){
+	var userPhone=$("#session_phone").val();
+	var uri="news/virty?userName="+userPhone
+	doJavaGet(uri,function(res){
+		if(res !=null && res.code==-1){
+			//返回code为-1为注册过，所以可以直接修改密码
+			ifRegister = true;
+			
+//			getCode()
+		}
+		else{
+			 //校验手机号
+			ifRegister = false;
+			layer.msg("手机号未注册过，请注册");
+			
+		}
+		
+	},"json");
+}
+
+//点击验证
+var flag_resetPwd_sendCode =false;
+$('#send_code').click(function() {
+	if(flag_resetPwd_sendCode  && !test){
+		return
+	}
+ 	flag_resetPwd_sendCode =true;
+	getCode()
+})
 //发送验证码
 function getCode() {
 	if(SendCodeFromValid()){
@@ -102,6 +140,7 @@ function dingshiqi() {
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
 		count = 60
+		flag_resetPwd_sendCode =false;
 	}
 
 }
@@ -110,11 +149,6 @@ function CountDown() {
 	countdown = setInterval(dingshiqi, 1000);
 
 }
-//点击验证
-$('#send_code').click(function() {
-	getCode()
-})
-
 
 
 

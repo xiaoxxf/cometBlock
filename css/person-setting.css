@@ -79,6 +79,10 @@ body{
 	height: 140px;
 	border-bottom: 1px solid #f0f0f0;
 }
+.bind-user{
+	padding-bottom: 50px;
+    border-bottom: solid 1px gainsboro;
+}
 .save_realname{
 	width: 90px;
     color: white;
@@ -305,15 +309,27 @@ body{
 /*更改引进样式*/
 .main {
 	margin: 50px auto 0 !important;
-  text-align: center !important;
-  width: 360px !important;
-  padding: 10px 30px !important;
-  background-color: #fff !important;
-  border-radius: 4px !important;
-  vertical-align: middle;
+    text-align: center !important;
+    width: 360px !important;
+    padding: 10px 30px !important;
+    background-color: #fff !important;
+    border-radius: 4px !important;
+    vertical-align: middle;
+   }
+/*重置密码刷新*/
+.refresh_add_top{
+    position: relative !important;
+	top: -36px !important;
+    bottom: none !important;
+    right: 60px !important;
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 50% !important;
+    background: none repeat scroll 0 0 white !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 10px rgba(0,0,0,.1) inset, 0 0 25px rgba(0,0,255,0.075) !important;
+
 }
-
-
 
  /*footer样式复写*/
  .footer-detail .container{
