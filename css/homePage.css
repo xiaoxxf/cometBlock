@@ -235,11 +235,19 @@ a img {
   margin-right: 15px;
   padding-bottom: 16px;
 }
+.hot_review_title .topic_name:hover{
+  margin-right: 15px;
+  padding-bottom: 16px;
+  border-bottom: solid 2px rgb(79, 163, 237); 
+  cursor: pointer;
+  color: rgb(79, 163, 237);
+}
 .hot_review_title .hot-span-item{
-	border-bottom: solid 2px rgb(79, 163, 237); */
+  border-bottom: solid 2px rgb(79, 163, 237); 
   color: rgb(79, 163, 237);
   text-decoration: none;
 }
+
 .hot_review_title .hot-span-item:visited{
 	border-bottom: solid 2px rgb(79, 163, 237);
   color: rgb(79, 163, 237);
