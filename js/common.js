@@ -287,7 +287,7 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
 
 $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
 //      window.location.href = "personalCenter.html?personType=1";
-		window.location.href = "personal-homepage.html";
+			  window.open("personal-homepage.html");
 })
 
 $('.block-comet-main-wrap').on('click','.nav-user-account .inform-btn',function(){
