@@ -633,7 +633,7 @@ a img {
 }
 @media only screen and (max-width:600px) {
 	.modal-content{
-		width: 300px;
+		/*width: 300px;*/
 	}
 }
 .search-subject-icon{
@@ -822,4 +822,9 @@ a img {
 
 #qrcode{
 	margin-left: 28%;
+}
+@media only screen and (max-width:750px) {
+	#qrcode{
+	margin-left: 15%;
+}
 }
