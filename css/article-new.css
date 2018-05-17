@@ -25,18 +25,14 @@
   z-index: 1000 !important;
   border:0px;
   height: 100px;
-  font-size: 20px;
+  font-size: 30px;
 }
 @media (min-width: 1200px){
   .input-head {
       width: 1170px;
   }
 }
-.input-head::-webkit-input-placeholder{
-  color:rgb(179,179,179);
-  font-weight: 900;
-  font-size: 30px
-}
+
 .w-e-toolbar{
   /* background-color:#494949 !important; */
   /* border-left:0px !important;

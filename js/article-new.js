@@ -176,9 +176,14 @@ window.onresize = function () {
   $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
   $(".w-e-toolbar").css({ 'width': containerW});
   $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-}  
-$(".edit-comment").on('click', function () { 
-  if ($(".fake-placeholder").size() > 0) { 
+}
+
+$(".edit-comment").on('click', function () {
+  if ($(".fake-placeholder").size() > 0) {
     $(".fake-placeholder").remove();
   }
+})
+
+$(".w-e-text").focus(function(){
+  $(".fake-placeholder").remove();
 })
