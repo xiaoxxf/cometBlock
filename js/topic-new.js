@@ -122,7 +122,7 @@ function createTopic(){
       layer.msg('提交成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
-          layer.msg(result.msg);
+          // layer.msg(result.msg);
           setTimeout(function(){
             window.location.href='personal-homepage.html';
           },200)

@@ -632,7 +632,7 @@ $(".news_alert_subject").on('click',function (e) {
 
 // 加载推荐专题
 function getRecommendSubject(){
-	var uri = 'topic/seachTopic?currentPage=1&pageSize=8'
+	var uri = 'topic/seachTopic?currentPage=1&pageSize=6'
 	doJavaGet(uri,function(result){
     // 判断是否已投稿
     for (var i = 0; i < result.datas.length; i++) {

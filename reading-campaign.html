@@ -13,6 +13,7 @@
 	<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/loading.css">
+	<link rel="stylesheet" href="css/topic-show.css">
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 	<link rel="stylesheet" href="css/reading-campaign.css" />
 	<!-- 导航栏 -->
@@ -31,7 +32,7 @@
 								精读Ulord白皮书活动为期两周的生存游戏
 							</div>
 							<p>	主办方会设计7个问题，活动成员通过阅读Ulord白皮书，成员根据问题，在阅读的过程中寻找答案，并且输出读书笔记。参加者会被随机分队，各队竞选出队长，队长要带领大家存活下来，并在与其他战队的竞争中胜出。</p>
-							
+
 							<div class="reading-detail">
 								读书主题：
 								<p>1. 为什么要有主节点；</p>
@@ -41,54 +42,69 @@
 								<p>5. Ulord的内容分发机制；</p>
 								<p>6. 获取你的UlordToken；</p>
 								<p>7. 自由发挥。</p>
-								
+
 							</div>
-							
+
 						</div>
 						<div class="reading-bottom_box">
 							<p class="reading-bottom-title">队伍专题</p>
-							<div class="box_content clearfix">
-								<img src="img/advertisement.png"  />
-								<div class="reading-bottom_box_title">
-									<p class="reading-bottom_box_introduce1">
-										队名
-									<p>
-									<p class="reading-bottom_box_introduce2">
-										人数
-									<p>
-								</div>
-									<a href="" class="reading-contribute">投稿</a>
-							</div>
-							<div class="box_content clearfix">
-								<img src="img/advertisement.png"  />
-								<div class="reading-bottom_box_title">
-									<p class="reading-bottom_box_introduce1">
-										队名
-									<p>
-									<p class="reading-bottom_box_introduce2">
-										人数
-									<p>
-								</div>
-									<a href="" class="reading-contribute">投稿</a>
-							</div>
-							<div class="box_content clearfix">
-								<img src="img/advertisement.png"  />
-								<div class="reading-bottom_box_title">
-									<p class="reading-bottom_box_introduce1">
-										队名
-									<p>
-									<p class="reading-bottom_box_introduce2">
-										人数
-									<p>
-								</div>
-									<a href="" class="reading-contribute">投稿</a>
-							</div>
+
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
+
+<script type="text/html" id="team_topic_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="box_content clearfix">
+			<img src="<%:=list[i].topicPic %>"  class="topicImage"/>
+			<div class="reading-bottom_box_title">
+				<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="reading-bottom_box_introduce1">
+					队名: <%:=list[i].topic %>
+				</a>
+				<p class="reading-bottom_box_introduce2">
+					已收录 <%:=list[i].counts %> 篇文章
+				</p>
+			</div>
+			<span class="reading-contribute" data-topicid='<%:=list[i].id %>' onclick="showMyArticle(this)">投稿</span>
+		</div>
+	<%}%>
+</script>
+
+<!-- 投稿弹窗 -->
+<script type="text/html" id="templay-send-topic">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">
+  			<span class="search_article_title">我的文章</span>
+  			<!-- <div class="search_include">
+				<input type="search" name="search-self" class="search_include_items" placeholder="搜索文章" onkeyup="searchArticle()">
+				<a class="search-include-icon"><i class="fa fa-search"></i></a>
+				</div> -->
+			</h4>
+
+		</div>
+		<div class="modal-body">
+			<ul class="my-article-list">
+
+			</ul>
+      <span class="load_more_my_article_result" onclick="load_more_my_article_result()" ></span>
+		</div>
+	</div>
+</script>
+
+<script type="text/html" id='my_article_list'>
+  <%for(var i = 0; i < list.length; i++) {%>
+    <li class="my_article_list">
+      <span  class="my_article_title" data-reviewId='<%:=list[i].reviewId %>' onclick="jumpToArticleDetail(this)"><%:=list[i].textTitle %></span>
+      <!-- <span >投稿</span> -->
+      <span class="send_to_article_button" data-reviewid="<%:=list[i].reviewId %>" onclick="contribute_to_topic(this)">投稿</span>
+    </li>
+  <%}%>
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>

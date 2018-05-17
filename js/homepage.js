@@ -375,3 +375,9 @@ $(".hot_review_title").on('click', '.topic_name', function(e) {
 	$(this).parent().parent().find('.topic_name').removeClass('hot-span-item');
 	$(this).addClass('hot-span-item');
 })
+
+
+// banner跳转
+$('.hot_zone_padding').on('click',function(){
+	window.location = 'reading-campaign.html'
+})
