@@ -158,7 +158,7 @@
 <script type="text/html" id="hot_coin_tpl_mobile">
 	<%for(var i = 0; i < list.length; i++) {%>
 	<div class="coin-detail-mobile">
-		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
 			<br>
 			<img src='<%=list[i].projectLogo %>'  alt="" style="width:56px;height:56px">
 			<h3 class="project-name"><%=list[i].projectBigName%></h3>
@@ -179,7 +179,7 @@
 <script type="text/html" id="hot_coin_tpl_1">
 	<%for(var i = 0; i < list.length; i++) {%>
 	<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-		<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
 			<!-- <br> -->
 			<img src='<%=list[i].projectLogo %>'  alt="">
 			<h3 class="project-name"><%=list[i].projectBigName%></h3>
@@ -199,7 +199,7 @@
 <script type="text/html" id="hot_coin_tpl_2">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-			<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
 				<!-- <br> -->
 				<img src='<%=list[i].projectLogo %>'  alt="">
 				<h3 class="project-name"><%=list[i].projectBigName%></h3>
@@ -219,7 +219,7 @@
 <script type="text/html" id="hot_coin_tpl_3">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
-			<a href="chain-detail.html?projectId=<%=list[i].projectId%>">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
 				<!-- <br> -->
 				<img src='<%=list[i].projectLogo %>'  alt="">
 				<h3 class="project-name"><%=list[i].projectBigName%></h3>
@@ -255,7 +255,7 @@
 							<span class="article-time"><%=list[i].createTime.split(' ')[0] %></span>
 
 							<h3 class="article-title">
-									<a href="comment.html?reviewId=<%=list[i].reviewId %>" class="textTitle"><%=list[i].textTitle %></a>
+									<a href="comment.html?reviewId=<%=list[i].reviewId %>" target="_blank" class="textTitle"><%=list[i].textTitle %></a>
 							</h3>
 						</div>
 
@@ -270,7 +270,7 @@
 							<!-- 长文评测时显示项目 -->
 							<%if(list[i].type == 2){%>
 								<div class="article-icon">
-									<a href="chain-detail.html?projectId=<%=list[i].projectId %>">
+									<a href="chain-detail.html?projectId=<%=list[i].projectId %>" target="_blank">
 										<img class="article-img" src="<%=list[i].projectLogo %>">
 									</a>
 								</div>
