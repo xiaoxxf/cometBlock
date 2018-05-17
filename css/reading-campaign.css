@@ -1,0 +1,77 @@
+.reading-campaign{
+	margin-top:30px;
+	background-color: white;
+}
+.reading-top{
+	padding: 40px 0px;
+    margin: 0px 100px;
+    color:#333 ;
+}
+
+.reading-title{
+	font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 14px;
+}
+
+.reading-detail{
+	font-size: 18px;
+	margin-top: 20px;
+	padding: 10px;
+    background-color: #dde1e3;
+}
+
+
+/*下面盒子*/
+.reading-bottom-title{
+	margin-bottom: 10px;
+	display: block;
+	margin: 10px 0px;
+	font-weight: bold;
+    font-size: 18px;
+}
+.reading-bottom_box{
+    margin: 0px 100px;
+    min-height: 500px;
+}
+.box_content{
+	margin-bottom: 20px;
+	padding: 10px;
+	border: solid 1px gainsboro;
+    background-color: #dcdcdc0d;
+    padding-bottom: 20px;
+}
+.box_content img{
+	width: 80px;
+	height: 80px;
+}
+.box_content img,.reading-bottom_box_title,.reading-bottom_box_introduce{
+	float: left;
+}
+
+.reading-bottom_box_introduce1{
+	display: block;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 20px;
+	}
+.reading-bottom_box_introduce2{
+	display: block;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    
+	}
+.reading-contribute{
+	margin-top: 30px;
+    float: right;
+    font-size: 14px;
+    border: 1px solid #006bb3;
+    color: #006bb3!important;
+    padding: 4px 12px;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 50px;
+    background: none;
+}
