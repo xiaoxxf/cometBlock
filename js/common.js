@@ -221,6 +221,7 @@ function getUserInfoByWeChat(wechatCode){
 
           // wechatInfo = JSON.stringify(res.datas);
           // wechatInfo = JSON.parse('wechatInfo')
+
           // 已绑定
           if (wechatInfo.userInfo) {
             // userinfo_wechat = res.datas.userInfo
@@ -229,7 +230,7 @@ function getUserInfoByWeChat(wechatCode){
             localStorage.setItem('userinfo', JSON.stringify(res.datas.userInfo));
             $.cookie('token', res.datas.id,{ expires: expireDate});
             $.cookie('userid', res.datas.userInfo.id,{ expires: expireDate });
-
+            userId = $.cookie('userid');
             userinfo = JSON.parse(localStorage.getItem('userinfo'))
             // 显示头像，没有则显示默认头像
             if (userinfo.userPic) {

@@ -11,20 +11,28 @@
 
 
 /* 写文章 */
-.input-head{
+.article-title-box{
+  position: fixed;
+  top: 50px;
+  z-index: 1000 !important;
+  width: 100%;
   background-color: white;
+}
+
+.input-head{
+  /* background-color: white; */
   border:0px;
   height: 100px;
   font-size: 20px;
-  min-width: 100%;
-  margin-left: -25px;
+  width: 65%;
+  /* margin-left: -25px; */
   /* padding-top: 50px; */
 }
 
 .input-head::-webkit-input-placeholder{
-    color:rgb(179,179,179);
-    font-weight: 900;
-    font-size: 30px
+  color:rgb(179,179,179);
+  font-weight: 900;
+  font-size: 30px
 }
 .w-e-toolbar{
   /* background-color:#494949 !important; */
@@ -37,6 +45,7 @@
   z-index: 100000 !important;
 }
 
+/* 正文 */
 .w-e-text-container{
   /* margin-top: 90px !important; */
   position: relative !important;
@@ -44,17 +53,9 @@
   border: 0px !important;
 }
 
-.article-title-box{
-  position: fixed;
-  top: 50px;
-  z-index: 1000 !important;
-  width: 100%;
-}
-
 .w-e-text{
   cursor: text;
   min-height: 500px !important;
-
 }
 
 /* 预览 */
