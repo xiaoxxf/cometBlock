@@ -94,7 +94,7 @@ function getRegister(){
 		else{
 			 //校验手机号
 			ifRegister = false;
-			layer.msg("手机号未注册过，请注册");
+			layer.msg("手机号未注册过，请先注册");
 			
 		}
 		
@@ -104,11 +104,19 @@ function getRegister(){
 //点击验证
 var flag_resetPwd_sendCode =false;
 $('#send_code').click(function() {
-	if(flag_resetPwd_sendCode  && !test){
+	debugger
+	if(flag_resetPwd_sendCode || !ifRegister){
+		layer.msg("手机号未注册过，请先注册");
 		return
 	}
- 	flag_resetPwd_sendCode =true;
-	getCode()
+ 	//flag_resetPwd_sendCode =true;
+ 	else if(!flag_resetPwd_sendCode && ifRegister){
+ 		getCode()
+ 	}
+ 	else{
+ 		layer.msg("手机号未注册过，请先注册");
+ 	}
+	
 })
 //发送验证码
 function getCode() {
