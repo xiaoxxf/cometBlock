@@ -233,6 +233,7 @@
             </div>
         </div>
 </script>
+<!-- 短评列表 -->
 <script type="text/html" id="short-comment-temp">
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
@@ -250,6 +251,10 @@
         </p>
         </div>
         <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
+        <%if(list[i].creator == userId ){%>
+          <a data-reviewid="<%:=list[i].reviewId%>" data-score="<%:=list[i].score%>" data-content="<%:=list[i].textTitle %>" class="edit_short_comment" onclick="edit_short_comment(this)">编辑 </a>
+          <a data-reviewid="<%:=list[i].reviewId%>" class="del_short_comment" onclick="delete_short_comment(this)">删除 </a>
+        <%}%>
         <span class="click-awsome" data-reviewid="<%:=list[i].reviewId%>"><i class="icon-dz"></i><i class="icon-dzon"></i></span>
         <span class="num"><%:=list[i].likes%></span>
         </div>
@@ -257,6 +262,19 @@
         </div>
     <%}%>
 </script>
+<!-- 修改短评弹窗 -->
+<script id="add_score" type="text/html">
+  <div class="coin-score">
+    请给项目重新打分
+    <span class="my-rating" style="font-size:10px"></span>
+    <span class="live-rating" style="display:none"></span>
+  </div>
+  <div>
+    <textarea class="edit-short-comment" placeholder=" 添加评论" rows="4" cols="64" maxlength="300"></textarea>
+  </div>
+</script>
+
+<!-- 长评列表 -->
 <script type="text/html" id="long-comment-temp">
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
@@ -349,11 +367,12 @@
 						</div>
 					</div>
 				</div>
-			</script>
+</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/jquery.star-rating-svg.js"></script>
 <script src="js/template.js"></script>
+<script src="js/jquery.star-rating-svg.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>

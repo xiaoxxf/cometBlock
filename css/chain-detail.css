@@ -281,6 +281,15 @@
   margin-left: 5px
 }
 
+/* 编辑短评弹窗 */
+.edit-short-comment{
+    width: 95%;
+    height: 80px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+}
 /*点赞小屏时自适应*/
 @media (max-width: 767px){
     .xs-position-relative {
