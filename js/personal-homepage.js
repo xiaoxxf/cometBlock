@@ -166,7 +166,6 @@ function getPersonHomePageData(){
 	})
 }
 
-
 function loadMore(){
 	currentPage++;
 	ui.loading = true;

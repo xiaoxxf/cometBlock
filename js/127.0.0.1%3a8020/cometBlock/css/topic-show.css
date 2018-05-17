@@ -1,5 +1,5 @@
 
-/*专题收录*/
+/*ä¸“é¢˜æ”¶å½•*/
 
 .show_table{
   margin-top: 50px;
@@ -71,7 +71,7 @@
 }
 
 
-/*专题公告*/
+/*ä¸“é¢˜å…¬å‘Š*/
 .topic_info{
 	min-height: 130px;
   border-bottom: solid 1px gainsboro;
@@ -88,7 +88,7 @@
 	font-weight: 600;
 }
 
-/*管理员*/
+/*ç®¡ç†å‘˜*/
 .topic_manage{
 	padding: 20px 0px;
     border-bottom: solid 1px gainsboro;
@@ -115,7 +115,7 @@
   border-radius: 3px;
 }
 
-/*编辑专题*/
+/*ç¼–è¾‘ä¸“é¢˜*/
 .topic_option {
 	margin-top: 20px;
 }
@@ -133,7 +133,7 @@
 }
 
 
-/* 文章列表 */
+/* æ–‡ç« åˆ—è¡¨ */
 
 .topic_article_zone{
   background-color: white;
@@ -202,11 +202,11 @@
 	margin-bottom:5px;
 }
 
-/* footer样式 */
+/* footeræ ·å¼ */
 .footer-detail .container .row{
     background-color: #f3f6f7;
 }
-/*收录*/
+/*æ”¶å½•*/
 .search_article_title{
 	  font-weight: 700;
     font-size: 18px;
@@ -309,7 +309,7 @@
 
 
 
-/* 投稿 我的文章 */
+/* æŠ•ç¨¿ æˆ‘çš„æ–‡ç«  */
 .my_article_list{
   /* cursor: pointer; */
   padding: 15px;
@@ -327,12 +327,12 @@
     display: block;
     margin-top: -12px;
     padding: 12px 8px; */
-    /* font-size: 13px; */
-    padding: 2px 20px 0px 20px;
-    border-radius: 12px;
-    line-height: normal;
-    border: solid 1px rgb(79, 163, 237);
-    float: right;
-    cursor: pointer;
-    color: rgb(79, 163, 237);
+	  /* font-size: 13px; */
+	  padding: 2px 20px 0px 20px;
+	  border-radius: 12px;
+	  line-height: normal;
+	  border: solid 1px rgb(79, 163, 237);
+	  float: right;
+	  cursor: pointer;
+	  color: rgb(79, 163, 237);
 }

@@ -753,7 +753,7 @@ function sendArticleToSubject(e){
   var self =$(e),
       topicId = self.data('subjectid'),
       reviewId = getUrlParam('reviewId');
-  var uri = 'topic/submission?creator=' + userinfo.id + '&password=' + userinfo.userPwd
+  var uri = 'topic/submission?creator=' + userId + '&password=' + userinfo.userPwd
            + '&topicId=' + topicId + '&reviewId=' + reviewId
 
   doJavaGet(uri,function(result){
