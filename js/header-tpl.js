@@ -18,7 +18,7 @@ $('.nav-user-account').on('click',function(){
 	}
 	// 未绑定的微信账号
 	else if(wechatInfo && !wechatInfo.userInfo){
-		window.location = 'personal-setting.html'
+		window.location = 'person-setting.html'
 	}
 })
 
