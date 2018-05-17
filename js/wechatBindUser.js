@@ -202,6 +202,8 @@ function bindExistUser(){
 	// var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 	// var userId = $.cookie('userid');//获取userid
 	// var wechatInfo = JSON.parse($.cookie('wechatInfo'))
+  var userId = $.cookie('userid');//获取userid
+  var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 	var uri = 'news/bindingUser?userId=' + userId + '&userPwd=' + userinfo.userPwd +'&openid=' + wechatInfo.openid
 	doJavaGet(uri, function(res){
 		if (res.code == 0) {
