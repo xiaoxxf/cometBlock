@@ -67,14 +67,26 @@ function createEditorAndGetContent(content){
     var E = window.wangEditor
     var editor = new E('#editor')
     editor.customConfig.menus = [
-      'bold',
-      'italic',
-      'head',
-      'emoticon',
+      'head',  // 标题
+      'bold',  // 粗体
+      'fontSize',  // 字号
+      'fontName',  // 字体
+      'italic',  // 斜体
+      'underline',  // 下划线
+      'strikeThrough',  // 删除线
+      'foreColor',  // 文字颜色
+      'backColor',  // 背景颜色
       'link',  // 插入链接
+      'list',  // 列表
+      'justify',  // 对齐方式
+      'quote',  // 引用
       'image',  // 插入图片
-    ]
+      'table',  // 表格
+      'code',  // 插入代码
+      'undo',  // 撤销
+      'redo'  // 重复
 
+    ]
     var uploadUri = 'common/upload'
 
     editor.customConfig.uploadImgServer = WebApiHostJavaApi + uploadUri;
@@ -109,16 +121,10 @@ function createEditorAndGetContent(content){
     editor.create()
     editor.txt.html(content)
     $('.w-e-text-container').attr('style','height:auto;');
+    $('.w-e-text-container').attr('style','width:auto;');
 
     // 修改菜单栏样式
-    $('.w-e-toolbar').css(
-      {
-       'background-color':'white',
-       "border-left":"0px",
-       "border-right":"0px",
-       "border-bottom":"0px",
-      }
-    );
+
     $('.w-e-menu').css('font-size','20px')
     $('.w-e-text-container').css('border','0px')
     $('.w-e-text').css('font-size','18px')
@@ -155,7 +161,7 @@ function createEditorAndGetContent(content){
         layer.msg('提交成功', {
           time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
           end:function(){
-            window.location.href='article-show.html?reviewId=' + getUrlParam('reviewId')
+            window.location.href='comment.html?reviewId=' + getUrlParam('reviewId')
           }
         });
       }
