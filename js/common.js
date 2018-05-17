@@ -306,6 +306,10 @@ $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
         var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+        var code = getUrlParam('code');
+        if (code) {
+          currentJumpHref = currentJumpHref.replace('?code=' + code, '');
+        }
         if(currentJumpHref == undefined){
             currentJumpHref = window.location.origin;
         }
