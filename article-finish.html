@@ -46,6 +46,13 @@
 										<span class="fa fa-search search_icon"></span><input type="text"  class="search_topic_article" placeholder="搜索专题"/>
 									</div>
 								</div>
+								<!-- 读书活动的专题-->
+								<div class="manage_topic_subject reading_activity_topic_subject">
+									<p class="manage_topic_title"><span>uloard白皮书精读活动专题</span></p>
+									<div class="topic_subject_info reading_activity_topic_list clearfix">
+
+									</div>
+								</div>
 								<!--我管理的专题-->
 								<div class="manage_topic_subject">
 									<p class="manage_topic_title"><span>我管理的专题</span><a href="topic-new.html" class="new_topic_subject">新建</a></p>
@@ -125,7 +132,7 @@
 	<%}%>
 </script>
 
-<!-- 索索专题 -->
+<!-- 搜索专题 -->
 <script type="text/html" id="search_topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="col-md-6 col-xs-12 col-sm-12 border_right">
@@ -141,6 +148,24 @@
 			</div>
 		</div>
 
+	<%}%>
+</script>
+
+<!-- 读书活动专题 -->
+<script type="text/html" id="reading_activity_topic_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="col-md-6 col-xs-12 col-sm-12 border_right">
+			<div class="info_left">
+				<img src="<%:=list[i].topicPic %>" class="subject_icon"></img>
+				<div class="topic_subject_content">
+					<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="content_title"><%:=list[i].topic %></a>
+					<p class="content_num">已收录了<%=list[i].counts %>篇文章</p>
+				</div>
+			</div>
+			<div class="info_right">
+				<span class="send_to_topic" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+			</div>
+		</div>
 	<%}%>
 </script>
 

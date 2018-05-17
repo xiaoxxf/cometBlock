@@ -8,6 +8,7 @@ window.onload = function(){
   getArticle();
   getMyTopic();
   getRecommendTopic();
+  getReadingActivityTopic()
 }
 
 // 获取最近一篇文章，即新增的文章
@@ -47,11 +48,6 @@ function getRecommendTopic(){
 	}, "json");
 }
 
-// 搜索专题
-function searchTopic(){
-
-}
-
 $('.search_topic_article').on('click',function(){
   searchSubject();
 })
@@ -59,8 +55,6 @@ $('.search_topic_article').on('click',function(){
 $('.search_topic_article').keyup(function(){
   keyEnterSearchSubject(this)
 })
-
-
 
 // 搜索专题
 var search_subject_page = 1;
@@ -168,12 +162,17 @@ function sendArticleToSubject(e){
   })
 }
 
-// close
-// $('.close_button').on('click', function(){
-//   var localCurrentHref = window.localStorage.getItem('currentJumpHref');
-//   if(!localCurrentHref){
-//       window.location.href = "index.html";
-//   }else{
-//       window.location.href = localCurrentHref;
-//   }
-// })
+
+// 读书活动专题
+function getReadingActivityTopic(){
+  var subject_page = 1
+  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
+  doJavaGet(uri,function(result){
+    result.datas.shift();
+    result.datas.shift();
+    var search = document.getElementById('reading_activity_topic_tpl').innerHTML;
+    var content = template(search, {list: result.datas});
+    $('.reading_activity_topic_list').append(content);
+
+  }, "json");
+}
