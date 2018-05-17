@@ -126,9 +126,6 @@ function bindNewUser(){
 
 //绑定现有用户弹出框
 $("#bind_now_user").on('click',function (e) {
-
-
-
   var area_width
   var area_height
   if($(window).width() <= 767)
@@ -304,6 +301,35 @@ function RegisterFromValid() {
 	return true;
 
 }
+//关联新账户验证
+function sendCodeFromValid(){
+	var realName = $("#realName").val();
+	var tel = $("#session_phone").val();
+	var userPwd = $("#session_password").val();
+	if(realName == "") {
+		layer.tips('用戶名不能为空', '#realName', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+	if(tel == "") {
+		layer.tips('手机号不能为空', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+	if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
+		layer.tips('请输入正确的手机号', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+
+	return true;
+}
 
 //昵称手机号失去焦点事件
 $("#realName").blur(function() {
@@ -360,7 +386,10 @@ function verifyPhone() {
 	}
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
-			getCode()
+			if(sendCodeFromValid()){
+				getCode()
+			}
+			
 		} else {
 			layer.msg("手机号已存在");
 		}
@@ -408,3 +437,6 @@ function CountDown() {
 	count = 60;
 	countdown = setInterval(dingshiqi, 1000);
 }
+
+
+//关联已有账户校验
