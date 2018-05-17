@@ -524,6 +524,22 @@ tbody a{
     box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
     display: none;
 }
+@media only screen and (min-width:2300px ) {
+	.show-alert-inform {
+    position: fixed;
+    text-align: right;
+    width: 300px;
+    height: 450px;
+    color: #333;
+    right: 28%;
+    background-color: white;
+    border-bottom: solid 1px #dcdcdca6;
+    line-height: 40px;
+    border-radius: 0px 0px 8px 8px;
+    box-shadow: 0px 2px 8px 0px rgba(50, 50, 50, 0.2);
+    display: none;
+}
+}
 
 .show-alert-inform-top{
 	margin: auto;
