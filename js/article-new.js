@@ -162,3 +162,23 @@ $('.preview-article').on('click',function(){
 		quitPreview()
 	}
 })
+
+//编辑器强制修改
+var containerW = $(".write-container").width() * 0.9;
+var marL = $(".write-container").width() * 0.05 + 15;
+var marL2 = $(".write-container").width() * 0.05;
+$(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+$(".w-e-toolbar").css({ 'width': containerW});
+$(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+window.onresize = function () {
+  var containerW = $(".write-container").width() * 0.9;
+  var marL = $(".write-container").width() * 0.05 + 15;
+  $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+  $(".w-e-toolbar").css({ 'width': containerW});
+  $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+}  
+$(".edit-comment").on('click', function () { 
+  if ($(".fake-placeholder").size() > 0) { 
+    $(".fake-placeholder").remove();
+  }
+})
