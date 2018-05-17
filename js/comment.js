@@ -878,7 +878,7 @@ function showQrCode(){
   	height : 260
   });
   $('#qrCodeModal').modal()
-  qrcode.makeCode(window.location);
+  qrcode.makeCode(window.location.href);
   // if (qr_code_flag) {
   //
   //

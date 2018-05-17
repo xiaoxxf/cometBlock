@@ -173,7 +173,7 @@ a img {
 	margin-bottom: 10px;
 }
 .meta a{
-	margin-left:10px ; 
+	margin-left:10px ;
 	color: #777777c4;
 }
 .read-more{
@@ -248,6 +248,10 @@ a img {
 }
 .write-comment a{
 	color: #006bb3;
+}
+
+.loader1{
+  margin-left: 40%;
 }
 
 .loader1 div{
