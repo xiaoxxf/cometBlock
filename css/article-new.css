@@ -6,7 +6,6 @@
   background-color: white	!important;
   color: #006bb3 		 !important;
   border: solid 1px #006bb3;
-  margin-right :100px !important;
 }
 
 
@@ -27,11 +26,12 @@
   border:0px;
   height: 100px;
   font-size: 20px;
-  width: 100%;
-  /* margin-left: -30px; */
-  /* padding-top: 50px; */
 }
-
+@media (min-width: 1200px){
+  .input-head {
+      width: 1170px;
+  }
+}
 .input-head::-webkit-input-placeholder{
   color:rgb(179,179,179);
   font-weight: 900;
@@ -42,7 +42,7 @@
   /* border-left:0px !important;
   border-right:0px !important;
   border-bottom:0px !important; */
-  width: 85% !important;
+  /* width: 85% !important; */
   position: fixed !important;
   top: 130px !important;
   z-index: 100000 !important;
@@ -53,18 +53,17 @@
     width: 55% !important;
   }
 } */
-@media (min-width:1600px) {
-  .w-e-toolbar{
-    width: 60% !important;
-  }
-}
 
 /* 正文 */
 .w-e-text-container{
   /* margin-top: 90px !important; */
   position: relative !important;
-  top:160px !important;
+  top:120px !important;
   border: 0px !important;
+}
+/*默认文字*/
+.fake-placeholder {
+  color: #ddd;
 }
 
 .w-e-text{
