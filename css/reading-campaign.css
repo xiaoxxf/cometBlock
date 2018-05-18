@@ -7,47 +7,60 @@ body{
 	height: 996px;
 }
 .reading-top{
-	padding: 40px 0px 10px 0px;
+	padding: 10px;
 	margin: 0px 100px;
 	color:#333;
 }
-
+.banner img{
+	margin-bottom: 28px;
+	width: 100%;
+	height: 230px;
+}
 .reading-title{
 	font-weight: bold;
-    font-size: 18px;
+    font-size: 25px;
     margin-bottom: 14px;
 }
-
-.reading-detail{
-	font-size: 18px;
-	margin-top: 20px;
-	padding: 10px;
-    background-color: #dde1e3;
+.reading-time{
+	color: #696969;
+	font-size: 15px;
 }
-
+.reading-detail{
+	color: #696969;
+	font-size: 15px;
+	margin-top: 20px;
+    
+}
+.first-child{
+	color: #333;
+	/*font-weight: bold;*/
+    font-size: 20px;
+    margin-bottom: 5px;
+}
 
 /*下面盒子*/
 .reading-bottom-title{
 	margin-bottom: 10px;
 	display: block;
 	margin: 10px 0px;
-	font-weight: bold;
-	font-size: 18px;
+	/*font-weight: bold;*/
+	font-size: 20px;
 }
 .reading-bottom_box{
+	padding: 10px;
     margin: 0px 100px;
     min-height: 500px;
 }
 .box_content{
 	margin-bottom: 20px;
-	padding: 10px;
-	border: solid 1px gainsboro;
-    background-color: #dcdcdc0d;
+    padding: 10px 20px;
+    border: solid 1px gainsboro;
     padding-bottom: 20px;
+    border-radius: 4px;
 }
 .box_content img{
-	width: 100px;
-	height: 100px;
+	width: 60px;
+	height: 60px;
 	border-radius: 103px;
 }
 .box_content img,.reading-bottom_box_title,.reading-bottom_box_introduce{
@@ -56,30 +69,44 @@ body{
 }
 
 .reading-bottom_box_introduce1{
-		display: block;
-    height: 30px;
-    line-height: 30px;
+	    display: block;
+    height: 25px;
+    line-height: 25px;
     margin-left: 20px;
-		color: #333;
+    color: #333;
+    margin-top: 6px;
+    font-size: 16px;
 	}
 .reading-bottom_box_introduce2{
 	display: block;
-    height: 30px;
-    line-height: 30px;
-    margin-top: 20px;
+    height: 25px;
+    line-height: 25px;
+    /*margin-top: 5px;*/
     margin-left: 20px;
+    color: #999;
 
 	}
 .reading-contribute{
-	margin-top: 30px;
-  float: right;
-  font-size: 14px;
-  border: 1px solid #006bb3;
-  color: #006bb3!important;
-  padding: 4px 12px;
-  font-weight: 400;
-  line-height: normal;
-  border-radius: 50px;
-  background: none;
-	cursor: pointer;
+    margin-top: 28px;
+    float: right;
+    margin-right: 27px;
+    font-size: 14px;
+    border: 1px solid #006bb3;
+    color: #006bb3!important;
+    padding: 4px 12px;
+    font-weight: 400;
+    width: 68px;
+    height: 30px;
+    text-align: center;
+    line-height: normal;
+    border-radius: 50px;
+    background: none;
+    cursor: pointer;
+}
+.footer-detail .container .row{
+	background-color: white !important;
+	}
+.fixed-footer-wrap{
+	text-align: center;
+    position: relative;
 }
