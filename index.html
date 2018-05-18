@@ -131,7 +131,15 @@
 											<span class="hot_block"></span>
 
 										</div>
-
+										<!--动画加载-->
+										<div class="loading refresh_load">
+									        <span></span>
+									        <span></span>
+									        <span></span>
+									        <span></span>
+									        <span></span>
+									        <span></span>
+										</div>
 										<div class="hot_review_region">
 
 										</div>
@@ -269,7 +277,7 @@
 
 						<div style="display:flex" >
 							<div class="article-introduce">
-									<a href="comment.html?reviewId=<%=list[i].reviewId %>" class="textContent">
+									<a href="comment.html?reviewId=<%=list[i].reviewId %>" target="_blank" class="textContent">
 										<%:=list[i].textContent%>
 									</a>
 							</div>
