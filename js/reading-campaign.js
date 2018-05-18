@@ -11,7 +11,7 @@ function getTeamTopic(){
   // ui_subject.loading = true;
   // ui_subject.noMoreData = false;
   doJavaGet(uri, function(res){
-    for (var i = 2; i < res.datas.length; i++) {
+    for (var i = 0; i < 3; i++) {
       teamTopicInfo.push(res.datas[i])
     }
     if (res.datas.length > 0) {

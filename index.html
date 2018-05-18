@@ -42,11 +42,11 @@
 						<div class="hot_candy row">
 							<div class="col-md-9 col-sm-12 col-xs-12 col-lg-9">
 								<div class="hot_zone_padding">
-									<img src="img/banner.png"  style="border-radius:3px;"/>
+									<img src="img/reading-banner.png"  style="border-radius:3px;"/>
 								</div>
 							</div>
 							<div class="col-md-3 col-xs-12 col-sm-12 col-lg-3">
-								<div class="hot_zone side">
+								<div class="hot_zone side subject_border">
 									<div class="candy_box" style="height:160px">
 										<!-- <a href="">糖果盒</a> -->
 										<!-- <a href="">Top10</a> -->
@@ -68,7 +68,7 @@
 								<div class="hot_zone hot_zone_box">
 									<div class="hot_zone_title">
 										<span class="hot_block"></span>
-										<span style="float: left"><a href="chain.html" class="hot-span">热门专区</a></span>
+										<span style="float: left"><a href="chain.html" class="hot-span hot-title">热门专区</a></span>
 										<div class="swiper-btn">
 											<!-- 如果需要导航按钮 -->
 											<span class="swiper-btn-prev">
@@ -111,7 +111,7 @@
 							<div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
 								<div class="hot_zone side">
 									<div class="hot_zone_title_right">
-										<span ><a href="news.html" class="hot-span">播报</a></span>
+										<span ><a href="news.html" class="hot-span hot-title">播报</a></span>
 										<a href="news.html" style="float:right"><span>更多 &gt;&gt;</span></a>
 									</div>
 									<div class="hot_zone_news">
@@ -122,10 +122,9 @@
 						</div>
 					</div>
 
-					<!--专题-->
 					<div class="hot_review_box">
 						<div class="row">
-
+							<!--专题文章-->
 							<div class="col-md-9 col-sm-12 col-xs-12 col-lg-9">
 								<div class="hot_zone">
 										<div class="hot_review_title">
@@ -141,9 +140,16 @@
 								</div>
 							</div>
 
+							<!-- 热门专题 -->
 							<div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
 								<div class="hot_zone side">
-									<img src="img/advertisement.png"  class="img-responsive" style="height: 200px;"/>
+									<div class="hot_zone_title_right">
+										<span ><a href="news.html" class="hot-span">推荐专题</a></span>
+										<a href="topic-index.html" style="float:right"><span>更多 &gt;&gt;</span></a>
+									</div>
+									<div class="hot_zone_topic">
+
+									</div>
 								</div>
 							</div>
 
@@ -240,10 +246,11 @@
 <!-- 专题下的文章 -->
 <script type="text/html" id="hot_article_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<div class="hot_article_zone bottom_line">
-			<div class="article-detail">
+
+		<div class="hot_article_zone bottom_line"  >
+			<div class="article-detail" data-reviewid='<%:=list[i].reviewId %>'>
 					<div class="article-content">
-						<div class="article-info">
+						<div class="article-info" >
 							<a href="personal-homepage.html?userId=<%=list[i].creator %>">
 							<%if(list[i].userPic == null ){%>
 								<img src="img/normal-user.png" class="article-creator-pic"/>
@@ -260,7 +267,7 @@
 						</div>
 
 
-						<div style="display:flex">
+						<div style="display:flex" >
 							<div class="article-introduce">
 									<a href="comment.html?reviewId=<%=list[i].reviewId %>" class="textContent">
 										<%:=list[i].textContent%>
@@ -276,13 +283,14 @@
 								</div>
 							<%}%>
 						</div>
-						<div class="meta">
+						<div class="meta" >
 							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments"><i class="fa fa-commenting"></i> <%:=list[i].review %> </a>
 							<a class="like-button add_like" data-reviewid="<%:=list[i].reviewId %>"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
 						</div>
 					</div>
 			</div>
 		</div>
+
 	<%}%>
 </script>
 
@@ -360,6 +368,15 @@
 			</div>
 		</div>
 	</div>
+</script>
+
+<script type="text/html" id="recommend_topic_tpl">
+	<%for(var i = 0; i < 3; i++) {%>
+		<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="topic_tag">
+			<img src="<%:=list[i].topicPic %>" alt="" class="topic_logo">
+			<span class="topic_tag_name"><%:=list[i].topic %></span>
+		</a>
+	<%}%>
 </script>
 
 <script src="js/jquery-2.1.1.js"></script>
