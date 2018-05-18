@@ -53,7 +53,7 @@ function signUpBeforeBind(){
         loginAfterSignUp()
 			} else {
 
-				layer.msg('注册失败，请重试');
+				layer.msg('绑定失败，请检查你的信息填写是否正确');
 
 			}
 
@@ -276,8 +276,8 @@ function RegisterFromValid() {
 		});
 		return false;
 	}
-	if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
-		layer.tips('输入手机错误', '#session_phone', {
+	if(!(/^1[0-9]{10}$/.test(tel))) {
+		layer.tips('请输入正确的手机号', '#session_phone', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
@@ -320,7 +320,7 @@ function sendCodeFromValid(){
 		});
 		return false;
 	}
-	if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
+	if(!(/^1[0-9]{10}$/.test(tel))) {
 		layer.tips('请输入正确的手机号', '#session_phone', {
 			tips: [2, '#3595CC'],
 			time: 2000
@@ -377,24 +377,28 @@ function verifyPhone() {
   if(flag_send_code){
     return
   }
-	var uri = 'news/virty?'
 	if(!$("#session_phone").val()) { //校验手机号
-		layer.msg("请输入手机号");
+    layer.tips('手机号不能为空', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
 		return
 	} else {
-		uri = uri + 'userName=' + $("#session_phone").val()
+		var uri = 'news/virty?' + 'userName=' + $("#session_phone").val()
+    doJavaGet(uri, function(res) {
+      if(res != null && res.code == 0) {
+        if(sendCodeFromValid()){
+          getCode()
+        }
+      } else {
+        layer.tips('手机号已被注册', '#session_phone', {
+    			tips: [2, '#3595CC'],
+    			time: 2000
+    		});
+      }
+
+    }, "json");
 	}
-	doJavaGet(uri, function(res) {
-		if(res != null && res.code == 0) {
-			if(sendCodeFromValid()){
-				getCode()
-			}
-
-		} else {
-			layer.msg("手机号已存在");
-		}
-
-	}, "json");
 
 }
 

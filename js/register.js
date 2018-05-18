@@ -88,7 +88,10 @@ function sendCode() {
 			getCode()
 		}
 		else if(res.code == -1){ //校验手机号
-			layer.msg("手机号已被注册");
+			layer.tips('手机号已被注册', '#session_phone', {
+				tips: [2, '#3595CC'],
+				time: 2000
+			});
 			flag_send_code = false;
 		}
 
