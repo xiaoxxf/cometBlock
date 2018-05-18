@@ -403,7 +403,7 @@ a img {
 .meta{
 	color: #777777c4;
 	margin-top: 10px;
-	
+
 }
 .meta a{
 	/* margin-left:10px ; */
@@ -472,6 +472,7 @@ a img {
   color: black;
   margin: 7px 8px 7px 8px;
   cursor: pointer;
+	min-width: 179px;
 }
 
 .hot_zone_topic .topic_tag .topic_logo{
