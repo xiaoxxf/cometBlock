@@ -34,3 +34,14 @@
 .hot_topic_attention{
 	padding: 20px 0px;
 }
+/*加载更多*/
+.topic_load{
+	text-align: center;
+    width: 38.2%;
+    padding: 10px 0;
+    font-size: 15px;
+    border-radius: 20px;
+    background-color: #a5a5a5;
+    border: none;
+    margin: 100px auto;
+}
