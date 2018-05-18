@@ -113,8 +113,8 @@ function bindNewUser(){
       layer.msg('绑定成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
-          var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-          window.location.href = currentJumpHref;
+          // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+          window.location.href = 'index.html';
         }
       });
 		}else if(res.code == -1){
@@ -207,8 +207,8 @@ function bindExistUser(){
       layer.msg('绑定成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
-          var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-          window.location.href = currentJumpHref;
+          // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+          window.location.href = 'index.html';
         }
       });
 		}else if(res.code == -1){
@@ -389,7 +389,7 @@ function verifyPhone() {
 			if(sendCodeFromValid()){
 				getCode()
 			}
-			
+
 		} else {
 			layer.msg("手机号已存在");
 		}
