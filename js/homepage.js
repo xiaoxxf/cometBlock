@@ -136,7 +136,6 @@ $(function(){
     $('.hot_review_title').append(content);
     $($('.hot_review_title .topic_name')[0]).addClass('hot-span-item');
     $($('.hot_review_title .topic_name')[0]).click();
-
   })
 
 })
@@ -147,6 +146,10 @@ var topicName = '';
 var raise = ''
 // 渲染专题下的文章
 $('.hot_review_title').on('click', '.topic_name', function(e){
+	$('.hot_review_region').html('');
+	$('.read-more').css('display','none');
+	$('.topic_article_load').css('display','')
+
 	ui.loading = true;
 	ui.noMoreData = false;
   topic_article_page = 1;
@@ -154,18 +157,18 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
 	topicName = self.data('topicname');
   topicId = self.data('topicid');
 
-	if (topicName == '编辑推荐') {
-		raise = 1;
-	}else{
-		raise = '';
-	}
+	// if (topicName == '编辑推荐') {
+	// 	raise = 1;
+	// }else{
+	// 	raise = '';
+	// }
   var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=12'
-						+ '&raise=' + raise
+						// + '&raise=' + raise
 
   doJavaGet(uri, function(result){
     if (result.datas.length == 0) {
-      $('.hot_review_region').html('');
       $('.read-more').css('display','none');
+			$('.topic_article_load').css('display','none')
     }else{
       $('.read-more').css('display','');
       // 限制内容长度
@@ -193,6 +196,8 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
       $('.hot_review_region').append(content);
       $('.read-more').css('display','');
       $('.read-more').text('阅读更多');
+			$('.topic_article_load').css('display','none')
+
     }
 
     ui.loading = false;
