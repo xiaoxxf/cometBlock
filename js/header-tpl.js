@@ -10,18 +10,6 @@ $(document).ready(function() {
 	})
 });
 
-// 点击头像跳转
-$('.nav-user-account').on('click',function(){
-	// 账号登录 or 已绑定的微信账号
-	if (userId) {
-		window.location = 'personal-homepage.html'
-	}
-	// 未绑定的微信账号
-	else if(wechatInfo && !wechatInfo.userInfo){
-		window.location = 'person-setting.html'
-	}
-})
-
 //通知显示隐藏提示面板
 var currentPage = 1;
 $(document).ready(function(){

@@ -5,14 +5,14 @@ var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '
 // var wechatInfo_flag = false; // 是否已取得微信返回数据
 
 // 不跳回登录、注册、找回密码的页面
-var login_uri = '/login.html';
-var register_uri = '/register.html';
-var find_pass_word_uri = '/find-pwd.html';
-var wechat_login_uri = "/connect/qrconnect";
-if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
-  var currentJumpHref = window.location.href;
-  window.localStorage.setItem('currentJumpHref',currentJumpHref);
-}
+// var login_uri = '/login.html';
+// var register_uri = '/register.html';
+// var find_pass_word_uri = '/find-pwd.html';
+// var wechat_login_uri = "/connect/qrconnect";
+// if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
+//   var currentJumpHref = window.location.href;
+//   window.localStorage.setItem('currentJumpHref',currentJumpHref);
+// }
 
 function guid() {
     function s4() {
@@ -279,20 +279,30 @@ function getUserInfoByWeChat(wechatCode){
 }
 
 
+// 点击头像跳转
+$('.block-comet-main-wrap').on('click', '.nav-user-account .user-icon',function () {
+	// 账号登录 or 已绑定的微信账号
+	if (userId) {
+		window.location = 'personal-homepage.html'
+	}
+	// 未绑定的微信账号
+	else if(wechatInfo && !wechatInfo.userInfo){
+		window.location = 'person-setting.html'
+	}
+})
 
+// 用户下拉选单跳转
 $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function () {
         Loginout();
 })
 
-
 $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
 //      window.location.href = "personalCenter.html?personType=1";
-			  window.open("personal-homepage.html");
+			  window.location = "personal-homepage.html";
 })
 
 $('.block-comet-main-wrap').on('click','.nav-user-account .inform-btn',function(){
         window.location.href = "notification.html?personType=1";
-
 })
 $('.block-comet-main-wrap').on('click','.nav-user-account .setting-btn',function(){
         window.location.href = "person-setting.html?personType=1";
@@ -306,10 +316,17 @@ $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
         var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-        var code = getUrlParam('code');
+
+        // 截取code
+        var reg = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
+        if (reg.test(currentJumpHref))
+          var code = unescape(RegExp.$2.replace(/\+/g, " "));
+
+        // 去除code
         if (code) {
           currentJumpHref = currentJumpHref.replace('?code=' + code, '');
         }
+
         if(currentJumpHref == undefined){
             currentJumpHref = window.location.origin;
         }
@@ -326,7 +343,13 @@ $(document).on('click','.more-sign .wechat-resgister',function () {
   var uri = 'news/winxinCode' ;
   doJavaGet(uri, function(res) {
       var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-      var code = getUrlParam('code');
+
+      // 截取code
+      var reg = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
+      if (reg.test(currentJumpHref))
+        var code = unescape(RegExp.$2.replace(/\+/g, " "));
+
+      // 删除code
       if (code) {
         currentJumpHref = currentJumpHref.replace('?code=' + code, '');
       }
