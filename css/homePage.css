@@ -429,7 +429,7 @@ a img {
 /*推荐专题位*/
 .hot_zone_topic{
   margin-top: 10px;
-  min-height: 268px;
+  min-height: 198px;
 }
 .hot_zone_topic .topic_tag{
   min-height: 29px;
