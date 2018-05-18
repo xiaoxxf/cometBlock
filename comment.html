@@ -92,10 +92,6 @@
 						</div>
 					</div>
 
-					<!--新建弹出框-->
-					<!-- <div class="create_qrcode">
-						<span class="news_subject_btn"><i class="fa fa-qrcode fa-2x"></i></span>
-					</div> -->
 					<!-- 弹出收录 -->
 					<div class="news_alert_include" style="display:none">
 						<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
@@ -120,6 +116,209 @@
 
 
 	</div>
+
+		<!--投稿到项目彈窗-->
+		<script type="text/html" id="templay-news-fixed">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">投稿到项目
+							<a class="new-subject-btn">
+								<a href="chain-new.html" target="_blank" >新建项目</a>
+							</a>
+							<div class="search">
+						<input type="search" name="search-self" class="search_project" onkeydown="keyEnterSearchProject()" placeholder="搜索项目">
+						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
+					</div>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<ul class="list_item">
+
+					</ul>
+					<span class="load_more_project_result" onclick="load_more_search_project_result()">查看更多</span>
+				</div>
+			</div>
+		</script>
+
+		<!-- 搜索投稿项目 -->
+		<script id='search_project_list' type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="return_result">没有结果</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+
+				<li class="">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<img src="<%=list[i].projectLogo %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
+						<div class="meta"></div>
+					</div>
+					<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)">投稿</span>
+				</li>
+				<% }%>
+			<%}%>
+		</script>
+
+		<!-- 投稿到项目时评分 -->
+		<script id="add_score" type="text/html">
+			<div class="coin-score">
+				请给项目打个分<br/>
+				<span class="my-rating" style="font-size:10px"></span>
+				<span class="live-rating" style="display:none"></span>
+			</div>
+		</script>
+
+		<!--投稿到专题彈窗-->
+		<script type="text/html" id="templay-news-subject">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">投稿到专题
+	      			<a class="new-subject-btn">
+	      				<a href="topic-new.html" target="_blank" >新建专题</a>
+	      			</a>
+	      			<div class="search">
+						<input type="search" name="search-self" class="search_subject" onkeyup="keyEnterSearchSubject(this)" placeholder="搜索专题">
+						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
+					</div>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<!-- 搜索结果 -->
+					<ul class="list_subject_item row">
+
+
+					</ul>
+					<span class="load_more_subject_result" onclick="load_more_search_subject_result()" >查看更多</span>
+					<!-- 我管理的专题 -->
+					<ul class="list_subject_include">
+						<p>我管理的专题</p>
+						<div class="my_topic_list row">
+
+						</div>
+					</ul>
+					<span class="load_more_my_subject_result" onclick="load_more_my_subject_result()" >查看更多</span>
+
+					<!-- 推荐专题 -->
+					<ul class="list_subject_recommend">
+						<p>推荐专题</p>
+						<div class="recommend_topic_result row">
+
+						</div>
+
+					</ul>
+
+				</div>
+
+			</div>
+		</script>
+
+		<!-- 推荐专题  -->
+		<script type="text/html" id="recommend_topic_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+					<%if(list[i].topic != '编辑推荐' ){%>
+						<li class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+								<img src="<%=list[i].topicPic %>" class="title_logo">
+							</a>
+							<div class="collection-info">
+								<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+								<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+								<div class="meta"></div>
+							</div>
+							<%if( list[i].state ){%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+							<%} else {%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+							<% } %>
+						</li>
+					<% }%>
+			<% }%>
+		</script>
+
+
+		<!-- 搜索投稿的专题 -->
+		<script id="search_subject_list" type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="no_topic_show">没有搜索到该专题，去<a href="topic-new.html" class="">创建</a>一个吧</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+					<li class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+							<img src="<%=list[i].topicPic %>" class="title_logo">
+						</a>
+						<div class="collection-info">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+							<div class="meta"></div>
+						</div>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已投稿</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
+					</li>
+				<% }%>
+			<%}%>
+		</script>
+
+		<!--收录文章到专题彈窗-->
+		<script type="text/html" id="templay-news-include">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">收录文章
+	      			<a class="new-subject-btn">
+	      				<a href="topic-new.html" target="_blank" >新建专题</a>
+	      			</a>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+
+					<ul class="list_subject_include">
+						<p>我管理的专题</p>
+						<div class="my_topic_list row">
+
+						</div>
+					</ul>
+					<span class="load_more_my_subject_result" onclick="load_more_my_subject_result()" >查看更多</span>
+
+				</div>
+			</div>
+		</script>
+
+
+		<!-- 我管理的专题 -->
+		<script type="text/html" id="my_topic_tpl">
+			<%if( list.length == 0 ){%>
+				<span class="no_topic_show">你还没有创建专题，去<a href="topic-new.html" class="">创建</a>一个吧</span>
+			<%} else {%>
+				<%for(var i = 0; i < list.length; i++) {%>
+					<li class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+							<img src="<%=list[i].topicPic %>" class="title_logo">
+						</a>
+						<div class="collection-info">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+							<div class="meta"></div>
+						</div>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
+					</li>
+				<% }%>
+			<% } %>
+		</script>
+
+
+
+		<!-- 举报 -->
 		<script type="text/html" id="template-report-popup">
 			<div id='report_value'>
 				<ul>
@@ -345,216 +544,6 @@
 					</div>
 				</div>
 			</section>
-		</script>
-
-		<!-- 搜索投稿项目 -->
-		<script id='search_project_list' type="text/html">
-			<%if(list.length == 0 ){%>
-				<span class="return_result">没有结果</span>
-			<%}else{%>
-				<%for(var i = 0; i < list.length; i++) {%>
-
-				<li class="">
-					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
-						<img src="<%=list[i].projectLogo %>" class="title_logo">
-					</a>
-					<div class="collection-info">
-						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
-						<div class="meta"></div>
-					</div>
-					<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)">投稿</span>
-				</li>
-				<% }%>
-			<%}%>
-		</script>
-
-		<!--投稿到项目彈窗-->
-		<script type="text/html" id="templay-news-fixed">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">投稿到项目
-	      			<a class="new-subject-btn">
-	      				<a href="chain-new.html" target="_blank" >新建项目</a>
-	      			</a>
-	      			<div class="search">
-						<input type="search" name="search-self" class="search_project" onkeydown="keyEnterSearchProject()" placeholder="搜索项目">
-						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
-					</div>
-					</h4>
-
-				</div>
-				<div class="modal-body">
-					<ul class="list_item">
-
-					</ul>
-					<span class="load_more_project_result" onclick="load_more_search_project_result()">查看更多</span>
-				</div>
-			</div>
-		</script>
-
-		<!-- 搜索投稿项目 -->
-		<script id='search_project_list' type="text/html">
-			<%if(list.length == 0 ){%>
-				<span class="return_result">没有结果</span>
-			<%}else{%>
-				<%for(var i = 0; i < list.length; i++) {%>
-
-				<li class="">
-					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
-						<img src="<%=list[i].projectLogo %>" class="title_logo">
-					</a>
-					<div class="collection-info">
-						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
-						<div class="meta"></div>
-					</div>
-					<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)">投稿</span>
-				</li>
-				<% }%>
-			<%}%>
-		</script>
-
-		<!-- 投稿到项目时评分 -->
-		<script id="add_score" type="text/html">
-			<div class="coin-score">
-				请给项目打个分<br/>
-				<span class="my-rating" style="font-size:10px"></span>
-				<span class="live-rating" style="display:none"></span>
-			</div>
-		</script>
-
-		<!--投稿到专题彈窗-->
-		<script type="text/html" id="templay-news-subject">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">投稿到专题
-	      			<a class="new-subject-btn">
-	      				<a href="topic-new.html" target="_blank" >新建专题</a>
-	      			</a>
-	      			<div class="search">
-						<input type="search" name="search-self" class="search_subject" onkeyup="keyEnterSearchSubject(this)" placeholder="搜索专题">
-						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
-					</div>
-					</h4>
-
-				</div>
-				<div class="modal-body">
-					<!-- 搜索结果 -->
-					<ul class="list_subject_item">
-
-
-					</ul>
-					<span class="load_more_subject_result" onclick="load_more_search_subject_result()" >查看更多</span>
-					<!-- 推荐专题 -->
-					<ul class="list_subject_recommend">
-						<p>推荐专题</p>
-						<div class="recommend_topic_result">
-
-						</div>
-
-					</ul>
-
-				</div>
-
-			</div>
-		</script>
-
-		<!-- 搜索 投稿 专题 -->
-		<script id="search_subject_list" type="text/html">
-			<%if(list.length == 0 ){%>
-				<span class="return_result">没有结果</span>
-			<%}else{%>
-				<%for(var i = 0; i < list.length; i++) {%>
-					<li class="">
-						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
-							<img src="<%=list[i].topicPic %>" class="title_logo">
-						</a>
-						<div class="collection-info">
-							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
-							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
-							<div class="meta"></div>
-						</div>
-						<%if( list[i].state ){%>
-							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已投稿</span>
-						<%} else {%>
-							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
-						<% } %>
-					</li>
-				<% }%>
-			<%}%>
-		</script>
-
-		<!--收录文章到专题彈窗-->
-		<script type="text/html" id="templay-news-include">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title">收录文章
-	      			<a class="new-subject-btn">
-	      				<a href="topic-new.html" target="_blank" >新建专题</a>
-	      			</a>
-					</h4>
-
-				</div>
-				<div class="modal-body">
-
-					<ul class="list_subject_include">
-						<p>我管理的专题</p>
-						<div class="my_topic_list">
-
-						</div>
-					</ul>
-				</div>
-			</div>
-		</script>
-
-		<!-- 推荐专题  -->
-		<script type="text/html" id="recommend_topic_tpl">
-			<%for(var i = 0; i < list.length; i++) {%>
-					<%if(list[i].topic != '编辑推荐' ){%>
-						<li class="">
-							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
-								<img src="<%=list[i].topicPic %>" class="title_logo">
-							</a>
-							<div class="collection-info">
-								<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
-								<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
-								<div class="meta"></div>
-							</div>
-							<%if( list[i].state ){%>
-								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
-							<%} else {%>
-								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
-							<% } %>
-						</li>
-					<% }%>
-			<% }%>
-		</script>
-
-		<!-- 我管理的专题 -->
-		<script type="text/html" id="my_topic_tpl">
-			<%if( list.length == 0 ){%>
-				<a href="topic-new.html" class="no_topic_show">还没有创建专题，去创建一个吧</a>
-			<%} else {%>
-				<%for(var i = 0; i < list.length; i++) {%>
-					<li class="">
-						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
-							<img src="<%=list[i].topicPic %>" class="title_logo">
-						</a>
-						<div class="collection-info">
-							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
-							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
-							<div class="meta"></div>
-						</div>
-						<%if( list[i].state ){%>
-							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
-						<%} else {%>
-							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
-						<% } %>
-					</li>
-				<% }%>
-			<% } %>
-		</script>
-
-		<script type="text/html" id='qr_code_tpl'>
 		</script>
 
 		<script src="js/jquery-2.1.1.js"></script>
