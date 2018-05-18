@@ -42,14 +42,12 @@ $(function(){
 $(function(){
 	// 账号登录
 	if (userId || wechatInfo.userInfo) {
-		$('.wechat_login').css('display','block')
-		$('.wechat_info_logo')[0].src = wechatInfo.headimgurl
+		$('.account_login').css('display','block')
 	}
 	// 微信登录
 	else if(wechatInfo && !wechatInfo.userInfo){
-
-		$('.account_login').css('display','block')
-
+		$('.wechat_login').css('display','block')
+		$('.wechat_info_logo')[0].src = wechatInfo.headimgurl
 	}
 
 	// 没登录
@@ -412,6 +410,16 @@ $('#user_logo_input').on('change',function(){
 	var reader = new FileReader();
 
 	reader.addEventListener("load", function() {
+		// var image = new Image();
+		// image.src = reader.result;
+		// image.onload = function() {
+		// 		if (image.width > 300 || image.height > 300) {
+		// 				layer.msg('请选择宽高小于300 * 300的图片')
+		// 				return
+		// 		}else{
+		// 			preview.src = reader.result; //拿到图片的结果
+		// 		}
+		// };
 		preview.src = reader.result; //拿到图片的结果
 	}, false);
 
