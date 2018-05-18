@@ -358,11 +358,16 @@ a img {
 
 .article-detail .article-introduce .textContent{
   /* color: #333333 */
-  color: #696969
+  color: #696969;
+  text-decoration: none;
 }
-
+.article-detail .article-introduce .textContent:hover,
+.article-detail .article-introduce .textContent:link{
+  color: #696969;
+  text-decoration: none;
+}
 .article-detail .article-introduce .textContent:hover{
-  color: #646464
+  color: #646464;
 }
 
 .article-content.article-info{

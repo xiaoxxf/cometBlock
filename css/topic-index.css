@@ -1,7 +1,10 @@
 
 .hot_topic_banner{
-    width: 100%;
-    height: 150px;
-    background-color: grey;
-    border-radius: 15px;
+   
+}
+.hot_topic_banner img{
+	width: 100%;
+}
+.hot_topic_list{
+	margin-top: 50px;
 }
