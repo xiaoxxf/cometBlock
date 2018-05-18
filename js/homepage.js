@@ -373,7 +373,7 @@ $(document).ready(function () {
     })
 })
 
-//热门推荐点击互相切换效果
+//专题点击互相切换效果
 $(".hot_review_title").on('click', '.topic_name', function(e) {
 	e.preventDefault()
 	e.stopPropagation()
