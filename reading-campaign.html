@@ -27,13 +27,16 @@
 					<!--读书活动-->
 					<div class="reading-campaign">
 						<div class="reading-top">
-							<div class="reading-title">
-								精读Ulord白皮书活动为期两周的生存游戏
+							<div class="banner">
+								<img src="img/banner.png" />
 							</div>
-							<p>	主办方会设计7个问题，活动成员通过阅读Ulord白皮书，成员根据问题，在阅读的过程中寻找答案，并且输出读书笔记。参加者会被随机分队，各队竞选出队长，队长要带领大家存活下来，并在与其他战队的竞争中胜出。</p>
+							<div class="reading-title">
+								精读Ulord白皮书活动
+							</div>
+							<p class="reading-time">为期两周的生存游戏主办方会设计7个问题，活动成员通过阅读Ulord白皮书，成员根据问题，在阅读的过程中寻找答案，并且输出读书笔记。参加者会被随机分队，各队竞选出队长，队长要带领大家存活下来，并在与其他战队的竞争中胜出。</p>
 
 							<div class="reading-detail">
-								读书主题：
+								<p class="first-child">读书主题</p>
 								<p>1. 为什么要有主节点；</p>
 								<p>2. Ulord靠什么防止ASIC矿机，为什么要这么做；</p>
 								<p>3. Ulord的分布式存储（UPLS）；</p>
@@ -47,8 +50,6 @@
 						</div>
 						<div class="reading-bottom_box">
 							<p class="reading-bottom-title">参赛队伍</p>
-
-
 						</div>
 					</div>
 				</div>
@@ -59,7 +60,7 @@
 <script type="text/html" id="team_topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="box_content clearfix">
-			<img src="<%:=list[i].topicPic %>"  class="topicImage"/>
+			<a href="topic-show.html?subjectId=<%:=list[i].id %>"><img src="<%:=list[i].topicPic %>"  class="topicImage"/></a>
 			<div class="reading-bottom_box_title">
 				<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="reading-bottom_box_introduce1">
 					队名: <%:=list[i].topic %>
