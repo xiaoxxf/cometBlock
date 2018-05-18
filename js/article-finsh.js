@@ -168,8 +168,8 @@ function getReadingActivityTopic(){
   var subject_page = 1
   var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
   doJavaGet(uri,function(result){
-    result.datas.shift();
-    result.datas.shift();
+    // result.datas.shift();
+    // result.datas.shift();
     var search = document.getElementById('reading_activity_topic_tpl').innerHTML;
     var content = template(search, {list: result.datas});
     $('.reading_activity_topic_list').append(content);

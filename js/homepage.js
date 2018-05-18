@@ -381,3 +381,20 @@ $(".hot_review_title").on('click', '.topic_name', function(e) {
 $('.hot_zone_padding').on('click',function(){
 	window.location = 'reading-campaign.html'
 })
+
+// 加载推荐专题
+$(function(){
+	var subject_page = 1
+	var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
+	// ui_subject.loading = true;
+	// ui_subject.noMoreData = false;
+	doJavaGet(uri, function(res){
+		if (res.datas.length > 0) {
+			var tpl = document.getElementById('recommend_topic_tpl').innerHTML;
+			var content = template(tpl, {list: res.datas});
+			$('.hot_zone_topic').append(content);
+		}
+		// ui_subject.loading = false;
+	})
+
+})

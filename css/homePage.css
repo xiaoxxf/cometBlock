@@ -450,4 +450,31 @@ a img {
 	}
 }
 
-/*广告位*/
+/*推荐专题位*/
+.hot_zone_topic{
+  margin-top: 10px;
+  min-height: 198px;
+}
+.hot_zone_topic .topic_tag{
+  min-height: 29px;
+  background-color: #f7f7f7;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  vertical-align: top;
+  overflow: hidden;
+  /* padding: 4px; */
+  display:  inline-block;
+  color: black;
+  margin: 7px 8px 7px 8px;
+  cursor: pointer;
+}
+
+.hot_zone_topic .topic_tag .topic_logo{
+  width: 30px;
+  height: 30px;
+  background-color: #f7f7f7;
+}
+
+.hot_zone_topic .topic_tag .topic_tag_name{
+  padding: 0px 9px 0px 2px;
+}

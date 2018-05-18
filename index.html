@@ -122,10 +122,9 @@
 						</div>
 					</div>
 
-					<!--专题-->
 					<div class="hot_review_box">
 						<div class="row">
-
+							<!--专题文章-->
 							<div class="col-md-9 col-sm-12 col-xs-12 col-lg-9">
 								<div class="hot_zone">
 										<div class="hot_review_title">
@@ -141,9 +140,16 @@
 								</div>
 							</div>
 
+							<!-- 热门专题 -->
 							<div class="col-md-3 col-sm-12 col-xs-12 col-lg-3">
 								<div class="hot_zone side">
-									<img src="img/advertisement.png"  class="img-responsive" style="height: 200px;"/>
+									<div class="hot_zone_title_right">
+										<span ><a href="news.html" class="hot-span">推荐专题</a></span>
+										<a href="topic-index.html" style="float:right"><span>更多 &gt;&gt;</span></a>
+									</div>
+									<div class="hot_zone_topic">
+
+									</div>
 								</div>
 							</div>
 
@@ -362,6 +368,15 @@
 			</div>
 		</div>
 	</div>
+</script>
+
+<script type="text/html" id="recommend_topic_tpl">
+	<%for(var i = 0; i < 3; i++) {%>
+		<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="topic_tag">
+			<img src="<%:=list[i].topicPic %>" alt="" class="topic_logo">
+			<span class="topic_tag_name"><%:=list[i].topic %></span>
+		</a>
+	<%}%>
 </script>
 
 <script src="js/jquery-2.1.1.js"></script>
