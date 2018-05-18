@@ -310,7 +310,7 @@ a img {
 
 .article-detail .article-title a:hover,.article-detail .article-title a:link{
   text-decoration: none;
-  color: #1c5397
+  /*color: #1c5397*/
 }
 
 
