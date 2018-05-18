@@ -268,29 +268,27 @@ a img {
     /* margin-right: 15px; */
     padding-bottom: 12px;
 }
+@media only screen and (max-width:560px) {
+	.hot_review_title .topic_name{
+		font-weight: 700;
+	    font-size: 1.9rem;
+	    width: 30%;
+	  	display: inline-block;
+	    cursor: pointer;
+	    padding-bottom: 12px;
+	}
+	
+}
+
 .hot_review_title .topic_name:hover{
- 	/*text-align: center;*/
-  	display: inline-block;
-    width: 15%;
-    cursor: pointer;
-    padding-bottom: 12px;
-  	/*border-bottom: solid 2px #3d464d;*/
   	color: #3d464d;
  	cursor: pointer;
 }
 .hot_review_title .hot-span-item{
-  font-weight: 700;
-  font-size: 1.9rem;
-  /*border-bottom: solid 2px #3d464d;*/
   color: #3d464d;
-  text-decoration: none;
 }
 
-.hot_review_title .hot-span-item:visited{
-	/*border-bottom: solid 2px #3d464d;*/
-  color: #3d464d;
-  text-decoration: none;
-}
+
 
 
 /* 专题下的文章 */
