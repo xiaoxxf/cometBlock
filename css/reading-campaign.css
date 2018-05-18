@@ -4,11 +4,11 @@ body{
 .reading-campaign{
 	margin-top:30px;
 	/* background-color: white; */
-	height: 996px;
+	/* height: 996px; */
 }
 .reading-top{
 	padding: 10px;
-	margin: 0px 100px;
+	/* margin: 0px 100px; */
 	color:#333;
 }
 .banner img{
@@ -29,7 +29,7 @@ body{
 	color: #696969;
 	font-size: 15px;
 	margin-top: 20px;
-    
+
 }
 .first-child{
 	color: #333;
@@ -48,8 +48,8 @@ body{
 }
 .reading-bottom_box{
 	padding: 10px;
-    margin: 0px 100px;
-    min-height: 500px;
+    /* margin: 0px 100px; */
+    /* min-height: 500px; */
 }
 .box_content{
 	margin-bottom: 20px;
@@ -102,6 +102,12 @@ body{
     border-radius: 50px;
     background: none;
     cursor: pointer;
+}
+@media (max-width:767px) {
+	.reading-contribute{
+		float: left;
+		margin-left: 15px;
+	}
 }
 .footer-detail .container .row{
 	background-color: white !important;
