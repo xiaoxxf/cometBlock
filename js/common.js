@@ -279,15 +279,26 @@ function getUserInfoByWeChat(wechatCode){
 }
 
 
+// 点击头像跳转
+$('.block-comet-main-wrap').on('click', '.nav-user-account .user-icon',function () {
+	// 账号登录 or 已绑定的微信账号
+	if (userId) {
+		window.location = 'personal-homepage.html'
+	}
+	// 未绑定的微信账号
+	else if(wechatInfo && !wechatInfo.userInfo){
+		window.location = 'person-setting.html'
+	}
+})
 
+// 用户下拉选单跳转
 $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function () {
         Loginout();
 })
 
-
 $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
 //      window.location.href = "personalCenter.html?personType=1";
-			  // window.open("personal-homepage.html");
+			  window.location = "personal-homepage.html";
 })
 
 $('.block-comet-main-wrap').on('click','.nav-user-account .inform-btn',function(){
