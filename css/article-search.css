@@ -204,3 +204,11 @@
     transition: all 0.5s;
     transform: scale(1.2);
 }
+
+/* 加载动画复写 */
+.loading{
+    width: 200px;
+    height: 40px;
+    /* margin: 0 auto; */
+    margin: 0px 0px 150px -10px;
+}

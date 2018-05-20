@@ -337,3 +337,12 @@
     cursor: pointer;
     color: rgb(79, 163, 237);
 }
+
+
+/* 加载动画复写 */
+.loading{
+    width: 200px;
+    height: 40px;
+    /* margin: 0 auto; */
+    margin: 10px 0px 150px -10px;
+}

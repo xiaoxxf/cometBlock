@@ -624,11 +624,11 @@ tbody a{
 	height: 300px;
 }
 .loading{
-        width: 200px;
-        height: 40px;
-        margin: 0 auto;
-        margin: 50px 0px 150px 20px;
-    }
+    width: 200px;
+    height: 40px;
+    margin: 0 auto;
+    margin: 30px 0px 150px 20px;
+}
 .loading span{
     display: block;
     width: 20px;

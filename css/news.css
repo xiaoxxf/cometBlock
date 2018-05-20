@@ -485,9 +485,7 @@ div {
 .navbar-inverse .navbar-nav>li>a{
 	font-size: 18px;
 }
-nav{
-	height: 50px;
-}
+
 /*顶部搜索框样式*/
 .nav_search {
 	position: relative;
