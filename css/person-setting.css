@@ -87,8 +87,8 @@ body{
     border-color: #ccc;
 }
 #ownname{
-	text-indent: 10px;
-	height: 30px;
+	/* text-indent: 10px; */
+	/* height: 30px; */
 }
 
 
@@ -346,3 +346,7 @@ body{
      background-color: white;
  }
 
+/* 昵称显示不了的问题（暂时解决) */
+ input{
+	 line-height: normal;
+ }
