@@ -103,7 +103,6 @@ $('.submit_comment').on('click',function(){
 
   var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'');
   var text_title = $('input[name="head"]')[0].value;
-  debugger
   if (!text_title || !text_content) {
     // $('#identifier').modal()
     layer.msg('请保证标题、内容均填写完整');
