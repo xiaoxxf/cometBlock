@@ -443,7 +443,7 @@
 					© 本文版权归作者所有，任何形式转载请联系作者。
 				</div>
 				<div class="option">
-					<%if(userinfo && list.realName == userinfo.realName){%>
+					<%if(userId && list.creator == userId){%>
 						<% if (list.type == 2) {%>
 							<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
 						<%} else if(list.type == 4) {%>

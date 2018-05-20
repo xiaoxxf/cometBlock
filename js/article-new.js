@@ -94,15 +94,23 @@ $('.w-e-text').css('font-size','18px')
 
 // 提交
 $('.submit_comment').on('click',function(){
-
   if (ui.submiting) {
     return false
   }
 
-  ui.submiting = true
-  // var text_content = encodeURI(editor.txt.html())
-  // 过滤js标签
-  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'')
+  ui.submiting = true;
+  $('.submit_comment').text('发布中...')
+
+  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'');
+  var text_title = $('input[name="head"]')[0].value;
+  debugger
+  if (!text_title || !text_content) {
+    // $('#identifier').modal()
+    layer.msg('请保证标题、内容均填写完整');
+    $('.submit_comment').text('发布');
+    ui.submiting = false;
+    return
+  }
 
   var data = {
     textTitle: $('input[name="head"]')[0].value,
@@ -110,25 +118,21 @@ $('.submit_comment').on('click',function(){
     type: 4,
     userId: userId, //userId
   }
-
-  if (data.textTitle.length == 0 || editor.txt.text().length == 0) {
-    // $('#identifier').modal()
-    layer.msg('请保证标题、内容均填写完整')
-    ui.submiting = false
-    return false
-  }
-
-  function callback(result){
-    layer.msg('提交成功', {
-      time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-      end:function(){
-        window.location.href='article-finish.html'
-      }
-    });
-    ui.submiting = false
-  }
   var uri = 'blockchain/addReview';
-  doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
+  doPostJavaApi(uri, JSON.stringify(data), function(res){
+    if (res.code == 0) {
+      layer.msg('提交成功', {
+        time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+        end:function(){
+          window.location.href='article-finish.html'
+        }
+      });
+    }else{
+      $('.submit_comment').text('发布');
+      layer.msg('提交失败，请重试')
+    }
+    ui.submiting = false
+  }, 'json')
 })
 
 
