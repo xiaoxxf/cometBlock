@@ -1,9 +1,9 @@
 body{
 	background-color: white
 }
-.nav_shadow{
+/* .nav_shadow{
 	box-shadow: 0 0 10px rgb(117, 113, 113);
-}
+} */
 .row {
 	/*padding-top: 30px;*/
 }
@@ -13,7 +13,7 @@ body{
 	overflow: auto;
 }
 
-@media  (max-width: 900px) {
+@media  (max-width: 980px) {
 	.aside{
 		position: relative;
 	}
@@ -353,6 +353,10 @@ tbody {
     text-align: center;
     color: white !important;
 }
+.btn_up_press{
+	top: 15px;
+}
+
 .phone_code_tip{
 	width: 630px;
 	height:30px !important;
@@ -493,4 +497,3 @@ textarea.form-control{
     border-radius: 4px !important;
     vertical-align: middle;
    }
-  

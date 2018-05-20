@@ -18,6 +18,7 @@
     <link type="favicon" rel="shortcut icon" href="favicon.ico" />
     <link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
     <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/load.css" />
     <link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
     <!-- 导航栏 -->
 </head>
@@ -83,7 +84,7 @@
                         </div>
                     </div>
                     <textarea  name="comment"  class="short-comment" placeholder=" 添加评论" rows="4" cols="64" maxlength="300"></textarea>
-                    <a href="long-comment.html" class="write-long-discuss pull-left">
+                    <a class="write-long-discuss pull-left">
                         <span><img src="img/write-long.png" width="20px" height="20px" alt=""></span>
                         <span class="desc">写长文评测</span>
                     </a>
@@ -224,7 +225,7 @@
             <div class="item">
                 <span class="desc-title">白皮书</span>:
                 <%if(list.whitePaper.length ==0 ){%>
-                  <span class="desc-title">暂无白皮书</span>
+                  <span class="desc-detail">暂无白皮书</span>
                 <%}else{%>
                 <a target="_blank" href="<%:=list.whitePaper%>" class="desc-detail">点击查看</a>
                 <%}%>
@@ -232,11 +233,12 @@
             </div>
         </div>
 </script>
+<!-- 短评列表 -->
 <script type="text/html" id="short-comment-temp">
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
         <span class="comment-info">
-        <a href="javascript:;" class=""><%:=list[i].realName%></a>
+        <a href="personal-homepage.html?userId=<%=list[i].creator %>" class=""><%:=list[i].realName%></a>
         <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
         <span class="comment-time " title="2017-12-03 09:47:30">
         <%:=list[i].createTime%>
@@ -249,6 +251,10 @@
         </p>
         </div>
         <div class="col-md-2 col-xs-12 click-awsome-wrap text-right xs-position-relative">
+        <%if(list[i].creator == userId ){%>
+          <a data-reviewid="<%:=list[i].reviewId%>" data-score="<%:=list[i].score%>" data-content="<%:=list[i].textTitle %>" class="edit_short_comment" onclick="edit_short_comment(this)">编辑 </a>
+          <a data-reviewid="<%:=list[i].reviewId%>" class="del_short_comment" onclick="delete_short_comment(this)">删除 </a>
+        <%}%>
         <span class="click-awsome" data-reviewid="<%:=list[i].reviewId%>"><i class="icon-dz"></i><i class="icon-dzon"></i></span>
         <span class="num"><%:=list[i].likes%></span>
         </div>
@@ -256,14 +262,34 @@
         </div>
     <%}%>
 </script>
+<!-- 修改短评弹窗 -->
+<script id="add_score" type="text/html">
+  <div class="coin-score">
+    请给项目重新打分
+    <span class="my-rating" style="font-size:10px"></span>
+    <span class="live-rating" style="display:none"></span>
+  </div>
+  <div>
+    <textarea class="edit-short-comment" placeholder=" 添加评论" rows="4" cols="64" maxlength="300"></textarea>
+  </div>
+</script>
+
+<!-- 长评列表 -->
 <script type="text/html" id="long-comment-temp">
     <%for(var i = 0; i < list.length; i++) {%>
     <div class="comment-item">
         <span class="comment-info">
-        <a href="comment.html?reviewId=<%:=list[i].reviewId%>" class=""><%:=list[i].realName%></a>
-        <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
-        <span class="comment-time " title="2017-12-03 09:47:30">
-        <%:=list[i].createTime%>
+        <a href="personal-homepage.html?userId=<%=list[i].creator %>">
+        <%if(list[i].userPic == null ){%>
+          <img src="img/normal-user.png" class="article-creator-pic"/>
+        <%} else {%>
+          <img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+        <% } %>
+        </a>
+        <a href="personal-homepage.html?userId=<%=list[i].creator %>" class=""><%:=list[i].realName%> </a>
+        <span class="allstar<%:=list[i].score*5%>" title="推荐"></span>
+        <span class="comment-time ">
+          <%:=list[i].createTime %>
         </span>
         </span>
         <div class="long-comment-article-title">
@@ -324,29 +350,29 @@
 							</ul>
 						</div>
 
-						<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
-						<span class="loader2 loader loaderadd" id="load">
-										<div></div>
-								</span>
+            <input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+      				 <span class="ouro">
+      						<span class="left"><span class="anim"></span></span>
+      						<span class="right"><span class="anim"></span></span>
+      				 </span>
+      			</input>
 
 						<div class="more-sign">
 							<h6>社交帐号登录</h6>
 							<ul>
-								<li>
-									<img src="img/wechat.png" width="40px">
-								</li>
-								<li>
-									<a href="">其它</a>
+                <li class="wechat-login">
+									<img src="img/wechat.png" class="wechat_logo"  />
 								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
-			</script>
+</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/jquery.star-rating-svg.js"></script>
 <script src="js/template.js"></script>
+<script src="js/jquery.star-rating-svg.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/common.js"></script>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/loading.css">
+    <!-- 登录load -->
+    <link rel="stylesheet" href="css/load.css" />
+    <link rel="stylesheet" href="css/login.css">
+	  <link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+    <link rel="stylesheet" href="css/topic-show.css">
+
+</head>
+<body lang="zh-CN" class="reader-black-font">
+	<div class="comet-main block-comet-main-wrap">
+	    <div class="navbar-fixed-container navbar-fixed-container-hook">
+	    </div>
+	    <div class="mian-container">
+	       <div class="container">
+
+               <div class="row">
+	               <div class="col-xs-12 col-md-12 col-sm-12 show_subject">
+	                 	<div class="col-md-8 col-xs-12 col-sm-12">
+	                 		<div class="topic">
+                        <!-- 专题名 -->
+		                 		<div class="topic_info_left">
+		                 			<img src="img/huixing.png" class="topic_icon" />
+		                 			<div class="topic_title">
+		                 				<p class="topic_name"></p>
+		                 				<p class="topic_article_count"></p>
+		                 			</div>
+		                 		</div>
+		                 		<div class="topic_info_right">
+		                 			<a class="collect_button" >收录</a>
+                          <a class="send_to_topic_alert_button" >投稿</a>
+		                 			<!-- <a href=""><span class=""></span>关注</a> -->
+		                 		</div>
+	                 		</div>
+                      <!-- 专题文章 -->
+	                 		<div class="topic topic_border">
+	                 			<div class="topic_include">
+                          <span class="recent_collect">最新收录</span>
+
+	                 			</div>
+                        <div class="topic_article_list">
+
+                        </div>
+                        <div class="read-more">阅读更多</div>
+	                 		</div>
+	                 	</div>
+	                 	<!--专题描述、管理员、操作-->
+	                 	<div class="col-md-4 col-xs-12 col-sm-12 topic_detail">
+
+	                 	</div>
+	               </div>
+           		</div>
+		    </div>
+	    </div>
+	</div>
+
+<!--登录弹框-->
+<script type="text/html" id="template-reply">
+  <div class="main report-login">
+
+    <h4 class="title">
+      <div class="normal-title">
+        <a class="active" href="">登录</a>
+        <b>·</b>
+        <a id="js-sign-up-btn" class="" href="register.html">注册</a>
+      </div>
+    </h4>
+    <div class="js-sign-in-container">
+
+      <div class="input-prepend  restyle ">
+        <input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="input-prepend border_radiusB">
+        <input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+        <i class="fa fa-unlock-alt"></i>
+
+      </div>
+      <input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+      <div class="remember-btn">
+        <input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+      </div>
+      <div class="forget-btn">
+        <a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="">用手机号重置密码</a>
+          </li>
+
+        </ul>
+      </div>
+
+
+      <input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+				 <span class="ouro">
+						<span class="left"><span class="anim"></span></span>
+						<span class="right"><span class="anim"></span></span>
+				 </span>
+			</input>
+
+
+      <div class="more-sign">
+        <h6>社交帐号登录</h6>
+        <ul>
+          <li class="wechat-login">
+            <img src="img/wechat.png" class="wechat_logo"  />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/html" id="topic_detail_tpl">
+  <%for(var i = 0; i < list.length; i++) {%>
+    <!--专题公告-->
+    <div class="topic_info">
+      <p class="topic_description_span">专题描述</p>
+      <p class="topic_des"><%:=list[i].description %></p>
+    </div>
+
+    <!--管理员-->
+    <div class="topic_manage">
+      <p>管理员</p>
+      <p class="manage_info">
+        <!-- <img src="img/hot_icon.jpg" /> -->
+        <a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="creator_name"><%:=list[i].realName %></a>
+        <span class="creator_icon">创建者</span>
+      </p>
+    </div>
+    <!--编辑删除专题，创建者打开时才显示-->
+    <%if( list[i].creator == $.cookie('userid') ){%>
+      <div class="topic_option">
+        <a class="edit_topic" href="topic-edit.html?subjectId=<%:=list[i].id %>">编辑专题</a>
+        <a class="del_topic" href="#" data-subjectid='<%:=list[i].id %>' onclick="deleteTopic(this)">删除专题</a>
+      </div>
+    <%}%>
+
+  <%}%>
+
+</script>
+
+<script type="text/html" id="topic_article_tpl">
+  <%for(var i = 0; i < list.length; i++) {%>
+
+		<div class="topic_article_zone">
+				<div class="article_box">
+          <a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+          <%if(list[i].userPic == null ){%>
+            <img src="img/normal-user.png" class="article-creator-pic"/>
+          <%} else {%>
+            <img src="<%=list[i].userPic %>" class="article-creator-pic"/>
+          <% } %>
+          </a>
+          <a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
+					<div class="article_info">
+            <% if(list[i].type == 4) {%>
+              <a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
+            <%}else if(list[i].type == 2){%>
+              <a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
+            <%}%>
+						<p class="article_content">
+							<%:=list[i].textContent %>
+						</p>
+					</div>
+				</div>
+
+				<div class="meta">
+					<a class="article-time"> <%=list[i].createTime.split(' ')[0] %> </a>
+          <% if(list[i].type == 4) {%>
+            <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="review-count"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
+          <%}else if(list[i].type == 2){%>
+            <a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="review-count"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
+          <%}%>
+					<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+				</div>
+		</div>
+	<%}%>
+</script>
+
+<!--收录彈窗-->
+<script type="text/html" id="templay-search-article">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">
+  			<span class="search_article_title">搜索文章</span>
+  			<div class="search_include">
+				<input type="search" name="search-self" class="search_include_items" placeholder="搜索文章" onkeyup="searchArticle()">
+				<a class="search-include-icon"><i class="fa fa-search"></i></a>
+			</div>
+			</h4>
+
+		</div>
+		<div class="modal-body">
+			<ul class="list_item">
+			</ul>
+
+      <span class="load_more_article_result" onclick="load_more_search_article_result()" >查看更多</span>
+		</div>
+	</div>
+</script>
+
+<!-- 搜索文章结果 -->
+<script type="text/html" id="search_article_result_tpl">
+  <%if(list.length == 0 ){%>
+    <span class="no_article_search_result">没有结果</span>
+  <%}else{%>
+    <%for(var i = 0; i < list.length; i++) {%>
+      <li class="include_row">
+        <%if(list[i].type == 2){%>
+          <a href="" class="avatar-include">
+            <img src="<%:=list[i].projectLogo %>" class="include_title_logo">
+          </a>
+        <%} else {%>
+          <a href="" class="avatar-include">
+            <img src="img/huixing.png" class="include_title_logo">
+          </a>
+        <%}%>
+
+        <div class="include-info">
+          <% if(list[i].type == 4) {%>
+            <a href="article-show.html?reviewId=<%=list[i].reviewId %>#toComments" class="recomment-name"><%:=list[i].textTitle %></a>
+          <%}else if(list[i].type == 2){%>
+            <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" class="recomment-name"><%:=list[i].textTitle %></a>
+          <%}%>
+          <div class="recomment-meta">
+            <a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+            <%:=list[i].realName %>
+            </a>
+          </div>
+          <div class="meta"></div>
+        </div>
+        <%if( list[i].state ){%>
+          <span class="action-include-btn">已收录</span>
+        <%} else {%>
+          <span class="action-include-btn" data-reviewid="<%:=list[i].reviewId %>" onclick="collectArticle(this)">收录</span>
+        <% } %>
+      </li>
+    <%}%>
+  <%}%>
+</script>
+
+<!-- 投稿弹窗 -->
+<script type="text/html" id="templay-send-topic">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">
+  			<span class="search_article_title">我的文章</span>
+  			<!-- <div class="search_include">
+				<input type="search" name="search-self" class="search_include_items" placeholder="搜索文章" onkeyup="searchArticle()">
+				<a class="search-include-icon"><i class="fa fa-search"></i></a>
+  			</div> -->
+			</h4>
+
+		</div>
+		<div class="modal-body">
+			<ul class="my-article-list">
+
+			</ul>
+      <span class="load_more_my_article_result" onclick="load_more_my_article_result()" ></span>
+		</div>
+	</div>
+</script>
+
+<script type="text/html" id='my_article_list'>
+  <%for(var i = 0; i < list.length; i++) {%>
+    <li class="my_article_list">
+      <span  class="my_article_title" data-reviewId='<%:=list[i].reviewId %>' onclick="jumpToArticleDetail(this)"><%:=list[i].textTitle %></span>
+      <!-- <span >投稿</span> -->
+      <span class="send_to_article_button" data-reviewid="<%:=list[i].reviewId %>" onclick="contribute_to_topic(this)">投稿</span>
+    </li>
+  <%}%>
+</script>
+
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/template.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/plugins/layer/layer.js"></script>
+<script src="js/nice-validator/jquery.validator.js?local=zh-CN"></script>
+<script src="js/login.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/common.js"></script>
+<script src="js/topic-show.js"></script>
+
+</body>
+</html>

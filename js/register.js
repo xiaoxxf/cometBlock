@@ -1,124 +1,120 @@
-//输入框校验
-function RegisterFromValid() {
+var user_name_flag = false;
+var phone_flag = false;
+var password_flag = false;
+//校验昵称
+$("#realName").blur(function() {
 	var realName = $("#realName").val();
-	var tel = $("#session_phone").val();
-	var userPwd = $("#session_password").val();
+
 	if(realName == "") {
 		layer.tips('用戶名不能为空', '#realName', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
+		user_name_flag = false;
 		return false;
+	}else{
+		user_name_flag = true;
 	}
-	if(tel == "") {
-		layer.tips('手机号不能为空', '#session_phone', {
+
+	// if(RegistergainCodeValid()){
+  //       gainCode()
+	// }
+});
+
+
+// 校验手机号
+$("#session_phone").blur(function() {
+	var tel = $("#session_phone").val();
+
+	if(tel == "" || !(/^1[0-9]{10}$/.test(tel))) {
+		layer.tips('请填写正确的手机号', '#session_phone', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
+		phone_flag = false;
 		return false;
+	}else{
+		phone_flag = true;
 	}
-	if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
-		layer.tips('输入手机错误', '#session_phone', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		return false;
-	}
+
+});
+
+// 校验密码
+$('#session_password').blur(function(){
+	var userPwd = $("#session_password").val();
 	if(userPwd.length = "") {
 		layer.tips('密码不能为空', '#session_password', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
+		password_flag = false
 		return false;
 	}
-	if(userPwd.length < 6) {
-		layer.tips('密码错误', '#session_password', {
+	else if(userPwd.length < 6) {
+		layer.tips('密码不得小于六位数', '#session_password', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
+		password_flag = false
 		return false;
 	}
-
-	return true;
-
-}
-
-//昵称手机号失去焦点事件
-$("#realName").blur(function() {
-	if(RegisterFromValid()){
-        gainCode()
+	else{
+		password_flag = true;
 	}
+})
 
-});
 
-$("#session_phone").blur(function() {
-    if(RegisterFromValid()){
-        gainCode()
-    }
-});
-
-//验证昵称手机号
-function gainCode() {
-	var uri = 'news/virty?'
-	if($("#session_phone").val()) { //校验手机号
-		uri = uri + 'userName=' + $("#session_phone").val()
-	} else if($("#realName").val()) { //校验昵称
-		uri = uri + 'realName=' + $("#realName").val()
-	} else {
-		layer.msg("请输入手机号/昵称");
-	}
-	doJavaGet(uri, function(res) {
-		if(res != null && res.code == 0) {
-		} else {
-				//layer.msg(res.msg);
-			}
-		
-
-	}, "json");
-
-}
-
-//校验对象是否存在
-function sendCode() {
-	var uri = 'news/virty?'
-	if(!$("#session_phone").val()) { //校验手机号
-		layer.msg("请输入手机号");
+var flag_send_code=false; //防止发送验证码重复点击
+$('#send_code').click(function() {
+	if(flag_send_code){
 		return
-	} else {
-		uri = uri + 'userName=' + $("#session_phone").val()
 	}
+	flag_send_code=true;
+	$("#send_code").css("text-decoration", "none");
+	$("#send_code").css("color", "white");
+	sendCode()
+})
+
+//验证手机号，然后发送验证码
+function sendCode() {
+	if (!phone_flag) {
+		return
+	}
+	// 验证手机号是否存在
+	var uri = 'news/virty?' + 'userName=' + $("#session_phone").val();
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
+			// 不存在则发送验证注册
 			getCode()
-		} else {
-
-			if($("#session_phone").val()) { //校验手机号
-
-				layer.msg("手机号已存在");
-
-			}
-
+		}
+		else if(res.code == -1){ //校验手机号
+			layer.tips('手机号已被注册', '#session_phone', {
+				tips: [2, '#3595CC'],
+				time: 2000
+			});
+			flag_send_code = false;
 		}
 
 	}, "json");
 
 }
-
 //发送验证码
 function getCode() {
 	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
 	doJavaGet(uri, function(res) {
+
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
 			//验证码倒计时
 			CountDown()
-
 		} else {
 			layer.msg(res.msg);
 		}
+
 	}, "json");
 
 }
+
 var count = 60;
 var countdown;
 
@@ -131,61 +127,85 @@ function dingshiqi() {
 
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
-		count = 60
+		flag_send_code=false
 	}
 
 }
 
 function CountDown() {
-	
+	count = 60;
 	countdown = setInterval(dingshiqi, 1000);
-
 }
-//点击发送验证码
-$('#send_code').click(function() {
-	$("#send_code").css("text-decoration", "none");
-	$("#send_code").css("color", "white");
-
-	sendCode()
-
-})
 
 
+var flag_register_submiting = false;
+//注册
 $("#sign-in-form-submit-btn1").click(function() {
-	if(RegisterFromValid()) {
-		var param = {
-			userName: $("#session_phone").val(),
-			realName: $("#realName").val(),
-			userPwd: $("#session_password").val(),
-			tel: $("#session_phone").val(),
-			phoneCode: $("#phone_code").val()
-			//userType: 3,
-		}
-		var uri = 'news/registerUser'
-		param = JSON.stringify(param)
-
-		doPostJavaApi(uri, param, function(res) {
-
-			if(res != null && res.code == 0) {
-
-				$(".ouro").attr({
-					style: "display:inline-block"
-				});
-				setTimeout(function() { //两秒后跳转  
-					login()
-					//location.href = "login.html";
-				}, 1500);
-
-			} else {
-
-				layer.msg(res.msg);
-
-			}
-
-		}, "json");
+	// 验证注册信息
+	if (!validRegisterInfo()) {
+		return
 	}
+	// loading效果
+	$(".ouro").attr({
+		style: "display:inline-block"
+	});
+	flag_register_submiting = true;
+	var param = {
+		userName: $("#session_phone").val(),
+		realName: $("#realName").val(),
+		userPwd: $("#session_password").val(),
+		tel: $("#session_phone").val(),
+		phoneCode: $("#phone_code").val()
+		//userType: 3,
+	}
+	var uri = 'news/registerUser'
+	param = JSON.stringify(param)
+
+	doPostJavaApi(uri, param, function(res) {
+
+		if(res != null && res.code == 0) {
+			setTimeout(function() { //两秒后跳转
+				login()
+				//location.href = "login.html";
+			}, 1500);
+
+		} else {
+			// 注册失败，去除loading效果
+			$(".ouro").attr({
+				style: "display:none"
+			});
+			layer.msg('注册失败,请检查你信息填写是否完整无误');
+		}
+		flag_register_submiting = false;
+	}, "json");
+
 
 });
+
+// 点击注册时判断信息
+function validRegisterInfo(){
+	if(flag_register_submiting || !password_flag || !user_name_flag || !phone_flag){
+		if (!user_name_flag) {
+			layer.tips('用戶名不能为空', '#realName', {
+				tips: [2, '#3595CC'],
+				time: 2000
+			});
+		}else if(!phone_flag){
+			layer.tips('请填写正确的手机号', '#session_phone', {
+				tips: [2, '#3595CC'],
+				time: 2000
+			});
+		}else if(!password_flag){
+			layer.tips('请填写正确的密码', '#session_password', {
+				tips: [2, '#3595CC'],
+				time: 2000
+			});
+		}
+		return false
+	}else{
+		return true
+	}
+}
 
 function login() {
 	if(loginFromValid()) {
@@ -216,17 +236,17 @@ function login() {
 				$.cookie('username', res.datas.realName, {
 					expires: expireDate
 				});
-				var localCurrentHref = window.localStorage.getItem('currentHref');
-				if(localCurrentHref.indexOf('login.html') > 0) {
-					window.location.href = "index.html";
-
-				} else {
-					window.location.href = "personalCenter.html";
+				var localCurrentHref = window.localStorage.getItem('currentJumpHref');
+				if(!localCurrentHref){
+						window.location.href = "index.html";
+				}else{
+						window.location.href = localCurrentHref;
 				}
-
 			} else {
 				layer.msg(res.msg);
 			}
+			// 账号登录时清除微信cookie信息
+			$.removeCookie("wechatInfo")
 		}, "json");
 
 	}
@@ -243,7 +263,7 @@ function loginFromValid() {
 		});
 		return false;
 	}
-	if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
+	if( !(/^1[0-9]{10}$/.test(tel))  ) {
 		layer.tips('输入手机错误', '#session_phone', {
 			tips: [2, '#3595CC'],
 			time: 2000
@@ -267,4 +287,3 @@ function loginFromValid() {
 	return true;
 
 }
-

@@ -1,46 +1,12 @@
-var userId = $.cookie('userid');//获取userid
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userId = $.cookie('userid');//获取userid
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var article_page = 1
+var article_page_search = 1;
+// var key_word = $('.search_bar').val()
+var key_word = getUrlParam('serach_word_by_navbar')
 
-var article_pgae = 1
-// 渲染评测
-$(function(){
-
-  article_pgae = 1
-  ui.noMoreData = false;
-  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
-  doJavaGet(uri, function(result){
-      $('.article-top-box').html("");
-      var content_length = null
-
-      for (var i = 0; i < result.datas.length; i++) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 300
-        }
-
-        if (result.datas[i].textContent.length > content_length) {
-          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-        }
-
-        // if (result.datas[i].textTitle.length > 30) {
-        //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-        // }
-
-      }
-
-      var tpl = document.getElementById('article_tpl').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.article-top-box').append(content)
-
-      var imgW = $(".hot_zone .article-detail .article-icon").width();
-      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
-
-  })
-
-})
+// 判断下拉加载，1 -> 加载全部， 2 -> 加载搜索内容
+var flag = null
 
 var ui = {
 	"noData": false,
@@ -49,49 +15,146 @@ var ui = {
 }
 
 
-// 评测加载更多
-function loadMoreArticle(){
-  article_pgae+=1
-  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=4&type=2&like=1'
+// 从全局搜索进来，执行搜索
+$(function(){
 
-  $(".loader1").css('display','flex');
+	if ( getUrlParam('serach_word_by_navbar')) {
+		key_word = getUrlParam('serach_word_by_navbar');
+		$('.search_bar').val(key_word)
+	}
 
-  doJavaGet(uri,function(result){
-		if (result.datas.length == 0) {
-      ui.noMoreData = true;
-			$(".loader1").css('display','none');
-			$(".no-more-hook").fadeIn();
-		}else{
+	if (key_word) {
+		$('.search_bar').val(key_word);
+		searchArticle();
+	}
+})
 
-      for (var i = 0; i < result.datas.length; i++) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 300
-        }
-
-        if (result.datas[i].textContent.length > content_length) {
-          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-        }
-
-      }
-
-
-      var tpl = document.getElementById('article_tpl').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.article-top-box').append(content)
-
-      var imgW = $(".hot_zone .article-detail .article-icon").width();
-      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
-
-      $(".loader1").css('display','none');
+// 搜索文章
+$('.search-click-hook').on('click',function(){
+	key_word = $('.search_bar').val();
+	if (key_word != '') {
+		searchArticle();
+	}
+})
+// 键盘enter搜索
+$('.search_bar').keyup(function(){
+	if (event.keyCode == 13) {
+		key_word = $('.search_bar').val();
+		if (key_word != '') {
+			searchArticle();
 		}
-		ui.loading = false;
-	}, "json")
+	}
+})
+
+// 搜索文章结果
+function searchArticle(){
+  flag = 2;
+	article_page_search = 1;
+	$(".waiting-data").fadeIn();
+	$(".no-more-hook").css('display','none')
+
+	ui.loading = true;
+  ui.noMoreData = false;
+	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
+						+ article_page_search + '&pageSize=12'
+
+  doJavaGet(uri, function(result){
+			$('.article-top-box').html("");
+
+      var content_length = null
+
+			if (result.datas.length != 0) {
+
+				for (var i = 0; i < result.datas.length; i++) {
+					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+					if ($(window).width() < 767) {
+						content_length = 55
+					}else{
+						content_length = 300
+					}
+
+					if (result.datas[i].textContent.length > content_length) {
+						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+					}
+
+					// if (result.datas[i].textTitle.length > 30) {
+					//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+					// }
+
+				}
+
+				var tpl = document.getElementById('article_tpl').innerHTML;
+				var content = template(tpl, {list: result.datas});
+				$('.article-top-box').append(content)
+
+				var imgW = $(".hot_zone .article-detail .article-icon").width();
+				$(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+
+			}else{
+				ui.noMoreData = true;
+				$(".no-more-hook").fadeIn();
+			}
+			$(".waiting-data").hide();
+			ui.loading = false
+  })
 
 }
+
+
+// 加载更多（搜索）
+function loadMoreSearchArticle(){
+	flag = 2;
+	ui.loading = true
+	$(".loader1").css('display','flex');
+
+	var uri = 'blockchain/quaryArticle?articleKeyWord=' + key_word + '&currentPage='
+						+ article_page_search + '&pageSize=12'
+	doJavaGet(uri, function(result){
+
+			var content_length = null
+
+			if (result.datas.length != 0) {
+
+				for (var i = 0; i < result.datas.length; i++) {
+					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+					if ($(window).width() < 767) {
+						content_length = 55
+					}else{
+						content_length = 300
+					}
+
+					if (result.datas[i].textContent.length > content_length) {
+						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+					}
+
+					// if (result.datas[i].textTitle.length > 30) {
+					//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+					// }
+
+				}
+
+				var tpl = document.getElementById('article_tpl').innerHTML;
+				var content = template(tpl, {list: result.datas});
+				$('.article-top-box').append(content)
+
+				var imgW = $(".hot_zone .article-detail .article-icon").width();
+				$(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+
+			}else{
+				ui.noMoreData = true;
+				$(".loader1").css('display','none');
+				$(".no-more-hook").fadeIn();
+			}
+			ui.loading = false;
+
+	})
+
+}
+
+
+// 滚动加载
 
 var resetTimer = null
 $(window).scroll(function(){
@@ -111,12 +174,125 @@ $(window).scroll(function(){
 		if ($(document).height() <= totalheight){
 				//当滚动条到底时,这里是触发内容
 				//异步请求数据,局部刷新dom
-				if (!ui.noMoreData && !ui.loading) {
+				if (!ui.noMoreData && !ui.loading && flag == 1) {
 					// debugger
+					article_page += 1;
 					ui.loading = true;
           loadMoreArticle();
+        }else if(!ui.noMoreData && !ui.loading && flag == 2){
+          // debugger
+					article_page_search += 1;
+					ui.loading = true;
+          loadMoreSearchArticle();
         }
 
 		}
 	},200)
 })
+
+
+
+
+// // 渲染评测
+// function getArticle(){
+//   flag = 1;
+// 	article_page = 1;
+// 	$(".waiting-data").fadeIn();
+// 	$(".no-more-hook").css('display','none')
+//
+// 	ui.loading = true;
+//   ui.noMoreData = false;
+//   var uri = 'blockchain/quaryReview?currentPage=' + article_page + '&pageSize=4&type=2&like=1'
+//   doJavaGet(uri, function(result){
+//
+// 			$('.article-top-box').html("");
+//
+//       var content_length = null
+//
+// 			if (result.datas.length != 0) {
+//
+// 				for (var i = 0; i < result.datas.length; i++) {
+// 					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+//
+// 					if ($(window).width() < 767) {
+// 						content_length = 55
+// 					}else{
+// 						content_length = 300
+// 					}
+//
+// 					if (result.datas[i].textContent.length > content_length) {
+// 						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+// 					}
+//
+// 					// if (result.datas[i].textTitle.length > 30) {
+// 					//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+// 					// }
+//
+// 				}
+//
+// 				var tpl = document.getElementById('article_tpl').innerHTML;
+// 				var content = template(tpl, {list: result.datas});
+// 				$('.article-top-box').append(content)
+//
+// 				var imgW = $(".hot_zone .article-detail .article-icon").width();
+// 				$(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+//
+// 			}else{
+// 				ui.noMoreData = true;
+// 				$(".no-more-hook").fadeIn();
+// 			}
+// 			$(".waiting-data").hide();
+// 			ui.loading = false
+//   })
+//
+// }
+//
+// // 加载更多（全部）
+// function loadMoreArticle(){
+// 	flag = 1;
+// 	ui.loading = true
+// 	$(".loader1").css('display','flex');
+//
+// 	var uri = 'blockchain/quaryReview?currentPage=' + article_page + '&pageSize=4&type=2&like=1'
+// 	doJavaGet(uri, function(result){
+//
+// 			var content_length = null
+//
+// 			if (result.datas.length != 0) {
+//
+// 				for (var i = 0; i < result.datas.length; i++) {
+// 					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+//
+// 					if ($(window).width() < 767) {
+// 						content_length = 55
+// 					}else{
+// 						content_length = 300
+// 					}
+//
+// 					if (result.datas[i].textContent.length > content_length) {
+// 						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+// 					}
+//
+// 					// if (result.datas[i].textTitle.length > 30) {
+// 					//   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
+// 					// }
+//
+// 				}
+//
+// 				var tpl = document.getElementById('article_tpl').innerHTML;
+// 				var content = template(tpl, {list: result.datas});
+// 				$('.article-top-box').append(content)
+//
+// 				var imgW = $(".hot_zone .article-detail .article-icon").width();
+// 				$(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
+//
+// 			}else{
+// 				ui.noMoreData = true;
+// 				$(".loader1").css('display','none');
+// 				$(".no-more-hook").fadeIn();
+// 			}
+// 			ui.loading = false;
+//
+// 	})
+//
+// }

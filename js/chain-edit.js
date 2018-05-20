@@ -1,5 +1,5 @@
-var userId = $.cookie('userid');//获取userid
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userId = $.cookie('userid');//获取userid
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var creator = null;
 var projectId = null;
 window.onload = function(){
@@ -15,6 +15,8 @@ function  ajaxGetChainDetail() {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
             console.log(chainInfoData)
+            $('title').html(res.datas.projectName + '项目编辑')
+
             // if (chainInfoData.creator == userId) {
             if (userinfo && (userinfo.level <= 2 || userinfo.id == chainInfoData.creator)) {
               creator = chainInfoData.creator // 保存creator，用于提交
@@ -77,6 +79,7 @@ function verbTeam(chainTeamList){
   										<input type="text" class="form-control member_position" name="member_position" value="" placeholder="职位" >\
   									</div>\
   								</div>'
+
   for (var i = 0; i < chainTeamList.length; i++) {
     $('.team').append(string);
   }
@@ -84,7 +87,6 @@ function verbTeam(chainTeamList){
   var member_pic_name = $('.member_pic_name')
   var name = $('.member_name')
   var position = $('.member_position')
-
   // 预览图片样式
   for (var i = 0; i < img.length; i++) {
     $(img[i]).css("width","110px")
@@ -152,13 +154,6 @@ function chainDetailJs(chainInfoData){
     minView : 2,
     todayBtn : true,
   })
-
-  // 增加发行价格
-  function add_issue_price()
-  {
-  	var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
-  	$('#add_issue_price').append(div);
-  }
 
   //网站跳转
   function jump_website(){
@@ -509,7 +504,8 @@ function chainDetailJs(chainInfoData){
         $('input[name="exchange_rate"]').each(function(i) {
       	   exchangeRate += $(this).val();
         });
-
+        // 过滤js和style标签
+        var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
         // 提交数据
         var data = {
           "projectLogo":          form1.projectLogoFile.value,
@@ -520,7 +516,7 @@ function chainDetailJs(chainInfoData){
           "currencyCirculation":  form1.currency_circulation.value,
           "fundraisingTime":      form1.fundraising_time.value,
           "companyWebsite":       form1.compay_website.value,
-          "projectContent":       editor.txt.html(),
+          "projectContent":       projectContent,
           "whitePaper":           form1.whitePaperFile.value,
           "exchangeRate":			    exchangeRate,
           "userId":               userId,
@@ -617,10 +613,19 @@ var ui = {
   'fileUpLoading': false
 }
 
+// 增加发行价格
+function add_issue_price()
+{
+  var div = '<div class="form-group row"><label class="col-xs-12 col-md-2 col-sm-2 control-label"></label><div class="col-xs-12 col-md-5 col-sm-5"><div class="input-group"><span class="input-group-addon"><img src="img/bitcoin.png"/ style="height: 20px;"></span><input type="text" name="issue_price" class="form-control"></div></div></div>'
+  $('#add_issue_price').append(div);
+}
 
 // 判断是否登录
 $(function(){
-if(userId == undefined){
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
     layer.open({
       closeBtn:0,
       title: '',
@@ -633,5 +638,5 @@ if(userId == undefined){
         window.location.href='register.html'
       }
     });
-}
+  }
 })

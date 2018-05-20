@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /**
- * 
+ *
  * @authors 谢志强 (594613537)
  * @date    2016-05-18 01:14:13
  * @version v1.0.0
@@ -43,9 +43,9 @@ html, body {
 	display: flex;
 	align-items: center;
     margin-top: -45px;
-    margin-left: 120px; 
+    margin-left: 120px;
 	-webkit-animation: loader2 1s 0.23s linear infinite;
-     
+
 }
 @-webkit-keyframes loader1 {
 	0% {
@@ -82,7 +82,7 @@ html, body {
 .loader1 div {
 	width: 15px;
 	height: 15px;
-	background: #fff;
+	background: #999;
 	border-radius: 50%;
 	float: left;
 	display: inline-block;
@@ -1585,7 +1585,7 @@ html, body {
 			transform-origin:center bottom;
 			-webkit-animation: loader38 linear 24s infinite;
 		}
-		
+
 		@-webkit-keyframes loader39-1{
 			0%{
 				-webkit-transform: translate(0px, 0px);

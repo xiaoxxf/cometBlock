@@ -1,4 +1,4 @@
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 
 $("#rating #stars img").on('mouseenter',function (e) {
     var self = $(e.currentTarget);
@@ -62,22 +62,26 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var area_height
 
     if($(window).width() <= 767)
- 	{
-	 	var area_width = '320px'
+ 	  {
+	 	  var area_width = '320px'
 	    var area_height = '500px'
- 	}else{
- 		var area_width = '520px'
+ 	  }else{
+ 		  var area_width = '520px'
 	    var area_height = '600px'
- 	}
+ 	  }
     var shortTxt = $(".short-comment").val();
+    // 判断是否登录
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
-        layer.msg('您还没有登录')
+        // layer.msg('您还没有登录')
         layer.open({
             type: 1,
             shade:0,
             title: 0,
             skin: 'layui-layer-report', //加上边框
-            area: [area_width, area_height], //宽高
+            area: [area_width,area_height ], //宽高
             content: $("#short-comment-commit-layer").html()
         });
         return;
@@ -121,7 +125,7 @@ var pageSize = 10;
 function  ajaxGetChainDetail() {
     var projectId = getUrlParam('projectId');
     var uri = 'blockchain/detail?projectId='+projectId ;
-    $(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
+    // $(".write-long-discuss").attr('href','long-comment.html?projectId='+projectId)
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             var chainInfoData = res.datas;
@@ -296,8 +300,12 @@ $(".short-comment-commit").on('click',function (e) {
 	     area_height = '600px'
  	}
 
+    // 判断是否登录
+    if(!wechatBindNotice()){
+    	return;
+    }
     if(userId == undefined){
-        layer.msg('您还没有登录')
+        // layer.msg('您还没有登录')
         layer.open({
             type: 1,
             shade:0,
@@ -329,6 +337,8 @@ $(".short-comment-commit").on('click',function (e) {
         });
         return;
     }
+    // 过滤js和style标签
+    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
     var data = {
         textTitle: shortTxt,
         projectId: projectId, //项目
@@ -411,6 +421,119 @@ function formatStarClass(data){
     return data;
 }
 
+// 删除短评
+function delete_short_comment(e){
+  var self =$(e),
+      passWord = userinfo.userPwd,
+      reviewId = self.data('reviewid');
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
+      // layer.msg('您还没有登录');
+      layer.open({
+          type: 1,
+          shade:0,
+          title: 0,
+          skin: 'layui-layer-report', //加上边框
+          area: ['550px', '680px'], //宽高
+          content: $("#template-reply").html()
+      });
+      return;
+  }
+  layer.confirm('确定删除您的评论么?',
+      {
+      icon: 3,
+      title:0,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      },
+      function(index){
+      var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
+      doJavaGet(uri, function(res) {
+          if(res != null && res.code == 0) {
+              // console.log(res.msg)
+              ajaxGetComments(true);
+              ajaxGetScoreInfo(true);
+          }
+      }, "json");
+      layer.close(index);
+  });
+}
+
+// 编辑短评
+function edit_short_comment(e){
+  var self =$(e),
+      content = self.data('content'),
+      score = self.data('score'),
+      passWord = userinfo.userPwd,
+      reviewId = self.data('reviewid');
+  layer.open({
+    title: '编辑短评',
+    content: $('#add_score').html(),
+    yes: function(index, layero){
+      var score = parseInt($(".live-rating")[0].innerHTML);
+      if(!score){
+          layer.tips('给这个项目打个分哦', '.my-rating', {
+              tips: [1, '#4fa3ed'],
+              time: 2000
+          });
+          return;
+      }
+      // 修改
+      var uri = 'blockchain/updataReview'
+      var data = {
+        textTitle: $('.edit-short-comment').val(),
+        reviewId: reviewId , //短评id
+        projectId: getUrlParam('projectId'),
+        score: parseInt($(".live-rating")[0].innerHTML), //评分
+        type: 1, //短评的type为2
+        userId: userId,
+        password: userinfo.userPwd,
+      }
+      data = JSON.stringify(data);
+      doPostJavaApi(uri,data,function(res){
+        if (res.code == 0) {
+          layer.msg('修改成功')
+          ajaxGetComments(true);
+          ajaxGetScoreInfo(true);
+          layer.close(index)
+        }else if(res.code == -1){
+          layer.msg('修改失败，请重试')
+        }
+      })
+      // doUpdateShortComment(reviewId);
+    }
+  });
+  $('.edit-short-comment').val(content);
+  createScore(score);
+}
+
+function createScore(original_score){
+  $(".my-rating").starRating({
+    strokeColor:'#ffc900',
+    ratedColor:'#ffc900',
+    activeColor:'#ffc900',
+    hoverColor:'#ffc900',
+    strokeWidth: 10,
+    useGradient:false,
+    starSize: 25,
+    initialRating: original_score,
+    useFullStars:true,
+    disableAfterRate: false,
+    onHover: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentIndex);
+    },
+    onLeave: function(currentIndex, currentRating, $el){
+      $('.live-rating').text(currentRating);
+    }
+  });
+}
+
+function doUpdateShortComment(reviewId){
+
+}
 
 // 展开 & 折叠
 var full_content = ''
@@ -462,4 +585,36 @@ $(window).on('resize', function () {
      $(".img-wrap .team-img").css('height',teamImgW*120/150);
 	}, 100);
 
+})
+
+
+$('.write-long-discuss').on('click',function(){
+
+  // 判断是否登录
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
+    var area_width
+    var area_height
+    if($(window).width() <= 767)
+    {
+      area_width = '320px'
+        area_height = '500px'
+    }else{
+       area_width = '520px'
+         area_height = '600px'
+    }
+    // layer.msg('您还没有登录')
+    layer.open({
+        type: 1,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        area: [area_width,area_height ], //宽高
+        content: $("#short-comment-commit-layer").html()
+    });
+    return;
+  }
+  window.location.href = 'long-comment.html?projectId='+projectId
 })

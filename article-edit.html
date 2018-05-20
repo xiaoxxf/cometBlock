@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>写文章</title>
+		<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+		<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
+		<link rel="stylesheet" href="css/common.css">
+		<!-- <link rel="stylesheet" href="css/long-comment.css"> -->
+		<link rel="stylesheet" href="css/article-new.css">
+		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+
+	</head>
+	<style>
+		body{
+			background-color: white
+		}
+		.w-e-text{
+			overflow-y: auto!important;
+		}
+	</style>
+	<body lang="zh-CN" class="reader-black-font">
+		<!-- 顶部导航栏 -->
+		<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar" data-spy="affix" data-offset-top="1" style="z-index:100000">
+			<nav role="navigation" class="nav_shadow">
+				<div class="container collapsed">
+					<div class="nav navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Expand and Collapse Menu">
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+										</button>
+						<a class="navbar-brand navbar-brand-xs" href="index.html"><span itemprop="name">彗星</span></a>
+					</div>
+					<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
+						<ul class="nav navbar-nav navbar-left nav-menu">
+							<li>
+								<a href="#" class="chain">写长文</a>
+							</li>
+						</ul>
+						<!--发布-->
+						<ul class="nav navbar-nav navbar-right log_writting">
+							<li>
+								<button class="btn submit_comment" style="">发布</button>
+							</li>
+						</ul>
+						<!--预览-->
+						<ul class="nav navbar-nav navbar-right log_writting">
+							<li>
+								<button class="btn preview-article" style="">预览</button>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<div class="mian-container">
+			<!-- 评测 -->
+			<div class="mian-container">
+
+			<div class="container write-container" style="margin-top:60px">
+				<!-- 标题 -->
+				<div class="row">
+					<div class="container">
+						<input type="text" name="head" value="" placeholder="请输入标题" autofocus='true' class="input-head">
+					</div>
+				</div>
+				<div class="row" >
+					<!-- <div class="col-lg-10 col-md-10  col-xs-10 col-xs-offset-1 article-title-box">
+					</div> -->
+
+					<!-- <div class="col-lg-12 col-md-12 col-xs-10 col-xs-offset-1"> -->
+
+						<div id="editor" class="edit-comment" >
+								<p class="fake-placeholder">请输入正文</p>
+						</div>
+					<!-- </div> -->
+				</div>
+
+
+
+			</div>
+
+
+			<!-- 预览 -->
+			<div class="container preview-container" style="margin-top:100px;display:none;">
+				<div class="comment-container-wrap">
+					<h1 class="comment-detail-title"></h1>
+					<div class="comment-detail-main comment-detail-mian-hook">
+
+						<a class="avatar author-avatar pull-left" href="javascript:;">
+							<!-- TODO：显示个人头像 -->
+							<img width="48" height="48" src="img/normal-user.png">
+						</a>
+						<header class="main-hd">
+							<!-- TODO：跳转到个人中心页 -->
+							<!-- <a href=""> -->
+								<span class="realName"></span>
+							<!-- </a> -->
+						</header>
+						<div class="main-bd">
+							<!-- <div id="link-report"> -->
+								<div property="v:description" class="review-content clearfix" data-author="" data-url="" data-original="1">
+
+								</div>
+							<!-- </div> -->
+							<div class="copyright">
+								© 本文版权归作者所有，任何形式转载请联系作者。
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+			</div>
+	  </div>
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/plugins/layer/layer.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/wangEditor.js"></script>
+		<!-- <script src="js/jquery.star-rating-svg.js"></script> -->
+		<script src="js/article-edit.js"></script>
+
+	</body>
+
+</html>

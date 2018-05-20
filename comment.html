@@ -8,14 +8,19 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>长文详情</title>
-		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>  
+		<title></title>
+		<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+		<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 		<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/loading.css">
 
 		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
 		<link rel="stylesheet" href="js/page/jquery.pagination.css">
+		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
 		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/load.css" />
+		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 		<link rel="stylesheet" href="css/comment.css">
 		<link rel="stylesheet" href="css/login.css" />
 		<!-- 导航栏 -->
@@ -60,6 +65,23 @@
 								</div>
 							</div>
 						</div>
+
+
+						<div class="modal fade" id="qrCodeModal" tabindex="-1" role="dialog" style="z-index:12000" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="myModalLabel" style="text-align:center">
+										扫码分享
+									</h4>
+								</div>
+								<div class="modal-body">
+									<div id="qrcode" ></div>
+								</div>
+							</div><!-- /.modal-content -->
+						</div><!-- /.modal -->
+					</div>
+
 						<div id="comments" class="commment-list comment-list-hook">
 
 
@@ -69,6 +91,20 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- 弹出收录 -->
+					<div class="news_alert_include" style="display:none">
+						<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
+					</div>
+					<!-- 弹出投稿到项目 -->
+					<div class="news_alert_project" style="display:none" >
+						<span class="news_subject_btn"><i class="fa fa-navicon fa-2x"></i></span>
+					</div>
+					<!-- 弹出投稿到专题 -->
+					<div class="news_alert_subject" style="display:none;">
+						<span class="news_subject_btn"><i class="fa fa-file-text fa-2x"></i></span>
+					</div>
+
 				</div>
 			</div>
 			<!--<div id="footer" class="container">
@@ -80,6 +116,209 @@
 
 
 	</div>
+
+		<!--投稿到项目彈窗-->
+		<script type="text/html" id="templay-news-fixed">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">投稿到项目
+							<a class="new-subject-btn">
+								<a href="chain-new.html" target="_blank" >新建项目</a>
+							</a>
+							<div class="search">
+						<input type="search" name="search-self" class="search_project" onkeydown="keyEnterSearchProject()" placeholder="搜索项目">
+						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
+					</div>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<ul class="list_item">
+
+					</ul>
+					<span class="load_more_project_result" onclick="load_more_search_project_result()">查看更多</span>
+				</div>
+			</div>
+		</script>
+
+		<!-- 搜索投稿项目 -->
+		<script id='search_project_list' type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="return_result">没有结果</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+
+				<li class="">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<img src="<%=list[i].projectLogo %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
+						<div class="meta"></div>
+					</div>
+					<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)">投稿</span>
+				</li>
+				<% }%>
+			<%}%>
+		</script>
+
+		<!-- 投稿到项目时评分 -->
+		<script id="add_score" type="text/html">
+			<div class="coin-score">
+				请给项目打个分<br/>
+				<span class="my-rating" style="font-size:10px"></span>
+				<span class="live-rating" style="display:none"></span>
+			</div>
+		</script>
+
+		<!--投稿到专题彈窗-->
+		<script type="text/html" id="templay-news-subject">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">投稿到专题
+	      			<a class="new-subject-btn">
+	      				<a href="topic-new.html" target="_blank" >新建专题</a>
+	      			</a>
+	      			<div class="search">
+						<input type="search" name="search-self" class="search_subject" onkeyup="keyEnterSearchSubject(this)" placeholder="搜索专题">
+						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
+					</div>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<!-- 搜索结果 -->
+					<ul class="list_subject_item row">
+
+
+					</ul>
+					<span class="load_more_subject_result" onclick="load_more_search_subject_result()" >查看更多</span>
+					<!-- 我管理的专题 -->
+					<ul class="list_subject_include">
+						<p>我管理的专题</p>
+						<div class="my_topic_list row">
+
+						</div>
+					</ul>
+					<span class="load_more_my_subject_result" onclick="load_more_my_subject_result()" >查看更多</span>
+
+					<!-- 推荐专题 -->
+					<ul class="list_subject_recommend">
+						<p>推荐专题</p>
+						<div class="recommend_topic_result row">
+
+						</div>
+
+					</ul>
+
+				</div>
+
+			</div>
+		</script>
+
+		<!-- 推荐专题  -->
+		<script type="text/html" id="recommend_topic_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+					<%if(list[i].topic != '编辑推荐' ){%>
+						<li class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+								<img src="<%=list[i].topicPic %>" class="title_logo">
+							</a>
+							<div class="collection-info">
+								<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+								<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+								<div class="meta"></div>
+							</div>
+							<%if( list[i].state ){%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+							<%} else {%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+							<% } %>
+						</li>
+					<% }%>
+			<% }%>
+		</script>
+
+
+		<!-- 搜索投稿的专题 -->
+		<script id="search_subject_list" type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="no_topic_show">没有搜索到该专题，去<a href="topic-new.html" class="">创建</a>一个吧</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+					<li class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+							<img src="<%=list[i].topicPic %>" class="title_logo">
+						</a>
+						<div class="collection-info">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+							<div class="meta"></div>
+						</div>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已投稿</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
+					</li>
+				<% }%>
+			<%}%>
+		</script>
+
+		<!--收录文章到专题彈窗-->
+		<script type="text/html" id="templay-news-include">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">收录文章
+	      			<a class="new-subject-btn">
+	      				<a href="topic-new.html" target="_blank" >新建专题</a>
+	      			</a>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+
+					<ul class="list_subject_include">
+						<p>我管理的专题</p>
+						<div class="my_topic_list row">
+
+						</div>
+					</ul>
+					<span class="load_more_my_subject_result" onclick="load_more_my_subject_result()" >查看更多</span>
+
+				</div>
+			</div>
+		</script>
+
+
+		<!-- 我管理的专题 -->
+		<script type="text/html" id="my_topic_tpl">
+			<%if( list.length == 0 ){%>
+				<span class="no_topic_show">你还没有创建专题，去<a href="topic-new.html" class="">创建</a>一个吧</span>
+			<%} else {%>
+				<%for(var i = 0; i < list.length; i++) {%>
+					<li class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+							<img src="<%=list[i].topicPic %>" class="title_logo">
+						</a>
+						<div class="collection-info">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+							<div class="meta"></div>
+						</div>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
+					</li>
+				<% }%>
+			<% } %>
+		</script>
+
+
+
+		<!-- 举报 -->
 		<script type="text/html" id="template-report-popup">
 			<div id='report_value'>
 				<ul>
@@ -151,19 +390,19 @@
 						</ul>
 					</div>
 
-					<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录">
-					<span class="loader2 loader loaderadd" id="load">
-										<div></div>
-								</span>
+
+					<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+						 <span class="ouro">
+								<span class="left"><span class="anim"></span></span>
+								<span class="right"><span class="anim"></span></span>
+						 </span>
+					</input>
 
 					<div class="more-sign">
 						<h6>社交帐号登录</h6>
 						<ul>
-							<li>
-								<img src="img/wechat.png" width="40px">
-							</li>
-							<li>
-								<a href="">其它</a>
+							<li class="wechat-login">
+								<img src="img/wechat.png" class="wechat_logo"  />
 							</li>
 						</ul>
 					</div>
@@ -171,16 +410,23 @@
 			</div>
 		</script>
 		<script type="text/html" id="template-mian-detail">
-			<a class="avatar author-avatar pull-left" href="javascript:;">
+			<a href="personal-homepage.html?userId=<%=list.creator %>" class="avatar author-avatar pull-left" href="javascript:;">
 				<!-- TODO：显示个人头像 -->
-				<img width="48" height="48" src="img/normal-user.png">
+				<%if(list.userPic == null ){%>
+					<img src="img/normal-user.png" class="review-creator-pic"/>
+				<%} else {%>
+					<img src="<%=list.userPic %>" class="review-creator-pic"/>
+				<% } %>
+				<!-- <img width="48" height="48" src="img/normal-user.png"> -->
 			</a>
 			<header class="main-hd">
 				<!-- TODO：跳转到个人中心页 -->
-				<a href="">
+				<a href="personal-homepage.html?userId=<%=list.creator %>">
 					<span property="v:reviewer"><%:=list.realName%></span>
 				</a>
-				评论
+				<% if (list.type == 2) {%>
+					评论
+				<% } %>
 				<a class="project-name" href="chain-detail.html?projectId=<%:=list.parentId%>"></a>
 
 				<span class="allstar<%:=list.score*10%> main-title-rating" title=""></span>
@@ -194,12 +440,15 @@
 					</div>
 				</div>
 				<div class="copyright">
-					© 本文版权归作者&nbsp;
-					<a href="javascript:;"><%:=list.realName%></a> &nbsp;所有，任何形式转载请联系作者。
+					© 本文版权归作者所有，任何形式转载请联系作者。
 				</div>
 				<div class="option">
 					<%if(userinfo && list.realName == userinfo.realName){%>
-						<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<% if (list.type == 2) {%>
+							<a href="long-comment-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<%} else if(list.type == 4) {%>
+							<a href="article-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<%}%>
 						<a href="javacript:;" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
 					<%}%>
 				</div>
@@ -207,12 +456,13 @@
 			<div class="main-ft">
 				<div class="main-panel" name="9157555">
 					<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
-						<button class="btn useful_count 9157555 j a_show_login" data-useful="true">
+						<button class="btn btn-default btn-defaultuseful_count" data-useful="true">
 							有用 <span class="num"><%:=list.usefull%></span>
 						</button>
-						<button class="btn useless_count 9157555 j a_show_login" data-useful="false">
+						<button class="btn btn-default useless_count" data-useful="false">
 							没用 <span class="num"><%:=list.unusefull%></span>
 						</button>
+						<img src="img/wechat.png" class="wechat_share" onclick="showQrCode()"  />
 					</div>
 					<div class="main-like clearfix">
 						<button class="LikeButton pull-right" data-reviewId="<%:=list.reviewId%>" data-likes_nums="<%:=list.likes%>" title="标为喜欢?">喜欢<span class="LikeButton-count"></span></button>
@@ -224,13 +474,21 @@
 			<%for(var i = 0; i < list.length; i++) {%>
 			<div class="comment-item" data-parentId="<%:=list[i].parentId%>" data-reviewId="<%:=list[i].reviewId%>"  data-user_name="<%:=list[i].realName%>" data-user_url="javascript:;" data-target_id="9041269" data-target_kind="1012" data-ref_cid="9119669">
 				<div class="avatar left">
-					<!-- TODO：显示个人头像 -->
-					<a href="javascript:;"><img width="48" height="48" src="img/normal-user.png" alt="<%:=list[i].realName%>"></a>
+					<!--显示个人头像 -->
+					<a href="personal-homepage.html?userId=<%=list.creator %>">
+
+						<%if(list[i].userPic == null ){%>
+							<img src="img/normal-user.png" class="review-creator-pic"/>
+						<%} else {%>
+							<img src="<%=list[i].userPic %>" class="review-creator-pic"/>
+						<% } %>
+
+					</a>
 				</div>
 				<div class="content report-comment">
 					<div class="header">
 						<!-- TODO：跳转到个人中心页 -->
-						<a href=""><%:=list[i].realName%></a>
+						<a href="personal-homepage.html?userId=<%=list[i].creator %>"><%:=list[i].realName%></a>
 						<span><%:=list[i].createTime%></span>
 						<span class="num pull-right"><%:=i+1%>#</span>
 					</div>
@@ -287,10 +545,13 @@
 				</div>
 			</section>
 		</script>
+
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/template.js"></script>
+		<script src="js/qrcode.js"></script>
+		<script src="js/jquery.star-rating-svg.js"></script>
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src='js/page/jquery.pagination.min.js'></script>
 		<script src="js/common.js"></script>

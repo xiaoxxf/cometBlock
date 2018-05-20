@@ -1,7 +1,0 @@
-
-
-
-
-CKEDITOR.dom = {};
-
-// PACKAGER_RENAME( CKEDITOR.dom )

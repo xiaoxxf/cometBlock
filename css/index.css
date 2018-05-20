@@ -160,7 +160,7 @@ ul {
 	display: inline-block;
 	text-align: center;
 	color: black;
-	
+
 }
 
 .hot_news_list li a {
@@ -203,7 +203,7 @@ div {
 }
 .navbar-right .log_nav{
 	padding-top: 15px;
-	
+
 }
 .navbar-right .log_nav .reg_c{
 	border: solid 1px lightblue;
@@ -534,7 +534,6 @@ nav{
 }
 
 /*导航栏阴影*/
-.nav_shadow{
+/* .nav_shadow{
 	box-shadow: 0 0 15px rgba(0, 0, 0, .1);
-}
-
+} */

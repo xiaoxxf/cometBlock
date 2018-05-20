@@ -1,5 +1,13 @@
-var userId = $.cookie('userid');//获取userid
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userId = $.cookie('userid');//获取userid
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var localCookieWechatInfo = $.cookie('wechatInfo');
+// localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
+var ui = {
+	"noData": false,
+	"noMoreData": false,
+	"loading": false
+}
+
 $(function(){
   var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=15'
 
@@ -13,6 +21,30 @@ $(function(){
   }, "json")
 })
 
+// 判断登录状态才能创建项目
+$('.create_project_button').on('click', function(){
+	if(!wechatBindNotice()){
+		return;
+	}
+	if(userId == undefined){
+		layer.open({
+			closeBtn:0,
+			title: '',
+			content: '请先登录您的账号',
+			btn: ['登录', '注册'],
+			yes: function(){
+				window.location.href='login.html'
+			},
+			btn2: function(){
+				window.location.href='register.html'
+			}
+		});
+	}else{
+		window.location.href = 'chain-new.html'
+	}
+
+})
+
 // 渲染热门专区
 $(function(){
   var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=6'
@@ -23,6 +55,7 @@ $(function(){
    var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
    var content = template(tpl, {list: result.datas});
    $('.hot_coin_region_1').append(content)
+   $('.project-count').html(result.count)
 
   }, "json")
 })
@@ -73,16 +106,13 @@ $(function(){
     $('.hot_zone_news').append(content)
 
 
-    // 限制搜索结果描述的长度
+    // 限制描述播报
     var descriptions = document.getElementsByClassName('new_title');
 
-    if ($(window).width() > 970 && $(window).width() < 1260) {
-      var show_length = 10
-    }else if($(window).width() <= 990){
-      var show_length = 20
-    }
-    else{
+    if ($(window).width() > 990) {
       var show_length = 15
+    }else if($(window).width() <= 990){
+      var show_length = 40
     }
 
     for (var i = 0; i < descriptions.length; i++) {
@@ -96,134 +126,181 @@ $(function(){
 
 })
 
-var article_loading = false
-var article_pgae = 1
-// 渲染评测
+// 渲染专题
 $(function(){
-  article_pgae = 1
-  article_loading = true
-  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=15&type=2&like=1'
+  var uri = 'topic/seachTopic?&currentPage=1&pageSize=6'
+
   doJavaGet(uri, function(result){
-      // $('.hot_review_region').html("");
-
-      // 限制标题和内容长度
-      for (var i = 0; i < result.datas.length; i++) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-
-        var content_length = null
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 120
-        }
-
-        if (result.datas[i].textContent.length > content_length) {
-          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-        }
-
-        // if (result.datas[i].textTitle.length > 30) {
-        //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-        // }
-
-      }
-
-      var tpl = document.getElementById('hot_article_tpl').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.hot_review_region').append(content)
-
-      var imgW = $(".hot_zone .article-detail .article-icon").width();
-      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
-
-      // $('.article-count').html(result.count)
-      article_loading = false
+    var tpl = document.getElementById('topic_tpl').innerHTML;
+    var content = template(tpl, {list: result.datas});
+    $('.hot_review_title').append(content);
+    $($('.hot_review_title .topic_name')[0]).addClass('hot-span-item');
+    $($('.hot_review_title .topic_name')[0]).click();
   })
+
 })
 
-var noMoreData = false
-// 评测加载更多
-$('.read-more').on('click',function(){
+var topicId = ''
+var topic_article_page = 1;
+var topicName = '';
+var raise = ''
+// 渲染专题下的文章
+$('.hot_review_title').on('click', '.topic_name', function(e){
+	$('.hot_review_region').html('');
+	$('.read-more').css('display','none');
+	$('.topic_article_load').css('display','')
 
-  article_pgae+=1
-  var uri = 'blockchain/quaryReview?currentPage=' + article_pgae + '&pageSize=15&type=2&like=1'
+	ui.loading = true;
+	ui.noMoreData = false;
+  topic_article_page = 1;
+  var self = $(e.currentTarget);
+	topicName = self.data('topicname');
+  topicId = self.data('topicid');
 
-  if (!noMoreData && !article_loading) {
-    $('.read-more').html('加载中...')
+	// if (topicName == '编辑推荐') {
+	// 	raise = 1;
+	// }else{
+	// 	raise = '';
+	// }
+  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
+						// + '&raise=' + raise
 
-    doJavaGet(uri,function(result){
+  doJavaGet(uri, function(result){
+    if (result.datas.length == 0) {
+      $('.read-more').css('display','none');
+			$('.topic_article_load').css('display','none')
+    }else{
+      $('.read-more').css('display','');
+      // 限制内容长度
+      for (var i = 0; i < result.datas.length; i++) {
 
-      if (result.datas.length == 0) {
-        noMoreData = true
-        $('.read-more').html('已无更多数据')
-      }else{
-
-        var content_length = null
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 120
-        }
-
-        // 限制标题和内容长度
-        for (var i = 0; i <result.datas.length; i++) {
+        if (result.datas[i].textContent) {
           result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+          var content_length = null
+          if ($(window).width() < 767) {
+            content_length = 55
+          }else{
+            content_length = 120
+          }
 
           if (result.datas[i].textContent.length > content_length) {
             result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
           }
-          // if (result.datas[i].textTitle.length > 30) {
-          //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
-          // }
-
         }
-
-
-        var tpl = document.getElementById('hot_article_tpl').innerHTML;
-        var content = template(tpl, {list: result.datas});
-        $('.hot_review_region').append(content)
-
-        var imgW = $(".hot_zone .article-detail .article-icon").width();
-        $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
-        $('.read-more').html('阅读更多')
       }
 
-    })
-  }
+      var tpl= document.getElementById('hot_article_tpl').innerHTML;
+      var content = template(tpl, {list: result.datas});
+      $('.hot_review_region').html('');
+      $('.hot_review_region').append(content);
+      $('.read-more').css('display','');
+      $('.read-more').text('阅读更多');
+			$('.topic_article_load').css('display','none')
+
+    }
+
+    ui.loading = false;
+
+  })
+
 })
 
+// 专题下的文章加载更多
+$('.read-more').on('click',function(){
+  if (ui.loading || ui.noMoreData ) {
+    return
+  }
+
+  ui.loading = true;
+  $('.read-more').text('加载中...')
+  topic_article_page++
+
+	if (topicName == '编辑推荐') {
+		raise = 1;
+	}else{
+		raise = '';
+	}
+
+  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
+						+ '&raise=' + raise
+
+  doJavaGet(uri, function(result){
+    if (result.datas.length == 0) {
+      ui.noMoreData = true;
+      $('.read-more').text('已无更多数据');
+
+    }else{
+      // 限制内容长度
+      for (var i = 0; i < result.datas.length; i++) {
+
+        if (result.datas[i].textContent) {
+          result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+
+          var content_length = null
+          if ($(window).width() < 767) {
+            content_length = 55
+          }else{
+            content_length = 120
+          }
+
+          if (result.datas[i].textContent.length > content_length) {
+            result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+          }
+        }
+      }
+
+      var tpl= document.getElementById('hot_article_tpl').innerHTML;
+      var content = template(tpl, {list: result.datas});
+      $('.hot_review_region').append(content);
+      $('.read-more').text('阅读更多');
+
+    }
+
+    ui.loading = false;
+
+  })
+})
 
 // 长文点赞
-// $(".hot_review_region").on('click','.like-button',function (e) {
-//     e.preventDefault()
-//     var self = $(e.currentTarget);
-//     var reviewid = self.data('reviewid');
-//     var likes = 0;
-//     var like_count = $(self[0]).text().split('')[1];
-//     debugger
-//
-//     if(userinfo == null){
-//         layer.msg('您还没有登录')
-//         layer.open({
-//             type: 1,
-//             shade:0,
-//             title: 0,
-//             skin: 'layui-layer-report', //加上边框
-//             area: ['550px', '680px'], //宽高
-//             content: $("#short-comment-commit-layer").html()
-//         });
-//         return;
-//     }
-//
-//     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
-//     doJavaGet(uri, function(res) {
-//         if(res.code == 0) {
-//           $(self[0]).text('' + like_count++)
-//           layer.msg(res.msg);
-//         } else {
-//           layer.msg(res.msg);
-//         }
-//     }, "json");
-// });
+$(".hot_review_region").on('click','.like-button',function (e) {
+    e.preventDefault()
+    var self = $(e.currentTarget);
+    var reviewid = self.data('reviewid');
+    var likes = 1;
+    var like_count = $(self[0]).text().split('')[1];
 
+		// 判断是否登录或绑定
+		if(!wechatBindNotice()){
+    	return;
+    }
+    if(userinfo == null){
+        // layer.msg('您还没有登录')
+        layer.open({
+            type: 1,
+            shade:0,
+            title: 0,
+            skin: 'layui-layer-report', //加上边框
+            area: ['550px', '680px'], //宽高
+            content: $("#short-comment-commit-layer").html()
+        });
+        return;
+    }
+
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+    doJavaGet(uri, function(res) {
+        if(res.code == 0) {
+          like_count++;
+          var str = '<i class="fa fa-heart"></i>'
+          self.html(str + ' ' + like_count)
+          layer.msg(res.msg);
+        } else {
+          layer.msg(res.msg);
+        }
+    }, "json");
+});
+
+// 调整浏览器宽度时自适应
 var resizeTimer = null;
 $(window).on('resize', function () {
   if (resizeTimer) {
@@ -234,28 +311,26 @@ $(window).on('resize', function () {
      $(".hot_zone .article-detail .article-icon").css('height',imgW*270/230);
 
      // 限制搜索结果描述的长度
-     var descriptions = document.getElementsByClassName('new_title');
-     var show_length = null
-     if ( $(window).width() > 767 && $(window).width() < 1200) {
-       show_length = 10
-     }else{
-       show_length = 25
-     }
-
-     for (var i = 0; i < descriptions.length; i++) {
-       if (descriptions[i].innerText.length > show_length) {
-         descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
-       }
-     }
+     // var descriptions = document.getElementsByClassName('new_title');
+     // var show_length = null
+		 // if ($(window).width() < 767) {
+			//  show_length = 55
+		 // }else{
+			//  show_length = 120
+		 // }
+		 //
+     // for (var i = 0; i < descriptions.length; i++) {
+     //   if (descriptions[i].innerText.length > show_length) {
+     //     descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
+     //   }
+     // }
 	}, 100);
-
-
 })
 $(document).ready(function () {
     //api 参考地址 http://www.swiper.com.cn/api/index.html
     var mySwiper = new Swiper ('.swiper-container', {
         autoplay: 5000,
-        speed: 2000,
+        speed: 2500,
         autoplay: true,
         disableOnInteraction:false,
         loop : true,
@@ -296,4 +371,35 @@ $(document).ready(function () {
     $('.swiper-slide').mouseleave(function () {
        mySwiper.autoplay.start();
     })
+})
+
+//专题点击互相切换效果
+$(".hot_review_title").on('click', '.topic_name', function(e) {
+	e.preventDefault()
+	e.stopPropagation()
+	$(this).parent().parent().find('.topic_name').removeClass('hot-span-item');
+	$(this).addClass('hot-span-item');
+})
+
+
+// banner跳转
+$('.hot_zone_padding').on('click',function(){
+	window.location = 'reading-campaign.html'
+})
+
+// 加载推荐专题
+$(function(){
+	var subject_page = 1
+	var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
+	// ui_subject.loading = true;
+	// ui_subject.noMoreData = false;
+	doJavaGet(uri, function(res){
+		if (res.datas.length > 0) {
+			var tpl = document.getElementById('recommend_topic_tpl').innerHTML;
+			var content = template(tpl, {list: res.datas});
+			$('.hot_zone_topic').append(content);
+		}
+		// ui_subject.loading = false;
+	})
+
 })

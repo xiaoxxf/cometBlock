@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+		<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+		<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/loading.css">
+		<link rel="stylesheet" meida="all" href="css/star-rating-svg.css">
+		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" href="js/page/jquery.pagination.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+		<link rel="stylesheet" href="css/article-show.css">
+		<!-- <link rel="stylesheet" href="css/comment.css"> -->
+		<link rel="stylesheet" href="css/login.css" />
+		<!-- 导航栏 -->
+	</head>
+	<style>
+	</style>
+	<body lang="zh-CN" class="reader-black-font">
+	<div class="block-comet-main-wrap">
+		<div class="comet-main">
+			<!-- <div class="navbar-fixed-container">
+				<div class="navbar navbar-inverse navbar-fixed-top affix-top comet-navbar long-comment-nav" data-spy="affix" data-offset-top="1">
+					<nav role="navigation">
+						<div class="container collapsed">
+							<div class="nav navbar-header">
+								<span class="long-comment-title">长文</span>
+								<a class="navbar-brand" href="index.html"><span itemprop="name">彗星</span></a>
+							</div>
+
+						</div>
+					</nav>
+				</div>
+			</div> -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook"  style="margin-bottom:100px">
+			</div>
+			<div class="mian-container">
+				<div class="container">
+
+					<div class="comment-container-wrap">
+						<h1 class="comment-detail-title"></h1>
+						<div class="comment-detail-main comment-detail-mian-hook">
+						</div>
+						<div class="waiting-data">
+							<div class="loader9">
+								<div class="loader-nine">
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+									<div></div>
+								</div>
+							</div>
+						</div>
+
+						<div id="comments" class="commment-list comment-list-hook">
+
+
+						</div>
+						<div class="paginator-warp">
+							<div id="paginator">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<input id="qrcode_val" type="hidden" value="" style="width:80%" /><br />
+			<div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+			<!--右下角弹出框-->
+			<div class="create_qrcode">
+				<span class="news_subject_btn"><i class="fa fa-qrcode fa-2x"></i></span>
+			</div>
+			<div class="news_alert_include" style="display:none">
+				<span class="news_subject_btn"><i class="fa fa-star-o fa-2x"></i></span>
+			</div>
+			<div class="news_alert_project" style="display:none" >
+				<span class="news_subject_btn"><i class="fa fa-plus fa-2x"></i></span>
+			</div>
+			<div class="news_alert_subject" style="display:none;">
+				<span class="news_subject_btn"><i class="fa fa-share-alt fa-2x"></i></span>
+			</div>
+
+	</div>
+		<!-- 举报弹框  -->
+		<script type="text/html" id="template-report-popup">
+			<div id='report_value'>
+				<ul>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='0'
+								   checked
+							/> 广告或垃圾信息
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='1'
+							/> 色情、淫秽或低俗内容
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='2'
+							/> 激进时政或意识形态话题
+						</label>
+					</li>
+					<li>
+						<label>
+							<input type='radio' name='reason' value='other' /> 其他原因
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class='bn-flat'>
+				<input type='submit' class='btn-report' value='举报'>
+			</div>
+		</script>
+		<!--登录弹框-->
+		<script type="text/html" id="template-reply">
+			<div class="main report-login">
+
+				<h4 class="title">
+					<div class="normal-title">
+						<a class="active" href="">登录</a>
+						<b>·</b>
+						<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+					</div>
+				</h4>
+				<div class="js-sign-in-container">
+
+					<div class="input-prepend  restyle ">
+						<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+						<i class="fa fa-user"></i>
+					</div>
+					<div class="input-prepend border_radiusB">
+						<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+						<i class="fa fa-unlock-alt"></i>
+
+					</div>
+					<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+					<div class="remember-btn">
+						<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+					</div>
+					<div class="forget-btn">
+						<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a href="">用手机号重置密码</a>
+							</li>
+
+						</ul>
+					</div>
+
+					<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+						 <span class="ouro">
+								<span class="left"><span class="anim"></span></span>
+								<span class="right"><span class="anim"></span></span>
+						 </span>
+					</input>
+
+					<div class="more-sign">
+						<h6>社交帐号登录</h6>
+						<ul>
+							<li class="wechat-login">
+								<img src="img/wechat.png" class="wechat_logo"  />
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="template-mian-detail">
+			<a class="avatar author-avatar pull-left" href="personal-homepage.html?userId=<%=list.creator %>">
+				<!-- TODO：显示个人头像 -->
+				<%if(list.userPic == null ){%>
+					<img src="img/normal-user.png" class="review-creator-pic"/>
+				<%} else {%>
+					<img src="<%=list.userPic %>" class="review-creator-pic"/>
+				<% } %>
+			</a>
+			<header class="main-hd">
+				<!-- TODO：跳转到个人中心页 -->
+				<a href="personal-homepage.html?userId=<%=list.creator %>">
+					<span property="v:reviewer"><%:=list.realName%></span>
+				</a>
+
+				<span property="v:dtreviewed" content="2018-03-15" class="main-meta"><%:=list.createTime%></span>
+			</header>
+			<div class="main-bd">
+				<div id="link-report">
+					<div property="v:description" class="review-content clearfix" data-author="" data-url="" data-original="1">
+						<%:=list.textContent%>
+					</div>
+				</div>
+				<div class="copyright">
+					© 本文版权归作者&nbsp;
+					<a href="javascript:;"><%:=list.realName%></a> &nbsp;所有，任何形式转载请联系作者。
+				</div>
+				<div class="option">
+					<%if(userinfo && list.realName == userinfo.realName){%>
+						<a href="article-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
+						<a href="javacript:;" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
+					<%}%>
+				</div>
+			</div>
+			<div class="main-ft">
+				<div class="main-panel" name="9157555">
+					<div class="main-panel-useful" data-rid="9157555" data-is_owner="false" data-can_vote="true">
+						<button class="btn btn-default useful_count" data-useful="true">
+							有用 <span class="num"><%:=list.usefull%></span>
+						</button>
+						<button class="btn btn-default useless_count" data-useful="false">
+							没用 <span class="num"><%:=list.unusefull%></span>
+						</button>
+					</div>
+					<div class="main-like clearfix">
+						<button class="LikeButton pull-right" data-reviewId="<%:=list.reviewId%>" data-likes_nums="<%:=list.likes%>" title="标为喜欢?">喜欢<span class="LikeButton-count"></span></button>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="template-comment-list">
+			<%for(var i = 0; i < list.length; i++) {%>
+			<div class="comment-item" data-parentId="<%:=list[i].parentId%>" data-reviewId="<%:=list[i].reviewId%>"  data-user_name="<%:=list[i].realName%>" data-user_url="javascript:;" data-target_id="9041269" data-target_kind="1012" data-ref_cid="9119669">
+				<div class="avatar left">
+					<!--显示个人头像 -->
+					<a href="personal-homepage.html?userId=<%=list.creator %>">
+						<%if(list[i].userPic == null ){%>
+							<img src="img/normal-user.png" class="review-creator-pic"/>
+						<%} else {%>
+							<img src="<%=list[i].userPic %>" class="review-creator-pic"/>
+						<% } %>
+
+					</a>
+				</div>
+				<div class="content report-comment">
+					<div class="header">
+						<!-- TODO：跳转到个人中心页 -->
+						<a href="personal-homepage.html?userId=<%=list[i].creator %>"><%:=list[i].realName%></a>
+						<span><%:=list[i].createTime%></span>
+						<span class="num pull-right"><%:=i+1%>#</span>
+					</div>
+					<%if(list[i].quote != null){%>
+						<div class="reply-quote" style="">
+							<%:=list[i].quote%>
+						</div>
+					<%}%>
+					<p class="comment-text"><%:=list[i].textTitle%></p>
+					<div class="op-lnks">
+						<%if(userinfo && list[i].realName == userinfo.realName){%>
+							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_edit">编辑</a>
+							&nbsp;
+							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_delete">删除</a>
+							&nbsp;
+						<%}%>
+						<a href="javacript:;" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="reply_comment">引用</a>
+						&nbsp;
+						<a rel="nofollow" href="javascript:;" data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="report report_comment">举报</a>
+					</div>
+				</div>
+			</div>
+			<%}%>
+			<section class="review-comment-form" id="add_comment">
+				<div class="reply-comment middle" data-ref_cid="" data-user_name="" data-user_url="">
+					<div class="reply-comment-wrap">
+						<a href="javascript:;" class="close_reply lnk-close">×</a>
+						<div class="quote-comment-txt">
+							<p>
+								引用<i class="number"></i># <span class="at-sypm">@</span>
+								<a href="javascript:;" class="author"></a>发表的:
+								<a href="javascript:;" class="quotedReviewId"></a>
+							</p>
+							<p class="parent-txt">
+								<span class="short"></span>
+								<span class="all"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="form-textarea-wrapper">
+					<div class="avatar ">
+						<!-- TODO：跳转到个人中心页 -->
+						<a href="">
+							<!-- TODO：显示个人头像 -->
+							<img width="48" height="48" src="img/normal-user.png" alt="">
+						</a>
+					</div>
+					<div class="form-field">
+						<textarea class="form-textarea textarea-txt-hook" placeholder=" 添加回应" rows="4" cols="64"></textarea>
+						<button class="add_comment js-verify-account add_comment-hook" data-is-verified="True">加上去</button>
+						<span class="error hidden">你的回应中有被禁止的内容</span>
+					</div>
+				</div>
+			</section>
+		</script>
+
+		<!--投稿到项目彈窗-->
+		<script type="text/html" id="templay-news-fixed">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">投稿到项目
+	      			<a class="new-subject-btn">
+	      				<a href="chain-new.html" target="_blank" >新建项目</a>
+	      			</a>
+	      			<div class="search">
+						<input type="search" name="search-self" class="search_project" onkeydown="keyEnterSearchProject()" placeholder="搜索项目">
+						<a class="search-subject-icon" onclick="searchProject()"><i class="fa fa-search"></i></a>
+					</div>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<ul class="list_item">
+
+					</ul>
+					<span class="load_more_project_result" onclick="load_more_search_project_result()">查看更多</span>
+				</div>
+			</div>
+		</script>
+
+		<!-- 搜索投稿项目 -->
+		<script id='search_project_list' type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="return_result">没有结果</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+
+				<li class="">
+					<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="avatar-collection">
+						<img src="<%=list[i].projectLogo %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="chain-detail.html?projectId=<%=list[i].projectId %>" class="collection-name"><%=list[i].projectName %></a>
+						<div class="meta"></div>
+					</div>
+					<span class="action-btn_push" data-projectid='<%=list[i].projectId %>' onclick="sendArticleToProject(this)">投稿</span>
+				</li>
+				<% }%>
+			<%}%>
+		</script>
+
+		<!--投稿到专题彈窗-->
+		<script type="text/html" id="templay-news-subject">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">投稿到专题
+	      			<a class="new-subject-btn">
+	      				<a href="topic-new.html" target="_blank" >新建专题</a>
+	      			</a>
+	      			<div class="search">
+						<input type="search" name="search-self" class="search_subject" onkeyup="keyEnterSearchSubject(this)" placeholder="搜索专题">
+						<a class="search-subject-icon" onclick="searchSubject()"><i class="fa fa-search"></i></a>
+					</div>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+					<!-- 搜索结果 -->
+					<ul class="list_subject_item">
+
+
+					</ul>
+					<span class="load_more_subject_result" onclick="load_more_search_subject_result()" >查看更多</span>
+					<!-- 推荐专题 -->
+					<ul class="list_subject_recommend">
+						<p>推荐专题</p>
+						<div class="recommend_topic_result">
+
+						</div>
+
+					</ul>
+
+				</div>
+			</div>
+		</script>
+
+		<!-- 搜索 投稿 专题 -->
+		<script id="search_subject_list" type="text/html">
+			<%if(list.length == 0 ){%>
+				<span class="return_result">没有结果</span>
+			<%}else{%>
+				<%for(var i = 0; i < list.length; i++) {%>
+					<li class="">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+							<img src="<%=list[i].topicPic %>" class="title_logo">
+						</a>
+						<div class="collection-info">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+							<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+							<div class="meta"></div>
+						</div>
+						<%if( list[i].state ){%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+						<%} else {%>
+							<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+						<% } %>
+					</li>
+				<% }%>
+			<%}%>
+		</script>
+
+		<!--收录文章到专题彈窗-->
+		<script type="text/html" id="templay-news-include">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">收录文章
+	      			<a class="new-subject-btn">
+	      				<a href="topic-new.html" target="_blank" >新建专题</a>
+	      			</a>
+					</h4>
+
+				</div>
+				<div class="modal-body">
+
+					<ul class="list_subject_include">
+						<p>我管理的专题</p>
+						<div class="my_topic_list">
+
+						</div>
+					</ul>
+				</div>
+			</div>
+		</script>
+
+
+		<!-- 投稿到项目时评分 -->
+		<script id="add_score" type="text/html">
+			<div class="coin-score">
+				请给项目打个分<br/>
+				<span class="my-rating" style="font-size:10px"></span>
+				<span class="live-rating" style="display:none"></span>
+			</div>
+		</script>
+
+		<!-- 推荐专题  -->
+		<script type="text/html" id="recomment_topic_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+					<%if(list[i].topic != '编辑推荐' ){%>
+						<li class="">
+							<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+								<img src="<%=list[i].topicPic %>" class="title_logo">
+							</a>
+							<div class="collection-info">
+								<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+								<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+								<div class="meta"></div>
+							</div>
+							<%if( list[i].state ){%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+							<%} else {%>
+								<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">收录</span>
+							<% } %>
+						</li>
+					<% }%>
+			<% }%>
+		</script>
+
+		<!-- 我管理的专题 -->
+		<script type="text/html" id="my_topic_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+				<li class="">
+					<a href="topic-show.html?subjectId=<%=list[i].id %>" class="avatar-collection">
+						<img src="<%=list[i].topicPic %>" class="title_logo">
+					</a>
+					<div class="collection-info">
+						<a href="topic-show.html?subjectId=<%=list[i].id %>" class="collection-name"><%=list[i].topic %></a>
+						<div class="subject-meta">已收录了<%=list[i].counts %>篇文章</div>
+						<div class="meta"></div>
+					</div>
+					<%if( list[i].state ){%>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' >已收录</span>
+					<%} else {%>
+						<span class="action-btn_push" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">收录</span>
+					<% } %>
+				</li>
+			<% }%>
+		</script>
+
+		<script type="text/html" id="qr_code_tpl">
+
+		</script>
+
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/qrcode.js"></script>
+		<script src="js/jquery.star-rating-svg.js"></script>
+		<script src="js/plugins/layer/layer.js"></script>
+		<script src='js/page/jquery.pagination.min.js'></script>
+		<script src="js/common.js"></script>
+		<script src="js/article-show.js"></script>
+		<script src='js/article-page.js'></script>
+		<!-- <script src="js/comment-page.js"></script> -->
+		<script src="js/md5.js"></script>
+		<script src="js/register.js"></script>
+		<script src="js/login.js"></script>
+	</body>
+
+</html>

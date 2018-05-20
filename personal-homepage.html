@@ -7,24 +7,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>个人主页</title>
+	<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+	<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
 	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 	<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/loading.css">
 	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
 	<link rel="stylesheet" href="css/personal-homepage.css" />
-
 	<!-- 导航栏 -->
 </head>
-<style>
-	.swiper-container {
-		width: 100%;
-		height: 200px;
-	}
-	.swiper-btn{
-		position: relative;
-		float: right;
-	}
-</style>
 <body lang="zh-CN" class="reader-black-font">
 		<div class="comet-main block-comet-main-wrap">
 		<!-- 全局顶部导航栏 -->
@@ -37,151 +29,384 @@
 						<div class="intro_top">
 							<img src="img/banner.png"  style="border-radius:3px"/>
 						</div>
-						<div class="intro_bottom">
-							<div class="col-md-9">
-								<img src="img/hot_icon.jpg" width="200px"/>
+						<div class="intro_bottom clearfix">
+							<div class="col-md-9 col-xs-12 col-sm-12">
+								<img src="img/normal-user.png" width="200px" class="person_logo"/>
 								<div class="person_edit">
-									<span class="person_title">尼古拉奥斯特</span>
-									<p><span>关注：3人</span><sapn class="concern_right">被关注：7人</sapn></p>
-									<p>个人简介：做自己想做的事</p>
+									<span class="person_name"></span>
+									<p><span>关注：0人</span><sapn class="concern_right">被关注：0人</sapn></p>
+									<p class="personal-intro"></p>
 								</div>
 
 							</div>
-							<div class="col-md-3 col-xs-12 col-sm-12">
-								<a href="" class="edit_btn">编辑个人资料</a>
+							<div class="col-md-2 col-sm-12 col-xs-12 edit_person_msg">
+								<a href="person-setting.html?personType=1" class="edit_btn">编辑个人资料</a>
 							</div>
-							
+
 						</div>
 					</div>
 					<!--动态-->
 					<div class="dynamic_box">
 						<div class="row">
 							<div class="col-md-9 col-sm-12 col-xs-12">
-								<div class="hot_zone">
+								<div class="hot_zone hot_zone_aside">
 										<div class="dynamic_title">
 											<span class="hot_block" style="margin-top:10px"></span>
-											<span class="hot_main_area"><a href="hot-article.html" class="hot-span">热门评测</a></span>
-											<a href="long_comment" >长评</a>
-											<a href="short_comment" class="dynimic_box">短评</a>
-											<a href="article" class="dynimic_box">文章</a>
+											<span class="load_all_dynamic hot_main_area_item menuOnClick">全部动态</span>
+											<span class="load_long_comment hot_main_area_item">长评</span>
+											<span class="load_short_comment hot_main_area_item">短评</span>
+											<span class="load_article hot_main_area_item">文章</span>
+
+										</div>
+										<div class="waiting-data" style="margin-top:50px">
+												<div class="loader9">
+														<div class="loader-nine">
+																<div></div>
+																<div></div>
+																<div></div>
+																<div></div>
+																<div></div>
+																<div></div>
+																<div></div>
+																<div></div>
+														</div>
+												</div>
 										</div>
 										<div class="hot_review_region">
+
+
 											<!--我的长评-->
-											<div class="hot_article_zone bottom_line">
-												<div class="article-detail">
-														<div class="article-content">
-															<div class="article-info">
-																<span class="real_name">我的长评：评论了BTC</span>
-															</div>
-															<div class="long_comment_box" style="display:flex">
-																<div class="article-introduce">
-																	<p class="article_title">价值挖掘：开盘就翻了40倍的GXS公信宝，后来怎么样了？</p>
-																	<p>公信宝的诞生就注定不平凡。从今年3月份众筹时0.8元的成本，到6月25号上线云币交易所，开盘价立即翻了40倍达到32元，迅速涨到40元的顶峰，随后迅速下跌，中途有过反弹，最终在9.4号大监管的来临之后，最低跌到了6元，而现在在14元左右徘徊...</p>
-																</div>
-																<div class="article-icon">
-																	<a href="">
-																		<img class="article-img" src="img/coin_2.png">
-																	</a>
-																</div>
-															</div>
-															
-															<div class="meta">
-																<a class="article-time">昨天：14：22</a>
-																<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>
-																<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> 123</a>
-															</div>
-														</div>
-												</div>
-											</div>
+
 											<!--短评-->
-											<div class="hot_article_zone bottom_line">
-												<div class="article-detail">
-														<div class="article-content">
-															<div class="article-info">
-																<span class="real_name">我的短评：评论了BTC</span>
-															</div>
-															<div class="short_comment_box" style="display:flex">
-																<div class="article-introduce">
-																	<p class="article_title">价值挖掘：开盘就翻了40倍的GXS公信宝，后来怎么样了？</p>
-																	<p>公信宝的诞生就注定不平凡</p>
-																</div>
-																<div class="article-icon">
-																	<a href="">
-																		<img class="article-img" src="img/coin_2.png">
-																	</a>
-																</div>
-															</div>
-															
-															<div class="meta">
-																<a class="article-time">昨天：14：22</a>
-																<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>
-																<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> 123</a>
-															</div>
-														</div>
-												</div>
-											</div>
+
 											<!--文章-->
-											<div class="hot_article_zone bottom_line">
-												<div class="article-detail">
-														<div class="article-content">
-															<div class="article-info">
-																<span class="real_name">文章</span>
-															</div>
-															<div class="article_box" style="display:flex">
-																<div >
-																	<p class="article_title_main">价值挖掘：开盘就翻了40倍的GXS公信宝，后来怎么样了？</p>
-																	<p class="article_content_bottom">公信宝的诞生就注定不平凡。从今年3月份众筹时0.8元的成本，到6月25号上线云币交易所，开盘价立即翻了40倍达到32元，迅速涨到40元的顶峰，随后迅速下跌，中途有过反弹，最终在9.4号大监管的来临之后，最低跌到了6元，而现在在14元左右徘徊...</p>
-																</div>
-															</div>
-															
-															<div class="meta">
-																<a class="article-time">昨天：14：22</a>
-																<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>
-																<a href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i> 123</a>
-															</div>
-														</div>
-												</div>
-											</div>
-											
+
 										</div>
-										<div class="read-more">下拉更多&gt;&gt;</div>
+										<!-- <i class="fa fa-arrow-down"></i> -->
+										<div class="read-more">点击加载更多</div>
 								</div>
 							</div>
 							<!--关注-->
 							<div class="col-md-3 col-sm-12 col-xs-12">
 								<div class="hot_zone side">
 									<div class="pay-attention">
-										<a href="" >关注</a>
+										<span >关注</span>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<span>我关注的人</span><span class="article-count">9</span>
+											<span>关注的人</span> <span>0</span>
 										</div>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<span>我关注的人</span><span class="article-count">9</span>
+											<span>关注的人</span> <span>0</span>
 										</div>
 									</div>
 								</div>
-							</div>
-							<!--创建的专题-->
-							<div class="col-md-3 col-sm-12 col-xs-12">
-								<div class="hot_zone side">
-									<div class="pay-attention">
-										<a href="">创建的专题</a>
-										<div class="included_ariticle">
-											<span>BTC专题</span><span class="article-count">9</span>
+
+								<!--创建的专题-->
+								<div class="hot_zone side create_subject_box">
+									<div class="pay-attention created_subject">
+										<span class="">创建的专题</span>
+										<div class="create_topic_list">
+											<a href="topic-new.html" class="create_new_topic_list_btn"><i class="fa fa-plus"></i>创建新专题</a>
 										</div>
-										<div class="included_ariticle">
-											<span>币种专题</span><span class="article-count">9</span>
+										<div class="created_subject_list">
+
 										</div>
+									</div>
+									<div class="load-more-subject" style="display:none">
+										查看更多
+									</div>
+								</div>
+
+								<!--创建的项目-->
+								<div class="hot_zone side create_project_box">
+									<div class="pay-attention created_project">
+										<span class="">创建的项目</span>
+										<div class="create_new_subject">
+											<a href="chain-new.html" class="create_new_subject_btn"><i class="fa fa-plus"></i>创建新项目</a>
+										</div>
+									</div>
+									<div class="load-more-project" style="display:none">
+										查看更多
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+<!-- 我创建的项目 -->
+<script type="text/html" id="project_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<p data-projectid='<%=list[i].projectId %>' class="project_name"><%=list[i].projectName %></p>
+	<%}%>
+</script>
+
+<!-- 我创建的专题 -->
+<script type="text/html" id="subject_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<p>
+			<a href="topic-show.html?subjectId=<%=list[i].id %>" class="subject_name">
+				<%:=list[i].topic %>
+			</a>
+			<!-- 看自己时显示编辑删除按钮 -->
+			<%if( !getUrlParam('userId') || getUrlParam('userId') == $.cookie('userid') ){%>
+				<a data-subjectid="<%:=list[i].id %>" class="delete_subject subject_option_menu">删除</a>
+				<a href="topic-edit.html?subjectId=<%:=list[i].id %>"  class="subject_option_menu">编辑 &nbsp</a>
+			<%}%>
+		</p>
+	<%}%>
+</script>
+
+<!-- 全部动态 -->
+<script type="text/html" id="all_dynamic_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+
+		<%if (list[i].type == 2) {%>
+			<!-- 我的长评 -->
+			<div class="hot_article_zone bottom_line">
+				<div class="article-detail">
+						<div class="article-content">
+							<div class="article-info">
+								<span class="real_name">
+									<%if(list[i].creator == userId ){%>
+									我的长评：评论了
+									<%}else{%>
+									他的长评：评论了
+									<%}%>
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
+										<%:=list[i].projectBigName %>
+									</a>
+									<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+								</span>
+							</div>
+							<div class="long_comment_box" style="display:flex">
+								<div class="article-introduce">
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title" target="_blank"><%:=list[i].textTitle %></a>
+									<p>
+										<%:=list[i].textContent %>
+									</p>
+								</div>
+								<div class="article-icon">
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId%>" target="_blank">
+										<img class="article-img" src="<%:=list[i].projectLogo %>">
+									</a>
+								</div>
+							</div>
+								<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></a>
+								<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].review %></i><%:=list[i].likes %></span>-->
+							<div class="meta">
+								<a class="article-time"><%=list[i].createTime %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
+								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+
+							</div>
+						</div>
+				</div>
+			</div>
+
+		<%} else if (list[i].type == 1) {%>
+			<!--短评-->
+			<div class="hot_article_zone bottom_line">
+				<div class="article-detail">
+						<div class="article-content">
+							<div class="article-info">
+								<span class="real_name">
+									<%if(list[i].creator == userId ){%>
+									我的短评：评论了
+									<%}else{%>
+									他的短评：评论了
+									<%}%>
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
+										<%:=list[i].projectBigName %>
+									</a>
+									<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+								</span>
+							</div>
+							<div class="short_comment_box" style="display:flex">
+								<div class="article-introduce">
+									<a href='chain-detail.html?projectId=<%:=list[i].projectId %>' class="article_title" target="_blank">
+										项目链接:<%:=list[i].projectBigName %>
+									</a>
+									<p><%:=list[i].textTitle %></p>
+								</div>
+								<div class="article-icon">
+									<a href='chain-detail.html?projectId=<%:=list[i].projectId %>' target="_blank">
+										<img class="article-img" src="<%:=list[i].projectLogo %>">
+									</a>
+								</div>
+							</div>
+
+							<div class="meta">
+								<a class="article-time"><%:=list[i].createTime %></a>
+								<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>-->
+								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+							</div>
+						</div>
+				</div>
+			</div>
+		<%} else if (list[i].type == 4) {%>
+			<!-- 文章 -->
+			<div class="hot_article_zone bottom_line">
+				<div class="article-detail">
+						<div class="article-content">
+							<div class="article-info">
+								<span class="real_name">文章</span>
+							</div>
+							<div class="article_box" style="display:flex">
+								<div >
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main" target="_blank"><%:=list[i].textTitle %></a>
+									<p class="article_content_bottom">
+										<%:=list[i].textContent %>
+									</p>
+								</div>
+							</div>
+
+							<div class="meta">
+								<a class="article-time"> <%:=list[i].createTime %></a>
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+								<!-- <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %></a> -->
+								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+
+							</div>
+						</div>
+				</div>
+			</div>
+		<%}%>
+
+
+	<%}%>
+</script>
+
+<script type="text/html" id="long_comment_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<!-- 我的长评 -->
+		<div class="hot_article_zone bottom_line">
+			<div class="article-detail">
+					<div class="article-content">
+						<div class="article-info">
+							<span class="real_name">
+								<%if(list[i].creator == userId ){%>
+									我的长评：评论了
+								<%}else{%>
+									他的长评：评论了
+								<%}%>
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
+									<%:=list[i].projectBigName %>
+								</a>
+								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+							</span>
+						</div>
+						<div class="long_comment_box" style="display:flex">
+							<div class="article-introduce">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title" target="_blank"><%:=list[i].textTitle %></a>
+								<p>
+									<%:=list[i].textContent %>
+								</p>
+							</div>
+							<div class="article-icon">
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId%>">
+									<img class="article-img" src="<%:=list[i].projectLogo %>">
+								</a>
+							</div>
+						</div>
+							<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></a>
+							<span href=""class="fa-ico fa-icon-right"><i class="fa fa-heart"></i><%:=list[i].review %></i><%:=list[i].likes %></span>-->
+						<div class="meta">
+							<a class="article-time"><%=list[i].createTime %></a>
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
+							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+						</div>
+					</div>
+			</div>
+		</div>
+	<%}%>
+</script>
+
+
+<script type="text/html" id="short_comment_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<!--短评-->
+		<div class="hot_article_zone bottom_line">
+			<div class="article-detail">
+					<div class="article-content">
+						<div class="article-info">
+							<span class="real_name">
+								<%if(list[i].creator == userId ){%>
+									我的短评：评论了
+								<%}else{%>
+									他的短评：评论了
+								<%}%>
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" class="targetProjectBigName" target="_blank">
+									<%:=list[i].projectBigName %>
+								</a>
+								<span class="allstar<%:=list[i].score*10%> rating" title="推荐" class="targetProjectBigName"></span>
+							</span>
+						</div>
+						<div class="short_comment_box" style="display:flex">
+							<div class="article-introduce">
+								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' class="article_title" target="_blank">
+									项目链接:<%:=list[i].projectBigName %>
+								</a>
+								<p><%:=list[i].textTitle %></p>
+							</div>
+							<div class="article-icon">
+								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' target="_blank">
+									<img class="article-img" src="<%:=list[i].projectLogo %>">
+								</a>
+							</div>
+						</div>
+
+						<div class="meta">
+							<a class="article-time"><%:=list[i].createTime %></a>
+							<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>-->
+							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+						</div>
+					</div>
+			</div>
+		</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="article_tpl">
+	<!--文章-->
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="hot_article_zone bottom_line">
+			<div class="article-detail">
+					<div class="article-content">
+						<div class="article-info">
+							<span class="real_name">文章</span>
+						</div>
+						<div class="article_box" style="display:flex">
+							<div >
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title_main" target="_blank"><%:=list[i].textTitle %></a>
+								<p class="article_content_bottom">
+									<%:=list[i].textContent %>
+								</p>
+							</div>
+						</div>
+
+						<div class="meta">
+							<a class="article-time"> <%:=list[i].createTime %></a>
+							<!-- <div class="article-tag">
+								<a href="">标签1</a>
+								<a href="">标签2</a>
+								<a href="">标签3</a>
+								<a href="">标签4</a>
+							</div> -->
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting "></i> <%:=list[i].review %></a>
+							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+						</div>
+					</div>
+			</div>
+		</div>
+	<%}%>
+
+
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -190,8 +415,7 @@
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
 <script src="js/plugins/layer/layer.js"></script>
-<script src="js/homepage.js">
-</script>
+<script src='js/personal-homepage.js'></script>
 
 </body>
 

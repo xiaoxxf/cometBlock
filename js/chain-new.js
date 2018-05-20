@@ -1,4 +1,4 @@
-var userId = $.cookie('userid');//获取userid
+// var userId = $.cookie('userid');//获取userid
 
 var ui = {
   'submiting': false,
@@ -7,7 +7,10 @@ var ui = {
 
 // 判断是否登录
 $(function(){
-if(userId == undefined){
+  if(!wechatBindNotice()){
+    return;
+  }
+  if(userId == undefined){
     layer.open({
       closeBtn:0,
       title: '',
@@ -20,8 +23,9 @@ if(userId == undefined){
         window.location.href='register.html'
       }
     });
-}
+  }
 })
+
 
 //日期选择
 $("#date_pick").datetimepicker({
@@ -163,7 +167,7 @@ $('.team').on('change', $('.member_pic'), function(e) {
 
 
   team_image_box = e.target.parentNode.previousElementSibling// team_image_box
-  debugger
+  // debugger
   $(team_image_box).children('img').remove()
 
 
@@ -187,7 +191,7 @@ var t = null
 // 上传币种图片
 function upLoadPorjectLogo(){
   var file = $('#project_logo_input')[0].files[0]
-  debugger
+  // debugger
   if (file == undefined) {
     return
   }
@@ -389,6 +393,8 @@ $('#form1').validator({
     	   exchangeRate += $(this).val();
       });
 
+      // 过滤js和style标签
+      var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
       // 提交数据
       var data = {
         "projectLogo":          form1.projectLogoFile.value,
@@ -399,7 +405,7 @@ $('#form1').validator({
         "currencyCirculation":  form1.currency_circulation.value,
         "fundraisingTime":      form1.fundraising_time.value,
         "companyWebsite":       form1.compay_website.value,
-        "projectContent":       editor.txt.html(),
+        "projectContent":       projectContent,
         "whitePaper":           form1.whitePaperFile.value,
         "exchangeRate":			    exchangeRate,
         "userId":               userId,

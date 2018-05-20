@@ -1,5 +1,5 @@
-var userId = $.cookie('userid');//获取userid
-var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+// var userId = $.cookie('userid');//获取userid
+// var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var projectData = null
 var commentInfoData = null
 var ui = {
@@ -8,6 +8,9 @@ var ui = {
 
 // 判断是否登录
 $(function(){
+  if(!wechatBindNotice()){
+    return;
+  }
   if(userId == undefined){
     layer.open({
       closeBtn:0,
@@ -24,7 +27,6 @@ $(function(){
   }
 })
 
-
 window.onload = function(){
   ajaxGetReviewDetail();
 }
@@ -37,6 +39,8 @@ function  ajaxGetReviewDetail() {
         if(res != null && res.code == 0) {
           commentInfoData = res.datas
           // console.log(commentInfoData)
+          $('title').html('编辑-' + commentInfoData.textTitle)
+
           if (commentInfoData.creator == userId) {
             // 评价的币种的信息
             ajaxGetProjectInfo(commentInfoData.projectId)

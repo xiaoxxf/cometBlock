@@ -1,0 +1,348 @@
+body{
+	background-color: white
+}
+/* .nav_shadow{
+	box-shadow: 0 0 10px rgb(117, 113, 113);
+} */
+/*aside*/
+
+/* 微信登录模块 */
+.wechat_login{
+	display: none
+}
+/* 账号登录模块 */
+.account_login{
+	display: none
+}
+
+.aside {
+	position: fixed;
+	width: 300px;
+	overflow: auto;
+}
+
+@media (max-width: 980px) {
+	.aside{
+		position: relative;
+	}
+}
+.aside ul {
+	margin-top: 20px;
+}
+.aside ul li {
+	line-height: 30px;
+	display: list-item;
+	text-align: -webkit-match-parent;
+	border-bottom: none;
+    padding: 0px;
+}
+
+.aside li.active a {
+	border-radius: 4px;
+}
+.aside ul li a:active{
+	background-color: darkseagreen;
+}
+.aside ul li a.toogle-acive{
+	background-color: #dddddd6b;
+	color: rgb(79, 163, 237);
+}
+.aside ul li a:hover {
+	background-color: #dddddd6b;
+}
+.aside ul li a:active{
+	background-color: #dddddd6b;
+
+}
+.aside a {
+	padding: 10px 15px;
+	font-size: 15px;
+	display: block;
+}
+.aside span {
+	margin: 0 20px 0 6px;
+	font-size: 15px;
+	vertical-align: middle;
+	color: #333;
+}
+
+
+/*基础设置border-bottom*/
+.base_setting
+{
+	height: 140px;
+	line-height: 140px;
+	border-bottom: 1px solid #f0f0f0;
+}
+.base_setting_introduce{
+	padding-top: 50px;
+	height: 140px;
+	border-bottom: 1px solid #f0f0f0;
+}
+
+.save_realname{
+	width: 90px;
+    color: white;
+    background-color: #006bb3;
+    border-color: #ccc;
+}
+#ownname{
+	text-indent: 10px;
+	height: 30px;
+}
+
+
+/*个人简介*/
+.person-introduce{
+	text-indent: 10px;
+	margin-top: -27px;
+	border-radius: 3px;
+    background-color: #f8f8f8;
+}
+
+.avatar {
+	width: 50px;
+	height: 100px;
+	display: block;
+	cursor: pointer;
+}
+
+
+
+
+/*个人头像*/
+.btn-hollow {
+	font-size: 14px;
+	border: 1px solid #006bb3;
+	color: #006bb3!important;
+	padding: 4px 12px;
+	font-weight: 400;
+	line-height: normal;
+	background: none;
+}
+
+
+
+.setting-title {
+	color: #969696;
+}
+
+.aside .setting-icon {
+	margin-right: 15px;
+	width: 32px;
+	height: 32px;
+	text-align: center;
+	color: #fff;
+	/*background-color: #a0a0a0;*/
+	border-radius: 4px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.aside .setting-icon i {
+	margin: 6px 0 0 1px;
+    font-size: 18px;
+    display: block;
+    color: rgb(79, 163, 237);
+}
+
+.iconfont {
+	font-family: iconfont!important;
+	font-style: normal;
+	font-weight: 400!important;
+	-webkit-font-smoothing: antialiased;
+}
+.avatar {
+    width: 100px;
+    height: 100px;
+}
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    /*border-radius: 50%;*/
+}
+.fa-align-justify:before {
+    content: "\E63C";
+}
+.fa-address-book:before {
+    content: "\E63B";
+}
+.fa-cog:before {
+    content: "\E63B";
+}
+*, :after, :before {
+    box-sizing: border-box;
+}
+.show_table{
+	display: none;
+}
+
+.show_table_detail{
+	display: none;
+	margin-top: 20px;
+}
+
+/*修改密码显示隐藏*/
+/*显示新密码*/
+.put-newpwd{
+	display: none;
+}
+.accordion-inner{
+	margin: 20px -30px;
+}
+.accordion-inner div{
+	 padding: 20px 0
+}
+.accordion-inner div:first-child{
+	 padding-bottom:none !important;
+}
+.setting-title a{
+    color: #969696;
+    text-decoration: none;
+    float: left;
+}
+.setting-psw{
+	text-decoration: none;
+}
+.reset-pwd{
+	padding: 20px 10px;
+}
+.reset_pwd_bottom{
+	border-bottom: solid 1px gainsboro;
+}
+.bottom_line{
+	padding-bottom: 50px;
+    border-bottom: solid 1px gainsboro;
+}
+.show_table input {
+    overflow: visible;
+    /*vertical-align: middle;*/
+    outline: none;
+    background-color: hsla(0, 0%, 71%, .1);
+    border: 1px solid #c8c8c8;
+    border-radius: 5px;
+}
+
+/* //注册页验证码按钮样式 */
+.phone_code_position {
+    position: relative !important;
+}
+.input-prepend input {
+    width: 100%;
+    margin-bottom: 0;
+    padding: 4px 12px 4px 2px;
+    border: 1px solid #c8c8c8;
+    background-color: hsla(0, 0%, 71%, .1);
+}
+.btn-up-resend {
+    position: absolute;
+    top: 24px;
+    right: 7px;
+    width: 110px;
+    font-size: 13px;
+    background-color: #006bb3;
+    border-radius: 20px;
+    text-align: center;
+    color: white !important;
+}
+.btn_up_press{
+	top: 15px;
+}
+
+.phone_code_tip{
+	width: 630px;
+	height:30px !important;
+}
+.upload-button {
+    margin-top: -2px;
+    width: 80px;
+}
+
+.new-input-pwd{
+	float: right;
+}
+
+/* 发送验证码按钮 */
+.js-send-code-button{
+	text-decoration: none;
+	color: white;
+}
+
+@media only screen and (max-width:360px ) {
+	.new-input-pwd{
+		float: none;
+	}
+}
+
+.readed{
+	background-color: white
+}
+
+.show_right li{
+	cursor:pointer
+}
+
+.box .con0{
+    display: block;
+}
+
+/*绑定弹窗自适应*/
+@media (max-width: 767px){
+    .main{
+   		width: 320px !important;
+    }
+}
+/*更改引进样式*/
+.main {
+	margin: 50px auto 0 !important;
+    text-align: center !important;
+    width: 360px !important;
+    padding: 10px 30px !important;
+    background-color: #fff !important;
+    border-radius: 4px !important;
+    vertical-align: middle;
+   }
+/*重置密码刷新*/
+.refresh_add_top{
+    position: relative !important;
+	top: -36px !important;
+    bottom: none !important;
+    right: 60px !important;
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 50% !important;
+    background: none repeat scroll 0 0 white !important;
+    overflow: hidden !important;
+    box-shadow: 0 0 10px rgba(0,0,0,.1) inset, 0 0 25px rgba(0,0,255,0.075) !important;
+
+}
+
+
+
+
+ /* 绑定微信 */
+ .wechat_info_logo{
+   border-radius: 10px;
+   width:120px;
+	 margin-left: 16px;
+ }
+ .bind-user{
+ 	padding-bottom: 50px;
+   /* border-bottom: solid 1px gainsboro; */
+ }
+ .setting-save {
+ 	margin-top: 10px;
+ 	color: white;
+ 	background-color: #006bb3!important;
+ 	border-color: #006bb3!important;
+ 	border-radius: 20px;
+ 	min-width: 138px;
+ 	/* box-shadow: 0 0 10px #31708f; */
+ }
+
+ /*footer样式复写*/
+ .footer-detail .container{
+     background-color: white;
+ }
+

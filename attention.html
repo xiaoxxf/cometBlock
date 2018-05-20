@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!-- 原chain.html页 -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>彗星—区块链项目评测社区 关注</title>
+	<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+	<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+	<link rel="stylesheet" media="all" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+	<link rel="stylesheet" href="css/attention.css" />
+	<link rel="stylesheet" href="css/loading.css">
+	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/load.css" />
+	<link rel="stylesheet" href="js/plugins/swiper/swiper-4.2.2.min.css">
+
+	<!-- 导航栏 -->
+</head>
+<body lang="zh-CN" class="reader-black-font">
+		<div class="comet-main block-comet-main-wrap">
+		<!-- 全局顶部导航栏 -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook">
+			</div>
+			<div class="mian-container">
+				<div class="container" >
+					<!--关注-->
+					<div class="hot_review_box">
+						<div class="row">
+							<div class="col-md-3 col-xs-12 col-sm-12">
+								<div class="hot_zone side">
+									<div class="attention_box" >
+										<span class="load_all_user_dynamic dynamic_menu_on_focus">全部</span>
+										<span class="load_recommend_dynamic">推荐</span>
+										<!-- <a href="">关注</a> -->
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-9 col-sm-12 col-xs-12">
+								<div class="hot_zone">
+										<div class="hot_review_region dynamic_region">
+
+										</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="waiting-data">
+						<div class="loader9">
+							<div class="loader-nine">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="load-more-container-wrap" >
+	          <div class="load-more-wrap load-more-hook" >
+	              <div class="loader1 loader" style="display: none;" >
+	                  <div></div>
+	                  <div></div>
+	                  <div></div>
+	              </div>
+	              <div class="loading-more"  style="display: none">
+	                  加载更多
+	              </div>
+	          </div>
+	          <div class="load-more-wrap no-more-hook" style="display: none">
+	              <div class="loading-more">
+	                  已无更多数据
+	              </div>
+	          </div>
+	        </div>
+
+				</div>
+			</div>
+		</div>
+
+
+<script id="all_dynamic" type="text/html">
+	<%for(var i = 0; i < list.length; i++) {%>
+
+		<%if (list[i].type == 2) {%>
+			<!--长评-->
+				<div class="attention_zone bottom_line">
+					<div class="comment-detail">
+						<div class="comment-content">
+							<div class="comment-info">
+								<a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+									<%if(list[i].userPic == null ){%>
+										<img src="img/normal-user.png" class="comment-creator-pic"/>
+									<%} else {%>
+										<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
+									<% } %>
+								</a>
+								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
+								<p style="color:rgb(79, 163, 237) ;">
+									发表了长评
+									 <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+								</p>
+
+								<p class="comment-title">
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" target="_blank"><%:=list[i].textTitle %></a>
+								</p>
+							</div>
+							<div class="comment_bottom_box">
+								<div class="comment-introduce">
+									<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent" target="_blank">
+										<%:=list[i].textContent %>
+									</a>
+								</div>
+								<div class="comment-icon" style="height: 91.5897px;">
+									<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
+										<img class="comment-img" src="<%:=list[i].projectLogo %>">
+									</a>
+								</div>
+							</div>
+							<div class="meta">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments"><i class="fa fa-commenting"></i> <%:=list[i].review %> </a>
+								<a class="like-button add_like" data-reviewid="<%:=list[i].reviewId %>"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+		<%} else if (list[i].type == 1) {%>
+			<!--短评-->
+			<div class="attention_zone bottom_line">
+				<div class="comment-detail">
+					<div class="comment-content">
+						<div class="comment-info">
+							<a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+								<%if(list[i].userPic == null ){%>
+									<img src="img/normal-user.png" class="comment-creator-pic"/>
+								<%} else {%>
+									<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
+								<% } %>
+							</a>
+							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
+							<p style="color:rgb(79, 163, 237);">
+								写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评
+								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
+
+							</p>
+						</div>
+						<div class="long-comment" style="display:flex; background-color: #eee;margin-right: 30px; padding: 20px; border-radius: 4px;">
+							<div class="comment-introduce">
+								<p>
+									<%:=list[i].textTitle %>
+								</p>
+							</div>
+							<div class="comment-icon" style="height: 91.5897px;">
+								<a href="chain-detail.html?projectId=<%:=list[i].projectId %>">
+									<img class="comment-img" src="<%:=list[i].projectLogo %>">
+								</a>
+							</div>
+						</div>
+						<div class="meta">
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments"><i class="fa fa-commenting"></i> <%:=list[i].review %> </a>
+							<a class="like-button add_like" data-reviewid="<%:=list[i].reviewId %>"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		<%} else if (list[i].type == 4) {%>
+			<!-- 文章 -->
+			<div class="attention_zone bottom_line">
+				<div class="comment-detail">
+					<div class="comment-content">
+						<div class="comment-info">
+							<a href="personal-homepage.html?userId=<%:=list[i].creator %>">
+								<%if(list[i].userPic == null ){%>
+									<img src="img/normal-user.png" class="comment-creator-pic"/>
+								<%} else {%>
+									<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
+								<% } %>
+							</a>
+							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
+							<p style="color:rgb(79, 163, 237);">发表了文章</p>
+							<p class="comment-title">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" target="_blank">
+									<%:=list[i].textTitle %>
+								</a>
+							</p>
+						</div>
+						<div class="comment_bottom_box">
+							<div class="comment-introduce">
+								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="textContent" target="_blank">
+									<%:=list[i].textContent %>
+								</a>
+							</div>
+							<!-- <div class="comment-icon" style="height: 91.5897px;">
+								<a href="">
+									<img class="comment-img" src="img/coin_3.png">
+								</a>
+							</div> -->
+						</div>
+						<div class="meta">
+							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
+							<!-- <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%:=list[i].review %></a> -->
+							<a class="like-button add_like" data-reviewid="<%:=list[i].reviewId %>"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		<%}%>
+
+		<!-- 转发 -->
+		<!-- <div class="attention_zone bottom_line">
+			<div class="comment-detail">
+				<div class="comment-content">
+					<div class="comment-info">
+						<img src="img/normal-user.png" class="comment-creator-pic">
+						<a href="" class="real_name">低不语</a>
+						<p>转发区块链好闻</p>
+						<p class="write-comment"><a href="">昊无边:</a>写了MANA的点评</p>
+						<p class="comment-title">
+							<a href="">深度测评雷电网络：倍受V神质疑的以太坊高速公路</a>
+						</p>
+					</div>
+					<div style="display:flex">
+						<div class="comment-introduce">
+							<a href="" class="textContent">
+								01—项目概述支付是区块链的杀手级应用</a>
+						</div>
+						<div class="comment-icon" style="height: 91.5897px;">
+							<a href="">
+								<img class="comment-img" src="img/coin_3.png">
+							</a>
+						</div>
+					</div>
+					<div class="meta">
+						<a href="" style="margin-right:20px"><i class="fa fa-commenting"></i> 0</a>
+						<a class="like-button" data-reviewid="04de1987-0147-41b6-b6ef-e33c6a67de3c"><i class="fa fa-heart"></i> 0</a>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+
+
+	<%}%>
+
+	<!-- 登录弹窗 -->
+	<script type="text/html" id="short-comment-commit-layer">
+		<div class="main report-login">
+
+			<h4 class="title">
+			    <div class="normal-title">
+					<a class="active" href="">登录</a>
+					<b>·</b>
+					<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+				</div>
+			</h4>
+			<div class="js-sign-in-container">
+
+				<div class="input-prepend  restyle ">
+					<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+
+					<i class="fa fa-user"></i>
+				</div>
+				<div class="input-prepend border_radiusB">
+					<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+					<i class="fa fa-unlock-alt"></i>
+
+				</div>
+				<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+				<div class="remember-btn">
+					<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+				</div>
+				<div class="forget-btn">
+					<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="">用手机号重置密码</a>
+						</li>
+
+					</ul>
+				</div>
+
+				<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+					 <span class="ouro">
+							<span class="left"><span class="anim"></span></span>
+							<span class="right"><span class="anim"></span></span>
+					 </span>
+				</input>
+
+				<div class="more-sign">
+					<h6>社交帐号登录</h6>
+					<ul>
+						<li class="wechat-login">
+							<img src="img/wechat.png" class="wechat_logo"  />
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</script>
+
+</script>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins/swiper/swiper-4.2.2.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/template.js"></script>
+<script src="js/md5.js"></script>
+<script src="js/login.js"></script>
+<script src="js/plugins/layer/layer.js"></script>
+<script src="js/attention.js"></script>
+
+</body>
+
+</html>

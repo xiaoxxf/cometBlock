@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>详情</title>
-    <link rel="icon" href="img/huixing.png" type="image/x-icon"/>  
+    <title></title>
+    <meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+    <meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+    <link rel="icon" href="img/huixing.png" type="image/x-icon"/>
     <link rel="stylesheet" href="css/detail.css">
     <link rel="stylesheet"  href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
@@ -59,8 +61,6 @@
             console.log(keywords)
 
             window.location.href='http://www.blockcomet.com/?keys='+keywords;
-            //window.location.href = 'http://127.0.0.1:8020/NewsPaperFront-zhuzi/index.html?keys=' + keywords;
-            //http://127.0.0.1:8020/NewsPaperFront-zhuzi/index.html?__hbt=1521169457576
         }
     });
 
@@ -97,6 +97,8 @@
         doJavaGet(uri, function(res) {
             if(res != null && res.code == 0) {
                 var datas = res.datas
+                $('title').html(datas.title)
+
                 $('#detail_title').text(datas.title)
                 $('#detail_from').text("来源："+datas.media)
                 if(datas.creator!=null){

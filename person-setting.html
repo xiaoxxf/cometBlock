@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>个人设置</title>
+		<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+		<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+		<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+		<link type="favicon" rel="shortcut icon" href="favicon.ico" />
+		<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/chain-new.css" />
+		<link rel="stylesheet" href="css/person-setting.css">
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="css/load.css" />
+		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+
+	</head>
+
+	<body lang="zh-CN" class="reader-black-font">
+		<div class="comet-main block-comet-main-wrap">
+			<!-- 全局顶部导航栏 -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook">
+			</div>
+
+			<!-- 微信登录，未绑定的 -->
+			<div class="container wechat_login" style="margin-top:150px">
+					<div class="row">
+						<div class="col-md-1 col-md-offset-5">
+							<img src="img/huixing.png" class="wechat_info_logo" alt="">
+
+							<!--微信綁定-->
+							<div class="bind-user">
+								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="关联已有彗星账号" id="bind_now_user">
+								</div>
+								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="关联新彗星账号" id="bind_new_user">
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+
+			<!-- 账号登录/微信登录已绑定的 -->
+			<div class="container form-box account_login" style="background-color: white;display:none">
+				<div class="row ">
+					<!--<div class=" col-xs-12 col-md-12 col-sm-12 ">-->
+						<!--<div class="col-xs-12 col-md-4 col-sm-12">-->
+							<div class="aside">
+								<ul class="person-left-menu">
+									<li class="router-link-exact-active active" >
+										<a class="toogle-acive" id="baseSetting">
+											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span class="option-name">基础设置</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<div class="setting-icon"><i class="fa fa-gear"></i></div> <span class="option-name">账号管理</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						<!--</div>-->
+
+						<div class="col-xs-12 col-md-8 col-sm-12  col-md-offset-4 show_right">
+							<!--更换头像-->
+							<div class="show_table cont0">
+								<div class="base_setting">
+									<div class="col-md-3 col-xs-6 col-sm-6">
+										<div class="avatar" id="result">
+											<img src="">
+										</div>
+									</div>
+									<div class="col-md-4 col-xs-6 col-sm-6">
+										<a href="javascript:;" class="file btn btn-hollow ">更改头像
+											<input type="file" id="user_logo_input" class='user_logo' >
+										</a>
+										<!--<button type="button" class="btn btn-default upload-button upload-project-logo btn-hollow">保存
+										</button>-->
+									</div>
+									<div class="col-md-1">
+
+									</div>
+								</div>
+								<!--昵称-->
+								<div class="base_setting">
+									<div class="col-md-3 col-xs-3 col-sm-3">
+										<div class=" setting-title">
+											昵称
+										</div>
+									</div>
+									<div class="col-md-4 col-xs-6 col-sm-6">
+										<input type="text" placeholder="请输入昵称" id="ownname" >
+									</div>
+
+								</div>
+								<!--个人简介-->
+								<div class="base_setting_introduce">
+									<div class="col-md-3 col-xs-3 col-sm-3">
+										<div class=" setting-title">
+											个人简介
+										</div>
+									</div>
+									<div class="col-md-8 col-xs-6 col-sm-6">
+										<textarea class="person-introduce" rows="4" cols="30"></textarea>
+									</div>
+
+								</div>
+								<div class="base_setting">
+									<div class="col-md-3 col-xs-12 col-sm-12">
+										<button type="button" class="btn btn-default save_realname" id="save_realname">保存
+										</button>
+									</div>
+								</div>
+							</div>
+							<!-- 账号管理 -->
+							<div class="show_table show_table_detail cont1 quote">
+								<!-- <div class="menu">账号管理</div> -->
+								<ul class="my-article">
+
+									<!--修改密碼-->
+									<div class="base_setting_pwd">
+										<!--<div class="col-md-12">-->
+											<div class="reset-pwd setting-title">
+												<!--<div class=" setting-title">-->
+													<a class=" setting-psw" data-toggle="collapse"   >
+														<span class="fa fa-angle-down down_icon"></span>
+														修改密码
+													</a>
+													<div id="collapseOne" class="accordion-body  col-xs-12 col-sm-12 col-md-12 " >
+														<div class="accordion-inner col-xs-12 col-md-10 col-sm-12">
+															<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
+																<input placeholder="手机验证码" type="text" class="phone_code_tip">
+																<a class="btn-up-resend js-send-code-button" id="setting_send_code">发送验证码</a>
+															</div>
+															<div class="row-new-pwd" >
+																<div class="col-xs-12 col-md-6 col-sm-12 row-input"><a>请输入新的密码</a></div>
+																<div class="col-xs-12 col-md-6 col-sm-12"><input type="password"  id="newPwd" class="new-input-pwd"></div>
+															</div>
+														</div>
+													</div>
+												<!--</div>-->
+											</div>
+										<!--</div>-->
+									</div>
+									<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd bottom_line">
+										<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
+									</div>
+
+								</ul>
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!--绑定现有用户弹出-->
+		<script type="text/html" id="bind-now-commit-layer">
+				<div class="main report-login">
+
+					<h4 class="title">
+					    <div class="normal-title">
+							<a class="active" style="border-bottom:none;">关联已有账户</a>
+						</div>
+					</h4>
+					<div class="js-sign-in-container">
+
+						<div class="input-prepend  restyle ">
+							<input placeholder="手机号" type="text" class="border_radT" id="session_phone">
+
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="input-prepend border_radiusB">
+							<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+							<i class="fa fa-unlock-alt"></i>
+
+						</div>
+						<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+
+						<input class="sign-in-button" id="bind-exist-user-btn" type="button" value="绑定" style="margin-top:20px;" >
+							 <span class="ouro refresh_icon_add_top">
+									<span class="left"><span class="anim"></span></span>
+									<span class="right"><span class="anim"></span></span>
+							 </span>
+						</input>
+
+						<!-- <input class="sign-in-button " id="bind-exist-user-btn" type="button" value="绑定" style="margin-top: 30px;">
+							<span class="ouro">
+							    <span class="left"><span class="anim"></span></span>
+							    <span class="right"><span class="anim"></span></span>
+							 </span>
+					 	</input> -->
+					</div>
+				</div>
+		</script>
+		<!--绑定新用户弹出-->
+		<script type="text/html" id="bind-new-commit-layer">
+				<div class="main report-login">
+					<h4 class="title">
+					    <div class="normal-title">
+							<a class="active" style="border-bottom:none;">关联新账户	</a>
+						</div>
+					</h4>
+					<div class="js-sign-in-container">
+						<div class="input-prepend restyle ">
+							<input placeholder="你的昵称" type="text" class="border_radT" name="realName" id="realName">
+							<i class="fa fa-user"></i>
+						</div>
+						<div class="input-prepend">
+							<input placeholder="手机号" type="text" name="tel" id="session_phone">
+							<i class="fa fa-mobile"></i>
+						</div>
+						<div class="input-prepend phone_code_hide">
+							<input placeholder="手机验证码" type="text" name="tel" class="border_radC " id="phone_code">
+							<i class="fa fa-key"></i>
+							<a class="btn-up-resend btn_up_press js-send-code-button" id="send_code" onclick="verifyPhone()">发送验证码</a>
+						</div>
+						<div class="input-prepend">
+							<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
+							<i class="fa fa-unlock-alt"></i>
+						</div>
+
+						<input class="sign-in-button" id="bind-new-user-btn" type="button" value="绑定" style="margin-top: 30px;">
+						<span class="ouro refresh_add_top">
+						    <span class="left"><span class="anim"></span></span>
+						    <span class="right"><span class="anim"></span></span>
+						 </span>
+					 	</input>
+					</div>
+				</div>
+		</script>
+
+
+		<script src="js/jquery-2.1.1.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/plugins/layer/layer.js"></script>
+		<script src="js/person-setting.js"></script>
+		<script src="js/md5.js"></script>
+		 <!--<script src="js/login.js"></script>
+		 <script src="js/register.js"></script> -->
+		<script src='js/wechatBindUser.js'></script>
+	</body>
+
+</html>

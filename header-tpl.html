@@ -8,18 +8,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-				<a class="navbar-brand navbar-brand-xs" href="index.html"><img src="img/favicon.png" class="nav_logo" /><span itemprop="name">彗星</span></a>
+				<a class="navbar-brand navbar-brand-xs" href="index.html"><img src="img/favicon.png" class="nav_logo" />
+					<span itemprop="name">彗星</span>
+				</a>
 			</div>
 			<div class="navbar-collapse collapse" aria-expanded="false" style="height: 0px;">
 				<ul class="nav navbar-nav navbar-left nav-menu">
 					<li>
-						<a href="index.html" class="chain">发现</a>
+						<a href="index.html" class="index">发现</a>
 					</li>
 					<li>
-						<a href="news.html" class="new-report cur-nav">播报</a>
+						<a href="attention.html" class="attetion-category">关注</a>
 					</li>
 					<li>
-						<a href="chain.html" class="new-report cur-nav">分类</a>
+						<a href="news.html" class="new-report">播报</a>
+					</li>
+					<li>
+						<a href="chain.html" class="chain-category">找项目</a>
 					</li>
 					<li>
 						<a href="code-rank.html" class="code-rank">代码榜</a>
@@ -35,7 +40,7 @@
 				<!--  -->
 				<ul class="nav navbar-nav navbar-right log-nvabar-right" style="cursor: pointer;">
 					<li id="nav_login">
-						<a href="javascript:;" class="log_nav nav_font">登录</a>
+						<a href="#" class="log_nav nav_font">登录</a>
 					</li>
 					<li id="nav_register">
 						<a href="register.html" class="log_nav reg_c nav_show_message nav_font login-btn-xs">注册</a>
@@ -47,8 +52,10 @@
 							<span class="arrow"></span>-->
 							<div class="droplist-wrap logout-btn-xs">
 								<ul >
-									<li class="logout-btn">注销</li>
 									<li class="usercenter-btn">个人中心</li>
+									<li class="inform-btn">消息通知</li>
+									<li class="setting-btn">个人设置</li>
+									<li class="logout-btn">注销</li>
 								</ul>
 							</div>
 						</div>
@@ -59,7 +66,7 @@
 
 				<ul class="nav navbar-nav navbar-right log-nvabar-right login-right message-notification">
 					<li class="tab notification">
-							<a data-hover="dropdown" href="personalCenter.html?personType=1" class="notification-btn">
+							<a data-hover="dropdown" href="notification.html?personType=1" class="notification-btn">
 								<span><i class="fa fa-bell-o"></i></span>
 								<span class="badge badge-inform"></span>
 							</a>
@@ -83,7 +90,7 @@
 
 								</div>
 
-								<div class="show-alert-inform-bottom"><a href="personalCenter.html?personType=1">查看信息</a></div>
+								<div class="show-alert-inform-bottom"><a href="notification.html?personType=1">查看信息</a></div>
 							</div>
 					</li>
 				</ul>
@@ -94,10 +101,10 @@
 						<div class="search_content">
 							<input class="nav_input" type="text" placeholder="输入关键词搜索" value="" id="head_search">
 						 	<ul class="nav_search_list">
-						 		<li id="search_project" >项目搜索：<span class="search_key_word"></span></li>
-						 		<!-- <li id="search_article" >内容搜索：<span class="search_key_word"></span></li> -->
-						 		<!-- <li id="search_news" >新闻搜索：<span class="search_key_word"></span></li> -->
-						 		<!-- <li id="search_user" >用户搜索：<span class="search_key_word"></span></li> -->
+						 		<li id="search_project" class="nav_search_list_focus" maxlength="10">项目搜索：</li>
+						 		<li id="search_article" maxlength="10">内容搜索：</li>
+						 		<li id="search_news" maxlength="30">新闻搜索：</li>
+						 		<li id="search_user" maxlength="30">用户搜索：</li>
 						 	</ul>
 						</div>
 					</li>

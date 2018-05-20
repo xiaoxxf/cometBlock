@@ -1,32 +1,3 @@
-//绑定现有用户弹出框
-$("#bind_now_user").on('click',function (e) {
-
-  var area_width
-  var area_height
-  if($(window).width() <= 767)
- 	{
-	 	area_width = '320px'
-	    area_height = '500px'
- 	}else{
- 		 area_width = '370px'
-	     area_height = '460px'
- 	}
-  layer.open({
-      type: 1,
-      shade:0,
-      title: 0,
-      skin: 'layui-layer-report', //加上边框
-      area: [area_width,area_height ], //宽高
-      content: $("#bind-now-commit-layer").html()
-  });
-	$('#bind-exist-user-btn').on('click',function(){
-    var currentHref = location.href
-    window.localStorage.setItem('currentHref', currentHref);
-		loginBeforeBind();
-	})
-
-})
-
 //绑定新用户弹出框
 $("#bind_new_user").on('click',function (e) {
     var area_width
@@ -49,14 +20,14 @@ $("#bind_new_user").on('click',function (e) {
   });
 
 	$('#bind-new-user-btn').on('click',function(){
-    var currentHref = location.href
-    window.localStorage.setItem('currentHref', currentHref);
+    // var currentHref = location.href
+    // window.localStorage.setItem('currentHref', currentHref);
 		signUpBeforeBind();
 	})
 
 })
 
-// 绑定新用户，绑定前注册
+// 绑定新用户，先注册
 function signUpBeforeBind(){
 	if(RegisterFromValid()) {
 		var param = {
@@ -82,7 +53,7 @@ function signUpBeforeBind(){
         loginAfterSignUp()
 			} else {
 
-				layer.msg(res.msg);
+				layer.msg('绑定失败，请检查你的信息填写是否正确');
 
 			}
 
@@ -90,7 +61,7 @@ function signUpBeforeBind(){
 	}
 }
 
-
+// 绑定新用户，注册后登录
 function loginAfterSignUp() {
 	if(loginFromValid()) {
 		var param = {
@@ -121,14 +92,6 @@ function loginAfterSignUp() {
 					expires: expireDate
 				});
 
-				// var localCurrentHref = window.localStorage.getItem('currentHref');
-				// if(localCurrentHref.indexOf('login.html') > 0) {
-				// 	window.location.href = "index.html";
-        //
-				// } else {
-				// 	window.location.href = "personalCenter.html";
-				// }
-
         // 登录后绑定
         bindNewUser()
 			} else {
@@ -139,7 +102,7 @@ function loginAfterSignUp() {
 	}
 }
 
-
+// 绑定新用户，注册-登录-绑定
 function bindNewUser(){
 	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 	var userId = $.cookie('userid');//获取userid
@@ -150,8 +113,8 @@ function bindNewUser(){
       layer.msg('绑定成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
-          var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-          window.location.href = currentJumpHref;
+          // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+          window.location.href = 'index.html';
         }
       });
 		}else if(res.code == -1){
@@ -161,7 +124,36 @@ function bindNewUser(){
 }
 
 
-// 绑定现有用户
+//绑定现有用户弹出框
+$("#bind_now_user").on('click',function (e) {
+  var area_width
+  var area_height
+  if($(window).width() <= 767)
+ 	{
+	 	area_width = '320px'
+	    area_height = '500px'
+ 	}else{
+ 		 area_width = '370px'
+	     area_height = '460px'
+ 	}
+  layer.open({
+      type: 1,
+      shade:0,
+      title: 0,
+      skin: 'layui-layer-report', //加上边框
+      area: [area_width,area_height ], //宽高
+      content: $("#bind-now-commit-layer").html()
+  });
+	$('#bind-exist-user-btn').on('click',function(){
+    // var currentHref = location.href
+    // window.localStorage.setItem('currentHref', currentHref);
+		loginBeforeBind();
+	})
+
+
+})
+
+// 绑定现有用户前，先登录
 function loginBeforeBind(){
 	if(loginFromValid()){
 		var param = {
@@ -204,17 +196,19 @@ function loginBeforeBind(){
 }
 
 function bindExistUser(){
-	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
-	var userId = $.cookie('userid');//获取userid
-	var wechatInfo = JSON.parse($.cookie('wechatInfo'))
+	// var userinfo = JSON.parse(localStorage.getItem('userinfo'));
+	// var userId = $.cookie('userid');//获取userid
+	// var wechatInfo = JSON.parse($.cookie('wechatInfo'))
+  var userId = $.cookie('userid');//获取userid
+  var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 	var uri = 'news/bindingUser?userId=' + userId + '&userPwd=' + userinfo.userPwd +'&openid=' + wechatInfo.openid
 	doJavaGet(uri, function(res){
 		if (res.code == 0) {
       layer.msg('绑定成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
-          var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-          window.location.href = currentJumpHref;
+          // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+          window.location.href = 'index.html';
         }
       });
 		}else if(res.code == -1){
@@ -222,8 +216,6 @@ function bindExistUser(){
 		}
 	})
 }
-
-
 
 
 
@@ -284,8 +276,8 @@ function RegisterFromValid() {
 		});
 		return false;
 	}
-	if(!(/^1(3|4|5|7|8)\d{9}$/.test(tel))) {
-		layer.tips('输入手机错误', '#session_phone', {
+	if(!(/^1[0-9]{10}$/.test(tel))) {
+		layer.tips('请输入正确的手机号', '#session_phone', {
 			tips: [2, '#3595CC'],
 			time: 2000
 		});
@@ -309,6 +301,35 @@ function RegisterFromValid() {
 	return true;
 
 }
+//关联新账户验证
+function sendCodeFromValid(){
+	var realName = $("#realName").val();
+	var tel = $("#session_phone").val();
+	var userPwd = $("#session_password").val();
+	if(realName == "") {
+		layer.tips('用戶名不能为空', '#realName', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+	if(tel == "") {
+		layer.tips('手机号不能为空', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+	if(!(/^1[0-9]{10}$/.test(tel))) {
+		layer.tips('请输入正确的手机号', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		return false;
+	}
+
+	return true;
+}
 
 //昵称手机号失去焦点事件
 $("#realName").blur(function() {
@@ -323,6 +344,12 @@ $("#session_phone").blur(function() {
         gainCode()
     }
 });
+
+
+//点击发送验证码
+$('#send_code').click(function() {
+	sendCode()
+})
 
 //验证昵称手机号
 function gainCode() {
@@ -344,36 +371,41 @@ function gainCode() {
 	}, "json");
 
 }
-
+var flag_send_code=false;
 //校验对象是否存在
-function sendCode() {
-	var uri = 'news/virty?'
+function verifyPhone() {
+  if(flag_send_code){
+    return
+  }
 	if(!$("#session_phone").val()) { //校验手机号
-		layer.msg("请输入手机号");
+    layer.tips('手机号不能为空', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
 		return
 	} else {
-		uri = uri + 'userName=' + $("#session_phone").val()
+		var uri = 'news/virty?' + 'userName=' + $("#session_phone").val()
+    doJavaGet(uri, function(res) {
+      if(res != null && res.code == 0) {
+        if(sendCodeFromValid()){
+          getCode()
+        }
+      } else {
+        layer.tips('手机号已被注册', '#session_phone', {
+    			tips: [2, '#3595CC'],
+    			time: 2000
+    		});
+      }
+
+    }, "json");
 	}
-	doJavaGet(uri, function(res) {
-		if(res != null && res.code == 0) {
-			getCode()
-		} else {
-
-			if($("#session_phone").val()) { //校验手机号
-
-				layer.msg("手机号已存在");
-
-			}
-
-		}
-
-	}, "json");
 
 }
 
 //发送验证码
 function getCode() {
-	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
+  flag_send_code = true;
+	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val();
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
@@ -383,9 +415,11 @@ function getCode() {
 		} else {
 			layer.msg(res.msg);
 		}
+
 	}, "json");
 
 }
+
 var count = 60;
 var countdown;
 
@@ -398,21 +432,15 @@ function dingshiqi() {
 
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
-		count = 60
+		flag_send_code=false
 	}
 
 }
 
 function CountDown() {
-
+	count = 60;
 	countdown = setInterval(dingshiqi, 1000);
-
 }
-//点击发送验证码
-$('#send_code').click(function() {
-	$("#send_code").css("text-decoration", "none");
-	$("#send_code").css("color", "white");
 
-	sendCode()
 
-})
+//关联已有账户校验

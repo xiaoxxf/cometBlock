@@ -16,7 +16,6 @@ function SendCodeFromValid(){
 	 });
 	 return false;
 	 
-	 
    }
    return true;
 }
@@ -72,11 +71,58 @@ function FindPwdFromValid() {
 	return true;
 }
 
+//找回密码输入框检测输入手机号时检测是否有注册过
+$("#session_phone").blur(function(){
+	if(SendCodeFromValid()){
+		getRegister()
+	}
+		
+});
+
+// 校验手机号是否已注册
+var ifRegister = false
+function getRegister(){
+	var userPhone=$("#session_phone").val();
+	var uri="news/virty?userName="+userPhone
+	doJavaGet(uri,function(res){
+		if(res !=null && res.code==-1){
+			//返回code为-1为注册过，所以可以直接修改密码
+			ifRegister = true;
+			
+//			getCode()
+		}
+		else{
+			 //校验手机号
+			ifRegister = false;
+			layer.msg("手机号未注册过，请先注册");
+			
+		}
+		
+	},"json");
+}
+
+//点击验证
+var flag_resetPwd_sendCode =false;
+$('#send_code').click(function() {
+	debugger
+	if(flag_resetPwd_sendCode || !ifRegister){
+		layer.msg("手机号未注册过，请先注册");
+		return
+	}
+ 	//flag_resetPwd_sendCode =true;
+ 	else if(!flag_resetPwd_sendCode && ifRegister){
+ 		getCode()
+ 	}
+ 	else{
+ 		layer.msg("手机号未注册过，请先注册");
+ 	}
+	
+})
 //发送验证码
 function getCode() {
 	if(SendCodeFromValid()){
-		var userName=$("#session_phone").val();
-		var uri = 'news/recoverPassword?userName=' + userName +'&type='+1//输入手机号请求验证码验证
+		var userPhone = $("#session_phone").val();
+		var uri = 'blockchain/getCode?phoneNo=' + userPhone//输入手机号请求验证码验证
 		doJavaGet(uri, function(res) {
 			if(res != null && res.code == 0) {
 				layer.msg("验证码已发送");
@@ -102,6 +148,7 @@ function dingshiqi() {
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
 		count = 60
+		flag_resetPwd_sendCode =false;
 	}
 
 }
@@ -110,20 +157,12 @@ function CountDown() {
 	countdown = setInterval(dingshiqi, 1000);
 
 }
-//点击验证
-$('#send_code').click(function() {
-	getCode()
-})
-
 
 
 
 //重置密码
 $("#sign-in-form-submit-btn").click(function() {
 	if(FindPwdFromValid()){
-		$(".ouro").attr({
-			style: "display:inline-block"
-		});
 		var userName=$("#session_phone").val();
 		var code=$("#phone_code").val();
 		var newPassword=$("#confirm_password").val();
@@ -136,9 +175,15 @@ $("#sign-in-form-submit-btn").click(function() {
 				setTimeout(function() {
 					window.location.href = "login.html";
 				}, 1500);
+				$(".ouro").attr({
+					style: "display:inline-block"
+				});
 
 			} else {
 				layer.msg(res.msg);
+				$(".ouro").attr({
+					style: "display:none"
+				});
 			}
 	
 		}, "json");

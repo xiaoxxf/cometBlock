@@ -146,7 +146,7 @@
 		position: absolute;
 		top: 7px;
 		right: 7px;
-		width: 80px;
+		width: 90px;
 		height: 36px;
 		font-size: 13px;
 		color: #fff;
@@ -326,4 +326,10 @@
 }
 .sign-up-btn{
 	border-bottom: none !important;
+}
+
+.wechat_logo{
+	width:40px;
+	border-radius:50px;
+	cursor: pointer;
 }

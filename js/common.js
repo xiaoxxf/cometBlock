@@ -1,3 +1,19 @@
+var username = $.cookie('username');
+var userId = $.cookie('userid');//获取userid
+var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
+// var wechatInfo_flag = false; // 是否已取得微信返回数据
+
+// 不跳回登录、注册、找回密码的页面
+// var login_uri = '/login.html';
+// var register_uri = '/register.html';
+// var find_pass_word_uri = '/find-pwd.html';
+// var wechat_login_uri = "/connect/qrconnect";
+// if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
+//   var currentJumpHref = window.location.href;
+//   window.localStorage.setItem('currentJumpHref',currentJumpHref);
+// }
+
 function guid() {
     function s4() {
         return Math.floor((1 + Math.random()) * 0x10000)
@@ -12,11 +28,9 @@ var WebApiToken;
 //var WebApiHost="http://localhost:2579/";
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
-//var WebApiHostJavaApi = "http://backend.blockcomet.com/";
+// var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
-
-//var WebApiHostJavaApi = "http://10.0.0.183:8080/";
-
+// var WebApiHostJavaApi = "http://10.0.0.187:8080/";
 
 var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
@@ -118,111 +132,182 @@ $.get("header-tpl.html",function(data){
     var href = location.href;
     $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
     //判断当前页面加cur-nav样式
-   if(href.indexOf('news.html')>0 || href.indexOf('detail.html')>0){
+    if(href.indexOf('news.html')>0 || href.indexOf('detail.html')>0){
        $(".navbar-fixed-container-hook .navbar-left .new-report").addClass('cur-nav');
-   }
+    }
     if(href.indexOf('code-rank.html')>0){
         $(".navbar-fixed-container-hook .navbar-left .code-rank").addClass('cur-nav');
     }
-    if(href.indexOf('index.html')>0 || href.indexOf('chain-detail.html')>0  || href.indexOf('comment.html')>0 ){
+    if(href.indexOf('index.html')>0 || href.indexOf('comment.html')>0 ){
         $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
-        $(".navbar-fixed-container-hook .navbar-left .chain").addClass('cur-nav');
+        $(".navbar-fixed-container-hook .navbar-left .index").addClass('cur-nav');
+    }
+
+    if (href.indexOf('chain.html')>0 || href.indexOf('chain-detail.html')>0 || href.indexOf('comment.html')>0 ) {
+      $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+      $(".navbar-fixed-container-hook .navbar-left .chain-category").addClass('cur-nav');
+    }
+
+    if (href.indexOf('attention.html')>0) {
+      $(".navbar-fixed-container-hook .navbar-left a").removeClass('cur-nav');
+      $(".navbar-fixed-container-hook .navbar-left .attetion-category").addClass('cur-nav');
     }
 
     //页面加载完成之后做账户信息处理
-    var username = $.cookie('username');
-    var userinfo = JSON.parse(localStorage.getItem('userinfo'))
+    // var username = $.cookie('username');
+    // var userid = $.cookie('userid');
+    // var userinfo = JSON.parse(localStorage.getItem('userinfo'))
     // 微信登陆后用户信息展示
+
     var wechatCode = getUrlParam('code');
     var localCookieWechatInfo = $.cookie('wechatInfo');
-    localCookieWechatInfo = localCookieWechatInfo == null ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
+    localCookieWechatInfo = localCookieWechatInfo == undefined ? localCookieWechatInfo : JSON.parse(localCookieWechatInfo);
 
-    // 没有登录时，显示注册/登录
-    if (username == undefined && wechatCode == null && localCookieWechatInfo == null ) {
-      $("#nav_login").fadeIn();
-      $("#nav_register").fadeIn();
-      $(".scrollbar-container").fadeIn();
-    }
-    // 微信登录
-    else if(wechatCode != null || localCookieWechatInfo != null){
-      // 取得微信登录返回的信息
-      getUserInfoByWeChat(wechatCode);
-    }
-    // 账号登录
-    else if(username != undefined){
+    // 账号登录 或 微信登录后已绑定的
+    if(userId){
       userinfo = JSON.parse(localStorage.getItem('userinfo'))
       $(".nav-user-account #nav_user_mes").text(username);
 
       // 显示头像，没有则显示默认头像
-      if (userinfo.userPic) {
+      if (userinfo.userPic && $("#user_pic")[0]) {
           $("#user_pic")[0].src = userinfo.userPic
-      } else {
+      } else if(!userinfo.userPic && $("#user_pic")[0]){
           $("#user_pic")[0].src = 'img/normal-user.png'
       }
       $(".nav-user-account .more-active").css('display', 'block');
       $(".login-right").css('display', 'block');
-
     }
+    // 微信登录后，已取得返回数据，但没有绑定的
+    else if(localCookieWechatInfo && !localCookieWechatInfo.userinfo ){
+      // 显示微信头像和名称
+      $("#user_pic")[0].src = localCookieWechatInfo.headimgurl;
+      $(".nav-user-account .more-active").css('display', 'block');
+      $(".login-right").css('display', 'block');
+      // 隐藏个人中心和消息通知
+      $('.inform-btn').css('display','none');
+      $('.usercenter-btn').css('display','none');
+    }
+    // 微信登录
+    else if(wechatCode && !localCookieWechatInfo){
+      // 取得返回信息
+      getUserInfoByWeChat();
+    }
+    // 没有登录时，显示注册/登录
+    else if (!userId && !wechatCode && !localCookieWechatInfo ) {
+      $("#nav_login").fadeIn();
+      $("#nav_register").fadeIn();
+      $(".scrollbar-container").fadeIn();
+    }
+
 
 });
 
 // 微信登录后取得返回信息
 function getUserInfoByWeChat(wechatCode){
-  var uri = '/news/getUserInfo?code='+ wechatCode;
+  var wechatCode = getUrlParam('code');
+  var uri = 'news/getUserInfo?code='+ wechatCode;
   doJavaGet(uri, function(res) {
       if(res.code === 0){
-          console.log(res)
-          wechatInfo = JSON.stringify(res.datas);
-          var userinfo_wechat = wechatInfo.userinfo;
-
+          console.log(res);
           //cookie保存微信登录标识，设置时效
           var expireDate= new Date();
+          var wechatInfo = JSON.stringify(res.datas);
+
           expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
           $.cookie('wechatInfo', wechatInfo,{ expires: expireDate});
+          wechatInfo = JSON.parse(wechatInfo);
+
+          // wechatInfo_flag = true; //表示已取得返回信息
+
+          // wechatInfo = JSON.stringify(res.datas);
+          // wechatInfo = JSON.parse('wechatInfo')
 
           // 已绑定
-          if (wechatInfo.userinfo) {
-            userinfo_wechat = JSON.parse(userinfo_wechat)
+          if (wechatInfo.userInfo) {
+            // userinfo_wechat = res.datas.userInfo
             // localStorage.setItem('userinfo', userinfo_wechat);
-            localStorage.setItem('userid', userinfo_wechat.id);
-            localStorage.setItem('userinfo', JSON.stringify(userinfo_wechat));
+            localStorage.setItem('userid', res.datas.userInfo.id);
+            localStorage.setItem('userinfo', JSON.stringify(res.datas.userInfo));
             $.cookie('token', res.datas.id,{ expires: expireDate});
-            $.cookie('userid', res.datas.id,{ expires: expireDate });
+            $.cookie('userid', res.datas.userInfo.id,{ expires: expireDate });
+            userId = $.cookie('userid');
+            userinfo = JSON.parse(localStorage.getItem('userinfo'))
+            // 显示头像，没有则显示默认头像
+            if (userinfo.userPic) {
+                $("#user_pic")[0].src = userinfo.userPic
+            } else {
+                $("#user_pic")[0].src = 'img/normal-user.png'
+            }
+            $(".nav-user-account .more-active").css('display', 'block');
+            $(".login-right").css('display', 'block');
+
+            // 清除wechatinfo
+            // $.removeCookie("wechatInfo")
           }
           // 未绑定
           else{
             // 显示头像、名称
-            $(".nav-user-account #nav_user_mes").text(res.datas.nickname);
+
             $("#user_pic")[0].src = res.datas.headimgurl;
             $(".nav-user-account .more-active").css('display','block');
             $(".login-right").css('display','block');
-
-            setTimeout(function () {
-                layer.open({
-                    closeBtn:1,
-                    title: '',
-                    content: '登录成功，前去绑定开启更多权限',
-                    btn: ['绑定'],
-                    yes: function(){
-                        window.location.href='personalCenter.html?personType=1'
-                    }
-                });
-            },2000)
+            // 隐藏个人中心和消息通知
+            $('.inform-btn').css('display','none');
+            $('.usercenter-btn').css('display','none');
+            window.location.href='person-setting.html?personType=2'
+            // setTimeout(function () {
+            //     layer.open({
+            //         closeBtn:1,
+            //         title: '',
+            //         content: '登录成功，前去绑定开启更多权限',
+            //         btn: ['绑定'],
+            //         yes: function(){
+            //             window.location.href='personalCenter.html?personType=1'
+            //         }
+            //     });
+            // },2000)
           }
 
 
+      }else if(res.code == -1){
+        layer.msg('登录失败，请重试');
+        $("#nav_login").fadeIn();
+        $("#nav_register").fadeIn();
+        $(".scrollbar-container").fadeIn();
       }
   }, "json");
 }
 
 
+// 点击头像跳转
+$('.block-comet-main-wrap').on('click', '.nav-user-account .user-icon',function () {
+	// 账号登录 or 已绑定的微信账号
+	if (userId) {
+		window.location = 'personal-homepage.html'
+	}
+	// 未绑定的微信账号
+	else if(wechatInfo && !wechatInfo.userInfo){
+		window.location = 'person-setting.html'
+	}
+})
 
+// 用户下拉选单跳转
 $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function () {
         Loginout();
 })
 
 $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
-        window.location.href = "personalCenter.html?personType=1";
+//      window.location.href = "personalCenter.html?personType=1";
+			  window.location = "personal-homepage.html";
+})
+
+$('.block-comet-main-wrap').on('click','.nav-user-account .inform-btn',function(){
+        window.location.href = "notification.html?personType=1";
+})
+$('.block-comet-main-wrap').on('click','.nav-user-account .setting-btn',function(){
+        window.location.href = "person-setting.html?personType=1";
+
+
 })
 //通知鼠标悬停出现隐藏div
 
@@ -231,6 +316,17 @@ $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
         var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+
+        // 截取code
+        var reg = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
+        if (reg.test(currentJumpHref))
+          var code = unescape(RegExp.$2.replace(/\+/g, " "));
+
+        // 去除code
+        if (code) {
+          currentJumpHref = currentJumpHref.replace('?code=' + code, '');
+        }
+
         if(currentJumpHref == undefined){
             currentJumpHref = window.location.origin;
         }
@@ -239,25 +335,36 @@ $(document).on('click','.more-sign .wechat-login',function () {
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
             window.location.href = jumpHref;
-    }
+        }
     }, "json");
 })
 //微信注册
-/*$(document).on('click','.more-sign .wechat-resgister',function () {
-    var uri = 'news/winxinCode' ;
-   var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-    if(currentJumpHref == undefined){
-        currentJumpHref = window.location.origin;
-    }
-   //var currentJumpHref = 'http://www.blockcomet.com/comment.html?reviewId=04de1987-0147-41b6-b6ef-e33c6a67de3c&projectId=hx077';
-    doJavaGet(uri, function(res) {
-        if(res.code === 0){
-            var resData = res.datas;
-            var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
-            window.location.href = jumpHref;
-        }
-    }, "json");
-})*/
+$(document).on('click','.more-sign .wechat-resgister',function () {
+  var uri = 'news/winxinCode' ;
+  doJavaGet(uri, function(res) {
+      var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+
+      // 截取code
+      var reg = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
+      if (reg.test(currentJumpHref))
+        var code = unescape(RegExp.$2.replace(/\+/g, " "));
+
+      // 删除code
+      if (code) {
+        currentJumpHref = currentJumpHref.replace('?code=' + code, '');
+      }
+
+      if(currentJumpHref == undefined){
+          currentJumpHref = window.location.origin;
+      }
+      // var currentJumpHref = 'http://www.blockcomet.com';
+      if(res.code === 0){
+          var resData = res.datas;
+          var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
+          window.location.href = jumpHref;
+      }
+  }, "json");
+})
 //页面中的注册跳转
 /*
 $(document).on('click','#js-sign-up-btn',function () {
@@ -273,19 +380,18 @@ $(document).on('click','#js-sign-up-btn',function () {
 
 //微信登录绑定提示
 function wechatBindNotice(){
-	var userId = $.cookie('userid');//获取userid
-	var wechatInfo = JSON.parse($.cookie('wechatInfo'));
-	 if( wechatInfo != null && userId == undefined){
+
+	 if( wechatInfo && !wechatInfo.userInfo){
         layer.open({
             closeBtn:1,
             title: '',
             content: '您暂未进行账号绑定，请前去进行绑定',
             btn: ['绑定'],
             yes: function(){
-                window.location.href='bindUser.html'
+                window.location.href='person-setting.html?personType=2'
             }
         });
         return false;
     }
+    return true
 }
-

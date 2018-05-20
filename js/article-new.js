@@ -1,18 +1,3 @@
-window.wangEditor.fullscreen = {
-	// editor create之后调用
-	init: function(editorSelector){
-		$(editorSelector + " .w-e-toolbar").append('<div class="w-e-menu"><a class="_wangEditor_btn_fullscreen" href="###" onclick="window.wangEditor.fullscreen.toggleFullscreen(\'' + editorSelector + '\')">全屏</a></div>');
-	},
-	toggleFullscreen: function(editorSelector){
-		$(editorSelector).toggleClass('fullscreen-editor');
-		if($(editorSelector + ' ._wangEditor_btn_fullscreen').text() == '全屏'){
-			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('退出全屏');
-		}else{
-			$(editorSelector + ' ._wangEditor_btn_fullscreen').text('全屏');
-		}
-	}
-};
-
 var userId = $.cookie('userid');//获取userid
 var ui = {
   'submiting': false
@@ -20,6 +5,9 @@ var ui = {
 
 // 判断是否登录
 $(function(){
+	if(!wechatBindNotice()){
+    return;
+  }
   if(userId == undefined){
     layer.open({
       closeBtn:0,
@@ -41,12 +29,25 @@ var editor = new E('#editor')
 // 编辑器
 
 editor.customConfig.menus = [
-  'bold',
-  'italic',
-  'head',
-  'emoticon',
+  'head',  // 标题
+  'bold',  // 粗体
+  'fontSize',  // 字号
+  'fontName',  // 字体
+  'italic',  // 斜体
+  'underline',  // 下划线
+  'strikeThrough',  // 删除线
+  'foreColor',  // 文字颜色
+  'backColor',  // 背景颜色
   'link',  // 插入链接
+  'list',  // 列表
+  'justify',  // 对齐方式
+  'quote',  // 引用
   'image',  // 插入图片
+  'table',  // 表格
+  'code',  // 插入代码
+  'undo',  // 撤销
+  'redo'  // 重复
+
 ]
 
 var uploadUri = 'common/upload'
@@ -82,17 +83,10 @@ editor.customConfig.uploadImgHooks = {
 // editor.customConfig.debug = true
 editor.create();
 $('.w-e-text-container').attr('style','height:auto;');
-E.fullscreen.init('#editor');
+$('.w-e-text-container').attr('style','width:auto;');
 
 // 修改菜单栏样式
-$('.w-e-toolbar').css(
-  {
-   'background-color':'white',
-   "border-left":"0px",
-   "border-right":"0px",
-   "border-bottom":"0px",
-  }
-);
+
 $('.w-e-menu').css('font-size','20px')
 $('.w-e-text-container').css('border','0px')
 $('.w-e-text').css('font-size','18px')
@@ -106,9 +100,13 @@ $('.submit_comment').on('click',function(){
   }
 
   ui.submiting = true
+  // var text_content = encodeURI(editor.txt.html())
+  // 过滤js标签
+  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'')
+
   var data = {
     textTitle: $('input[name="head"]')[0].value,
-    textContent: editor.txt.html(),
+    textContent: text_content,
     type: 4,
     userId: userId, //userId
   }
@@ -121,16 +119,71 @@ $('.submit_comment').on('click',function(){
   }
 
   function callback(result){
-    ui.submiting = false
     layer.msg('提交成功', {
       time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
       end:function(){
-        window.location.href='personalCenter.html?personType=1'
+        window.location.href='article-finish.html'
       }
     });
+    ui.submiting = false
   }
-  var uri = 'blockchain/addReview'
+  var uri = 'blockchain/addReview';
   doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
+})
 
 
+var preivew_flag = false
+function preview(){
+	preivew_flag = true
+	$('.preview-article').html('退出预览')
+	$('.preview-container').css('display','')
+	$('.write-container').css('display', 'none')
+	var textContent = editor.txt.html();
+	$('.review-content').html(textContent);
+	var textTitle = $('.input-head').val()
+	$('.comment-detail-title').html(textTitle);
+	$('.realName').html(userinfo.realName);
+	if (userinfo.userPic) {
+		$('.avatar img')[0].src = userinfo.userPic
+	}
+}
+
+function quitPreview(){
+	preivew_flag = false
+	$('.preview-article').html('预览')
+	$('.preview-container').css('display','none')
+	$('.write-container').css('display', '')
+}
+
+$('.preview-article').on('click',function(){
+	if (!preivew_flag) {
+		preview()
+	}else{
+		quitPreview()
+	}
+})
+
+//编辑器强制修改
+var containerW = $(".write-container").width() * 0.9;
+var marL = $(".write-container").width() * 0.05 + 15;
+var marL2 = $(".write-container").width() * 0.05;
+$(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+$(".w-e-toolbar").css({ 'width': containerW});
+$(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+window.onresize = function () {
+  var containerW = $(".write-container").width() * 0.9;
+  var marL = $(".write-container").width() * 0.05 + 15;
+  $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+  $(".w-e-toolbar").css({ 'width': containerW});
+  $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+}
+
+$(".edit-comment").on('click', function () {
+  if ($(".fake-placeholder").size() > 0) {
+    $(".fake-placeholder").remove();
+  }
+})
+
+$(".w-e-text").focus(function(){
+  $(".fake-placeholder").remove();
 })

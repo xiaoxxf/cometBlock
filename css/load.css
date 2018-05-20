@@ -12,6 +12,10 @@
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,.1) inset, 0 0 25px rgba(0,0,255,0.075);
 }
+/*关联微信*/
+.refresh_icon_add_top{
+	top: -35px;
+}
 
 .ouro:after {
     content: "";

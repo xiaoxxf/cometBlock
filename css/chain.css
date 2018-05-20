@@ -49,6 +49,21 @@
     transition: all 0.5s;
     transform: scale(1.2);
 }
+/*创建新项目*/
+.create_new_subject{
+	margin-left: 40px;
+}
+.create_new_subject_btn{
+	display: inline-block;
+    text-align: center;
+    width: 100px;
+    background-color: rgba(79, 163, 237, 0.5);
+    height: 30px;
+    line-height: 30px;
+    color: #22556e;
+    border-radius: 3px;
+}
+
 
 .top-nav-wrap .content{
 
@@ -60,6 +75,34 @@
     /* flex-direction: column; */
     /* justify-content: space-between; */
     /* align-items: left; */
+}
+/*排序*/
+.coin_order_list{
+	margin-bottom: 30px
+
+}
+/* .coin_order_list a:first-child{
+	   display: inline-block;
+    text-align: center;
+    width: 100px;
+    background-color: rgba(79, 163, 237, 0.5);
+    height: 30px;
+    line-height: 30px;
+    color: #22556e;
+} */
+.coin_order_list a{
+	  display: inline-block;
+    text-align: center;
+    width: 100px;
+    background-color: white;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+}
+
+.coin_order_list_on_click{
+  background-color: rgba(79, 163, 237, 0.5) !important;
+  color: #22556e !important;
 }
 
 .coin-item span{
@@ -83,35 +126,70 @@
 .coin-list-wrap{
     font-size: 0px;
 }
-.coin-list-wrap li{
-    display: inline-block;
-    width: 20%;
-}
+
 .coin-list-wrap li .inner-img-wrap{
     position: relative;
-    background-color: #fff;
-    -moz-box-shadow: 2px 2px 5px #a79e9e;
-    -webkit-box-shadow: 2px 2px 5px #a79e9e;
-    box-shadow: 2px 2px 5px #a79e9e;
-    border-radius: 10px;
+    border:1px solid #ddd;
+    background-color: white;
+    /* -moz-box-shadow: 2px 2px 5px #a79e9e; */
+    /* -webkit-box-shadow: 2px 2px 5px #a79e9e; */
+    /* box-shadow: 1px 1px 1px #a79e9e; */
+    /* border-radius: 10px; */
     margin-bottom: 5px;
+    cursor: pointer;
+  	transition: all 0.6s;
 }
-.coin-list-wrap li:nth-child(4n+1){
-    margin-right:3.33%;
+.coin-list-wrap li .inner-img-wrap:hover{
+	transform: scale(1.2);
+
 }
-.coin-list-wrap li:nth-child(4n+2), .coin-list-wrap li:nth-child(4n+3){
-    margin:0 3.33%;
+
+
+/* 大屏一行5张 */
+@media (min-width: 767px) {
+  .coin-list-wrap li{
+    display: inline-block;
+    width: 13%;
+  }
+
+  .coin-list-wrap li:nth-child(5n+1){
+      margin-right:4.33%;
+  }
+  .coin-list-wrap li:nth-child(5n+2), .coin-list-wrap li:nth-child(5n+3), .coin-list-wrap li:nth-child(5n+4){
+      margin:0 4.33%;
+  }
+  .coin-list-wrap li:nth-child(5n){
+      margin-left: 4.33%;
+  }
 }
-.coin-list-wrap li:nth-child(4n){
-    margin-left: 3.33%;
+/* 小屏一行4张 */
+@media (max-width: 762px) {
+  .coin-list-wrap li{
+    display: inline-block;
+    width: 20%;
+  }
+
+  .coin-list-wrap li:nth-child(4n+1){
+      margin-right:3.33%;
+  }
+  .coin-list-wrap li:nth-child(4n+2), .coin-list-wrap li:nth-child(4n+3){
+      margin:0 3.33%;
+  }
+  .coin-list-wrap li:nth-child(4n){
+      margin-left: 3.33%;
+  }
 }
+
 .coin-list-wrap li img{
     width: 70%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+
 }
+
+
 .coin-list-wrap li a{
     text-decoration: none;
 }
@@ -128,6 +206,9 @@
     color:#ffac2d;
     margin-bottom: 15px;
 }
+
+
+
 .search-result{
   /* display: flex; */
   margin-bottom: 20px;
@@ -197,7 +278,7 @@
     font-size: 18px;
     font-weight: 600;
 }
-.waiting-data{
+/* .waiting-data{
     display: none;
     position: absolute;
     width: 200px;
@@ -219,7 +300,7 @@
 }
 .waiting-data .loader-nine div{
     background-color:#999
-}
+} */
 .upload-member-pic{
   height: 30px;
   width: 10px;
@@ -228,8 +309,4 @@
 /*footer样式复写*/
 .fixed-footer-wrap{
     bottom: -100px !important;
-}
-
-.load-more-container-wrap{
-
 }
