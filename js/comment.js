@@ -157,7 +157,10 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         doJavaGet(uri, function(res) {
             if(res != null && res.code == 0) {
                 // console.log(res.msg)
-                ajaxGetLongCommentReview()
+                ajaxGetLongCommentReview();
+                setTimeout(layer.msg('删除成功'),1000)
+            }else if(res.code == -1){
+              layer.msg('删除失败，请重试')
             }
         }, "json");
         layer.close(index);
@@ -220,12 +223,8 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
               time: 1000,
             });
           }else{
-            layer.msg('修改成功', {
-              time: 1000,
-              end:function(){
-                ajaxGetLongCommentReview()
-              }
-            });
+            ajaxGetLongCommentReview()
+            setTimeout(layer.msg('修改成功'),2000)
           }
 
         }
@@ -335,7 +334,17 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
 
 
 //点击提交评论
+
+// 防重点击
+var add_comment_ui = {
+  'submiting': false
+}
 $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
+    if (add_comment_ui.submiting) {
+      return
+    }
+    add_comment_ui.submiting = true;
+    $(e.currentTarget).text('提交中...');
     var reviewId = getUrlParam('reviewId');
     var shortTxt = $(".textarea-txt-hook").val();
     var quote = '';
@@ -343,6 +352,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         quote = $(".reply-comment-wrap .quote-comment-txt").html();
     }
     if(!wechatBindNotice()){
+      add_comment_ui.submiting = false;
+      $(e.currentTarget).text('加上去');
     	return;
     }
 
@@ -356,6 +367,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
             area: ['550px', '680px'], //宽高
             content: $("#template-reply").html()
         });
+        add_comment_ui.submiting = false;
+        $(e.currentTarget).text('加上去');
         return;
     }
     if($.trim(shortTxt) == ''){
@@ -363,6 +376,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
             tips: [1, '#4fa3ed'],
             time: 2000
         });
+        add_comment_ui.submiting = false;
+        $(e.currentTarget).text('加上去');
         return;
     }
     if(shortTxt.length >= 200){
@@ -370,6 +385,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
             tips: [1, '#4fa3ed'],
             time: 2000
         });
+        add_comment_ui.submiting = false;
+        $(e.currentTarget).text('加上去');
         return;
     }
     // 过滤js和style标签
@@ -388,10 +405,13 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     doPostJavaApi(uri,jsonData, function(res) {
         if(res != null && res.code == 0) {
             layer.msg(res.msg);
+            $(".short-comment").val('')
             ajaxGetLongCommentReview();
         } else {
             layer.msg(res.msg);
         }
+        $(e.currentTarget).text('加上去');
+        add_comment_ui.submiting = false;
     }, "json");
 
 })

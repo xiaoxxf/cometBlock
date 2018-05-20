@@ -50,7 +50,8 @@ $('.search_bar').keyup(function(){
 function searchArticle(){
   flag = 2;
 	article_page_search = 1;
-	$(".waiting-data").fadeIn();
+	$('.article-top-box').html("");
+	$(".refresh_load").fadeIn();
 	$(".no-more-hook").css('display','none')
 
 	ui.loading = true;
@@ -59,8 +60,6 @@ function searchArticle(){
 						+ article_page_search + '&pageSize=12'
 
   doJavaGet(uri, function(result){
-			$('.article-top-box').html("");
-
       var content_length = null
 
 			if (result.datas.length != 0) {
@@ -95,7 +94,7 @@ function searchArticle(){
 				ui.noMoreData = true;
 				$(".no-more-hook").fadeIn();
 			}
-			$(".waiting-data").hide();
+			$(".refresh_load").hide();
 			ui.loading = false
   })
 
@@ -197,7 +196,7 @@ $(window).scroll(function(){
 // function getArticle(){
 //   flag = 1;
 // 	article_page = 1;
-// 	$(".waiting-data").fadeIn();
+// 	$(".refresh_load").fadeIn();
 // 	$(".no-more-hook").css('display','none')
 //
 // 	ui.loading = true;
@@ -241,7 +240,7 @@ $(window).scroll(function(){
 // 				ui.noMoreData = true;
 // 				$(".no-more-hook").fadeIn();
 // 			}
-// 			$(".waiting-data").hide();
+// 			$(".refresh_load").hide();
 // 			ui.loading = false
 //   })
 //

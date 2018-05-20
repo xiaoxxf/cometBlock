@@ -45,8 +45,19 @@
 	                 		</div>
                       <!-- 专题文章 -->
 	                 		<div class="topic topic_border">
+
 	                 			<div class="topic_include">
                           <span class="recent_collect">最新收录</span>
+                          <hr>
+                          <div class="loading refresh_load topic_article_load" style="display:none;">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                          </div>
+
 
 	                 			</div>
                         <div class="topic_article_list">
@@ -167,11 +178,7 @@
           </a>
           <a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
 					<div class="article_info">
-            <% if(list[i].type == 4) {%>
-              <a href="article-show.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
-            <%}else if(list[i].type == 2){%>
-              <a href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
-            <%}%>
+              <a target="_blank" href="comment.html?reviewId=<%:=list[i].reviewId %>" class="article_title"><%:=list[i].textTitle %></a>
 						<p class="article_content">
 							<%:=list[i].textContent %>
 						</p>
@@ -180,11 +187,7 @@
 
 				<div class="meta">
 					<a class="article-time"> <%=list[i].createTime.split(' ')[0] %> </a>
-          <% if(list[i].type == 4) {%>
-            <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" class="review-count"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
-          <%}else if(list[i].type == 2){%>
             <a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="review-count"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
-          <%}%>
 					<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 				</div>
 		</div>
@@ -231,11 +234,7 @@
         <%}%>
 
         <div class="include-info">
-          <% if(list[i].type == 4) {%>
-            <a href="article-show.html?reviewId=<%=list[i].reviewId %>#toComments" class="recomment-name"><%:=list[i].textTitle %></a>
-          <%}else if(list[i].type == 2){%>
-            <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" class="recomment-name"><%:=list[i].textTitle %></a>
-          <%}%>
+          <a href="comment.html?reviewId=<%=list[i].reviewId %>&projectId=<%=list[i].projectId %>#toComments" class="recomment-name"><%:=list[i].textTitle %></a>
           <div class="recomment-meta">
             <a href="personal-homepage.html?userId=<%:=list[i].creator %>">
             <%:=list[i].realName %>

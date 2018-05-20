@@ -42,29 +42,26 @@
 							</div>
 
 							<div class="col-md-9 col-sm-12 col-xs-12">
-								<div class="hot_zone">
-										<div class="hot_review_region dynamic_region">
 
-										</div>
+								<div class="hot_zone">
+									<!--动画加载-->
+									<div class="loading refresh_load topic_article_load" style="display:none;">
+												<span></span>
+												<span></span>
+												<span></span>
+												<span></span>
+												<span></span>
+												<span></span>
+									</div>
+									<div class="hot_review_region dynamic_region">
+
+
+
+									</div>
 								</div>
 							</div>
 						</div>
 
-					</div>
-
-					<div class="waiting-data">
-						<div class="loader9">
-							<div class="loader-nine">
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-							</div>
-						</div>
 					</div>
 
 					<div class="load-more-container-wrap" >
@@ -106,7 +103,7 @@
 										<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
 									<% } %>
 								</a>
-								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
+								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
 								<p style="color:rgb(79, 163, 237) ;">
 									发表了长评
 									 <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
@@ -188,7 +185,7 @@
 									<img src="<%=list[i].userPic %>" class="comment-creator-pic"/>
 								<% } %>
 							</a>
-							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %>
+							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
 							<p style="color:rgb(79, 163, 237);">发表了文章</p>
 							<p class="comment-title">
 								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" target="_blank">
@@ -210,7 +207,6 @@
 						</div>
 						<div class="meta">
 							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
-							<!-- <a href="article-show.html?reviewId=<%:=list[i].reviewId %>#toComments" style="margin-right:20px"><i class="fa fa-commenting"></i> <%:=list[i].review %></a> -->
 							<a class="like-button add_like" data-reviewid="<%:=list[i].reviewId %>"><i class="fa fa-heart"></i> <%:=list[i].likes %></a>
 						</div>
 					</div>

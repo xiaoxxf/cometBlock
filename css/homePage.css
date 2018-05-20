@@ -277,7 +277,7 @@ a img {
 	    cursor: pointer;
 	    padding-bottom: 12px;
 	}
-	
+
 }
 
 .hot_review_title .topic_name:hover{
@@ -481,52 +481,4 @@ a img {
 
 .hot_zone_topic .topic_tag .topic_tag_name{
   padding: 0px 9px 0px 2px;
-}
-/*动画加载*/
-.refresh_load{
-	height: 300px;
-}
-.loading{
-        width: 200px;
-        height: 40px;
-        margin: 0 auto;
-        margin: 50px 0px 150px 20px;
-    }
-.loading span{
-    display: block;
-    width: 20px;
-    height: 50%;
-    margin: 10px;
-    background: #9e9e9e3d;
-    -webkit-animation: load 1.64s ease infinite;
-}
-.loading span:first-child{
-    -webkit-animation: none;
-}
-.loading span:last-child{
-	border-radius: 30px;
-    -webkit-animation: none;
-}
-@-webkit-keyframes load{
-   0%, 100% {
-	    width: 40px;
-	    background: #9e9e9e3d;
-	}
-	50% {
-	    width: 300px;
-	    margin-right: -260px;
-	    background: #9e9e9e3d;
-	}
-}
-.loading span:nth-child(2){
-    -webkit-animation-delay:0.13s;
-}
-.loading span:nth-child(3){
-    -webkit-animation-delay:0.26s;
-}
-.loading span:nth-child(4){
-    -webkit-animation-delay:0.39s;
-}
-.loading span:nth-child(5){
-    -webkit-animation-delay:0.52s;
 }

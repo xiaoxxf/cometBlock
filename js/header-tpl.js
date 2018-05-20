@@ -296,7 +296,7 @@ $('#head_search').keydown(function(e){
     	   window.location.href='chain.html?serach_word_by_navbar=' + key_word
         break;
       case 1:
-    	   window.location.href = 'hot-article.html?serach_word_by_navbar=' + key_word
+    	   window.location.href = 'article-search.html?serach_word_by_navbar=' + key_word
         break;
       case 2:
       	window.location.href = 'news.html?serach_word_by_navbar=' + key_word
@@ -329,7 +329,7 @@ search_project.addEventListener('mousedown',function() {
 // 搜索内容
 var search_article = document.getElementById('search_article')
 search_article.addEventListener('mousedown',function() {
-	window.location.href = 'hot-article.html?serach_word_by_navbar=' + key_word
+	window.location.href = 'article-search.html?serach_word_by_navbar=' + key_word
 
 })
 

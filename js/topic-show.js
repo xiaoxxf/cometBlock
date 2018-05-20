@@ -41,7 +41,7 @@ function getTopicDetail(){
 function getTopicArticle(){
   ui.loading = true;
   ui.noMoreData = false;
-
+	$('.refresh_load').fadeIn();
 	$('.topic_article_list').html('');
   article_page = 1;
   topicId = getUrlParam('subjectId');
@@ -49,6 +49,7 @@ function getTopicArticle(){
 
   doJavaGet(uri, function(result){
     if (result.datas.length == 0) {
+			$('.refresh_load').hide();
       ui.loading = false;
       ui.noMoreData = true;
       return;
@@ -73,10 +74,11 @@ function getTopicArticle(){
       }
     }
 
+		$('.refresh_load').hide();
     var tpl= document.getElementById('topic_article_tpl').innerHTML;
     var content = template(tpl, {list: result.datas});
     $('.topic_article_list').append(content);
-
+		$('.read-more').fadeIn();
     ui.loading = false;
 
   })

@@ -283,8 +283,17 @@ function ajaxGetLongComments() {
     }, "json");
 
 }
+// 防重点击
+var short_comment_ui = {
+  'submiting': false
+}
 //点击提交评论
 $(".short-comment-commit").on('click',function (e) {
+    if (short_comment_ui.submiting) {
+      return
+    }
+    $(".short-comment-commit").text('提交中...');
+    short_comment_ui.submiting = true;
     var projectId = getUrlParam('projectId');
     var userId = $.cookie('userid');//获取userid
     var score = $("#n_rating").val();
@@ -292,16 +301,18 @@ $(".short-comment-commit").on('click',function (e) {
     var area_width
     var area_height
     if($(window).width() <= 767)
- 	{
+ 	  {
 	 	area_width = '320px'
 	    area_height = '500px'
- 	}else{
- 		 area_width = '520px'
-	     area_height = '600px'
- 	}
+   	}else{
+   		 area_width = '520px'
+  	     area_height = '600px'
+   	}
 
     // 判断是否登录
     if(!wechatBindNotice()){
+      short_comment_ui.submiting = false;
+      $(".short-comment-commit").text('评论');
     	return;
     }
     if(userId == undefined){
@@ -314,6 +325,8 @@ $(".short-comment-commit").on('click',function (e) {
             area: [area_width,area_height ], //宽高
             content: $("#short-comment-commit-layer").html()
         });
+        short_comment_ui.submiting = false;
+        $(".short-comment-commit").text('评论');
         return;
     }
     if(score == ''){
@@ -321,6 +334,8 @@ $(".short-comment-commit").on('click',function (e) {
             tips: [1, '#4fa3ed'],
             time: 2000
         });
+        short_comment_ui.submiting = false;
+        $(".short-comment-commit").text('评论');
         return;
     }
     if($.trim(shortTxt) == ''){
@@ -328,6 +343,8 @@ $(".short-comment-commit").on('click',function (e) {
             tips: [1, '#4fa3ed'],
             time: 2000
         });
+        short_comment_ui.submiting = false;
+        $(".short-comment-commit").text('评论');
         return;
     }
     if(shortTxt.length >= 200){
@@ -335,6 +352,8 @@ $(".short-comment-commit").on('click',function (e) {
             tips: [1, '#4fa3ed'],
             time: 2000
         });
+        short_comment_ui.submiting = false;
+        $(".short-comment-commit").text('评论');
         return;
     }
     // 过滤js和style标签
@@ -358,6 +377,8 @@ $(".short-comment-commit").on('click',function (e) {
         } else {
             layer.msg(res.msg);
         }
+        short_comment_ui.submiting = false;
+        $(".short-comment-commit").text('评论');
     }, "json");
 })
 function ajaxGetScoreInfo() {
@@ -454,8 +475,12 @@ function delete_short_comment(e){
       doJavaGet(uri, function(res) {
           if(res != null && res.code == 0) {
               // console.log(res.msg)
-              ajaxGetComments(true);
+              // ajaxGetComments(true);
+              // 去除删除的评论
+              $(e.parentNode.parentNode.parentNode).remove();
               ajaxGetScoreInfo(true);
+          }else{
+            layer.msg('删除失败，请重试')
           }
       }, "json");
       layer.close(index);

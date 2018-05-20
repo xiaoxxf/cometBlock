@@ -214,11 +214,7 @@
 							<a href="personal-homepage.html?userId=<%:=list[i].userId %>"><%:=list[i].realName%></a>
 							</a>
 							评论了你的文章
-							<% if(list[i].type == 4) {%>
-								<a class="article" href="article-show.html?reviewId=<%:=list[i].actionId%>#toComments">《<%:=list[i].title%>》</a>
-							<%}else if(list[i].type == 2){%>
 								<a class="article" href="comment.html?reviewId=<%:=list[i].actionId%>#toComments">《<%:=list[i].title%>》</a>
-							<%}%>
 							</a>
 							<div class="time"><%:=list[i].createTime%></div>
 						</div>

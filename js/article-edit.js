@@ -123,22 +123,26 @@ function createEditorAndGetContent(content){
     $('.w-e-text-container').attr('style','height:auto;');
     $('.w-e-text-container').attr('style','width:auto;');
 
-    // 修改菜单栏样式
-
-    $('.w-e-menu').css('font-size','20px')
-    $('.w-e-text-container').css('border','0px')
-    $('.w-e-text').css('font-size','18px')
-
-
-
     // 提交
     $('.submit_comment').on('click',function(){
 
       if (ui.submiting) {
         return false
       }
-
+      $('.submit_comment').text('发布中...');
       ui.submiting = true
+
+
+      var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'');
+      var text_title = $('input[name="head"]')[0].value;
+      if (!text_title || !text_content) {
+        // $('#identifier').modal()
+        layer.msg('请保证标题、内容均填写完整');
+        $('.submit_comment').text('发布');
+        ui.submiting = false;
+        return
+      }
+
       var data = {
         textTitle: $('input[name="head"]')[0].value,
         textContent: editor.txt.html(),
@@ -148,25 +152,22 @@ function createEditorAndGetContent(content){
         creator: commentInfoData.creator,
         password: userinfo.userPwd
       }
-
-      if (data.textTitle.length == 0 || editor.txt.text().length == 0) {
-        // $('#identifier').modal()
-        layer.msg('请保证标题、内容均填写完整')
-        ui.submiting = false
-        return false
-      }
-
-      function callback(result){
-        ui.submiting = false
-        layer.msg('提交成功', {
-          time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-          end:function(){
-            window.location.href='comment.html?reviewId=' + getUrlParam('reviewId')
-          }
-        });
-      }
       var uri = 'blockchain/updataReview'
-      doPostJavaApi(uri, JSON.stringify(data), callback, 'json')
+      doPostJavaApi(uri, JSON.stringify(data), function(res){
+        if (res.code == 0) {
+          layer.msg('提交成功', {
+            time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+            end:function(){
+              window.location.href='article-finish.html'
+            }
+          });
+        }else{
+          $('.submit_comment').text('发布');
+          layer.msg('提交失败，请重试')
+        }
+        ui.submiting = false
+      }, 'json')
+
     })
 
 
@@ -202,6 +203,9 @@ function createEditorAndGetContent(content){
     	}
     })
     //编辑器强制修改
+    $('.w-e-menu').css('font-size','20px')
+    $('.w-e-text-container').css('border','0px')
+    $('.w-e-text').css('font-size','18px')
     var containerW = $(".write-container").width() * 0.9;
     var marL = $(".write-container").width() * 0.05 + 15;
     var marL2 = $(".write-container").width() * 0.05;

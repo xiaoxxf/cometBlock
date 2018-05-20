@@ -54,13 +54,13 @@ function getAllUserDynamic(){
 
   // 首次加载
   // $('.read-more').css('display','none')
-  $(".waiting-data").fadeIn();
+  $(".refresh_load").fadeIn();
   $('.dynamic_region').html('');
 
   doJavaGet(uri,function(result){
     if (result.datas.length == 0) {
       ui.noMoreData = true
-      $(".waiting-data").hide();
+      $(".refresh_load").hide();
       // $('.read-more').css('display','block')
       // $('.read-more').html('已无更多数据')
       return
@@ -90,7 +90,7 @@ function getAllUserDynamic(){
     var tpl = document.getElementById(tpl_id).innerHTML;
     var content = template(tpl, {list: result.datas});
 
-    $(".waiting-data").hide();
+    $(".refresh_load").hide();
     $('.dynamic_region').append(content)
     // $('.read-more').css('display','block')
     // $('.read-more').html('点击加载更多')

@@ -56,7 +56,7 @@
 
 .topic_include{
 	padding-left: 20px;
-  border-bottom: solid 1px gainsboro;
+  /* border-bottom: solid 1px gainsboro; */
 }
 .topic_include .recent_collect{
 	color: #555;
@@ -191,6 +191,7 @@
 	font-weight: 600;
 	background-color: white;
 	color: #006bb3;
+  display: none
 }
 
 
@@ -335,4 +336,13 @@
     float: right;
     cursor: pointer;
     color: rgb(79, 163, 237);
+}
+
+
+/* 加载动画复写 */
+.loading{
+    width: 200px;
+    height: 40px;
+    /* margin: 0 auto; */
+    margin: 10px 0px 150px -10px;
 }
