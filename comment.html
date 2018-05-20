@@ -449,7 +449,7 @@
 						<%} else if(list.type == 4) {%>
 							<a href="article-edit.html?reviewId=<%= getUrlParam('reviewId')%>" >编辑</a> |
 						<%}%>
-						<a href="javacript:;" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
+						<a href="javascript:void(0)" data-parentId="<%:=list.parentId%>" data-user_name="<%:=list.realName%>" data-reviewId="<%:=list.reviewId%>"class="long_comment_delete">删除</a>
 					<%}%>
 				</div>
 			</div>
@@ -499,13 +499,13 @@
 					<%}%>
 					<p class="comment-text"><%:=list[i].textTitle%></p>
 					<div class="op-lnks">
-						<%if(userinfo && list[i].realName == userinfo.realName){%>
-							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_edit">编辑</a>
+						<%if(userId && list[i].creator == userId){%>
+							<a href="javascript:void(0)"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_edit">编辑</a>
 							&nbsp;
-							<a href="javacript:;"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_delete">删除</a>
+							<a href="javascript:void(0)"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_delete">删除</a>
 							&nbsp;
 						<%}%>
-						<a href="javacript:;" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="reply_comment">引用</a>
+						<a href="javascript:void(0)" data-parentId="<%:=list[i].parentId%>" data-parentTxt="<%:=list[i].textTitle%>" data-number="<%:=i%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="reply_comment">引用</a>
 						&nbsp;
 						<a rel="nofollow" href="javascript:;" data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="report report_comment">举报</a>
 					</div>

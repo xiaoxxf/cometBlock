@@ -2,7 +2,7 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var loadFlag = null; //1->短评  2->长评  4->文章  3->全部动态
 var type = null; //  	1->短评	  2->长评  4->文章  不传->所有
 var tpl_id = null;
-var current_page = 1;
+var currentPage = 1;
 var userid_search = null;
 var ui = {
 	"noData": false,
@@ -90,7 +90,7 @@ $('.load_all_dynamic').on('click',function(){
 
 // 加载用户信息
 function getUserInfo(){
-	var uri = 'news/quaryusers?currentPage=' + currentPage + '&pageSize=1&userId=' + userid_search
+	var uri = 'news/quaryusers?currentPage=1&pageSize=1&userId=' + userid_search
 
 	doJavaGet(uri, function(res){
 
@@ -405,7 +405,7 @@ $(".hot_review_region").on('click','.like-button',function (e) {
 //   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&creator=' + userId;
 //
 // 	// 首次加载
-// 	if(currentPage == 1){
+// 	if(q == 1){
 // 		$('.hot_review_region').html('');
 // 	}
 // 	// 加载更多的情况
