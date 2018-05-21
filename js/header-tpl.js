@@ -195,12 +195,17 @@ $('#writting-article').on('click',function(){
 })
 
 //点击登录手动跳转
-
-$(document).on('click','#nav_login',function () {
-    var currentJumpHref = window.location.href;
-    window.localStorage.setItem('currentJumpHref',currentJumpHref);
-    window.location.href = 'login.html';
-})
+// $(document).on('click','#nav_login',function () {
+//     var currentJumpHref = window.location.href;
+//     window.localStorage.setItem('currentJumpHref',currentJumpHref);
+//     window.location.href = 'login.html';
+// })
+//
+// $(document).on('click','#nav_register',function () {
+// 	var currentJumpHref = window.location.href;
+// 	window.localStorage.setItem('currentJumpHref',currentJumpHref);
+// 	window.location.href = 'register.html';
+// })
 
 //输入框下拉事件
 var liDown=$(".nav_search_list li");

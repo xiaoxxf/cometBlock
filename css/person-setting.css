@@ -347,6 +347,6 @@ body{
  }
 
 /* 昵称显示不了的问题（暂时解决) */
- input{
-	 line-height: normal;
- }
+input{
+ line-height: normal;
+}
