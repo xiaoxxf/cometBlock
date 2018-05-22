@@ -488,17 +488,19 @@ function delete_short_comment(e){
 }
 
 // 编辑短评
+var current_socre = null //存储短评原来的评分，如果不修改评分就用原来的评分
 function edit_short_comment(e){
   var self =$(e),
       content = self.data('content'),
       score = self.data('score'),
       passWord = userinfo.userPwd,
       reviewId = self.data('reviewid');
+  current_socre = score;
   layer.open({
     title: '编辑短评',
     content: $('#add_score').html(),
     yes: function(index, layero){
-      var score = parseInt($(".live-rating")[0].innerHTML);
+      var score = parseInt($(".live-rating")[0].innerHTML) || current_socre;
       if(!score){
           layer.tips('给这个项目打个分哦', '.my-rating', {
               tips: [1, '#4fa3ed'],
