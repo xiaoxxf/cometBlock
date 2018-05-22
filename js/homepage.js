@@ -36,49 +36,54 @@ $('.create_project_button').on('click', function(){
 
 // 渲染热门专区
 $(function(){
-	if ($(window).width() > 767) {
-	  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=18'
 
-	  doJavaGet(uri,function(result){
-	   // console.log(result.datas)
-		 var first_coin_list = result.datas.splice(0,6);
-		 var second_coin_list = result.datas.splice(0,6);
-		 var third_coin_list = result.datas
-	   var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
-	   var content = template(tpl, {list: first_coin_list});
-	   $('.hot_coin_region_1').append(content)
+  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=18'
 
-		 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
-		 var content = template(tpl, {list: second_coin_list});
-		 $('.hot_coin_region_2').append(content);
+  doJavaGet(uri,function(result){
+	 // 渲染手机端
+	 var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
+	 var content = template(tpl, {list: result.datas});
+	 $('.mobile-hot-coin').append(content)
 
-		 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
-		 var content = template(tpl, {list: third_coin_list});
-		 $('.hot_coin_region_3').append(content)
+   // console.log(result.datas)
+	 var first_coin_list = result.datas.splice(0,6);
+	 var second_coin_list = result.datas.splice(0,6);
+	 var third_coin_list = result.datas
+   var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
+   var content = template(tpl, {list: first_coin_list});
+   $('.hot_coin_region_1').append(content)
 
-		 $('.project-count').html(result.count)
-		 var imgW = $(".hot_coin_region .inner-img-wrap").width();
-		 $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
+	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
+	 var content = template(tpl, {list: second_coin_list});
+	 $('.hot_coin_region_2').append(content);
 
-	  }, "json")
-	}
+	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
+	 var content = template(tpl, {list: third_coin_list});
+	 $('.hot_coin_region_3').append(content)
+
+	 $('.project-count').html(result.count)
+	 var imgW = $(".hot_coin_region .inner-img-wrap").width();
+	 $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
+
+  }, "json")
+
 })
 
 // 手机热门专区
-$(function(){
-	if ($(window).width() < 767) {
-		var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=15'
-
-	  doJavaGet(uri,function(result){
-	   // console.log(result.datas)
-
-	   var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
-	   var content = template(tpl, {list: result.datas});
-	   $('.mobile-hot-coin').append(content)
-
-	  }, "json")
-	}
-})
+// $(function(){
+//
+// 	var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=15'
+//
+//   doJavaGet(uri,function(result){
+//    // console.log(result.datas)
+//
+//    var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
+//    var content = template(tpl, {list: result.datas});
+//    $('.mobile-hot-coin').append(content)
+//
+//   }, "json")
+//
+// })
 
 // 渲染播报
 $(function(){
