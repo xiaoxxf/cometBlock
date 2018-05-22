@@ -73,11 +73,12 @@ function getAllUserDynamic(){
     for (var i = 0; i < result.datas.length; i++) {
 
       if (result.datas[i].textContent) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+				// 去除HTML标签和无用的空格
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"").replace(/^\s+|\s+$/g,"")
 
         var content_length = null
         if ($(window).width() < 767) {
-          content_length = 55
+          content_length = 85
         }else{
           content_length = 120
         }
