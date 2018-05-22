@@ -999,7 +999,7 @@ $(function () {
             scrollValue > 100 ? $('.news_alert_return_top').fadeIn() : $('.news_alert_return_top').fadeOut();
         });
         $('.news_alert_return_top').click(function () {
-            $("html,body").animate({ scrollTop: 0 }, 200);
+            $("html,body").animate({ scrollTop: 0 }, 1000);
         });
     }
      showScroll();
