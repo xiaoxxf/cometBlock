@@ -77,23 +77,30 @@ body{
     border-color: #ccc;
 }
 #ownname{
-	background-color: #f8f8f8;
-    padding: 6px;
-    text-indent: 10px;
+	/*background-color: #f8f8f8;
     border: solid 1px #33333373;
     height: 30px;
-    line-height: 30px;
+    line-height: 30px;*/
+    padding: 6px;
+    text-indent: 5px;
+    margin-top: 50px;
 }
 /*个人简介*/
 .person-introduce{
     position: relative;
-    text-indent: 10px;
-    top: 30px;
-    height: 80px;
-    line-height: 40px;
+    top: 22px;
     border-radius: 3px;
+    width: 60%;
+    /*height: 80px;
+     text-indent: 10px;
+    line-height: 40px;
     background-color: #f8f8f8;
-    border: solid 1px #33333373;
+    border: solid 1px #33333373;*/
+}
+@media only screen and (max-width:870px) {
+	.person-introduce{
+	    width: 100%;
+	}
 }
 .avatar {
 	width: 60px;

@@ -395,7 +395,7 @@ $("#save-register-info").click(function() {
 
 
 var imageType = /image.*/;
-var imageMaxSize = 1*500*500;
+var imageMaxSize = 1*800*800;
 
 //预览图片
 $('#user_logo_input').on('change',function(){
