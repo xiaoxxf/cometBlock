@@ -97,7 +97,10 @@ if (draft && draft.userId == userId) {
 // 修改菜单栏样式
 $('.w-e-menu').css('font-size','20px');
 $('.w-e-text-container').css('border','0px');
-$('.w-e-text').css('font-size','18px');
+var _height=$("body").height()
+$('.w-e-text-container').css('height',_height * 0.8);
+
+// $('.w-e-text').css('font-size','18px');
 // $('.w-e-text').css('height','150%');
 
 // 提交

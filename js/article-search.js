@@ -174,12 +174,12 @@ $(window).scroll(function(){
 				//当滚动条到底时,这里是触发内容
 				//异步请求数据,局部刷新dom
 				if (!ui.noMoreData && !ui.loading && flag == 1) {
-					// debugger
+					//  
 					article_page += 1;
 					ui.loading = true;
           loadMoreArticle();
         }else if(!ui.noMoreData && !ui.loading && flag == 2){
-          // debugger
+          //  
 					article_page_search += 1;
 					ui.loading = true;
           loadMoreSearchArticle();

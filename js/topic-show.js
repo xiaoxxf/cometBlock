@@ -13,7 +13,7 @@ window.onload = function(){
 
 // 渲染专题信息
 function getTopicDetail(){
-	// debugger
+	//  
   var uri = 'topic/seachTopic?currentPage=1&pageSize=12&topicId=' + topicId;
 
   doJavaGet(uri,function(result){
@@ -133,7 +133,7 @@ $('.topic_border .read-more').on('click',function(){
 
 // 删除专题
 function deleteTopic(e){
-  // debugger
+  //  
   var subject_id = $(e).data('subjectid');
 
   layer.confirm('确定删除你的专题么?',

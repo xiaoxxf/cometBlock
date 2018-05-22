@@ -246,7 +246,7 @@ $(window).scroll(function(){
 //	var tel = jsonStr.tel;
 //	var uri = 'news/virty?' + 'realName=' + realName + '&phoneNo' + tel
 //	doJavaGet(uri, function(res) {
-//		debugger
+//		 
 //		if(res != null && res.code == 0) {
 //			getCode() //验证码验证
 //		} else {
@@ -335,7 +335,7 @@ $("#save_realname").click(function(){
 /*
  	var tempStr=JSON.stringify(temp);
 			localStorage.setItem("temp",tempStr);
-			debugger
+			 
 			var obj=localStorage.getItem("temp");
 			var tempStr=JSON.parse(obj);
 			var objvalue=JSON.stringify(tempStr);

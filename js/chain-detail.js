@@ -430,7 +430,7 @@ function scoreDataFormat(res) {
             $(".rating_wrap-hook").append(teamContent);
             // console.log(tempObj)
         } else {
-            layer.msg(res.msg);
+            // layer.msg(comparedData.msg);
         }
     }, "json");
 }
