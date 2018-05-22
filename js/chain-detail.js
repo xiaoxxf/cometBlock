@@ -641,5 +641,5 @@ $('.write-long-discuss').on('click',function(){
     });
     return;
   }
-  window.location.href = 'long-comment.html?projectId='+projectId
+  window.location.href = 'long-comment.html?projectId=' + getUrlParam('projectId')
 })

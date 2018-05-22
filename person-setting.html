@@ -17,9 +17,7 @@
 		<link rel="stylesheet" href="css/login.css" />
 		<link rel="stylesheet" href="css/load.css" />
 		<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
-
 	</head>
-
 	<body lang="zh-CN" class="reader-black-font">
 		<div class="comet-main block-comet-main-wrap">
 			<!-- 全局顶部导航栏 -->
@@ -31,7 +29,6 @@
 					<div class="row">
 						<div class="col-md-1 col-md-offset-5">
 							<img src="img/huixing.png" class="wechat_info_logo" alt="">
-
 							<!--微信綁定-->
 							<div class="bind-user">
 								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
@@ -48,116 +45,105 @@
 			<!-- 账号登录/微信登录已绑定的 -->
 			<div class="container form-box account_login" style="background-color: white;display:none">
 				<div class="row ">
-					<!--<div class=" col-xs-12 col-md-12 col-sm-12 ">-->
-						<!--<div class="col-xs-12 col-md-4 col-sm-12">-->
-							<div class="aside">
-								<ul class="person-left-menu">
-									<li class="router-link-exact-active active" >
-										<a class="toogle-acive" id="baseSetting">
-											<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span class="option-name">基础设置</span>
-										</a>
-									</li>
-									<li>
-										<a>
-											<div class="setting-icon"><i class="fa fa-gear"></i></div> <span class="option-name">账号管理</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						<!--</div>-->
-
-						<div class="col-xs-12 col-md-8 col-sm-12  col-md-offset-4 show_right">
-							<!--更换头像-->
-							<div class="show_table cont0">
-								<div class="base_setting">
-									<div class="col-md-3 col-xs-6 col-sm-6">
-										<div class="avatar" id="result">
-											<img src="">
-										</div>
-									</div>
-									<div class="col-md-4 col-xs-6 col-sm-6">
-										<a href="javascript:;" class="file btn btn-hollow ">更改头像
-											<input type="file" id="user_logo_input" class='user_logo' >
-										</a>
-										<!--<button type="button" class="btn btn-default upload-button upload-project-logo btn-hollow">保存
-										</button>-->
-									</div>
-									<div class="col-md-1">
-
+					<div class="aside">
+						<ul class="person-left-menu">
+							<li class="router-link-exact-active active" >
+								<a class="toogle-acive" id="baseSetting">
+									<div class="setting-icon"><i class="fa fa-align-justify"></i></div> <span class="option-name">基础设置</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<div class="setting-icon"><i class="fa fa-gear"></i></div> <span class="option-name">账号管理</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-md-8 col-sm-12  col-md-offset-4 show_right">
+						<!--更换头像-->
+						<div class="show_table cont0">
+							<div class="base_setting">
+								<div class="col-md-3 col-xs-4 col-sm-4">
+									<div class="avatar" id="result">
+										<img src="">
 									</div>
 								</div>
-								<!--昵称-->
-								<div class="base_setting">
-									<div class="col-md-3 col-xs-3 col-sm-3">
-										<div class=" setting-title">
-											昵称
-										</div>
-									</div>
-									<div class="col-md-4 col-xs-6 col-sm-6">
-										<input type="text" placeholder="请输入昵称" id="ownname" >
-									</div>
-
+								<div class="col-md-4 col-xs-6 col-sm-6">
+									<a href="javascript:;" class="file btn btn-hollow ">更改头像
+										<input type="file" id="user_logo_input" class='user_logo' >
+									</a>
 								</div>
-								<!--个人简介-->
-								<div class="base_setting_introduce">
-									<div class="col-md-3 col-xs-3 col-sm-3">
-										<div class=" setting-title">
-											个人简介
-										</div>
-									</div>
-									<div class="col-md-8 col-xs-6 col-sm-6">
-										<textarea class="person-introduce" rows="4" cols="30"></textarea>
-									</div>
+								<div class="col-md-1">
 
-								</div>
-								<div class="base_setting">
-									<div class="col-md-3 col-xs-12 col-sm-12">
-										<button type="button" class="btn btn-default save_realname" id="save_realname">保存
-										</button>
-									</div>
 								</div>
 							</div>
-							<!-- 账号管理 -->
-							<div class="show_table show_table_detail cont1 quote">
-								<!-- <div class="menu">账号管理</div> -->
-								<ul class="my-article">
-
-									<!--修改密碼-->
-									<div class="base_setting_pwd">
-										<!--<div class="col-md-12">-->
-											<div class="reset-pwd setting-title">
-												<!--<div class=" setting-title">-->
-													<a class=" setting-psw" data-toggle="collapse"   >
-														<span class="fa fa-angle-down down_icon"></span>
-														修改密码
-													</a>
-													<div id="collapseOne" class="accordion-body  col-xs-12 col-sm-12 col-md-12 " >
-														<div class="accordion-inner col-xs-12 col-md-10 col-sm-12">
-															<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
-																<input placeholder="手机验证码" type="text" class="phone_code_tip">
-																<a class="btn-up-resend js-send-code-button" id="setting_send_code">发送验证码</a>
-															</div>
-															<div class="row-new-pwd" >
-																<div class="col-xs-12 col-md-6 col-sm-12 row-input"><a>请输入新的密码</a></div>
-																<div class="col-xs-12 col-md-6 col-sm-12"><input type="password"  id="newPwd" class="new-input-pwd"></div>
-															</div>
-														</div>
-													</div>
-												<!--</div>-->
-											</div>
-										<!--</div>-->
+							<!--昵称-->
+							<div class="base_setting">
+								<div class="col-md-3 col-xs-4 col-sm-4">
+									<div class=" setting-title">
+										昵称
 									</div>
-									<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd bottom_line">
-										<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
-									</div>
+								</div>
+								<div class="col-md-4 col-xs-6 col-sm-6 form-group">
+									<input type="text" placeholder="请输入昵称" id="ownname" class="form-control">
+								</div>
 
-								</ul>
+							</div>
+							<!--个人简介-->
+							<div class="base_setting">
+								<div class="col-md-3 col-xs-4 col-sm-4">
+									<div class=" setting-title">
+										个人简介
+									</div>
+								</div>
+								<div class="col-md-8 col-xs-6 col-sm-6 form-group">
+									<textarea class="person-introduce form-control" rows="4" cols="30" ></textarea>
+								</div>
+
+							</div>
+							<div class="base_setting">
+								<div class="col-md-3 col-xs-12 col-sm-12">
+									<button type="button" class="btn btn-default save_realname" id="save_realname">保存
+									</button>
+								</div>
 							</div>
 						</div>
+						<!-- 账号管理 -->
+						<div class="show_table show_table_detail cont1 quote">
+							<!-- <div class="menu">账号管理</div> -->
+							<ul class="my-article">
+
+								<!--修改密碼-->
+								<div class="base_setting_pwd">
+									<div class="reset-pwd setting-title">
+										<a class=" setting-psw" data-toggle="collapse"   >
+											<span class="fa fa-angle-down down_icon"></span>
+											修改密码
+										</a>
+										<div id="collapseOne" class="accordion-body  col-xs-12 col-sm-12 col-md-12 " >
+											<div class="accordion-inner col-xs-12 col-md-10 col-sm-12">
+												<div class="input-prepend phone_code_hide phone_code_position" style="position: relative;">
+													<input placeholder="手机验证码" type="text" class="phone_code_tip" style="position: relative;padding: 16px 10px;">
+													<a class="btn-up-resend js-send-code-button send_code_extra" id="setting_send_code">发送验证码</a>
+												</div>
+												<div class="row-new-pwd" >
+													<div class="col-xs-12 col-md-6 col-sm-12 row-input"><a>请输入新的密码</a></div>
+													<div class="col-xs-12 col-md-6 col-sm-12"><input type="password"  id="newPwd" class="new-input-pwd"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12 col-xs-12 col-sm-12 reset-pwd">
+									<input type="submit" class="btn btn-success setting-save" value="提交" id="save-register-info">
+								</div>
+
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-
 
 		<!--绑定现有用户弹出-->
 		<script type="text/html" id="bind-now-commit-layer">
@@ -169,7 +155,6 @@
 						</div>
 					</h4>
 					<div class="js-sign-in-container">
-
 						<div class="input-prepend  restyle ">
 							<input placeholder="手机号" type="text" class="border_radT" id="session_phone">
 
@@ -188,13 +173,6 @@
 									<span class="right"><span class="anim"></span></span>
 							 </span>
 						</input>
-
-						<!-- <input class="sign-in-button " id="bind-exist-user-btn" type="button" value="绑定" style="margin-top: 30px;">
-							<span class="ouro">
-							    <span class="left"><span class="anim"></span></span>
-							    <span class="right"><span class="anim"></span></span>
-							 </span>
-					 	</input> -->
 					</div>
 				</div>
 		</script>
@@ -224,7 +202,6 @@
 							<input placeholder="设置密码" type="password" class="border_radB" name="pwd" id="session_password">
 							<i class="fa fa-unlock-alt"></i>
 						</div>
-
 						<input class="sign-in-button" id="bind-new-user-btn" type="button" value="绑定" style="margin-top: 30px;">
 						<span class="ouro refresh_add_top">
 						    <span class="left"><span class="anim"></span></span>
@@ -235,7 +212,6 @@
 				</div>
 		</script>
 
-
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -244,8 +220,6 @@
 		<script src="js/plugins/layer/layer.js"></script>
 		<script src="js/person-setting.js"></script>
 		<script src="js/md5.js"></script>
-		 <!--<script src="js/login.js"></script>
-		 <script src="js/register.js"></script> -->
 		<script src='js/wechatBindUser.js'></script>
 	</body>
 

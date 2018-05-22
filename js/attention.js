@@ -14,6 +14,9 @@ var pageSize = 6;
 var like = '';
 
 $('.attention_box').on('click', 'span', function(e){
+	if (ui.loading) {
+		return
+	}
 	var index_menu = $('.attention_box span').index(e.currentTarget);
 	$('.attention_box span').removeClass('dynamic_menu_on_focus');
 	$(e.currentTarget).addClass('dynamic_menu_on_focus');

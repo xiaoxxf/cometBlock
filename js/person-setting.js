@@ -43,6 +43,7 @@ $(function(){
 	// 账号登录
 	if (userId || wechatInfo.userInfo) {
 		$('.account_login').css('display','block')
+		
 	}
 	// 微信登录
 	else if(wechatInfo && !wechatInfo.userInfo){
@@ -312,6 +313,10 @@ function changeUser(){
 			obj.personIntro = personIntro;
 			var nameStr=JSON.stringify(obj);
 			localStorage.setItem('userinfo',nameStr); //存储
+			setTimeout(function(){
+					location.href="personal-homepage.html";
+			},1500)
+		
 
 		} else {
 			layer.msg(res.msg);
@@ -390,7 +395,7 @@ $("#save-register-info").click(function() {
 
 
 var imageType = /image.*/;
-var imageMaxSize = 1*1024*1024;
+var imageMaxSize = 1*800*800;
 
 //预览图片
 $('#user_logo_input').on('change',function(){
@@ -483,7 +488,7 @@ function uploadIcon(e){
 
 	doJavaGet(uri,function(result){
 		if(result.code == 0){
-			layer.msg('修改成功')
+//			layer.msg('修改成功')
 
 			// 更新localstorage信息
 			userinfo.userPic = data.userPic
