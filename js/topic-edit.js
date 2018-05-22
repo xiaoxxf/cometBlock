@@ -134,7 +134,7 @@ function editTopic(){
   }
 
   // 过滤js和style标签
-  var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
+  var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '')
   var data = {
     'topicPic':  newTopicForm.topic_logo_file_name.value,
     'topicId': topicId,

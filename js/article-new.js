@@ -109,7 +109,7 @@ $('.submit_comment').on('click',function(){
   ui.submiting = true;
   $('.submit_comment').text('发布中...')
 
-  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'');
+  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '');
   var text_title = $('input[name="head"]')[0].value;
   if (!text_title || !text_content) {
     // $('#identifier').modal()
@@ -129,6 +129,7 @@ $('.submit_comment').on('click',function(){
   doPostJavaApi(uri, JSON.stringify(data), function(res){
     if (res.code == 0) {
       // 清除草稿
+      save_draft_flag = false; //不保存草稿
       $.removeCookie("draft");
       layer.msg('提交成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
@@ -201,7 +202,7 @@ $(".w-e-text").focus(function(){
   $(".fake-placeholder").remove();
 })
 
-
+var save_draft_flag = true;//判断是否保存草稿，提交文章后不保存
 // 保存草稿
 window.setInterval(saveDraft(), 15000);
 function saveDraft()
@@ -218,5 +219,7 @@ function saveDraft()
 
 
 window.onbeforeunload=function(e){
-  saveDraft()
+  if (save_draft_flag) {
+    saveDraft()
+  }
 }

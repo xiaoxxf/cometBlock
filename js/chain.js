@@ -166,7 +166,7 @@ function serachChain(){
 			}
 			for (var i = 0; i < descriptions.length; i++) {
 				// 过滤HTML和style标签
-				descriptions[i].innerHTML = descriptions[i].innerText.replace(/(<style.*?<\/style>)/g, "")
+				descriptions[i].innerHTML = descriptions[i].innerText.replace(/<style(([\s\S])*?)<\/style>/g, '')
 				descriptions[i].innerHTML = descriptions[i].innerHTML.replace(/<[^>]+>/g,"")
 
 				if (descriptions[i].innerHTML.length > show_length) {

@@ -357,7 +357,7 @@ $(".short-comment-commit").on('click',function (e) {
         return;
     }
     // 过滤js和style标签
-    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
+    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '');
     var data = {
         textTitle: shortTxt,
         projectId: projectId, //项目

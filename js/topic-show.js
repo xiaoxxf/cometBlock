@@ -58,8 +58,9 @@ function getTopicArticle(){
     // 限制内容长度
     for (var i = 0; i < result.datas.length; i++) {
 
+
       if (result.datas[i].textContent) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<style(([\s\S])*?)<\/style>/g, '').replace(/<[^>]+>/g,"")
 
         var content_length = null
         if ($(window).width() < 767) {
@@ -105,7 +106,6 @@ $('.topic_border .read-more').on('click',function(){
 
     // 限制内容长度
     for (var i = 0; i < result.datas.length; i++) {
-
       if (result.datas[i].textContent) {
         result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
 

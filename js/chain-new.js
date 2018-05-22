@@ -394,7 +394,7 @@ $('#form1').validator({
       });
 
       // 过滤js和style标签
-      var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
+      var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '')
       // 提交数据
       var data = {
         "projectLogo":          form1.projectLogoFile.value,
