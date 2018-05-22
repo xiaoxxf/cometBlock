@@ -98,7 +98,7 @@ if (draft && draft.userId == userId) {
 $('.w-e-menu').css('font-size','20px');
 $('.w-e-text-container').css('border','0px');
 $('.w-e-text').css('font-size','18px');
-$('.w-e-text').css('height','150%');
+// $('.w-e-text').css('height','150%');
 
 // 提交
 $('.submit_comment').on('click',function(){
@@ -204,7 +204,7 @@ $(".w-e-text").focus(function(){
 
 var save_draft_flag = true;//判断是否保存草稿，提交文章后不保存
 // 保存草稿
-window.setInterval(saveDraft(), 15000);
+window.setInterval(saveDraft, 30000);
 function saveDraft()
 {
   var temp_content = {
@@ -215,11 +215,22 @@ function saveDraft()
   var expireDate= new Date();
   expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
   $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
+  layer.tips('自动保存成功', '.w-e-toolbar', {
+      tips: [2, '.w-e-text'],
+      time: 1000
+  });
 }
 
 
 window.onbeforeunload=function(e){
   if (save_draft_flag) {
-    saveDraft()
+    var temp_content = {
+      'userId': userId,
+      'textTitle': $('input[name="head"]')[0].value,
+      'textContent': editor.txt.html()
+    }
+    var expireDate= new Date();
+    expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+    $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
   }
 }
