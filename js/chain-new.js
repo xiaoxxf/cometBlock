@@ -446,13 +446,8 @@ $('#form1').validator({
             }
           },
           error: function (err) {
-            ui.submiting = false;
-            $(".ouro").attr({
-              style: "display:none"
-            });
-            $('.submit_control').html('提交')
-            $('.submit_control').removeAttr('disabled')
             layer.msg('提交失败，请重试');
+            $('.submit_control').css('disabled','')
           }
       });
 

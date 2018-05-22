@@ -24,7 +24,6 @@ $(function(){
   }
 })
 
-
 var E = window.wangEditor
 var editor = new E('#editor')
 // 编辑器
@@ -83,22 +82,15 @@ editor.customConfig.uploadImgHooks = {
 }
 // editor.customConfig.debug = true
 editor.create();
-// $('.w-e-text-container').attr('style','height:100%;');
-// $('.w-e-text-container').attr('style','width:auto;');
-// $('#div1').attr('style','height:auto;');
-// 读取草稿
-var draft = $.cookie('draft') ? JSON.parse($.cookie('draft')) : ''
-if (draft && draft.userId == userId) {
-  $('input[name="head"]').val(draft.textTitle),
-  editor.txt.html(draft.textContent)
-}
-
+$('.w-e-text-container').attr('style','height:auto;');
+$('.w-e-text-container').attr('style','width:auto;');
 
 // 修改菜单栏样式
-$('.w-e-menu').css('font-size','20px');
-$('.w-e-text-container').css('border','0px');
-$('.w-e-text').css('font-size','18px');
-$('.w-e-text').css('height','150%');
+
+$('.w-e-menu').css('font-size','20px')
+$('.w-e-text-container').css('border','0px')
+$('.w-e-text').css('font-size','18px')
+
 
 // 提交
 $('.submit_comment').on('click',function(){
@@ -128,8 +120,6 @@ $('.submit_comment').on('click',function(){
   var uri = 'blockchain/addReview';
   doPostJavaApi(uri, JSON.stringify(data), function(res){
     if (res.code == 0) {
-      // 清除草稿
-      $.removeCookie("draft");
       layer.msg('提交成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
@@ -177,19 +167,19 @@ $('.preview-article').on('click',function(){
 })
 
 //编辑器强制修改
-// var containerW = $(".write-container").width() * 0.9;
-// var marL = $(".write-container").width() * 0.05 + 15;
-// var marL2 = $(".write-container").width() * 0.05;
-// $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-// $(".w-e-toolbar").css({ 'width': containerW});
-// $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-// window.onresize = function () {
-//   var containerW = $(".write-container").width() * 0.9;
-//   var marL = $(".write-container").width() * 0.05 + 15;
-//   $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-//   $(".w-e-toolbar").css({ 'width': containerW});
-//   $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-// }
+var containerW = $(".write-container").width() * 0.9;
+var marL = $(".write-container").width() * 0.05 + 15;
+var marL2 = $(".write-container").width() * 0.05;
+$(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+$(".w-e-toolbar").css({ 'width': containerW});
+$(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+window.onresize = function () {
+  var containerW = $(".write-container").width() * 0.9;
+  var marL = $(".write-container").width() * 0.05 + 15;
+  $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+  $(".w-e-toolbar").css({ 'width': containerW});
+  $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+}
 
 $(".edit-comment").on('click', function () {
   if ($(".fake-placeholder").size() > 0) {
@@ -200,23 +190,3 @@ $(".edit-comment").on('click', function () {
 $(".w-e-text").focus(function(){
   $(".fake-placeholder").remove();
 })
-
-
-// 保存草稿
-window.setInterval(saveDraft(), 15000);
-function saveDraft()
-{
-  var temp_content = {
-    'userId': userId,
-    'textTitle': $('input[name="head"]')[0].value,
-    'textContent': editor.txt.html()
-  }
-  var expireDate= new Date();
-  expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
-  $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
-}
-
-
-window.onbeforeunload=function(e){
-  saveDraft()
-}

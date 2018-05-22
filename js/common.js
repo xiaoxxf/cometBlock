@@ -5,14 +5,14 @@ var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '
 // var wechatInfo_flag = false; // 是否已取得微信返回数据
 
 // 不跳回登录、注册、找回密码的页面
-var login_uri = '/login.html';
-var register_uri = '/register.html';
-var find_pass_word_uri = '/find-pwd.html';
-var wechat_login_uri = "/connect/qrconnect";
-if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
-  var currentJumpHref = window.location.href;
-  window.localStorage.setItem('currentJumpHref',currentJumpHref);
-}
+// var login_uri = '/login.html';
+// var register_uri = '/register.html';
+// var find_pass_word_uri = '/find-pwd.html';
+// var wechat_login_uri = "/connect/qrconnect";
+// if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
+//   var currentJumpHref = window.location.href;
+//   window.localStorage.setItem('currentJumpHref',currentJumpHref);
+// }
 
 function guid() {
     function s4() {
@@ -317,18 +317,14 @@ $(document).on('click','.more-sign .wechat-login',function () {
     doJavaGet(uri, function(res) {
         var currentJumpHref = window.localStorage.getItem('currentJumpHref');
 
-        // 截取code和state
-        var reg_code = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
-        var reg_state = new RegExp("(^|\\?|&)"+ 'state' +"=([^&]*)(\\s|&|$)", "i");
-
-        if (reg_code.test(currentJumpHref)){
+        // 截取code
+        var reg = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
+        if (reg.test(currentJumpHref))
           var code = unescape(RegExp.$2.replace(/\+/g, " "));
-          currentJumpHref = currentJumpHref.replace('?code=' + code, '');
 
-        }
-        if (reg_state.test(currentJumpHref)) {
-          var state = unescape(RegExp.$2.replace(/\+/g, " "));
-          currentJumpHref = currentJumpHref.replace('&sate=' + sate, '');
+        // 去除code
+        if (code) {
+          currentJumpHref = currentJumpHref.replace('?code=' + code, '');
         }
 
         if(currentJumpHref == undefined){
@@ -348,18 +344,14 @@ $(document).on('click','.more-sign .wechat-resgister',function () {
   doJavaGet(uri, function(res) {
       var currentJumpHref = window.localStorage.getItem('currentJumpHref');
 
-      // 截取code和state
-      var reg_code = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
-      var reg_state = new RegExp("(^|\\?|&)"+ 'state' +"=([^&]*)(\\s|&|$)", "i");
-
-      if (reg_code.test(currentJumpHref)){
+      // 截取code
+      var reg = new RegExp("(^|\\?|&)"+ 'code' +"=([^&]*)(\\s|&|$)", "i");
+      if (reg.test(currentJumpHref))
         var code = unescape(RegExp.$2.replace(/\+/g, " "));
-        currentJumpHref = currentJumpHref.replace('?code=' + code, '');
 
-      }
-      if (reg_state.test(currentJumpHref)) {
-        var state = unescape(RegExp.$2.replace(/\+/g, " "));
-        currentJumpHref = currentJumpHref.replace('&sate=' + sate, '');
+      // 删除code
+      if (code) {
+        currentJumpHref = currentJumpHref.replace('?code=' + code, '');
       }
 
       if(currentJumpHref == undefined){
