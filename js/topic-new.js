@@ -34,7 +34,7 @@ document.getElementById("topic_logo_input").addEventListener("change", function(
 function uploadFile(){
   let file = $('#topic_logo_input')[0].files[0];
 
-  // debugger
+  //  
   if (file == undefined || !file.type.match(imageType) || file.size > imageMaxSize) {
     $('.topic_logo_file_name').val('');
     return
@@ -101,7 +101,7 @@ function createTopic(){
   }
 
   // 过滤js和style标签
-  var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
+  var topic_des = newTopicForm.topic_description.value.replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '')
   var data = {
     'topicPic':  newTopicForm.topic_logo_file_name.value,
     'topic':    newTopicForm.topic_name.value, //专题名称

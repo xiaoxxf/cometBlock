@@ -91,7 +91,7 @@ a img {
 .comment-detail .comment-title{
     font-weight: bold;
     font-size: 17px;
-    line-height: 0px;
+    /* line-height: 0px; */
     margin: 15px 0px;
     width: 80%;
 }
@@ -198,7 +198,7 @@ a img {
 
 	.comment-detail .comment-title {
 		font-size: 15px;
-		line-height: 0px;
+		/* line-height: 0px; */
 	    width: 100%;
 	    margin: 10px 0px;
 	}

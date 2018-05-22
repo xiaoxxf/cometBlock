@@ -8,7 +8,8 @@ var projectId = '';
 var ui = {
   'loading': false,
   'noMoreData': false,
-  'submiting': false
+  'submiting': false,
+  'deleting': false,
 }
 var article_topic_list = [];
 
@@ -125,12 +126,8 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
 });
 //点击删除
 $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
-    var self =$(e.currentTarget),
-        author = self.data('user_name'),
-        passWord = userinfo.userPwd,
-        reviewId = self.data('reviewid');
     if(!wechatBindNotice()){
-    	return;
+      return;
     }
     if(userId == undefined){
         // layer.msg('您还没有登录');
@@ -144,6 +141,15 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         });
         return;
     }
+    if (ui.deleting) {
+      return
+    }
+    ui.deleting = true;
+    var self =$(e.currentTarget),
+        author = self.data('user_name'),
+        passWord = userinfo.userPwd,
+        reviewId = self.data('reviewid');
+
     layer.confirm('确定删除您的评论么?',
         {
         icon: 3,
@@ -153,6 +159,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         skin: 'layui-layer-report', //加上边框
         },
         function(index){
+        $('.layui-layer-btn0').text('删除中...');
         var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
         doJavaGet(uri, function(res) {
             if(res != null && res.code == 0) {
@@ -162,6 +169,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
             }else if(res.code == -1){
               layer.msg('删除失败，请重试')
             }
+            ui.deleting = false;
         }, "json");
         layer.close(index);
     });
@@ -390,7 +398,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         return;
     }
     // 过滤js和style标签
-    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
+    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '');
     var data = {
         textTitle: shortTxt,
         parentId: reviewId, //项目
@@ -417,14 +425,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
 })
 // 点击删除长文
 $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
-    var self =$(e.currentTarget),
-        author = self.data('user_name'),
-        passWord = userinfo.userPwd,
-        reviewId = self.data('reviewid');
-        parentTxt = self.data('parenttxt');
-
     if(!wechatBindNotice()){
-    	return;
+      return;
     }
     if(userId == undefined){
         // layer.msg('您还没有登录');
@@ -438,6 +440,16 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
         });
         return;
     }
+    if (ui.deleting) {
+      return
+    }
+    ui.deleting = true;
+    var self =$(e.currentTarget),
+        author = self.data('user_name'),
+        passWord = userinfo.userPwd,
+        reviewId = self.data('reviewid');
+        parentTxt = self.data('parenttxt');
+
     layer.confirm('确定删除您的文章么?',
     {
       icon: 3,
@@ -447,6 +459,7 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
       skin: 'layui-layer-report', //加上边框
     },
     function(){
+      $('.layui-layer-btn0').text('删除中...')
       var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
       doJavaGet(uri, function(res) {
           if(res != null && res.code == 0) {
@@ -455,7 +468,11 @@ $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
               }else if(!projectId){
                 window.location.href= 'personal-homepage.html'
               }
+          }else if(res.code == -1){
+            $('.layui-layer-btn0').text('确定');
+            layer.msg('删除失败，请重试');
           }
+          ui.deleting = false;
       }, "json");
     }
     );
@@ -982,7 +999,7 @@ $(function () {
             scrollValue > 100 ? $('.news_alert_return_top').fadeIn() : $('.news_alert_return_top').fadeOut();
         });
         $('.news_alert_return_top').click(function () {
-            $("html,body").animate({ scrollTop: 0 }, 200);
+            $("html,body").animate({ scrollTop: 0 }, 1000);
         });
     }
      showScroll();
