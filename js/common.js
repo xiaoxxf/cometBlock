@@ -113,7 +113,9 @@ function getUrlParam(name) {
 
 //退出登录
 function Loginout(){
+    var draft = localStorage.getItem('draft')
     localStorage.clear();
+    localStorage.setItem('draft', draft); //退出登录后不清除文章草稿
     $.removeCookie("token");
     $.removeCookie("userid");
     $.removeCookie("username");

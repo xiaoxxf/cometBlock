@@ -87,10 +87,12 @@ editor.create();
 // $('.w-e-text-container').attr('style','width:auto;');
 // $('#div1').attr('style','height:auto;');
 // 读取草稿
-var draft = $.cookie('draft') ? JSON.parse($.cookie('draft')) : ''
+// var draft = $.cookie('draft') ? JSON.parse($.cookie('draft')) : ''
+var draft = localStorage.getItem('draft') ? JSON.parse(localStorage.getItem('draft')) : ''
+
 if (draft && draft.userId == userId) {
-  $('input[name="head"]').val(draft.textTitle),
-  editor.txt.html(draft.textContent)
+  $('input[name="head"]').val(draft.textTitle);
+  editor.txt.html(draft.textContent);
 }
 
 
@@ -132,8 +134,8 @@ $('.submit_comment').on('click',function(){
   doPostJavaApi(uri, JSON.stringify(data), function(res){
     if (res.code == 0) {
       // 清除草稿
-      save_draft_flag = false; //不保存草稿
-      $.removeCookie("draft");
+      save_draft_flag = false; //发表文章后跳转不保存草稿
+      localStorage.removeItem('draft');
       layer.msg('提交成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
@@ -215,6 +217,8 @@ function saveDraft()
     'textTitle': $('input[name="head"]')[0].value,
     'textContent': editor.txt.html()
   }
+  localStorage.setItem('draft', JSON.stringify(temp_content)); //存储
+
   var expireDate= new Date();
   expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
   $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
@@ -232,6 +236,9 @@ window.onbeforeunload=function(e){
       'textTitle': $('input[name="head"]')[0].value,
       'textContent': editor.txt.html()
     }
+
+    localStorage.setItem('draft', JSON.stringify(temp_content)); //存储
+
     var expireDate= new Date();
     expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
     $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });

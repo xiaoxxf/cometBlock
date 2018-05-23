@@ -317,7 +317,7 @@
 <!-- 播报新闻 -->
 <script type="text/html" id="news_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<p><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
+		<p title="<%=list[i].title%>"><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
 	<%}%>
 </script>
 

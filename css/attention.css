@@ -8,10 +8,8 @@ a img {
   min-height: 271px;
 }
 
-.attention_box{
-	/*margin-top:30px ;*/
-}
-.row .col-md-3 .attention_box span{
+
+.side_menu span{
   cursor: pointer;
 	color: #006bb3;
   margin: 15px;
@@ -52,7 +50,6 @@ a img {
 }
 
 .attention_zone{
-
   padding: 10px;
 }
 
@@ -210,7 +207,7 @@ a img {
   padding: 10px;
   background: white;
   position: fixed;
-  width: 15%;
+  min-width: 20%;
 }
  @media (max-width: 992px){
  	.side{

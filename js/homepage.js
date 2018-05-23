@@ -110,7 +110,7 @@ $(function(){
 	    var descriptions = document.getElementsByClassName('new_title');
 
 	    if ($(window).width() > 990) {
-	      var show_length = 60
+	      var show_length = 25
 	    }else if($(window).width() <= 990){
 	      var show_length = 40
 	    }
