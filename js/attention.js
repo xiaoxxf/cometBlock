@@ -69,7 +69,7 @@ function getAllUserDynamic(){
       return
     }
 
-    // 限制内容长度，短评时不用
+    // 限制内容长度
     for (var i = 0; i < result.datas.length; i++) {
 
       if (result.datas[i].textContent) {
@@ -80,7 +80,7 @@ function getAllUserDynamic(){
         if ($(window).width() < 767) {
           content_length = 85
         }else{
-          content_length = 120
+          content_length = 150
         }
 
         if (result.datas[i].textContent.length > content_length) {
@@ -102,7 +102,7 @@ function getAllUserDynamic(){
   })
 }
 
-
+// 加载更多
 function loadMoreDynamic(){
   currentPage++;
   ui.loading = true;
@@ -123,17 +123,17 @@ function loadMoreDynamic(){
       return
     }
 
-    // 限制内容长度，短评时不用
+    // 限制内容长度
     for (var i = 0; i < result.datas.length; i++) {
 
       if (result.datas[i].textContent) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-
+				// 去除HTML标签和无用的空格
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"").replace(/^\s+|\s+$/g,"")
         var content_length = null
         if ($(window).width() < 767) {
           content_length = 55
         }else{
-          content_length = 120
+          content_length = 150
         }
 
         if (result.datas[i].textContent.length > content_length) {
@@ -176,7 +176,7 @@ $(window).scroll(function(){
 				//当滚动条到底时,这里是触发内容
 				//异步请求数据,局部刷新dom
 				if (!ui.noMoreData && !ui.loading) {
-					//  
+					//
 					ui.loading = true;
 					loadMoreDynamic();
 				}

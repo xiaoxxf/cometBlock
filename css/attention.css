@@ -52,22 +52,6 @@ a img {
    margin-top: 10px;
 }
 
-
-.comment-detail .comment-icon{
-    width: 80px;
-    height: 63px;
-	position: relative;
-    border:1px solid #a79e9e;
-}
-
-.comment-detail .comment-icon img{
-	width: 70%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-}
-
 .hot_review_title{
 	background-color: white;
 	padding: 10px 20px;
@@ -92,8 +76,8 @@ a img {
     font-weight: bold;
     font-size: 17px;
     /* line-height: 0px; */
-    margin: 15px 0px;
-    width: 80%;
+    margin: 3px 0px;
+    width: 100%;
 }
 
 .comment-detail .comment-title a{
@@ -117,8 +101,8 @@ a img {
 
 .comment-detail .comment-introduce{
   min-height: 80px;
-  width: 75%;
-  margin-right: 50px;
+  width: 100%;
+  margin-right: 20px;
 }
 .comment-introduce a{
 	color: #333333;
@@ -131,6 +115,20 @@ a img {
   color: #646464
 }
 
+.comment-detail .comment-icon{
+  width: 80px;
+  height: 63px;
+	position: relative;
+  border:1px solid #a79e9e;
+}
+
+.comment-detail .comment-icon img{
+	width: 70%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
 .comment-content.comment-info{
 	display: inline;
 }
