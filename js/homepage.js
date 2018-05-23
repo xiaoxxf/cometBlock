@@ -87,7 +87,7 @@ $(function(){
 
 // 渲染播报
 $(function(){
-  var uri = 'http://testapi.blockcomet.com/news/quary?currentPage=1&pageSize=5&days=1';
+  var uri = 'http://testapi.blockcomet.com/news/search?currentPage=1&pageSize=5&days=1';
 	$.ajax({
 		url : uri,
 		type: "get",
