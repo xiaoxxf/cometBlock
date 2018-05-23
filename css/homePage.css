@@ -54,6 +54,7 @@ a img {
 /*糖果盒 & 创建项目*/
 .candy_box{
 	margin-top:30px ;
+	min-height: 160px;
 }
 
 .create_project_button{
@@ -66,7 +67,7 @@ a img {
     width: 100%;
 }
 
-.row .col-md-3 .candy_box a{
+.candy_box a{
 	color: #006bb3;
   margin: 15px;
   display: block;
@@ -471,7 +472,7 @@ a img {
   color: black;
   margin: 7px 8px 7px 8px;
   cursor: pointer;
-	min-width: 179px;
+	/* min-width: 179px; */
 }
 
 .hot_zone_topic .topic_tag .topic_logo{
