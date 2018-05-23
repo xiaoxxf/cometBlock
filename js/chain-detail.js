@@ -396,7 +396,7 @@ function scoreDataFormat(res) {
     var projectId = getUrlParam('projectId');
     var uri = '/blockchain/compared?projectId='+projectId;
     doJavaGet(uri, function(comparedData) {
-        if(comparedData != null && comparedData.code == 0) {
+        // if(comparedData != null && comparedData.code == 0) {
             res.datas.compared = comparedData.datas;
             var tempObj = {};
             var tempArr = [];
@@ -429,9 +429,9 @@ function scoreDataFormat(res) {
             $(".rating_wrap-hook").html('');
             $(".rating_wrap-hook").append(teamContent);
             // console.log(tempObj)
-        } else {
+        // } else {
             // layer.msg(comparedData.msg);
-        }
+        // }
     }, "json");
 }
 //评分的计算,返回的是对应星星的类名
