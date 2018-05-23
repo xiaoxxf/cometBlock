@@ -472,18 +472,26 @@ function delete_short_comment(e){
       },
       function(index){
       var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
-      doJavaGet(uri, function(res) {
-          if(res != null && res.code == 0) {
-              // console.log(res.msg)
-              // ajaxGetComments(true);
-              // 去除删除的评论
-              $(e.parentNode.parentNode.parentNode).remove();
-              ajaxGetScoreInfo(true);
-          }else{
-            layer.msg('删除失败，请重试')
-          }
-      }, "json");
-      layer.close(index);
+      try
+      {
+        doJavaGet(uri, function(res) {
+            if(res != null && res.code == 0) {
+                // console.log(res.msg)
+                // ajaxGetComments(true);
+                // 去除删除的评论
+                $(e.parentNode.parentNode.parentNode).remove();
+                ajaxGetScoreInfo(true);
+            }else{
+              layer.msg('删除失败，请重试')
+            }
+        }, "json");
+        layer.close(index);
+      }
+      catch(err)
+      {
+        layer.msg('删除失败，请重试')
+      }
+
   });
 }
 

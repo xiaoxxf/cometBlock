@@ -173,7 +173,13 @@
         </div>
     </div>
     <div class="rating_self clearfix">
-        <strong class="rating_num pull-left" ><%:=list.avaScore%></strong>
+
+          <%if(list.avaScore != 0 ){%>
+            <strong class="rating_num pull-left" ><%:=list.avaScore%></strong>
+          <%}else{%>
+            <span class="none_rating_num pull-left">暂无评分</span>
+          <%}%>
+
         <span ></span>
         <div class="rating_right ">
             <div class="pull-left bigstar bigstar<%:=list.stars%>">
