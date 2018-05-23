@@ -330,7 +330,7 @@ $(document).ready(function () {
     //api 参考地址 http://www.swiper.com.cn/api/index.html
     var mySwiper = new Swiper ('.swiper-container', {
         autoplay: 5000,
-        speed: 2500,
+        speed: 1500,
         autoplay: true,
         disableOnInteraction:false,
         loop : true,
