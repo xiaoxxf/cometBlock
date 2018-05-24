@@ -33,6 +33,24 @@ function searchUser(){
   })
 }
 
+// 关注用户
+var current_follow_button = null;
+function followUser(e){
+	debugger
+	current_follow_button = e;
+	var followingId = $(e).data('followingId');
+
+	var uri = 'attention/attent?attentionId=' + followingId  + '&creator=' + userId + '&password=' + userinfo.userPwd + '&type=1';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			$(current_follow_button).text('已关注');
+			// layer.msg('关注成功',{time:1000});
+		}
+	});
+
+}
+
 // $('.search_user_result').on('click', $('.user_name'), function(e){
 // 	var self = $(e.target);
 // 	var	search_id = self.data('userid');

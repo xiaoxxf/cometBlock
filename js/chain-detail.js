@@ -252,8 +252,6 @@ function ajaxGetLongComments() {
                   // if (result.datas[i].textTitle.length > 30) {
                   //   result.datas[i].textTitle = result.datas[i].textTitle.substring(0,30) + "..."
                   // }
-
-
                 }
 
                 //var formatData = formatStarClass(data);
