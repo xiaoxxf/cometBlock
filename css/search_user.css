@@ -29,9 +29,10 @@
 	height: 40px !important;
 	line-height: 40px;
 	width: 30px !important;
-    background-color: #006bb3;
-    width: 100px !important;
-    border-radius: 30px;
+  background-color: #006bb3;
+  width: 100px !important;
+  border-radius: 30px;
+	cursor: pointer;
 }
  .pay_attent span{
  	margin-left: 2px;

@@ -218,14 +218,13 @@ function saveDraft()
     'textContent': editor.txt.html()
   }
   localStorage.setItem('draft', JSON.stringify(temp_content)); //存储
-
-  var expireDate= new Date();
-  expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
-  $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
-  layer.tips('自动保存成功', '.w-e-toolbar', {
-      tips: [2, '.w-e-text'],
-      time: 1000
-  });
+  // var expireDate= new Date();
+  // expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+  // $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
+  // layer.tips('自动保存成功', '.w-e-toolbar', {
+  //     tips: [2, '.w-e-text'],
+  //     time: 1000
+  // });
 }
 
 
@@ -238,9 +237,8 @@ window.onbeforeunload=function(e){
     }
 
     localStorage.setItem('draft', JSON.stringify(temp_content)); //存储
-
-    var expireDate= new Date();
-    expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
-    $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
+    // var expireDate= new Date();
+    // expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+    // $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
   }
 }

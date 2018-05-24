@@ -1,3 +1,4 @@
+/* 公用 */
 a img {
     border-width: 0;
     vertical-align: middle;
@@ -8,7 +9,19 @@ a img {
   min-height: 271px;
 }
 
+.hot_zone{
+  border-radius: 20px;
+  background-color: white;
+}
+@media (max-width:762px) {
+  .hot_zone {
+    margin-bottom: 20px;
+  }
 
+}
+
+
+/* 侧边栏 */
 .side_menu span{
   cursor: pointer;
 	color: #006bb3;
@@ -20,27 +33,25 @@ a img {
   border-radius: 5px;
 }
 
-.dynamic_menu_on_focus{
+.side_menu .dynamic_menu_on_focus{
   background-color: #006bb3;
   color: white !important;
 }
 
-
-.candy_right,.dynamic_region {
-	/* background-color: white; */
+.side_menu .attention_list{
+  padding-right: 20px;
+  display: none
 }
 
-.hot_zone{
-  border-radius: 20px;
-  background-color: white;
-}
-@media (max-width:762px) {
-  .candy_right,.hot_zone {
-    margin-bottom: 20px;
-  }
-
+.side_menu .attention_list li{
+  /* display: inline; */
+  text-align:center;
+  cursor: pointer;
 }
 
+
+
+/* 内容 */
 .read-more{
 	cursor: pointer;
 }
@@ -206,8 +217,10 @@ a img {
 .side_menu{
   padding: 10px;
   background: white;
-  position: fixed;
+  /* position: fixed; */
   min-width: 20%;
+  min-width: 250px;
+  margin-right: 10px;
 }
  @media (max-width: 992px){
  	.side{
@@ -215,13 +228,6 @@ a img {
  	}
  }
 
-.comment-count{
-	color: red
-}
-.hot-span{
-	color: black
-}
-/*广告位*/
 .long-comment{
 	margin-top: 5px;
 }

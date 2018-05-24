@@ -13,25 +13,25 @@ var currentPage = 1;
 var pageSize = 6;
 var like = '';
 
-$('.side_menu').on('click', 'span', function(e){
+
+$('.side_menu').on('click','.load_all_user_dynamic', function(){
 	if (ui.loading) {
 		return
 	}
-	var index_menu = $('.side_menu span').index(e.currentTarget);
 	$('.side_menu span').removeClass('dynamic_menu_on_focus');
-	$(e.currentTarget).addClass('dynamic_menu_on_focus');
-	switch (index_menu) {
-		case 0:
-			like = '';
-			break;
-		case 1:
-			like = 1;
-			break;
-		default:
-	}
-
+	$('.load_all_user_dynamic').addClass('dynamic_menu_on_focus');
+	like = '';
 	getAllUserDynamic();
+})
 
+$('.side_menu').on('click','.load_recommend_dynamic', function(){
+	if (ui.loading) {
+		return
+	}
+	$('.side_menu span').removeClass('dynamic_menu_on_focus');
+	$('.load_recommend_dynamic').addClass('dynamic_menu_on_focus');
+	like = 1;
+	getAllUserDynamic();
 })
 
 // $('.load_all_user_dynamic').on('click',function(){
@@ -221,3 +221,17 @@ $(".hot_review_region").on('click','.like-button',function (e) {
         }
     }, "json");
 });
+
+// 侧边栏 关注
+$('.follow_people .load_follow_people').on('click',function(){
+	$('.follow_people_list').toggle();
+
+})
+
+$('.follow_project .load_follow_project').on('click',function(){
+	$('.follow_project_list').toggle();
+})
+
+$('.follow_topic .load_follow_topic').on('click',function(){
+	$('.follow_topic_list').toggle();
+})
