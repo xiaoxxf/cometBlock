@@ -53,7 +53,7 @@ a img {
 .edit_btn,.follow_btn,.un_follow_btn{
 	color: #006bb3;
   margin: 20px 0px;
-  display: block;
+  display: none;
   text-align: center;
   line-height: 30px;
   border: solid 1px #006bb3;

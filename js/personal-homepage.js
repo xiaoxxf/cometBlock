@@ -17,13 +17,14 @@ $(function(){
 	// 看别人
 	if (url_id && url_id != cookie_id ) {
 		userid_search = getUrlParam('userId');
-		//看别人时隐藏编辑、创建按钮
-		$('.edit_btn').css('display','none');
+		//看别人时隐藏专题编辑、创建项目按钮
 		$('.create_new_topic_list_btn').css('display','none');
 		$('.create_new_subject_btn').css('display','none');
 	}
 	// 看自己
 	else{
+		// 看自己时显示编辑个人资料按钮
+		$('.edit_btn').css('display','block');
 		userid_search = cookie_id;
 	}
 
@@ -90,7 +91,7 @@ $('.load_all_dynamic').on('click',function(){
 
 // 加载用户信息
 function getUserInfo(){
-	var uri = 'news/quaryusers?currentPage=1&pageSize=1&userId=' + userid_search + '&loginUser=' + userId
+	var uri = 'news/quaryusers?currentPage=1&pageSize=1&userId=' + userid_search
 
 	doJavaGet(uri, function(res){
 
@@ -100,18 +101,6 @@ function getUserInfo(){
 		var intro = res.datas.personIntro ? res.datas.personIntro : ''
 		$('.personal-intro').html('个人简介:' + intro)
 
-		// 看别人时显示关注
-		if (userId != userid_search) {
-			// true已关注，false未关注
-			if (res.datas.follow) {
-				var str_unfollow = '<a href="javascript:void(0)" class="un_follow_btn" onclick="unFollowUser(this)">取消关注</a>'
-				$('.edit_person_msg').prepend(str_unfollow)
-			}else{
-				var str_follow = '<a href="javascript:void(0)" class="follow_btn" onclick="followUser(this)">关注</a>'
-				$('.edit_person_msg').prepend(str_follow)
-			}
-		}
-
 	})
 
   // $('.person_name').html(userinfo.realName);
@@ -119,6 +108,55 @@ function getUserInfo(){
 	// $('.personal-intro').html('个人简介：') + userinfo.userIntro
 }
 
+// 关注/取消关注
+var following = null; //判断是否已关注
+$(function(){
+  if (userId) {
+    var uri = 'attention/checkAttent?attentionId=' + userid_search + '&type=1'
+              + '&creator=' + userId + '&password=' + userinfo.userPwd
+    doJavaGet(uri,function(res){
+      // 未关注
+      if (res.code == 0) {
+				$('.follow_btn').css('display','block');
+      }
+      // 已关注
+      else if(res.code == 1){
+				$('.un_follow_btn').css('display','block');
+      }
+    })
+  }
+})
+
+// 关注
+function followPeople(){
+	var uri = 'attention/attent?attentionId=' + userid_search + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=3';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('关注成功');
+			$('.follow_btn').css('display','none');
+			$('.un_follow_btn').css('display','block');
+
+		}
+	})
+}
+
+// 取关
+function unFollowPeople(){
+	var uri = 'attention/delAttent?attentionId=' + userid_search + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=3';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('已取消关注');
+			$('.un_follow_btn').css('display','none');
+			$('.follow_btn').css('display','block');
+		}
+	})
+}
+
+// 加载用户的文章、长评、短评
 function getPersonHomePageData(){
 	// loadFlag = 1;
 	currentPage = 1;
@@ -407,51 +445,3 @@ $(".hot_review_region").on('click','.like-button',function (e) {
         }
     }, "json");
 });
-
-// 关注
-var current_follow_button = null
-$(".hot_review_region").on('click','.followBtn',function(){
-	current_follow_button = this;
-	var	followingId = $(this).data('followingid');
-	var uri = 'attention/attent?attentionId=' + followingId  + '&creator=' + userId + '&password=' + userinfo.userPwd + '&type=1';
-
-	doJavaGet(uri,function(res){
-		if (res.code == 0) {
-			$(current_follow_button).text('已关注');
-			// layer.msg('关注成功',{time:1000})
-			var temp_str = '<li class="load_people_dynamic" data-followingId=' + $(current_follow_button).data('followingId') +'>\
-											'  +    +  '</li>'
-			$('.follow_people_list')
-		}
-	});
-})
-
-// 关注
-function followUser(e){
-	var uri = 'attention/attent?attentionId=' + userid_search + '&creator=' + userId + '&password='
-	 					+ userinfo.userPwd + '&type=1';
-
-	doJavaGet(uri,function(res){
-		if (res.code == 0) {
-			layer.msg('关注成功');
-			$(e).css('display','none');
-			var str_unfollow = '<a href="javascript:void(0)" class="un_follow_btn" onclick="unFollowUser(this)">取消关注</a>'
-			$('.edit_person_msg').prepend(str_unfollow)
-		}
-	})
-}
-
-// 取关
-function unFollowUser(e){
-	var uri = 'attention/delAttent?attentionId=' + userid_search + '&creator=' + userId + '&password='
-	 					+ userinfo.userPwd + '&type=1';
-
-	doJavaGet(uri,function(res){
-		if (res.code == 0) {
-			layer.msg('已取消关注');
-			$(e).css('display','none');
-			var str_follow = '<a href="javascript:void(0)" class="follow_btn" onclick="followUser(this)">关注</a>'
-			$('.edit_person_msg').prepend(str_follow)
-		}
-	})
-}
