@@ -37,9 +37,9 @@
         <div class="row hot_topic_list">
 
         </div>
-        
 
-        
+
+
         <!--加载-->
         <!--<div class="row topic_load">
         	<p onclick="getMoreTopicIndex()">加载更多</p>
@@ -71,7 +71,7 @@
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="col-md-4" data-topicid='<%:=list[i].id %>' onclick="jumpToTopic(this)">
 	        <div class="topic_box">
-	         	<a href="">
+	         	<a href="topic-show.html?<%:=list[i].id %>">
 	         		<img src="<%:=list[i].topicPic %>" class="topic_icon"/>
 	         	</a>
 	         	<div class="hot_topic_title"><%:=list[i].topic %></div>

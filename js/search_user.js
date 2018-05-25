@@ -36,9 +36,8 @@ function searchUser(){
 // 关注用户
 var current_follow_button = null;
 function followUser(e){
-	debugger
 	current_follow_button = e;
-	var followingId = $(e).data('followingId');
+	var followingId = $(e).data('followingid');
 
 	var uri = 'attention/attent?attentionId=' + followingId  + '&creator=' + userId + '&password=' + userinfo.userPwd + '&type=1';
 

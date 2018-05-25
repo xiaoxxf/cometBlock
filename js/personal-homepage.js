@@ -18,7 +18,7 @@ $(function(){
 	if (url_id && url_id != cookie_id ) {
 		userid_search = getUrlParam('userId');
 		//看别人时隐藏编辑、创建按钮
-		$('.edit_person_msg').css('display','none');
+		$('.edit_btn').css('display','none');
 		$('.create_new_topic_list_btn').css('display','none');
 		$('.create_new_subject_btn').css('display','none');
 	}
@@ -90,7 +90,7 @@ $('.load_all_dynamic').on('click',function(){
 
 // 加载用户信息
 function getUserInfo(){
-	var uri = 'news/quaryusers?currentPage=1&pageSize=1&userId=' + userid_search
+	var uri = 'news/quaryusers?currentPage=1&pageSize=1&userId=' + userid_search + '&loginUser=' + userId
 
 	doJavaGet(uri, function(res){
 
@@ -99,6 +99,19 @@ function getUserInfo(){
 
 		var intro = res.datas.personIntro ? res.datas.personIntro : ''
 		$('.personal-intro').html('个人简介:' + intro)
+
+		// 看别人时显示关注
+		if (userId != userid_search) {
+			// true已关注，false未关注
+			if (res.datas.follow) {
+				var str_unfollow = '<a href="javascript:void(0)" class="un_follow_btn" onclick="unFollowUser(this)">取消关注</a>'
+				$('.edit_person_msg').prepend(str_unfollow)
+			}else{
+				var str_follow = '<a href="javascript:void(0)" class="follow_btn" onclick="followUser(this)">关注</a>'
+				$('.edit_person_msg').prepend(str_follow)
+			}
+		}
+
 	})
 
   // $('.person_name').html(userinfo.realName);
@@ -395,179 +408,50 @@ $(".hot_review_region").on('click','.like-button',function (e) {
     }, "json");
 });
 
+// 关注
+var current_follow_button = null
+$(".hot_review_region").on('click','.followBtn',function(){
+	current_follow_button = this;
+	var	followingId = $(this).data('followingid');
+	var uri = 'attention/attent?attentionId=' + followingId  + '&creator=' + userId + '&password=' + userinfo.userPwd + '&type=1';
 
-//
-// // 加载用所有动态
-// function getUserAllDynamic(){
-//   loadFlag = 1;
-//   // currentPage = 1;
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&creator=' + userId;
-//
-// 	// 首次加载
-// 	if(q == 1){
-// 		$('.hot_review_region').html('');
-// 	}
-// 	// 加载更多的情况
-// 	else if (currentPage > 1) {
-// 		$('.read-more').html('加载中...')
-// 	}
-//
-// 	doJavaGet(article_uri,function(result){
-//     if (result.datas.length == 0) {
-// 			ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-// 		// 限制内容长度
-//     for (var i = 0; i < result.datas.length; i++) {
-//       result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-//
-//       var content_length = null
-//       if ($(window).width() < 767) {
-//         content_length = 55
-//       }else{
-//         content_length = 120
-//       }
-//
-//       if (result.datas[i].textContent.length > content_length) {
-//         result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-//       }
-//
-//     }
-//
-//     var tpl = document.getElementById('short_comment_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content)
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//   currentPage++;
-// }
-//
-// // 加载用户文章
-// function getUserArticle(){
-//   loadFlag = 4;
-//   // currentPage = 1
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=4' + '&creator=' + userId;
-//
-// 	// 首次加载
-// 	if(currentPage == 1){
-// 		$('.hot_review_region').html('');
-// 	}
-// 	// 加载更多的情况
-// 	else if (currentPage > 1) {
-// 		$('.read-more').html('加载中...')
-// 	}
-//
-//   doJavaGet(article_uri,function(result){
-//     if (result.datas.length == 0) {
-//       ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-//     // 限制内容长度
-//     for (var i = 0; i < result.datas.length; i++) {
-//       result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-//
-//       var content_length = null
-//       if ($(window).width() < 767) {
-//         content_length = 55
-//       }else{
-//         content_length = 120
-//       }
-//
-//       if (result.datas[i].textContent.length > content_length) {
-//         result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-//       }
-//
-//     }
-//
-//     var tpl = document.getElementById('article_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content);
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//   currentPage++;
-// }
-//
-// // 加载用户评测
-// function getUserLongComment(){
-//   loadFlag = 2;
-//   // currentPage = 1;
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=2' + '&creator=' + userId;
-//
-// 	// 首次加载
-// 	if(currentPage == 1){
-// 		$('.hot_review_region').html('');
-// 	}
-// 	// 加载更多的情况
-// 	else if (currentPage > 1) {
-// 		$('.read-more').html('加载中...')
-// 	}
-//
-//   doJavaGet(article_uri,function(result){
-//     if (result.datas.length == 12) {
-// 			ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-//     // 限制内容长度
-//     for (var i = 0; i < result.datas.length; i++) {
-//       result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-//
-//       var content_length = null
-//       if ($(window).width() < 767) {
-//         content_length = 55
-//       }else{
-//         content_length = 120
-//       }
-//
-//       if (result.datas[i].textContent.length > content_length) {
-//         result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-//       }
-//
-//     }
-//
-//     var tpl = document.getElementById('long_comment_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content)
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//   currentPage++;
-// }
-//
-// // 加载用户短评
-// function getUserShortComment(){
-//   loadFlag = 3;
-//   // currentPage = 1;
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=1' + '&creator=' + userId;
-//   $('.hot_review_region').html('');
-//   doJavaGet(article_uri,function(result){
-// 		if (result.datas.length == 12) {
-// 			ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-//     var tpl = document.getElementById('short_comment_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content)
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//
-//   currentPage++;
-// }
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			$(current_follow_button).text('已关注');
+			// layer.msg('关注成功',{time:1000})
+			var temp_str = '<li class="load_people_dynamic" data-followingId=' + $(current_follow_button).data('followingId') +'>\
+											'  +    +  '</li>'
+			$('.follow_people_list')
+		}
+	});
+})
+
+// 关注
+function followUser(e){
+	var uri = 'attention/attent?attentionId=' + userid_search + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=1';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('关注成功');
+			$(e).css('display','none');
+			var str_unfollow = '<a href="javascript:void(0)" class="un_follow_btn" onclick="unFollowUser(this)">取消关注</a>'
+			$('.edit_person_msg').prepend(str_unfollow)
+		}
+	})
+}
+
+// 取关
+function unFollowUser(e){
+	var uri = 'attention/delAttent?attentionId=' + userid_search + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=1';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('已取消关注');
+			$(e).css('display','none');
+			var str_follow = '<a href="javascript:void(0)" class="follow_btn" onclick="followUser(this)">关注</a>'
+			$('.edit_person_msg').prepend(str_follow)
+		}
+	})
+}

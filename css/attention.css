@@ -22,6 +22,19 @@ a img {
 
 
 /* 侧边栏 */
+.side_menu{
+  padding: 10px;
+  background: white;
+  position: fixed;
+  width: 15%;
+  /* min-width: 250px; */
+  margin-right: 10px;
+}
+@media (max-width:767px) {
+  .side_menu{
+
+  }
+}
 .side_menu span{
   cursor: pointer;
 	color: #006bb3;
@@ -38,9 +51,15 @@ a img {
   color: white !important;
 }
 
+.side_menu .attention_dynamic_on_focus{
+  color: #006bb3;
+}
+
 .side_menu .attention_list{
   padding-right: 20px;
-  display: none
+  display: none;
+  max-height: 120px;
+  overflow: auto;
 }
 
 .side_menu .attention_list li{
@@ -70,6 +89,7 @@ a img {
     /* line-height: 0px; */
     margin: 3px 0px;
     width: 100%;
+    padding: 5px 0px;
 }
 
 .comment-detail .comment-title a{
@@ -144,19 +164,32 @@ a img {
 .comment-content .followBtn{
   color: white;
   text-align: center;
-  background-color: #006bb3;
-  border-radius: 10px;
+  /* background-color: #006bb3; */
+  color: #006bb3;
+  border:solid 1px #006bb3;
+  border-radius: 5px;
   cursor: pointer;
-  padding:4px 13px;
+  padding:2px 6px;
+  margin-left: 10px;
+}
+.comment-content .hadFollowBtn{
+  color: white;
+  text-align: center;
+  background-color: #006bb3;
+  /* color: #006bb3; */
+  /* border:solid 1px #006bb3; */
+  border-radius: 5px;
+  cursor: pointer;
+  padding:2px 6px;
   margin-left: 10px;
 }
 .comment_bottom_box{
 	display: flex;
-    background-color: #eee;
-    margin-right: 30px;
-    padding: 20px;
-    border-radius: 4px;
-    margin-top: 5px;
+  background-color: #9a94941a;
+  margin-right: 30px;
+  padding: 20px;
+  border-radius: 4px;
+  margin-top: 5px;
 }
 .comment-creator-pic{
 	width: 28px;
@@ -165,9 +198,6 @@ a img {
 	margin-right:10px;
 	margin-bottom:5px;
 }
-
-
-
 
 .meta{
 	margin-top:15px ;
@@ -225,14 +255,7 @@ a img {
 	}
 }
 
-.side_menu{
-  padding: 10px;
-  background: white;
-  /* position: fixed; */
-  min-width: 20%;
-  min-width: 250px;
-  margin-right: 10px;
-}
+
  @media (max-width: 992px){
  	.side{
  		margin-top: 20px;

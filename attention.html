@@ -31,7 +31,7 @@
 					<!--关注-->
 					<div class="hot_review_box">
 						<div class="row">
-							<div class="col-md-3 col-xs-12 col-sm-12">
+							<!-- <div class="col-md-3 col-xs-12 col-sm-12"> -->
 								<div class="hot_zone side_menu">
 
 										<span class="load_all_user_dynamic dynamic_menu_on_focus">全部</span>
@@ -39,44 +39,29 @@
 										<div class="follow_people">
 											<span class="load_follow_people">关注的人</span>
 											<ul class="attention_list follow_people_list">
-												<li>神威</li>
-												<li>wuzhao</li>
-												<li>柱子</li>
-												<li>一九</li>
-												<li>颖君</li>
-												<li>小风</li>
+
 											</ul>
 										</div>
 
 										<div class="follow_project">
 											<span class="load_follow_project">关注的项目</span>
 											<ul class="attention_list follow_project_list">
-												<li>BTC</li>
-												<li>ADA</li>
-												<li>XAS</li>
-												<li>EOS</li>
-												<li>Ulord</li>
-												<li>ETH</li>
+
 											</ul>
 										</div>
 
 										<div class="follow_topic">
 											<span class="load_follow_topic">关注的专题</span>
 											<ul class="attention_list follow_topic_list">
-												<li>新手科普</li>
-												<li>共识算法</li>
-												<li>编辑推荐</li>
-												<li>加密经济</li>
-												<li>行情分析</li>
-												<li>投研报告</li>
+
 											</ul>
 										</div>
 
 
 								</div>
-							</div>
+							<!-- </div> -->
 
-							<div class="col-md-9 col-sm-12 col-xs-12">
+							<div class="col-md-9 col-md-offset-3 col-sm-12 col-xs-12">
 								<!--动画加载-->
 								<div class="loading refresh_load topic_article_load" style="display:none;">
 											<span></span>
@@ -139,9 +124,9 @@
 									<% } %>
 								</a>
 								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
-								<span data-followingId='<%:=list[i].creator %>' class="followBtn">+关注</span>
+								<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
 
-								<p style="color:rgb(79, 163, 237) ;">
+								<p style="color:rgb(79, 163, 237) ;margin-top:5px">
 									发表了长评
 									 <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
 								</p>
@@ -184,8 +169,8 @@
 								<% } %>
 							</a>
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
-							<span data-followingId='<%:=list[i].creator %>' class="followBtn">+关注</span>
-							<p style="color:rgb(79, 163, 237);">
+							<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
+							<p style="color:rgb(79, 163, 237);margin-top:5px;margin-bottom:5px">
 								写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评
 								<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
 
@@ -224,9 +209,9 @@
 								<% } %>
 							</a>
 							<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
-							<span data-followingId='<%:=list[i].creator %>' class="followBtn">+关注</span>
+							<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
 
-							<p style="color:rgb(79, 163, 237);">发表了文章</p>
+							<p style="color:rgb(79, 163, 237);margin-top:5px">发表了文章</p>
 							<p class="comment-title">
 								<a href="comment.html?reviewId=<%:=list[i].reviewId %>" target="_blank">
 									<%:=list[i].textTitle %>
@@ -284,68 +269,85 @@
 	<%}%>
 </script>
 
-<script type="text/html" id="follow_list_tpl">
+<!-- 关注人列表 -->
+<script type="text/html" id="follow_people_list_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<li>list[i]</li>
+		<li class="load_people_dynamic" data-followingId='<%:=list[i].id %>'><%:=list[i].realName %></li>
 	<%}%>
 </script>
 
-	<!-- 登录弹窗 -->
-	<script type="text/html" id="short-comment-commit-layer">
-		<div class="main report-login">
+<!-- 关注的项目列表 -->
+<script type="text/html" id="follow_project_list_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<li class="load_project_dynamic" data-projectId='<%:=list[i].projectId %>'><%:=list[i].projectBigName %></li>
+	<%}%>
+</script>
 
-			<h4 class="title">
-			    <div class="normal-title">
-					<a class="active" href="">登录</a>
-					<b>·</b>
-					<a id="js-sign-up-btn" class="" href="register.html">注册</a>
-				</div>
-			</h4>
-			<div class="js-sign-in-container">
+<!-- 关注的专题列表 -->
+<script type="text/html" id="follow_topic_list_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<%if(list[i].topic != null){%>
+			<li class="load_topic_dynamic" data-topicId='<%:=list[i].id %>'><%:=list[i].topic%></li>
+		<%}%>
+	<%}%>
+</script>
 
-				<div class="input-prepend  restyle ">
-					<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
+<!-- 登录弹窗 -->
+<script type="text/html" id="short-comment-commit-layer">
+	<div class="main report-login">
 
-					<i class="fa fa-user"></i>
-				</div>
-				<div class="input-prepend border_radiusB">
-					<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
-					<i class="fa fa-unlock-alt"></i>
+		<h4 class="title">
+		    <div class="normal-title">
+				<a class="active" href="">登录</a>
+				<b>·</b>
+				<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+			</div>
+		</h4>
+		<div class="js-sign-in-container">
 
-				</div>
-				<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
+			<div class="input-prepend  restyle ">
+				<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
 
-				<div class="remember-btn">
-					<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
-				</div>
-				<div class="forget-btn">
-					<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="">用手机号重置密码</a>
-						</li>
+				<i class="fa fa-user"></i>
+			</div>
+			<div class="input-prepend border_radiusB">
+				<input placeholder="密码" type="password" class="border_radB" name="pwd" id="session_password">
+				<i class="fa fa-unlock-alt"></i>
 
-					</ul>
-				</div>
+			</div>
+			<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
 
-				<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
-					 <span class="ouro">
-							<span class="left"><span class="anim"></span></span>
-							<span class="right"><span class="anim"></span></span>
-					 </span>
-				</input>
+			<div class="remember-btn">
+				<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
+			</div>
+			<div class="forget-btn">
+				<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="">用手机号重置密码</a>
+					</li>
 
-				<div class="more-sign">
-					<h6>社交帐号登录</h6>
-					<ul>
-						<li class="wechat-login">
-							<img src="img/wechat.png" class="wechat_logo"  />
-						</li>
-					</ul>
-				</div>
+				</ul>
+			</div>
+
+			<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
+				 <span class="ouro">
+						<span class="left"><span class="anim"></span></span>
+						<span class="right"><span class="anim"></span></span>
+				 </span>
+			</input>
+
+			<div class="more-sign">
+				<h6>社交帐号登录</h6>
+				<ul>
+					<li class="wechat-login">
+						<img src="img/wechat.png" class="wechat_logo"  />
+					</li>
+				</ul>
 			</div>
 		</div>
-	</script>
+	</div>
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>

@@ -13,7 +13,7 @@ window.onload = function(){
 
 // 渲染专题信息
 function getTopicDetail(){
-	//  
+	//
   var uri = 'topic/seachTopic?currentPage=1&pageSize=12&topicId=' + topicId;
 
   doJavaGet(uri,function(result){
@@ -31,12 +31,58 @@ function getTopicDetail(){
     $('.topic_detail').append(content)
 
     // 渲染左侧专题信息
-    $('.topic_title .topic_name').html(result.datas[0].topic);
+    $('.topic_title .topic_name').prepend(result.datas[0].topic);
     $('.topic_title .topic_article_count').html('共收录了 ' + result.datas[0].counts + ' 篇文章');
     $('.topic_info_left .topic_icon')[0].src = result.datas[0].topicPic;
   })
 }
 
+// 关注、取消关注
+var following = null; //判断是否已关注
+$(function(){
+  if (userId) {
+    var uri = 'attention/checkAttent?attentionId=' + getUrlParam('subjectId') + '&type=2'
+              + '&creator=' + userId + '&password=' + userinfo.userPwd
+    doJavaGet(uri,function(res){
+      // 未关注
+      if (res.code == 0) {
+        $('.follow-topic-btn').css('display','inline');
+      }
+      // 已关注
+      else if(res.code == 1){
+        $('.un-follow-topic-btn').css('display','inline');
+      }
+    })
+  }
+})
+
+// 关注
+function followTopic(){
+	var uri = 'attention/attent?attentionId=' + getUrlParam('subjectId') + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=2';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('关注成功');
+      $('.follow-topic-btn').css('display','none');
+      $('.un-follow-topic-btn').css('display','inline');
+		}
+	})
+}
+
+// 取关
+function unFollowTopic(){
+	var uri = 'attention/delAttent?attentionId=' + getUrlParam('subjectId') + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=2';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('已取消关注');
+      $('.follow-topic-btn').css('display','inline');
+      $('.un-follow-topic-btn').css('display','none');
+		}
+	})
+}
 // 渲染专题下的文章
 function getTopicArticle(){
   ui.loading = true;
@@ -133,7 +179,7 @@ $('.topic_border .read-more').on('click',function(){
 
 // 删除专题
 function deleteTopic(e){
-  //  
+  //
   var subject_id = $(e).data('subjectid');
 
   layer.confirm('确定删除你的专题么?',
@@ -449,6 +495,8 @@ function contribute_to_topic(e){
   })
 }
 
+
+// 跳转到文章页
 function jumpToArticleDetail(e){
 	var self = $(e),
 			reviewId = self.data('reviewid');

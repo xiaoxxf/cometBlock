@@ -144,7 +144,7 @@ function  ajaxGetChainDetail() {
             // 添加编辑按钮
             if (userinfo && (userinfo.level <= 2 || userinfo.id == chainInfoData.creator) ) {
               var id = chainInfoData.projectId
-              var string = '<a href="chain-edit.html?projectId=' + id + '"><button type="button" class=" btn btn-default btn-sm edit">编辑</button></a>'
+              var string = '<a href="chain-edit.html?projectId=' + id + '"><button type="button" class=" btn btn-default btn-sm edit-project">编辑</button></a>'
 
               $('.project-title').append(string)
             }
@@ -152,6 +152,53 @@ function  ajaxGetChainDetail() {
             layer.msg(res.msg);
         }
     }, "json");
+}
+
+// 关注/取消关注
+var following = null; //判断是否已关注
+$(function(){
+  if (userId) {
+    var uri = 'attention/checkAttent?attentionId=' + getUrlParam('projectId') + '&type=3'
+              + '&creator=' + userId + '&password=' + userinfo.userPwd
+    doJavaGet(uri,function(res){
+      // 未关注
+      if (res.code == 0) {
+        $('.follow-project-btn').css('display','inline');
+      }
+      // 已关注
+      else if(res.code == 1){
+        $('.un-follow-project-btn').css('display','inline');
+      }
+    })
+  }
+})
+
+// 关注
+function followProject(){
+	var uri = 'attention/attent?attentionId=' + getUrlParam('projectId') + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=3';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('关注成功');
+      $('.follow-project-btn').css('display','none');
+      $('.un-follow-project-btn').css('display','inline');
+		}
+	})
+}
+
+// 取关
+function unFollowProject(){
+	var uri = 'attention/delAttent?attentionId=' + getUrlParam('projectId') + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=3';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('已取消关注');
+      $('.follow-project-btn').css('display','inline');
+      $('.un-follow-project-btn').css('display','none');
+		}
+	})
 }
 
 // 获取类型对应项
@@ -564,14 +611,9 @@ function createScore(original_score){
   });
 }
 
-function doUpdateShortComment(reviewId){
-
-}
-
-// 展开 & 折叠
+// 项目描述展开 & 折叠
 var full_content = ''
 var short_content = ''
-
 function showOrHideContent(){
   projectContent =  $(".project-desc")
   if (projectContent.html().length > 400) {
@@ -621,8 +663,8 @@ $(window).on('resize', function () {
 })
 
 
+// 写长评
 $('.write-long-discuss').on('click',function(){
-
   // 判断是否登录
   if(!wechatBindNotice()){
     return;
@@ -650,4 +692,21 @@ $('.write-long-discuss').on('click',function(){
     return;
   }
   window.location.href = 'long-comment.html?projectId=' + getUrlParam('projectId')
+})
+
+// 关注项目
+var current_follow_button = null
+$('.follow-project-btn').on('click',function(){
+  current_follow_button = this;
+  var self = $(this),
+      followingId = getUrlParam('projectId');
+  var uri = 'attention/attent?attentionId=' + followingId  +
+            '&creator=' + userId + '&password=' + userinfo.userPwd + '&type=3';
+
+  doJavaGet(uri,function(res){
+    if (res.code == 0) {
+      $(current_follow_button).text('已关注');
+      // layer.msg('关注成功',{time:1000})
+    }
+  });
 })
