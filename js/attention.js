@@ -84,7 +84,7 @@ function getAllUserDynamic(){
   currentPage_dynamics = 1;
   ui.loading = true;
   ui.noMoreData = false;
-
+	$(".no-more-hook").css('display','none');
 	// 加载关注的人、项目、专题动态
 	if (current_attentionId && current_attentionType) {
 		switch (current_attentionType) {
@@ -201,7 +201,8 @@ function loadMoreDynamic(){
 
   doJavaGet(uri,function(result){
     if (result.datas.length == 0) {
-      ui.noMoreData = true
+      ui.noMoreData = true;
+			ui.loading = false;
       // TODO: loading效果结束
 			$(".loader1").css('display','none');
 			$(".no-more-hook").fadeIn();
