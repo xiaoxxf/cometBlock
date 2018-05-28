@@ -12,7 +12,6 @@ $("#realName").blur(function() {
 		});
 		user_name_flag = false;
 		return false;
-		
 	}else{
 		user_name_flag = true;
 	}
@@ -70,13 +69,6 @@ $('#send_code').click(function() {
 	if(flag_send_code){
 		return
 	}
-	if (!phone_flag) {
-		layer.tips('请填写正确的手机号', '#session_phone', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		return
-	}
 	flag_send_code=true;
 	$("#send_code").css("text-decoration", "none");
 	$("#send_code").css("color", "white");
@@ -85,7 +77,9 @@ $('#send_code').click(function() {
 
 //验证手机号，然后发送验证码
 function sendCode() {
-
+	if (!phone_flag) {
+		return
+	}
 	// 验证手机号是否存在
 	var uri = 'news/virty?' + 'userName=' + $("#session_phone").val();
 	doJavaGet(uri, function(res) {

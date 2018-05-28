@@ -24,7 +24,6 @@ $(function(){
   }
 })
 
-
 var E = window.wangEditor
 var editor = new E('#editor')
 // 编辑器
@@ -105,6 +104,7 @@ $('.w-e-text-container').css('height',_height * 0.8);
 // $('.w-e-text').css('font-size','18px');
 // $('.w-e-text').css('height','150%');
 
+
 // 提交
 $('.submit_comment').on('click',function(){
   if (ui.submiting) {
@@ -131,8 +131,16 @@ $('.submit_comment').on('click',function(){
     userId: userId, //userId
   }
   var uri = 'blockchain/addReview';
-  doPostJavaApi(uri, JSON.stringify(data), function(res){
-    if (res.code == 0) {
+  $.ajax({
+    url : WebApiHostJavaApi + uri,
+    type: "post",
+    data: JSON.stringify(data),
+    datType: "json",
+    async: true,//使用同步的方式,true为异步方式
+    processData: false,  // 不处理数据
+    contentType: false,   // 不设置内容类型
+
+    success:function(res){
       // 清除草稿
       save_draft_flag = false; //发表文章后跳转不保存草稿
       localStorage.removeItem('draft');
@@ -142,12 +150,18 @@ $('.submit_comment').on('click',function(){
           window.location.href='article-finish.html'
         }
       });
-    }else{
+
+    },
+    error:function(res){
       $('.submit_comment').text('发布');
       layer.msg('提交失败，请重试')
+    },
+
+    complete:function(res){
+      ui.submiting = false;
     }
-    ui.submiting = false
-  }, 'json')
+  });
+
 })
 
 
@@ -183,19 +197,19 @@ $('.preview-article').on('click',function(){
 })
 
 //编辑器强制修改
-// var containerW = $(".write-container").width() * 0.9;
-// var marL = $(".write-container").width() * 0.05 + 15;
-// var marL2 = $(".write-container").width() * 0.05;
-// $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-// $(".w-e-toolbar").css({ 'width': containerW});
-// $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-// window.onresize = function () {
-//   var containerW = $(".write-container").width() * 0.9;
-//   var marL = $(".write-container").width() * 0.05 + 15;
-//   $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-//   $(".w-e-toolbar").css({ 'width': containerW});
-//   $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-// }
+var containerW = $(".write-container").width() * 0.9;
+var marL = $(".write-container").width() * 0.05 + 15;
+var marL2 = $(".write-container").width() * 0.05;
+$(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+$(".w-e-toolbar").css({ 'width': containerW});
+$(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+window.onresize = function () {
+  var containerW = $(".write-container").width() * 0.9;
+  var marL = $(".write-container").width() * 0.05 + 15;
+  $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+  $(".w-e-toolbar").css({ 'width': containerW});
+  $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+}
 
 $(".edit-comment").on('click', function () {
   if ($(".fake-placeholder").size() > 0) {
@@ -242,3 +256,4 @@ window.onbeforeunload=function(e){
     // $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
   }
 }
+

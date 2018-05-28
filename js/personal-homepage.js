@@ -130,7 +130,7 @@ $(function(){
 // 关注
 function followPeople(){
 	var uri = 'attention/attent?attentionId=' + userid_search + '&creator=' + userId + '&password='
-	 					+ userinfo.userPwd + '&type=3';
+	 					+ userinfo.userPwd + '&type=1';
 
 	doJavaGet(uri,function(res){
 		if (res.code == 0) {
@@ -145,7 +145,7 @@ function followPeople(){
 // 取关
 function unFollowPeople(){
 	var uri = 'attention/delAttent?attentionId=' + userid_search + '&creator=' + userId + '&password='
-	 					+ userinfo.userPwd + '&type=3';
+	 					+ userinfo.userPwd + '&type=1';
 
 	doJavaGet(uri,function(res){
 		if (res.code == 0) {

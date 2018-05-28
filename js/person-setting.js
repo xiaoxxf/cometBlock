@@ -43,7 +43,6 @@ $(function(){
 	// 账号登录
 	if (userId || wechatInfo.userInfo) {
 		$('.account_login').css('display','block')
-
 	}
 	// 微信登录
 	else if(wechatInfo && !wechatInfo.userInfo){
@@ -316,8 +315,6 @@ function changeUser(){
 			setTimeout(function(){
 					location.href="personal-homepage.html";
 			},1500)
-
-
 		} else {
 			layer.msg(res.msg);
 		}
@@ -488,7 +485,7 @@ function uploadIcon(e){
 
 	doJavaGet(uri,function(result){
 		if(result.code == 0){
-//			layer.msg('修改成功')
+			layer.msg('修改成功')
 
 			// 更新localstorage信息
 			userinfo.userPic = data.userPic
