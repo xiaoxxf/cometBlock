@@ -15,7 +15,7 @@ function SendCodeFromValid(){
 	   time: 2000
 	 });
 	 return false;
-	 
+
    }
    return true;
 }
@@ -76,7 +76,7 @@ $("#session_phone").blur(function(){
 	if(SendCodeFromValid()){
 		getRegister()
 	}
-		
+
 });
 
 // 校验手机号是否已注册
@@ -88,23 +88,23 @@ function getRegister(){
 		if(res !=null && res.code==-1){
 			//返回code为-1为注册过，所以可以直接修改密码
 			ifRegister = true;
-			
+
 //			getCode()
 		}
 		else{
 			 //校验手机号
 			ifRegister = false;
 			layer.msg("手机号未注册过，请先注册");
-			
+
 		}
-		
+
 	},"json");
 }
 
 //点击验证
 var flag_resetPwd_sendCode =false;
 $('#send_code').click(function() {
-	debugger
+
 	if(flag_resetPwd_sendCode || !ifRegister){
 		layer.msg("手机号未注册过，请先注册");
 		return
@@ -116,7 +116,7 @@ $('#send_code').click(function() {
  	else{
  		layer.msg("手机号未注册过，请先注册");
  	}
-	
+
 })
 //发送验证码
 function getCode() {
@@ -128,12 +128,12 @@ function getCode() {
 				layer.msg("验证码已发送");
 				//验证码倒计时
 				CountDown()
-	
+
 			} else {
 				layer.msg(res.msg);
 			}
 		}, "json");
-	
+
 	}
 }
 var count = 60;
@@ -169,7 +169,7 @@ $("#sign-in-form-submit-btn").click(function() {
 		var str = "userName="+ userName+"&code="+code+"&newPassword="+newPassword+"&type="+2
 		var uri = 'news/recoverPassword?'+str
 		doJavaGet(uri, function(res) {
-	
+
 			if(res != null && res.code == 0) {
 				layer.msg(res.msg+",请登录");
 				setTimeout(function() {
@@ -185,7 +185,7 @@ $("#sign-in-form-submit-btn").click(function() {
 					style: "display:none"
 				});
 			}
-	
+
 		}, "json");
 	}
 });

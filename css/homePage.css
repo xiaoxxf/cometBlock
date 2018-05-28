@@ -54,6 +54,7 @@ a img {
 /*糖果盒 & 创建项目*/
 .candy_box{
 	margin-top:30px ;
+	min-height: 160px;
 }
 
 .create_project_button{
@@ -66,7 +67,7 @@ a img {
     width: 100%;
 }
 
-.row .col-md-3 .candy_box a{
+.candy_box a{
 	color: #006bb3;
   margin: 15px;
   display: block;
@@ -209,8 +210,7 @@ a img {
 /* 播报 */
 .hot_zone_news{
 	text-align: center;
-  white-space:nowrap;
-  overflow: hidden;
+
 }
 @media (max-width:767px) {
   .hot_zone_news{
@@ -222,6 +222,10 @@ a img {
 	line-height: 40px;
 	height: 40px;
   margin-left: 10px;
+	white-space:nowrap;
+	overflow: hidden;
+	width: 100%;
+	/* text-overflow: ellipsis; */
 }
 
 .new_title{
@@ -304,24 +308,6 @@ a img {
 	 /* display: flex; */
 }
 
-
-.article-detail .article-icon{
-		/* float: right; */
-    width: 80px;
-    height: 63px;
-    /* margin: 0px 30px; */
-	position: relative;
-    border:1px solid #a79e9e;
-}
-
-.article-detail .article-icon img{
-	width: 70%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-}
-
 .article-detail .article-title{
     font-weight: 600;
     font-size: 18px;
@@ -340,6 +326,22 @@ a img {
   color: rgb(79, 163, 237);
 }
 
+.article-content.article-info{
+	display: inline;
+}
+.article-info .ariticle_user{
+	font-weight: bold;
+}
+.article-info .real_name{
+  font-size: 16px;
+  color: #3c3c3c
+}
+.article-content .article-time{
+  	margin: 10px 10px;
+    display: inline-block;
+    font-size: 13px;
+    color: #969696;
+}
 
 .article-detail .article-content{
   margin-left: 18px;
@@ -350,7 +352,7 @@ a img {
 
 .article-detail .article-introduce{
 	/*min-height: 80px;*/
-  width: 80%;
+  width: 100%;
   margin-right: 20px;
 }
 
@@ -368,22 +370,22 @@ a img {
   color: #646464;
 }
 
-.article-content.article-info{
-	display: inline;
+.article-detail .article-icon{
+	width: 80px;
+	height: 78px;
+	position: relative;
+	border:1px solid #a79e9e;
+	margin-right: 20px;
 }
-.article-info .ariticle_user{
-	font-weight: bold;
+
+.article-detail .article-icon img{
+	width: 70%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
 }
-.article-info .real_name{
-  font-size: 16px;
-  color: #3c3c3c
-}
-.article-content .article-time{
-  	margin: 10px 10px;
-    display: inline-block;
-    font-size: 13px;
-    color: #969696;
-}
+
 .article-content .article-introduce,.meta{
 	 /* line-height: 25px; */
 	color: black;
@@ -470,7 +472,7 @@ a img {
   color: black;
   margin: 7px 8px 7px 8px;
   cursor: pointer;
-	min-width: 179px;
+	/* min-width: 179px; */
 }
 
 .hot_zone_topic .topic_tag .topic_logo{

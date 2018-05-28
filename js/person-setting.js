@@ -312,7 +312,9 @@ function changeUser(){
 			obj.personIntro = personIntro;
 			var nameStr=JSON.stringify(obj);
 			localStorage.setItem('userinfo',nameStr); //存储
-
+			setTimeout(function(){
+					location.href="personal-homepage.html";
+			},1500)
 		} else {
 			layer.msg(res.msg);
 		}

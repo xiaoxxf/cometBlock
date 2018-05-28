@@ -123,7 +123,7 @@ function getMessage(e){
 
 
 	doJavaGet(uri, function(result){
-		debugger
+
 		if (result.code == 0) {
 			if (result.datas.length == 0) {
 				ui.noMoreData = true

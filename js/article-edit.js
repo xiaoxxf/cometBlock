@@ -202,23 +202,25 @@ function createEditorAndGetContent(content){
     		quitPreview()
     	}
     })
-    //编辑器强制修改
-    $('.w-e-menu').css('font-size','20px')
-    $('.w-e-text-container').css('border','0px')
-    $('.w-e-text').css('font-size','18px')
-    var containerW = $(".write-container").width() * 0.9;
-    var marL = $(".write-container").width() * 0.05 + 15;
-    var marL2 = $(".write-container").width() * 0.05;
-    $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-    $(".w-e-toolbar").css({ 'width': containerW});
-    $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-    window.onresize = function () {
-      var containerW = $(".write-container").width() * 0.9;
-      var marL = $(".write-container").width() * 0.05 + 15;
-      $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-      $(".w-e-toolbar").css({ 'width': containerW});
-      $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-    }
+    // 修改编辑器样式
+    $('.w-e-menu').css('font-size','20px');
+    $('.w-e-text-container').css('border','0px');
+    var _height=$("body").height()
+    $('.w-e-text-container').css('height',_height * 0.8);
+
+    // var containerW = $(".write-container").width() * 0.9;
+    // var marL = $(".write-container").width() * 0.05 + 15;
+    // var marL2 = $(".write-container").width() * 0.05;
+    // $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+    // $(".w-e-toolbar").css({ 'width': containerW});
+    // $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+    // window.onresize = function () {
+    //   var containerW = $(".write-container").width() * 0.9;
+    //   var marL = $(".write-container").width() * 0.05 + 15;
+    //   $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+    //   $(".w-e-toolbar").css({ 'width': containerW});
+    //   $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+    // }
 
     $(".edit-comment").on('click', function () {
       if ($(".fake-placeholder").size() > 0) {

@@ -13,9 +13,13 @@ var currentPage = 1;
 var pageSize = 6;
 var like = '';
 
-$('.attention_box').on('click', 'span', function(e){
-	var index_menu = $('.attention_box span').index(e.currentTarget);
-	$('.attention_box span').removeClass('dynamic_menu_on_focus');
+$('.side_menu').on('click', 'span', function(e){
+	if (ui.loading) {
+		return
+	}
+	var index_menu = $('.side_menu span').index(e.currentTarget);
+	$('.side_menu span').removeClass('dynamic_menu_on_focus');
+
 	$(e.currentTarget).addClass('dynamic_menu_on_focus');
 	switch (index_menu) {
 		case 0:
@@ -66,17 +70,18 @@ function getAllUserDynamic(){
       return
     }
 
-    // 限制内容长度，短评时不用
+    // 限制内容长度
     for (var i = 0; i < result.datas.length; i++) {
 
       if (result.datas[i].textContent) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+				// 去除HTML标签和无用的空格
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"").replace(/^\s+|\s+$/g,"")
 
         var content_length = null
         if ($(window).width() < 767) {
-          content_length = 55
+          content_length = 85
         }else{
-          content_length = 120
+          content_length = 150
         }
 
         if (result.datas[i].textContent.length > content_length) {
@@ -98,7 +103,7 @@ function getAllUserDynamic(){
   })
 }
 
-
+// 加载更多
 function loadMoreDynamic(){
   currentPage++;
   ui.loading = true;
@@ -119,17 +124,17 @@ function loadMoreDynamic(){
       return
     }
 
-    // 限制内容长度，短评时不用
+    // 限制内容长度
     for (var i = 0; i < result.datas.length; i++) {
 
       if (result.datas[i].textContent) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-
+				// 去除HTML标签和无用的空格
+        result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"").replace(/^\s+|\s+$/g,"")
         var content_length = null
         if ($(window).width() < 767) {
           content_length = 55
         }else{
-          content_length = 120
+          content_length = 150
         }
 
         if (result.datas[i].textContent.length > content_length) {
@@ -152,30 +157,30 @@ function loadMoreDynamic(){
 }
 
 
-
 var resetTimer = null;
+var range = 50; //距下边界长度/单位px
+
 $(window).scroll(function(){
 	if (resetTimer) {
 		clearTimeout(resetTimer)
 	}
 
 	resetTimer = setTimeout(function(){
-
+		var srollPos = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
 		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
 		// console.log("页面的文档高度 ："+$(document).height());
 		// console.log('浏览器的高度：'+$(window).height());
-
-		var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
 		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
 
-		if ($(document).height() <= totalheight){
-				//当滚动条到底时,这里是触发内容
-				//异步请求数据,局部刷新dom
-				if (!ui.noMoreData && !ui.loading) {
-					// debugger
-					ui.loading = true;
-					loadMoreDynamic();
-				}
+		if (($(document).height() - range) <= totalheight){
+			//当滚动条到底时,这里是触发内容
+			//异步请求数据,局部刷新dom
+			if (!ui.noMoreData && !ui.loading) {
+				//
+				ui.loading = true;
+				loadMoreDynamic();
+			}
+
 		}
 	},200)
 })

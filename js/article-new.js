@@ -82,14 +82,27 @@ editor.customConfig.uploadImgHooks = {
 }
 // editor.customConfig.debug = true
 editor.create();
-$('.w-e-text-container').attr('style','height:auto;');
-$('.w-e-text-container').attr('style','width:auto;');
+// $('.w-e-text-container').attr('style','height:100%;');
+// $('.w-e-text-container').attr('style','width:auto;');
+// $('#div1').attr('style','height:auto;');
+// 读取草稿
+// var draft = $.cookie('draft') ? JSON.parse($.cookie('draft')) : ''
+var draft = localStorage.getItem('draft') ? JSON.parse(localStorage.getItem('draft')) : ''
+
+if (draft && draft.userId == userId) {
+  $('input[name="head"]').val(draft.textTitle);
+  editor.txt.html(draft.textContent);
+}
+
 
 // 修改菜单栏样式
+$('.w-e-menu').css('font-size','20px');
+$('.w-e-text-container').css('border','0px');
+var _height=$("body").height()
+$('.w-e-text-container').css('height',_height * 0.8);
 
-$('.w-e-menu').css('font-size','20px')
-$('.w-e-text-container').css('border','0px')
-$('.w-e-text').css('font-size','18px')
+// $('.w-e-text').css('font-size','18px');
+// $('.w-e-text').css('height','150%');
 
 
 // 提交
@@ -101,7 +114,7 @@ $('.submit_comment').on('click',function(){
   ui.submiting = true;
   $('.submit_comment').text('发布中...')
 
-  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'');
+  var text_content = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '');
   var text_title = $('input[name="head"]')[0].value;
   if (!text_title || !text_content) {
     // $('#identifier').modal()
@@ -118,20 +131,37 @@ $('.submit_comment').on('click',function(){
     userId: userId, //userId
   }
   var uri = 'blockchain/addReview';
-  doPostJavaApi(uri, JSON.stringify(data), function(res){
-    if (res.code == 0) {
+  $.ajax({
+    url : WebApiHostJavaApi + uri,
+    type: "post",
+    data: JSON.stringify(data),
+    datType: "json",
+    async: true,//使用同步的方式,true为异步方式
+    processData: false,  // 不处理数据
+    contentType: false,   // 不设置内容类型
+
+    success:function(res){
+      // 清除草稿
+      save_draft_flag = false; //发表文章后跳转不保存草稿
+      localStorage.removeItem('draft');
       layer.msg('提交成功', {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           window.location.href='article-finish.html'
         }
       });
-    }else{
+
+    },
+    error:function(res){
       $('.submit_comment').text('发布');
       layer.msg('提交失败，请重试')
+    },
+
+    complete:function(res){
+      ui.submiting = false;
     }
-    ui.submiting = false
-  }, 'json')
+  });
+
 })
 
 
@@ -190,3 +220,40 @@ $(".edit-comment").on('click', function () {
 $(".w-e-text").focus(function(){
   $(".fake-placeholder").remove();
 })
+
+var save_draft_flag = true;//判断是否保存草稿，提交文章后不保存
+// 保存草稿
+window.setInterval(saveDraft, 30000);
+function saveDraft()
+{
+  var temp_content = {
+    'userId': userId,
+    'textTitle': $('input[name="head"]')[0].value,
+    'textContent': editor.txt.html()
+  }
+  localStorage.setItem('draft', JSON.stringify(temp_content)); //存储
+  // var expireDate= new Date();
+  // expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+  // $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
+  // layer.tips('自动保存成功', '.w-e-toolbar', {
+  //     tips: [2, '.w-e-text'],
+  //     time: 1000
+  // });
+}
+
+
+window.onbeforeunload=function(e){
+  if (save_draft_flag) {
+    var temp_content = {
+      'userId': userId,
+      'textTitle': $('input[name="head"]')[0].value,
+      'textContent': editor.txt.html()
+    }
+
+    localStorage.setItem('draft', JSON.stringify(temp_content)); //存储
+    // var expireDate= new Date();
+    // expireDate.setTime(expireDate.getTime() + (60*60* 1000 * 24 * 30));
+    // $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
+  }
+}
+

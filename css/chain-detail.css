@@ -67,6 +67,13 @@
     font-size: 28px;
     padding-right: 10px;
 }
+.none_rating_num{
+  line-height: 64px;
+  color: #494949;
+  padding: 0;
+  font-size: 28px;
+  padding-right: 10px;
+}
 .rating_right .bigstar35 .star-icons{
     display: inline-block;
     height: 20px;

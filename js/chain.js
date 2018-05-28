@@ -166,7 +166,7 @@ function serachChain(){
 			}
 			for (var i = 0; i < descriptions.length; i++) {
 				// 过滤HTML和style标签
-				descriptions[i].innerHTML = descriptions[i].innerText.replace(/(<style.*?<\/style>)/g, "")
+				descriptions[i].innerHTML = descriptions[i].innerText.replace(/<style(([\s\S])*?)<\/style>/g, '')
 				descriptions[i].innerHTML = descriptions[i].innerHTML.replace(/<[^>]+>/g,"")
 
 				if (descriptions[i].innerHTML.length > show_length) {
@@ -279,7 +279,7 @@ $(window).scroll(function(){
 				//当滚动条到底时,这里是触发内容
 				//异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {
-					// debugger
+					//  
 					index_page += 1
 					ui.loading = true;
 					loadMoreChain();

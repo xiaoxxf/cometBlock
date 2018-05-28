@@ -357,7 +357,7 @@ $(".short-comment-commit").on('click',function (e) {
         return;
     }
     // 过滤js和style标签
-    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "");
+    shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '');
     var data = {
         textTitle: shortTxt,
         projectId: projectId, //项目
@@ -396,7 +396,7 @@ function scoreDataFormat(res) {
     var projectId = getUrlParam('projectId');
     var uri = '/blockchain/compared?projectId='+projectId;
     doJavaGet(uri, function(comparedData) {
-        if(comparedData != null && comparedData.code == 0) {
+        // if(comparedData != null && comparedData.code == 0) {
             res.datas.compared = comparedData.datas;
             var tempObj = {};
             var tempArr = [];
@@ -429,9 +429,9 @@ function scoreDataFormat(res) {
             $(".rating_wrap-hook").html('');
             $(".rating_wrap-hook").append(teamContent);
             // console.log(tempObj)
-        } else {
-            layer.msg(res.msg);
-        }
+        // } else {
+            // layer.msg(comparedData.msg);
+        // }
     }, "json");
 }
 //评分的计算,返回的是对应星星的类名
@@ -472,33 +472,43 @@ function delete_short_comment(e){
       },
       function(index){
       var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
-      doJavaGet(uri, function(res) {
-          if(res != null && res.code == 0) {
-              // console.log(res.msg)
-              // ajaxGetComments(true);
-              // 去除删除的评论
-              $(e.parentNode.parentNode.parentNode).remove();
-              ajaxGetScoreInfo(true);
-          }else{
-            layer.msg('删除失败，请重试')
-          }
-      }, "json");
-      layer.close(index);
+      try
+      {
+        doJavaGet(uri, function(res) {
+            if(res != null && res.code == 0) {
+                // console.log(res.msg)
+                // ajaxGetComments(true);
+                // 去除删除的评论
+                $(e.parentNode.parentNode.parentNode).remove();
+                ajaxGetScoreInfo(true);
+            }else{
+              layer.msg('删除失败，请重试')
+            }
+        }, "json");
+        layer.close(index);
+      }
+      catch(err)
+      {
+        layer.msg('删除失败，请重试')
+      }
+
   });
 }
 
 // 编辑短评
+var current_socre = null //存储短评原来的评分，如果不修改评分就用原来的评分
 function edit_short_comment(e){
   var self =$(e),
       content = self.data('content'),
       score = self.data('score'),
       passWord = userinfo.userPwd,
       reviewId = self.data('reviewid');
+  current_socre = score;
   layer.open({
     title: '编辑短评',
     content: $('#add_score').html(),
     yes: function(index, layero){
-      var score = parseInt($(".live-rating")[0].innerHTML);
+      var score = parseInt($(".live-rating")[0].innerHTML) || current_socre;
       if(!score){
           layer.tips('给这个项目打个分哦', '.my-rating', {
               tips: [1, '#4fa3ed'],

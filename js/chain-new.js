@@ -167,7 +167,7 @@ $('.team').on('change', $('.member_pic'), function(e) {
 
 
   team_image_box = e.target.parentNode.previousElementSibling// team_image_box
-  // debugger
+  //  
   $(team_image_box).children('img').remove()
 
 
@@ -191,7 +191,7 @@ var t = null
 // 上传币种图片
 function upLoadPorjectLogo(){
   var file = $('#project_logo_input')[0].files[0]
-  // debugger
+  //  
   if (file == undefined) {
     return
   }
@@ -394,7 +394,7 @@ $('#form1').validator({
       });
 
       // 过滤js和style标签
-      var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/(<style.*?<\/style>)/g, "")
+      var projectContent = editor.txt.html().replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '')
       // 提交数据
       var data = {
         "projectLogo":          form1.projectLogoFile.value,

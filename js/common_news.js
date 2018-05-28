@@ -1,3 +1,4 @@
+// 播报专门使用
 var username = $.cookie('username');
 var userId = $.cookie('userid');//获取userid
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
@@ -5,14 +6,14 @@ var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '
 // var wechatInfo_flag = false; // 是否已取得微信返回数据
 
 // 不跳回登录、注册、找回密码的页面
-// var login_uri = '/login.html';
-// var register_uri = '/register.html';
-// var find_pass_word_uri = '/find-pwd.html';
-// var wechat_login_uri = "/connect/qrconnect";
-// if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
-//   var currentJumpHref = window.location.href;
-//   window.localStorage.setItem('currentJumpHref',currentJumpHref);
-// }
+var login_uri = '/login.html';
+var register_uri = '/register.html';
+var find_pass_word_uri = '/find-pwd.html';
+var wechat_login_uri = "/connect/qrconnect";
+if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
+  var currentJumpHref = window.location.href;
+  window.localStorage.setItem('currentJumpHref',currentJumpHref);
+}
 
 function guid() {
     function s4() {
@@ -28,8 +29,8 @@ var WebApiToken;
 //var WebApiHost="http://localhost:2579/";
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
-var WebApiHostJavaApi = "http://backend.blockcomet.com/";
-// var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
+// var WebApiHostJavaApi = "http://backend.blockcomet.com/";
+var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
 // var WebApiHostJavaApi = "http://10.0.0.192:8080/";
 
 var WebRankHostApi = "//rank.blockcomet.com/"
@@ -113,9 +114,7 @@ function getUrlParam(name) {
 
 //退出登录
 function Loginout(){
-    var draft = localStorage.getItem('draft')
     localStorage.clear();
-    localStorage.setItem('draft', draft); //退出登录后不清除文章草稿
     $.removeCookie("token");
     $.removeCookie("userid");
     $.removeCookie("username");
@@ -311,6 +310,7 @@ $('.block-comet-main-wrap').on('click','.nav-user-account .setting-btn',function
 
 
 })
+//通知鼠标悬停出现隐藏div
 
 //微信登陆
 $(document).on('click','.more-sign .wechat-login',function () {
@@ -325,11 +325,11 @@ $(document).on('click','.more-sign .wechat-login',function () {
         if (reg_code.test(currentJumpHref)){
           var code = unescape(RegExp.$2.replace(/\+/g, " "));
           currentJumpHref = currentJumpHref.replace('?code=' + code, '');
-          currentJumpHref = currentJumpHref.replace('&code=' + code, '');
+
         }
         if (reg_state.test(currentJumpHref)) {
           var state = unescape(RegExp.$2.replace(/\+/g, " "));
-          currentJumpHref = currentJumpHref.replace('&state=' + state, '');
+          currentJumpHref = currentJumpHref.replace('&sate=' + sate, '');
         }
 
         if(currentJumpHref == undefined){
@@ -356,11 +356,11 @@ $(document).on('click','.more-sign .wechat-resgister',function () {
       if (reg_code.test(currentJumpHref)){
         var code = unescape(RegExp.$2.replace(/\+/g, " "));
         currentJumpHref = currentJumpHref.replace('?code=' + code, '');
-        currentJumpHref = currentJumpHref.replace('&code=' + code, '');
+
       }
       if (reg_state.test(currentJumpHref)) {
         var state = unescape(RegExp.$2.replace(/\+/g, " "));
-        currentJumpHref = currentJumpHref.replace('&state=' + state, '');
+        currentJumpHref = currentJumpHref.replace('&sate=' + sate, '');
       }
 
       if(currentJumpHref == undefined){

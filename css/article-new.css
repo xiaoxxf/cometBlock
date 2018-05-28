@@ -26,12 +26,13 @@
   border:0px;
   height: 100px;
   font-size: 30px;
+  width: 100%;
 }
-@media (min-width: 1200px){
+/* @media (min-width: 1200px){
   .input-head {
       width: 1170px;
   }
-}
+} */
 
 .w-e-toolbar{
   /* background-color:#494949 !important; */
@@ -62,9 +63,9 @@
   color: #ddd;
 }
 
-.w-e-text{
+.w-e-text-container{
   cursor: text;
-  min-height: 500px !important;
+  /* min-height: 500px !important; */
 }
 
 /* 预览 */

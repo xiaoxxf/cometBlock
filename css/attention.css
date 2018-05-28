@@ -8,13 +8,8 @@ a img {
   min-height: 271px;
 }
 
-.attention_box{
-	/*margin-top:30px ;*/
-}
 
-
-
-.row .col-md-3 .attention_box span{
+.side_menu span{
   cursor: pointer;
 	color: #006bb3;
   margin: 15px;
@@ -32,9 +27,13 @@ a img {
 
 
 .candy_right,.dynamic_region {
-	background-color: white;
+	/* background-color: white; */
 }
 
+.hot_zone{
+  border-radius: 20px;
+  background-color: white;
+}
 @media (max-width:762px) {
   .candy_right,.hot_zone {
     margin-bottom: 20px;
@@ -42,8 +41,6 @@ a img {
 
 }
 
-
-/*热门评测*/
 .read-more{
 	cursor: pointer;
 }
@@ -52,48 +49,16 @@ a img {
    margin-top: 10px;
 }
 
-
-.comment-detail .comment-icon{
-    width: 80px;
-    height: 63px;
-	position: relative;
-    border:1px solid #a79e9e;
-}
-
-.comment-detail .comment-icon img{
-	width: 70%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-}
-
-.hot_review_title{
-	background-color: white;
-	padding: 10px 20px;
-  height: 58px;
-  border-bottom: solid 1px gainsboro;
-}
-
-.hot_review_box, .hot_zones_box{
-	margin-top: 20px;
-}
-
-.comment-top-box{
-	margin-top: 30px;
-}
-
 .attention_zone{
-  background-color: white;
   padding: 10px;
 }
 
 .comment-detail .comment-title{
     font-weight: bold;
     font-size: 17px;
-    line-height: 0px;
-    margin: 15px 0px;
-    width: 80%;
+    /* line-height: 0px; */
+    margin: 3px 0px;
+    width: 100%;
 }
 
 .comment-detail .comment-title a{
@@ -117,8 +82,8 @@ a img {
 
 .comment-detail .comment-introduce{
   min-height: 80px;
-  width: 75%;
-  margin-right: 50px;
+  width: 100%;
+  margin-right: 20px;
 }
 .comment-introduce a{
 	color: #333333;
@@ -131,6 +96,20 @@ a img {
   color: #646464
 }
 
+.comment-detail .comment-icon{
+  width: 80px;
+  height: 63px;
+	position: relative;
+  border:1px solid #a79e9e;
+}
+
+.comment-detail .comment-icon img{
+	width: 70%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
 .comment-content.comment-info{
 	display: inline;
 }
@@ -198,7 +177,7 @@ a img {
 
 	.comment-detail .comment-title {
 		font-size: 15px;
-		line-height: 0px;
+		/* line-height: 0px; */
 	    width: 100%;
 	    margin: 10px 0px;
 	}
@@ -224,8 +203,11 @@ a img {
 	}
 }
 
-.side{
+.side_menu{
   padding: 10px;
+  background: white;
+  position: fixed;
+  min-width: 20%;
 }
  @media (max-width: 992px){
  	.side{
@@ -256,12 +238,4 @@ a img {
 
 .loader1 div{
   color: black;
-}
-
-/* 加载动画复写 */
-.loading{
-    width: 200px;
-    height: 40px;
-    /* margin: 0 auto; */
-    margin: 30px 0px 150px -10px;
 }

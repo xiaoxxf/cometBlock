@@ -26,33 +26,32 @@
 		<!-- 全局顶部导航栏 -->
 			<div class="navbar-fixed-container navbar-fixed-container-hook">
 			</div>
-			<div class="mian-container">
+			<div class="mian-container" style="margin-top:80px;">
 				<div class="container" >
 					<!--关注-->
 					<div class="hot_review_box">
 						<div class="row">
 							<div class="col-md-3 col-xs-12 col-sm-12">
-								<div class="hot_zone side">
-									<div class="attention_box" >
+								<div class="hot_zone side_menu">
+
 										<span class="load_all_user_dynamic dynamic_menu_on_focus">全部</span>
 										<span class="load_recommend_dynamic">推荐</span>
-										<!-- <a href="">关注</a> -->
-									</div>
+										<!-- <span class="load_follow_dynamic">关注</span> -->
+
 								</div>
 							</div>
 
 							<div class="col-md-9 col-sm-12 col-xs-12">
-
-								<div class="hot_zone">
-									<!--动画加载-->
-									<div class="loading refresh_load topic_article_load" style="display:none;">
-												<span></span>
-												<span></span>
-												<span></span>
-												<span></span>
-												<span></span>
-												<span></span>
-									</div>
+								<!--动画加载-->
+								<div class="loading refresh_load topic_article_load" style="display:none;">
+											<span></span>
+											<span></span>
+											<span></span>
+											<span></span>
+											<span></span>
+											<span></span>
+								</div>
+								<div class="hot_zone hot_content_zone">
 									<div class="hot_review_region dynamic_region">
 
 
@@ -199,11 +198,6 @@
 									<%:=list[i].textContent %>
 								</a>
 							</div>
-							<!-- <div class="comment-icon" style="height: 91.5897px;">
-								<a href="">
-									<img class="comment-img" src="img/coin_3.png">
-								</a>
-							</div> -->
 						</div>
 						<div class="meta">
 							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>

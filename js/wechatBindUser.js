@@ -114,7 +114,7 @@ function bindNewUser(){
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-          window.location.href = 'index.html';
+          window.location.href = 'personal-homepage.html';
         }
       });
 		}else if(res.code == -1){
@@ -208,7 +208,7 @@ function bindExistUser(){
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
-          window.location.href = 'index.html';
+          window.location.href = 'personal-homepage.html';;
         }
       });
 		}else if(res.code == -1){
