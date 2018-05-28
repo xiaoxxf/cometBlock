@@ -618,7 +618,7 @@ a img {
   line-height: 50px;
   border: solid 1px gainsboro;
   text-align: center;
-  cursor: pointer;
+	cursor: pointer;
 }
 /* 二维码分享 */
 .create_qrcode{

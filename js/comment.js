@@ -963,17 +963,7 @@ $('.wechat_share').on("mouseenter mouseleave", function(e){
     layer.close(index_subject)
   };
 })
-//悬浮滚回顶部
-var index_return=null;
-$(".news_alert_return_top").on("mouseenter mouseleave",function(e){
-	if(e.type=="mouseenter"){
-		index_return=layer.tips("点击返回顶部",".news_alert_return_top",{
-			tips: [4, '#4fa3ed']
-		})
-	}else if(e.type == "mouseleave"){
-     layer.close(index_collect)
-	}
-})
+
 
 
 
@@ -1004,3 +994,4 @@ $(function () {
     }
      showScroll();
 });
+

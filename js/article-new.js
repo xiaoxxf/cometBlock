@@ -24,7 +24,6 @@ $(function(){
   }
 })
 
-
 var E = window.wangEditor
 var editor = new E('#editor')
 // 编辑器
@@ -105,6 +104,7 @@ $('.w-e-text-container').css('height',_height * 0.8);
 // $('.w-e-text').css('font-size','18px');
 // $('.w-e-text').css('height','150%');
 
+
 // 提交
 $('.submit_comment').on('click',function(){
   if (ui.submiting) {
@@ -131,7 +131,6 @@ $('.submit_comment').on('click',function(){
     userId: userId, //userId
   }
   var uri = 'blockchain/addReview';
-
   $.ajax({
     url : WebApiHostJavaApi + uri,
     type: "post",
@@ -198,19 +197,19 @@ $('.preview-article').on('click',function(){
 })
 
 //编辑器强制修改
-// var containerW = $(".write-container").width() * 0.9;
-// var marL = $(".write-container").width() * 0.05 + 15;
-// var marL2 = $(".write-container").width() * 0.05;
-// $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-// $(".w-e-toolbar").css({ 'width': containerW});
-// $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-// window.onresize = function () {
-//   var containerW = $(".write-container").width() * 0.9;
-//   var marL = $(".write-container").width() * 0.05 + 15;
-//   $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-//   $(".w-e-toolbar").css({ 'width': containerW});
-//   $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-// }
+var containerW = $(".write-container").width() * 0.9;
+var marL = $(".write-container").width() * 0.05 + 15;
+var marL2 = $(".write-container").width() * 0.05;
+$(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+$(".w-e-toolbar").css({ 'width': containerW});
+$(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+window.onresize = function () {
+  var containerW = $(".write-container").width() * 0.9;
+  var marL = $(".write-container").width() * 0.05 + 15;
+  $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+  $(".w-e-toolbar").css({ 'width': containerW});
+  $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+}
 
 $(".edit-comment").on('click', function () {
   if ($(".fake-placeholder").size() > 0) {
@@ -257,3 +256,4 @@ window.onbeforeunload=function(e){
     // $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
   }
 }
+

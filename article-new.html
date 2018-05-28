@@ -26,7 +26,6 @@
 		.w-e-text{
 			overflow-y: auto!important;
 		}
-
 	</style>
 	<body lang="zh-CN" class="reader-black-font">
 		<!-- 顶部导航栏 -->
@@ -47,11 +46,13 @@
 								<a href="#" class="chain">写长文</a>
 							</li>
 						</ul>
+						<!--发布-->
 						<ul class="nav navbar-nav navbar-right log_writting">
 							<li>
 								<button class="btn submit_comment" style="">发布</button>
 							</li>
 						</ul>
+						<!--预览-->
 						<ul class="nav navbar-nav navbar-right log_writting">
 							<li>
 								<button class="btn preview-article" style="">预览</button>
@@ -63,17 +64,15 @@
 			</nav>
 		</div>
 
-
 		<div class="mian-container">
+			<!-- 评测 -->
+			<div class="mian-container">
 
-			<div class="container write-container" >
+			<div class="container write-container" style="margin-top:60px">
 				<!-- 标题 -->
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
+					<div class="container">
 						<input type="text" name="head" value="" placeholder="请输入标题" autofocus='true' class="input-head">
-						<div id="editor" class="edit-comment">
-								<p class="fake-placeholder">请输入正文</p>
-						</div>
 					</div>
 				</div>
 				<div class="row" >
@@ -82,14 +81,19 @@
 
 					<!-- <div class="col-lg-12 col-md-12 col-xs-10 col-xs-offset-1"> -->
 
-
+						<div id="editor" class="edit-comment" >
+								<p class="fake-placeholder">请输入正文</p>
+						</div>
 					<!-- </div> -->
 				</div>
+
+
+
 			</div>
 
 
 			<!-- 预览 -->
-			<div class="container preview-container" style="display:none;">
+			<div class="container preview-container" style="margin-top:100px;display:none;">
 				<div class="comment-container-wrap">
 					<h1 class="comment-detail-title"></h1>
 					<div class="comment-detail-main comment-detail-mian-hook">
@@ -119,6 +123,9 @@
 				</div>
 			</div>
 
+
+
+			</div>
 	  </div>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/jquery.cookie.js"></script>

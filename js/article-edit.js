@@ -120,8 +120,8 @@ function createEditorAndGetContent(content){
     // editor.customConfig.debug = true
     editor.create()
     editor.txt.html(content)
-    // $('.w-e-text-container').attr('style','height:auto;');
-    // $('.w-e-text-container').attr('style','width:auto;');
+    $('.w-e-text-container').attr('style','height:auto;');
+    $('.w-e-text-container').attr('style','width:auto;');
 
     // 提交
     $('.submit_comment').on('click',function(){

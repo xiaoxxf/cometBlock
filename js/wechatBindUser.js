@@ -1,63 +1,3 @@
-var user_name_flag=false;
-var phone_flag=false;
-var user_password_flag=false;
-
-//关联新用户验证
-//校验用户名
-$(document).on('blur','#realName',function() {
-	var realName = $("#realName").val();
-	if(realName == "") {
-		layer.tips('用戶名不能为空', '#realName', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		user_name_flag = false;
-		return false;
-	}else{
-		user_name_flag = true;
-	}
-});
-
-// 校验手机号
-$(document).on('blur','#session_phone',function() {
-	var tel = $("#session_phone").val();
-	if(tel == "" || !(/^1[0-9]{10}$/.test(tel))) {
-		console.log(11)
-		layer.tips('请填写正确的手机号', '#session_phone', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		phone_flag = false;
-		return false;
-	}else{
-		phone_flag = true;
-	}
-
-});
-//校验密码
-$(document).on('blur','#session_password',function() {
-	var userPwd = $("#session_password").val();
-	if(userPwd.length = "") {
-		layer.tips('密码不能为空', '#session_password', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		user_password_flag = false
-		return false;
-	}
-	else if(userPwd.length < 6) {
-		layer.tips('密码不得小于六位数', '#session_password', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		user_password_flag = false
-		return false;
-	}
-	else{
-		user_password_flag = true;
-	}
-});
-
 //绑定新用户弹出框
 $("#bind_new_user").on('click',function (e) {
     var area_width
@@ -279,12 +219,6 @@ function bindExistUser(){
 
 
 
-
-
-
-
-
-
 // 登录校验
 function loginFromValid(){
 	var tel=$("#session_phone").val();
@@ -398,18 +332,18 @@ function sendCodeFromValid(){
 }
 
 //昵称手机号失去焦点事件
-//$("#realName").blur(function() {
-//	if(RegisterFromValid()){
-//      gainCode()
-//	}
-//
-//});
-//
-//$("#session_phone").blur(function() {
-//  if(RegisterFromValid()){
-//      gainCode()
-//  }
-//});
+$("#realName").blur(function() {
+	if(RegisterFromValid()){
+        gainCode()
+	}
+
+});
+
+$("#session_phone").blur(function() {
+    if(RegisterFromValid()){
+        gainCode()
+    }
+});
 
 
 //点击发送验证码
@@ -461,7 +395,6 @@ function verifyPhone() {
     			tips: [2, '#3595CC'],
     			time: 2000
     		});
-
       }
 
     }, "json");

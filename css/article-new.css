@@ -11,20 +11,20 @@
 
 /* 写文章 */
 .article-title-box{
-  /* position: fixed; */
-  /* top: 50px; */
-  /* z-index: 1000 !important; */
+  position: fixed;
+  top: 50px;
+  z-index: 1000 !important;
   /* width: 100%; */
-  /* background-color: white; */
+  background-color: white;
 }
 
 .input-head{
-  background-color: white;
-  /* position: fixed; */
-  /* top: 50px; */
-  /* z-index: 1000 !important; */
+  /* background-color: white; */
+  position: fixed;
+  top: 50px;
+  z-index: 1000 !important;
   border:0px;
-  height: 80px;
+  height: 100px;
   font-size: 30px;
   width: 100%;
 }
@@ -39,10 +39,10 @@
   /* border-left:0px !important;
   border-right:0px !important;
   border-bottom:0px !important; */
-  /* width: 85% !important;
+  /* width: 85% !important; */
   position: fixed !important;
   top: 130px !important;
-  z-index: 100000 !important; */
+  z-index: 100000 !important;
 }
 
 /* @media (min-width:1500px) {
@@ -53,10 +53,10 @@
 
 /* 正文 */
 .w-e-text-container{
-  /* margin-top: 90px !important;
+  /* margin-top: 90px !important; */
   position: relative !important;
-  top:120px !important; */
-  /* border: 0px !important; */
+  top:120px !important;
+  border: 0px !important;
 }
 /*默认文字*/
 .fake-placeholder {
@@ -67,7 +67,6 @@
   cursor: text;
   /* min-height: 500px !important; */
 }
-
 
 /* 预览 */
 .comment-detail-main .author-avatar {
@@ -138,10 +137,11 @@
 }
 
 
+
 /* common.css样式复写 */
-/* html, body {
-    height: 100%;
-} */
+html, body {
+    height: 90%;
+}
 
 h1 {
 	word-wrap: break-word;
@@ -151,5 +151,5 @@ h1 {
 	color: #494949;
 	margin: 0;
 	padding: 0 0 15px 0;
-	/* line-height: 1.1; */
+	line-height: 1.1;
 }

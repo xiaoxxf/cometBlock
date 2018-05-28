@@ -19,6 +19,7 @@ $('.side_menu').on('click', 'span', function(e){
 	}
 	var index_menu = $('.side_menu span').index(e.currentTarget);
 	$('.side_menu span').removeClass('dynamic_menu_on_focus');
+
 	$(e.currentTarget).addClass('dynamic_menu_on_focus');
 	switch (index_menu) {
 		case 0:

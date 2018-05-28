@@ -5,14 +5,14 @@ var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '
 // var wechatInfo_flag = false; // 是否已取得微信返回数据
 
 // 不跳回登录、注册、找回密码的页面
-var login_uri = '/login.html';
-var register_uri = '/register.html';
-var find_pass_word_uri = '/find-pwd.html';
-var wechat_login_uri = "/connect/qrconnect";
-if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
-  var currentJumpHref = window.location.href;
-  window.localStorage.setItem('currentJumpHref',currentJumpHref);
-}
+// var login_uri = '/login.html';
+// var register_uri = '/register.html';
+// var find_pass_word_uri = '/find-pwd.html';
+// var wechat_login_uri = "/connect/qrconnect";
+// if (document.location.pathname != login_uri && document.location.pathname != register_uri && document.location.pathname != find_pass_word_uri && document.location.pathname != wechat_login_uri ) {
+//   var currentJumpHref = window.location.href;
+//   window.localStorage.setItem('currentJumpHref',currentJumpHref);
+// }
 
 function guid() {
     function s4() {
@@ -311,7 +311,6 @@ $('.block-comet-main-wrap').on('click','.nav-user-account .setting-btn',function
 
 
 })
-//通知鼠标悬停出现隐藏div
 
 //微信登陆
 $(document).on('click','.more-sign .wechat-login',function () {
