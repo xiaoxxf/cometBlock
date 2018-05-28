@@ -270,16 +270,16 @@ $(window).scroll(function(){
 	resetTimer = setTimeout(function(){
 
 		var srollPos = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
-		console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
-		console.log("页面的文档高度 ："+$(document).height());
-		console.log('浏览器的高度：'+$(window).height());
+		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+		// console.log("页面的文档高度 ："+$(document).height());
+		// console.log('浏览器的高度：'+$(window).height());
 		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
 
 		if (($(document).height() - range) <= totalheight){
 				//当滚动条到底时,这里是触发内容
 				//异步请求数据,局部刷新dom
 				if (flag == 1 && !ui.noMoreData && !ui.loading) {
-					//  
+					//
 					index_page += 1
 					ui.loading = true;
 					loadMoreChain();
