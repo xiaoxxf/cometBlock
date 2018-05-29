@@ -3,7 +3,7 @@ var loadFlag = null; //1->短评  2->长评  4->文章  3->全部动态
 var type = null; //  	1->短评	  2->长评  4->文章  不传->所有
 var tpl_id = null;
 var currentPage = 1;
-var userid_search = null;
+var userid_search = null; // 当前查看的用户id
 var ui = {
 	"noData": false,
 	"noMoreData": false,
@@ -99,8 +99,9 @@ function getUserInfo(){
 		$('.person_logo')[0].src = res.datas.userPic ? res.datas.userPic : 'img/normal-user.png';
 
 		var intro = res.datas.personIntro ? res.datas.personIntro : ''
-		$('.personal-intro').html('个人简介:' + intro)
-
+		$('.personal-intro').html('个人简介:' + intro);
+		$('.following_count').html('关注: ' + res.datas.following + ' 人');
+		$('.follower_count').html('粉丝: ' + res.datas.follower + ' 人');
 	})
 
   // $('.person_name').html(userinfo.realName);
@@ -111,7 +112,7 @@ function getUserInfo(){
 // 关注/取消关注
 var following = null; //判断是否已关注
 $(function(){
-  if (userId) {
+  if (userId && userId != userid_search) {
     var uri = 'attention/checkAttent?attentionId=' + userid_search + '&type=1'
               + '&creator=' + userId + '&password=' + userinfo.userPwd
     doJavaGet(uri,function(res){
