@@ -40,7 +40,7 @@
 						<div class="hot_zone hot_zone_box hot_zone_padding">
 							<div class="hot_zone_coin">
 								<div class="row hot_coin_region hot_coin_region_1 item active">
-									<div class="coin-detail">
+									<!--<div class="coin-detail">
 										<div class="hot_subject_introduce">
 										<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
 											<img src='img/show1.jpg'  alt="">
@@ -62,6 +62,36 @@
 											<img src='img/show3.jpg'  alt="">
 											<span class="project-name">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</span>
 										</a>
+										</div>
+									</div>-->
+									<div class="coin-detail-wrapper">
+										<div class="coin-detail_icon">
+											<a href="" target="_blank">
+											<img src='img/show1.jpg'  alt="">
+										</a>
+										</div>
+										<div class="coin-detail-introduce">
+											<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
+										</div>
+									</div>
+									<div class="coin-detail-wrapper">
+										<div class="coin-detail_icon">
+											<a href="" target="_blank">
+											<img src='img/show2.jpg'  alt="">
+										</a>
+										</div>
+										<div class="coin-detail-introduce">
+											<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
+										</div>
+									</div>
+									<div class="coin-detail-wrapper">
+										<div class="coin-detail_icon">
+											<a href="" target="_blank">
+											<img src='img/show3.jpg'  alt="">
+										</a>
+										</div>
+										<div class="coin-detail-introduce">
+											<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
 										</div>
 									</div>
 								</div>
@@ -102,7 +132,7 @@
 							</div>
 						</div>-->
 						<!--推荐专题-->
-						<div class="hot_zone side" style="border: solid 1px gainsboro;">
+						<div class="hot_zone side" style="background-color: #f1f1f1;">
 							<div class="hot_zone_title_right">
 								<span ><a href="topic-index.html" class="hot-span">推荐专题</a></span>
 								<a href="topic-index.html" style="float:right"><span>更多 &gt;&gt;</span></a>
@@ -115,42 +145,23 @@
 						<div class="hot_zone side" style="margin-top: 20px;">
 							<div class="hot_zone_title_right">
 								<span ><a href="news.html" class="hot-span hot-title">播报</a></span>
-								<a href="news.html" style="float:right"><span>更多 &gt;&gt;</span></a>
+								<!--<a href="news.html" style="float:right"><span>更多 &gt;&gt;</span></a>-->
 							</div>
 							<div class="hot_zone_news">
+								<ul class="hot_zone_wrap">
+
+								</ul>
+								<div class="hot_zone_more">
+									<a href="news.html"><span>更多 </span></a>
+								</div>
 
 							</div>
 						</div>
-						<!--推荐专题-->
-						<!--<div class="hot_zone side" style="margin-top: 20px;">
-							<div class="hot_zone_title_right">
-								<span ><a href="topic-index.html" class="hot-span">推荐专题</a></span>
-								<a href="topic-index.html" style="float:right"><span>更多 &gt;&gt;</span></a>
-							</div>
-							<div class="hot_zone_topic">
-
-							</div>
-						</div>-->
 					</div>
 				
 				</div>	
 			</div>			
 		</div>
-
-<!-- pc端热门项目 -->
-<!--<script type="text/html" id="hot_coin_tpl_1">
-	<%for(var i = 0; i < 3; i++) {%>
-	<div class="coin-detail">
-		<div class="hot_subject_introduce">
-		<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
-			<img src='img/show1.jpg'  alt="">
-			<span class="project-name"><%=list[i].projectContent%></span>
-		</a>
-		</div>
-	</div>
-	
-	<%}%>
-</script>-->
 
 <!-- 专题下的文章 -->
 <script type="text/html" id="hot_article_tpl">
@@ -208,20 +219,28 @@
 
 <script type="text/html" id="topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<!-- <div> -->
-			<span data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span topic_name"><%=list[i].topic %></span>
-			<!-- <span data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span topic_name"><%=list[i].topic %></span> -->
-
-		<!-- </div> -->
+		<span data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span topic_name"><%=list[i].topic %></span>
 	<%}%>
 </script>
 
-<!-- 播报新闻 -->
-<script type="text/html" id="news_tpl">
+<!--播报-->
+<script type="text/html" id="news_broadcast_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
-		<p title="<%=list[i].title%>"><a href="detail.html?newsId=<%=list[i].newsId%>" class="new_title"><%=list[i].title%></a></p>
+		<li class="hot_news_wrapper_show">
+			<span class="fa fa-caret-right turn_right"></span>
+			<div class="hot_news_title" >
+				<%=list[i].title%>
+			</div>
+			<div class="hot_news_content" >
+				<%=list[i].newsContent%>
+			</div>
+			<div class="hot_news_time">
+				<span><%=list[i].createTime%> </span>
+			</div>
+		</li>
 	<%}%>
 </script>
+
 
 <!-- 登录弹窗 -->
 <script type="text/html" id="short-comment-commit-layer">
@@ -282,10 +301,12 @@
 
 <script type="text/html" id="recommend_topic_tpl">
 	<%for(var i = 0; i < 3; i++) {%>
-		<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="topic_tag">
-			<img src="<%:=list[i].topicPic %>" alt="" class="topic_logo">
+		<p class="topic_border">
+			<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="topic_tag">
+				<img src="<%:=list[i].topicPic %>" alt="" class="topic_logo">
+			</a>
 			<span class="topic_tag_name"><%:=list[i].topic %></span>
-		</a>
+		</p>
 	<%}%>
 </script>
 

@@ -28,9 +28,9 @@ var WebApiToken;
 //var WebApiHost="http://localhost:2579/";
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
-var WebApiHostJavaApi = "http://backend.blockcomet.com/";
+//var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 // var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
-// var WebApiHostJavaApi = "http://10.0.0.192:8080/";
+   var WebApiHostJavaApi = "http://10.0.0.193:8080/";
 
 var WebRankHostApi = "//rank.blockcomet.com/"
 function doRequest(apiHost, method, data, callback, contentType, showtips) {
@@ -47,12 +47,19 @@ function doRequest(apiHost, method, data, callback, contentType, showtips) {
     if (contentType && contentType === 'json') {
         requestType = 'application/json;charset=UTF-8';
     }
-
+	
+	var userInfo=localStorage.getItem("userinfo");
+	var userPwd ="";
+	if(userInfo){
+		 userPwd=JSON.parse(userInfo).userPwd;
+	}
+	
     $.ajax({
         type: method,
         url: apiHost,
         headers: {
-            token: decodeURIComponent(WebApiToken),
+            token: localStorage.getItem("userid"),
+           	userPwd:userPwd,
             "request-id": guid() + new Date().getTime()
         },
         data: data,
