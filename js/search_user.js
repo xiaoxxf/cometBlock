@@ -15,7 +15,7 @@ function searchUser(){
   ui.loading = true;
   ui.noMoreData = false;
 
-  var uri = 'news/quaryusers?currentPage=' + currentPage + '&pageSize=12&realName=' + keyWord
+  var uri = 'news/quaryusers?currentPage=' + currentPage + '&pageSize=12&realName=' + keyWord + '&loginUser=' + userId
   $(".waiting-data").fadeIn();
 
   doJavaGet(uri, function(result){

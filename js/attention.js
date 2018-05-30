@@ -8,6 +8,18 @@ window.onload = function(){
   getAllUserDynamic();
 }
 
+$(function(){
+	if (userId) {
+		var str = '	<span class="load_follow_people">关注的人</span>\
+								<span class="load_follow_project">关注的项目</span>\
+								<span class="load_follow_topic">关注的专题</span>\
+							'
+		$('.side_menu').append(str);
+	}
+
+
+})
+
 var tpl_id = 'all_dynamic';
 var currentPage_dynamics = 1;
 var pageSize_dynamics = 6;
@@ -102,12 +114,12 @@ function getAllUserDynamic(){
 	if (type) {
 		var uri = 'attention/all?creator=' + userId +  '&password=' + userinfo.userPwd + '&currentPage='
 							+ currentPage_dynamics + '&pageSize=' + pageSize_dynamics
-							+ '&type=' + type
+							+ '&type=' + type + '&loginUser=' + userId
 	}
 	// 加载推荐的或推荐的
 	else{
 		var uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage_dynamics + '&pageSize=' + pageSize_dynamics
-							+ '&like=' + like
+							+ '&like=' + like + '&loginUser=' + userId
 	}
 
   // 首次加载
