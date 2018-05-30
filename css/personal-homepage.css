@@ -50,15 +50,14 @@ a img {
 	margin-left: 30px;
 }
 
-.edit_btn{
+.edit_btn,.follow_btn,.un_follow_btn{
 	color: #006bb3;
-    margin-top: 60px;
-    display: block;
-    text-align: center;
-    line-height: 30px;
-    border: solid 1px #006bb3;
-    border-radius: 8px;
-
+  margin: 20px 0px;
+  display: none;
+  text-align: center;
+  line-height: 30px;
+  border: solid 1px #006bb3;
+  border-radius: 8px;
 }
 .edit_person_msg{
 	float: right;
@@ -297,7 +296,7 @@ a img {
 	color: #006bb3;
 }
 /*创建的专题*/
-.create_subject_box,.create_project_box{
+.create_project_box{
 	margin-top: 15px;
 }
 

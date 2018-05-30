@@ -34,12 +34,14 @@
 								<img src="img/normal-user.png" width="200px" class="person_logo"/>
 								<div class="person_edit">
 									<span class="person_name"></span>
-									<p><span>关注：0人</span><sapn class="concern_right">被关注：0人</sapn></p>
+									<p><span class="following_count">关注：0人</span><sapn class="follower_count concern_right">被关注：0人</sapn></p>
 									<p class="personal-intro"></p>
 								</div>
 
 							</div>
 							<div class="col-md-2 col-sm-12 col-xs-12 edit_person_msg">
+								<a href="javascript:void(0)" class="follow_btn" onclick="followPeople()">关注</a>
+								<a href="javascript:void(0)" class="un_follow_btn" onclick="unFollowPeople()">取消关注</a>
 								<a href="person-setting.html?personType=1" class="edit_btn">编辑个人资料</a>
 							</div>
 
@@ -83,7 +85,7 @@
 							</div>
 							<!--关注-->
 							<div class="col-md-3 col-sm-12 col-xs-12">
-								<div class="hot_zone side">
+								<!-- <div class="hot_zone side">
 									<div class="pay-attention">
 										<span >关注</span>
 										<div class="included_ariticle">
@@ -95,7 +97,7 @@
 											<span>关注的人</span> <span>0</span>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
 								<!--创建的专题-->
 								<div class="hot_zone side create_subject_box">

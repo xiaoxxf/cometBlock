@@ -59,7 +59,7 @@ $(function(){
 	    var descriptions = document.getElementsByClassName('new_title');
 
 	    if ($(window).width() > 990) {
-	      var show_length = 25
+	      var show_length = 23
 	    }else if($(window).width() <= 990){
 	      var show_length = 40
 	    }
@@ -95,8 +95,7 @@ var topicName = '';
 var raise = ''
 // 渲染专题下的文章
 $('.hot_review_title').on('click', '.topic_name', function(e){
-	$('.hot_review_region').html('');
-	$('.read-more').css('display','none');
+	// $('.hot_review_region').fadeOut();
 	$('.topic_article_load').css('display','')
 
 	ui.loading = true;
@@ -141,7 +140,6 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
 
       var tpl= document.getElementById('hot_article_tpl').innerHTML;
       var content = template(tpl, {list: result.datas});
-      $('.hot_review_region').html('');
       $('.hot_review_region').append(content);
       $('.read-more').css('display','');
       $('.read-more').text('阅读更多');

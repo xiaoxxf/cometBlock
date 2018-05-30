@@ -1,6 +1,6 @@
 
 .hot_topic_banner{
-   
+
 }
 .hot_topic_banner img{
 	width: 100%;
@@ -27,8 +27,8 @@
 }
 .topic_box:hover{
 	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-	
-} 
+
+}
 .hot_topic_title{
 	font-weight: bold;
     font-size: 16px;
@@ -36,6 +36,9 @@
 }
 .hot_topic_attention{
 	padding: 20px 0px;
+}
+.hot_topic_introduce{
+  min-height: 66px;
 }
 /*加载更多*/
 .topic_load{
@@ -48,4 +51,3 @@
     border: none;
     margin: 100px auto;
 }
-

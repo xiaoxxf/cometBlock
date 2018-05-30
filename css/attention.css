@@ -1,3 +1,4 @@
+/* 公用 */
 a img {
     border-width: 0;
     vertical-align: middle;
@@ -8,7 +9,32 @@ a img {
   min-height: 271px;
 }
 
+.hot_zone{
+  border-radius: 5px;
+  background-color: white;
+}
+@media (max-width:762px) {
+  .hot_zone {
+    margin-bottom: 20px;
+  }
 
+}
+
+
+/* 侧边栏 */
+.side_menu{
+  padding: 10px;
+  background: white;
+  position: fixed;
+  width: 15%;
+  /* min-width: 250px; */
+  margin-right: 10px;
+}
+@media (max-width:767px) {
+  .side_menu{
+
+  }
+}
 .side_menu span{
   cursor: pointer;
 	color: #006bb3;
@@ -20,27 +46,31 @@ a img {
   border-radius: 5px;
 }
 
-.dynamic_menu_on_focus{
+.side_menu .dynamic_menu_on_focus{
   background-color: #006bb3;
   color: white !important;
 }
 
-
-.candy_right,.dynamic_region {
-	/* background-color: white; */
+.side_menu .attention_dynamic_on_focus{
+  color: #006bb3;
 }
 
-.hot_zone{
-  border-radius: 20px;
-  background-color: white;
-}
-@media (max-width:762px) {
-  .candy_right,.hot_zone {
-    margin-bottom: 20px;
-  }
-
+.side_menu .attention_list{
+  padding-right: 20px;
+  display: none;
+  max-height: 120px;
+  overflow: auto;
 }
 
+.side_menu .attention_list li{
+  /* display: inline; */
+  text-align:center;
+  cursor: pointer;
+}
+
+
+
+/* 内容 */
 .read-more{
 	cursor: pointer;
 }
@@ -59,6 +89,7 @@ a img {
     /* line-height: 0px; */
     margin: 3px 0px;
     width: 100%;
+    padding: 5px 0px;
 }
 
 .comment-detail .comment-title a{
@@ -130,13 +161,35 @@ a img {
 	 /* line-height: 25px; */
 	color: black;
 }
+.comment-content .followBtn{
+  color: white;
+  text-align: center;
+  /* background-color: #006bb3; */
+  color: #006bb3;
+  border:solid 1px #006bb3;
+  border-radius: 5px;
+  cursor: pointer;
+  padding:2px 6px;
+  margin-left: 10px;
+}
+.comment-content .hadFollowBtn{
+  color: white;
+  text-align: center;
+  background-color: #006bb3;
+  /* color: #006bb3; */
+  /* border:solid 1px #006bb3; */
+  border-radius: 5px;
+  cursor: pointer;
+  padding:2px 6px;
+  margin-left: 10px;
+}
 .comment_bottom_box{
 	display: flex;
-    background-color: #eee;
-    margin-right: 30px;
-    padding: 20px;
-    border-radius: 4px;
-    margin-top: 5px;
+  background-color: #9a94941a;
+  margin-right: 30px;
+  padding: 20px;
+  border-radius: 4px;
+  margin-top: 5px;
 }
 .comment-creator-pic{
 	width: 28px;
@@ -145,7 +198,6 @@ a img {
 	margin-right:10px;
 	margin-bottom:5px;
 }
-
 
 .meta{
 	margin-top:15px ;
@@ -203,25 +255,13 @@ a img {
 	}
 }
 
-.side_menu{
-  padding: 10px;
-  background: white;
-  position: fixed;
-  min-width: 20%;
-}
+
  @media (max-width: 992px){
  	.side{
  		margin-top: 20px;
  	}
  }
 
-.comment-count{
-	color: red
-}
-.hot-span{
-	color: black
-}
-/*广告位*/
 .long-comment{
 	margin-top: 5px;
 }
@@ -238,4 +278,9 @@ a img {
 
 .loader1 div{
   color: black;
+}
+
+/* 没有关注信息 */
+.no-data{
+  margin-top: 20px;
 }

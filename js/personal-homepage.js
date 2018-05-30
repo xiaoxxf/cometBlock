@@ -3,7 +3,7 @@ var loadFlag = null; //1->短评  2->长评  4->文章  3->全部动态
 var type = null; //  	1->短评	  2->长评  4->文章  不传->所有
 var tpl_id = null;
 var currentPage = 1;
-var userid_search = null;
+var userid_search = null; // 当前查看的用户id
 var ui = {
 	"noData": false,
 	"noMoreData": false,
@@ -17,13 +17,14 @@ $(function(){
 	// 看别人
 	if (url_id && url_id != cookie_id ) {
 		userid_search = getUrlParam('userId');
-		//看别人时隐藏编辑、创建按钮
-		$('.edit_person_msg').css('display','none');
+		//看别人时隐藏专题编辑、创建项目按钮
 		$('.create_new_topic_list_btn').css('display','none');
 		$('.create_new_subject_btn').css('display','none');
 	}
 	// 看自己
 	else{
+		// 看自己时显示编辑个人资料按钮
+		$('.edit_btn').css('display','block');
 		userid_search = cookie_id;
 	}
 
@@ -98,7 +99,9 @@ function getUserInfo(){
 		$('.person_logo')[0].src = res.datas.userPic ? res.datas.userPic : 'img/normal-user.png';
 
 		var intro = res.datas.personIntro ? res.datas.personIntro : ''
-		$('.personal-intro').html('个人简介:' + intro)
+		$('.personal-intro').html('个人简介:' + intro);
+		$('.following_count').html('关注: ' + res.datas.following + ' 人');
+		$('.follower_count').html('粉丝: ' + res.datas.follower + ' 人');
 	})
 
   // $('.person_name').html(userinfo.realName);
@@ -106,6 +109,55 @@ function getUserInfo(){
 	// $('.personal-intro').html('个人简介：') + userinfo.userIntro
 }
 
+// 关注/取消关注
+var following = null; //判断是否已关注
+$(function(){
+  if (userId && userId != userid_search) {
+    var uri = 'attention/checkAttent?attentionId=' + userid_search + '&type=1'
+              + '&creator=' + userId + '&password=' + userinfo.userPwd
+    doJavaGet(uri,function(res){
+      // 未关注
+      if (res.code == 0) {
+				$('.follow_btn').css('display','block');
+      }
+      // 已关注
+      else if(res.code == 1){
+				$('.un_follow_btn').css('display','block');
+      }
+    })
+  }
+})
+
+// 关注
+function followPeople(){
+	var uri = 'attention/attent?attentionId=' + userid_search + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=1';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('关注成功');
+			$('.follow_btn').css('display','none');
+			$('.un_follow_btn').css('display','block');
+
+		}
+	})
+}
+
+// 取关
+function unFollowPeople(){
+	var uri = 'attention/delAttent?attentionId=' + userid_search + '&creator=' + userId + '&password='
+	 					+ userinfo.userPwd + '&type=1';
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('已取消关注');
+			$('.un_follow_btn').css('display','none');
+			$('.follow_btn').css('display','block');
+		}
+	})
+}
+
+// 加载用户的文章、长评、短评
 function getPersonHomePageData(){
 	// loadFlag = 1;
 	currentPage = 1;
@@ -394,180 +446,3 @@ $(".hot_review_region").on('click','.like-button',function (e) {
         }
     }, "json");
 });
-
-
-//
-// // 加载用所有动态
-// function getUserAllDynamic(){
-//   loadFlag = 1;
-//   // currentPage = 1;
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&creator=' + userId;
-//
-// 	// 首次加载
-// 	if(q == 1){
-// 		$('.hot_review_region').html('');
-// 	}
-// 	// 加载更多的情况
-// 	else if (currentPage > 1) {
-// 		$('.read-more').html('加载中...')
-// 	}
-//
-// 	doJavaGet(article_uri,function(result){
-//     if (result.datas.length == 0) {
-// 			ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-// 		// 限制内容长度
-//     for (var i = 0; i < result.datas.length; i++) {
-//       result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-//
-//       var content_length = null
-//       if ($(window).width() < 767) {
-//         content_length = 55
-//       }else{
-//         content_length = 120
-//       }
-//
-//       if (result.datas[i].textContent.length > content_length) {
-//         result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-//       }
-//
-//     }
-//
-//     var tpl = document.getElementById('short_comment_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content)
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//   currentPage++;
-// }
-//
-// // 加载用户文章
-// function getUserArticle(){
-//   loadFlag = 4;
-//   // currentPage = 1
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=4' + '&creator=' + userId;
-//
-// 	// 首次加载
-// 	if(currentPage == 1){
-// 		$('.hot_review_region').html('');
-// 	}
-// 	// 加载更多的情况
-// 	else if (currentPage > 1) {
-// 		$('.read-more').html('加载中...')
-// 	}
-//
-//   doJavaGet(article_uri,function(result){
-//     if (result.datas.length == 0) {
-//       ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-//     // 限制内容长度
-//     for (var i = 0; i < result.datas.length; i++) {
-//       result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-//
-//       var content_length = null
-//       if ($(window).width() < 767) {
-//         content_length = 55
-//       }else{
-//         content_length = 120
-//       }
-//
-//       if (result.datas[i].textContent.length > content_length) {
-//         result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-//       }
-//
-//     }
-//
-//     var tpl = document.getElementById('article_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content);
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//   currentPage++;
-// }
-//
-// // 加载用户评测
-// function getUserLongComment(){
-//   loadFlag = 2;
-//   // currentPage = 1;
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=2' + '&creator=' + userId;
-//
-// 	// 首次加载
-// 	if(currentPage == 1){
-// 		$('.hot_review_region').html('');
-// 	}
-// 	// 加载更多的情况
-// 	else if (currentPage > 1) {
-// 		$('.read-more').html('加载中...')
-// 	}
-//
-//   doJavaGet(article_uri,function(result){
-//     if (result.datas.length == 12) {
-// 			ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-//     // 限制内容长度
-//     for (var i = 0; i < result.datas.length; i++) {
-//       result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
-//
-//       var content_length = null
-//       if ($(window).width() < 767) {
-//         content_length = 55
-//       }else{
-//         content_length = 120
-//       }
-//
-//       if (result.datas[i].textContent.length > content_length) {
-//         result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-//       }
-//
-//     }
-//
-//     var tpl = document.getElementById('long_comment_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content)
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//   currentPage++;
-// }
-//
-// // 加载用户短评
-// function getUserShortComment(){
-//   loadFlag = 3;
-//   // currentPage = 1;
-//   ui.loading = true;
-//   var article_uri = 'blockchain/quaryReviewByUser?currentPage=' + currentPage + '&pageSize=12' + '&type=1' + '&creator=' + userId;
-//   $('.hot_review_region').html('');
-//   doJavaGet(article_uri,function(result){
-// 		if (result.datas.length == 12) {
-// 			ui.noMoreData = true
-// 			$('.read-more').html('已无更多数据')
-// 			return
-//     }
-//
-//     var tpl = document.getElementById('short_comment_tpl').innerHTML;
-//     var content = template(tpl, {list: result.datas});
-//
-//     $('.hot_review_region').append(content)
-// 		$('.read-more').html('点击加载更多')
-// 		ui.loading = false;
-//   })
-//
-//   currentPage++;
-// }
