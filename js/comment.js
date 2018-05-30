@@ -983,15 +983,16 @@ function makeCode(){
 }
 //页面下拉到一定位置时，右下角出现回到顶部图标
 $(function () {
+  if ($(window).width() >= 767) {
     function showScroll() {
         $(window).scroll(function () {
             var scrollValue = $(window).scrollTop();
             scrollValue > 100 ? $('.news_alert_return_top').fadeIn() : $('.news_alert_return_top').fadeOut();
         });
         $('.news_alert_return_top').click(function () {
-            $("html,body").animate({ scrollTop: 0 }, 1000);
+            $("html,body").animate({ scrollTop: 0 }, 500);
         });
     }
-     showScroll();
+    showScroll();
+  }
 });
-

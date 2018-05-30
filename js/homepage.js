@@ -214,11 +214,11 @@ $('.read-more').on('click',function(){
   $('.read-more').text('加载中...')
   topic_article_page++
 
-	if (topicName == '编辑推荐') {
-		raise = 1;
-	}else{
-		raise = '';
-	}
+	// if (topicName == '编辑推荐') {
+	// 	raise = 1;
+	// }else{
+	// 	raise = '';
+	// }
 
   var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
 						+ '&raise=' + raise
