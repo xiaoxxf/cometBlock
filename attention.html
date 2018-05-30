@@ -102,7 +102,11 @@
 										<% } %>
 									</a>
 									<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
-									<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
+									<%if( list[i].hasFollowed == 0 ){%>
+										<span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span>
+									<%}else if( list[i].hasFollowed == 1) {%>
+										<span class="hasFollowedBtn">已关注</span>
+									<%}%>
 
 									<p style="color:rgb(79, 163, 237) ;margin-top:5px">
 										发表了长评
@@ -147,7 +151,12 @@
 									<% } %>
 								</a>
 								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
-								<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
+								<%if( list[i].hasFollowed ==0 ){%>
+									<span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span>
+								<%}else if( list[i].hasFollowed == 1) {%>
+									<span class="hasFollowedBtn">已关注</span>
+								<%}%>
+
 								<p style="color:rgb(79, 163, 237);margin-top:5px;margin-bottom:5px">
 									写了<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"><%=list[i].projectBigName%></a>的短评
 									<span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>
@@ -188,6 +197,11 @@
 								</a>
 								<a href="personal-homepage.html?userId=<%:=list[i].creator %>" class="real_name"><%:=list[i].realName %></a>
 								<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
+								<%if(list[i].hasFollowed == 0 ){%>
+									<span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span>
+								<%} else if(list[i].hasFollowed == 1 ) {%>
+									<span class="hasFollowedBtn">已关注</span>
+								<% } %>
 
 								<p style="color:rgb(79, 163, 237);margin-top:5px">发表了文章</p>
 								<p class="comment-title">
@@ -233,7 +247,11 @@
 										<img src="<%=list[i].topicPic %>" class="comment-creator-pic"/>
 								</a>
 								<a href="topic-show.html?subjectId=<%:=list[i].topicId %>" class="real_name"><%:=list[i].topic %></a>
-								<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
+								<%if( list[i].hasFollowed ==0 ){%>
+									<span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span>
+								<%}else if( list[i].hasFollowed == 1) {%>
+									<span class="hasFollowedBtn">已关注</span>
+								<%}%>
 
 								<p style="color:rgb(79, 163, 237) ;margin-top:5px">
 									收录了长评
@@ -273,7 +291,11 @@
 									<img src="<%=list[i].topicPic %>" class="comment-creator-pic"/>
 							</a>
 							<a href="topic-show.html?subjectId=<%:=list[i].topicId %>" class="real_name"><%:=list[i].topic %></a>
-							<!-- <span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span> -->
+							<%if( list[i].hasFollowed ==0 ){%>
+								<span data-followingId='<%:=list[i].creator %>' class="followBtn">关注</span>
+							<%}else if( list[i].hasFollowed == 1) {%>
+								<span class="hasFollowedBtn">已关注</span>
+							<%}%>
 
 							<p style="color:rgb(79, 163, 237);margin-top:5px">收录了文章</p>
 							<p class="comment-title">

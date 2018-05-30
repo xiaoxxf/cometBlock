@@ -313,10 +313,11 @@ $(".hot_review_region").on('click','.followBtn',function(){
 	doJavaGet(uri,function(res){
 		if (res.code == 0) {
 			$(current_follow_button).text('已关注');
+			$(current_follow_button).removeClass('followBtn');
+			$(current_follow_button).addClass('hasFollowedBtn');
+
 			// layer.msg('关注成功',{time:1000})
-			var temp_str = '<li class="load_people_dynamic" data-followingId=' + $(current_follow_button).data('followingId') +'>\
-											'  +    +  '</li>'
-			$('.follow_people_list')
+
 		}
 	});
 })

@@ -44,6 +44,9 @@ function followUser(e){
 	doJavaGet(uri,function(res){
 		if (res.code == 0) {
 			$(current_follow_button).text('已关注');
+			$(current_follow_button).removeClass('pay_attent');
+			$(current_follow_button).addClass('has_followed');
+			$(current_follow_button).removeAttr('onclick');
 			// layer.msg('关注成功',{time:1000});
 		}
 	});

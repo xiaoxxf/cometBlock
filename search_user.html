@@ -93,7 +93,11 @@
 								<p class="user_info_item">个人简介：他没有写下任何信息</p>
 							<%}%>
 						</div>
-						<span data-followingid="<%:=list[i].id%>" class="pay_attent" onclick="followUser(this)">＋关注</span>
+						<%if(list[i].follow ){%>
+							<span data-followingid="<%:=list[i].id%>" class="has_followed">已关注</span>
+						<%}else{%>
+							<span data-followingid="<%:=list[i].id%>" class="pay_attent" onclick="followUser(this)">关注</span>
+						<%}%>
 
 <br />
 					</li>
