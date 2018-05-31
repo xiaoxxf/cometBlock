@@ -388,7 +388,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         $(e.currentTarget).text('加上去');
         return;
     }
-    if(shortTxt.length >= 200){
+    if(shortTxt.length >= 500){
         layer.tips('文字太多', '.textarea-txt-hook', {
             tips: [1, '#4fa3ed'],
             time: 2000

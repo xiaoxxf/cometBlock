@@ -392,7 +392,7 @@ $(".short-comment-commit").on('click',function (e) {
         $(".short-comment-commit").text('评论');
         return;
     }
-    if(shortTxt.length >= 200){
+    if(shortTxt.length >= 500){
         layer.tips('文字太多，你可以选择去发表长文', '.short-comment', {
             tips: [1, '#4fa3ed'],
             time: 2000
