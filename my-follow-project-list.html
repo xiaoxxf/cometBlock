@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>我关注的项目</title>
+	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+	<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/loading.css">
+	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+	<link rel="stylesheet" href="css/search_user.css" />
+	<!-- 导航栏 -->
+</head>
+<body lang="zh-CN" class="reader-black-font">
+		<div class="comet-main block-comet-main-wrap">
+		<!-- 全局顶部导航栏 -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook">
+			</div>
+			<div class="mian-container">
+				<div class="container" >
+					<!--个人简介-->
+
+					<div class="search_user">
+						<ul class="search_user_result">
+
+						</ul>
+					</div>
+
+					<div class="no-result" style="display:none">
+						暂无关注项目数据
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="waiting-data">
+				<div class="loader9">
+						<div class="loader-nine">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+						</div>
+				</div>
+		</div>
+
+		<div class="load-more-container-wrap">
+				<div class="container">
+								<div class="load-more-wrap load-more-hook">
+										<div class="loader1 loader" style="display: none">
+												<div></div>
+												<div></div>
+												<div></div>
+										</div>
+										<div class="loading-more"  style="display: none">
+												加载更多
+										</div>
+								</div>
+								<div class="load-more-wrap no-more-hook" style="display: none">
+										<div class="loading-more">
+												已无更多数据
+										</div>
+								</div>
+						</div>
+		</div>
+		<script type="text/html" id="follow_project_tpl">
+			<%for(var i = 0; i < list.length; i++) {%>
+					<li>
+						<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" >
+							<img src="<%:=list[i].projectLogo %>" class="user_icon">
+						</a>
+						<div class="user_info">
+							<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"  class="user_name"><%:=list[i].projectBigName %></a>
+						</div>
+            <br />
+					</li>
+			<%}%>
+		</script>
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- <script src="js/plugins/swiper/swiper-4.2.2.min.js"></script> -->
+<script src="js/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/template.js"></script>
+<script src='js/my-follow-project-list.js'></script>
+
+
+</body>
+
+</html>

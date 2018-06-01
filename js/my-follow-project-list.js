@@ -1,5 +1,5 @@
 window.onload=function(){
-  getTopicIndex();
+  getProject();
 }
 var ui = {
 	"noData": false,
@@ -9,31 +9,31 @@ var ui = {
 
 var current_page = 1;
 var pageSize = 6;
-function getTopicIndex(){
+function getProject(){
 	if(ui.loading){
 		return
 	}
 	ui.loading = true;
 	current_page = 1;
+  $('.waiting-data').fadeIn();
   var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=2'
+            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=3'
 	doJavaGet(uri ,function(result){
 		if(result.code == 0){
-  		//限制长度
-  		for(var i = 0; i < result.datas.length; i++){
-  			if(result.datas[i].description.length > 50){
-  				result.datas[i].description = result.datas[i].description.substr(0,50) + '...'
-  			}
-  		}
-  		var tpl= document.getElementById('topic_topic_index').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.hot_topic_list').append(content);
+      if (result.datas.length == 0) {
+        $('.no-result').css('display','');
+      }else{
+        var tpl= document.getElementById('follow_project_tpl').innerHTML;
+        var content = template(tpl, {list: result.datas});
+        $('.search_user_result').append(content);
+      }
 		}
+    $('.waiting-data').fadeOut();
 		ui.loading = false;
 	},"JSON")
 }
 
-function getMoreTopicIndex(){
+function getMoreProject(){
 	if(ui.loading || ui.noMoreData){
 		return
 	}
@@ -41,19 +41,12 @@ function getMoreTopicIndex(){
 	$('.loader1').css('display','')
 	current_page++;
   var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=2'
+            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=3'
 	doJavaGet(uri ,function(result){
 	if(result.code == 0){
-		//限制长度
-		for(var i = 0; i < result.datas.length; i++){
-			if(result.datas[i].description.length > 50){
-				result.datas[i].description = result.datas[i].description.substr(0,50) + '...'
-			}
-		}
-
-		var tpl= document.getElementById('topic_topic_index').innerHTML;
+		  var tpl= document.getElementById('follow_project_tpl').innerHTML;
 	    var content = template(tpl, {list: result.datas});
-	    $('.hot_topic_list').append(content);
+	    $('.search_user_result').append(content);
 	    $('.loader1').css('display','none');
 	    if(result.datas.length == 0){
 	    	ui.noMoreData = true;
