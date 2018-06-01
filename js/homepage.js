@@ -8,8 +8,6 @@ var ui = {
 	"loading": false
 }
 
-
-
 // 判断登录状态才能创建项目
 $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){
@@ -35,95 +33,33 @@ $('.create_project_button').on('click', function(){
 })
 
 // 渲染热门专区
-$(function(){
-
-  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=18'
-
-  doJavaGet(uri,function(result){
-	 // 渲染手机端
-	 var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
-	 var content = template(tpl, {list: result.datas});
-	 $('.mobile-hot-coin').append(content)
-
-   // console.log(result.datas)
-	 var first_coin_list = result.datas.splice(0,6);
-	 var second_coin_list = result.datas.splice(0,6);
-	 var third_coin_list = result.datas
-   var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
-   var content = template(tpl, {list: first_coin_list});
-   $('.hot_coin_region_1').append(content)
-
-	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
-	 var content = template(tpl, {list: second_coin_list});
-	 $('.hot_coin_region_2').append(content);
-
-	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
-	 var content = template(tpl, {list: third_coin_list});
-	 $('.hot_coin_region_3').append(content)
-
-	 $('.project-count').html(result.count)
-	 var imgW = $(".hot_coin_region .inner-img-wrap").width();
-	 $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
-
-  }, "json")
-
-})
-
-// 手机热门专区
-// $(function(){
-//
-// 	var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=15'
-//
-//   doJavaGet(uri,function(result){
-//    // console.log(result.datas)
-//
-//    var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
-//    var content = template(tpl, {list: result.datas});
-//    $('.mobile-hot-coin').append(content)
-//
-//   }, "json")
-//
-// })
 
 // 渲染播报
 $(function(){
-  var uri = 'http://testapi.blockcomet.com/news/search?currentPage=1&pageSize=5&days=1';
+var uri = 'http://testapi.blockcomet.com/news/search?currentPage=1&pageSize=10&days=1';
 	$.ajax({
 		url : uri,
 		type: "get",
 		async: true,
 		processData: false,  // 不处理数据
 		contentType: false,   // 不设置内容类型
-
-		// beforeSend: function(){
-		//   // ui.fileUpLoading = true
-		// },
-
 		success:function(result){
-			$('.hot_zone_news').html("");
-	    var tpl = document.getElementById('news_tpl').innerHTML;
+			$('.hot_zone_wrap').html("");
+	    var tpl = document.getElementById('news_broadcast_tpl').innerHTML;
 	    var content = template(tpl, {list: result.datas});
-	    $('.hot_zone_news').append(content)
-
-
+	    $('.hot_zone_wrap').append(content)
 	    // 限制描述播报
-	    var descriptions = document.getElementsByClassName('new_title');
 
-	    if ($(window).width() > 990) {
-	      var show_length = 23
-	    }else if($(window).width() <= 990){
-	      var show_length = 40
-	    }
-
-	    for (var i = 0; i < descriptions.length; i++) {
-	      if (descriptions[i].innerText.length > show_length) {
-	        descriptions[i].innerText = descriptions[i].innerText.substring(0,show_length) + "..."
-	      }
-	    }
 		},
 
 	});
 
+})
+
+//播报点击弹出
+$('.hot_zone_wrap').on('click', '.hot_news_title', function(e){
+	var index = $(".hot_zone_wrap .hot_news_title").index(e.currentTarget);
+	$($('.hot_news_content')[index]).toggle();
 })
 
 // 渲染专题
