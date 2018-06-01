@@ -73,29 +73,29 @@ $(function(){
 
   doJavaGet(uri,function(result){
 	 // 渲染手机端
-	 var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
-	 var content = template(tpl, {list: result.datas});
-	 $('.mobile-hot-coin').append(content)
+		var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
+		var content = template(tpl, {list: result.datas});
+		$('.mobile-hot-coin').append(content)
 
    // console.log(result.datas)
-	 var first_coin_list = result.datas.splice(0,6);
-	 var second_coin_list = result.datas.splice(0,6);
-	 var third_coin_list = result.datas
-   var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
-   var content = template(tpl, {list: first_coin_list});
-   $('.hot_coin_region_1').append(content)
+		var first_coin_list = result.datas.splice(0,6);
+		var second_coin_list = result.datas.splice(0,6);
+		var third_coin_list = result.datas
+	   	var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
+	   	var content = template(tpl, {list: first_coin_list});
+	   	$('.hot_coin_region_1').append(content)
 
-	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
-	 var content = template(tpl, {list: second_coin_list});
-	 $('.hot_coin_region_2').append(content);
+		var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
+		var content = template(tpl, {list: second_coin_list});
+		$('.hot_coin_region_2').append(content);
 
-	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
-	 var content = template(tpl, {list: third_coin_list});
-	 $('.hot_coin_region_3').append(content)
+		var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
+		var content = template(tpl, {list: third_coin_list});
+		$('.hot_coin_region_3').append(content)
 
-	 $('.project-count').html(result.count)
-	 var imgW = $(".hot_coin_region .inner-img-wrap").width();
-	 $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
+		$('.project-count').html(result.count)
+		var imgW = $(".hot_coin_region .inner-img-wrap").width();
+		$(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
 
   }, "json")
 
@@ -153,17 +153,17 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
 
 	ui.loading = true;
 	ui.noMoreData = false;
-  topic_article_page = 1;
-  var self = $(e.currentTarget);
+    topic_article_page = 1;
+    var self = $(e.currentTarget);
 	topicName = self.data('topicname');
-  topicId = self.data('topicid');
+    topicId = self.data('topicid');
 
 	// if (topicName == '编辑推荐') {
 	// 	raise = 1;
 	// }else{
 	// 	raise = '';
 	// }
-  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
+  	var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
 						// + '&raise=' + raise
 
   doJavaGet(uri, function(result){

@@ -1,10 +1,6 @@
 body{
 	background-color: white
 }
-/* .nav_shadow{
-	box-shadow: 0 0 10px rgb(117, 113, 113);
-} */
-/*aside*/
 
 /* 微信登录模块 */
 .wechat_login{
@@ -74,12 +70,6 @@ body{
 	line-height: 140px;
 	border-bottom: 1px solid #f0f0f0;
 }
-.base_setting_introduce{
-	padding-top: 50px;
-	height: 140px;
-	border-bottom: 1px solid #f0f0f0;
-}
-
 .save_realname{
 	width: 90px;
     color: white;
@@ -87,28 +77,37 @@ body{
     border-color: #ccc;
 }
 #ownname{
-	/* text-indent: 10px; */
-	/* height: 30px; */
+	/*background-color: #f8f8f8;
+    border: solid 1px #33333373;
+    height: 30px;
+    line-height: 30px;*/
+    padding: 6px;
+    text-indent: 5px;
+    margin-top: 50px;
 }
-
-
 /*个人简介*/
 .person-introduce{
-	text-indent: 10px;
-	margin-top: -27px;
-	border-radius: 3px;
+    position: relative;
+    top: 22px;
+    border-radius: 3px;
+    width: 60%;
+    /*height: 80px;
+     text-indent: 10px;
+    line-height: 40px;
     background-color: #f8f8f8;
+    border: solid 1px #33333373;*/
 }
-
+@media only screen and (max-width:870px) {
+	.person-introduce{
+	    width: 100%;
+	}
+}
 .avatar {
-	width: 50px;
-	height: 100px;
-	display: block;
-	cursor: pointer;
+	width: 60px;
+    height: 60px;
+    display: block;
+    cursor: pointer;
 }
-
-
-
 
 /*个人头像*/
 .btn-hollow {
@@ -121,19 +120,15 @@ body{
 	background: none;
 }
 
-
-
 .setting-title {
 	color: #969696;
 }
-
 .aside .setting-icon {
 	margin-right: 15px;
 	width: 32px;
 	height: 32px;
 	text-align: center;
 	color: #fff;
-	/*background-color: #a0a0a0;*/
 	border-radius: 4px;
 	display: inline-block;
 	vertical-align: middle;
@@ -151,10 +146,6 @@ body{
 	font-style: normal;
 	font-weight: 400!important;
 	-webkit-font-smoothing: antialiased;
-}
-.avatar {
-    width: 100px;
-    height: 100px;
 }
 .avatar img {
     width: 100%;
@@ -211,29 +202,9 @@ body{
 .reset_pwd_bottom{
 	border-bottom: solid 1px gainsboro;
 }
-.bottom_line{
-	padding-bottom: 50px;
-    border-bottom: solid 1px gainsboro;
-}
-.show_table input {
-    overflow: visible;
-    /*vertical-align: middle;*/
-    outline: none;
-    background-color: hsla(0, 0%, 71%, .1);
-    border: 1px solid #c8c8c8;
-    border-radius: 5px;
-}
-
 /* //注册页验证码按钮样式 */
 .phone_code_position {
     position: relative !important;
-}
-.input-prepend input {
-    width: 100%;
-    margin-bottom: 0;
-    padding: 4px 12px 4px 2px;
-    border: 1px solid #c8c8c8;
-    background-color: hsla(0, 0%, 71%, .1);
 }
 .btn-up-resend {
     position: absolute;
@@ -245,6 +216,13 @@ body{
     border-radius: 20px;
     text-align: center;
     color: white !important;
+}
+.send_code_extra{
+	position: absolute;
+    height: 25px;
+    line-height: 25px;
+    text-decoration: none;
+    float: left;
 }
 .btn_up_press{
 	top: 15px;
@@ -261,6 +239,7 @@ body{
 
 .new-input-pwd{
 	float: right;
+	padding: 6px;
 }
 
 /* 发送验证码按钮 */
@@ -347,6 +326,6 @@ body{
  }
 
 /* 昵称显示不了的问题（暂时解决) */
- input{
+ /*input{
 	 line-height: normal;
- }
+ }*/

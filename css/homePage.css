@@ -92,6 +92,7 @@ a img {
   color: red
 }
 
+
 /*热门项目专区*/
 .hot_zones_box{
 	margin-top: 22px;
@@ -205,9 +206,9 @@ a img {
 		display: none
 	} */
 }
-
-
-
+.hot_zone_title{
+	margin-top: 30px;
+}
 /* 播报 */
 .hot_zone_news{
 	margin-top:20px;
@@ -235,7 +236,7 @@ a img {
     border: solid 1px #006bb3;
     width: 50%;
     border-radius: 3px;
-    margin: 0px auto;
+    margin: 20px auto;
 }
 .hot_zone_more a{
 	color: #006bb3;
@@ -556,4 +557,8 @@ a img {
 
 .intro_topic{
 	margin-top: 10px;
+}
+/*推荐专题添加*/
+.comment_topic{
+	margin-top: 20px;
 }
