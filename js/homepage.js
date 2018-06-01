@@ -32,6 +32,40 @@ $('.create_project_button').on('click', function(){
 
 })
 
+// 渲染广告位
+// $(function(){
+// 	var uri = 'advertise/quaryAdertise?type=2'
+// 	doJavaGet(uri,function(res){
+// 		var tpl = document.getElementById('advertisment_tpl').innerHTML;
+// 		var content = template(tpl, {list: res.datas});
+// 		debugger
+//
+// 		$('.hot_coin_region').append(content);
+// 	})
+// })
+
+// 渲染banner
+// $(function(){
+// 	var uri = 'advertise/quaryAdertise?type=1'
+//
+// 	doJavaGet(uri,function(res){
+// 		var tpl = document.getElementById('advertisment_tpl').innerHTML;
+// 		var content = template(tpl, {list: res.datas});
+// 		$('.hot_coin_region').append(content);
+// 	})
+// })
+
+// 渲染专题
+// $(function(){
+// 	var uri = 'advertise/quaryAdertise?type=3'
+//
+// 	doJavaGet(uri,function(res){
+// 		var tpl = document.getElementById('advertisment_tpl').innerHTML;
+// 		var content = template(tpl, {list: res.datas});
+// 		$('.hot_coin_region').append(content);
+// 	})
+// })
+
 // 渲染热门专区
 $(function(){
 
@@ -50,15 +84,15 @@ $(function(){
 	   	var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
 	   	var content = template(tpl, {list: first_coin_list});
 	   	$('.hot_coin_region_1').append(content)
-	
+
 		var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
 		var content = template(tpl, {list: second_coin_list});
 		$('.hot_coin_region_2').append(content);
-	
+
 		var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
 		var content = template(tpl, {list: third_coin_list});
 		$('.hot_coin_region_3').append(content)
-	
+
 		$('.project-count').html(result.count)
 		var imgW = $(".hot_coin_region .inner-img-wrap").width();
 		$(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
@@ -82,7 +116,6 @@ var uri = 'http://testapi.blockcomet.com/news/search?currentPage=1&pageSize=10&d
 	    var content = template(tpl, {list: result.datas});
 	    $('.hot_zone_wrap').append(content)
 	    // 限制描述播报
-
 		},
 
 	});
@@ -164,7 +197,6 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
       $('.read-more').css('display','');
       $('.read-more').text('阅读更多');
 			$('.topic_article_load').css('display','none')
-
     }
 
     ui.loading = false;
@@ -329,7 +361,7 @@ $(document).ready(function () {
     var mySwiper = new Swiper ('.swiper-container', {
         autoplay: 5000,
         speed: 1500,
-        autoplay: true,
+        autoplay: false,
         disableOnInteraction:false,
         loop : true,
         effect : 'slide',
@@ -354,21 +386,21 @@ $(document).ready(function () {
 
     $('.swiper-btn-prev').click(function(){
         mySwiper.slidePrev();
-        mySwiper.autoplay.start();
+        // mySwiper.autoplay.start();
     })
     $('.swiper-btn-next').click(function(){
         mySwiper.slideNext();
        // $(".page-nums-switch").text(switchNum);
-        mySwiper.autoplay.start();
+        // mySwiper.autoplay.start();
     })
-
-    // 鼠标悬停停止翻转
-    $('.swiper-slide').mouseenter(function () {
-      mySwiper.autoplay.stop();
-    })
-    $('.swiper-slide').mouseleave(function () {
-       mySwiper.autoplay.start();
-    })
+		//
+    // // 鼠标悬停停止翻转
+    // $('.swiper-slide').mouseenter(function () {
+    //   mySwiper.autoplay.stop();
+    // })
+    // $('.swiper-slide').mouseleave(function () {
+    //    mySwiper.autoplay.start();
+    // })
 })
 
 //专题点击互相切换效果

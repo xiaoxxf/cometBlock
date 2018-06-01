@@ -95,7 +95,7 @@ a img {
 
 /*热门项目专区*/
 .hot_zones_box{
-	margin-top: 20px;
+	margin-top: 22px;
 }
 .subject_border{
 	border: solid 1px gainsboro;
@@ -236,12 +236,12 @@ a img {
     border: solid 1px #006bb3;
     width: 50%;
     border-radius: 3px;
-    margin: 20px auto;	
+    margin: 20px auto;
 }
 .hot_zone_more a{
 	color: #006bb3;
-	
-}		
+
+}
 .new_title{
 	float: left;
 	color: #696969;
@@ -270,13 +270,13 @@ a img {
     border-width: 4px;
 }
 .hot_news_wrapper_show{
-	text-align: left;	
-}	
+	text-align: left;
+}
 .hot_news_title{
 	color: #3d464d;
     cursor: pointer;
     /*margin-top: 20px;*/
-}	
+}
 
 .hot_news_content{
 	height: auto;
@@ -288,17 +288,17 @@ a img {
     color: #757e88;
     overflow: hidden;
 	display: none;
-}	
+}
 .hot_news_time{
     color: #a4abb1;
     line-height: 30px;
-}	
+}
 .turn_right{
 	position: absolute;
     left: 3px;
     top: 5px;
     color: #4285f4;
-}	
+}
 /* 专题标签 */
 
 .hot_review_box{
@@ -542,22 +542,22 @@ a img {
 }
 .hot_zone_topic .topic_tag_name{
   line-height: 70px;
-	
-}	
+
+}
 .topic_border{
 	border-bottom: solid 1px gainsboro;
-}	
+}
 .topic_border:last-child{
-	border-bottom: none;	
-}	
+	border-bottom: none;
+}
 /*重新布局*/
 .main-box{
 	margin-top: 80px;
 }
 
 .intro_topic{
-	margin-top: 10px;	
-}	
+	margin-top: 10px;
+}
 /*推荐专题添加*/
 .comment_topic{
 	margin-top: 20px;

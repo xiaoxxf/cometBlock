@@ -46,6 +46,10 @@ header {
 	padding-top: 4px;
 }
 
+.comment-detail-main #link-report p{
+	line-height: 30px;
+}
+
 .comment-detail-main .main-hd,
 .comment-detail-main .main-title-tip {
 	margin-bottom: 20px;

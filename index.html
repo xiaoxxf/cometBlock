@@ -25,20 +25,20 @@
 		<!-- 全局顶部导航栏 -->
 			<div class="navbar-fixed-container navbar-fixed-container-hook">
 			</div>
-			
+
 			<div class="container">
 				<div class="row main-box">
 					<!--左边主题内容·-->
 					<div class="main_container col-md-8">
-						
-						
+
+
 						<!--banner-->
 						<div class="hot_candy">
 							<div class="hot_zone_padding">
 								<img src="img/reading-banner.png" style="border-radius:3px;">
 							</div>
 						</div>
-						
+
 						<div class="hot_zone_title">
 										<span class="hot_block"></span>
 										<span style="float: left;display: block;"><a href="chain.html" class="hot-span hot-title">热门专区</a></span>
@@ -57,7 +57,7 @@
 									</div>
 						<!--热门专区-->
 								<div class="hot_zone hot_zone_box">
-									
+
 									<div class="hot_zone_coin">
 										<div class="swiper-container">
 											<div class="swiper-wrapper">
@@ -80,9 +80,10 @@
 										<!-- 小屏时 -->
 										<div class="hot_coin_region mobile-hot-coin">
 										</div>
+
 									</div>
 
-								</div> 
+								</div>
 
 						<!--推荐专题-->
 						<div class="hot_zone intro_topic">
@@ -101,11 +102,10 @@
 							<div class="hot_review_region">
 
 							</div>
-
 							<div class="read-more" style="display:none">阅读更多</div>
 						</div>
 					</div>
-				
+
 					<!--右边内容-->
 					<div class="raside col-md-4">
 						<!--创建项目-->
@@ -118,20 +118,31 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!--播报-->
 						<div class="hot_zone side" style="margin-top: 20px;">
 							<div class="hot_zone_title_right">
 								<span ><a href="news.html" class="hot-span hot-title">播报</a></span>
-								<!--<a href="news.html" style="float:right"><span>更多 &gt;&gt;</span></a>-->
+								<a href="news.html" style="float:right"><span>更多 &gt;&gt;</span></a>
 							</div>
 							<div class="hot_zone_news">
 								<ul class="hot_zone_wrap">
 
 								</ul>
-								<div class="hot_zone_more">
+								<!-- <div class="hot_zone_more">
 									<a href="news.html"><span>更多 </span></a>
-								</div>
+								</div> -->
+
+							</div>
+						</div>
+
+						<!--推荐专题-->
+						<div class="hot_zone side">
+							<div class="hot_zone_title_right">
+								<span ><a href="topic-index.html" class="hot-span">推荐专题</a></span>
+								<a href="topic-index.html" style="float:right"><span>更多 &gt;&gt;</span></a>
+							</div>
+							<div class="hot_zone_topic">
 
 							</div>
 						</div>
@@ -146,10 +157,96 @@
 							</div>
 						</div>
 					</div>
-				
-				</div>	
-			</div>			
+
+
+				</div>
+			</div>
 		</div>
+
+
+<!-- 手机端热门项目 -->
+<script type="text/html" id="hot_coin_tpl_mobile">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="coin-detail-mobile">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:56px;height:56px">
+			<h3 class="project-name"><%=list[i].projectBigName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
+
+<!-- pc端热门项目 -->
+<script type="text/html" id="hot_coin_tpl_1">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+			<!-- <br> -->
+			<img src='<%=list[i].projectLogo %>'  alt="">
+			<h3 class="project-name"><%=list[i].projectBigName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="hot_coin_tpl_2">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+				<!-- <br> -->
+				<img src='<%=list[i].projectLogo %>'  alt="">
+				<h3 class="project-name"><%=list[i].projectBigName%></h3>
+				<p class="score">
+					<%if(list[i].score ==0 ){%>
+					<span>暂无评分</span>
+					<%}else{%>
+					<span class="allstar<%:=list[i].score*5%>"></span>
+					<span><%=list[i].score%></span>
+					<%}%>
+				</p>
+			</a>
+		</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="hot_coin_tpl_3">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+				<!-- <br> -->
+				<img src='<%=list[i].projectLogo %>'  alt="">
+				<h3 class="project-name"><%=list[i].projectBigName%></h3>
+				<p class="score">
+					<%if(list[i].score ==0 ){%>
+					<span>暂无评分</span>
+					<%}else{%>
+					<span class="allstar<%:=list[i].score*5%>"></span>
+					<span><%=list[i].score%></span>
+					<%}%>
+				</p>
+			</a>
+		</div>
+	<%}%>
+</script>
+
+
 
 <!-- 手机端热门项目 -->
 <script type="text/html" id="hot_coin_tpl_mobile">
@@ -286,7 +383,6 @@
 
 
 <!-- 专题列表 -->
-
 <script type="text/html" id="topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<span data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span topic_name"><%=list[i].topic %></span>
@@ -297,8 +393,9 @@
 <script type="text/html" id="news_broadcast_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<li class="hot_news_wrapper_show">
-			<span class="fa fa-caret-right turn_right"></span>
 			<div class="hot_news_title" >
+				<span class="fa fa-caret-right turn_right"></span>
+
 				<%=list[i].title%>
 			</div>
 			<div class="hot_news_content" >
@@ -380,6 +477,20 @@
 	<%}%>
 </script>
 <!--广告位-->
+<script type="text/html" id="advertisment_tpl">
+	<%for(var i = 0; i < 3; i++) {%>
+		<div class="coin-detail-wrapper">
+			<div class="coin-detail_icon">
+				<a href="<%:=adverUrl %>" target="_blank">
+				<img src='img/show2.jpg'  alt="">
+			</a>
+			</div>
+			<div class="coin-detail-introduce">
+				<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
+			</div>
+		</div>
+	<%}%>
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>

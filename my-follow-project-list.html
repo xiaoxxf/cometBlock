@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>搜索用户</title>
+	<title>我关注的项目</title>
 	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 	<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -30,7 +30,7 @@
 					</div>
 
 					<div class="no-result" style="display:none">
-						找不到该用户
+						暂无关注项目数据
 					</div>
 
 				</div>
@@ -70,35 +70,16 @@
 								</div>
 						</div>
 		</div>
-		<script type="text/html" id="user_search_tpl">
+		<script type="text/html" id="follow_project_tpl">
 			<%for(var i = 0; i < list.length; i++) {%>
 					<li>
-						<a href="personal-homepage.html?userId=<%:=list[i].id %>" >
-							<%if(list[i].userPic ){%>
-								<img src="<%:=list[i].userPic %>" class="user_icon">
-							<%}else{%>
-								<img src="img/normal-user.png" class="user_icon">
-							<%}%>
+						<a href="chain-detail.html?projectId=<%:=list[i].projectId %>" >
+							<img src="<%:=list[i].projectLogo %>" class="user_icon">
 						</a>
 						<div class="user_info">
-							<a href="personal-homepage.html?userId=<%:=list[i].id %>"  class="user_name"><%:=list[i].realName %></a>
-							<!-- <p class="user_info_item">
-								<span>关注：0</span>
-								<span>粉丝：0</span>
-							</p> -->
-							<%if(list[i].personIntro ){%>
-								<p class="user_info_item">个人简介：<%:=list[i].personIntro %></p>
-							<%}else{%>
-								<p class="user_info_item">个人简介：他没有写下任何信息</p>
-							<%}%>
+							<a href="chain-detail.html?projectId=<%:=list[i].projectId %>"  class="user_name"><%:=list[i].projectBigName %></a>
 						</div>
-						<%if(list[i].follow ){%>
-							<span data-followingid="<%:=list[i].id%>" class="has_followed">已关注</span>
-						<%}else{%>
-							<span data-followingid="<%:=list[i].id%>" class="pay_attent" onclick="followUser(this)">关注</span>
-						<%}%>
-
-<br />
+            <br />
 					</li>
 			<%}%>
 		</script>
@@ -108,7 +89,7 @@
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
-<script src='js/search_user.js'></script>
+<script src='js/my-follow-project-list.js'></script>
 
 
 </body>
