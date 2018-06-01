@@ -33,16 +33,16 @@ $('.create_project_button').on('click', function(){
 })
 
 // 渲染广告位
-$(function(){
-	var uri = 'advertise/quaryAdertise?type=2'
-	doJavaGet(uri,function(res){
-		var tpl = document.getElementById('advertisment_tpl').innerHTML;
-		var content = template(tpl, {list: res.datas});
-		debugger
-
-		$('.hot_coin_region').append(content);
-	})
-})
+// $(function(){
+// 	var uri = 'advertise/quaryAdertise?type=2'
+// 	doJavaGet(uri,function(res){
+// 		var tpl = document.getElementById('advertisment_tpl').innerHTML;
+// 		var content = template(tpl, {list: res.datas});
+// 		debugger
+//
+// 		$('.hot_coin_region').append(content);
+// 	})
+// })
 
 // 渲染banner
 // $(function(){
@@ -66,7 +66,40 @@ $(function(){
 // 	})
 // })
 
+// 渲染热门专区
+$(function(){
 
+  var uri = 'blockchain/quaryProjetList?currentPage=1&pageSize=18'
+
+  doJavaGet(uri,function(result){
+	 // 渲染手机端
+	 var tpl = document.getElementById('hot_coin_tpl_mobile').innerHTML;
+	 var content = template(tpl, {list: result.datas});
+	 $('.mobile-hot-coin').append(content)
+
+   // console.log(result.datas)
+	 var first_coin_list = result.datas.splice(0,6);
+	 var second_coin_list = result.datas.splice(0,6);
+	 var third_coin_list = result.datas
+   var tpl = document.getElementById('hot_coin_tpl_1').innerHTML;
+   var content = template(tpl, {list: first_coin_list});
+   $('.hot_coin_region_1').append(content)
+
+	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
+	 var content = template(tpl, {list: second_coin_list});
+	 $('.hot_coin_region_2').append(content);
+
+	 var tpl = document.getElementById('hot_coin_tpl_2').innerHTML;
+	 var content = template(tpl, {list: third_coin_list});
+	 $('.hot_coin_region_3').append(content)
+
+	 $('.project-count').html(result.count)
+	 var imgW = $(".hot_coin_region .inner-img-wrap").width();
+	 $(".hot_coin_region .inner-img-wrap").css('height',imgW*270/230);
+
+  }, "json")
+
+})
 
 // 渲染播报
 $(function(){
@@ -164,7 +197,6 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
       $('.read-more').css('display','');
       $('.read-more').text('阅读更多');
 			$('.topic_article_load').css('display','none')
-
     }
 
     ui.loading = false;
@@ -324,52 +356,52 @@ $(window).on('resize', function () {
      // }
 	}, 100);
 })
-// $(document).ready(function () {
-//     //api 参考地址 http://www.swiper.com.cn/api/index.html
-//     var mySwiper = new Swiper ('.swiper-container', {
-//         autoplay: 5000,
-//         speed: 1500,
-//         autoplay: true,
-//         disableOnInteraction:false,
-//         loop : true,
-//         effect : 'slide',
-//         flipEffect: {
-//             slideShadows : true,
-//             limitRotation : true,
-//         },
-//         on: {
-//             slideChangeTransitionEnd: function(){
-//                 var switchNum = this.activeIndex;
-//                 if(switchNum == 4){
-//                     switchNum = 1;
-//                 }
-//                 if(switchNum == 0){
-//                     switchNum = 3;
-//                 }
-//                 $(".page-nums-switch").text(switchNum);
-//                 //console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
-//             },
-//         },
-//     })
-//
-//     $('.swiper-btn-prev').click(function(){
-//         mySwiper.slidePrev();
-//         mySwiper.autoplay.start();
-//     })
-//     $('.swiper-btn-next').click(function(){
-//         mySwiper.slideNext();
-//        // $(".page-nums-switch").text(switchNum);
-//         mySwiper.autoplay.start();
-//     })
-//
-//     // 鼠标悬停停止翻转
-//     $('.swiper-slide').mouseenter(function () {
-//       mySwiper.autoplay.stop();
-//     })
-//     $('.swiper-slide').mouseleave(function () {
-//        mySwiper.autoplay.start();
-//     })
-// })
+$(document).ready(function () {
+    //api 参考地址 http://www.swiper.com.cn/api/index.html
+    var mySwiper = new Swiper ('.swiper-container', {
+        autoplay: 5000,
+        speed: 1500,
+        autoplay: false,
+        disableOnInteraction:false,
+        loop : true,
+        effect : 'slide',
+        flipEffect: {
+            slideShadows : true,
+            limitRotation : true,
+        },
+        on: {
+            slideChangeTransitionEnd: function(){
+                var switchNum = this.activeIndex;
+                if(switchNum == 4){
+                    switchNum = 1;
+                }
+                if(switchNum == 0){
+                    switchNum = 3;
+                }
+                $(".page-nums-switch").text(switchNum);
+                //console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+            },
+        },
+    })
+
+    $('.swiper-btn-prev').click(function(){
+        mySwiper.slidePrev();
+        // mySwiper.autoplay.start();
+    })
+    $('.swiper-btn-next').click(function(){
+        mySwiper.slideNext();
+       // $(".page-nums-switch").text(switchNum);
+        // mySwiper.autoplay.start();
+    })
+		//
+    // // 鼠标悬停停止翻转
+    // $('.swiper-slide').mouseenter(function () {
+    //   mySwiper.autoplay.stop();
+    // })
+    // $('.swiper-slide').mouseleave(function () {
+    //    mySwiper.autoplay.start();
+    // })
+})
 
 //专题点击互相切换效果
 $(".hot_review_title").on('click', '.topic_name', function(e) {

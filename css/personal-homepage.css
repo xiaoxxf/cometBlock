@@ -21,6 +21,9 @@ a img {
     min-height: 130px;
     background-color: white;
 }
+.following_count,.follower_count{
+  color: #777;
+}
 /*@media screen and (max-width:970px) {
 	.person_introduce .intro_bottom{
 	    min-height: 300px;
@@ -296,7 +299,7 @@ a img {
 	color: #006bb3;
 }
 /*创建的专题*/
-.create_project_box{
+.create_project_box,.create_subject_box{
 	margin-top: 15px;
 }
 

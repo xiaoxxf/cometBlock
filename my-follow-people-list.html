@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>搜索用户</title>
+	<title></title>
 	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
 	<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/common.css">
@@ -29,9 +29,9 @@
 						</ul>
 					</div>
 
-					<div class="no-result" style="display:none">
-						找不到该用户
-					</div>
+					<!-- <div class="no-result" style="display:none">
+						暂无
+					</div> -->
 
 				</div>
 			</div>
@@ -92,23 +92,23 @@
 								<p class="user_info_item">个人简介：他没有写下任何信息</p>
 							<%}%>
 						</div>
-						<%if(list[i].follow ){%>
+						<!-- <%if(list[i].follow ){%>
 							<span data-followingid="<%:=list[i].id%>" class="has_followed">已关注</span>
 						<%}else{%>
 							<span data-followingid="<%:=list[i].id%>" class="pay_attent" onclick="followUser(this)">关注</span>
-						<%}%>
+						<%}%> -->
 
-<br />
+            <br />
 					</li>
 			<%}%>
-		</script>
+</script>
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <!-- <script src="js/plugins/swiper/swiper-4.2.2.min.js"></script> -->
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
-<script src='js/search_user.js'></script>
+<script src='js/my-follow-people-list.js'></script>
 
 
 </body>

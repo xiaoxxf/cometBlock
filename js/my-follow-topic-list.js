@@ -8,26 +8,25 @@ var ui = {
 }
 
 var current_page = 1;
-var pageSize = 6;
 function getTopicIndex(){
 	if(ui.loading){
 		return
 	}
 	ui.loading = true;
 	current_page = 1;
-  var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=2'
+	var uri = 'topic/seachTopic?currentPage=' + current_page +'&pageSize=6'
 	doJavaGet(uri ,function(result){
 		if(result.code == 0){
-  		//限制长度
-  		for(var i = 0; i < result.datas.length; i++){
-  			if(result.datas[i].description.length > 50){
-  				result.datas[i].description = result.datas[i].description.substr(0,50) + '...'
-  			}
-  		}
-  		var tpl= document.getElementById('topic_topic_index').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.hot_topic_list').append(content);
+		//限制长度
+		for(var i = 0; i < result.datas.length; i++){
+			if(result.datas[i].description.length > 50){
+				result.datas[i].description = result.datas[i].description.substr(0,50) + '...'
+			}
+		}
+
+		var tpl= document.getElementById('topic_topic_index').innerHTML;
+	    var content = template(tpl, {list: result.datas});
+	    $('.hot_topic_list').append(content)
 		}
 		ui.loading = false;
 	},"JSON")
@@ -40,8 +39,7 @@ function getMoreTopicIndex(){
 	ui.loading = true;
 	$('.loader1').css('display','')
 	current_page++;
-  var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=2'
+	var uri = 'topic/seachTopic?currentPage=' + current_page +'&pageSize=6';
 	doJavaGet(uri ,function(result){
 	if(result.code == 0){
 		//限制长度

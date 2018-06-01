@@ -36,15 +36,70 @@
 								<img src="img/reading-banner.png" style="border-radius:3px;">
 							</div>
 						</div>
+
 						<!--广告位-->
-						<div class="hot_zone hot_zone_box hot_zone_padding">
+						<!-- <div class="hot_zone hot_zone_box hot_zone_padding">
 							<div class="hot_zone_coin">
 								<div class="row hot_coin_region hot_coin_region_1 item active">
 
 								</div>
 							</div>
+						</div> -->
+
+
+						<!--热门专区-->
+						<div class="hot_zones_box">
+							<div class="row">
+
+								<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+									<div class="hot_zone hot_zone_box">
+										<div class="hot_zone_title">
+											<span class="hot_block"></span>
+											<span style="float: left"><a href="chain.html" class="hot-span hot-title">热门专区</a></span>
+											<div class="swiper-btn" >
+												<!-- 如果需要导航按钮 -->
+												<span class="swiper-btn-prev">
+													<i class="fa fa-arrow-left" style="color:#006bb3"></i>
+												</span>
+												<span class="page-nums">
+													<i class="page-nums-switch">1 </i> / 3
+												</span>
+												<span class="swiper-btn-next">
+													<i class="fa fa-arrow-right" style="color:#006bb3"></i>
+												</span>
+											</div>
+										</div>
+										<div class="hot_zone_coin">
+											<div class="swiper-container">
+												<div class="swiper-wrapper">
+													<div class="swiper-slide">
+														<div class="row hot_coin_region hot_coin_region_1 item active">
+														</div>
+													</div>
+													<div class="swiper-slide">
+														<div class="row hot_coin_region hot_coin_region_2 item">
+														</div>
+													</div>
+													<div class="swiper-slide">
+														<div class="row hot_coin_region hot_coin_region_3 item">
+														</div>
+													</div>
+												</div>
+												<!-- 如果需要分页器 -->
+												<div class="swiper-pagination"></div>
+											</div>
+											<!-- 小屏时 -->
+											<div class="hot_coin_region mobile-hot-coin">
+											</div>
+										</div>
+
+									</div>
+								</div>
+
+							</div>
 						</div>
-						<!--推荐专题-->
+
+
 						<div class="hot_zone intro_topic">
 							<div class="hot_review_title">
 								<span class="hot_block"></span>
@@ -61,7 +116,6 @@
 							<div class="hot_review_region">
 
 							</div>
-
 							<div class="read-more" style="display:none">阅读更多</div>
 						</div>
 					</div>
@@ -69,7 +123,7 @@
 					<!--右边内容-->
 					<div class="raside col-md-4">
 						<!--创建项目-->
-						<!--<div class="hot_zone side subject_border">
+						<div class="hot_zone side subject_border">
 							<div class="candy_box">
 								<a class="create_project_button" style="margin-top:70px">创建项目</a>
 								<div class="included_ariticle">
@@ -77,9 +131,27 @@
 									<span>共 <span class="project-count">231</span> 个项目被收录</span>
 								</div>
 							</div>
-						</div>-->
+						</div>
+
+						<!--播报-->
+						<div class="hot_zone side" style="margin-top: 20px;">
+							<div class="hot_zone_title_right">
+								<span ><a href="news.html" class="hot-span hot-title">播报</a></span>
+								<a href="news.html" style="float:right"><span>更多 &gt;&gt;</span></a>
+							</div>
+							<div class="hot_zone_news">
+								<ul class="hot_zone_wrap">
+
+								</ul>
+								<!-- <div class="hot_zone_more">
+									<a href="news.html"><span>更多 </span></a>
+								</div> -->
+
+							</div>
+						</div>
+
 						<!--推荐专题-->
-						<div class="hot_zone side" style="background-color: #f1f1f1;">
+						<div class="hot_zone side">
 							<div class="hot_zone_title_right">
 								<span ><a href="topic-index.html" class="hot-span">推荐专题</a></span>
 								<a href="topic-index.html" style="float:right"><span>更多 &gt;&gt;</span></a>
@@ -88,27 +160,106 @@
 
 							</div>
 						</div>
-						<!--播报-->
-						<div class="hot_zone side" style="margin-top: 20px;">
+						<!-- <div class="hot_zone side" style="background-color: #f1f1f1;">
 							<div class="hot_zone_title_right">
-								<span ><a href="news.html" class="hot-span hot-title">播报</a></span>
-								<!--<a href="news.html" style="float:right"><span>更多 &gt;&gt;</span></a>-->
+								<span ><a href="topic-index.html" class="hot-span">推荐专题</a></span>
+								<a href="topic-index.html" style="float:right"><span>更多 &gt;&gt;</span></a>
 							</div>
-							<div class="hot_zone_news">
-								<ul class="hot_zone_wrap">
-
-								</ul>
-								<div class="hot_zone_more">
-									<a href="news.html"><span>更多 </span></a>
-								</div>
+							<div class="hot_zone_topic">
 
 							</div>
-						</div>
+						</div> -->
 					</div>
+
 
 				</div>
 			</div>
 		</div>
+
+
+<!-- 手机端热门项目 -->
+<script type="text/html" id="hot_coin_tpl_mobile">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="coin-detail-mobile">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+			<br>
+			<img src='<%=list[i].projectLogo %>'  alt="" style="width:56px;height:56px">
+			<h3 class="project-name"><%=list[i].projectBigName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
+
+<!-- pc端热门项目 -->
+<script type="text/html" id="hot_coin_tpl_1">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+		<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+			<!-- <br> -->
+			<img src='<%=list[i].projectLogo %>'  alt="">
+			<h3 class="project-name"><%=list[i].projectBigName%></h3>
+			<p class="score">
+				<%if(list[i].score ==0 ){%>
+				<span>暂无评分</span>
+				<%}else{%>
+				<span class="allstar<%:=list[i].score*5%>"></span>
+				<span><%=list[i].score%></span>
+				<%}%>
+			</p>
+		</a>
+	</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="hot_coin_tpl_2">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+				<!-- <br> -->
+				<img src='<%=list[i].projectLogo %>'  alt="">
+				<h3 class="project-name"><%=list[i].projectBigName%></h3>
+				<p class="score">
+					<%if(list[i].score ==0 ){%>
+					<span>暂无评分</span>
+					<%}else{%>
+					<span class="allstar<%:=list[i].score*5%>"></span>
+					<span><%=list[i].score%></span>
+					<%}%>
+				</p>
+			</a>
+		</div>
+	<%}%>
+</script>
+
+<script type="text/html" id="hot_coin_tpl_3">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="col-md-2 col-sm-2 col-xs-2 coin-detail">
+			<a href="chain-detail.html?projectId=<%=list[i].projectId%>" target="_blank">
+				<!-- <br> -->
+				<img src='<%=list[i].projectLogo %>'  alt="">
+				<h3 class="project-name"><%=list[i].projectBigName%></h3>
+				<p class="score">
+					<%if(list[i].score ==0 ){%>
+					<span>暂无评分</span>
+					<%}else{%>
+					<span class="allstar<%:=list[i].score*5%>"></span>
+					<span><%=list[i].score%></span>
+					<%}%>
+				</p>
+			</a>
+		</div>
+	<%}%>
+</script>
+
+
 
 <!-- 专题下的文章 -->
 <script type="text/html" id="hot_article_tpl">
@@ -163,7 +314,6 @@
 
 
 <!-- 专题列表 -->
-
 <script type="text/html" id="topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<span data-topicid='<%=list[i].id %>' data-topicname='<%=list[i].topic %>' class="hot-span topic_name"><%=list[i].topic %></span>
@@ -174,8 +324,9 @@
 <script type="text/html" id="news_broadcast_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<li class="hot_news_wrapper_show">
-			<span class="fa fa-caret-right turn_right"></span>
 			<div class="hot_news_title" >
+				<span class="fa fa-caret-right turn_right"></span>
+
 				<%=list[i].title%>
 			</div>
 			<div class="hot_news_content" >
@@ -274,7 +425,7 @@
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<!-- <script src="js/plugins/swiper/swiper-4.2.2.min.js"></script> -->
+<script src="js/plugins/swiper/swiper-4.2.2.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
