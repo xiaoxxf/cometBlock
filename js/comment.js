@@ -388,7 +388,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         $(e.currentTarget).text('加上去');
         return;
     }
-    if(shortTxt.length >= 200){
+    if(shortTxt.length >= 500){
         layer.tips('文字太多', '.textarea-txt-hook', {
             tips: [1, '#4fa3ed'],
             time: 2000
@@ -983,15 +983,16 @@ function makeCode(){
 }
 //页面下拉到一定位置时，右下角出现回到顶部图标
 $(function () {
+  if ($(window).width() >= 767) {
     function showScroll() {
         $(window).scroll(function () {
             var scrollValue = $(window).scrollTop();
             scrollValue > 100 ? $('.news_alert_return_top').fadeIn() : $('.news_alert_return_top').fadeOut();
         });
         $('.news_alert_return_top').click(function () {
-            $("html,body").animate({ scrollTop: 0 }, 1000);
+            $("html,body").animate({ scrollTop: 0 }, 500);
         });
     }
-     showScroll();
+    showScroll();
+  }
 });
-

@@ -127,7 +127,7 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
 
       var tpl= document.getElementById('hot_article_tpl').innerHTML;
       var content = template(tpl, {list: result.datas});
-      $('.hot_review_region').append(content);
+      $('.hot_review_region').html(content);
       $('.read-more').css('display','');
       $('.read-more').text('阅读更多');
 			$('.topic_article_load').css('display','none')
@@ -141,60 +141,91 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
 })
 
 // 专题下的文章加载更多
-$('.read-more').on('click',function(){
-  if (ui.loading || ui.noMoreData ) {
-    return
-  }
-
-  ui.loading = true;
-  $('.read-more').text('加载中...')
-  topic_article_page++
-
-	if (topicName == '编辑推荐') {
-		raise = 1;
-	}else{
-		raise = '';
+function loadMoreArticle(){
+	if (ui.loading || ui.noMoreData ) {
+		return
 	}
 
-  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
+	ui.loading = true;
+	$('.read-more').text('加载中...')
+	topic_article_page++
+
+	// if (topicName == '编辑推荐') {
+	// 	raise = 1;
+	// }else{
+	// 	raise = '';
+	// }
+
+	var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
 						+ '&raise=' + raise
 
-  doJavaGet(uri, function(result){
-    if (result.datas.length == 0) {
-      ui.noMoreData = true;
-      $('.read-more').text('已无更多数据');
+	doJavaGet(uri, function(result){
+		if (result.datas.length == 0) {
+			ui.noMoreData = true;
+			$('.read-more').text('已无更多文章');
 
-    }else{
-      // 限制内容长度
-      for (var i = 0; i < result.datas.length; i++) {
+		}else{
+			// 限制内容长度
+			for (var i = 0; i < result.datas.length; i++) {
 
-        if (result.datas[i].textContent) {
-          result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
+				if (result.datas[i].textContent) {
+					result.datas[i].textContent = result.datas[i].textContent.replace(/<[^>]+>/g,"")
 
-          var content_length = null
-          if ($(window).width() < 767) {
-            content_length = 55
-          }else{
-            content_length = 120
-          }
+					var content_length = null
+					if ($(window).width() < 767) {
+						content_length = 55
+					}else{
+						content_length = 120
+					}
 
-          if (result.datas[i].textContent.length > content_length) {
-            result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-          }
-        }
-      }
+					if (result.datas[i].textContent.length > content_length) {
+						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+					}
+				}
+			}
 
-      var tpl= document.getElementById('hot_article_tpl').innerHTML;
-      var content = template(tpl, {list: result.datas});
-      $('.hot_review_region').append(content);
-      $('.read-more').text('阅读更多');
+			var tpl= document.getElementById('hot_article_tpl').innerHTML;
+			var content = template(tpl, {list: result.datas});
+			$('.hot_review_region').append(content);
+			$('.read-more').text('阅读更多');
 
-    }
+		}
 
-    ui.loading = false;
+		ui.loading = false;
 
-  })
+	})
+}
+$('.read-more').on('click',function(){
+
 })
+
+// 滚动到底部加载更多
+var resetTimer = null;
+var range = 50; //距下边界长度/单位px
+
+$(window).scroll(function(){
+	if (resetTimer) {
+		clearTimeout(resetTimer)
+	}
+
+	resetTimer = setTimeout(function(){
+
+		var srollPos = $(window).scrollTop(); //滚动条距顶部距离(页面超出窗口的高度)
+		// console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());
+		// console.log("页面的文档高度 ："+$(document).height());
+		// console.log('浏览器的高度：'+$(window).height());
+		totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+
+		if (($(document).height() - range) <= totalheight){
+				//当滚动条到底时,这里是触发内容
+				//异步请求数据,局部刷新dom
+				if (!ui.noMoreData && !ui.loading) {
+					loadMoreArticle();
+				}
+		}
+	},200)
+})
+
 
 // 长文点赞
 $(".hot_review_region").on('click','.like-button',function (e) {

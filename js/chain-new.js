@@ -167,7 +167,7 @@ $('.team').on('change', $('.member_pic'), function(e) {
 
 
   team_image_box = e.target.parentNode.previousElementSibling// team_image_box
-  //  
+  //
   $(team_image_box).children('img').remove()
 
 
@@ -191,7 +191,7 @@ var t = null
 // 上传币种图片
 function upLoadPorjectLogo(){
   var file = $('#project_logo_input')[0].files[0]
-  //  
+  //
   if (file == undefined) {
     return
   }
@@ -428,26 +428,33 @@ $('#form1').validator({
             });
           },
           success: function (result) {
-            ui.submiting = false
-            if (result.code == 0) {
+            // if (result.code == 0) {
               layer.msg('提交成功，请等待审核', {
                 time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
                 end:function(){
                 window.location.href='chain.html';
                 }
               });
-            }else{
-              layer.msg(result.msg)
-              $(".ouro").attr({
-                style: "display:none"
-              });
-              $('.submit_control').html('提交')
-              $('.submit_control').removeAttr('disabled')
-            }
+            // }else{
+            //   layer.msg(result.msg)
+            //   $(".ouro").attr({
+            //     style: "display:none"
+            //   });
+            //   $('.submit_control').html('提交')
+            //   $('.submit_control').removeAttr('disabled')
+            // }
           },
           error: function (err) {
             layer.msg('提交失败，请重试');
-            $('.submit_control').css('disabled','')
+            // $('.submit_control').css('disabled','')
+          },
+          complete: function(){
+            ui.submiting = false;
+            $(".ouro").attr({
+              style: "display:none"
+            });
+            $('.submit_control').html('提交')
+            $('.submit_control').removeAttr('disabled')
           }
       });
 

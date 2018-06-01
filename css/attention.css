@@ -172,6 +172,18 @@ a img {
   padding:2px 6px;
   margin-left: 10px;
 }
+.comment-content .hasFollowedBtn{
+  color: white;
+  text-align: center;
+  background-color: grey;
+  /* color: white; */
+  /* border:solid 1px #006bb3; */
+  border-radius: 5px;
+  cursor: pointer;
+  padding:2px 6px;
+  margin-left: 10px;
+}
+
 .comment-content .hadFollowBtn{
   color: white;
   text-align: center;
