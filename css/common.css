@@ -512,14 +512,16 @@ tbody a{
 .badge .badge-icon{
 	float: right;
 }
+
 .show-alert-inform {
-    position: fixed;
+	position:absolute;
+    /*position: fixed;*/
     text-align: right;
     width: 300px;
     height: 450px;
     color: #333;
-    /*right: 100px;*/
-    right: 20%;
+    right: -120px;
+    /*right: 20%;*/
     background-color: white;
     border-bottom: solid 1px #dcdcdca6;
     line-height: 40px;
