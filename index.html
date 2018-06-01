@@ -25,7 +25,7 @@
 		<!-- 全局顶部导航栏 -->
 			<div class="navbar-fixed-container navbar-fixed-container-hook">
 			</div>
-			
+
 			<div class="container">
 				<div class="row main-box">
 					<!--左边主题内容·-->
@@ -36,41 +36,11 @@
 								<img src="img/reading-banner.png" style="border-radius:3px;">
 							</div>
 						</div>
-						<!--热门专题-->
+						<!--广告位-->
 						<div class="hot_zone hot_zone_box hot_zone_padding">
 							<div class="hot_zone_coin">
 								<div class="row hot_coin_region hot_coin_region_1 item active">
-									
-									<!--<div class="coin-detail-wrapper">
-										<div class="coin-detail_icon">
-											<a href="" target="_blank">
-											<img src='img/show1.jpg'  alt="">
-										</a>
-										</div>
-										<div class="coin-detail-introduce">
-											<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
-										</div>
-									</div>
-									<div class="coin-detail-wrapper">
-										<div class="coin-detail_icon">
-											<a href="" target="_blank">
-											<img src='img/show2.jpg'  alt="">
-										</a>
-										</div>
-										<div class="coin-detail-introduce">
-											<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
-										</div>
-									</div>
-									<div class="coin-detail-wrapper">
-										<div class="coin-detail_icon">
-											<a href="" target="_blank">
-											<img src='img/show3.jpg'  alt="">
-										</a>
-										</div>
-										<div class="coin-detail-introduce">
-											<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
-										</div>
-									</div>-->
+
 								</div>
 							</div>
 						</div>
@@ -95,7 +65,7 @@
 							<div class="read-more" style="display:none">阅读更多</div>
 						</div>
 					</div>
-				
+
 					<!--右边内容-->
 					<div class="raside col-md-4">
 						<!--创建项目-->
@@ -135,9 +105,9 @@
 							</div>
 						</div>
 					</div>
-				
-				</div>	
-			</div>			
+
+				</div>
+			</div>
 		</div>
 
 <!-- 专题下的文章 -->
@@ -287,10 +257,24 @@
 	<%}%>
 </script>
 <!--广告位-->
+<script type="text/html" id="advertisment_tpl">
+	<%for(var i = 0; i < 3; i++) {%>
+		<div class="coin-detail-wrapper">
+			<div class="coin-detail_icon">
+				<a href="<%:=adverUrl %>" target="_blank">
+				<img src='img/show2.jpg'  alt="">
+			</a>
+			</div>
+			<div class="coin-detail-introduce">
+				<p class="coin-detail-introduce-detail">SaaS创业路线全貌,所有SaaS公司或2B公司不可能跳过这些阶段，每个阶段都有明确的任务</p>
+			</div>
+		</div>
+	<%}%>
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/plugins/swiper/swiper-4.2.2.min.js"></script>
+<!-- <script src="js/plugins/swiper/swiper-4.2.2.min.js"></script> -->
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>

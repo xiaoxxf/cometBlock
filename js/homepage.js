@@ -32,7 +32,41 @@ $('.create_project_button').on('click', function(){
 
 })
 
-// 渲染热门专区
+// 渲染广告位
+$(function(){
+	var uri = 'advertise/quaryAdertise?type=2'
+	doJavaGet(uri,function(res){
+		var tpl = document.getElementById('advertisment_tpl').innerHTML;
+		var content = template(tpl, {list: res.datas});
+		debugger
+
+		$('.hot_coin_region').append(content);
+	})
+})
+
+// 渲染banner
+// $(function(){
+// 	var uri = 'advertise/quaryAdertise?type=1'
+//
+// 	doJavaGet(uri,function(res){
+// 		var tpl = document.getElementById('advertisment_tpl').innerHTML;
+// 		var content = template(tpl, {list: res.datas});
+// 		$('.hot_coin_region').append(content);
+// 	})
+// })
+
+// 渲染专题
+// $(function(){
+// 	var uri = 'advertise/quaryAdertise?type=3'
+//
+// 	doJavaGet(uri,function(res){
+// 		var tpl = document.getElementById('advertisment_tpl').innerHTML;
+// 		var content = template(tpl, {list: res.datas});
+// 		$('.hot_coin_region').append(content);
+// 	})
+// })
+
+
 
 // 渲染播报
 $(function(){
@@ -49,7 +83,6 @@ var uri = 'http://testapi.blockcomet.com/news/search?currentPage=1&pageSize=10&d
 	    var content = template(tpl, {list: result.datas});
 	    $('.hot_zone_wrap').append(content)
 	    // 限制描述播报
-
 		},
 
 	});
@@ -291,52 +324,52 @@ $(window).on('resize', function () {
      // }
 	}, 100);
 })
-$(document).ready(function () {
-    //api 参考地址 http://www.swiper.com.cn/api/index.html
-    var mySwiper = new Swiper ('.swiper-container', {
-        autoplay: 5000,
-        speed: 1500,
-        autoplay: true,
-        disableOnInteraction:false,
-        loop : true,
-        effect : 'slide',
-        flipEffect: {
-            slideShadows : true,
-            limitRotation : true,
-        },
-        on: {
-            slideChangeTransitionEnd: function(){
-                var switchNum = this.activeIndex;
-                if(switchNum == 4){
-                    switchNum = 1;
-                }
-                if(switchNum == 0){
-                    switchNum = 3;
-                }
-                $(".page-nums-switch").text(switchNum);
-                //console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
-            },
-        },
-    })
-
-    $('.swiper-btn-prev').click(function(){
-        mySwiper.slidePrev();
-        mySwiper.autoplay.start();
-    })
-    $('.swiper-btn-next').click(function(){
-        mySwiper.slideNext();
-       // $(".page-nums-switch").text(switchNum);
-        mySwiper.autoplay.start();
-    })
-
-    // 鼠标悬停停止翻转
-    $('.swiper-slide').mouseenter(function () {
-      mySwiper.autoplay.stop();
-    })
-    $('.swiper-slide').mouseleave(function () {
-       mySwiper.autoplay.start();
-    })
-})
+// $(document).ready(function () {
+//     //api 参考地址 http://www.swiper.com.cn/api/index.html
+//     var mySwiper = new Swiper ('.swiper-container', {
+//         autoplay: 5000,
+//         speed: 1500,
+//         autoplay: true,
+//         disableOnInteraction:false,
+//         loop : true,
+//         effect : 'slide',
+//         flipEffect: {
+//             slideShadows : true,
+//             limitRotation : true,
+//         },
+//         on: {
+//             slideChangeTransitionEnd: function(){
+//                 var switchNum = this.activeIndex;
+//                 if(switchNum == 4){
+//                     switchNum = 1;
+//                 }
+//                 if(switchNum == 0){
+//                     switchNum = 3;
+//                 }
+//                 $(".page-nums-switch").text(switchNum);
+//                 //console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+//             },
+//         },
+//     })
+//
+//     $('.swiper-btn-prev').click(function(){
+//         mySwiper.slidePrev();
+//         mySwiper.autoplay.start();
+//     })
+//     $('.swiper-btn-next').click(function(){
+//         mySwiper.slideNext();
+//        // $(".page-nums-switch").text(switchNum);
+//         mySwiper.autoplay.start();
+//     })
+//
+//     // 鼠标悬停停止翻转
+//     $('.swiper-slide').mouseenter(function () {
+//       mySwiper.autoplay.stop();
+//     })
+//     $('.swiper-slide').mouseleave(function () {
+//        mySwiper.autoplay.start();
+//     })
+// })
 
 //专题点击互相切换效果
 $(".hot_review_title").on('click', '.topic_name', function(e) {

@@ -155,7 +155,7 @@ function createEditorAndGetContent(content){
       var uri = 'blockchain/updataReview'
       doPostJavaApi(uri, JSON.stringify(data), function(res){
         if (res.code == 0) {
-          layer.msg('提交成功', {
+          layer.msg('修改成功', {
             time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
             end:function(){
               window.location.href='article-finish.html'
@@ -167,7 +167,6 @@ function createEditorAndGetContent(content){
         }
         ui.submiting = false
       }, 'json')
-
     })
 
 
@@ -179,12 +178,13 @@ function createEditorAndGetContent(content){
     	$('.preview-container').css('display','')
     	$('.write-container').css('display', 'none')
     	var textContent = editor.txt.html();
-    	$('.review-content').html(textContent);
+    	$('.comment-detail-main').html(textContent);
     	var textTitle = $('.input-head').val()
     	$('.comment-detail-title').html(textTitle);
-    	$('.realName').html(userinfo.realName);
+    	$('.article_creator').html(userinfo.realName);
+      // $('.article_time').html();
     	if (userinfo.userPic) {
-    		$('.avatar img')[0].src = userinfo.userPic
+    		$('.review-creator-pic')[0].src = userinfo.userPic
     	}
     }
 
@@ -202,34 +202,26 @@ function createEditorAndGetContent(content){
     		quitPreview()
     	}
     })
-    // 修改编辑器样式
+
+    //编辑器强制修改
     $('.w-e-menu').css('font-size','20px');
     $('.w-e-text-container').css('border','0px');
     var _height=$("body").height()
     $('.w-e-text-container').css('height',_height * 0.8);
+    var containerW = $(".write-container").width() * 0.9;
+    var marL = $(".write-container").width() * 0.05 + 15;
+    var marL2 = $(".write-container").width() * 0.05;
+    $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+    $(".w-e-toolbar").css({ 'width': containerW});
+    $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+    window.onresize = function () {
+      var containerW = $(".write-container").width() * 0.9;
+      var marL = $(".write-container").width() * 0.05 + 15;
+      $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
+      $(".w-e-toolbar").css({ 'width': containerW});
+      $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
+    }
 
-    // var containerW = $(".write-container").width() * 0.9;
-    // var marL = $(".write-container").width() * 0.05 + 15;
-    // var marL2 = $(".write-container").width() * 0.05;
-    // $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-    // $(".w-e-toolbar").css({ 'width': containerW});
-    // $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-    // window.onresize = function () {
-    //   var containerW = $(".write-container").width() * 0.9;
-    //   var marL = $(".write-container").width() * 0.05 + 15;
-    //   $(".edit-comment").css({ 'width': containerW,'margin-left':marL});
-    //   $(".w-e-toolbar").css({ 'width': containerW});
-    //   $(".input-head").css({ 'width': containerW,'margin-left':marL2 });
-    // }
 
-    $(".edit-comment").on('click', function () {
-      if ($(".fake-placeholder").size() > 0) {
-        $(".fake-placeholder").remove();
-      }
-    })
-
-    $(".w-e-text").focus(function(){
-      $(".fake-placeholder").remove();
-    })
 
 }

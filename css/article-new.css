@@ -58,6 +58,9 @@
   top:120px !important;
   border: 0px !important;
 }
+.w-e-text-container p{
+  line-height: 2.3 !important;
+}
 /*默认文字*/
 .fake-placeholder {
   color: #ddd;
@@ -76,6 +79,9 @@
 .comment-detail-main .main-hd {
 	padding-top: 4px;
 }
+.comment-detail-main p{
+	line-height: 2.4;
+}
 
 .comment-detail-main .main-hd,
 .comment-detail-main .main-title-tip {
@@ -89,9 +95,15 @@
 .comment-container-wrap {
 	margin-top: 30px;
 	min-height: 600px;
-
 }
 
+.review-creator-pic{
+	width: 28px;
+	height: 28px;
+	border-radius: 50px;
+	/* margin-right:10px; */
+	/* margin-bottom:5px; */
+}
 @media (min-width:767px) {
 	.comment-container-wrap{
 		/* 限制宽度 */

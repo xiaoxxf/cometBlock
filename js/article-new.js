@@ -47,7 +47,6 @@ editor.customConfig.menus = [
   'code',  // 插入代码
   'undo',  // 撤销
   'redo'  // 重复
-
 ]
 
 var uploadUri = 'common/upload'
@@ -82,27 +81,13 @@ editor.customConfig.uploadImgHooks = {
 }
 // editor.customConfig.debug = true
 editor.create();
-// $('.w-e-text-container').attr('style','height:100%;');
-// $('.w-e-text-container').attr('style','width:auto;');
-// $('#div1').attr('style','height:auto;');
 // 读取草稿
-// var draft = $.cookie('draft') ? JSON.parse($.cookie('draft')) : ''
 var draft = localStorage.getItem('draft') ? JSON.parse(localStorage.getItem('draft')) : ''
 
 if (draft && draft.userId == userId) {
   $('input[name="head"]').val(draft.textTitle);
   editor.txt.html(draft.textContent);
 }
-
-
-// 修改菜单栏样式
-$('.w-e-menu').css('font-size','20px');
-$('.w-e-text-container').css('border','0px');
-var _height=$("body").height()
-$('.w-e-text-container').css('height',_height * 0.8);
-
-// $('.w-e-text').css('font-size','18px');
-// $('.w-e-text').css('height','150%');
 
 
 // 提交
@@ -172,12 +157,13 @@ function preview(){
 	$('.preview-container').css('display','')
 	$('.write-container').css('display', 'none')
 	var textContent = editor.txt.html();
-	$('.review-content').html(textContent);
+	$('.comment-detail-main').html(textContent);
 	var textTitle = $('.input-head').val()
 	$('.comment-detail-title').html(textTitle);
-	$('.realName').html(userinfo.realName);
+	$('.article_creator').html(userinfo.realName);
+  // $('.article_time').html();
 	if (userinfo.userPic) {
-		$('.avatar img')[0].src = userinfo.userPic
+		$('.review-creator-pic')[0].src = userinfo.userPic
 	}
 }
 
@@ -197,6 +183,10 @@ $('.preview-article').on('click',function(){
 })
 
 //编辑器强制修改
+$('.w-e-menu').css('font-size','20px');
+$('.w-e-text-container').css('border','0px');
+var _height=$("body").height()
+$('.w-e-text-container').css('height',_height * 0.8);
 var containerW = $(".write-container").width() * 0.9;
 var marL = $(".write-container").width() * 0.05 + 15;
 var marL2 = $(".write-container").width() * 0.05;
@@ -256,4 +246,3 @@ window.onbeforeunload=function(e){
     // $.cookie('draft', JSON.stringify(temp_content),{ expires: expireDate });
   }
 }
-
