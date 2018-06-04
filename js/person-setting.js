@@ -34,7 +34,8 @@ $(function(){
 	}
 	if (userinfo && userinfo.realName) {
 		$('#ownname').val(userinfo.realName)
-		$('.person-introduce').val(userinfo.personIntro)
+		$('.person-introduce').val(userinfo.personIntro);
+		$('.has_bind_phone').html('你绑定的手机号为：' + userinfo.tel);
 	}
 })
 

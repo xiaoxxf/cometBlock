@@ -106,7 +106,7 @@ function loginAfterSignUp() {
 function bindNewUser(){
 	var userinfo = JSON.parse(localStorage.getItem('userinfo'));
 	var userId = $.cookie('userid');//获取userid
-	var wechatInfo = JSON.parse($.cookie('wechatInfo'))
+	// var wechatInfo = JSON.parse($.cookie('wechatInfo'))
 	var uri = 'news/bindingUser?userId=' + userId + '&userPwd=' + userinfo.userPwd +'&openid=' + wechatInfo.openid
 	doJavaGet(uri, function(res){
 		if (res.code == 0) {
@@ -114,6 +114,7 @@ function bindNewUser(){
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+          $.removeCookie("wechatInfo");
           window.location.href = 'personal-homepage.html';
         }
       });
@@ -208,6 +209,7 @@ function bindExistUser(){
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           // var currentJumpHref = window.localStorage.getItem('currentJumpHref');
+          $.removeCookie("wechatInfo");
           window.location.href = 'personal-homepage.html';;
         }
       });
