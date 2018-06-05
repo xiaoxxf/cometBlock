@@ -35,9 +35,15 @@
 									<div class="reading-title">
 										精读Ulord白皮书活动
 									</div>
-									<p class="reading-time">为期两周的生存游戏主办方会设计7个问题，活动成员通过阅读Ulord白皮书，成员根据问题，在阅读的过程中寻找答案，并且输出读书笔记。参加者会被随机分队，各队竞选出队长，队长要带领大家存活下来，并在与其他战队的竞争中胜出。</p>
+									<p class="reading-time">
+										Ulord是一条点对点价值传递公链，通过搭建区块链底层架构和数字资源分发协议，支持第三方开发商在其开源协议之上构建自己的应用程序，与众多行业合作伙伴一起形成区块链技术与应用的完整生态。
+										基于Ulord创建的各种规则和协议，嫁接包括文字、图片、音乐、视频、软件等在内的各类数字资源应用场景，为信息创造者与消费者提供直接的对接平台。
+										第三方开发商可以发行代币，构建自己的经济体系，也可以围绕Ulord重点打造各类应用，使用Ulord中的UlordToken作为系统内凭证。
+										区别以往信息传递要借助平台或其他中心化机构才能进行传播获利这一模式，去除中间环节，信息提供者与消费者直接通过Ulord平台对接，保证了原创者利益的最大化。
+										------《Ulord白皮书》
+									</p>
 
-									<div class="reading-detail">
+									<!--<div class="reading-detail">
 										<p class="first-child">读书主题</p>
 										<p>1. 为什么要有主节点；</p>
 										<p>2. Ulord靠什么防止ASIC矿机，为什么要这么做；</p>
@@ -47,7 +53,7 @@
 										<p>6. 获取你的UlordToken；</p>
 										<p>7. 自由发挥。</p>
 
-									</div>
+									</div>-->
 
 								</div>
 							</div>
@@ -55,11 +61,30 @@
 
 					</div>
 					<div class="row">
+						
 						<div class="col-md-10 col-md-offset-1 col-xs-12 col-lg-10 col-lg-offset-1 col-sm-12">
-							<div class="reading-bottom_box">
-								<p class="reading-bottom-title">参赛队伍</p>
+							<!--广州站-->
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<div class="gz_reading-bottom_box">
+									<div class="area_header">
+										<img src="img/GZarea.png" class="gz_area_icon" />
+										<span class="gz_reading-bottom-title">广州站</span>
+									</div>
+								</div>
+								
+							</div>
+							<!--深圳站-->
+							<div class="col-md-6 col-sm-12 col-xs-12">
+								<div class="reading-bottom_box">
+									<div class="area_header">
+										<img src="img/favicon.png" class="area_icon" />
+										<span class="reading-bottom-title">深圳站</span>
+									</div>
+								</div>
 							</div>
 						</div>
+
+						
 					</div>
 
 
@@ -67,14 +92,14 @@
 			</div>
 		</div>
 
-
+<!--深圳站-->
 <script type="text/html" id="team_topic_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="box_content clearfix">
 			<a href="topic-show.html?subjectId=<%:=list[i].id %>"><img src="<%:=list[i].topicPic %>"  class="topicImage"/></a>
 			<div class="reading-bottom_box_title">
 				<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="reading-bottom_box_introduce1">
-					队名: <%:=list[i].topic %>
+					<%:=list[i].topic %>
 				</a>
 				<p class="reading-bottom_box_introduce2">
 					已收录 <%:=list[i].counts %> 篇文章
@@ -84,7 +109,22 @@
 		</div>
 	<%}%>
 </script>
-
+<!--广州站-->
+<script type="text/html" id="gzteam_topic_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+	<div class="gz_box_content clearfix">
+		<a href="topic-show.html?subjectId=<%:=list[i].id %>"><img src="<%:=list[i].topicPic %>"  class="topicImage"/></a>
+		<div class="reading-bottom_box_title">
+			<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="reading-bottom_box_introduce1">
+				<%:=list[i].topic %>
+			</a>
+			<p class="reading-bottom_box_introduce2">
+				已收录 <%:=list[i].counts %> 篇文章
+			</p>
+		</div>
+		<span class="gz_reading-contribute" data-topicid='<%:=list[i].id %>' onclick="showMyArticle(this)">投稿</span>
+	</div>
+	<%}%>
 <!-- 投稿弹窗 -->
 <script type="text/html" id="templay-send-topic">
 	<div class="modal-content">
@@ -108,13 +148,18 @@
 </script>
 
 <script type="text/html" id='my_article_list'>
-  <%for(var i = 0; i < list.length; i++) {%>
-    <li class="my_article_list">
-      <span  class="my_article_title" data-reviewId='<%:=list[i].reviewId %>' onclick="jumpToArticleDetail(this)"><%:=list[i].textTitle %></span>
-      <!-- <span >投稿</span> -->
-      <span class="send_to_article_button" data-reviewid="<%:=list[i].reviewId %>" onclick="contribute_to_topic(this)">投稿</span>
-    </li>
-  <%}%>
+	<%if(list.length==0){%>
+		<li class="">你还没有写过文章,去<a href="article-new.html">写一篇</a>吧</li>
+	<%}else{%>
+		<%for(var i = 0; i < list.length; i++) {%>
+		    <li class="my_article_list">
+		      <span  class="my_article_title" data-reviewId='<%:=list[i].reviewId %>' onclick="jumpToArticleDetail(this)"><%:=list[i].textTitle %></span>
+		      <!-- <span >投稿</span> -->
+		      <span class="send_to_article_button" data-reviewid="<%:=list[i].reviewId %>" onclick="contribute_to_topic(this)">投稿</span>
+		    </li>
+		 <%}%>
+	<%}%>
+  
 </script>
 
 <script src="js/jquery-2.1.1.js"></script>

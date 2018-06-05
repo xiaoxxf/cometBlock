@@ -1,7 +1,9 @@
 var teamTopicInfo = []
+var gzteamTopicInfo=[]
 var current_topic_id = ''
 window.onload = function(){
   getTeamTopic();
+  getGZTeamTopic();
 }
 
 // 获取三个小队专题信息
@@ -22,7 +24,21 @@ function getTeamTopic(){
     // ui_subject.loading = false;
   })
 }
-
+//获取广州三小分队专题信息
+function getGZTeamTopic(){
+	var subject_page=1
+  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=c8ed1e11-4603-495f-a57a-2b74e2b12018'
+	doJavaGet(uri,function(res){
+		for (var i = 0; i < 3; i++) {
+      gzteamTopicInfo.push(res.datas[i])
+    }
+    if (res.datas.length > 0) {
+      var tpl = document.getElementById('gzteam_topic_tpl').innerHTML;
+      var content = template(tpl, {list: gzteamTopicInfo});
+      $('.gz_reading-bottom_box').append(content);
+    }
+	})
+}
 // 向专题投稿（弹窗） --- 加载我的文章
 function showMyArticle(e){
   // 判断是否登录
