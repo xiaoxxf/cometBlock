@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- 原chain.html页 -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>个人主页</title>
+	<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
+	<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
+	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
+	<link rel="stylesheet" href="css/my_wallet.css" />
+	<link rel="stylesheet" media="all" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="js/page/jquery.pagination.css">
+	<link rel="stylesheet" type="text/css" href="css/header-tpl.css"/>
+
+	<!-- 导航栏 -->
+</head>
+<body lang="zh-CN" class="reader-black-font" style="background-color: white;">
+		<div class="comet-main block-comet-main-wrap">
+		<!-- 全局顶部导航栏 -->
+			<div class="navbar-fixed-container navbar-fixed-container-hook">
+			</div>
+			<div class="mian-container">
+				<div class="container" >
+					<div class="row">
+						<div class="user_wallet_header clearfix">
+							<div class="user_icon_name_box col-md-4 col-xs-12 col-sm-12">
+								<img src="" class="user_icon" />
+								<span class="user_name">低不语</span>
+							</div>
+							<div class="hui_coin_box col-md-4 col-xs-12 col-sm-12">
+								<p class="hui_coin">
+									<span class="coin_name">彗星币</span>
+									<span class="coin_num"></span>
+								</p>
+								<a href="" class="gain_coin">如何获取更多的彗星币</a>
+							</div>
+							<div class="recharge_cash_box col-md-4 col-xs-12 col-sm-12">
+								<p>
+									<a href="" class="recharge">充值</a>
+									<a href="" class="cash">提现</a>
+								</p>
+								<p class="development">开发中，尚未开放</p>
+							</div>
+						</div>
+						<div class="user_wallet_content clearfix">
+							<div class="user_wallet_title clearfix">
+								<div class="user_wallet_time col-md-3">时间</div>
+								<div class="user_wallet_type col-md-2">类型</div>
+								<div class="user_wallet_detail col-md-5">详情</div>
+								<div class="user_wallet_money col-md-2">金额</div>
+							</div>
+							<div class="content">
+								
+							</div>
+						</div>
+	
+					</div>
+						<div class="paginator-wrap">
+							<div id="paginator">
+								
+							</div>
+						</div>
+				</div>
+			</div>
+		</div>
+
+
+<script type="text/html" id="user_wallet_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="user_wallet_items clearfix">
+			<div class="item_time col-md-3"><%:=list[i].createTime %></div>
+			<div class="item_type col-md-2"><%:=list[i].type_name %></div>
+			<div class="item_detail col-md-5"><%:=list[i].actionDetail %></div>
+			
+				<%if(list[i].coinCurrency > 0 ){%>
+				<div class="item_money col-md-2"><%:=list[i].coinCurrency %><%:=list[i].coinName %></div>
+				<%}else{%>
+				<div class="item_money col-md-2"><%:=list[i].coinCurrency %><%:=list[i].coinName %></div>
+				<%}%>
+
+		</div>
+	<%}%>
+		
+</script>
+
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/common.js"></script>
+<script src="js/template.js"></script>
+<script src='js/my_wallet.js'></script>
+<script src='js/page/jquery.pagination.min.js'></script>
+	
+
+</body>
+
+</html>
