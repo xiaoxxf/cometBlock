@@ -1,0 +1,89 @@
+
+.user_wallet_header{
+	padding-top: 50px ;
+	/*text-align: center;*/
+}
+.user_icon_name_box{
+	
+}
+.user_icon{
+	width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    margin-right: 20px;
+}
+.user_name{
+	font-weight: 600;
+    font-size: 18px;
+}
+.coin_num{
+	display: inline-block;
+    font-weight: 600;
+}
+.user_icon_name_box,.hui_coin_box{
+	border-right: solid 1px gainsboro;
+}
+.hui_coin{
+	margin-right: 40px;
+    display: block;
+    font-weight: 600;
+    font-size: 18px;
+}
+.gain_coin{
+	margin-top: 10px;
+    display: block;
+}
+.recharge,.cash{
+	border: solid 1px rgb(79, 163, 237);
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border-radius: 4px;
+    text-align: center;
+}
+.user_icon_name_box,
+.hui_coin_box,
+.recharge_cash_box{
+	width: 33%;
+	display: inline-block;
+}
+
+.recharge_cash_box{
+	padding-left: 20px;
+}
+.coin_name{
+	display: inline;
+    margin-right: 40px;
+}
+.development{
+	margin-top: 15px;
+}
+/*列表*/
+.user_wallet_content{
+	margin-top:50px;
+}
+.user_wallet_title {
+	border: solid 1px gainsboro;
+    padding: 10px;
+}
+.user_wallet_items {
+	border: solid 1px gainsboro;
+    padding: 10px;
+    border-top: none;
+}
+.user_wallet_time,
+.user_wallet_type,
+.user_wallet_detail
+{
+	border-right: solid 1px gainsboro;
+    padding: 10px;
+}
+.user_wallet_money{
+    padding: 10px;
+	
+}
+.paginator-wrap{
+	text-align: center;
+	margin-top: 50px;
+}
