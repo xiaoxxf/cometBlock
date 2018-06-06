@@ -166,7 +166,7 @@ function sendArticleToSubject(e){
 // 读书活动专题
 function getReadingActivityTopic(){
   var subject_page = 1
-  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
+  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=c8ed1e11-4603-495f-a57a-2b74e2b12018'
   doJavaGet(uri,function(result){
     // result.datas.shift();
     // result.datas.shift();
