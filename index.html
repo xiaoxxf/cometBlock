@@ -35,7 +35,18 @@
 						<!--banner-->
 						<div class="hot_candy">
 							<div class="hot_zone_padding">
-								<img src="img/reading-banner.png" style="border-radius:3px;">
+								<div class="swiper-container" id='swiper_banner'>
+								  <div class="swiper-wrapper">
+								    <div class="swiper-slide">
+											<img src="img/reading-banner.png" style="border-radius:3px;">
+										</div>
+								    <div class="swiper-slide">
+											<img src="img/reading-banner-2.png" style="border-radius:3px;">
+										</div>
+										<!-- 如果需要分页器 -->
+										<div class="swiper-pagination"></div>
+								  </div>
+								</div>
 							</div>
 						</div>
 
@@ -54,36 +65,35 @@
 												<i class="fa fa-arrow-right" style="color:#006bb3"></i>
 											</span>
 										</div>
-									</div>
+						</div>
 						<!--热门专区-->
-								<div class="hot_zone hot_zone_box">
+						<div class="hot_zone hot_zone_box">
 
-									<div class="hot_zone_coin">
-										<div class="swiper-container">
-											<div class="swiper-wrapper">
-												<div class="swiper-slide">
-													<div class="row hot_coin_region hot_coin_region_1 item active">
-													</div>
-												</div>
-												<div class="swiper-slide">
-													<div class="row hot_coin_region hot_coin_region_2 item">
-													</div>
-												</div>
-												<div class="swiper-slide">
-													<div class="row hot_coin_region hot_coin_region_3 item">
-													</div>
-												</div>
+							<div class="hot_zone_coin">
+								<div class="swiper-container" id='swiper_project'>
+									<div class="swiper-wrapper">
+										<div class="swiper-slide">
+											<div class="row hot_coin_region hot_coin_region_1 item active">
 											</div>
-											<!-- 如果需要分页器 -->
-											<div class="swiper-pagination"></div>
 										</div>
-										<!-- 小屏时 -->
-										<div class="hot_coin_region mobile-hot-coin">
+										<div class="swiper-slide">
+											<div class="row hot_coin_region hot_coin_region_2 item">
+											</div>
 										</div>
-
+										<div class="swiper-slide">
+											<div class="row hot_coin_region hot_coin_region_3 item">
+											</div>
+										</div>
 									</div>
 
 								</div>
+								<!-- 小屏时 -->
+								<div class="hot_coin_region mobile-hot-coin">
+								</div>
+
+							</div>
+
+						</div>
 
 						<!--推荐专题-->
 						<div class="hot_zone intro_topic">

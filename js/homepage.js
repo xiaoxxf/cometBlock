@@ -358,7 +358,7 @@ $(window).on('resize', function () {
 })
 $(document).ready(function () {
     //api 参考地址 http://www.swiper.com.cn/api/index.html
-    var mySwiper = new Swiper ('.swiper-container', {
+    var mySwiper = new Swiper ('#swiper_project', {
         autoplay: 5000,
         speed: 1500,
         autoplay: false,
@@ -401,6 +401,14 @@ $(document).ready(function () {
     // $('.swiper-slide').mouseleave(function () {
     //    mySwiper.autoplay.start();
     // })
+		var Swiper_banner = new Swiper('#swiper_banner', {
+			autoplay: true,//可选选项，自动滑动
+			delay: 5000,
+			speed: 1500,
+			parallax : true,
+			loop : true,
+
+		})
 })
 
 //专题点击互相切换效果
