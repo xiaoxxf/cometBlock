@@ -359,7 +359,6 @@ $(window).on('resize', function () {
 $(document).ready(function () {
     //api 参考地址 http://www.swiper.com.cn/api/index.html
     var mySwiper = new Swiper ('#swiper_project', {
-        autoplay: 5000,
         speed: 1500,
         autoplay: false,
         disableOnInteraction:false,
@@ -402,13 +401,21 @@ $(document).ready(function () {
     //    mySwiper.autoplay.start();
     // })
 		var Swiper_banner = new Swiper('#swiper_banner', {
-			autoplay: true,//可选选项，自动滑动
-			delay: 5000,
+			autoplay: {
+				delay: 5000,//5秒切换一次
+			},
+
 			speed: 1500,
 			parallax : true,
 			loop : true,
+			pagination: {
+			    el: '.swiper-pagination',
+					clickable :true,
+					// bulletClass : 'banner-bullet',
+			},
 
 		})
+
 })
 
 //专题点击互相切换效果
@@ -421,7 +428,7 @@ $(".hot_review_title").on('click', '.topic_name', function(e) {
 
 
 // banner跳转
-$('.hot_zone_padding').on('click',function(){
+$('.banner_one').on('click',function(){
 	window.location = 'reading-campaign.html'
 })
 
