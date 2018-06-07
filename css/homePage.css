@@ -56,7 +56,10 @@ a img {
 	margin-top:30px ;
 	min-height: 160px;
 }
-
+/*签到*/
+sign_in_button{
+	margin-top:30px;
+}
 .create_project_button{
   margin-top:70px;
 }

@@ -7,7 +7,38 @@ var ui = {
 	"noMoreData": false,
 	"loading": false
 }
+//判断登录状态才能创建项目
+  		 
+	$('.sign_in_button').on('click', function(){
 
+		if(!wechatBindNotice()){
+			return;
+		}
+		if(userId == undefined){
+			layer.open({
+				closeBtn:0,
+				title: '',
+				content: '请先登录您的账号',
+				btn: ['登录', '注册'],
+				yes: function(){
+					window.location.href='login.html'
+				},
+				btn2: function(){
+					window.location.href='register.html'
+				}
+			});
+		}else{
+			var creator = userinfo.id;
+			var uri='chainCoinWallet/signIn?creator='+creator
+				doJavaGet(uri,function(res){
+					debugger
+					if(res.code==0){
+						layer.msg(res.msg);
+					}
+				},"json")
+		}
+
+})
 // 判断登录状态才能创建项目
 $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){
@@ -430,6 +461,9 @@ $(".hot_review_title").on('click', '.topic_name', function(e) {
 // banner跳转
 $('.banner_one').on('click',function(){
 	window.location = 'reading-campaign.html'
+})
+$('.banner_two').on('click',function(){
+	window.location = 'reading_campaign_numgold.html'
 })
 
 // 加载推荐专题

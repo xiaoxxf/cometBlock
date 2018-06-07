@@ -161,23 +161,48 @@
 	<%}%>
 </script>
 
-<!-- 读书活动专题 -->
+<!-- 读书活动专题广州站 -->
 <script type="text/html" id="reading_activity_topic_tpl">
-	<%for(var i = 0; i < 3; i++) {%>
+	
 		<div class="col-md-6 col-xs-12 col-sm-12 border_right">
-			<div class="info_left">
-				<img src="<%:=list[i].topicPic %>" class="subject_icon"></img>
-				<div class="topic_subject_content">
-					<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="content_title"><%:=list[i].topic %></a>
-					<p class="content_num">已收录了<%=list[i].counts %>篇文章</p>
+			<%for(var i = 0; i < 3; i++) {%>
+			<div class="activity_container clearfix">	
+				<div class="info_left">
+					<img src="<%:=list[i].topicPic %>" class="subject_icon"></img>
+					<div class="topic_subject_content">
+						<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="content_title"><%:=list[i].topic %></a>
+						<p class="content_num">已收录了<%=list[i].counts %>篇文章</p>
+					</div>
+				</div>
+				<div class="info_right">
+					<span class="send_to_topic" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
 				</div>
 			</div>
-			<div class="info_right">
-				<span class="send_to_topic" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
-			</div>
+			<%}%>
 		</div>
-	<%}%>
+	
 </script>
+<script type="text/html" id="reading_activity_topic_sz_tpl">
+	
+		<div class="col-md-6 col-xs-12 col-sm-12 border_right">
+			<%for(var i = 0; i < 3; i++) {%>
+			<div class="activity_container clearfix">	
+				<div class="info_left">
+					<img src="<%:=list[i].topicPic %>" class="subject_icon"></img>
+					<div class="topic_subject_content">
+						<a href="topic-show.html?subjectId=<%:=list[i].id %>" class="content_title"><%:=list[i].topic %></a>
+						<p class="content_num">已收录了<%=list[i].counts %>篇文章</p>
+					</div>
+				</div>
+				<div class="info_right">
+					<span class="send_to_topic" data-subjectid='<%=list[i].id %>' onclick="sendArticleToSubject(this)">投稿</span>
+				</div>
+			</div>
+			<%}%>
+		</div>
+	
+</script>
+
 
 
 <script src="js/jquery-2.1.1.js"></script>

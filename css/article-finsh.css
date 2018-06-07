@@ -138,6 +138,17 @@ body{
 	/* padding: 10px; */
 	/* border: solid 1px gainsboro; */
 }
+.activity_container{
+	/*margin: 10px -12px;
+    padding: 10px;
+    border: solid 1px gainsboro;*/
+   	padding: 20px 40px;
+    border-right: solid 1px gainsboro;
+    border-bottom: solid 1px gainsboro;
+    border-left: solid 1px gainsboro;
+    margin: 0px -13px;
+    
+}
 .info_left{
 	float: left;
 }
@@ -147,7 +158,7 @@ body{
 
 .subject_icon{
 	float: left;
-  margin-right: 20px;
+    margin-right: 20px;
 	width: 50px;
 	height: 50px;
 }
