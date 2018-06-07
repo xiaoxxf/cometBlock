@@ -431,6 +431,9 @@ $(".hot_review_title").on('click', '.topic_name', function(e) {
 $('.banner_one').on('click',function(){
 	window.location = 'reading-campaign.html'
 })
+$('.banner_two').on('click',function(){
+	window.location = 'reading_campaign_numgold.html'
+})
 
 // 加载推荐专题
 $(function(){
