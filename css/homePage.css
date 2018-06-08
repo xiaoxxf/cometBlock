@@ -53,21 +53,8 @@ a img {
 }
 /*糖果盒 & 创建项目*/
 .candy_box{
-	margin-top:30px ;
-	min-height: 160px;
-}
-/*签到*/
-sign_in_button{
-	margin-top:30px;
-}
-.create_project_button{
-  margin-top:70px;
-}
-
-.hot_candy img{
-    background-size: cover;
-    height: 250px;
-    width: 100%;
+	margin-top:60px ;
+	min-height: 167px;
 }
 
 .candy_box a{
@@ -79,6 +66,21 @@ sign_in_button{
   border: solid 1px #006bb3;
   border-radius: 8px;
 }
+
+/*签到*/
+/* .sign_in_button{
+	margin-top:40px;
+}
+.create_project_button{
+  margin-top:70px;
+} */
+
+.hot_candy img{
+    background-size: cover;
+    height: 250px;
+    width: 100%;
+}
+
 
 .included_ariticle{
 	text-align: center;

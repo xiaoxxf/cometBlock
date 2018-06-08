@@ -7,16 +7,15 @@ var ui = {
 	"noMoreData": false,
 	"loading": false
 }
-//判断登录状态才能创建项目
-  		 
+//判断登录状态才能签到
 	$('.sign_in_button').on('click', function(){
-
 		if(!wechatBindNotice()){
 			return;
 		}
 		if(userId == undefined){
 			layer.open({
-				closeBtn:0,
+				closeBtn:1,
+				shadeClose:true,
 				title: '',
 				content: '请先登录您的账号',
 				btn: ['登录', '注册'],
@@ -30,15 +29,29 @@ var ui = {
 		}else{
 			var creator = userinfo.id;
 			var uri='chainCoinWallet/signIn?creator='+creator
-				doJavaGet(uri,function(res){
-					debugger
-					if(res.code==0){
-						layer.msg(res.msg);
-					}
-				},"json")
+			doJavaGet(uri,function(res){
+				if(res.code==0){
+					layer.msg(res.msg);
+					$('.sign_in_button').html('已签到')
+				}
+			},"json")
 		}
-
 })
+
+$(function(){
+	if(userId){
+		var uri = 'chainCoinWallet/determinHasSignIn?creator=' + userId
+		doJavaGet(uri,function(res){
+			if (res.code == 0) {
+				$('.sign_in_button').html('签到')
+			}
+			else if(res.code == -1){
+				$('.sign_in_button').html('已签到')
+			}
+		})
+	}
+})
+
 // 判断登录状态才能创建项目
 $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){

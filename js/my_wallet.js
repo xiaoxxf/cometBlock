@@ -5,17 +5,17 @@ var dic_arr_id = [];
 window.onload = function(){
 	searchCoinWalletType();
 	huiCoinNum();
-	
+
 }
 
 $('.user_name').html(userinfo.realName);
-$('.user_icon')[0].src = userinfo.userPic; 
+$('.user_icon')[0].src = userinfo.userPic;
 
 function searchCoinWalletType(){
 	var uri = 'blockchain/quary?parentId=31'
 	doJavaGet(uri,function(res){
 		for(var i = 0; i < res.datas.length; i++){
-			dic_arr_id.push(res.datas[i].id)
+			dic_arr_id.push(res.datas[i].dicType)
 		}
 		dic_arr = res.datas;
 		searchWalletData();
@@ -29,7 +29,7 @@ function searchWalletData(){
 			var temp_coin_type_id = res.datas[i].coinTypeId;
 			var temp_index = dic_arr_id.indexOf(temp_coin_type_id )
 			if( temp_index > 0 )
-   			{	
+   			{
    				res.datas[i]['type_name'] = dic_arr[temp_index].dicValue
    			}
 		}

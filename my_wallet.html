@@ -54,14 +54,14 @@
 								<div class="user_wallet_money col-md-2">金额</div>
 							</div>
 							<div class="content">
-								
+
 							</div>
 						</div>
-	
+
 					</div>
 						<div class="paginator-wrap">
 							<div id="paginator">
-								
+
 							</div>
 						</div>
 				</div>
@@ -72,19 +72,19 @@
 <script type="text/html" id="user_wallet_tpl">
 	<%for(var i = 0; i < list.length; i++) {%>
 		<div class="user_wallet_items clearfix">
-			<div class="item_time col-md-3"><%:=list[i].createTime %></div>
+			<div class="item_time col-md-3"><%:=list[i].createTime.split(' ')[0] %></div>
 			<div class="item_type col-md-2"><%:=list[i].type_name %></div>
 			<div class="item_detail col-md-5"><%:=list[i].actionDetail %></div>
-			
+
 				<%if(list[i].coinCurrency > 0 ){%>
-				<div class="item_money col-md-2"><%:=list[i].coinCurrency %><%:=list[i].coinName %></div>
+				<div class="item_money col-md-2">+ <%:=list[i].coinCurrency %> <%:=list[i].coinName %></div>
 				<%}else{%>
-				<div class="item_money col-md-2"><%:=list[i].coinCurrency %><%:=list[i].coinName %></div>
+				<div class="item_money col-md-2"><%:=list[i].coinCurrency %> <%:=list[i].coinName %></div>
 				<%}%>
 
 		</div>
 	<%}%>
-		
+
 </script>
 
 <script src="js/jquery-2.1.1.js"></script>
@@ -94,7 +94,7 @@
 <script src="js/template.js"></script>
 <script src='js/my_wallet.js'></script>
 <script src='js/page/jquery.pagination.min.js'></script>
-	
+
 
 </body>
 

@@ -316,11 +316,10 @@ $('.block-comet-main-wrap').on('click','.nav-user-account .inform-btn',function(
 })
 $('.block-comet-main-wrap').on('click','.nav-user-account .setting-btn',function(){
         window.location.href = "person-setting.html?personType=1";
-
 })
 //我的钱包
 $('.block-comet-main-wrap').on('click','.nav-user-account .my_wallet',function(){
-        window.location.href = "my_wallet.html?personType=1";
+        window.location.href = "my_wallet.html";
 })
 
 //微信登陆
