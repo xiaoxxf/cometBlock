@@ -37,7 +37,7 @@ function signIn(){
 		doJavaGet(uri,function(res){
 			if(res.code==0){
 				layer.msg(res.msg);
-				$('.sign_in_button').html('已连续签到' + res.datas.split('|').length + '天')
+				$('.sign_in_button').html('已连续签到 ' + res.datas.split('|').length + ' 天')
 			}else if(res.code == -1){
 				layer.msg('签到失败，请重试');
 			}
