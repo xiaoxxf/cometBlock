@@ -32,7 +32,9 @@ var ui = {
 			doJavaGet(uri,function(res){
 				if(res.code==0){
 					layer.msg(res.msg);
-					$('.sign_in_button').html('已签到')
+					$('.sign_in_button').html('已连续签到' + res.datas.split('|').length + '天')
+				}else if(res.code == -1){
+					layer.msg('签到失败，请重试');
 				}
 			},"json")
 		}
@@ -46,7 +48,11 @@ $(function(){
 				$('.sign_in_button').html('签到')
 			}
 			else if(res.code == -1){
-				$('.sign_in_button').html('已签到')
+				if (res.datas) {
+					$('.sign_in_button').html('已连续签到 ' + res.datas.split('|').length + ' 天')
+				}else{
+					$('.sign_in_button').html('已签到')
+				}
 			}
 		})
 	}
@@ -59,7 +65,8 @@ $('.create_project_button').on('click', function(){
 	}
 	if(userId == undefined){
 		layer.open({
-			closeBtn:0,
+			closeBtn:1,
+			shadeClose:true,
 			title: '',
 			content: '请先登录您的账号',
 			btn: ['登录', '注册'],
