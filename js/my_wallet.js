@@ -48,7 +48,12 @@ function huiCoinNum(){
 	var uri='chainCoinWallet/queryChainCoinBanlaceDetail?creator='+userId+'&coin_id=1'
 	doJavaGet(uri,function(res){
 		if(res.code==0){
-			$(".coin_num").html(res.datas.totalCount)
+			if (res.datas.totalCount) {
+				$(".coin_num").html(res.datas.totalCount + 'HUI')
+			}else{
+				$(".coin_num").html( '0 HUI')
+
+			}
 		}
 	},"json")
 }
