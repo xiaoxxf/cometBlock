@@ -9,37 +9,43 @@ var ui = {
 }
 //判断登录状态才能签到
 	$('.sign_in_button').on('click', function(){
-		if(!wechatBindNotice()){
-			return;
-		}
-		if(userId == undefined){
-			layer.open({
-				closeBtn:1,
-				shadeClose:true,
-				title: '',
-				content: '请先登录您的账号',
-				btn: ['登录', '注册'],
-				yes: function(){
-					window.location.href='login.html'
-				},
-				btn2: function(){
-					window.location.href='register.html'
-				}
-			});
-		}else{
-			var creator = userinfo.id;
-			var uri='chainCoinWallet/signIn?creator='+creator
-			doJavaGet(uri,function(res){
-				if(res.code==0){
-					layer.msg(res.msg);
-					$('.sign_in_button').html('已连续签到' + res.datas.split('|').length + '天')
-				}else if(res.code == -1){
-					layer.msg('签到失败，请重试');
-				}
-			},"json")
-		}
+
 })
 
+// 判断登录状态才能创建项目
+function signIn(){
+	if(!wechatBindNotice()){
+		return;
+	}
+	if(userId == undefined){
+		layer.open({
+			closeBtn:1,
+			shadeClose:true,
+			title: '',
+			content: '请先登录您的账号',
+			btn: ['登录', '注册'],
+			yes: function(){
+				window.location.href='login.html'
+			},
+			btn2: function(){
+				window.location.href='register.html'
+			}
+		});
+	}else{
+		var creator = userinfo.id;
+		var uri='chainCoinWallet/signIn?creator='+creator
+		doJavaGet(uri,function(res){
+			if(res.code==0){
+				layer.msg(res.msg);
+				$('.sign_in_button').html('已连续签到' + res.datas.split('|').length + '天')
+			}else if(res.code == -1){
+				layer.msg('签到失败，请重试');
+			}
+		},"json")
+	}
+}
+
+// 查询是否已签到
 $(function(){
 	if(userId){
 		var uri = 'chainCoinWallet/determinHasSignIn?creator=' + userId
@@ -48,6 +54,7 @@ $(function(){
 				$('.sign_in_button').html('签到')
 			}
 			else if(res.code == -1){
+				$('.sign_in_button').removeAttr('onclick')
 				if (res.datas) {
 					$('.sign_in_button').html('已连续签到 ' + res.datas.split('|').length + ' 天')
 				}else{
@@ -58,7 +65,6 @@ $(function(){
 	}
 })
 
-// 判断登录状态才能创建项目
 $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){
 		return;

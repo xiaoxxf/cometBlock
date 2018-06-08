@@ -4,7 +4,7 @@
 	/*text-align: center;*/
 }
 .user_icon_name_box{
-	
+
 }
 .user_icon{
 	width: 50px;
@@ -34,7 +34,7 @@
     display: block;
 }
 .recharge,.cash{
-	border: solid 1px rgb(79, 163, 237);
+		border: solid 1px rgb(79, 163, 237);
     width: 70px;
     height: 30px;
     line-height: 30px;
@@ -46,6 +46,7 @@
 .hui_coin_box,
 .recharge_cash_box{
 	width: 33%;
+	height: 50px;
 	display: inline-block;
 }
 
@@ -81,7 +82,7 @@
 }
 .user_wallet_money{
     padding: 10px;
-	
+
 }
 .paginator-wrap{
 	text-align: center;
