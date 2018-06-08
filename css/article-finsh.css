@@ -146,7 +146,7 @@ body{
     border-right: solid 1px gainsboro;
     border-bottom: solid 1px gainsboro;
     border-left: solid 1px gainsboro;
-    margin: 0px -13px;
+    margin: 0px -15px;
     
 }
 .info_left{
@@ -172,7 +172,7 @@ body{
 }
 @media only screen and (max-width:980px ) {
 	.border_right{
-    border-right:none;
+    /*border-right:none;*/
 }
 }
 .border_box{
