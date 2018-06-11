@@ -318,7 +318,7 @@ function loadMoreArticle(){
 	})
 }
 $('.read-more').on('click',function(){
-
+	loadMoreArticle()
 })
 
 // 滚动到底部加载更多
