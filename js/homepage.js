@@ -44,7 +44,7 @@ function signIn(){
 		},"json")
 	}
 }
-。；。
+
 // 查询是否已签到
 $(function(){
 	if(userId){
