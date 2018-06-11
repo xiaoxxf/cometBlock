@@ -112,7 +112,7 @@ $('#send_code').click(function() {
 	 		getCode()
 	 	}
 	 	else{
-			//layer.msg("请注册");
+	 		
 	 	}
 	}
  	
@@ -150,13 +150,14 @@ function dingshiqi() {
 //		count = 60
 //		flag_resetPwd_sendCode =false;
 	}
-		flag_resetPwd_sendCode =true;
+		flag_resetPwd_sendCode =false;
 	
 }
 
 function CountDown() {
 	count = 60
 	countdown = setInterval(dingshiqi, 1000);
+	
 
 }
 
@@ -190,4 +191,11 @@ $("#sign-in-form-submit-btn").click(function() {
 
 		}, "json");
 	}
+});
+
+//绑定回车
+$(document).keydown(function(event){
+	if(event.keyCode == 13){
+		$('#sign-in-form-submit-btn').click();
+		}
 });
