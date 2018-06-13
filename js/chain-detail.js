@@ -403,9 +403,11 @@ $(".short-comment-commit").on('click',function (e) {
     }
     // 过滤js和style标签
     shortTxt = shortTxt.replace(/<script.*?>.*?<\/script>/g,'').replace(/<style(([\s\S])*?)<\/style>/g, '');
+    var projectBigName = $('.coin-big-name').html();
     var data = {
         textTitle: shortTxt,
         projectId: projectId, //项目
+        projectBigName: projectBigName,
         score: score, //评分
         type: 1, //长文的type为2
         userId:userId
@@ -691,7 +693,7 @@ $('.write-long-discuss').on('click',function(){
     });
     return;
   }
-  window.location.href = 'long-comment.html?projectId='+projectId
+  window.location.href = 'long-comment.html?projectId='+ getUrlParam('projectId')
 })
 
 // 关注项目

@@ -4,7 +4,11 @@
 // var wechatInfo = $.cookie('wechatInfo');
 // wechatInfo == null ? wechatInfo : JSON.parse(wechatInfo);
 var quotedReviewId = null
+var originalReviewTitile = '';
+var originalReviewId = '';
+var originalCreator = '';
 var projectId = '';
+var projectBigName = '';
 var ui = {
   'loading': false,
   'noMoreData': false,
@@ -39,7 +43,12 @@ function  ajaxGetReviewDetail() {
             var commentInfoData = res.datas;
             // 给projectId赋值后再用projectId去请求项目信息
             projectId = res.datas.projectId
-
+            // 保存作者id
+            originalCreator = res.datas.creator
+            // 保存文章标题
+            originalReviewTitile = res.datas.textTitle
+            // 保存文章id
+            originalReviewId = res.datas.reviewId
             // 保存文章的专题id
             for (var i = 0; i < res.datas.topiclist.length; i++) {
               article_topic_list.push(res.datas.topiclist[i].id)
@@ -87,6 +96,7 @@ function  ajaxGetChainDetail() {
         if(res != null && res.code == 0) {
           $(".main-hd .project-name").attr('href','chain-detail.html?projectId='+projectId);
           $(".main-hd .project-name").text(res.datas.projectName)
+          projectBigName = res.datas.projectName;
         } else {
             layer.msg(res.msg);
         }
@@ -324,7 +334,7 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     }else{
         likes = 0;
     }
-    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             // console.log(res.msg)
@@ -405,8 +415,12 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         type: 3, //长文的type为2
         userId:userId,
         quote:quote,
-        quotedReviewId: quotedReviewId,
-        projectId: projectId
+        quotedReviewId: quotedReviewId, // 引用的评论的id
+        originalReviewId: originalReviewId, // 原文id
+        originalReviewTitile: originalReviewTitile, // 原文标题（用于发放奖励）
+        originalCreator: originalCreator, // 原文作者（用于发放奖励）
+        projectId: projectId, // 项目id
+        projectBigName: projectBigName // 项目名称（用于发放奖励）
     }
     var uri = 'blockchain/addReview';
     var jsonData = JSON.stringify(data);

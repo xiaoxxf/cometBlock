@@ -150,6 +150,7 @@ $(function(){
   		textTitle: $('input[name="head"]')[0].value,
   		textContent: text_content,
   		projectId: projectData.projectId, //项目Id
+			projectBigName: projectData.projectBigName,
   		score: score, //评分
   		type: 2, //长文的type为2
   		userId: userId, //userId
