@@ -104,19 +104,18 @@ function getRegister(){
 //点击验证
 var flag_resetPwd_sendCode =false;
 $('#send_code').click(function() {
-
-	if(flag_resetPwd_sendCode || !ifRegister){
-		layer.msg("手机号未注册过，请先注册");
-		return
+ 	if(SendCodeFromValid()){
+		if(flag_resetPwd_sendCode){
+			return
+		}
+	 	else if(!flag_resetPwd_sendCode && ifRegister){
+	 		getCode()
+	 	}
+	 	else{
+	 		
+	 	}
 	}
- 	//flag_resetPwd_sendCode =true;
- 	else if(!flag_resetPwd_sendCode && ifRegister){
- 		getCode()
- 	}
- 	else{
- 		layer.msg("手机号未注册过，请先注册");
- 	}
-
+ 	
 })
 //发送验证码
 function getCode() {
@@ -125,6 +124,7 @@ function getCode() {
 		var uri = 'blockchain/getCode?phoneNo=' + userPhone//输入手机号请求验证码验证
 		doJavaGet(uri, function(res) {
 			if(res != null && res.code == 0) {
+				debugger
 				layer.msg("验证码已发送");
 				//验证码倒计时
 				CountDown()
@@ -147,14 +147,17 @@ function dingshiqi() {
 
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
-		count = 60
-		flag_resetPwd_sendCode =false;
+//		count = 60
+//		flag_resetPwd_sendCode =false;
 	}
-
+		flag_resetPwd_sendCode =false;
+	
 }
 
 function CountDown() {
+	count = 60
 	countdown = setInterval(dingshiqi, 1000);
+	
 
 }
 
@@ -188,4 +191,11 @@ $("#sign-in-form-submit-btn").click(function() {
 
 		}, "json");
 	}
+});
+
+//绑定回车
+$(document).keydown(function(event){
+	if(event.keyCode == 13){
+		$('#sign-in-form-submit-btn').click();
+		}
 });

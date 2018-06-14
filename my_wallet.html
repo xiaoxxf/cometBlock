@@ -36,7 +36,7 @@
 									<span class="coin_name">彗星币</span>
 									<span class="coin_num"></span>
 								</p>
-								<a href="" class="gain_coin">如何获取更多的彗星币</a>
+								 <a class="gain_coin" onclick="getHuiCoin()">如何获取更多的彗星币</a>
 							</div>
 							<div class="recharge_cash_box col-md-4 col-xs-12 col-sm-12">
 								<p>
@@ -86,12 +86,30 @@
 	<%}%>
 
 </script>
+<!--如何获得更多彗星币-->
+<script type="text/html" id='getMoreHuiCoin'>
+	<div class="wrapper_box">
+		<p class="how_get_more_coin">如何获取更多彗星币？</p>
+		<p class="get_coin_title">发布文章：</p>
+		<p>发布的文章被其他人点赞或者回复</p>
+		<p class="get_coin_title">评价项目： </p>
+		<p>写项目短评；所写短评被点赞，将额外获得奖励</p>
+		<p>发布长文评测；长文评测被其他人点赞或者回复，将获得额外奖励。</p>
+		<p class="get_coin_title">回复项目长评/回复文章：</p>
+		<p>回复长评会得到奖励，回复内容被点赞可额外获得奖励。</p>
+		<p class="get_coin_title">创建项目：</p>
+		<p>创建项目审核通过后可获得奖励，奖励由提交内容的质量决定，越详细准确奖励越高。</p><br/>
+		<p class="get_coin_chaim">此版本为彗星币奖励机制的1.0版本，后续会根据项目运营情况做相应调整，也会解锁更多玩法以更好的激励和发掘好文章以及有价值的评论。</p>
+
+	</div>
+</script>
 
 <script src="js/jquery-2.1.1.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script src="js/common.js"></script>
 <script src="js/template.js"></script>
+<script src="js/plugins/layer/layer.js"></script>
 <script src='js/my_wallet.js'></script>
 <script src='js/page/jquery.pagination.min.js'></script>
 
