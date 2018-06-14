@@ -57,7 +57,26 @@ function huiCoinNum(){
 		}
 	},"json")
 }
-
+function getHuiCoin(){
+	console.log(11)
+	if($(window).width() <= 767)
+    {
+      area_width = '320px'
+        area_height = '500px'
+    }else{
+       area_width = '420px'
+         area_height = '480px'
+    }
+	 layer.open({
+        type: 1,
+        shade:0,
+        title: 0,
+        skin: 'layui-layer-report', //加上边框
+        area: [area_width,area_height ], //宽高
+        content: $("#getMoreHuiCoin").html()
+    });
+	
+}
 //分頁
 function initPage(count) {
     $(".paginator-wrap").pagination({

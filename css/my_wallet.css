@@ -88,3 +88,17 @@
 	text-align: center;
 	margin-top: 50px;
 }
+/*如何获得更多彗星币*/
+.wrapper_box{
+	padding: 30px;
+}
+.how_get_more_coin{
+	font-size: 18px;
+	font-weight: bold;
+}
+.get_coin_title{
+	font-weight: bold;
+}
+.get_coin_chaim{
+	color: #03A9F4;
+}
