@@ -1,5 +1,5 @@
 // var userinfo = JSON.parse(localStorage.getItem('userinfo'))
-
+var projectBigName = ''; //用于发送奖励
 $("#rating #stars img").on('mouseenter',function (e) {
     var self = $(e.currentTarget);
     if(self.attr('id') == 'star5'){
@@ -91,7 +91,7 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     }else{
         likes = 1;
     }
-    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             // console.log(res.msg)
@@ -148,6 +148,7 @@ function  ajaxGetChainDetail() {
 
               $('.project-title').append(string)
             }
+            projectBigName = res.datas.projectBigName;
         } else {
             layer.msg(res.msg);
         }
