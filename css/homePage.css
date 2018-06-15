@@ -79,8 +79,14 @@ a img {
     background-size: cover;
     height: 250px;
     width: 100%;
+    
 }
-
+@media only screen and (max-width:780px ) {
+	.hot_candy img{
+	    height: 200px;
+    
+	}
+}
 
 .included_ariticle{
 	text-align: center;
