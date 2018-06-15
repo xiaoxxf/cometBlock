@@ -34,7 +34,7 @@ window.onload = function(){
 function  ajaxGetReviewDetail() {
     var reviewId = getUrlParam('reviewId');
     // var reviewId = '21bcb4f3-1855-4272-9441-f0164bf8ea9a';
-    var uri = 'blockchain/reviewDetail?reviewId='+reviewId ;
+    var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
           commentInfoData = res.datas
@@ -158,7 +158,10 @@ function createEditorAndGetContent(content){
           layer.msg('修改成功', {
             time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
             end:function(){
-              window.location.href='article-finish.html'
+              // window.location.href='article-finish.html'
+
+              window.location.href='comment.html?reviewId=' + commentInfoData.reviewId
+
             }
           });
         }else{
