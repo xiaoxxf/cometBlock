@@ -220,7 +220,7 @@ $('.hot_review_title').on('click', '.topic_name', function(e){
 	// }else{
 	// 	raise = '';
 	// }
-  	var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
+  	var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=10'
 						// + '&raise=' + raise
 
   doJavaGet(uri, function(result){
@@ -278,7 +278,7 @@ function loadMoreArticle(){
 	// 	raise = '';
 	// }
 
-	var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=4'
+	var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + topic_article_page + '&pageSize=10'
 						+ '&raise=' + raise
 
 	doJavaGet(uri, function(result){

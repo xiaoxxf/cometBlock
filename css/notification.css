@@ -207,8 +207,16 @@ tbody {
 /*消息提示*/
 .show_table .menu {
     margin-bottom: 20px;
+    /* font-size: 18px; */
+    /* font-weight: 700; */
+}
+.show_table .menu .menu_slogan{
     font-size: 18px;
     font-weight: 700;
+}
+.show_table .menu .read_all_message{
+	float: right;
+	cursor: pointer;
 }
 .show_table ul li{
 	padding: 20px 10px;

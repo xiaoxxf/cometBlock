@@ -596,6 +596,15 @@ tbody a{
 	 display: block;
 	 /*position: absolute;*/
 }
+
+.show-alert-inform-bottom .read-all-message{
+	display: block;
+	float: left;
+	padding-left: 11px;
+	color:#999;
+	cursor: pointer;
+}
+
 .show-alert-inform-bottom a{
 	color:#999;
 }

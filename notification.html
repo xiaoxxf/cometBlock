@@ -73,35 +73,55 @@
 						<div class="col-xs-12 col-md-8 col-sm-12  col-md-offset-4 show_right">
 							<!-- 引用 -->
 							<div class="show_table show_table_detail cont0 quote">
-								<div class="menu">引用</div>
+								<div class="menu">
+									<span class="menu_slogan">引用</span>
+									<span class="read_all_message" onclick='readAllMessage(1)'>全部标记为已读</span>
+								</div>
 								<ul class="notification—list quote-list">
 
 								</ul>
 							</div>
 							<!-- 评论 -->
 							<div class="show_table show_table_detail cont1 comment">
-								<div class="menu">收到的评论</div>
+
+								<div class="menu">
+									<span class="menu_slogan">收到的评论</span>
+									<span class="read_all_message" onclick='readAllMessage(2)'>全部标记为已读</span>
+								</div>
+
 								<ul class="notification—list comment-list">
 
 								</ul>
 							</div>
 							<!--喜欢提示-->
 							<div class="show_table show_table_detail cont2 like">
-								<div class="menu">收到的点赞</div>
+								<div class="menu">
+									<span class="menu_slogan">收到的点赞</span>
+									<span class="read_all_message" onclick='readAllMessage(3)'>全部标记为已读</span>
+								</div>
+
 								<ul class="notification—list like-list">
 
 								</ul>
 							</div>
 							<!-- 审核通过 -->
 							<div class="show_table show_table_detail cont3 pass">
-								<div class="menu">审核通过的项目</div>
+								<div class="menu">
+									<span class="menu_slogan">审核通过的项目</span>
+									<span class="read_all_message"  onclick='readAllMessage(4)'>全部标记为已读</span>
+								</div>
+
 								<ul class="notification—list pass-list">
 
 								</ul>
 							</div>
 							<!-- 驳回 -->
-							<div class="show_table show_table_detai cont4 reject">
-								<div class="menu">被驳回的项目</div>
+							<div class="show_table show_table_detail cont4 reject">
+								<div class="menu">
+									<span class="menu_slogan">被驳回的项目</span>
+									<span class="read_all_message" onclick='readAllMessage(5)'>全部标记为已读</span>
+								</div>
+
 								<ul class="notification—list reject-list">
 
 								</ul>
@@ -190,7 +210,7 @@
 					<div class="info">
 						<div>
 							<a href="personal-homepage.html?userId=<%:=list[i].userId %>"><%:=list[i].realName%></a>
-							赞了你的的评论  <a href="#" style="margin-left:5px"><%:=list[i].title%></a>
+							赞了你的的评论  <a href="comment.html?reviewId=<%:=list[i].actionId%>" style="margin-left:5px"><%:=list[i].title%></a>
 						</div>
 
 						<div class="time"><%:=list[i].createTime%></div>

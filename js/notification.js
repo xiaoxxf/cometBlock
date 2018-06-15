@@ -48,6 +48,14 @@ $('.show_right').on('click', '.message' , function(e){
 	doJavaGet(uri, function(result){
 		if (result.code == 0) {
 			self.css('background-color','white')
+			// 未读条数-1
+			var count = $('.badge-inform').html()
+			if ( count == "" || count-1 == 0) {
+				$('.badge-inform').html('')
+			}else{
+				$('.badge-inform').html(count-1)
+			}
+
 		}else if(result.code == -1){
 			layer.msg(result.msg)
 		}
@@ -190,3 +198,29 @@ $(window).scroll(function(){
 		}
 	},100)
 })
+
+// 全部已读
+function readAllMessage(type){
+	// 清除未读状态样式
+	var uri = "news/readAllMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&type=" + type
+
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			$($('.notification—list')[type-1]).children('.unread').removeClass('unread');
+			countUnreadMessage(); //重新计算未读消息
+		}
+	})
+}
+
+// 计算未读消息
+function countUnreadMessage(){
+	if (userId) {
+		var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=12'
+		doJavaGet(uri,function(result){
+			if (result.code == 0) {
+				result.count ? $('.badge-inform').text(result.count) : $('.badge-inform').text('')
+			}
+
+		})
+	}
+}
