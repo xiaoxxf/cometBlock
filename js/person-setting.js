@@ -486,7 +486,7 @@ function uploadIcon(e){
 
 	doJavaGet(uri,function(result){
 		if(result.code == 0){
-			layer.msg('修改成功')
+//			layer.msg('修改成功')
 
 			// 更新localstorage信息
 			userinfo.userPic = data.userPic
