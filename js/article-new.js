@@ -109,6 +109,13 @@ $('.submit_comment').on('click',function(){
     return
   }
 
+  if (text_content.length < 300) {
+    layer.msg('文章内容不得少于300字');
+    $('.submit_comment').text('发布');
+    ui.submiting = false;
+    return
+  }
+
   var data = {
     textTitle: $('input[name="head"]')[0].value,
     textContent: text_content,

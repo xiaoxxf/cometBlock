@@ -389,8 +389,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         $(e.currentTarget).text('加上去');
         return;
     }
-    if($.trim(shortTxt) == ''){
-        layer.tips('评论不能为空', '.textarea-txt-hook', {
+    if($.trim(shortTxt) == '' || shortTxt.length < 5){
+        layer.tips('评论不能少于五个字', '.textarea-txt-hook', {
             tips: [1, '#4fa3ed'],
             time: 2000
         });
