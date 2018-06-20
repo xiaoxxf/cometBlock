@@ -36,10 +36,10 @@ function signIn(){
 		var uri='chainCoinWallet/signIn?creator='+creator
 		doJavaGet(uri,function(res){
 			if(res.code==0){
-				layer.msg('ding～签到成功，已向您钱包发射0.5HUI');
+				layer.msg(res.msg);
 				$('.sign_in_button').html('已连续签到 ' + res.datas.split('|').length + ' 天')
 			}else if(res.code == -1){
-				layer.msg('签到失败，请重试');
+				layer.msg(res.msg);
 			}
 		},"json")
 	}
