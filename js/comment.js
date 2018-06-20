@@ -426,7 +426,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     var jsonData = JSON.stringify(data);
     doPostJavaApi(uri,jsonData, function(res) {
         if(res != null && res.code == 0) {
-            layer.msg(res.msg);
+            var award =  result.msg.split('.').length > 1 ? result.msg.split('.')[0] + '.' + result.msg.split('.')[1].substr(0,2) : result.msg;
+            layer.msg("发布成功，获得" + award + "HUI，可前往我的钱包查看");
             $(".short-comment").val('')
             ajaxGetLongCommentReview();
         } else {

@@ -164,8 +164,9 @@ $(function(){
     }
 
     function callback(result){
-      ui.submiting = false
-      layer.msg('提交成功', {
+      ui.submiting = false;
+			var award =  result.msg.split('.').length > 1 ? result.msg.split('.')[0] + '.' + result.msg.split('.')[1].substr(0,2) : result.msg;
+      layer.msg("发布成功，获得 " + award + " HUI，可前往我的钱包查看", {
         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
         end:function(){
           window.location.href='chain-detail.html?projectId=' + projectData.projectId;

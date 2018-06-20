@@ -417,7 +417,8 @@ $(".short-comment-commit").on('click',function (e) {
     var jsonData = JSON.stringify(data)
     doPostJavaApi(uri,jsonData, function(res) {
         if(res != null && res.code == 0) {
-            layer.msg(res.msg);
+            var award =  res.msg.split('.').length > 1 ? res.msg.split('.')[0] + '.' + res.msg.split('.')[1].substr(0,2) : res.msg;
+            layer.msg("发布成功，获得 " + award + " HUI，可前往我的钱包查看");
             $(".short-comment").val('');
             ajaxGetComments(true);
             ajaxGetScoreInfo(true);
