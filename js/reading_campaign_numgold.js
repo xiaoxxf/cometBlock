@@ -7,11 +7,11 @@ window.onload = function(){
 // 获取三个小队专题信息
 function getTeamTopic(){
   var subject_page = 1
-  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
+  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=12&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
   // ui_subject.loading = true;
   // ui_subject.noMoreData = false;
   doJavaGet(uri, function(res){
-    for (var i = 0; i < 3; i++) {
+    for (var i = 3; i < 6; i++) {
       teamTopicInfo.push(res.datas[i])
     }
     if (res.datas.length > 0) {
