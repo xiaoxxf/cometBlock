@@ -393,6 +393,16 @@ $(".short-comment-commit").on('click',function (e) {
         $(".short-comment-commit").text('评论');
         return;
     }
+    if($.trim(shortTxt) == '' || shortTxt.length < 5){
+
+      layer.tips('评论不得少于五个字', '.short-comment', {
+          tips: [1, '#4fa3ed'],
+          time: 2000
+      });
+      short_comment_ui.submiting = false;
+      $(".short-comment-commit").text('评论');
+      return;
+    }
     if(shortTxt.length >= 500){
         layer.tips('文字太多，你可以选择去发表长文', '.short-comment', {
             tips: [1, '#4fa3ed'],
@@ -558,6 +568,7 @@ function edit_short_comment(e){
     content: $('#add_score').html(),
     yes: function(index, layero){
       var score = parseInt($(".live-rating")[0].innerHTML) || current_socre;
+      var content = $('.edit-short-comment').val();
       if(!score){
           layer.tips('给这个项目打个分哦', '.my-rating', {
               tips: [1, '#4fa3ed'],
@@ -565,6 +576,23 @@ function edit_short_comment(e){
           });
           return;
       }
+
+      if (content.length == 0) {
+        layer.tips('评论不得为空', '.edit-short-comment', {
+            tips: [1, '#4fa3ed'],
+            time: 2000
+        });
+        return;
+      }
+      if (content.length < 5) {
+        layer.tips('文字长度不能少于5个字', '.edit-short-comment', {
+            tips: [1, '#4fa3ed'],
+            time: 2000
+        });
+        return;
+      }
+
+
       // 修改
       var uri = 'blockchain/updataReview'
       var data = {
