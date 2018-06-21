@@ -356,6 +356,7 @@ $(".hot_review_region").on('click','.like-button',function (e) {
     var reviewid = self.data('reviewid');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
+		var projectBigName = self.data('projectbigname');
 
 		// 判断是否登录或绑定
 		if(!wechatBindNotice()){
@@ -374,7 +375,7 @@ $(".hot_review_region").on('click','.like-button',function (e) {
         return;
     }
 
-    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+		var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res.code == 0) {
           like_count++;

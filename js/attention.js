@@ -270,6 +270,7 @@ $(".hot_review_region").on('click','.like-button',function (e) {
     e.preventDefault()
     var self = $(e.currentTarget);
     var reviewid = self.data('reviewid');
+		var projectBigName = self.data('projectbigname');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
 		// 判断是否登录或绑定
@@ -289,7 +290,7 @@ $(".hot_review_region").on('click','.like-button',function (e) {
         return;
     }
 
-    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res.code == 0) {
           like_count++;
