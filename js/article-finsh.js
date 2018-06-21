@@ -9,7 +9,7 @@ window.onload = function(){
   getMyTopic();
   getRecommendTopic();
   getReadingActivityTopic()
-  getReadingActivityTopicSZ()
+  getReadingActivityTopicGold()
 }
 
 // 获取最近一篇文章，即新增的文章
@@ -17,6 +17,7 @@ function getArticle(){
   var uri = 'blockchain/quaryReviewByUser?currentPage=1&pageSize=1'
             + '&creator=' + userId + '&type=4';
   doJavaGet(uri,function(res){
+    
     reviewId = res.datas[0].reviewId;
     $('.article_title').text('《' + res.datas[0].textTitle + '》');
     $(".send_sucess").attr('href','comment.html?reviewId='+reviewId)
@@ -164,9 +165,10 @@ function sendArticleToSubject(e){
 }
 
 
-// 读书活动专题
+// 读书活动专题《ulord》
 function getReadingActivityTopic(){
   var subject_page = 1
+
   var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=c8ed1e11-4603-495f-a57a-2b74e2b12018'
   doJavaGet(uri,function(result){
     // result.datas.shift();
@@ -178,10 +180,12 @@ function getReadingActivityTopic(){
   }, "json");
 }
 
-// 读书活动专题深圳站
-function getReadingActivityTopicSZ(){
-  var subject_page = 1
-  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=5&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
+// 读书活动《数字黄金》
+function getReadingActivityTopicGold(){
+
+  subject_page = 1
+  var uri = 'topic/seachTopic?currentPage=' + subject_page + '&pageSize=12&creator=db2bc250-1b48-4add-b0c4-bc849bf79723'
+
   doJavaGet(uri,function(result){
     // result.datas.shift();
     // result.datas.shift();

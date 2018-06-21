@@ -334,6 +334,7 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
     }else{
         likes = 0;
     }
+    
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {

@@ -134,14 +134,19 @@ $('.submit_comment').on('click',function(){
 
     success:function(res){
       // 清除草稿
-      save_draft_flag = false; //发表文章后跳转不保存草稿
-      localStorage.removeItem('draft');
-      layer.msg('提交成功', {
-        time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-        end:function(){
-          window.location.href='article-finish.html'
-        }
-      });
+      if (res.code == 0) {
+        save_draft_flag = false; //发表文章后跳转不保存草稿
+        localStorage.removeItem('draft');
+        layer.msg('提交成功', {
+          time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+          end:function(){
+            window.location.href='article-finish.html'
+          }
+        });
+      }else if(res.code == -1){
+        $('.submit_comment').text('发布');
+        layer.msg('提交失败，请重试')
+      }
 
     },
     error:function(res){
