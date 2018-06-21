@@ -511,7 +511,7 @@ function delete_short_comment(e){
       });
       return;
   }
-  layer.confirm('确定删除您的评论么?',
+  layer.confirm('删除后奖励会被收回,确定删除您的评论吗?',
       {
       icon: 3,
       title:0,
