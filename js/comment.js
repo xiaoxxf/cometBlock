@@ -390,7 +390,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         $(e.currentTarget).text('加上去');
         return;
     }
-    
+
     if($.trim(shortTxt) == '' || shortTxt.length < 5){
 
         layer.tips('评论不能少于五个字', '.textarea-txt-hook', {
@@ -429,8 +429,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     var jsonData = JSON.stringify(data);
     doPostJavaApi(uri,jsonData, function(res) {
         if(res != null && res.code == 0) {
-            var award =  res.msg.split('.').length > 1 ? res.msg.split('.')[0] + '.' + res.msg.split('.')[1].substr(0,2) : res.msg;
-            layer.msg("发布成功，获得" + award + "HUI，可前往我的钱包查看");
+            layer.msg(res.msg);
             $(".short-comment").val('')
             ajaxGetLongCommentReview();
         } else {

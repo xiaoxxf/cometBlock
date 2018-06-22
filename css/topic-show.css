@@ -59,18 +59,33 @@
 	padding-left: 20px;
   /* border-bottom: solid 1px gainsboro; */
 }
-.topic_include .recent_collect{
+.topic_include .review_category .recent_collect{
 	color: #555;
   font-weight: 600;
-  display: block;
+  /* display: block; */
   /*border-bottom: solid 2px #555;*/
   /* text-align: center; */
   height: 30px;
   width: 80px;
 	color: #999;
   margin-left: -10px;
+  cursor: pointer;
 }
-
+.topic_include  .review_category .not_passed{
+  color: #555;
+  font-weight: 600;
+  /* display: block; */
+  /*border-bottom: solid 2px #555;*/
+  /* text-align: center; */
+  height: 30px;
+  width: 80px;
+  color: #999;
+  cursor: pointer;
+  display: none;
+}
+.topic_include .review_category .on_selected{
+  color: rgb(79, 163, 237) !important;
+}
 
 /*专题公告*/
 .topic_info{
@@ -177,6 +192,10 @@
 
 .meta .review-count{
   margin-right: 10px;
+}
+.meta .pass_review,.del_review{
+  float: right;
+  /* display: none; */
 }
 
 .meta a,.meta span{

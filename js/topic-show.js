@@ -5,10 +5,11 @@ var ui = {
 }
 var topicId = getUrlParam('subjectId') //判断文章是否已被该专题收录
 var article_page = 1;
-
+var status = 1; // 审核通过 -> 1， 未通过 -> 0
+var pageSize = 12;
 window.onload = function(){
   getTopicDetail();
-  getTopicArticle();
+  getTopicArticle(status);
 }
 
 // 渲染专题信息
@@ -19,11 +20,13 @@ function getTopicDetail(){
   doJavaGet(uri,function(result){
 
   $('title').html('专题-' + result.datas[0].topic );
-		// 专题创建人显示收录按钮
+		// 专题创建人显示收录按钮、查看待审核文章
 		if (userId && result.datas[0].creator == userId) {
-			$('.collect_button').css('display','inline-block')
+			$('.collect_button').css('display','inline-block');
+			$('.not_passed').css('display','inline-block');
+
 		}else if(userId && result.datas[0].creator != userId){
-			$('.send_to_topic_alert_button').css('display','inline-block')
+			$('.send_to_topic_alert_button').css('display','inline-block');
 		}
 
     var tpl= document.getElementById('topic_detail_tpl').innerHTML;
@@ -84,14 +87,14 @@ function unFollowTopic(){
 	})
 }
 // 渲染专题下的文章
-function getTopicArticle(){
+function getTopicArticle(status){
   ui.loading = true;
   ui.noMoreData = false;
 	$('.refresh_load').fadeIn();
 	$('.topic_article_list').html('');
   article_page = 1;
   topicId = getUrlParam('subjectId');
-  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + article_page +'&pageSize=12'
+  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + article_page +'&pageSize=' + pageSize + '&status=' + status
 
   doJavaGet(uri, function(result){
     if (result.datas.length == 0) {
@@ -99,34 +102,37 @@ function getTopicArticle(){
       ui.loading = false;
       ui.noMoreData = true;
       return;
-    }
+    }else{
+			// 限制内容长度
+			for (var i = 0; i < result.datas.length; i++) {
 
-    // 限制内容长度
-    for (var i = 0; i < result.datas.length; i++) {
+				if (result.datas[i].textContent) {
+					result.datas[i].textContent = result.datas[i].textContent.replace(/<style(([\s\S])*?)<\/style>/g, '').replace(/<[^>]+>/g,"")
 
+					var content_length = null
+					if ($(window).width() < 767) {
+						content_length = 55
+					}else{
+						content_length = 120
+					}
 
-      if (result.datas[i].textContent) {
-        result.datas[i].textContent = result.datas[i].textContent.replace(/<style(([\s\S])*?)<\/style>/g, '').replace(/<[^>]+>/g,"")
+					if (result.datas[i].textContent.length > content_length) {
+						result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
+					}
+				}
+			}
 
-        var content_length = null
-        if ($(window).width() < 767) {
-          content_length = 55
-        }else{
-          content_length = 120
-        }
+			$('.refresh_load').hide();
+			var tpl= document.getElementById('topic_article_tpl').innerHTML;
+			var content = template(tpl, {list: result.datas});
+			$('.topic_article_list').append(content);
+			status == 1 ? $('.pass_review').css('display','none') : $('.pass_review').css('display','inline-block');
+			result.datas.length == pageSize ? $('.read-more').fadeIn() : $('.read-more').fadeOut();
 
-        if (result.datas[i].textContent.length > content_length) {
-          result.datas[i].textContent = result.datas[i].textContent.substring(0,content_length) + "..."
-        }
-      }
-    }
+			ui.loading = false;
 
-		$('.refresh_load').hide();
-    var tpl= document.getElementById('topic_article_tpl').innerHTML;
-    var content = template(tpl, {list: result.datas});
-    $('.topic_article_list').append(content);
-		$('.read-more').fadeIn();
-    ui.loading = false;
+		}
+
 
   })
 
@@ -140,7 +146,7 @@ $('.topic_border .read-more').on('click',function(){
   ui.loading = true;
   $('.topic_border .read-more').text('加载中...')
   article_page++;
-  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + article_page +'&pageSize=12'
+  var uri = 'topic/quaryArticle?topicId=' + topicId + '&currentPage=' + article_page +'&pageSize=' + pageSize + '&status=' + status
 
   doJavaGet(uri, function(result){
     if (result.datas.length == 0) {
@@ -502,3 +508,13 @@ function jumpToArticleDetail(e){
 			reviewId = self.data('reviewid');
 	window.open('comment.html?reviewId=' + reviewId);
 }
+
+$('.review_category').on('click', 'span', function(e){
+	$('.read-more').fadeOut(10);
+	$('.topic_border .read-more').text('阅读更多');
+	$('.review_category').children('span').removeClass('on_selected');
+	$(e.currentTarget).addClass('on_selected');
+
+	status = $(e.currentTarget).data('status');
+	getTopicArticle(status);
+})

@@ -51,7 +51,11 @@
 	                 		<div class="topic topic_border">
 
 	                 			<div class="topic_include">
-                          <span class="recent_collect">最新收录</span>
+                          <div class="review_category">
+                            <span class="recent_collect on_selected" data-status='1'>最新收录</span>
+                            <span class="not_passed" data-status='0'>待审核</span>
+                          </div>
+
                           <hr>
                           <div class="loading refresh_load topic_article_load" style="display:none;">
                                 <span></span>
@@ -193,7 +197,9 @@
 					<a class="article-time"> <%=list[i].createTime.split(' ')[0] %> </a>
             <a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="review-count"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
 					<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
-				</div>
+          <button type="button" class="pass_review btn btn-xs btn-primary">审核通过</butotn>
+          <button type="button" class="del_review btn btn-xs btn-primary">移出专题</butotn>
+      	</div>
 		</div>
 	<%}%>
 </script>
