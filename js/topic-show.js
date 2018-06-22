@@ -3,10 +3,11 @@ var ui = {
 	"noMoreData": false,
 	"loading": false
 }
-var topicId = getUrlParam('subjectId') //判断文章是否已被该专题收录
+var topicId = getUrlParam('subjectId')
 var article_page = 1;
 var status = 1; // 审核通过 -> 1， 未通过 -> 0
 var pageSize = 12;
+var topic_creator = ''; //专题创建人
 window.onload = function(){
   getTopicDetail();
   getTopicArticle(status);
@@ -21,10 +22,10 @@ function getTopicDetail(){
 
   $('title').html('专题-' + result.datas[0].topic );
 		// 专题创建人显示收录按钮、查看待审核文章
+		topic_creator = result.datas[0].creator;
 		if (userId && result.datas[0].creator == userId) {
 			$('.collect_button').css('display','inline-block');
 			$('.not_passed').css('display','inline-block');
-
 		}else if(userId && result.datas[0].creator != userId){
 			$('.send_to_topic_alert_button').css('display','inline-block');
 		}
@@ -126,7 +127,13 @@ function getTopicArticle(status){
 			var tpl= document.getElementById('topic_article_tpl').innerHTML;
 			var content = template(tpl, {list: result.datas});
 			$('.topic_article_list').append(content);
-			status == 1 ? $('.pass_review').css('display','none') : $('.pass_review').css('display','inline-block');
+			if (userId && userId == topic_creator) {
+				$('.del_review').css('display','inline-block')
+				status == 1 ? $('.pass_review').css('display','none') : $('.pass_review').css('display','inline-block');
+			}
+			// status == 1 ? $('.pass_review').css('display','none') : $('.pass_review').css('display','inline-block');
+			// status == 1 ? $('.del_review').css('display','none') :;
+
 			result.datas.length == pageSize ? $('.read-more').fadeIn() : $('.read-more').fadeOut();
 
 			ui.loading = false;
@@ -176,7 +183,11 @@ $('.topic_border .read-more').on('click',function(){
     }
     var tpl= document.getElementById('topic_article_tpl').innerHTML;
     var content = template(tpl, {list: result.datas});
-    $('.topic_article_list').append(content)
+    $('.topic_article_list').append(content);
+		if (userId && userId == topic_creator) {
+			$('.del_review').css('display','inline-block')
+			status == 1 ? $('.pass_review').css('display','none') : $('.pass_review').css('display','inline-block');
+		}
     $('.topic_border .read-more').text('加载更多');
     ui.loading = false;
 

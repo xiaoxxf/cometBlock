@@ -193,8 +193,13 @@
 .meta .review-count{
   margin-right: 10px;
 }
-.meta .pass_review,.del_review{
+.meta .pass_review{
   float: right;
+  /* display: none; */
+}
+.meta .del_review{
+  float: right;
+  margin-right: 5px;
   /* display: none; */
 }
 

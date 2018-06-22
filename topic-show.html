@@ -197,8 +197,8 @@
 					<a class="article-time"> <%=list[i].createTime.split(' ')[0] %> </a>
             <a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="review-count"><i class="fa fa-commenting "></i> <%:=list[i].review %> </a>
 					<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
-          <button type="button" class="pass_review btn btn-xs btn-primary">审核通过</butotn>
-          <button type="button" class="del_review btn btn-xs btn-primary">移出专题</butotn>
+          <button type="button" style="display:none" class="pass_review btn btn-xs btn-primary" onclick="passReview()">审核通过</butotn>
+          <button type="button" style="display:none" class="del_review btn btn-xs btn-primary" onclick="rejectReview()">移出专题</butotn>
       	</div>
 		</div>
 	<%}%>

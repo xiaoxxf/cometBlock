@@ -181,8 +181,13 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
             }
             ui.deleting = false;
         }, "json");
-        layer.close(index);
-    });
+        layer.close(index,function(){
+          ui.deleting = false;
+
+        });
+    }),
+    ui.deleting = false;
+    ;
 });
 
 // 点击编辑短文
