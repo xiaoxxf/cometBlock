@@ -151,10 +151,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         });
         return;
     }
-    if (ui.deleting) {
-      return
-    }
-    ui.deleting = true;
+
     var self =$(e.currentTarget),
         author = self.data('user_name'),
         passWord = userinfo.userPwd,
@@ -169,6 +166,10 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
         skin: 'layui-layer-report', //加上边框
         },
         function(index){
+        if (ui.deleting) {
+          return
+        }
+        ui.deleting = true;
         $('.layui-layer-btn0').text('删除中...');
         var uri = "blockchain/delReview?reviewId="+reviewId+"&userId="+userId+"&passWord="+passWord
         doJavaGet(uri, function(res) {
@@ -180,14 +181,10 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
               layer.msg('删除失败，请重试')
             }
             ui.deleting = false;
-        }, "json");
-        layer.close(index,function(){
-          ui.deleting = false;
-
-        });
-    }),
-    ui.deleting = false;
-    ;
+        }, "json"),
+        layer.close(index),
+        ui.deleting = false;
+      });
 });
 
 // 点击编辑短文

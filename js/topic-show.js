@@ -504,7 +504,7 @@ function contribute_to_topic(e){
     if (result.code == 0) {
       layer.msg('投稿成功');
       $(_send_button).text('已投稿')
-			getTopicArticle()
+			getTopicArticle(1)
     }else if(result.code == -1){
       layer.msg(result.msg);
     }
@@ -529,3 +529,47 @@ $('.review_category').on('click', 'span', function(e){
 	status = $(e.currentTarget).data('status');
 	getTopicArticle(status);
 })
+
+// 文章审核通过
+function passReview(e){
+	var self = $(e),
+			reviewId = self.data('reviewid');
+	var uri = 'topic/passReview?reviewId=' + reviewId + '&topicId=' + topicId
+	doJavaGet(uri,function(res){
+		if (res.code == 0) {
+			layer.msg('审核成功');
+			$(e.parentNode.parentNode).remove();
+		}else if(res.code == -1){
+			layer.msg('审核失败,请重试')
+		}
+	})
+}
+
+// 文章移出专题
+function removeReview(e){
+	var self = $(e),
+			reviewId = self.data('reviewid');
+	var uri = 'topic/removeReview?reviewId=' + reviewId + '&topicId=' + topicId
+
+	layer.confirm('确定将文章移出专题吗?',
+			{
+			icon: 3,
+			title:0,
+			shade:0,
+			title: 0,
+			skin: 'layui-layer-report', //加上边框
+			},
+			function(index){
+				doJavaGet(uri,function(res){
+					if (res.code == 0) {
+						layer.msg('移除成功');
+						$(e.parentNode.parentNode).remove();
+					}else if(res.code == -1){
+						layer.msg('移除失败,请重试')
+					}
+				})
+				layer.close(index)
+			}
+	);
+
+}
