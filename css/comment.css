@@ -847,3 +847,8 @@ a img {
 	margin-left: 15%;
 }
 }
+/*喜欢居中*/
+.pull-center{
+	margin-right: 45%;
+	margin-top: -65px;
+}
