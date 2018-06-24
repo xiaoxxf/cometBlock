@@ -8,8 +8,8 @@ window.onload = function(){
   getArticle();
   getMyTopic();
   getRecommendTopic();
-  getReadingActivityTopic()
-  getReadingActivityTopicGold()
+  getReadingActivityTopicGold();
+  getReadingActivityTopic();
 }
 
 // 获取最近一篇文章，即新增的文章
@@ -17,7 +17,7 @@ function getArticle(){
   var uri = 'blockchain/quaryReviewByUser?currentPage=1&pageSize=1'
             + '&creator=' + userId + '&type=4';
   doJavaGet(uri,function(res){
-    
+
     reviewId = res.datas[0].reviewId;
     $('.article_title').text('《' + res.datas[0].textTitle + '》');
     $(".send_sucess").attr('href','comment.html?reviewId='+reviewId)
@@ -191,7 +191,7 @@ function getReadingActivityTopicGold(){
     // result.datas.shift();
     var search = document.getElementById('reading_activity_topic_sz_tpl').innerHTML;
     var content = template(search, {list: result.datas});
-    $('.reading_activity_topic_list').append(content);
+    $('.reading_activity_topic_list').prepend(content);
 
   }, "json");
 }
