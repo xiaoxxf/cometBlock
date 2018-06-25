@@ -46,6 +46,7 @@ body{
     padding: 0 10px;
 }
 .footer-detail .row{
+	text-align: center;
     margin: 0px;
 }
 .fixed-footer-wrap .footer-detail .no-padding-row{

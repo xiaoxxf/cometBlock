@@ -39,12 +39,12 @@
 
 								<div class="swiper-container" id='swiper_banner'>
 								  <div class="swiper-wrapper">
+								    <!--<div class="swiper-slide">
+										<img src="img/reading-banner.png" style="border-radius:3px;" class="banner_one">
+									</div>
 								    <div class="swiper-slide">
-											<img src="img/reading-banner.png" style="border-radius:3px;" class="banner_one">
-										</div>
-								    <div class="swiper-slide">
-											<img src="img/reading-banner-2.png" style="border-radius:3px;" class="banner_two">
-										</div>
+										<img src="img/reading-banner-2.png" style="border-radius:3px;" class="banner_two">
+									</div>-->
 								  </div>
 									<div class="swiper-pagination"></div>
 
@@ -53,20 +53,20 @@
 						</div>
 
 						<div class="hot_zone_title">
-										<span class="hot_block"></span>
-										<span style="float: left;display: block;"><a href="chain.html" class="hot-span hot-title">热门专区</a></span>
-										<div class="swiper-btn" style="float: right;">
-											<!-- 如果需要导航按钮 -->
-											<span class="swiper-btn-prev">
-												<i class="fa fa-arrow-left" style="color:#006bb3"></i>
-											</span>
-											<span class="page-nums">
-												<i class="page-nums-switch">1 </i> / 3
-											</span>
-											<span class="swiper-btn-next">
-												<i class="fa fa-arrow-right" style="color:#006bb3"></i>
-											</span>
-										</div>
+							<span class="hot_block"></span>
+							<span style="float: left;display: block;"><a href="chain.html" class="hot-span hot-title">热门专区</a></span>
+							<div class="swiper-btn" style="float: right;">
+								<!-- 如果需要导航按钮 -->
+								<span class="swiper-btn-prev">
+									<i class="fa fa-arrow-left" style="color:#006bb3"></i>
+								</span>
+								<span class="page-nums">
+									<i class="page-nums-switch">1 </i> / 3
+								</span>
+								<span class="swiper-btn-next">
+									<i class="fa fa-arrow-right" style="color:#006bb3"></i>
+								</span>
+							</div>
 						</div>
 						<!--热门专区-->
 						<div class="hot_zone hot_zone_box">
@@ -167,7 +167,14 @@
 			</div>
 		</div>
 
-
+<!--banner循环-->
+<script type="text/html" id="banner_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<div class="swiper-slide">
+			<img src="<%=list[i].adverPic%>" style="border-radius:3px;" class="banner_one">
+		</div>
+	<%}%>
+</script>
 <!-- 手机端热门项目 -->
 <script type="text/html" id="hot_coin_tpl_mobile">
 	<%for(var i = 0; i < list.length; i++) {%>
