@@ -479,7 +479,7 @@ $(document).ready(function () {
 			},
 
 	        on: {
-	            slideChangeTransitionEnd: function(){
+	            touchStart: function(){
 	                var switchNum = this.activeIndex;
 	                console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
                 	$('.swiper-wrapper').on('click','.banner_one',function(){
