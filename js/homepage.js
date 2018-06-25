@@ -65,17 +65,6 @@ $(function(){
 	}
 })
 
-//查询banner
-$(function(){
-    var uri = "advertise/quaryAdertise?type="+1;
-	doJavaGet(uri,function(result){
-		var tpl = document.getElementById('banner_tpl').innerHTML;
-		var content = template(tpl, {list: result.datas});
-		$('.swiper-wrapper').append(content)
-	})
-	
-})
-
 
 $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){
@@ -169,6 +158,39 @@ $(function(){
   }, "json")
 
 })
+
+
+//查询banner
+$(function(){
+    var uri = "advertise/quaryAdertise?type="+1;
+	doJavaGet(uri,function(result){
+		//debugger
+		var tpl = document.getElementById('banner_tpl').innerHTML;
+		var content = template(tpl, {list: result.datas});
+		$('.swiper-wrapper').append(content)
+	},"json")
+	
+})
+
+//$(function(){
+//  var uri = "http://testapi.blockcomet.com/advertise/quaryAdertise?type="+1;
+//	$.ajax({
+//		url : uri,
+//		type: "get",
+//		async: true,
+//		processData: false,  // 不处理数据
+//		contentType: false,   // 不设置内容类型
+//		success:function(result){
+//			$('.swiper-wrapper').html("");
+//			var tpl = document.getElementById('banner_tpl').innerHTML;
+//			var content = template(tpl, {list: result.datas});
+//			$('.swiper-wrapper').append(content)
+//		},
+//		
+//	});
+//	
+//})
+//
 
 // 渲染播报
 $(function(){
@@ -481,7 +503,7 @@ $(document).ready(function () {
 	        on: {
 	            touchStart: function(){
 	                var switchNum = this.activeIndex;
-	                console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+//	                console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
                 	$('.swiper-wrapper').on('click','.banner_one',function(){
                 		if(switchNum==0){
 							window.location = 'reading-campaign.html'

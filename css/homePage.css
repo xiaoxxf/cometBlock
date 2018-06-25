@@ -11,6 +11,10 @@ a img {
 .hot_zone_padding{
   cursor: pointer;
 }
+/*添加项目轮播高度*/
+#swiper_project{
+	height: 100%;
+}
 /* 模块名称 */
 .hot-span{
     font-size: 18px;
