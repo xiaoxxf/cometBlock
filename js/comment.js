@@ -9,6 +9,7 @@ var originalReviewId = '';
 var originalCreator = '';
 var projectId = '';
 var projectBigName = '';
+var addLikeStatus = null; // 用户点赞状态
 var ui = {
   'loading': false,
   'noMoreData': false,
@@ -40,6 +41,8 @@ function  ajaxGetReviewDetail() {
     var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
+            // 用户点赞状态
+            addLikeStatus = res.status;
             var commentInfoData = res.datas;
             // 给projectId赋值后再用projectId去请求项目信息
             projectId = res.datas.projectId
@@ -61,6 +64,9 @@ function  ajaxGetReviewDetail() {
             var content = template(commentTpl, {list: commentInfoData});
             $(".comment-detail-mian-hook").append(content);
 
+            // 判断是否已点赞
+            addLikeStatus == 1 ? $('.LikeButton').addClass('clicked-like') : '';
+
             // 手机上不加载投稿等功能
             if ($(window).width() > 767) {
               // 作者打开时可以投稿
@@ -75,6 +81,7 @@ function  ajaxGetReviewDetail() {
               else if (userId && commentInfoData.creator != userId) {
                 $('.news_alert_include').css('display','')
               }
+
             }
 
             // 有项目则加载项目
@@ -266,58 +273,14 @@ $(".comment-list-hook").on('click','.review-comment-form .lnk-close',function (e
     console.log($(e.currentTarget))
 });
 //useful点击
-$(".comment-detail-mian-hook").on('click','.main-panel-useful button',function (e) {
-    var self = $(e.currentTarget)
-    var usefull = self.data('useful');
-    var reviewId = getUrlParam('reviewId');
-    //var reviewid = self.data('reviewid');
-    if(!wechatBindNotice()){
-    	return;
-    }
-    if(userId == undefined){
-        // layer.msg('您还没有登录');
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#template-reply").html()
-        });
-        return;
-    }
-    var uri = "blockchain/addLike?reviewId="+reviewId+"&userId="+userId+"&usefull="+usefull;
-    if(self.hasClass('disabled')){
-        return;
-    }
-    doJavaGet(uri, function(res) {
-        if(res != null && res.code == 0) {
-            var parentDom =  self.parent();
-            var siblingNum = parseInt(self.siblings('.btn').find('.num').text());
-            var selfNum = parseInt(self.find('.num').text());
-            if(parentDom.find('.disabled').length > 0){
-                self.siblings('.btn').find('.num').text(siblingNum-1);
-            }
-            self.siblings('.btn').removeClass('disabled');
-            self.addClass('disabled');
-            self.find('.num').text(selfNum+1)
-            var num  = parseInt(self.parent().find(".num").text());
-        } else {
-            layer.msg(res.msg);
-        }
-    }, "json");
-})
 
 //喜欢点击
+var ui = {
+  'like_submiting' : false
+}
 $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) {
-    var self = $(e.currentTarget).toggleClass("clicked-like");
-    var reviewid = self.data('reviewid');
-    var likesnum= self.data('likes_nums')+1;
-    var likes = 0;
-    var score = $("#n_rating").val();
-    var shortTxt = $(".short-comment").val();
     if(!wechatBindNotice()){
-    	return;
+      return;
     }
     if(userId == undefined){
         // layer.msg('您还没有登录');
@@ -331,25 +294,32 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
         });
         return;
     }
-    if(self.hasClass('clicked-like')){
-        likes = 1;
-    }else{
-        likes = 0;
+    if (ui.like_submiting) {
+      return
     }
+    ui.like_submiting = true;
+    var self = $(e.currentTarget);
+    var reviewid = self.data('reviewid');
+    var likesnum= self.data('likes_nums')+1;
+    var likes = '';
 
+    addLikeStatus == 1 ? likes = 0 : likes = 1;
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
+            likes == 0 ? addLikeStatus = 0 : addLikeStatus = 1;
             // console.log(res.msg)
-            var num  = parseInt(self.find(".LikeButton-count").text())-1;
-            if(self.hasClass('clicked-like')){
-                self.find(".LikeButton-count").text(likesnum)
-            }else{
-                self.find(".LikeButton-count").text(num);
-            }
+            // var num  = parseInt(self.find(".LikeButton-count").text())-1;
+            // if(self.hasClass('clicked-like')){
+            //     self.find(".LikeButton-count").text(likesnum)
+            // }else{
+            //     self.find(".LikeButton-count").text(num);
+            // }
         } else {
-            layer.msg(res.msg);
+          // layer.msg(res.msg);
         }
+        $('.LikeButton').toggleClass("clicked-like");
+        ui.like_submiting = false;
     }, "json");
 })
 

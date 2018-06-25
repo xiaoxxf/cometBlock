@@ -1,4 +1,6 @@
+
 $(document).ready(function () {
+    // WebApiHostJavaApi ="http://testapi.blockcomet.com/";
     var range = 50; //距下边界长度/单位px
     var elemt = 500; //插入元素高度/单位px
     var maxnum = 3; //设置加载最多次数
