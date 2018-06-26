@@ -315,10 +315,11 @@ $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) 
             // }else{
             //     self.find(".LikeButton-count").text(num);
             // }
+            $('.LikeButton').toggleClass("clicked-like");
         } else {
-          // layer.msg(res.msg);
+          layer.msg(res.msg);
         }
-        $('.LikeButton').toggleClass("clicked-like");
+
         ui.like_submiting = false;
     }, "json");
 })

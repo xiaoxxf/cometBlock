@@ -4,6 +4,7 @@ var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var wechatInfo = $.cookie('wechatInfo') ? JSON.parse($.cookie('wechatInfo')) : '';
 // var wechatInfo_flag = false; // 是否已取得微信返回数据
 
+
 // 不跳回登录、注册、找回密码的页面
 var login_uri = '/login.html';
 var register_uri = '/register.html';
@@ -30,7 +31,7 @@ var WebApiToken;
 var WebApiHost="https://api.blockcomet.com/";
 var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 // var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
-               // var WebApiHostJavaApi = "http://172.29.113.64:8080/";
+// var WebApiHostJavaApi = "http://10.0.0.79:8080/";
 
 var WebRankHostApi = "//rank.blockcomet.com/"
 var userPwd ="";
@@ -280,7 +281,7 @@ function getUserInfoByWeChat(wechatCode){
 
 
       }else if(res.code == -1){
-        layer.msg('登录失败，请重试');
+        layer.msg(res.msg);
         $("#nav_login").fadeIn();
         $("#nav_register").fadeIn();
         $(".scrollbar-container").fadeIn();
@@ -326,6 +327,7 @@ $('.block-comet-main-wrap').on('click','.nav-user-account .my_wallet',function()
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
+      debugger
         var currentJumpHref = window.localStorage.getItem('currentJumpHref');
 
         // 截取code和state
@@ -345,7 +347,7 @@ $(document).on('click','.more-sign .wechat-login',function () {
         if(currentJumpHref == undefined){
             currentJumpHref = window.location.origin;
         }
-        // var currentJumpHref = 'http://www.blockcomet.com';
+        // var currentJumpHref = 'http://www.huixing.io';
         if(res.code === 0){
             var resData = res.datas;
             var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
@@ -376,7 +378,7 @@ $(document).on('click','.more-sign .wechat-resgister',function () {
       if(currentJumpHref == undefined){
           currentJumpHref = window.location.origin;
       }
-      // var currentJumpHref = 'http://www.blockcomet.com';
+      // var currentJumpHref = 'http://www.huixing.io';
       if(res.code === 0){
           var resData = res.datas;
           var jumpHref = resData.substr(0,resData.indexOf('#'))+'&redirect_uri='+encodeURIComponent(currentJumpHref);
