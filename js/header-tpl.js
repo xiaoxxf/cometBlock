@@ -1,4 +1,4 @@
-//WebApiHostJavaApi = "http://backend.blockcomet.com/"; // 头部固定使用这个api
+WebApiHostJavaApi = "http://backend.blockcomet.com/"; // 头部固定使用这个api
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var like_tpl_flag = false
 var comment_tpl_flag = false
@@ -17,23 +17,20 @@ $(document).ready(function() {
 });
 
 //通知显示隐藏提示面板
+var currentPage = 1;
 $(document).ready(function(){
   $(".login-right").hover(function(){
-			order = 0;
-			// console.log('current_type:' + current_type )
+			$(".inform0").show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
+			$(".show-alert-inform-bottom").css("display","block");
     	$(".show-alert-inform").css("display","block");
 
-			// 记录当前显示消息通知类型
-			// current_type = [];
-			// current_type = [3]
 			if ( !like_tpl_flag ) {
-				// 记录当前显示的通知类型
-
 				// 渲染点赞
 				currentPage = 1
 				type = 3
 				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage +
-										'&pageSize='  + pageSize + '&type=' + type
+										'&pageSize=12'
+				 						+ '&type=' + type
 				doJavaGet(uri,function(result){
 					if (result.datas.length != 0) {
 						var tpl = document.getElementById('like_tpl').innerHTML;
@@ -50,6 +47,7 @@ $(document).ready(function(){
     	$(".show-alert-inform").css("display","none");
   });
 });
+
 
 //通知
 

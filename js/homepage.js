@@ -171,6 +171,7 @@ var uri = 'http://testapi.blockcomet.com/news/search?currentPage=1&pageSize=10&d
 			$('.hot_zone_wrap').html("");
 	    var tpl = document.getElementById('news_broadcast_tpl').innerHTML;
 	    var content = template(tpl, {list: result.datas});
+
 	    $('.hot_zone_wrap').append(content)
 	    // 限制描述播报
 		},
