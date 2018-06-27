@@ -65,6 +65,7 @@ $(function(){
 	}
 })
 
+
 $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){
 		return;
@@ -157,6 +158,39 @@ $(function(){
   }, "json")
 
 })
+
+
+//查询banner
+$(function(){
+    var uri = "advertise/quaryAdertise?type="+1;
+	doJavaGet(uri,function(result){
+		//debugger
+		var tpl = document.getElementById('banner_tpl').innerHTML;
+		var content = template(tpl, {list: result.datas});
+		$('.swiper-wrapper').append(content)
+	},"json")
+	
+})
+
+//$(function(){
+//  var uri = "http://testapi.blockcomet.com/advertise/quaryAdertise?type="+1;
+//	$.ajax({
+//		url : uri,
+//		type: "get",
+//		async: true,
+//		processData: false,  // 不处理数据
+//		contentType: false,   // 不设置内容类型
+//		success:function(result){
+//			$('.swiper-wrapper').html("");
+//			var tpl = document.getElementById('banner_tpl').innerHTML;
+//			var content = template(tpl, {list: result.datas});
+//			$('.swiper-wrapper').append(content)
+//		},
+//		
+//	});
+//	
+//})
+//
 
 // 渲染播报
 $(function(){
@@ -460,18 +494,28 @@ $(document).ready(function () {
     //    mySwiper.autoplay.start();
     // })
 		var Swiper_banner = new Swiper('#swiper_banner', {
-			autoplay: {
-				delay: 5000,//5秒切换一次
+			autoplay: 1500,
+			observer:true,//修改swiper自己或子元素时，自动初始化swiper    重要  
+    		observeParents:true,//修改swiper的父元素时，自动初始化swiper  重要  
+       		pagination: {
+			    el: '.swiper-pagination',
 			},
 
-			speed: 1500,
-			parallax : true,
-			loop : true,
-			pagination: {
-			    el: '.swiper-pagination',
-					clickable :true,
-					// bulletClass : 'banner-bullet',
-			},
+	        on: {
+	            touchStart: function(){
+	                var switchNum = this.activeIndex;
+//	                console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+                	$('.swiper-wrapper').on('click','.banner_one',function(){
+                		if(switchNum==0){
+							window.location = 'reading-campaign.html'
+                		}
+                		else if(switchNum==1){
+                			window.location = 'reading_campaign_numgold.html'
+                		}
+					})
+	            },
+	        },
+
 
 		})
 
@@ -487,12 +531,19 @@ $(".hot_review_title").on('click', '.topic_name', function(e) {
 
 
 // banner跳转
-$('.banner_one').on('click',function(){
-	window.location = 'reading-campaign.html'
-})
-$('.banner_two').on('click',function(){
-	window.location = 'reading_campaign_numgold.html'
-})
+//$('.banner_one').on('click',function(){
+//	window.location = 'reading-campaign.html'
+//})
+
+
+//banner跳转-此处要用时间委托
+//$('.swiper-wrapper').on('click','.banner_one',function(){
+//	window.location = 'reading-campaign.html'
+//})
+//
+//$('.banner_two').on('click',function(){
+//	window.location = 'reading_campaign_numgold.html'
+//})
 
 // 加载推荐专题
 $(function(){
