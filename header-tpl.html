@@ -76,6 +76,7 @@
 										<li><a class="like-count">点赞</a></li>
 										<li><a class="comment-count">评论</a></li>
 										<li><a class="notification-count">通知</a></li>
+										<li><a class="topic-count">专题</a></li>
 								</ul>
 
 								<div class="inform0 show-alert-inform-content like-message">
@@ -88,6 +89,10 @@
 								</div>
 
 								<div class="inform2 show-alert-inform-content notification-message">
+
+								</div>
+
+								<div class="inform3 show-alert-inform-content topic-message">
 
 								</div>
 
@@ -209,6 +214,26 @@
 		</div>
 	<%}%>
 </script>
+
+<script type="text/html" id="topic_message_tpl">
+	<%for(var i = 0; i < list.length; i++) {%>
+		<%if(list[i].status ==0 ){%>
+			<div class="show-alert-inform-list unread" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>" >
+
+		<%}else{%>
+			<div class="show-alert-inform-list" data-messageId="<%:=list[i].messageId%>" data-status="<%:=list[i].status%>">
+		<%}%>
+			<div class="right-news">
+				<div>
+					您的专题 <a class="user" href="topic-show.html?subjectId=<%:=list[i].actionId.split("|")[0]%>"><%:=list[i].title%></a>
+					收到了 <a class="user" href="comment.html?reviewId=<%:=list[i].actionId.split("|")[1]%>">《<%:=list[i].content%>》</a>
+					的投稿
+				</div>
+			</div>
+		</div>
+	<%}%>
+</script>
+
 
 
 <script src=./js/header-tpl.js></script>

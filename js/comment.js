@@ -795,7 +795,7 @@ function sendArticleToSubject(e){
 
   doJavaGet(uri,function(result){
     if (result.code == 0) {
-      layer.msg('投稿成功');
+      layer.msg(result.msg);
       $(_send_button).text('已投稿')
     }else if(result.code == -1){
       layer.msg(result.msg);

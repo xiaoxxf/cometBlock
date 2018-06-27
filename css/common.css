@@ -554,7 +554,7 @@ tbody a{
 }
 .show-alert-inform-top li{
 	display: inline;
-	margin: 0px 10px;
+	/* margin: 0px 10px; */
 }
 .show-alert-inform-top a{
 	display: inline-block;

@@ -65,7 +65,11 @@
 											 <div class="setting-icon"><i class="fa fa-sign-out"></i></div> <span class="option-name">驳回</span><span  class="badge badge-icon reject-count"></span>
 										</a>
 									</li>
-
+									<li >
+										<a>
+											 <div class="setting-icon"><i class="fa fa-sign-out"></i></div> <span class="option-name">专题消息</span><span  class="badge badge-icon topic-count"></span>
+										</a>
+									</li>
 								</ul>
 							</div>
 						<!--</div>-->
@@ -123,6 +127,17 @@
 								</div>
 
 								<ul class="notification—list reject-list">
+
+								</ul>
+							</div>
+							<!-- 专题通知 -->
+							<div class="show_table show_table_detail cont5 topic">
+								<div class="menu">
+									<span class="menu_slogan">专题消息</span>
+									<span class="read_all_message"  onclick='readAllMessage(6)'>全部标记为已读</span>
+								</div>
+
+								<ul class="notification—list topic-list">
 
 								</ul>
 							</div>
@@ -278,6 +293,23 @@
 					<%}%>
 					<div class="info">
 							您提交的项目 <a class="user" href="chain-edit.html?projectId=<%:=list[i].actionId%>"><%:=list[i].title%></a> 已被驳回，请重新编辑
+						<div class="time"><%:=list[i].createTime%></div>
+					</div>
+
+				</li>
+			<%}%>
+		</script>
+		<script type="text/html" id="topic">
+			<%for(var i = 0; i < list.length; i++) {%>
+					<% if (list[i].status == 1) {%>
+						<li class="message readed" data-messageId="<%:=list[i].messageId%>">
+					<%}%>
+					<% if (list[i].status == 0) {%>
+						<li class="message unread" data-messageId="<%:=list[i].messageId%>">
+					<%}%>
+					<div class="info">
+							您的专题 <a class="user" href="topic-show.html?subjectId=<%:=list[i].actionId.split('|')[0]%>"><%:=list[i].title%></a>
+							收到了一篇投稿 <a href="comment.html?reviewId=<%:=list[i].actionId.split('|')[1]%>">《<%:=list[i].content%>》</a>
 						<div class="time"><%:=list[i].createTime%></div>
 					</div>
 

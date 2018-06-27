@@ -117,6 +117,12 @@ function getMessage(e){
 		id = 'reject'
 		type = '5'
 		break;
+	case 5:
+		append_class = '.topic-list'
+		count_class = '.topic-count'
+		id = 'topic'
+		type = '6'
+		break;
 	default:
 		// console.log('这是默认')
 		break;
