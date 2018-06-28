@@ -31,18 +31,19 @@
 					<!--关注-->
 					<div class="hot_review_box">
 						<div class="row">
-							 <div class="col-md-2 col-xs-12 col-sm-12"> 
-								<div class="hot_zone side_menu">
-									<span class="load_all_user_dynamic dynamic_menu_on_focus">全部</span>
-									<span class="load_recommend_dynamic">推荐</span>
-									<span>关注的人</span>
-									<span>关注的项目</span>
-									<span>关注的专题</span>
-									<span class="side_menu_save">收藏</span>
-									<span class="side_menu_like">赞过</span>
-								</div>
+							 <div class="col-md-2 col-sm-12 col-xs-12 clearfix"> 
+							 	<!--左侧边栏-->
+								<ul class="laside side-nav">
+									<li class="load_all_user_dynamic dynamic_menu_on_focus">全部</li>
+									<li class="load_recommend_dynamic">推荐</li>
+									<li>关注的人</li>
+									<li>关注的项目</li>
+									<li>关注的专题</li>
+									<li class="side_menu_save">收藏</li>
+									<li class="side_menu_like">赞过</li>
+								</ul>
 							 </div> 
-							<div class="col-md-8 col-sm-12 col-xs-12">
+							<div class="col-md-8 col-sm-12 col-xs-12 clearfix">
 								<div class="hot_zone hot_content_zone">
 									<div class="hot_review_region dynamic_region">
 										<!-- 编辑写文章 -->
@@ -66,10 +67,16 @@
 														<div class="upload_wrapper">	
 															<p class="upload_title">本地上传</p>
 															<p class="upload_num">共1张，还能上传4张</p>
-															<div class="imgWrap">  
-									                            <!--<img src="img/001-signs.png" alt="" />-->
-									                            <div class="upload_addImage_icon"><i class="fa fa-plus" style="color:grey"></i></div>
-									                        </div> 
+                    										<div class="imgOnloadWrap"></div>  
+                    										<div class="upWrapper">
+																<div class="fileWrap">  
+										                            <input type="file" class="file_uploadImage" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="upImg(this)"/>  
+										                        </div> 
+																<div class="imgWrap upedImg">  
+										                            <!--<img src="img/001-signs.png" class="imgWrap_image_item" />-->
+										                            <div class="upload_addImage_icon"><i class="fa fa-plus add_icon" style="font-size: 24px;"></i></div>
+										                        </div> 
+										                    </div>    
 								                        </div>
 													</div>
 												</div>
@@ -273,7 +280,8 @@
 								</div>
 								
 							</div>
-							<div class="col-md-2 col-sm-12 col-xs-12">
+							<div class="col-md-2 col-sm-12 col-xs-12 clearfix">
+								<!--右侧边栏-->
 								<div class="raside">
 									<p class="raside_item"><span class="fa fa-thumbs-o-up raside_icon"></span><span>赞我的</span></p>
 									<p class="raside_item"><span class="fa fa-commenting-o raside_icon"></span><span>评论我的</span></p>
