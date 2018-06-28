@@ -29,9 +29,9 @@ var WebApiToken;
 //var WebApiHost="http://localhost:2579/";
 // var WebApiHost="http://221.209.110.28:5700/";
 var WebApiHost="https://api.blockcomet.com/";
-var WebApiHostJavaApi = "http://backend.blockcomet.com/";
+// var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 // var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
-   // var WebApiHostJavaApi = "http://172.26.189.7:8080/";
+var WebApiHostJavaApi = "http://10.0.0.194:8080/";
 
 var WebRankHostApi = "//rank.blockcomet.com/"
 var userPwd ="";
@@ -327,7 +327,6 @@ $('.block-comet-main-wrap').on('click','.nav-user-account .my_wallet',function()
 $(document).on('click','.more-sign .wechat-login',function () {
     var uri = 'news/winxinCode' ;
     doJavaGet(uri, function(res) {
-      debugger
         var currentJumpHref = window.localStorage.getItem('currentJumpHref');
 
         // 截取code和state

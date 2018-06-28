@@ -333,3 +333,7 @@
 	border-radius:50px;
 	cursor: pointer;
 }
+
+.valid-input{
+	/* width: 400px !important; */
+}

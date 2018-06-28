@@ -1,106 +1,77 @@
-var user_name_flag = false;
-var phone_flag = false;
-var password_flag = false;
+var user_name_flag = false; //用户名验证
+var phone_flag = false; //手机号验证
+var password_flag = false; //密码验证
+var flag_send_code=false; //防止发送验证码重复点击
+var valid_token = ''; //防刷验证
+
 //校验昵称
 $("#realName").blur(function() {
-	var realName = $("#realName").val();
-
-	if(realName == "") {
-		layer.tips('用戶名不能为空', '#realName', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		user_name_flag = false;
-		return false;
-	}else{
-		user_name_flag = true;
-	}
-
-	// if(RegistergainCodeValid()){
-  //       gainCode()
-	// }
+	validRealName();
 });
-
 
 // 校验手机号
 $("#session_phone").blur(function() {
-	var tel = $("#session_phone").val();
-
-	if(tel == "" || !(/^1[0-9]{10}$/.test(tel))) {
-		layer.tips('请填写正确的手机号', '#session_phone', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		phone_flag = false;
-		return false;
-	}else{
-		phone_flag = true;
-	}
+	validPhoneFormat();
 
 });
 
 // 校验密码
 $('#session_password').blur(function(){
-	var userPwd = $("#session_password").val();
-	if(userPwd.length = "") {
-		layer.tips('密码不能为空', '#session_password', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		password_flag = false
-		return false;
-	}
-	else if(userPwd.length < 6) {
-		layer.tips('密码不得小于六位数', '#session_password', {
-			tips: [2, '#3595CC'],
-			time: 2000
-		});
-		password_flag = false
-		return false;
-	}
-	else{
-		password_flag = true;
-	}
+	validPasswordFormat();
 })
 
-
-var flag_send_code=false; //防止发送验证码重复点击
+// 发送验证码流程： 检验手机号格式是否正确 -> 检验是否已发送验证 -> 检验手机号是否已注册 -> 滑块验证 -> 发送验证码
 $('#send_code').click(function() {
-	if(flag_send_code){
+	validPhoneFormat();
+
+	if(flag_send_code || !phone_flag){
 		return
 	}
-	flag_send_code=true;
+
 	$("#send_code").css("text-decoration", "none");
 	$("#send_code").css("color", "white");
-	sendCode()
+	validatePhone()
 })
 
-//验证手机号，然后发送验证码
-function sendCode() {
-	if (!phone_flag) {
-		return
-	}
-	// 验证手机号是否存在
+//验证手机号是否已被注册
+function validatePhone() {
 	var uri = 'news/virty?' + 'userName=' + $("#session_phone").val();
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
-			// 不存在则发送验证注册
-			getCode()
+			// 不存在则进行滑动验证
+			myCaptcha.show();
 		}
 		else if(res.code == -1){ //校验手机号
 			layer.tips('手机号已被注册', '#session_phone', {
 				tips: [2, '#3595CC'],
 				time: 2000
 			});
-			flag_send_code = false;
+			// flag_send_code = false;
 		}
-
 	}, "json");
 
 }
+
+var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
+		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
+		style: 'popup',
+
+		success: function (token) {
+			valid_token = token;
+			myCaptcha.hide();
+			// 发送验证码
+			getCode(valid_token);
+		},
+		fail: function(){
+			// console.log('失败')
+			toekn = '';
+		}
+})
+
 //发送验证码
-function getCode() {
-	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
+function getCode(validToken) {
+	flag_send_code=true;
+	var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val() + '&token=' + validToken
 	doJavaGet(uri, function(res) {
 
 		if(res != null && res.code == 0) {
@@ -112,12 +83,11 @@ function getCode() {
 		}
 
 	}, "json");
-
 }
 
+// 倒计时
 var count = 60;
 var countdown;
-
 function dingshiqi() {
 	if(count > 0) {
 		count = count - 1
@@ -207,6 +177,8 @@ function validRegisterInfo(){
 	}
 }
 
+
+// 注册完直接登录
 function login() {
 	if(loginFromValid()) {
 		var param = {
@@ -285,5 +257,55 @@ function loginFromValid() {
 		return false;
 	}
 	return true;
+}
+
+function validPasswordFormat(){
+	var userPwd = $("#session_password").val();
+	if(userPwd.length = "") {
+		layer.tips('密码不能为空', '#session_password', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		password_flag = false
+		return false;
+	}
+	else if(userPwd.length < 6) {
+		layer.tips('密码不得小于六位数', '#session_password', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		password_flag = false
+	}
+	else{
+		password_flag = true;
+	}
+}
+
+function validPhoneFormat(){
+	var tel = $("#session_phone").val();
+
+	if(tel == "" || !(/^1[0-9]{10}$/.test(tel))) {
+		layer.tips('请填写正确的手机号', '#session_phone', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		phone_flag = false;
+	}else{
+		phone_flag = true;
+	}
+}
+
+function validRealName(){
+	var realName = $("#realName").val();
+
+	if(realName == "") {
+		layer.tips('用戶名不能为空', '#realName', {
+			tips: [2, '#3595CC'],
+			time: 2000
+		});
+		user_name_flag = false;
+	}else{
+		user_name_flag = true;
+	}
 
 }

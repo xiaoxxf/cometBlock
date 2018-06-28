@@ -55,10 +55,9 @@ editor.customConfig.uploadImgServer = WebApiHostJavaApi + uploadUri;
 editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024 //图片大小为5M
 editor.customConfig.uploadFileName = 'file'
 
-
 editor.customConfig.uploadImgHooks = {
     before: function (xhr, editor, files) {
-
+      debugger
     },
     success: function (xhr, editor, result) {
       console.log('ok')
