@@ -4,14 +4,9 @@ a img {
     vertical-align: middle;
 }
 
-.bottom_line{
-	border-bottom:solid 1px gainsboro ;
-  min-height: 271px;
-}
-
 .hot_zone{
   border-radius: 5px;
-  background-color: white;
+
 }
 @media (max-width:762px) {
   .hot_zone {
@@ -96,7 +91,9 @@ a img {
 }
 
 .attention_zone{
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
+  background-color: white;
+  margin-bottom: 15px;
 }
 
 .comment-detail .comment-title{
@@ -142,6 +139,43 @@ a img {
 .comment-detail .comment-introduce .textContent:hover{
   color: #646464
 }
+.textComment{
+	color: #333;
+	padding: 0px 0px 15px 0px;
+}
+.textComment:hover{
+	color:#646464 ;
+}
+
+.textarea_wrapper{
+	height: 100px !important;
+    width: 100%;
+    border: none;
+    background-color: #f5f4f4;
+    resize: none;
+    margin-top: 10px;
+}
+
+.uploadImage_Icon{
+	position: relative;
+}
+
+
+/*layer弹窗位置*/
+#layui-layer1{
+	position:absolute;
+	top: 200px !important;
+	left: 18px !important;
+}
+.alert_imageWrapper{
+	display: none;
+}
+.upload_wrapper{
+	padding: 10px;
+}
+.upload_title{
+	font-weight: bold;
+}
 
 .comment-detail .comment-icon{
   width: 80px;
@@ -168,6 +202,12 @@ a img {
   font-size: 16px;
   color: #3c3c3c
 }
+.send_time{
+	margin-left: 43px;
+    margin-top: -5px;
+    font-size: 12px;
+    color: #999;
+}
 .comment-content .comment-time{
   margin: 10px 10px;
   display: inline-block;
@@ -177,6 +217,48 @@ a img {
 .comment-content .comment-introduce,.meta{
 	 /* line-height: 25px; */
 	color: black;
+}
+.meta{
+	margin-top:15px ;
+	border-top: solid 1px #dcdcdc80;
+    height: 40px;
+    line-height: 40px;
+}
+.meta .meta_icon{
+	color: #777777c4;
+	display: inline-block;
+}
+.meta .meta_photo,.meta_edit .meta_photo{
+	margin-left: 5px;
+	color: #333;
+}
+.meta .meta_icon i,.meta_edit .meta_icon i {
+	/*margin-right: 5px;*/
+}
+.meta_edit{
+    height: 40px;
+    line-height: 40px;
+}
+.edit_ico{
+	margin-left: 10px;
+}
+.meta_push_write{
+    height: 40px;
+    line-height: 40px;
+}
+.meta_push_write a{
+    color: #777777c4; 
+}
+.send_button{
+	float: right;
+    color: #4fa3ed;
+    border: solid 1px #2196f321;
+    padding: 0px 15px;
+    background-color: #2196f321;
+    border-radius: 3px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 5px;
 }
 .comment-content .followBtn{
   color: white;
@@ -212,13 +294,21 @@ a img {
   padding:2px 6px;
   margin-left: 10px;
 }
+
 .comment_bottom_box{
-	display: flex;
+  display: flex;
   background-color: #9a94941a;
   margin-right: 30px;
   padding: 20px;
   border-radius: 4px;
   margin-top: 5px;
+}
+.comment_write_bottom_box{
+  	display: flex;
+    margin-right: 20px;
+    padding: 5px 0px 0px 40px;
+    border-radius: 4px;
+
 }
 .comment-creator-pic{
 	width: 28px;
@@ -227,15 +317,28 @@ a img {
 	margin-right:10px;
 	margin-bottom:5px;
 }
+.push_write_wrapper{
+	background-color: #f3f6f7;
+    margin: 0px -10px 0px -28px;
+    padding: 15px 28px 15px 68px;
+}
+.push_write_time{
+	margin-top: 30px;
+    color: #969696;
+    font-size: 12px;
+}
+.push_write_time a{
+	color:#969696 ;
+	padding: 0px 10px;
+}
+.push_write_time i{
+	/*margin-right: 5px;*/
+}
+.push_write_detail{
+	float: right;
+	display: inline-block;
+}
 
-.meta{
-	margin-top:15px ;
-	margin-bottom: 10px;
-}
-.meta a{
-	margin-left:10px ;
-	color: #777777c4;
-}
 .read-more{
 	text-align: center;
 	height: 50px;

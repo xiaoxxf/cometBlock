@@ -45,6 +45,115 @@
 							<div class="col-md-8 col-sm-12 col-xs-12">
 								<div class="hot_zone hot_content_zone">
 									<div class="hot_review_region dynamic_region">
+										<!-- 编辑写文章 -->
+										<div class="attention_zone">
+											<div class="comment-detail">
+												<div class="comment-wrapper">
+													<div class="comment-write">
+														有什么想分享的观点吗？
+													</div>
+														
+													<textarea class="textarea_wrapper form-control" onmousedown="textareaFocus(event,this)">
+														
+													</textarea>
+													<div class="meta_edit">
+														<a class="fa-ico uploadImage_Icon" onclick="ImageAlert()"><i class="fa fa-photo"></i><span class="meta_photo">图片</span></a>
+														<a class="fa-ico edit_ico"><i class="fa fa-pencil"></i><span class="meta_photo">文章</span></a>
+														<div class="send_button">发布</div>
+													</div>
+													<!--点击图片出现下方图片列表弹出框-->
+													<div class="alert_imageWrapper">
+														<div class="upload_wrapper">	
+															<p class="upload_title">本地上传</p>
+															<p class="upload_num">共1张，还能上传4张</p>
+															<div class="imgWrap">  
+									                            <!--<img src="img/001-signs.png" alt="" />-->
+									                            <div class="upload_addImage_icon"><i class="fa fa-plus" style="color:grey"></i></div>
+									                        </div> 
+								                        </div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- 编辑好发布后文章 -->
+										<div class="attention_zone">
+											<div class="comment-detail">
+												<div class="comment-content">
+													<div class="comment-info">
+														<a href="">
+															<img src="img/normal-user.png" class="comment-creator-pic"/>
+														</a>
+														<a href="" class="real_name">低不语</a>
+														<p class="send_time">4分钟前</p>
+														<p class="send_long_comment">
+															<span class="allstarating" title="推荐"></span>
+														</p>
+													</div>
+													<div class="comment_write_bottom_box">
+														<div class="comment-introduce">
+															<a href="comment.html %>" class="textContent" target="_blank">
+						 										你好，这是「精读Ulord白皮书」第五篇文章，主题是——Ulord是什么？
+						 										要解决什么问题？我将从三个角度回答这个问题：1.Ulord是什么？2.Ulord要解决什么问题？3.Ulord的优势是什么？Ulord是什么？
+						 										谭博士给出了他对于 Ulord 的定义：本质上来说，Ulord 是一套区块链底层架构... 									
+															</a>
+														</div>
+														
+													</div>
+													<div class="meta">
+														<a class="meta_icon col-md-3"><i class="fa fa-star-o"></i> 收藏 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-retweet"></i>转发 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-commenting"></i>评论 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-thumbs-o-up"></i>点赞 </a>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- 转发发布过的文章 -->
+										<div class="attention_zone">
+											<div class="comment-detail">
+												<div class="comment-content">
+													<div class="comment-info">
+														<a href="">
+															<img src="img/normal-user.png" class="comment-creator-pic"/>
+														</a>
+														<a href="" class="real_name">黄世亮</a>
+														<p class="send_time">4分钟前</p>
+														<p class="send_long_comment">
+															<span class="allstarating" title="推荐"></span>
+														</p>
+													</div>
+													<div class="comment_write_bottom_box">
+															<a href="" class="textComment" target="_blank">
+						 										没有比特币，就没有区块链 	没有比特币，就没有区块链 	没有比特币，就没有区块链
+						 										没有比特币，就没有区块链 	没有比特币，就没有区块链 	没有比特币，就没有区块链
+															</a>
+													</div>
+													<div class="push_write_wrapper">
+														<p>@行走的翻译c</p>
+														<div class="push_write_content"> 
+															在第一次作业中，我选了一个兼具帅气才气于一身的人-罗斯·乌布里克。创建“丝路”前，他是一名冲浪狂人兼科学家，
+															卖掉自己房子为“丝路”筹备资金，这个新型的网上市场，为人们提供普通网上市场买不到的商品的渠道。
+														</div>
+														<div class="push_write_time">
+															<span>1月14日 12:00</span>
+															<div class="push_write_detail">
+																<a class="meta_icon "><i class="fa fa-retweet"></i>5 </a>
+																<a class="meta_icon "><i class="fa fa-commenting"></i>54 </a>
+																<a class="meta_icon "><i class="fa fa-thumbs-o-up"></i>47</a>
+															</div>
+														</div>
+													</div>
+														
+													<div class="meta_push_write">
+														<a class="meta_icon col-md-3"><i class="fa fa-star-o"></i> 收藏 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-retweet"></i>转发 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-commenting"></i>评论 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-thumbs-o-up"></i>点赞 </a>
+													</div>
+												</div>
+											</div>
+										</div>
+										
 										<!--长评-->
 										<div class="attention_zone bottom_line">
 											<div class="comment-detail">
@@ -80,8 +189,10 @@
 														</div>
 													</div>
 													<div class="meta">
-														<a href="comment.html"><i class="fa fa-commenting"></i> 11 </a>
-														<a class="like-button add_like" ><i class="fa fa-heart"></i>32 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-star-o"></i> 收藏 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-retweet"></i>转发 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-commenting"></i>评论 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-thumbs-o-up"></i>点赞 </a>
 													</div>
 												</div>
 											</div>
@@ -115,7 +226,10 @@
 														</div>
 													</div>
 													<div class="meta">
-														<a class="like-button add_like" ><i class="fa fa-heart"></i>43 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-star-o"></i> 收藏 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-retweet"></i>转发 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-commenting"></i>评论 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-thumbs-o-up"></i>点赞 </a>
 													</div>
 												</div>
 											</div>
@@ -147,8 +261,10 @@
 														</div>
 													</div>
 													<div class="meta">
-														<a href="comment.html" class="fa-ico"><i class="fa fa-commenting "></i>  </a>
-														<a class="like-button add_like"><i class="fa fa-heart"></i> 23</a>
+														<a class="meta_icon col-md-3"><i class="fa fa-star-o"></i> 收藏 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-retweet"></i>转发 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-commenting"></i>评论 </a>
+														<a class="meta_icon col-md-3"><i class="fa fa-thumbs-o-up"></i>点赞 </a>
 													</div>
 												</div>
 											</div>
@@ -179,9 +295,10 @@
 <!--<script src="js/plugins/swiper/swiper-4.2.2.min.js"></script>-->
 <script src="js/jquery.cookie.js"></script>
 <script src="js/template.js"></script>
+<script src="js/common.js"></script>
 <!--<script src="js/md5.js"></script>-->
-<!--<script src="js/plugins/layer/layer.js"></script>-->
-<!--<script src="js/attention-dynamics.js"></script>-->
+<script src="js/plugins/layer/layer.js"></script>
+<script src="js/attention-dynamics.js"></script>
 
 </body>
 
