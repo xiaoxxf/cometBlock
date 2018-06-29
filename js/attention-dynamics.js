@@ -38,7 +38,8 @@ $(document).ready(function(){
 
 //点击预览上传图片方法
 var imgFile;
-function upImg(obj){ 
+function upImg(obj){
+	debugger
 	imgFile = obj.files[0];  
     console.log(imgFile);
     var img = new Image();  
@@ -55,9 +56,16 @@ function upImg(obj){
         htmlStr += '</div>';  
         $('.imgOnloadWrap').append(htmlStr);  
         obj.value = '';  
-		}  
+		} 
+		
+		var preview = $('.upedImg').find('img')[0];
+		
+		fr.addEventListener("load", function() {
+			preview.src = fr.result; //拿到图片的结果
+		}, false);
+		
 		fr.readAsDataURL(imgFile);
-		preview.src = reader.result; //拿到图片的结果
+
 		
 }
 //删除图片
