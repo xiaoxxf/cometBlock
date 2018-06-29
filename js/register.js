@@ -84,7 +84,7 @@ function getCode(validToken) {
 }
 
 // 倒计时
-var count = 10;
+var count = 60;
 var countdown;
 function dingshiqi() {
 	if(count > 0) {
@@ -101,7 +101,7 @@ function dingshiqi() {
 }
 
 function CountDown() {
-	count = 5;
+	count = 60;
 	countdown = setInterval(dingshiqi, 1000);
 }
 

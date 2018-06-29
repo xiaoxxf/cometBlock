@@ -57,7 +57,7 @@ editor.customConfig.uploadFileName = 'file'
 
 editor.customConfig.uploadImgHooks = {
     before: function (xhr, editor, files) {
-      debugger
+
     },
     success: function (xhr, editor, result) {
       console.log('ok')

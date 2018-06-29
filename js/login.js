@@ -1,4 +1,23 @@
-(function(){
+var login_failed = false; //密码错误后需要进行滑块验证
+var valid_token = '';
+var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
+		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
+		style: 'popup',
+
+		success: function (token) {
+			var valid_token = token;
+			myCaptcha.hide();
+			signIn(valid_token);
+			// 发送验证码
+			// getCode(valid_token);
+		},
+		fail: function(){
+			// console.log('失败')
+			// toekn = '';
+		}
+})
+
+
 function loginFromValid(){
 	var tel=$("#session_phone").val();
 	var userPwd=$("#session_password").val();
@@ -20,13 +39,22 @@ function loginFromValid(){
 }
 
 $(document).on('click','#sign-in-form-submit-btn',function() {
-	signIn()
+	myCaptcha.reload();
+
+	// 首次登录
+	if (login_failed) {
+		myCaptcha.show();
+	}
+	// 登录错误后需要滑块验证
+	else{
+		signIn()
+	}
 });
 //登录绑定回车
 $(document).keydown(function(event){
 	if(event.keyCode == 13){
 		$('#sign-in-form-submit-btn').click();
-		}
+	}
 });
 
 var flag_login_submiting = false;
@@ -76,6 +104,7 @@ function signIn(){
 			}, 1500);
 
 		} else {
+			login_failed = true;
 			layer.msg(res.msg);
 		}
 		flag_login_submiting = false;
@@ -84,4 +113,3 @@ function signIn(){
 
 	}
 }
-})();

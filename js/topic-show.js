@@ -21,12 +21,14 @@ function getTopicDetail(){
   doJavaGet(uri,function(result){
 
   $('title').html('专题-' + result.datas[0].topic );
-		// 专题创建人显示收录按钮、查看待审核文章
 		topic_creator = result.datas[0].creator;
-		if (userId && result.datas[0].creator == userId) {
+		// 专题创建人显示收录按钮、查看待审核文章
+		if (userId && topic_creator == userId) {
+			getUrlParam('check') == 1 ? $('.not_passed').click() : '';
 			$('.collect_button').css('display','inline-block');
 			$('.not_passed').css('display','inline-block');
-		}else if(userId && result.datas[0].creator != userId){
+
+		}else if(userId && topic_creator != userId){
 			$('.send_to_topic_alert_button').css('display','inline-block');
 		}
 

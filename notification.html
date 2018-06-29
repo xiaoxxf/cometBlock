@@ -308,7 +308,7 @@
 						<li class="message unread" data-messageId="<%:=list[i].messageId%>">
 					<%}%>
 					<div class="info">
-							您的专题 <a class="user" href="topic-show.html?subjectId=<%:=list[i].actionId.split('|')[0]%>"><%:=list[i].title%></a>
+							您的专题 <a class="user" href="topic-show.html?subjectId=<%:=list[i].actionId.split('|')[0]%>&check=1"><%:=list[i].title%></a>
 							收到了一篇投稿 <a href="comment.html?reviewId=<%:=list[i].actionId.split('|')[1]%>">《<%:=list[i].content%>》</a>
 						<div class="time"><%:=list[i].createTime%></div>
 					</div>

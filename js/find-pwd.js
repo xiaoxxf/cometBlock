@@ -4,7 +4,6 @@ var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 
 		success: function (token) {
 			var valid_token = token;
-			debugger
 			myCaptcha.hide();
 			// 验证通过，则发送验证码
 			sendCode(valid_token);
@@ -18,6 +17,7 @@ var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 //点击验证
 var flag_resetPwd_sendCode =false;
 $('#send_code').click(function() {
+
  	if(SendCodeFromValid()){
 		if(flag_resetPwd_sendCode){
 			return
@@ -40,6 +40,7 @@ function sendCode(valid_token){
 		var uri = 'blockchain/getCode?phoneNo=' + userPhone + '&token=' + valid_token//输入手机号请求验证码验证
 		doJavaGet(uri, function(res) {
 			if(res != null && res.code == 0) {
+				flag_resetPwd_sendCode = true;
 				layer.msg("验证码已发送");
 				//验证码倒计时
 				CountDown()
@@ -58,13 +59,11 @@ function dingshiqi() {
 		count = count - 1
 		$("#send_code").html(count + " s")
 	} else if(count == 0) {
-
 		$("#send_code").html("重新发送验证码")
 		clearInterval(countdown);
-//		count = 60
-//		flag_resetPwd_sendCode =false;
+		flag_resetPwd_sendCode = false;
 	}
-		flag_resetPwd_sendCode =false;
+
 
 }
 
