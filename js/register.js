@@ -2,7 +2,6 @@ var user_name_flag = false; //用户名验证
 var phone_flag = false; //手机号验证
 var password_flag = false; //密码验证
 var flag_send_code=false; //防止发送验证码重复点击
-var valid_token = ''; //防刷验证
 
 //校验昵称
 $("#realName").blur(function() {
@@ -57,14 +56,14 @@ var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 		style: 'popup',
 
 		success: function (token) {
-			valid_token = token;
+			var valid_token = token;
 			myCaptcha.hide();
 			// 发送验证码
 			getCode(valid_token);
 		},
 		fail: function(){
 			// console.log('失败')
-			toekn = '';
+			// toekn = '';
 		}
 })
 

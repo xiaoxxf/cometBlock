@@ -207,18 +207,44 @@ $(window).scroll(function(){
 	},100)
 })
 
+var valid_token = ''
+var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
+		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
+		style: 'popup',
 
+		success: function (token) {
+			valid_token = token;
+			myCaptcha.hide();
+			// 发送验证码
+			getCodeResetPwd(valid_token);
+		},
+		fail: function(){
+			// console.log('失败')
+			valid_token = '';
+		}
+})
 
+//点击发送验证
+var flag_resetPwd_sendCode =false // 防止重复发送
+$('#setting_send_code').click(function() {
+	if(flag_resetPwd_sendCode){
+		return
+	}
+	flag_resetPwd_sendCode =true
+	$("#setting_send_code").css("text-decoration", "none");
+	$("#setting_send_code").css("color", "white");
+	myCaptcha.show();
+})
 
 //验证码发送
-function getCodeResetPwd() {
+function getCodeResetPwd(valid_token) {
 	//var uri = 'blockchain/getCode?phoneNo=' + $("#session_phone").val()
 	var str = localStorage.getItem('userinfo');
 	var jsonStr = JSON.parse(str)
 //	var tel = jsonStr.tel;
 	//var tel = jsonStr.userName;
 	var userName = jsonStr.userName;
-	var uri = 'blockchain/getCode?phoneNo=' + userName //输入手机号请求验证码验证
+	var uri = 'blockchain/getCode?phoneNo=' + userName + '&token=' + valid_token//输入手机号请求验证码验证
 	doJavaGet(uri, function(res) {
 		if(res != null && res.code == 0) {
 			layer.msg("验证码已发送");
@@ -253,17 +279,6 @@ function CountDownResetPwd() {
 	countdownreset = setInterval(dingshiqi_reset, 1000);
 
 }
-//点击发送验证
-var flag_resetPwd_sendCode =false
-$('#setting_send_code').click(function() {
-	if(flag_resetPwd_sendCode){
-		return
-	}
-	flag_resetPwd_sendCode =true
-	$("#setting_send_code").css("text-decoration", "none");
-	$("#setting_send_code").css("color", "white");
-	getCodeResetPwd();
-})
 
 
 //textarea限制长度

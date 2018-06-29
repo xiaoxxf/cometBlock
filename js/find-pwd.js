@@ -1,13 +1,12 @@
-var valid_token = ''
 var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
 		style: 'popup',
 
 		success: function (token) {
-			valid_token = token;
+			var valid_token = token;
 			myCaptcha.hide();
 			// 验证通过，则发送验证码
-			sendCode();
+			sendCode(valid_token);
 		},
 		fail: function(){
 			// console.log('失败')
@@ -33,7 +32,7 @@ function valid() {
 }
 
 //发送验证码
-function sendCode(){
+function sendCode(valid_token){
 	if(SendCodeFromValid()){
 		var userPhone = $("#session_phone").val();
 		var uri = 'blockchain/getCode?phoneNo=' + userPhone + '&token=' + valid_token//输入手机号请求验证码验证
