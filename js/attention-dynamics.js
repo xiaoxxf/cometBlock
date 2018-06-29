@@ -20,7 +20,7 @@ function ImageAlert(){
 		content: $('.alert_imageWrapper'), 
 		cancel: function(){
 			console.log(imgFile)
-			
+			$('.imgOnloadWrap').html('');
 		}
 		
 	});
@@ -60,12 +60,12 @@ function upImg(obj){
 		
 		var preview = $('.upedImg').find('img')[0];
 		
-		fr.addEventListener("load", function() {
-			preview.src = fr.result; //拿到图片的结果
-		}, false);
+//		fr.addEventListener("load", function() {
+//			preview.src = fr.result; //拿到图片的结果
+//		}, false);
 		
 		fr.readAsDataURL(imgFile);
-
+		uploadPic(imgFile);
 		
 }
 //删除图片
@@ -74,22 +74,27 @@ $(document).on('click','.upedImg .deleteImg',function(){
     $(this).parent().parent().remove();  
 })  
 //上传图片
-function uploadPic(){
-	debugger
+function uploadPic(imgFile){
+	
 	var formData=new FormData();
-	formData.append("imgFile",imgFile);
+	formData.append("file",imgFile);
 	$.ajax({
         type: 'POST',
 		url:WebApiHostJavaApi + 'common/upload',
-		data:formData,
-		async:false,
-		processData:false,
+	    data: formData,
+//	    datType: "json",
+	    async: false,//使用同步的方式,true为异步方式
+	    processData: false,  // 不处理数据
+	    contentType: false,   // 不设置内容类型
 		success:function(data){
+			
 			if (data.code == 0) {
-		        // 把照片的值存在对应的input
-		        member_pic_name = t.parentElement.nextElementSibling.firstElementChild
-		        member_pic_name.value =  data.datas[0]
-		        // layer.msg('上传成功')
+		        layer.msg('上传成功')
+				var imgUrl=data.datas[0]; //保存返回的图片地址
+//				var arr = new Array(9); //创建数组保存9张图片
+//				arr[0]=imgUrl;
+//				console.log(arr)
+
 		    }else if(data.code == -1){
 		        layer.msg(data.msg)
 		    }

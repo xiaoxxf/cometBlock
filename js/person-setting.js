@@ -408,7 +408,6 @@ $('#user_logo_input').on('change',function(){
     layer.msg('请选择小于1M的图片文件',{time:1000})
     return false
   }
-	debugger
 	var preview = $('#result').find('img')[0];
 	var reader = new FileReader();
 
