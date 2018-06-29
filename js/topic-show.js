@@ -10,7 +10,18 @@ var pageSize = 12;
 var topic_creator = ''; //专题创建人
 window.onload = function(){
   getTopicDetail();
-  getTopicArticle(status);
+  // getTopicArticle(status);
+
+	if (getUrlParam('check') == 1) {
+		//加载未审核的
+		getTopicArticle(0);
+		$('.not_passed').addClass('on_selected');
+	}else{
+		//加载已收录的
+		getTopicArticle(1)
+		$('.recent_collect').addClass('on_selected');
+
+	}
 }
 
 // 渲染专题信息
@@ -24,7 +35,6 @@ function getTopicDetail(){
 		topic_creator = result.datas[0].creator;
 		// 专题创建人显示收录按钮、查看待审核文章
 		if (userId && topic_creator == userId) {
-			getUrlParam('check') == 1 ? $('.not_passed').click() : '';
 			$('.collect_button').css('display','inline-block');
 			$('.not_passed').css('display','inline-block');
 
@@ -111,7 +121,6 @@ function getTopicArticle(status){
 
 				if (result.datas[i].textContent) {
 					result.datas[i].textContent = result.datas[i].textContent.replace(/<style(([\s\S])*?)<\/style>/g, '').replace(/<[^>]+>/g,"")
-
 					var content_length = null
 					if ($(window).width() < 767) {
 						content_length = 55

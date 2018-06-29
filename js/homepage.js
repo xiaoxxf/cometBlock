@@ -8,15 +8,16 @@ var ui = {
 	"loading": false
 }
 //判断登录状态才能签到
-	$('.sign_in_button').on('click', function(){
-
+$('.sign_in_button').on('click', function(){
+	signIn();
 })
 
-// 判断登录状态才能创建项目
+// 签到
 function signIn(){
 	if(!wechatBindNotice()){
 		return;
 	}
+
 	if(userId == undefined){
 		layer.open({
 			closeBtn:1,
@@ -70,6 +71,7 @@ $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){
 		return;
 	}
+	
 	if(userId == undefined){
 		layer.open({
 			closeBtn:1,
@@ -169,7 +171,7 @@ $(function(){
 		var content = template(tpl, {list: result.datas});
 		$('.swiper-wrapper').append(content)
 	},"json")
-	
+
 })
 
 //$(function(){
@@ -186,9 +188,9 @@ $(function(){
 //			var content = template(tpl, {list: result.datas});
 //			$('.swiper-wrapper').append(content)
 //		},
-//		
+//
 //	});
-//	
+//
 //})
 //
 
@@ -495,8 +497,8 @@ $(document).ready(function () {
     // })
 		var Swiper_banner = new Swiper('#swiper_banner', {
 			autoplay: 1500,
-			observer:true,//修改swiper自己或子元素时，自动初始化swiper    重要  
-    		observeParents:true,//修改swiper的父元素时，自动初始化swiper  重要  
+			observer:true,//修改swiper自己或子元素时，自动初始化swiper    重要
+    		observeParents:true,//修改swiper的父元素时，自动初始化swiper  重要
        		pagination: {
 			    el: '.swiper-pagination',
 			},

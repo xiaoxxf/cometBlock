@@ -220,6 +220,7 @@ var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 		},
 		fail: function(){
 			// console.log('失败')
+			myCaptcha.reload();
 			valid_token = '';
 		}
 })

@@ -1,21 +1,22 @@
-var login_failed = false; //密码错误后需要进行滑块验证
-var valid_token = '';
-var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
-		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
-		style: 'popup',
-
-		success: function (token) {
-			var valid_token = token;
-			myCaptcha.hide();
-			signIn(valid_token);
-			// 发送验证码
-			// getCode(valid_token);
-		},
-		fail: function(){
-			// console.log('失败')
-			// toekn = '';
-		}
-})
+// var login_failed = false; //密码错误后需要进行滑块验证
+// var valid_token = '';
+// var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
+// 		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
+// 		style: 'popup',
+//
+// 		success: function (token) {
+// 			var valid_token = token;
+// 			myCaptcha.hide();
+// 			login();
+// 			// 发送验证码
+// 			// getCode(valid_token);
+// 		},
+// 		fail: function(){
+// 			myCaptcha.reload();
+// 			// console.log('失败')
+// 			// toekn = '';
+// 		}
+// })
 
 
 function loginFromValid(){
@@ -39,16 +40,17 @@ function loginFromValid(){
 }
 
 $(document).on('click','#sign-in-form-submit-btn',function() {
-	myCaptcha.reload();
+	// myCaptcha.reload();
+	// // 首次登录
+	// if (login_failed) {
+	// 	myCaptcha.show();
+	// }
+	// // 登录错误后需要滑块验证
+	// else{
+	// 	login()
+	// }
+	login()
 
-	// 首次登录
-	if (login_failed) {
-		myCaptcha.show();
-	}
-	// 登录错误后需要滑块验证
-	else{
-		signIn()
-	}
 });
 //登录绑定回车
 $(document).keydown(function(event){
@@ -58,7 +60,7 @@ $(document).keydown(function(event){
 });
 
 var flag_login_submiting = false;
-function signIn(){
+function login(){
 
 	 	if(flag_login_submiting){
 		return
