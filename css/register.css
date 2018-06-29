@@ -134,11 +134,11 @@
 	}
 
 	.border_radB {
-		border-radius: 0 0 5px 5px;
 		border-top: none !important;
 	}
 
 	.border_radC {
+		border-radius: 0 0 5px 5px;
 		border-top: none !important;
 	}
 
