@@ -139,18 +139,21 @@
 
 	.border_radT {
 		border-radius: 5px 5px 0 0;
-		border-bottom: none !important;
+		/*border-bottom: none !important;*/
 	}
 
 	.border_radB {
-		border-radius: 0 0 5px 5px;
+		/*border-radius: 0 0 5px 5px;*/
 		border-top: none !important;
+		border-bottom: none !important;
 	}
 
 	.border_radC {
 		border-top: none !important;
 	}
-
+	.border_radD{
+		border-radius: 0 0 5px 5px;
+	}
 	.btn-up-resend {
 		position: absolute;
 		top: 7px;
