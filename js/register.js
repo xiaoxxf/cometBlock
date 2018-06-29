@@ -5,6 +5,7 @@ var flag_send_code=false; //防止发送验证码重复点击
 
 //校验昵称
 $("#realName").blur(function() {
+
 	validRealName();
 });
 
@@ -18,15 +19,14 @@ $("#session_phone").blur(function() {
 $('#session_password').blur(function(){
 	validPasswordFormat();
 })
-
 // 发送验证码流程： 检验手机号格式是否正确 -> 检验是否已发送验证 -> 检验手机号是否已注册 -> 滑块验证 -> 发送验证码
 $('#send_code').click(function() {
 	validPhoneFormat();
-
 	if(flag_send_code || !phone_flag){
 		return
 	}
-
+	myCaptcha.reload(); //重置验证码
+	// debugger
 	$("#send_code").css("text-decoration", "none");
 	$("#send_code").css("color", "white");
 	validatePhone()
@@ -48,7 +48,6 @@ function validatePhone() {
 			// flag_send_code = false;
 		}
 	}, "json");
-
 }
 
 var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
@@ -85,7 +84,7 @@ function getCode(validToken) {
 }
 
 // 倒计时
-var count = 60;
+var count = 10;
 var countdown;
 function dingshiqi() {
 	if(count > 0) {
@@ -102,7 +101,7 @@ function dingshiqi() {
 }
 
 function CountDown() {
-	count = 60;
+	count = 5;
 	countdown = setInterval(dingshiqi, 1000);
 }
 

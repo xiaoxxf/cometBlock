@@ -4,6 +4,7 @@ var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 
 		success: function (token) {
 			var valid_token = token;
+			debugger
 			myCaptcha.hide();
 			// 验证通过，则发送验证码
 			sendCode(valid_token);
@@ -28,6 +29,7 @@ $('#send_code').click(function() {
 	}
 })
 function valid() {
+	myCaptcha.reload(); //重置验证码
 	myCaptcha.show();
 }
 

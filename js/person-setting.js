@@ -233,6 +233,7 @@ $('#setting_send_code').click(function() {
 	flag_resetPwd_sendCode =true
 	$("#setting_send_code").css("text-decoration", "none");
 	$("#setting_send_code").css("color", "white");
+	myCaptcha.reload(); //重置验证码
 	myCaptcha.show();
 })
 
