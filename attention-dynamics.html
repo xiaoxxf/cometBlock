@@ -60,24 +60,26 @@
 													<div class="meta_edit">
 														<a class="fa-ico uploadImage_Icon" onclick="ImageAlert()"><i class="fa fa-photo"></i><span class="meta_photo">图片</span></a>
 														<a class="fa-ico edit_ico"><i class="fa fa-pencil"></i><span class="meta_photo">文章</span></a>
-														<div class="send_button">发布</div>
+														<div class="send_button" onclick="uploadPic()">发布</div>
 													</div>
 													<!--点击图片出现下方图片列表弹出框-->
 													<div class="alert_imageWrapper">
-														<div class="upload_wrapper">	
-															<p class="upload_title">本地上传</p>
-															<p class="upload_num">共1张，还能上传4张</p>
-                    										<div class="imgOnloadWrap"></div>  
-                    										<div class="upWrapper">
-																<div class="fileWrap">  
-										                            <input type="file" class="file_uploadImage" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="upImg(this)"/>  
-										                        </div> 
-																<div class="imgWrap upedImg">  
-										                            <!--<img src="img/001-signs.png" class="imgWrap_image_item" />-->
-										                            <div class="upload_addImage_icon"><i class="fa fa-plus add_icon" style="font-size: 24px;"></i></div>
-										                        </div> 
-										                    </div>    
-								                        </div>
+            											<form action="" enctype="multipart/form-data" style="text-align: left;">  
+															<div class="upload_wrapper">	
+																<p class="upload_title">本地上传</p>
+																<p class="upload_num">共1张，还能上传4张</p>
+	                    										<div class="imgOnloadWrap"></div>  
+	                    										<div class="upWrapper">
+																	<div class="fileWrap">  
+											                            <input type="file" class="file_uploadImage" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="upImg(this)"/>  
+											                        </div> 
+																	<div class="imgWrap upedImg">  
+											                            <!--<img src="img/001-signs.png" class="imgWrap_image_item" />-->
+											                            <div class="upload_addImage_icon"><i class="fa fa-plus add_icon" style="font-size: 24px;"></i></div>
+											                        </div> 
+											                    </div>    
+									                        </div>
+								                        </form>
 													</div>
 												</div>
 											</div>

@@ -181,6 +181,7 @@ $('.team').on('change', $('.member_pic'), function(e) {
   reader.onload = function(){
     img.src = reader.result;
   }
+  
   reader.readAsDataURL(file);
 
 })

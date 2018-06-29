@@ -11,6 +11,7 @@ a img {
 @media (max-width:762px) {
   .hot_zone {
     margin-bottom: 20px;
+    margin-top: 20px;
   }
 
 }
@@ -28,9 +29,14 @@ a img {
   	padding: 10px 5px 10px 10px;
   }
 }
-
+@media only screen and (max-width:900px ) {
+	.laside{
+		position: relative;
+  }
+}
 .raside_item{
 	margin: 20px 40px;
+	cursor: pointer;
 }
     
 .laside li{
@@ -161,21 +167,27 @@ a img {
 .uploadImage_Icon{
 	position: relative;
 }
-
+.upWrapper > .fileWrap > input[type=file]{  
+    z-index: 2;  
+    opacity: 0; 
+    width: 100%; 
+}  
+.upWrapper > .imgWrap{  
+    z-index: 1;  
+} 
 /*删除选择图片*/
+
 upedImg{  
     z-index: 3 !important;  
 }  
 .upedImg > span.deleteImg{  
     position: absolute;
     content: 'X';
-    width: 100%;
+    width: 20px;
     font-size: 12px;
-    padding-right: 8px;
     color: white;
     background: rgba(0, 0, 0, 0.58);
-    height: 100%;
-    text-align: right;
+    text-align: center;
     line-height: 20px;
     right: 0;
     top: 0;
@@ -190,18 +202,22 @@ upedImg{
     cursor: pointer;
     margin-top: 20px;
 }
-
-
     
 /*layer弹窗位置*/
-#layui-layer1{
+/*#layui-layer1{
 	position:absolute;
 	top: 200px !important;
 	left: 18px !important;
 	border-radius: 5px !important;
     border: solid 1px #80808059 !important;
+}*/
+.layui-layer{
+	position:absolute !important;
+	top: 200px !important;
+	left: 18px !important;
+	border-radius: 5px !important;
+    border: solid 1px #80808059 !important;
 }
-
 
 .layui-layer-content{
 	overflow: hidden;
@@ -212,6 +228,7 @@ upedImg{
 .upload_wrapper{
 	padding: 10px;
 }
+
 .upload_title{
 	font-weight: bold;
 }
@@ -238,13 +255,6 @@ upedImg{
 	width: 80px;
 	height: 80px;
 }
-.fileWrap{
-	position: relative;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 3;
-}
 .imgWrap{
 	position: absolute;
     height: 100%;
@@ -252,6 +262,8 @@ upedImg{
     top: 0;
     left: 0;
 }
+
+
 .file_uploadImage{
 	position: absolute;
     height: 100%;
@@ -263,15 +275,15 @@ upedImg{
 .upWrapper>.imgWrap>img{
 	width: 100%;
     height: 100%;
+    
+
+}
+.upWrapper>.imgWrap>img{
+    background: rgba(0, 0, 0, 0.58);
+	background-color: darkblue;
+
 }
 
-.upWrapper > .fileWrap, .upWrapper > .fileWrap > input[type=file], .upWrapper > .imgWrap{
-	position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-} 
 
 /*弹窗关闭按钮*/
 .layui-layer-setwin .layui-layer-close2{
@@ -339,8 +351,13 @@ upedImg{
 	margin-left: 5px;
 	color: #333;
 }
-.meta .meta_icon i,.meta_edit .meta_icon i {
-	/*margin-right: 5px;*/
+.meta .meta_icon i,.meta_edit .meta_icon i,.meta_icon i {
+	margin-right: 5px;
+}
+@media only screen and (max-width:900px ) {
+	.meta .meta_icon i,.meta_edit .meta_icon i,.meta_icon i {
+		margin-right: 0px;
+	}
 }
 .meta_edit{
     height: 40px;
