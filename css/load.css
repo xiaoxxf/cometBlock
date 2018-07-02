@@ -3,8 +3,9 @@
 .ouro {
     position: relative;
     bottom: 36px;
-    right: 60px;
-    /*display: inline-block;*/
+    /* right: 60px; */
+    left: 35%;
+    /* display: block; */
     height: 30px;
     width: 30px;
     border-radius: 50%;

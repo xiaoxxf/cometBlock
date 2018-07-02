@@ -71,7 +71,7 @@ $('.create_project_button').on('click', function(){
 	if(!wechatBindNotice()){
 		return;
 	}
-	
+
 	if(userId == undefined){
 		layer.open({
 			closeBtn:1,
@@ -406,8 +406,8 @@ $(".hot_review_region").on('click','.like-button',function (e) {
             shade:0,
             title: 0,
             skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#short-comment-commit-layer").html()
+            area: ['400px', '500px'], //宽高
+            content: $("#login_layer").html()
         });
         return;
     }

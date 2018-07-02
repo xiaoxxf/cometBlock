@@ -546,21 +546,6 @@ a img {
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fcfcfc), color-stop(1, #e9e9e9));
 }
 
-
-/*引入彈框*/
-
-.report-login {
-	text-align: center;
-	width: 500px;
-	margin: 60px auto 0;
-	padding: 50px 50px 30px;
-	background-color: #fff;
-	border-radius: 4px;
-	box-shadow: none !important;
-	vertical-align: middle;
-	display: inline-block;
-}
-
 /*footer样式复写*/
 .fixed-footer-wrap{
 	bottom: -80px !important;

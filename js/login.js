@@ -81,7 +81,7 @@ function login(){
 		if(res != null && res.code == 0) {
 
 			$(".ouro").attr({
-				style: "display:inline-block"
+				style: "display:block"
 			});
 
 			setTimeout(function() { //两秒后跳转
@@ -96,9 +96,11 @@ function login(){
 				$.cookie('userid', res.datas.id,{ expires: expireDate });
 								$.cookie('username', res.datas.realName,{ expires: expireDate });
 				var localCurrentHref = window.localStorage.getItem('currentJumpHref');
+
 				if(!localCurrentHref){
 						window.location.href = "index.html";
-				}else{
+				}
+				else{
 						window.location.href = localCurrentHref;
 				}
 				// 账号登录时清除wechatinfo的信息

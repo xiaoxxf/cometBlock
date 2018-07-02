@@ -120,20 +120,9 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
         parentTxt = self.data('parenttxt');
         $(".comment-list-hook").find('.reply-comment-click').removeClass('reply-comment-click')
         self.addClass('reply-comment-click');
-    if(!wechatBindNotice()){
-    	return;
-    }
-    if(userId == undefined){
-        // layer.msg('您还没有登录');
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#template-reply").html()
-        });
-        return;
+
+    if (not_login()) {
+      return
     }
     $("#add_comment .author").text(author);
     $("#add_comment .number").text(number);
@@ -143,22 +132,9 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
 });
 //点击删除
 $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
-    if(!wechatBindNotice()){
-      return;
+    if (not_login()) {
+      return
     }
-    if(userId == undefined){
-        // layer.msg('您还没有登录');
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#template-reply").html()
-        });
-        return;
-    }
-
     var self =$(e.currentTarget),
         author = self.data('user_name'),
         passWord = userinfo.userPwd,
@@ -199,20 +175,8 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
   var self = $(e.currentTarget)
 
   var reviewId = self.data('reviewid');
-  if(!wechatBindNotice()){
-    	return;
-  }
-  if(userId == undefined){
-      // layer.msg('您还没有登录');
-      layer.open({
-          type: 1,
-          shade:0,
-          title: 0,
-          skin: 'layui-layer-report', //加上边框
-          area: ['550px', '680px'], //宽高
-          content: $("#template-reply").html()
-      });
-      return;
+  if (not_login()) {
+    return
   }
 
   layer.confirm('修改评论',
@@ -279,20 +243,8 @@ var ui = {
   'like_submiting' : false
 }
 $(".comment-detail-mian-hook").on('click','.main-like .LikeButton',function (e) {
-    if(!wechatBindNotice()){
-      return;
-    }
-    if(userId == undefined){
-        // layer.msg('您还没有登录');
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#template-reply").html()
-        });
-        return;
+    if (not_login()) {
+      return
     }
     if (ui.like_submiting) {
       return
@@ -332,6 +284,9 @@ var add_comment_ui = {
   'submiting': false
 }
 $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
+    if (not_login()) {
+      return
+    }
     if (add_comment_ui.submiting) {
       return
     }
@@ -343,26 +298,26 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     if($(".reply-comment").is(':visible')){
         quote = $(".reply-comment-wrap .quote-comment-txt").html();
     }
-    if(!wechatBindNotice()){
-      add_comment_ui.submiting = false;
-      $(e.currentTarget).text('加上去');
-    	return;
-    }
-
-    if(userId == undefined){
-        // layer.msg('您还没有登录');
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#template-reply").html()
-        });
-        add_comment_ui.submiting = false;
-        $(e.currentTarget).text('加上去');
-        return;
-    }
+    // if(!wechatBindNotice()){
+    //   add_comment_ui.submiting = false;
+    //   $(e.currentTarget).text('加上去');
+    // 	return;
+    // }
+    //
+    // if(userId == undefined){
+    //     // layer.msg('您还没有登录');
+    //     layer.open({
+    //         type: 1,
+    //         shade:0,
+    //         title: 0,
+    //         skin: 'layui-layer-report', //加上边框
+    //         area: ['550px', '680px'], //宽高
+    //         content: $("#template-reply").html()
+    //     });
+    //     add_comment_ui.submiting = false;
+    //     $(e.currentTarget).text('加上去');
+    //     return;
+    // }
 
     if($.trim(shortTxt) == '' || shortTxt.length < 5){
 
@@ -415,20 +370,8 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
 })
 // 点击删除长文
 $('.comment-detail-mian-hook').on('click', '.long_comment_delete',function (e) {
-    if(!wechatBindNotice()){
-      return;
-    }
-    if(userId == undefined){
-        // layer.msg('您还没有登录');
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#template-reply").html()
-        });
-        return;
+    if (not_login()) {
+      return
     }
     if (ui.deleting) {
       return
@@ -968,9 +911,6 @@ function showQrCode(){
   qrcode.makeCode(window.location.href);
 }
 
-function makeCode(){
-
-}
 //页面下拉到一定位置时，右下角出现回到顶部图标
 $(function () {
   if ($(window).width() >= 767) {
@@ -986,3 +926,22 @@ $(function () {
     showScroll();
   }
 });
+
+// 未登录状态
+function not_login(){
+  if(!wechatBindNotice()){
+    return true;
+  }
+  if(userId == undefined){
+      // layer.msg('您还没有登录');
+      layer.open({
+          type: 1,
+          shade:0,
+          title: 0,
+          skin: 'layui-layer-report', //加上边框
+          area: ['400px', '500px'], //宽高
+          content: $("#login_layer").html()
+      });
+    return true;
+  }
+}

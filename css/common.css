@@ -679,3 +679,11 @@ tbody a{
 .loading span:nth-child(5){
     -webkit-animation-delay:0.52s;
 }
+
+
+/* 弹窗登录 */
+/*引入彈框*/
+
+.login_pop_ups {
+	padding: 20px;
+}

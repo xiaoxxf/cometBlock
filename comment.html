@@ -320,8 +320,6 @@
 			<% } %>
 		</script>
 
-
-
 		<!-- 举报 -->
 		<script type="text/html" id="template-report-popup">
 			<div id='report_value'>
@@ -356,19 +354,17 @@
 				<input type='submit' class='btn-report' value='举报'>
 			</div>
 		</script>
-		<!--引入弹框-->
-		<script type="text/html" id="template-reply">
-			<div class="main report-login">
 
+		<!-- 登录弹窗 -->
+		<script type="text/html" id="login_layer">
+			<div class="login_pop_ups">
 				<h4 class="title">
 					<div class="normal-title">
-						<a class="active" href="">登录</a>
-						<b>·</b>
-						<a id="js-sign-up-btn" class="" href="register.html">注册</a>
+							<a class="active" href="">登录</a>
+							<a id="js-sign-up-btn" class="" href="register.html">注册</a>
 					</div>
 				</h4>
 				<div class="js-sign-in-container">
-
 					<div class="input-prepend  restyle ">
 						<input placeholder="手机号" type="text" class="border_radT" name="tel" id="session_phone">
 
@@ -381,19 +377,14 @@
 					</div>
 					<input value="false" type="hidden" name="session[oversea]" id="session_oversea">
 
-					<div class="remember-btn">
-						<input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me"><span>记住我</span>
-					</div>
 					<div class="forget-btn">
 						<a class="" data-toggle="dropdown" href="">登录遇到问题?</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a href="">用手机号重置密码</a>
+								<a href="find-pwd.html">重置密码</a>
 							</li>
-
 						</ul>
 					</div>
-
 
 					<input class="sign-in-button" id="sign-in-form-submit-btn" type="button" value="登录" >
 						 <span class="ouro">
@@ -413,6 +404,7 @@
 				</div>
 			</div>
 		</script>
+
 		<script type="text/html" id="template-mian-detail">
 			<a href="personal-homepage.html?userId=<%=list.creator %>" class="avatar author-avatar pull-left" href="javascript:;">
 				<!-- TODO：显示个人头像 -->

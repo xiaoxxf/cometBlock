@@ -66,8 +66,8 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
 	 	  var area_width = '320px'
 	    var area_height = '500px'
  	  }else{
- 		  var area_width = '520px'
-	    var area_height = '600px'
+ 		  var area_width = '400px'
+	    var area_height = '500px'
  	  }
     var shortTxt = $(".short-comment").val();
     // 判断是否登录
@@ -82,8 +82,7 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
             title: 0,
             skin: 'layui-layer-report', //加上边框
             area: [area_width,area_height ], //宽高
-            content: $("#short-comment-commit-layer").html()
-        });
+            content: $("#login_layer").html()        });
         return;
     }
     if(self.hasClass('on')){

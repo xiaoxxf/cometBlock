@@ -245,15 +245,15 @@ $(".topic_article_list").on('click','.like-button',function (e) {
 		if(!wechatBindNotice()){
     	return;
     }
-    if(userinfo == null){
+    if(userId == null){
         // layer.msg('您还没有登录')
         layer.open({
             type: 1,
             shade:0,
             title: 0,
             skin: 'layui-layer-report', //加上边框
-            area: ['550px', '680px'], //宽高
-            content: $("#template-reply").html()
+						area: ['400px', '500px'], //宽高
+            content: $("#login_layer").html()
         });
         return;
     }
