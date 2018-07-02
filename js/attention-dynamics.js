@@ -9,7 +9,6 @@ function textareaFocus(e,a){
 }
 
 //点击图片出现下方图片列表弹出框
-
 function ImageAlert(){
 	layer.open({
 		type: 1,
@@ -33,7 +32,8 @@ function ImageAlert(){
 //判断弹窗位置-在图片下方
 $(document).ready(function(){
   $("button").click(function(){
-    x=$("p").offset();
+//  x=$("p").offset();
+    x=$(".uploadImage_Icon").offset();
     $("#span1").text(x.left);
     $("#span2").text(x.top);
   });
@@ -69,7 +69,7 @@ function upImg(obj){
 //		}, false);
 		
 		fr.readAsDataURL(imgFile);
-//		uploadPic(imgFile);
+		uploadPic(imgFile); //上传图片
 		
 }
 //删除图片
@@ -95,8 +95,7 @@ function uploadPic(imgFile){
 		success:function(data){
 			
 			if (data.code == 0) {
-		        layer.msg('上传成功')
-				var imgUrl=data.datas[0]; //保存返回的图片地址
+		        layer.msg('上传成功');
 //				var arr = new Array(9); //创建数组保存9张图片
 //				arr[0]=imgUrl;
 //				console.log(arr)
