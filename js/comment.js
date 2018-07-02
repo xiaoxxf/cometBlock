@@ -42,7 +42,7 @@ function  ajaxGetReviewDetail() {
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             // 用户点赞状态
-            addLikeStatus = res.status;
+            addLikeStatus = res.datas.likeStatus;
             var commentInfoData = res.datas;
             // 给projectId赋值后再用projectId去请求项目信息
             projectId = res.datas.projectId
