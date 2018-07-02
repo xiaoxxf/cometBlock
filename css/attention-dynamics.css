@@ -85,7 +85,14 @@ a img {
     background-color: white;
     margin-left: -10px;
 }
-
+@media only screen and (max-width:980px ) {
+	.raside{
+		position: relative;
+	    float: left;
+	    width: 100%;
+	    margin-left: 0px;
+  }
+}
 .raside_icon{
 	margin-right: 10px;
 }

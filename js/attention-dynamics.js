@@ -16,17 +16,20 @@ function ImageAlert(){
 		shade: false,
 		title: false, //不显示标题
 		//offset: ['350', '380'],//弹窗自定义位置
-		area: ['340px', '390px'],
+		area: ['340px', 'auto'],
+//		area: ['340px', '160px'],
 		content: $('.alert_imageWrapper'), 
+		scrollbar: false,
 		cancel: function(){
 			console.log(imgFile)
 			$('.imgOnloadWrap').html('');
-		}
+		},
 		
+	
 	});
- 
+
 }
-//判断弹窗位置
+//判断弹窗位置-在图片下方
 $(document).ready(function(){
   $("button").click(function(){
     x=$("p").offset();
@@ -39,9 +42,9 @@ $(document).ready(function(){
 //点击预览上传图片方法
 var imgFile;
 function upImg(obj){
-	debugger
+//	debugger
 	imgFile = obj.files[0];  
-    console.log(imgFile);
+//  console.log(imgFile);
     var img = new Image();  
     var fr = new FileReader();
     fr.onload = function(){  
@@ -54,7 +57,7 @@ function upImg(obj){
 		//htmlStr += '<div class="upload_addImage_icon"><i class="fa fa-plus add_icon" style="font-size: 24px;"></i></div>';  
         htmlStr += '</div>';  
         htmlStr += '</div>';  
-        $('.imgOnloadWrap').append(htmlStr);  
+       	$('.imgOnloadWrap').append(htmlStr);
         obj.value = '';  
 		} 
 		
@@ -112,12 +115,22 @@ function uploadPic(imgFile){
 
 
 //限制上传图片数量
+var uploadImageNum; //
 $("input").change(function(e){
-	var num=e.target.files.length //这就是用户选择的图片数量，根据这个值决定是否进行上传
-	console.log(num);
-   
+//	var num=e.target.files.length //这就是用户选择的图片数量，根据这个值决定是否进行上传
+	uploadImageNum=$(".imgOnloadWrap .upWrapper").length 
+	console.log(uploadImageNum)
+	if(uploadImageNum >= 8){
+//		htmlStr="";
+		console.log("g")
+		$(".upWrapper > .imgWrap").css("display","none");
+	}
+	$('.sum_upload_image').html(uploadImageNum + 1); //共几张
+	$('.leave_upload_image').html(8 - uploadImageNum ); //已经上传几张
+		
 });
 
+	
 //鼠标移入
 
 //$(document).ready(function(){
