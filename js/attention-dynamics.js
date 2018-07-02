@@ -16,16 +16,17 @@ function ImageAlert(){
 		shade: false,
 		title: false, //不显示标题
 		//offset: ['350', '380'],//弹窗自定义位置
-		area: ['340px', 'auto'],
+		area: ['330px', 'auto'],
 //		area: ['340px', '160px'],
 		content: $('.alert_imageWrapper'), 
 		scrollbar: false,
 		cancel: function(){
 			console.log(imgFile)
 			$('.imgOnloadWrap').html('');
+			$('.addImageWrapper').css("display","block"); //关闭时隐藏掉添加按钮要显示
+			
 		},
 		
-	
 	});
 
 }
@@ -41,8 +42,8 @@ $(document).ready(function(){
 
 //点击预览上传图片方法
 var imgFile;
+
 function upImg(obj){
-//	debugger
 	imgFile = obj.files[0];  
 //  console.log(imgFile);
     var img = new Image();  
@@ -68,13 +69,15 @@ function upImg(obj){
 //		}, false);
 		
 		fr.readAsDataURL(imgFile);
-		uploadPic(imgFile);
+//		uploadPic(imgFile);
 		
 }
 //删除图片
 $(document).on('click','.upedImg .deleteImg',function(){  
     //处理未来事件  
-    $(this).parent().parent().remove();  
+    $(this).parent().parent().remove();
+	$('.addImageWrapper').css("display","block");
+    	
 })  
 //上传图片
 function uploadPic(imgFile){
@@ -116,17 +119,15 @@ function uploadPic(imgFile){
 
 //限制上传图片数量
 var uploadImageNum; //
-$("input").change(function(e){
+$(".file_uploadImage").change(function(e){
 //	var num=e.target.files.length //这就是用户选择的图片数量，根据这个值决定是否进行上传
 	uploadImageNum=$(".imgOnloadWrap .upWrapper").length 
-	console.log(uploadImageNum)
-	if(uploadImageNum >= 8){
-//		htmlStr="";
-		console.log("g")
-		$(".upWrapper > .imgWrap").css("display","none");
+	if(uploadImageNum >= 8){ //限制上传图片为9张
+		$('.addImageWrapper').css("display","none");
 	}
-	$('.sum_upload_image').html(uploadImageNum + 1); //共几张
-	$('.leave_upload_image').html(8 - uploadImageNum ); //已经上传几张
+
+	$('.sum_upload_image').html(uploadImageNum + 1); //一共几张照片
+	$('.leave_upload_image').html(8 - uploadImageNum ); //已经上传几张照片
 		
 });
 

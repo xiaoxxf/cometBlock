@@ -174,14 +174,7 @@ a img {
 .uploadImage_Icon{
 	position: relative;
 }
-.upWrapper > .fileWrap > input[type=file]{  
-    z-index: 2;  
-    opacity: 0; 
-    width: 100%; 
-}  
-.upWrapper > .imgWrap{  
-    z-index: 1;  
-} 
+
 /*删除选择图片*/
 
 upedImg{  
@@ -209,6 +202,14 @@ upedImg{
     cursor: pointer;
     margin-top: 20px;
 }
+.upWrapper > .fileWrap > input[type=file]{  
+    z-index: 2;  
+    opacity: 0; 
+    width: 100%; 
+}  
+.upWrapper > .imgWrap{  
+    z-index: 1;  
+} 
     
 /*layer弹窗位置*/
 /*#layui-layer1{
@@ -231,6 +232,11 @@ upedImg{
 }
 .alert_imageWrapper{
 	display: none;
+	height: auto;
+}
+/*高度自定义隐藏滚动条*/
+.layui-layer-content{
+	height: auto !important; 
 }
 .upload_wrapper{
 	padding: 10px;
