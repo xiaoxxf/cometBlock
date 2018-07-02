@@ -53,19 +53,23 @@ function validatePhone() {
 var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
 		style: 'popup',
-
-		success: function (token) {
-			var valid_token = token;
-			myCaptcha.hide();
-			// 发送验证码
-			getCode(valid_token);
-		},
-		fail: function(){
-			// console.log('失败')
-			// toekn = '';
-			myCaptcha.reload();
-		}
 })
+
+// 验证成功
+myCaptcha.on('verifySuccess', function (security_code) {
+	var valid_token = security_code;
+	myCaptcha.hide();
+	// 发送验证码
+	getCode(valid_token);
+})
+
+myCaptcha.on('passByServer', function (security_code) {
+	var valid_token = security_code;
+	myCaptcha.hide();
+	// 发送验证码
+	getCode(valid_token);
+})
+
 
 //发送验证码
 function getCode(validToken) {

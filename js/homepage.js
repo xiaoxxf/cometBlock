@@ -14,36 +14,21 @@ $('.sign_in_button').on('click', function(){
 
 // 签到
 function signIn(){
-	if(!wechatBindNotice()){
-		return;
+	if(not_login()){
+		return
 	}
 
-	if(userId == undefined){
-		layer.open({
-			closeBtn:1,
-			shadeClose:true,
-			title: '',
-			content: '请先登录您的账号',
-			btn: ['登录', '注册'],
-			yes: function(){
-				window.location.href='login.html'
-			},
-			btn2: function(){
-				window.location.href='register.html'
-			}
-		});
-	}else{
-		var creator = userinfo.id;
-		var uri='chainCoinWallet/signIn?creator='+creator
-		doJavaGet(uri,function(res){
-			if(res.code==0){
-				layer.msg(res.msg);
-				$('.sign_in_button').html('已连续签到 ' + res.datas.split('|').length + ' 天')
-			}else if(res.code == -1){
-				layer.msg(res.msg);
-			}
-		},"json")
-	}
+	var creator = userId;
+	var uri='chainCoinWallet/signIn?creator='+creator
+	doJavaGet(uri,function(res){
+		if(res.code==0){
+			layer.msg(res.msg);
+			$('.sign_in_button').html('已连续签到 ' + res.datas.split('|').length + ' 天')
+		}else if(res.code == -1){
+			layer.msg(res.msg);
+		}
+	},"json")
+
 }
 
 // 查询是否已签到
@@ -68,6 +53,9 @@ $(function(){
 
 
 $('.create_project_button').on('click', function(){
+	// if (not_login()) {
+	// 	return
+	// }
 	if(!wechatBindNotice()){
 		return;
 	}
@@ -388,29 +376,16 @@ $(window).scroll(function(){
 
 // 长文点赞
 $(".hot_review_region").on('click','.like-button',function (e) {
+		// 判断是否登录或绑定
+		if (not_login()) {
+			return
+		}
     e.preventDefault()
     var self = $(e.currentTarget);
     var reviewid = self.data('reviewid');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
 		var projectBigName = self.data('projectbigname');
-
-		// 判断是否登录或绑定
-		if(!wechatBindNotice()){
-    	return;
-    }
-    if(userinfo == null){
-        // layer.msg('您还没有登录')
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: ['400px', '500px'], //宽高
-            content: $("#login_layer").html()
-        });
-        return;
-    }
 
 		var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {

@@ -61,30 +61,10 @@ $(".comment-list-wrap ").on('click','.click-awsome',function (e) {
     var area_width
     var area_height
 
-    if($(window).width() <= 767)
- 	  {
-	 	  var area_width = '320px'
-	    var area_height = '500px'
- 	  }else{
- 		  var area_width = '400px'
-	    var area_height = '500px'
- 	  }
-    var shortTxt = $(".short-comment").val();
-    // 判断是否登录
-    if(!wechatBindNotice()){
-    	return;
+    if(not_login()){
+      return
     }
-    if(userId == undefined){
-        // layer.msg('您还没有登录')
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: [area_width,area_height ], //宽高
-            content: $("#login_layer").html()        });
-        return;
-    }
+
     if(self.hasClass('on')){
         likes = 0;
     }else{
@@ -334,6 +314,9 @@ var short_comment_ui = {
 }
 //点击提交评论
 $(".short-comment-commit").on('click',function (e) {
+    if(not_login()){
+      return
+    }
     if (short_comment_ui.submiting) {
       return
     }
@@ -347,33 +330,13 @@ $(".short-comment-commit").on('click',function (e) {
     var area_height
     if($(window).width() <= 767)
  	  {
-	 	area_width = '320px'
+	 	  area_width = '320px'
 	    area_height = '500px'
    	}else{
-   		 area_width = '520px'
-  	     area_height = '600px'
+   		area_width = '520px'
+  	  area_height = '600px'
    	}
 
-    // 判断是否登录
-    if(!wechatBindNotice()){
-      short_comment_ui.submiting = false;
-      $(".short-comment-commit").text('评论');
-    	return;
-    }
-    if(userId == undefined){
-        // layer.msg('您还没有登录')
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-            area: [area_width,area_height ], //宽高
-            content: $("#short-comment-commit-layer").html()
-        });
-        short_comment_ui.submiting = false;
-        $(".short-comment-commit").text('评论');
-        return;
-    }
     if(score == ''){
         layer.tips('给这个项目打个分哦', '#rating', {
             tips: [1, '#4fa3ed'],
@@ -502,24 +465,13 @@ function formatStarClass(data){
 
 // 删除短评
 function delete_short_comment(e){
+  if(not_login()){
+    return
+  }
   var self =$(e),
       passWord = userinfo.userPwd,
       reviewId = self.data('reviewid');
-  if(!wechatBindNotice()){
-    return;
-  }
-  if(userId == undefined){
-      // layer.msg('您还没有登录');
-      layer.open({
-          type: 1,
-          shade:0,
-          title: 0,
-          skin: 'layui-layer-report', //加上边框
-          area: ['550px', '680px'], //宽高
-          content: $("#template-reply").html()
-      });
-      return;
-  }
+
   layer.confirm('删除后奖励会被收回,确定删除您的评论吗?',
       {
       icon: 3,
@@ -697,30 +649,8 @@ $(window).on('resize', function () {
 // 写长评
 $('.write-long-discuss').on('click',function(){
   // 判断是否登录
-  if(!wechatBindNotice()){
-    return;
-  }
-  if(userId == undefined){
-    var area_width
-    var area_height
-    if($(window).width() <= 767)
-    {
-      area_width = '320px'
-        area_height = '500px'
-    }else{
-       area_width = '520px'
-         area_height = '600px'
-    }
-    // layer.msg('您还没有登录')
-    layer.open({
-        type: 1,
-        shade:0,
-        title: 0,
-        skin: 'layui-layer-report', //加上边框
-        area: [area_width,area_height ], //宽高
-        content: $("#short-comment-commit-layer").html()
-    });
-    return;
+  if(not_login()){
+    return
   }
   window.location.href = 'long-comment.html?projectId='+ getUrlParam('projectId')
 })

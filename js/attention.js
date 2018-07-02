@@ -267,29 +267,17 @@ $(window).scroll(function(){
 
 // 点赞
 $(".hot_review_region").on('click','.like-button',function (e) {
+		// 判断是否登录或绑定
+		if(not_login()){
+			return
+		}
     e.preventDefault()
     var self = $(e.currentTarget);
     var reviewid = self.data('reviewid');
 		var projectBigName = self.data('projectbigname');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
-		// 判断是否登录或绑定
-		if(!wechatBindNotice()){
-    	return;
-    }
-    if(userId == null){
-        // layer.msg('您还没有登录')
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-						area: ['400px', '500px'], //宽高
-            content: $("#login_layer").html()
-        });
-        return;
-    }
-
+		
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res.code == 0) {

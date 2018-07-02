@@ -1,22 +1,22 @@
-// var login_failed = false; //密码错误后需要进行滑块验证
-// var valid_token = '';
-// var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
-// 		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
-// 		style: 'popup',
-//
-// 		success: function (token) {
-// 			var valid_token = token;
-// 			myCaptcha.hide();
-// 			login();
-// 			// 发送验证码
-// 			// getCode(valid_token);
-// 		},
-// 		fail: function(){
-// 			myCaptcha.reload();
-// 			// console.log('失败')
-// 			// toekn = '';
-// 		}
-// })
+var login_failed = false; //密码错误后需要进行滑块验证
+var valid_token = '';
+var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
+		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
+		style: 'popup',
+})
+// 验证成功
+myCaptcha.on('verifySuccess', function (security_code) {
+	var valid_token = security_code;
+	myCaptcha.hide();
+	login();
+})
+
+myCaptcha.on('passByServer', function (security_code) {
+	var valid_token = security_code;
+	myCaptcha.hide();
+	login();
+})
+
 
 
 function loginFromValid(){
@@ -40,16 +40,16 @@ function loginFromValid(){
 }
 
 $(document).on('click','#sign-in-form-submit-btn',function() {
-	// myCaptcha.reload();
-	// // 首次登录
-	// if (login_failed) {
-	// 	myCaptcha.show();
-	// }
-	// // 登录错误后需要滑块验证
-	// else{
-	// 	login()
-	// }
-	login()
+	myCaptcha.reload();
+	// 首次登录
+	if (login_failed) {
+		myCaptcha.show();
+	}
+	// 登录错误后需要滑块验证
+	else{
+		login()
+	}
+	// login()
 
 });
 //登录绑定回车
@@ -62,7 +62,7 @@ $(document).keydown(function(event){
 var flag_login_submiting = false;
 function login(){
 
-	 	if(flag_login_submiting){
+	if(flag_login_submiting){
 		return
 	}
 	if(loginFromValid()){
@@ -73,6 +73,7 @@ function login(){
 		tel: $("#session_phone").val(),
 		userType: 2,
 	}
+
 	var uri = 'news/login?userName=' + param.userName + '&userPwd=' + hex_md5(param.userName + param.userPwd);
 	param = JSON.stringify(param);
 		var currentHref = location.href

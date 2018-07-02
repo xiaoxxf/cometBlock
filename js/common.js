@@ -415,3 +415,33 @@ function wechatBindNotice(){
     }
     return true
 }
+
+// 判断微信绑定 及 用户是否登录
+function not_login(){
+
+  if($(window).width() <= 767)
+  {
+    var area_width = '300px'
+    var area_height = '490px'
+  }else{
+    var area_width = '400px'
+    var area_height = '500px'
+  }
+  // 判断是否登录
+  if(!wechatBindNotice()){
+    return true;
+  }
+  if(userId == undefined){
+      // layer.msg('您还没有登录')
+      layer.open({
+          type: 1,
+          shade:0,
+          title: 0,
+          zIndex: 100,
+          skin: 'layui-layer-report', //加上边框
+          area: [area_width,area_height ], //宽高
+          content: $("#login_layer").html()
+        });
+      return true;
+  }
+}

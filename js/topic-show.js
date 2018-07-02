@@ -237,26 +237,14 @@ function deleteTopic(e){
 
 // 文章点赞
 $(".topic_article_list").on('click','.like-button',function (e) {
+		if (not_login()) {
+			return
+		}
     e.preventDefault()
     var self = $(e.currentTarget);
     var reviewid = self.data('reviewid');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
-		if(!wechatBindNotice()){
-    	return;
-    }
-    if(userId == null){
-        // layer.msg('您还没有登录')
-        layer.open({
-            type: 1,
-            shade:0,
-            title: 0,
-            skin: 'layui-layer-report', //加上边框
-						area: ['400px', '500px'], //宽高
-            content: $("#login_layer").html()
-        });
-        return;
-    }
 
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
     doJavaGet(uri, function(res) {

@@ -19,7 +19,7 @@ var ui = {
 var article_topic_list = [];
 
 $('.comment-list-hook').on('click','.comment-item .report_comment',function (e) {
-    console.log($(e.currentTarget))
+    // console.log($(e.currentTarget))
     layer.open({
         type: 1,
         shade:0,
@@ -113,6 +113,9 @@ function  ajaxGetChainDetail() {
 }
 //点击引用
 $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
+    if (not_login()) {
+      return
+    }
     var self =$(e.currentTarget),
         author = self.data('user_name'),
         number = self.data('number')+1,
@@ -121,9 +124,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
         $(".comment-list-hook").find('.reply-comment-click').removeClass('reply-comment-click')
         self.addClass('reply-comment-click');
 
-    if (not_login()) {
-      return
-    }
+
     $("#add_comment .author").text(author);
     $("#add_comment .number").text(number);
     $("#add_comment .parent-txt .short").text(parentTxt);
@@ -172,13 +173,12 @@ $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
 
 // 点击编辑短文
 $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
-  var self = $(e.currentTarget)
-
-  var reviewId = self.data('reviewid');
+  //未登录
   if (not_login()) {
     return
   }
-
+  var self = $(e.currentTarget)
+  var reviewId = self.data('reviewid');
   layer.confirm('修改评论',
       {
         // icon: 3,
@@ -234,7 +234,7 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
 $(".comment-list-hook").on('click','.review-comment-form .lnk-close',function (e) {
     $(".reply-comment").fadeOut();
     $('#comments .reply_comment').removeClass('reply-comment-click')
-    console.log($(e.currentTarget))
+    // console.log($(e.currentTarget))
 });
 //useful点击
 
@@ -926,22 +926,3 @@ $(function () {
     showScroll();
   }
 });
-
-// 未登录状态
-function not_login(){
-  if(!wechatBindNotice()){
-    return true;
-  }
-  if(userId == undefined){
-      // layer.msg('您还没有登录');
-      layer.open({
-          type: 1,
-          shade:0,
-          title: 0,
-          skin: 'layui-layer-report', //加上边框
-          area: ['400px', '500px'], //宽高
-          content: $("#login_layer").html()
-      });
-    return true;
-  }
-}
