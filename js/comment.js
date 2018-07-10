@@ -232,7 +232,8 @@ $('.comment-list-hook').on('click','.comment-item .reply_edit',function (e) {
 //点击关闭
 $(".comment-list-hook").on('click','.review-comment-form .lnk-close',function (e) {
     $(".reply-comment").fadeOut();
-    $('#comments .reply_comment').removeClass('reply-comment-click')
+    $('#comments .reply_comment').removeClass('reply-comment-click');
+    quotedReviewId = null;
     // console.log($(e.currentTarget))
 });
 //useful点击
