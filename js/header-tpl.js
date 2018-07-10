@@ -2,6 +2,7 @@ WebApiHostJavaApi = "http://backend.blockcomet.com/"; // 头部固定使用这�
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var like_tpl_flag = false
 var comment_tpl_flag = false
+var quote_tpl_flag = false
 var notification_tpl_flag = false
 var currentPage = 1;
 var pageSize = 24;
@@ -28,7 +29,7 @@ $(document).ready(function(){
 				// 渲染点赞
 				currentPage = 1
 				type = 3
-				var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage +
+				var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage +
 										'&pageSize=12'
 				 						+ '&type=' + type
 				doJavaGet(uri,function(result){
@@ -60,12 +61,12 @@ $(document).ready(function(){
 				// 点击渲染
 				currentPage = 1;
 
-				// 评论2 + 引用1
+				// 评论2
 				if (order == 1) {
 
 					if ( !comment_tpl_flag ) {
 						type = 1
-						var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd +
+						var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
 											'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=2'
 
 						// 先渲染评论
@@ -74,32 +75,39 @@ $(document).ready(function(){
 							var tpl = document.getElementById('comment_tpl').innerHTML;
 							var content = template(tpl, {list: result.datas});
 
-							$('.comment-message').html('')
-							$('.comment-message').append(content)
+							$('.comment-message').html(content)
 
-							// 渲染引用
-							var uri_quote = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd +
-							 					'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=1'
-							doJavaGet(uri_quote,function(result){
-								if (result.datas.length == 0) {
-									return
-								}
-								var tpl = document.getElementById('quote_tpl').innerHTML;
-								var content = template(tpl, {list: result.datas});
-								$('.comment-message').append(content)
-							})
-
-							comment_tpl_flag = true
 						})
 					}
+					comment_tpl_flag = true
+
 
 				}
-				// 审核通过4 + 驳回5
+				// 引用1
 				else if(order == 2){
+					// 渲染引用
+					if ( !quote_tpl_flag ) {
+						var uri_quote = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
+											'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=1'
+						doJavaGet(uri_quote,function(result){
+
+							if (result.datas.length == 0) {
+								return
+							}
+							var tpl = document.getElementById('quote_tpl').innerHTML;
+							var content = template(tpl, {list: result.datas});
+							// $('.comment-message').html('')
+							$('.quote-message').html(content)
+						})
+					}
+					quote_tpl_flag = true;
+				}
+				// 审核通过4 + 驳回5
+				else if(order == 3){
 
 					if ( !notification_tpl_flag ) {
 						type = 4;
-						var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd +
+						var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
 											'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=' + type
 
 						// 先渲染审核
@@ -112,7 +120,7 @@ $(document).ready(function(){
 							}
 
 							// 渲染驳回
-							var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd +
+							var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
 												'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=5'
 							doJavaGet(uri,function(result){
 								if (result.datas.length != 0) {
@@ -128,9 +136,9 @@ $(document).ready(function(){
 					}
 
 				}
-				else if(order == 3){
+				else if(order == 4){
 					type = 6;
-					var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd +
+					var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
 										'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=' + type
 					// 渲染专题
 					doJavaGet(uri,function(result){
@@ -159,7 +167,7 @@ $(document).ready(function(){
 
 function countUnreadMessage(){
 	if (userId) {
-		var uri = 'news/getMessage?userId=' + userinfo.id + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=1'
+		var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=1'
 		doJavaGet(uri,function(result){
 			if (result.code == 0) {
 				result.count ? $('.badge-inform').text(result.count) : $('.badge-inform').text('')
@@ -187,7 +195,7 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 		var messageId = self.data('messageid')
 		var status = self.data('status')
 		if ( $(self).hasClass('unread') ) {
-			var uri = "news/readMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
+			var uri = "news/readMessage?userId=" + userId + "&userPwd=" + userinfo.userPwd + "&status=1" + "&messageId=" + messageId
 			doJavaGet(uri, function(e){
 				self.removeClass('unread')
 				count = $('.badge-inform').html()
@@ -204,7 +212,7 @@ $('.notification').on('click', '.show-alert-inform-list' , function(e){
 // 头部通知中心全部标记为已读
 $('.read-all-message').on('click',function(){
 	if (userId) {
-		var uri = "news/readAllMessage?userId=" + userinfo.id + "&userPwd=" + userinfo.userPwd + "&type=" + [1,2,3,4,5,6]
+		var uri = "news/readAllMessage?userId=" + userId + "&userPwd=" + userinfo.userPwd + "&type=" + [1,2,3,4,5,6]
 
 		doJavaGet(uri,function(res){
 			if (res.code == 0) {
@@ -390,3 +398,56 @@ var search_user = document.getElementById('search_user')
 search_user.addEventListener('mousedown',function() {
 	window.location.href = 'search_user.html?serach_word_by_navbar=' + key_word
 })
+
+// 头部通知查看详情
+
+// 查看点赞详情
+function checkLikeDetailOnHead(e){
+	var reviewId = $(e).data('actionid');
+
+	var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+	// var parentId = '';
+	doJavaGet(uri,function(res){
+		switch (res.datas.type) {
+			case 1:
+				window.location.href = 'chain-detail.html?projectId=' + res.datas.projectId + '&toCommentsId=' + reviewId;
+				break;
+			case 2:
+				window.location.href = 'comment.html?reviewId=' + res.datas.reviewId;
+				break;
+			case 3:
+				window.location.href = 'comment.html?reviewId=' + res.datas.parentId;
+				break;
+			case 4:
+				window.location.href = 'comment.html?reviewId=' + res.datas.reviewId;
+				break;
+			default:
+		}
+	})
+}
+
+// 查看评论详情
+function checkReviewDetailOnHead(e){
+	var reviewId = $(e).data('actionid');
+
+	var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+	// var parentId = '';
+	doJavaGet(uri,function(res){
+		var parentId = res.datas.parentId;
+		// window.location.href='login.html'
+		window.location.href = 'comment.html?reviewId=' + parentId + '#toComments|' + reviewId;
+	})
+}
+
+// 查看引用详情
+function checkQuoteDetailOnHead(e){
+	var reviewId = $(e).data('actionid');
+
+	var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+	// var parentId = '';
+	doJavaGet(uri,function(res){
+		var parentId = res.datas.parentId;
+		// window.location.href='login.html'
+		window.location.href = 'comment.html?reviewId=' + parentId + '#toComments|' + reviewId;
+	})
+}

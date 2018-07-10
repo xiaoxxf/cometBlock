@@ -198,7 +198,7 @@
 						<div class="reviewed-article">
 							<a href="personal-homepage.html?userId=<%:=list[i].userId %>"><%:=list[i].realName%></a>
 							<!-- 在文章<a class="article" target="_blank" href="comment.html?reviewId=<%:=list[i].actionId%>">《》</a> -->
-							引用了你的评论
+							引用了你的评论 <%:=list[i].title%>
 							<div class="time"><%:=list[i].createTime%></div>
 						</div>
 					</div>
@@ -206,8 +206,8 @@
 							<%:=list[i].content%>
 					</div>
 					<div class="option">
-						<!-- <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> -->
-						<!-- <a class="inspect_review" href="" >查看</a> -->
+						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+						<a class="inspect_review" href="javascript:void(0);" data-actionid='<%:=list[i].actionId%>' onclick="checkQuoteDetail(this)" >查看</a>
 					</div>
 				</li>
 			<%}%>
@@ -225,7 +225,8 @@
 					<div class="info">
 						<div>
 							<a href="personal-homepage.html?userId=<%:=list[i].userId %>"><%:=list[i].realName%></a>
-							赞了你的的评论  <a href="comment.html?reviewId=<%:=list[i].actionId%>" style="margin-left:5px"><%:=list[i].title%></a>
+							赞了你的的点评
+							<a href="javascript:void(0);" style="margin-left:5px" data-actionid='<%:=list[i].actionId%>' onclick="checkLikeDetail(this)"><%:=list[i].title%></a>
 						</div>
 
 						<div class="time"><%:=list[i].createTime%></div>
@@ -260,7 +261,7 @@
 					</div>
 					<div class="option">
 						<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-						<a class="inspect_review" href="comment.html?reviewId=<%:=list[i].actionId%>" style="color: grey">查看</a>
+						<a class="inspect_review" style="color: grey" data-actionid='<%:=list[i].actionId%>' onclick="checkReviewDetail(this)" >查看</a>
 					</div>
 				</li>
 			<%}%>

@@ -230,3 +230,54 @@ function countUnreadMessage(){
 		})
 	}
 }
+
+// 查看引用
+function checkQuoteDetail(e){
+	var reviewId = $(e).data('actionid');
+
+	var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+	// var parentId = '';
+	doJavaGet(uri,function(res){
+		var parentId = res.datas.parentId;
+		// window.location.href='login.html'
+		window.location.href = 'comment.html?reviewId=' + parentId + '#toComments|' + reviewId;
+	})
+}
+
+// 查看点赞详情
+function checkLikeDetail(e){
+	var reviewId = $(e).data('actionid');
+
+	var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+	// var parentId = '';
+	doJavaGet(uri,function(res){
+		switch (res.datas.type) {
+			case 1:
+				window.location.href = 'chain-detail.html?projectId=' + res.datas.projectId + '&toCommentsId=' + reviewId;
+				break;
+			case 2:
+				window.location.href = 'comment.html?reviewId=' + res.datas.reviewId;
+				break;
+			case 3:
+				window.location.href = 'comment.html?reviewId=' + res.datas.parentId;
+				break;
+			case 4:
+				window.location.href = 'comment.html?reviewId=' + res.datas.reviewId;
+				break;
+			default:
+		}
+	})
+}
+
+// 查看评论详情
+function checkReviewDetail(e){
+	var reviewId = $(e).data('actionid');
+
+	var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+	// var parentId = '';
+	doJavaGet(uri,function(res){
+		var parentId = res.datas.parentId;
+		// window.location.href='login.html'
+		window.location.href = 'comment.html?reviewId=' + parentId + '#toComments|' + reviewId;
+	})
+}

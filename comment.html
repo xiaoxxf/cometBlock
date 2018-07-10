@@ -469,7 +469,7 @@
 		</script>
 		<script type="text/html" id="template-comment-list">
 			<%for(var i = 0; i < list.length; i++) {%>
-			<div class="comment-item" data-parentId="<%:=list[i].parentId%>" data-reviewId="<%:=list[i].reviewId%>"  data-user_name="<%:=list[i].realName%>" data-user_url="javascript:;" data-target_id="9041269" data-target_kind="1012" data-ref_cid="9119669">
+			<div id="<%:=list[i].reviewId%>" class="comment-item" data-parentId="<%:=list[i].parentId%>" data-reviewId="<%:=list[i].reviewId%>"  data-user_name="<%:=list[i].realName%>" data-user_url="javascript:;" data-target_id="9041269" data-target_kind="1012" data-ref_cid="9119669">
 				<div class="avatar left">
 					<!--显示个人头像 -->
 					<a href="personal-homepage.html?userId=<%=list.creator %>">
@@ -542,7 +542,7 @@
 				</div>
 			</section>
 		</script>
-		
+
 		<script src="https://cdn.dingxiang-inc.com/ctu-group/captcha-ui/index.js"></script>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
