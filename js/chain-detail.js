@@ -1,5 +1,7 @@
 // var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var projectBigName = ''; //用于发送奖励
+var toCommentFlag; // 是否需要定位到具体评论
+getUrlParam('toCommentsId') ?  toCommentFlag = true : toCommentFlag =false;
 $("#rating #stars img").on('mouseenter',function (e) {
     var self = $(e.currentTarget);
     if(self.attr('id') == 'star5'){
@@ -97,6 +99,13 @@ window.onload = function(){
     ajaxGetComments();
     ajaxGetLongComments();
     ajaxGetScoreInfo();
+    setTimeout(function(){
+      if (getUrlParam('toCommentsId') && toCommentFlag) {
+        var toCommentsId = getUrlParam('toCommentsId');
+        $('html,body').animate({scrollTop:$('#' + toCommentsId).position().top}, 800);
+        toCommentFlag = false;
+      }
+    },1000)
 }
 var shortCommentCurrentPage = 1 ;
 var longCommentCurrentPage = 1 ;
@@ -223,7 +232,14 @@ function ajaxGetComments(insert) {
         currentPage = 1;
     }
     var projectId = getUrlParam('projectId');
-    var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='+pageSize+'&type='+1;
+    if(toCommentFlag){
+      var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='
+                +pageSize+'&type='+1+'&toCommentsId='+getUrlParam('toCommentsId');
+    }else{
+      var uri = 'blockchain/quaryReview?projectId='+projectId+'&currentPage='+shortCommentCurrentPage+'&pageSize='
+                +pageSize+'&type='+1;
+    }
+
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             if(res.datas.length >0 ){
@@ -237,6 +253,7 @@ function ajaxGetComments(insert) {
                     $(".short-comment-wrap-hook").html('');
                 }
                 $(".short-comment-wrap-hook").append(teamContent);
+
                 $(".short-comment-load-more .loading-more").show();
                 $(".short-comment-load-more .loader1").css('display','none');
                 if(res.datas.length < 10){
@@ -244,6 +261,10 @@ function ajaxGetComments(insert) {
                 }
             }else{
                 $(".short-comment-load-more .loading-more").text('已无更多评论');
+            }
+
+            if(toCommentFlag){
+              shortCommentCurrentPage = parseInt(res.msg);
             }
         } else {
             layer.msg(res.msg);

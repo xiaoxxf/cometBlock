@@ -246,7 +246,7 @@
 <!-- 短评列表 -->
 <script type="text/html" id="short-comment-temp">
     <%for(var i = 0; i < list.length; i++) {%>
-    <div class="comment-item">
+    <div class="comment-item" id="<%:=list[i].reviewId%>">
         <span class="comment-info">
         <a href="personal-homepage.html?userId=<%=list[i].creator %>" class=""><%:=list[i].realName%></a>
         <span class="allstar<%:=list[i].score*10%> rating" title="推荐"></span>

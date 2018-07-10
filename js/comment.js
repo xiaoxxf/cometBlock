@@ -34,7 +34,6 @@ window.onload = function(){
     ajaxGetReviewDetail();
 }
 
-var longCommentCurrentPage = 1 ;
 var pageSize = 5;
 function  ajaxGetReviewDetail() {
     var reviewId = getUrlParam('reviewId');

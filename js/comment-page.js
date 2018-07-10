@@ -1,27 +1,43 @@
 // var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 
 //加载长评列表
+var longCommentReviewPageSize = 5;
+var longCommentCurrentPage = 1 ;
+var commentList = [];
+var reviewId = getUrlParam('reviewId');
+
 function ajaxGetLongCommentReview() {
     // var projectId = getUrlParam('projectId');
-    var reviewId = getUrlParam('reviewId');
-    var uri = 'blockchain/queryArticles?parentId='+reviewId+'&currentPage='+longCommentCurrentPage+'&pageSize='+pageSize+'&type='+3;
+    var anchorPoint = window.location.toString().split('#')[1];
+    var toCommentsId = ''
+    if (anchorPoint && anchorPoint != 'toComments') {
+      toCommentsId = anchorPoint.split('|')[1];
+    }
+
+    if (toCommentsId) {
+      var uri = 'blockchain/queryArticles?parentId='+reviewId+'&currentPage='+longCommentCurrentPage
+                 +'&pageSize='+longCommentReviewPageSize+'&type=3' + '&toCommentsId=' + toCommentsId;
+    }else{
+      var uri = 'blockchain/queryArticles?parentId='+reviewId+'&currentPage='+longCommentCurrentPage
+                 +'&pageSize='+longCommentReviewPageSize+'&type=3'
+    }
+
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
-           // if(res.datas.length >0 ){
-                var data = res.datas;
-                // console.log(res.datas)
-                var commentTpl = $("#template-comment-list").html();
-                var teamContent = template(commentTpl, {list: res.datas});
-                $(".comment-list-hook").html(teamContent);
-                //if(res.datas.length >=10){
-                // 分页数据处理
-                if(longCommentCurrentPage == 1){
-                    initPage(res.count);
-                }
-                $(".paginator-warp").show();
-                //}
-           // }else{
-            //}
+
+            commentList = res.datas;
+            // console.log(res.datas)
+            var commentTpl = $("#template-comment-list").html();
+            var teamContent = template(commentTpl, {list: commentList});
+            $(".comment-list-hook").html(teamContent);
+            //if(res.datas.length >=10){
+            // 分页数据处理
+            longCommentCurrentPage = parseInt(res.msg);
+            // if(longCommentCurrentPage == 1){
+            initPage(res.count);
+            // }
+            $(".paginator-warp").show();
+
             $(".waiting-data").css('display','none');
         } else {
             layer.msg(res.msg);
@@ -29,27 +45,41 @@ function ajaxGetLongCommentReview() {
 
 
         // 有锚点时，滑动到评论处
-        var url = window.location.toString();//进这个页面的url
-        var id = url.split('#')[1];
-        if(id == 'toComments'){
-           var t = $('#comments').offset().top;
-           $(window).scrollTop(t);//滚动到锚点位置
+
+        if(anchorPoint == 'toComments'){
+          $('html,body').animate({scrollTop:$('#comments').position().top}, 800);
+          // var t = $('#comments').offset().top;
+          // $(window).scrollTop(t);//滚动到锚点位置
+        }else if(toCommentsId){
+          $('html,body').animate({scrollTop:$('#' + toCommentsId).position().top}, 800);
         }
     }, "json");
 }
 function initPage(count) {
     $(".paginator-warp").pagination({
         currentPage: longCommentCurrentPage,
-        totalPage: parseInt(count/pageSize)+1,
+        totalPage: parseInt(count/longCommentReviewPageSize)+1,
         isShow: false,
         count: 3,
         prevPageText: "< 前页",
         nextPageText: "后页 >",
         callback: function(current) {
             longCommentCurrentPage = current;
-            ajaxGetLongCommentReview();
+            pageTurning();
         }
     });
+
+}
+function pageTurning(){
+  var uri = 'blockchain/queryArticles?parentId='+reviewId+'&currentPage='+longCommentCurrentPage
+             +'&pageSize='+longCommentReviewPageSize+'&type=3';
+
+  doJavaGet(uri,function(res){
+    var commentTpl = $("#template-comment-list").html();
+    var teamContent = template(commentTpl, {list: res.datas});
+    $(".comment-list-hook").html(teamContent);
+    $(".paginator-warp").show();
+  })
 
 }
 /*
