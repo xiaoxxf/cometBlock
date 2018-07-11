@@ -387,3 +387,12 @@ a img {
     /* margin: 0 auto; */
     margin: 20px 0px 150px 10px;
 }
+
+.powerinfo_left,.powerinfo_right{
+	display: none;
+	color: #777;
+}
+.powerinfo_left p,.powerinfo_right p{
+	margin: 10px;
+}
+
