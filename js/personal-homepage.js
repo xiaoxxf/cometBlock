@@ -18,14 +18,15 @@ $(function(){
 	if (url_id && url_id != cookie_id ) {
 		userid_search = getUrlParam('userId');
 		//看别人时隐藏专题编辑、创建项目按钮
-		$('.create_new_topic_list_btn').css('display','none');
-		$('.create_new_subject_btn').css('display','none');
+//		$('.create_new_topic_list_btn').css('display','none');
+//		$('.create_new_subject_btn').css('display','none');
 	}
 	// 看自己
 	else{
 		// 看自己时显示编辑个人资料按钮
 		$('.edit_btn').css('display','block');
 		userid_search = cookie_id;
+		getPower();
 	}
 
   if(!userid_search){
@@ -434,3 +435,43 @@ $(".hot_review_region").on('click','.like-button',function (e) {
         }
     }, "json");
 });
+
+
+//体力值
+//y = 3*x*x - x + 98; //升级所需经验值
+var huiPenlevelType; //定义品阶
+var needExperience ;
+function getPower(){
+	//看别人时隐藏经验值体力值..
+	$('.powerinfo_left').fadeIn();
+	$('.powerinfo_right').fadeIn();
+	var uri='news/poperty';
+	doJavaGet(uri,function(res){
+		if(res.code == 0){
+			//计算升级所需的经验值
+			var experience =res.datas.experience;
+			var rating =res.datas.rating;
+			needExperience = 3*rating*rating - rating + 98;
+			//判断品阶
+			if(res.datas.huiPenLevel ==1){
+				huiPenlevelType = "普通";
+			}else if(res.datas.huiPenLevel ==2){
+				huiPenlevelType = "稀有";
+			}else if(res.datas.huiPenLevel ==3){
+				huiPenlevelType = "史诗";
+			}
+			else if(res.datas.huiPenLevel ==4){
+				huiPenlevelType = "传说";
+			}
+			$('.grade').html("体力值：" + res.datas.grade);
+			$('.experience').html("经验值：" + experience +'/'+needExperience);
+			$('.rating').html("等级：" + rating);
+			$('.huiPenlevel').html("彗星笔品阶：" + huiPenlevelType);
+			$('.huiPenvalue').html("彗星笔等级：" + res.datas.huiPenValue);
+			$('.account').html("币天：" + res.datas.account);
+		}else if(res.code == -1){
+			layer.msg(res.msg);
+		}
+	})
+}
+
