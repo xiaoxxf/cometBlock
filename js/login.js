@@ -3,21 +3,13 @@ var valid_token = '';
 var myCaptcha = _dx.Captcha(document.getElementById('c1'), {
 		appId: 'f490600e58fd626ab4f5d6d160242873',   //appId,开通服务后可在控制台中“服务管理”模块获取
 		style: 'popup',
+		// 验证成功
+		success: function (security_code) {
+			var valid_token = security_code;
+			myCaptcha.hide();
+			login();
+		}
 })
-// 验证成功
-myCaptcha.on('verifySuccess', function (security_code) {
-	var valid_token = security_code;
-	myCaptcha.hide();
-	login();
-})
-
-myCaptcha.on('passByServer', function (security_code) {
-	var valid_token = security_code;
-	myCaptcha.hide();
-	login();
-})
-
-
 
 function loginFromValid(){
 	var tel=$("#session_phone").val();
@@ -49,7 +41,6 @@ $(document).on('click','#sign-in-form-submit-btn',function() {
 	else{
 		login()
 	}
-	// login()
 
 });
 //登录绑定回车
