@@ -1,11 +1,12 @@
-WebApiHostJavaApi = "http://backend.blockcomet.com/"; // 头部固定使用这个api
+// WebApiHostJavaApi = "http://backend.blockcomet.com/"; // 头部固定使用这个api
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var like_tpl_flag = false
 var comment_tpl_flag = false
 var quote_tpl_flag = false
 var notification_tpl_flag = false
-var currentPage = 1;
-var pageSize = 24;
+var noticeCurrentPage = 1;
+var noticePageSize = 24;
+var type = []; //查看消息的类型
 // var current_type = [] // 头部消息通知，当前查看的消息类型
 var order = '' // 头部消息通知，当前选择的第几项 0->点赞 1->评论 2->通知
 //	通知
@@ -18,7 +19,6 @@ $(document).ready(function() {
 });
 
 //通知显示隐藏提示面板
-var currentPage = 1;
 $(document).ready(function(){
   $(".login-right").hover(function(){
 			$(".inform0").show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
@@ -27,9 +27,9 @@ $(document).ready(function(){
 
 			if ( !like_tpl_flag ) {
 				// 渲染点赞
-				currentPage = 1
-				type = 3
-				var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=' + currentPage +
+				noticeCurrentPage = 1;
+				type = [3];
+				var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=' + noticeCurrentPage +
 										'&pageSize=12'
 				 						+ '&type=' + type
 				doJavaGet(uri,function(result){
@@ -50,8 +50,6 @@ $(document).ready(function(){
 });
 
 
-//通知
-
 // li弹出通知
 $(document).ready(function(){
     $(".show-alert-inform-top li a").click(function(){
@@ -59,15 +57,15 @@ $(document).ready(function(){
         $(".inform" + order).show().siblings("div").hide();//显示class中con加上返回值所对应的DIV
    			$(".show-alert-inform-bottom").css("display","block");
 				// 点击渲染
-				currentPage = 1;
+				noticeCurrentPage = 1;
 
 				// 评论2
 				if (order == 1) {
 
 					if ( !comment_tpl_flag ) {
-						type = 1
+						type = [2];
 						var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-											'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=2'
+											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type
 
 						// 先渲染评论
 						doJavaGet(uri,function(result){
@@ -86,9 +84,10 @@ $(document).ready(function(){
 				// 引用1
 				else if(order == 2){
 					// 渲染引用
+					type = [1];
 					if ( !quote_tpl_flag ) {
 						var uri_quote = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-											'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=1'
+											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type
 						doJavaGet(uri_quote,function(result){
 
 							if (result.datas.length == 0) {
@@ -106,9 +105,9 @@ $(document).ready(function(){
 				else if(order == 3){
 
 					if ( !notification_tpl_flag ) {
-						type = 4;
+						type = [4,5];
 						var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-											'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=' + type
+											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type;
 
 						// 先渲染审核
 						doJavaGet(uri,function(result){
@@ -118,28 +117,14 @@ $(document).ready(function(){
 								$('.notification-message').html('')
 								$('.notification-message').append(content)
 							}
-
-							// 渲染驳回
-							var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-												'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=5'
-							doJavaGet(uri,function(result){
-								if (result.datas.length != 0) {
-									var tpl = document.getElementById('reject_tpl').innerHTML;
-									var content = template(tpl, {list: result.datas});
-									$('.notification-message').append(content)
-								}
-
-								notification_tpl_flag = true
-							})
-
 						})
 					}
 
 				}
 				else if(order == 4){
-					type = 6;
+					type = [6];
 					var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-										'&currentPage=' + currentPage + '&pageSize=' + pageSize + '&type=' + type
+										'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type;
 					// 渲染专题
 					doJavaGet(uri,function(result){
 						if (result.datas.length !== 0) {
@@ -159,12 +144,13 @@ $(document).ready(function(){
     });
 })
 
+// 消息查看更多
+function readMoreNoticeOnHead(){
 
-// 取得通知信息
-// $(function(){
-// 	countUnreadMessage();
-// })
+}
 
+
+// 计算未读消息
 function countUnreadMessage(){
 	if (userId) {
 		var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=1'
