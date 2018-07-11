@@ -169,6 +169,7 @@
 				<a data-subjectid="<%:=list[i].id %>" class="delete_subject subject_option_menu">删除</a>
 				<a href="topic-edit.html?subjectId=<%:=list[i].id %>"  class="subject_option_menu">编辑 &nbsp</a>
 			<%}%>
+			
 		</p>
 	<%}%>
 </script>
@@ -213,7 +214,7 @@
 							<div class="meta">
 								<a class="article-time"><%=list[i].createTime %></a>
 								<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
-								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+								<span data-reviewId="<%:=list[i].reviewId%>" data-projectbigname="<%:=list[i].projectBigName%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 
 							</div>
 						</div>
@@ -255,7 +256,7 @@
 							<div class="meta">
 								<a class="article-time"><%:=list[i].createTime %></a>
 								<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>-->
-								<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+								<span data-reviewId="<%:=list[i].reviewId%>" data-projectbigname="<%:=list[i].projectBigName%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 							</div>
 						</div>
 				</div>
@@ -329,7 +330,7 @@
 						<div class="meta">
 							<a class="article-time"><%=list[i].createTime %></a>
 							<a href="comment.html?reviewId=<%:=list[i].reviewId %>#toComments" class="fa-ico" target="_blank"><i class="fa fa-commenting"></i> <%:=list[i].review %></a>
-							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+							<span data-reviewId="<%:=list[i].reviewId%>" data-projectbigname="<%:=list[i].projectBigName%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>
 			</div>
@@ -359,13 +360,13 @@
 						</div>
 						<div class="short_comment_box" style="display:flex">
 							<div class="article-introduce">
-								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' class="article_title" target="_blank">
+								<a href='chain-detail.html?projectId=<%:=list[i].projectId %>' class="article_title" target="_blank">
 									项目链接:<%:=list[i].projectBigName %>
 								</a>
 								<p><%:=list[i].textTitle %></p>
 							</div>
 							<div class="article-icon">
-								<a href='chain-detail.html?chain?projectId=<%:=list[i].projectId %>' target="_blank">
+								<a href='chain-detail.html?projectId=<%:=list[i].projectId %>' target="_blank">
 									<img class="article-img" src="<%:=list[i].projectLogo %>">
 								</a>
 							</div>
@@ -374,7 +375,7 @@
 						<div class="meta">
 							<a class="article-time"><%:=list[i].createTime %></a>
 							<!--<a href="" class="fa-ico"><i class="fa fa-commenting "></i> 123</a>-->
-							<span data-reviewId="<%:=list[i].reviewId%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
+							<span data-reviewId="<%:=list[i].reviewId%>" data-projectbigname="<%:=list[i].projectBigName%>" class="like-button fa-ico fa-icon-right"><i class="fa fa-heart"></i> <%:=list[i].likes %></span>
 						</div>
 					</div>
 			</div>

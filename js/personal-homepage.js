@@ -422,8 +422,8 @@ $(".hot_review_region").on('click','.like-button',function (e) {
     var reviewid = self.data('reviewid');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
-
-    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes;
+	var projectBigName = self.data('projectbigname');
+    var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;;
     doJavaGet(uri, function(res) {
         if(res.code == 0) {
           like_count++;
