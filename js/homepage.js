@@ -154,7 +154,7 @@ $(function(){
 $(function(){
     var uri = "advertise/quaryAdertise?type="+1;
 	doJavaGet(uri,function(result){
-		//debugger
+//		debugger
 		var tpl = document.getElementById('banner_tpl').innerHTML;
 		var content = template(tpl, {list: result.datas});
 		$('.swiper-wrapper').append(content)
@@ -430,7 +430,7 @@ $(document).ready(function () {
     //api 参考地址 http://www.swiper.com.cn/api/index.html
     var mySwiper = new Swiper ('#swiper_project', {
         speed: 1500,
-        autoplay: false,
+        autoplay: 1000,
         disableOnInteraction:false,
         loop : true,
         effect : 'slide',
@@ -453,15 +453,15 @@ $(document).ready(function () {
         },
     })
 
-    $('.swiper-btn-prev').click(function(){
-        mySwiper.slidePrev();
-        // mySwiper.autoplay.start();
-    })
-    $('.swiper-btn-next').click(function(){
-        mySwiper.slideNext();
-       // $(".page-nums-switch").text(switchNum);
-        // mySwiper.autoplay.start();
-    })
+//  $('.swiper-btn-prev').click(function(){
+//      mySwiper.slidePrev();
+//      // mySwiper.autoplay.start();
+//  })
+//  $('.swiper-btn-next').click(function(){
+//      mySwiper.slideNext();
+//     // $(".page-nums-switch").text(switchNum);
+//      // mySwiper.autoplay.start();
+//  })
 		//
     // // 鼠标悬停停止翻转
     // $('.swiper-slide').mouseenter(function () {
@@ -472,6 +472,7 @@ $(document).ready(function () {
     // })
 		var Swiper_banner = new Swiper('#swiper_banner', {
 			autoplay: 1500,
+			autoplay:true,
 			observer:true,//修改swiper自己或子元素时，自动初始化swiper    重要
     		observeParents:true,//修改swiper的父元素时，自动初始化swiper  重要
        		pagination: {
@@ -482,14 +483,14 @@ $(document).ready(function () {
 	            touchStart: function(){
 	                var switchNum = this.activeIndex;
 //	                console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
-                	$('.swiper-wrapper').on('click','.banner_one',function(){
-                		if(switchNum==0){
-							window.location = 'reading-campaign.html'
-                		}
-                		else if(switchNum==1){
-                			window.location = 'reading_campaign_numgold.html'
-                		}
-					})
+//              	$('.swiper-wrapper').on('click','.banner_one',function(){
+//              		if(switchNum==0){
+//							window.location = 'reading-campaign.html'
+//              		}
+//              		else if(switchNum==1){
+//              			window.location = 'reading_campaign_numgold.html'
+//              		}
+//					})
 	            },
 	        },
 
