@@ -24,7 +24,7 @@ var tpl_id = 'all_dynamic';
 var currentPage_dynamics = 1;
 var pageSize_dynamics = 6;
 var like = ''; // 加载推荐的动态
-var type = null; //加载关注动态 1 -> 关注人， 2 -> 关注的专题, 4 -> 关注的项目
+var attention_type = null; //加载关注动态 1 -> 关注人， 2 -> 关注的专题, 4 -> 关注的项目
 // var current_attentionId = null; //当前要加载的关注的对象
 // var current_attentionType = null; //当前要加载的关注的类型
 
@@ -37,7 +37,7 @@ $('.side_menu').on('click','.load_all_user_dynamic', function(){
 	// $('.side_menu li').removeClass('attention_dynamic_on_focus');
 	$('.load_all_user_dynamic').addClass('dynamic_menu_on_focus');
 	like = '';
-	type = null;
+	attention_type = null;
 	tpl_id = 'all_dynamic';
 	getAllUserDynamic();
 })
@@ -51,7 +51,7 @@ $('.side_menu').on('click','.load_recommend_dynamic', function(){
 	// $('.side_menu li').removeClass('attention_dynamic_on_focus');
 	$('.load_recommend_dynamic').addClass('dynamic_menu_on_focus');
 	like = 1;
-	type = null;
+	attention_type = null;
 	tpl_id = 'all_dynamic';
 	getAllUserDynamic();
 })
@@ -63,7 +63,7 @@ $('.side_menu').on('click', '.load_follow_people', function(e){
 	}
 	$('.side_menu span').removeClass('dynamic_menu_on_focus');
 	$('.load_follow_people').addClass('dynamic_menu_on_focus');
-	type = 1;
+	attention_type = 1;
 	like = '';
 	tpl_id = 'all_dynamic';
 	$('.no-data').html('你还没有关注任何用户')
@@ -78,7 +78,7 @@ $('.side_menu').on('click', '.load_follow_topic',function(e){
 	}
 	$('.side_menu span').removeClass('dynamic_menu_on_focus');
 	$('.load_follow_topic').addClass('dynamic_menu_on_focus');
-	type = 2;
+	attention_type = 2;
 	like = '';
 	tpl_id = 'following_topic_dynamic';
 	$('.no-data').html('你还没有关注任何专题，去看看有什么<a href="topic-index.html">专题</a>')
@@ -93,7 +93,7 @@ $('.side_menu').on('click', '.load_follow_project' ,function(e){
 	}
 	$('.side_menu span').removeClass('dynamic_menu_on_focus');
 	$('.load_follow_project').addClass('dynamic_menu_on_focus');
-	type = 3;
+	attention_type = 3;
 	like = '';
 	tpl_id = 'all_dynamic';
 	$('.no-data').html('你还没有关注任何项目，去看看有什么<a href="chain.html">项目</a>')
@@ -111,10 +111,10 @@ function getAllUserDynamic(){
 	$(".no-more-hook").css('display','none');
 
 	// 加载关注的
-	if (type) {
+	if (attention_type) {
 		var uri = 'attention/all?creator=' + userId +  '&password=' + userinfo.userPwd + '&currentPage='
 							+ currentPage_dynamics + '&pageSize=' + pageSize_dynamics
-							+ '&type=' + type + '&loginUser=' + userId
+							+ '&type=' + attention_type + '&loginUser=' + userId
 	}
 	// 加载推荐的或推荐的
 	else{
@@ -277,7 +277,7 @@ $(".hot_review_region").on('click','.like-button',function (e) {
 		var projectBigName = self.data('projectbigname');
     var likes = 1;
     var like_count = $(self[0]).text().split('')[1];
-		
+
     var uri = "blockchain/addLike?reviewId="+reviewid+"&userId="+userId+"&likes="+likes+'&projectBigName='+projectBigName;
     doJavaGet(uri, function(res) {
         if(res.code == 0) {
