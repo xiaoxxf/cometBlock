@@ -177,10 +177,10 @@ function loadMoreDynamic(){
   ui.noMoreData = false;
 
 	// 加载关注的
-	if (type) {
+	if (attention_type) {
 		var uri = 'attention/all?creator=' + userId +  '&password=' + userinfo.userPwd + '&currentPage='
 							+ currentPage_dynamics + '&pageSize=' + pageSize_dynamics
-							+ '&type=' + type
+							+ '&type=' + attention_type
 	}
 	// 加载推荐的或推荐的
 	else{
