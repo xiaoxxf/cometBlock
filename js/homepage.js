@@ -453,15 +453,15 @@ $(document).ready(function () {
         },
     })
 
-//  $('.swiper-btn-prev').click(function(){
-//      mySwiper.slidePrev();
-//      // mySwiper.autoplay.start();
-//  })
-//  $('.swiper-btn-next').click(function(){
-//      mySwiper.slideNext();
-//     // $(".page-nums-switch").text(switchNum);
-//      // mySwiper.autoplay.start();
-//  })
+		//  $('.swiper-btn-prev').click(function(){
+		//      mySwiper.slidePrev();
+		//      // mySwiper.autoplay.start();
+		//  })
+		//  $('.swiper-btn-next').click(function(){
+		//      mySwiper.slideNext();
+		//     // $(".page-nums-switch").text(switchNum);
+		//      // mySwiper.autoplay.start();
+		//  })
 		//
     // // 鼠标悬停停止翻转
     // $('.swiper-slide').mouseenter(function () {
@@ -470,31 +470,20 @@ $(document).ready(function () {
     // $('.swiper-slide').mouseleave(function () {
     //    mySwiper.autoplay.start();
     // })
+
 		var Swiper_banner = new Swiper('#swiper_banner', {
-			autoplay: 1500,
-			autoplay:true,
+			speed:300,
+		  autoplay : {
+		    delay:5000,
+				disableOnInteraction:false,
+		  },
+			// loop : true,
 			observer:true,//修改swiper自己或子元素时，自动初始化swiper    重要
-    		observeParents:true,//修改swiper的父元素时，自动初始化swiper  重要
-       		pagination: {
+			observeParents:true,//修改swiper的父元素时，自动初始化swiper  重要
+   		pagination: {
 			    el: '.swiper-pagination',
+					clickable :true,
 			},
-
-	        on: {
-	            touchStart: function(){
-	                var switchNum = this.activeIndex;
-//	                console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
-//              	$('.swiper-wrapper').on('click','.banner_one',function(){
-//              		if(switchNum==0){
-//							window.location = 'reading-campaign.html'
-//              		}
-//              		else if(switchNum==1){
-//              			window.location = 'reading_campaign_numgold.html'
-//              		}
-//					})
-	            },
-	        },
-
-
 		})
 
 })
