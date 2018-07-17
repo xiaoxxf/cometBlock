@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>个人主页</title>
+	<title>彗星—个人主页</title>
 	<meta name="description" content="彗星是一个用户自主评级的区块链投资社区，每个人都可以对项目进行评价并打分。同时彗星还是一个区块链的百科全书，帮助用户挖掘优质的好项目">
 	<meta name="keywords" content="彗星社区；区块链；数字货币；区块链评测；区块链投资">
 	<link rel="icon" href="img/huixing.png" type="image/x-icon"/>
@@ -36,13 +36,13 @@
 								<div class="person_edit">
 									<span class="person_name"></span>
 									<p>
-										<a href="my-follow-people-list.html?type=1" class="following_count">关注：0人</a>
-										<a href="my-follow-people-list.html?type=4" class="follower_count concern_right">被关注：0人</a>
+										<a href="javascript:void(0)" class="following_count">关注：0人</a>
+										<a href="javascript:void(0)" class="follower_count concern_right">被关注：0人</a>
 									</p>
 									<p class="personal-intro"></p>
 								</div>
 							</div>
-							
+
 							<div class="col-md-2 col-xs-12 col-sm-12 powerinfo_left">
 								<p class="grade"></p>
 								<p class="experience"></p>
@@ -104,11 +104,11 @@
 										<span>关注</span>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<a href="my-follow-project-list.html" style="color: #999">关注的项目</a>
+											<a href="javascript:void(0)" class="my_follow_project" style="color: #999">关注的项目</a>
 										</div>
 										<div class="included_ariticle">
 											<span class="fa fa-file-text-o"></span>
-											<a href="my-follow-topic-list.html" style="color: #999">关注的专题</a>
+											<a href="javascript:void(0)" class="my_follow_topic" style="color: #999">关注的专题</a>
 										</div>
 									</div>
 								</div>
@@ -169,7 +169,7 @@
 				<a data-subjectid="<%:=list[i].id %>" class="delete_subject subject_option_menu">删除</a>
 				<a href="topic-edit.html?subjectId=<%:=list[i].id %>"  class="subject_option_menu">编辑 &nbsp</a>
 			<%}%>
-			
+
 		</p>
 	<%}%>
 </script>

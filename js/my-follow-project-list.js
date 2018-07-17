@@ -6,8 +6,9 @@ var ui = {
 	"noMoreData": false,
 	"loading": false
 }
+var my_follow_project_user_id = getUrlParam('userId');
 
-var current_page = 1;
+var currentPage = 1;
 var pageSize = 6;
 function getProject(){
 	if(ui.loading){
@@ -17,7 +18,7 @@ function getProject(){
 	current_page = 1;
   $('.waiting-data').fadeIn();
   var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=3'
+            + pageSize + '&creator=' + my_follow_project_user_id +'&type=3'
 	doJavaGet(uri ,function(result){
 		if(result.code == 0){
       if (result.datas.length == 0) {
@@ -41,7 +42,7 @@ function getMoreProject(){
 	$('.loader1').css('display','')
 	current_page++;
   var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=3'
+            + pageSize + '&creator=' + my_follow_project_user_id +'&type=3'
 	doJavaGet(uri ,function(result){
 	if(result.code == 0){
 		  var tpl= document.getElementById('follow_project_tpl').innerHTML;

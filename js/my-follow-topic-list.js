@@ -1,6 +1,7 @@
 window.onload=function(){
   getTopicIndex();
 }
+var my_follow_topic_user_id = getUrlParam('userId');
 var ui = {
 	"noData": false,
 	"noMoreData": false,
@@ -16,7 +17,7 @@ function getTopicIndex(){
 	ui.loading = true;
 	current_page = 1;
   var uri = 'attention/quaryAttentionData?currentPage=' + current_page + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=2'
+            + pageSize + '&creator=' + my_follow_topic_user_id +'&type=2'
 	doJavaGet(uri ,function(result){
 		if(result.code == 0){
   		//限制长度
@@ -41,7 +42,7 @@ function getMoreTopicIndex(){
 	$('.loader1').css('display','')
 	current_page++;
   var uri = 'attention/quaryAttentionData?currentPage=' + current_page + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=2'
+            + pageSize + '&creator=' + my_follow_topic_user_id  +'&type=2'
 	doJavaGet(uri ,function(result){
 	if(result.code == 0){
 		//限制长度

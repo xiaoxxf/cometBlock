@@ -1,4 +1,5 @@
 var follow_people_type = getUrlParam('type');	//查询关注动态数据	type =1 2 3 4//关注：用户 专题 项目 粉丝
+var follow_people_userId = getUrlParam('userId');	//查询关注动态数据	type =1 2 3 4//关注：用户 专题 项目 粉丝
 var currentPage = 1;
 var pageSize = 12;
 var ui = {
@@ -25,7 +26,7 @@ function searchUser(){
   ui.noMoreData = false;
 
   var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=' + follow_people_type
+            + pageSize + '&creator=' + follow_people_userId +'&type=' + follow_people_type
   $(".waiting-data").fadeIn();
 
   doJavaGet(uri, function(result){
@@ -51,7 +52,7 @@ function loadMoreUser(){
 	ui.loading = true;
 
 	var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-						+ pageSize + '&creator=' + userId  + '&password=' + userinfo.userPwd +'&type=' + follow_people_type
+						+ pageSize + '&creator=' + follow_people_userId +'&type=' + follow_people_type
 	$(".waiting-data").fadeIn();
 
 	doJavaGet(uri, function(result){

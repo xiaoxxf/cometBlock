@@ -475,3 +475,25 @@ function getPower(){
 	})
 }
 
+
+// 跳转到 我关注的人 列表
+$('.following_count').on('click',function(){
+	window.location.href = 'my-follow-people-list.html?type=1&userId=' + userid_search
+})
+
+// 跳转到 粉丝 列表
+$('.follower_count').on('click',function(){
+	window.location.href = 'my-follow-people-list.html?type=4&userId=' + userid_search
+})
+
+
+// 跳转到 我关注的项目 列表
+$('.my_follow_project').on('click',function(){
+	window.location.href = 'my-follow-project-list.html?type=3&userId=' + userid_search
+})
+
+
+// 跳转到 我关注的专题 列表
+$('.my_follow_topic').on('click',function(){
+	window.location.href = 'my-follow-topic-list.html?type=2&userId=' + userid_search
+})

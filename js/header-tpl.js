@@ -1,4 +1,4 @@
-WebApiHostJavaApi = "http://backend.blockcomet.com/"; // 头部固定使用这个api
+// WebApiHostJavaApi = "http://backend.blockcomet.com/"; // 头部固定使用这个api
 var userinfo = JSON.parse(localStorage.getItem('userinfo'))
 var like_tpl_flag = false
 var comment_tpl_flag = false
