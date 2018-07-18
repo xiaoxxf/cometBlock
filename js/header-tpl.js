@@ -6,7 +6,7 @@ var quote_tpl_flag = false
 var notification_tpl_flag = false
 var noticeCurrentPage = 1;
 var noticePageSize = 24;
-var type = []; //查看消息的类型
+var notification_type = []; //查看消息的类型
 // var current_type = [] // 头部消息通知，当前查看的消息类型
 var order = '' // 头部消息通知，当前选择的第几项 0->点赞 1->评论 2->通知
 //	通知
@@ -28,10 +28,10 @@ $(document).ready(function(){
 			if ( !like_tpl_flag ) {
 				// 渲染点赞
 				noticeCurrentPage = 1;
-				type = [3];
+				notification_type = [3];
 				var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=' + noticeCurrentPage +
 										'&pageSize=12'
-				 						+ '&type=' + type
+				 						+ '&type=' + notification_type
 				doJavaGet(uri,function(result){
 					if (result.datas.length != 0) {
 						var tpl = document.getElementById('like_tpl').innerHTML;
@@ -63,9 +63,9 @@ $(document).ready(function(){
 				if (order == 1) {
 
 					if ( !comment_tpl_flag ) {
-						type = [2];
+						notification_type = [2];
 						var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type
+											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + notification_type
 
 						// 先渲染评论
 						doJavaGet(uri,function(result){
@@ -84,10 +84,10 @@ $(document).ready(function(){
 				// 引用1
 				else if(order == 2){
 					// 渲染引用
-					type = [1];
+					notification_type = [1];
 					if ( !quote_tpl_flag ) {
 						var uri_quote = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type
+											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + notification_type
 						doJavaGet(uri_quote,function(result){
 
 							if (result.datas.length == 0) {
@@ -105,9 +105,9 @@ $(document).ready(function(){
 				else if(order == 3){
 
 					if ( !notification_tpl_flag ) {
-						type = [4,5];
+						notification_type = [4,5];
 						var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type;
+											'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + notification_type;
 
 						// 先渲染审核
 						doJavaGet(uri,function(result){
@@ -122,9 +122,9 @@ $(document).ready(function(){
 
 				}
 				else if(order == 4){
-					type = [6];
+					notification_type = [6];
 					var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd +
-										'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + type;
+										'&currentPage=' + noticeCurrentPage + '&pageSize=' + noticePageSize + '&type=' + notification_type;
 					// 渲染专题
 					doJavaGet(uri,function(result){
 						if (result.datas.length !== 0) {
@@ -153,7 +153,8 @@ function readMoreNoticeOnHead(){
 // 计算未读消息
 function countUnreadMessage(){
 	if (userId) {
-		var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=1'
+		notification_type = [1,2,3,4,5,6]
+		var uri = 'news/getMessage?userId=' + userId + '&userPwd=' + userinfo.userPwd + '&currentPage=1'  + '&pageSize=1' + '&type=' + notification_type
 		doJavaGet(uri,function(result){
 			if (result.code == 0) {
 				result.count ? $('.badge-inform').text(result.count) : $('.badge-inform').text('')

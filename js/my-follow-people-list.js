@@ -26,7 +26,7 @@ function searchUser(){
   ui.noMoreData = false;
 
   var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-            + pageSize + '&creator=' + follow_people_userId +'&type=' + follow_people_type
+            + pageSize + '&creator=' + follow_people_userId +'&type=' + follow_people_type + '&loginUser=' + userId
   $(".waiting-data").fadeIn();
 
   doJavaGet(uri, function(result){
@@ -52,7 +52,7 @@ function loadMoreUser(){
 	ui.loading = true;
 
 	var uri = 'attention/quaryAttentionData?currentPage=' + currentPage + '&pageSize='
-						+ pageSize + '&creator=' + follow_people_userId +'&type=' + follow_people_type
+						+ pageSize + '&creator=' + follow_people_userId +'&type=' + follow_people_type + '&loginUser=' + userId
 	$(".waiting-data").fadeIn();
 
 	doJavaGet(uri, function(result){
