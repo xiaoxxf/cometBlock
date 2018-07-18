@@ -295,6 +295,10 @@ $(".hot_review_region").on('click','.like-button',function (e) {
 // 关注
 var current_follow_button = null
 $(".hot_review_region").on('click','.followBtn',function(){
+	// 判断是否登录或绑定
+	if(not_login()){
+		return
+	}
 	current_follow_button = this;
 	var	followingId = $(this).data('followingid');
 	var uri = 'attention/attent?attentionId=' + followingId  + '&creator=' + userId + '&password=' + userinfo.userPwd + '&type=1';

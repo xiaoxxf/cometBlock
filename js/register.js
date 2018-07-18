@@ -109,6 +109,7 @@ $("#sign-in-form-submit-btn1").click(function() {
 	if (!validRegisterInfo()) {
 		return
 	}
+
 	// loading效果
 	$(".ouro").attr({
 		style: "display:inline-block"
@@ -124,7 +125,7 @@ $("#sign-in-form-submit-btn1").click(function() {
 	}
 	var uri = 'news/registerUser'
 	param = JSON.stringify(param)
-
+	debugger
 	doPostJavaApi(uri, param, function(res) {
 
 		if(res != null && res.code == 0) {
