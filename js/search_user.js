@@ -1,5 +1,5 @@
 var keyWord = getUrlParam('serach_word_by_navbar')
-var currentPage = 1;
+// var currentPage = 1;
 var ui = {
 	"noData": false,
 	"noMoreData": false,
@@ -11,11 +11,11 @@ window.onload = function(){
 }
 
 function searchUser(){
-  currentPage = 1;
+  // currentPage = 1;
   ui.loading = true;
   ui.noMoreData = false;
 
-  var uri = 'news/quaryusers?currentPage=' + currentPage + '&pageSize=12&realName=' + keyWord + '&loginUser=' + userId
+  var uri = 'news/quaryusers?realName=' + keyWord + '&loginUser=' + userId
   $(".waiting-data").fadeIn();
 
   doJavaGet(uri, function(result){

@@ -344,7 +344,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         textTitle: shortTxt,
         parentId: reviewId, //项目
         type: 3, //长文的type为2
-        userId:userId,
+        creator:userId,
         quote:quote,
         quotedReviewId: quotedReviewId, // 引用的评论的id
         originalReviewId: originalReviewId, // 原文id

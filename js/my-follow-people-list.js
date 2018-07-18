@@ -13,10 +13,10 @@ window.onload = function(){
 }
 
 $(function(){
-	if (type == 1) {
-		$('title').html('我关注的人')
-	}else if(type == 5){
-		$('title').html('我的粉丝')
+	if (follow_people_type == 1) {
+		$('title').html('彗星—区块链项目评测社区-关注的人')
+	}else if(follow_people_type == 5){
+		$('title').html('彗星—区块链项目评测社区-粉丝')
 	}
 })
 

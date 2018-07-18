@@ -22,10 +22,10 @@ $(function(){
 //		$('.create_new_subject_btn').css('display','none');
 	}
 	// 看自己
-	else{
+	else if(url_id && url_id == cookie_id){
 		// 看自己时显示编辑个人资料按钮
 		$('.edit_btn').css('display','block');
-		userid_search = cookie_id;
+		userid_search = url_id;
 		getPower();
 	}
 
@@ -92,7 +92,7 @@ $('.load_all_dynamic').on('click',function(){
 
 // 加载用户信息
 function getUserInfo(){
-	var uri = 'news/quaryusers?currentPage=1&pageSize=1&userId=' + userid_search
+	var uri = 'news/quaryusers?userId=' + userid_search
 
 	doJavaGet(uri, function(res){
 

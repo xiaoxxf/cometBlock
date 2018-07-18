@@ -31,7 +31,7 @@ var WebApiToken;
 var WebApiHost="https://api.blockcomet.com/";
 //var WebApiHostJavaApi = "http://backend.blockcomet.com/";
 // var WebApiHostJavaApi ="http://testapi.blockcomet.com/";
-var WebApiHostJavaApi = "http://10.0.0.102:8080/";
+var WebApiHostJavaApi = "http://10.0.0.218:8080/";
 
 
 
@@ -296,7 +296,7 @@ function getUserInfoByWeChat(wechatCode){
 $('.block-comet-main-wrap').on('click', '.nav-user-account .user-icon',function () {
 	// 账号登录 or 已绑定的微信账号
 	if (userId) {
-		window.location = 'personal-homepage.html'
+		window.location = 'personal-homepage.html?userId=' + userId
 	}
 	// 未绑定的微信账号
 	else if(wechatInfo && !wechatInfo.userInfo){
@@ -311,7 +311,7 @@ $('.block-comet-main-wrap').on('click', '.nav-user-account .logout-btn',function
 
 $('.block-comet-main-wrap').on('click', '.nav-user-account .usercenter-btn',function () {
 //      window.location.href = "personalCenter.html?personType=1";
-			  window.location = "personal-homepage.html";
+        window.location = 'personal-homepage.html?userId=' + userId
 })
 
 $('.block-comet-main-wrap').on('click','.nav-user-account .inform-btn',function(){
