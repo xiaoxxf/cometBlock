@@ -486,15 +486,32 @@
 					<div class="header">
 						<!-- TODO：跳转到个人中心页 -->
 						<a href="personal-homepage.html?userId=<%=list[i].creator %>"><%:=list[i].realName%></a>
-						<span><%:=list[i].createTime%></span>
-						<span class="num pull-right"><%:=i+1%>#</span>
+						<p class="comment-text"><%:=list[i].textTitle%></p>
+						
+						<p>
+							<span class="num num_right"><%:=i+1%>楼</span>
+							<span><%:=list[i].createTime%></span>
+
+						</p>
 					</div>
 					<%if(list[i].quote != null){%>
 						<div class="reply-quote" style="">
 							<%:=list[i].quote%>
 						</div>
 					<%}%>
-					<p class="comment-text"><%:=list[i].textTitle%></p>
+					
+					<%if(list[i].fedbackList.length != 0){%>
+						<%for(var j = 0; j < list[i].fedbackList.length; j++) {%>
+							<div class="answer_comment">
+								<p class="answer_comment_content">
+									<span class="answer_comment_username"><%=list[i].fedbackList[j].realName%>:</span>
+									<span class="answer_comment_detail"><%=list[i].fedbackList[j].textTitle%></span>
+								</p>
+								<p class="answer_comment_time"><%=list[i].fedbackList[j].createTime%></p>
+							</div>
+						<%}%>
+					<%}%>
+					
 					<div class="op-lnks">
 						<%if(userId && list[i].creator == userId){%>
 							<a href="javascript:void(0)"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_edit" >编辑</a>
@@ -507,6 +524,7 @@
 						<a rel="nofollow" href="javascript:;" data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>" class="report report_comment">举报</a>
 					</div>
 				</div>
+				
 			</div>
 			<%}%>
 			<section class="review-comment-form" id="add_comment">
