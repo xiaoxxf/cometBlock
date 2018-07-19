@@ -346,7 +346,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
         textTitle: shortTxt,
         parentId: reviewId,
         type: 3, //长文的type为2
-        userId:userId,
+        creator:userId,
         quote:quote,
         quotedReviewId: quotedReviewId,
     }
@@ -527,7 +527,7 @@ function doSendArticle(projectId,score){
     projectId: projectId, //项目Id
     score: score, //评分
     type: 2, //长文的type为2
-    userId: userinfo.id, //userId
+    creator: userId, //userId
   }
   var uri = 'blockchain/addReview'
   doPostJavaApi(uri, JSON.stringify(data), function(res){

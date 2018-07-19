@@ -119,17 +119,32 @@ $('.submit_comment').on('click',function(){
     textTitle: $('input[name="head"]')[0].value,
     textContent: text_content,
     type: 4,
-    userId: userId, //userId
+    creator: userId, //userId
   }
   var uri = 'blockchain/addReview';
+  // doPostJavaApi(uri,data,function(res){
+  //   // 清除草稿
+  //   if (res.code == 0) {
+  //     save_draft_flag = false; //发表文章后跳转不保存草稿
+  //     localStorage.removeItem('draft');
+  //     layer.msg('提交成功', {
+  //       time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+  //       end:function(){
+  //         window.location.href='article-finish.html'
+  //       }
+  //     });
+  //   }else if(res.code == -1){
+  //     $('.submit_comment').text('发布');
+  //     layer.msg('提交失败，请重试')
+  //   }
+  // });
   $.ajax({
     url : WebApiHostJavaApi + uri,
     type: "post",
     data: JSON.stringify(data),
     datType: "json",
-    async: true,//使用同步的方式,true为异步方式
-    processData: false,  // 不处理数据
-    contentType: false,   // 不设置内容类型
+    // async: true,//使用同步的方式,true为异步方式
+    contentType: "application/json;charset=UTF-8",
 
     success:function(res){
       // 清除草稿

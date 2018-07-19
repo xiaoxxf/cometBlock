@@ -404,7 +404,7 @@ $(".short-comment-commit").on('click',function (e) {
         projectBigName: projectBigName,
         score: score, //评分
         type: 1, //长文的type为2
-        userId:userId
+        creator:userId
     }
     var uri = 'blockchain/addReview';
     var jsonData = JSON.stringify(data)

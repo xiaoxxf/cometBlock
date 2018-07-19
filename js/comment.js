@@ -536,7 +536,7 @@ function doSendArticle(projectId,score){
     projectId: projectId, //项目Id
     score: score, //评分
     type: 2, //长文的type为2
-    userId: userinfo.id, //userId
+    creator: userId, //userId
   }
   var uri = 'blockchain/addReview'
   doPostJavaApi(uri, JSON.stringify(data), function(res){

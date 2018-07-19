@@ -153,7 +153,7 @@ $(function(){
 			projectBigName: projectData.projectBigName,
   		score: score, //评分
   		type: 2, //长文的type为2
-  		userId: userId, //userId
+  		creator: userId, //userId
   	}
 
     if (data.textTitle.length == 0 || editor.txt.text().length == 0 || !data.score) {
