@@ -37,7 +37,7 @@ window.onload = function(){
 var pageSize = 5;
 function  ajaxGetReviewDetail() {
     var reviewId = getUrlParam('reviewId');
-    var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+    var uri = 'topic/quaryArticleDeatailOnApp?reviewId='+reviewId + '&loginUser=' + userId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             // 用户点赞状态
