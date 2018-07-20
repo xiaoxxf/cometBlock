@@ -347,17 +347,44 @@ a img {
 }
 .answer_comment{
 	background-color: rgba(238,238,238,0.8);
-    padding: 10px;
+    padding: 15px;
     border-radius: 3px;
 }
 
+.answer_comment_time{
+	display: block;
+    margin:10px 0px;
+}
+.answer_box{
+	margin-bottom: 20px;
+    /*border-bottom: 1px solid #9e9e9e33;*/
+}
 .reply-comment {
 	position: relative;
 	margin-bottom: 5px;
 	padding-left: 73px;
 	display: none;
 }
-
+.answer_comment_image{
+	width: 40px;
+    height: 40px;
+    border-radius: 10px;
+}
+.answer_comment_username{
+	color: #4fa3ed;
+}
+.answer_comment_detail{
+	margin-left: 10px;
+	color: #333;
+}
+.more_comment{
+	cursor: pointer;
+    float: right;
+    position: relative;
+    margin-top: -10px;
+    right: 10px;
+    bottom: 10px;
+}
 .review-comment-form .reply-comment .reply-comment-wrap {
 	background-color: rgba(238, 238, 238, 0.8);
 	padding: 10px 4px;

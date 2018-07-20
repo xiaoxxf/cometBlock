@@ -501,17 +501,25 @@
 					<%}%>
 					
 					<%if(list[i].fedbackList.length != 0){%>
-						<%for(var j = 0; j < list[i].fedbackList.length; j++) {%>
-							<div class="answer_comment">
-								<p class="answer_comment_content">
-									<span class="answer_comment_username"><%=list[i].fedbackList[j].realName%>:</span>
-									<span class="answer_comment_detail"><%=list[i].fedbackList[j].textTitle%></span>
-								</p>
-								<p class="answer_comment_time"><%=list[i].fedbackList[j].createTime%></p>
-							</div>
-						<%}%>
+					<div class="answer_comment">
+						<div class="answer_container">
+							<%for(var j = 0; j < list[i].fedbackList.length; j++) {%>
+								<div class="answer_box">
+									<p class="answer_comment_content">
+										<a href="">
+											<img src="<%=list[i].fedbackList[j].userPic%>" class="answer_comment_image"/>
+										</a>
+										<a class="answer_comment_username"><%=list[i].fedbackList[j].realName%>:</a>
+										<a class="answer_comment_detail"><%=list[i].fedbackList[j].textTitle%></a>
+									</p>
+									<p class="answer_comment_time"><%=list[i].fedbackList[j].createTime%></p>
+								</div>
+							<%}%>
+						</div>
+						<p class="more_comment" data-currentpage="1" data-parentId="<%:=list[i].reviewId%>" onclick="moreComment(this)">更多回复&raquo;</p>
+					</div>
 					<%}%>
-					
+
 					<div class="op-lnks">
 						<%if(userId && list[i].creator == userId){%>
 							<a href="javascript:void(0)"  data-parentId="<%:=list[i].parentId%>" data-user_name="<%:=list[i].realName%>" data-reviewId="<%:=list[i].reviewId%>"class="reply_edit" >编辑</a>
@@ -560,7 +568,15 @@
 				</div>
 			</section>
 		</script>
-
+		<script type="text/html" id="subCommentTpl">
+			<%for(var i = 0; i < list.length; i++) {%>			
+				<p class="answer_comment_content">
+					<span class="answer_comment_username"><%=list[i].realName%>:</span>
+					<span class="answer_comment_detail"><%=list[i].textTitle%></span>
+				</p>
+				<p class="answer_comment_time"><%=list[i].createTime%></p>
+			<%}%>
+		</script>
 		<script src="https://cdn.dingxiang-inc.com/ctu-group/captcha-ui/index.js"></script>
 		<script src="js/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>

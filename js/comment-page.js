@@ -24,7 +24,6 @@ function ajaxGetLongCommentReview() {
 
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
-		
             commentList = res.datas;
             for (var i = 0; i< commentList.length; i++ ){
             	commentList[i].createTime = changeTimeFormat(commentList[i].createTime);
@@ -142,5 +141,45 @@ function changeTimeFormat(dateTimeStamp){
 	result="刚刚";
 	}
 	    return result;
+	
+}
+
+//楼中楼查看更多
+var subComment_pageSize = 10;
+var temp = null;
+function moreComment(self){
+	
+	temp = $(self).prev()[0];
+	var subComment_currentPage = $(self).data("currentpage");
+
+	var parentId=$(self).data("parentid")
+	var uri = '/blockchain/queryArticlesList?currentPage='+ subComment_currentPage +'&pageSize='+ subComment_pageSize + '&type=' + 3 +'&parentId='+ parentId
+	subComment_currentPage++
+	if($(self).data("currentpage") == 1){  //第一次点击清除前面的内容
+		$(temp).html("");
+		
+	}
+	$(self).data("currentpage",subComment_currentPage);
+	doJavaGet(uri, function(res) {
+        if(res != null && res.code == 0) {
+        	var resDataLength = res.datas.length;
+			var search = document.getElementById('subCommentTpl').innerHTML;
+		    var content = template(search, {list: res.datas});
+		    $(temp).append(content);
+		    
+		    var boxLength=$(".answer_container .answer_box").length;
+		    if(resDataLength < subComment_pageSize){
+//		    	$(".more_comment").removeAttr("onclick");
+				$(self).removeAttr("onclick");
+				$(self).html("已无更多数据");
+		    }
+
+           	
+        } else {
+            layer.msg(res.msg);
+        }		    	
+		
+    }, "json");
+
 	
 }
