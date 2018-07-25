@@ -157,7 +157,7 @@ function moreComment(self){
 	subComment_currentPage++
 
 	doJavaGet(uri, function(res) {
-		
+		debugger
 		commentList = res.datas;
         for (var i = 0; i< commentList.length; i++ ){
         	commentList[i].createTime = changeTimeFormat(commentList[i].createTime);
