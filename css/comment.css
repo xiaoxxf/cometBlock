@@ -382,8 +382,9 @@ a img {
     margin-top: 15px;
     padding-right: 30px;
     line-height: 30px;
-    
+    cursor: pointer;
 }
+
 .more_comment{
 	cursor: pointer;
     position: relative;
