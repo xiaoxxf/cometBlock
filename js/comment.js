@@ -129,6 +129,8 @@ $('.comment-list-hook').on('click','.comment-item .reply_comment',function (e) {
     $("#add_comment .parent-txt .short").text(parentTxt);
     quotedReviewId = id
     $(".reply-comment").fadeIn()
+    var h = $(document).height()-$(window).height();
+    $(document).scrollTop(h);
 });
 //点击删除
 $('.comment-list-hook').on('click','.comment-item .reply_delete',function (e) {
