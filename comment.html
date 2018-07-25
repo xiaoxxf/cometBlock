@@ -509,8 +509,8 @@
 										<a href="">
 											<img src="<%=list[i].fedbackList[j].userPic%>" class="answer_comment_image"/>
 										</a>
-										<a class="answer_comment_username"><%=list[i].fedbackList[j].realName%>:</a>
-										<a class="answer_comment_detail"><%=list[i].fedbackList[j].textTitle%></a>
+										<a class="answer_comment_username"><%=list[i].fedbackList[j].realName%></a>
+										<div class="answer_comment_detail"><%=list[i].fedbackList[j].textTitle%></div>
 									</p>
 									<p class="answer_comment_time"><%=list[i].fedbackList[j].createTime%></p>
 								</div>
@@ -569,13 +569,18 @@
 			</section>
 		</script>
 		<script type="text/html" id="subCommentTpl">
+			
 			<%for(var i = 0; i < list.length; i++) {%>			
-				<p class="answer_comment_content">
-					<span class="answer_comment_username"><%=list[i].realName%>:</span>
-					<span class="answer_comment_detail"><%=list[i].textTitle%></span>
-				</p>
+				<div class="answer_comment_content">
+					<a href="">
+						<img src="<%=list[i].userPic%>" class="answer_comment_image"/>
+					</a>
+					<a class="answer_comment_username"><%=list[i].realName%>:</a>
+					<div class="answer_comment_detail"><%=list[i].textTitle%></div>
+				</div>
 				<p class="answer_comment_time"><%=list[i].createTime%></p>
 			<%}%>
+			
 		</script>
 		<script src="https://cdn.dingxiang-inc.com/ctu-group/captcha-ui/index.js"></script>
 		<script src="js/jquery-2.1.1.js"></script>

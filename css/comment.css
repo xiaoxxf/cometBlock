@@ -332,6 +332,9 @@ a img {
 	/*background-color: rgba(238, 238, 238, 0.8);*/
 	border-radius: 10px;
 }
+.comment-container-wrap .report-comment .header a{
+	color: #333;
+}
 .comment-item .op-lnks .reply_comment .reply_edit .reply_delete{
     padding: 1px 3px;
     margin-right: 8px;
@@ -341,10 +344,7 @@ a img {
     color:#fff !important;
     background-color: #bfbfbf;
 }
- .comment-container-wrap .report-comment .header{
-    /*background-color: rgba(238,238,238,0.8);*/
-    border-radius: 10px;
-}
+
 .answer_comment{
 	background-color: rgba(238,238,238,0.8);
     padding: 15px;
@@ -354,6 +354,7 @@ a img {
 .answer_comment_time{
 	display: block;
     margin:10px 0px;
+    color: #969696;
 }
 .answer_box{
 	margin-bottom: 20px;
@@ -371,19 +372,23 @@ a img {
     border-radius: 10px;
 }
 .answer_comment_username{
-	color: #4fa3ed;
-}
-.answer_comment_detail{
-	margin-left: 10px;
+	/*color: #4fa3ed;*/
 	color: #333;
+	margin-left: 10px;
+}
+
+.answer_comment_detail{
+	color: #333;
+    margin-top: 15px;
+    padding-right: 30px;
+    line-height: 30px;
+    
 }
 .more_comment{
 	cursor: pointer;
-    float: right;
     position: relative;
-    margin-top: -10px;
-    right: 10px;
-    bottom: 10px;
+    margin-top: 10px;
+   
 }
 .review-comment-form .reply-comment .reply-comment-wrap {
 	background-color: rgba(238, 238, 238, 0.8);
@@ -872,4 +877,12 @@ a img {
 .pull-center{
 	margin-right: 45%;
 	margin-top: -65px;
+}
+
+/*加载评论第一次清空过度效果*/
+#subCommentTpl{
+	transition:width 2s;
+	-moz-transition:width 2s; /* Firefox 4 */
+	-webkit-transition:width 2s; /* Safari and Chrome */
+	-o-transition:width 2s; /* Opera */
 }
