@@ -37,7 +37,7 @@ window.onload = function(){
 var pageSize = 5;
 function  ajaxGetReviewDetail() {
     var reviewId = getUrlParam('reviewId');
-    var uri = 'topic/quaryArticleDeatail?reviewId='+reviewId ;
+    var uri = 'topic/quaryArticleDeatailOnApp?reviewId='+reviewId + '&loginUser=' + userId ;
     doJavaGet(uri, function(res) {
         if(res != null && res.code == 0) {
             // 用户点赞状态
@@ -296,7 +296,7 @@ $(".comment-list-hook").on('click','.add_comment-hook',function (e) {
     $(e.currentTarget).text('提交中...');
     var reviewId = getUrlParam('reviewId');
     var shortTxt = $(".textarea-txt-hook").val();
-    var quote = '';
+    var quote = null;
     if($(".reply-comment").is(':visible')){
         quote = $(".reply-comment-wrap .quote-comment-txt").html();
     }

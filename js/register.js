@@ -120,7 +120,8 @@ $("#sign-in-form-submit-btn1").click(function() {
 		realName: $("#realName").val(),
 		userPwd: $("#session_password").val(),
 		tel: $("#session_phone").val(),
-		phoneCode: $("#phone_code").val()
+		phoneCode: $("#phone_code").val(),
+		invitingCode: $("#invite_code").val()
 		//userType: 3,
 	}
 	var uri = 'news/registerUser'
